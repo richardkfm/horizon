@@ -1,7 +1,19 @@
+<div align="center">
+
 # horizon
-<img width="844" height="676" alt="grafik" src="https://github.com/user-attachments/assets/f61ff046-3a4b-4fec-a99c-004e312b9034" />
+
+<img width="480" alt="horizon" src="https://github.com/user-attachments/assets/f61ff046-3a4b-4fec-a99c-004e312b9034" />
 
 **An offline-first autonomy node for basic human skills.**
+
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
+[![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
+[![Status: v0.1 scaffold](https://img.shields.io/badge/status-v0.1%20scaffold-orange.svg)](#roadmap)
+
+</div>
 
 horizon is a small, self-contained server you run on your own hardware (a
 Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
@@ -10,9 +22,11 @@ and a **local AI assistant** for water, food, energy, shelter, health, and
 cooperative governance — all working **fully offline** after setup, with no
 cloud dependency at runtime.
 
-horizon is for autonomy and rebuilding, not just emergencies: living well
-off-grid and distributing basic human skills, sustainably and without
-coercion.
+horizon is about everyday autonomy, not doomsday prep. Most of us are one dead
+Wi-Fi signal away from being stuck — a single camping trip is enough to show how
+much practical know-how we've quietly outsourced to the internet. horizon puts
+those basic human skills back within reach: living well off-grid, sustainably
+and without coercion.
 
 > **Status:** v0.1 scaffold. The structure, APIs, and content layout are in
 > place; feature logic is being filled in step by step (see
