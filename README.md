@@ -1,6 +1,7 @@
 # horizon
+<img width="844" height="676" alt="grafik" src="https://github.com/user-attachments/assets/f61ff046-3a4b-4fec-a99c-004e312b9034" />
 
-**An offline-first autonomy & rebuilding node.**
+**An offline-first autonomy node for basic human skills.**
 
 horizon is a small, self-contained server you run on your own hardware (a
 Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
@@ -10,7 +11,7 @@ cooperative governance — all working **fully offline** after setup, with no
 cloud dependency at runtime.
 
 horizon is for autonomy and rebuilding, not just emergencies: living well
-off-grid and rebuilding basic infrastructure together, sustainably and without
+off-grid and distributing basic human skills, sustainably and without
 coercion.
 
 > **Status:** v0.1 scaffold. The structure, APIs, and content layout are in
@@ -34,7 +35,7 @@ coercion.
 ## Quickstart (Docker, recommended)
 
 ```bash
-git clone <this-repo> horizon && cd horizon
+git clone https://github.com/richardkfm/horizon && cd horizon
 
 # (optional) customise configuration
 cp config.example.yaml config.yaml
