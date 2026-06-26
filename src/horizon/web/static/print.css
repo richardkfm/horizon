@@ -1,0 +1,29 @@
+/* Print mode: minimal, high-contrast, A4-friendly layout for guides. */
+
+@page {
+  size: A4;
+  margin: 1.8cm;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  font-size: 11pt;
+}
+
+/* Hide interactive chrome when printing a guide. */
+.site-header,
+.site-footer,
+nav,
+.no-print {
+  display: none !important;
+}
+
+.content { max-width: none; margin: 0; padding: 0; }
+
+h1, h2, h3 { page-break-after: avoid; }
+img, figure, table { page-break-inside: avoid; max-width: 100%; }
+
+a { color: #000; text-decoration: underline; }
+/* Expand links so printed guides remain useful offline. */
+a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }

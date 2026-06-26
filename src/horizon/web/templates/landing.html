@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}horizon — autonomy &amp; rebuilding{% endblock %}
+{% block content %}
+<section class="intro">
+  <h1>horizon</h1>
+  <p class="tagline">
+    A local, offline-first guide to autonomy and rebuilding — not just for
+    emergencies, but for living well off-grid and rebuilding basic
+    infrastructure together, sustainably and without coercion.
+  </p>
+</section>
+
+<section class="categories">
+  <h2>Where do you want to start?</h2>
+  <ul class="category-grid">
+    {% for category in categories %}
+    <li class="category-card">
+      <a href="/journeys?category={{ category }}">
+        <span class="category-name">{{ category }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

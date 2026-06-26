@@ -1,0 +1,41 @@
+# horizon configuration.
+# Copy this file to `config.yaml` and adjust for your deployment.
+# horizon runs fully offline at runtime; network is only used during initial
+# setup and optional content-pack downloads.
+
+server:
+  host: 0.0.0.0
+  port: 8080
+
+# Runtime data lives here (database, vector index, downloaded content packs).
+# Seed content from the repo `content/` directory is copied in on first run.
+data_dir: /data
+database: /data/horizon.db
+content_dir: /data/content
+
+llm:
+  provider: ollama            # ollama | openai-compatible (e.g. llama.cpp server)
+  endpoint: http://ollama:11434
+  model: llama3.2:3b          # small, runs on Pi-class hardware
+  embedding_model: nomic-embed-text
+
+vectordb:
+  provider: chroma            # embedded, persistent — no separate service
+  path: /data/chroma
+
+rag:
+  top_k: 5                    # number of guides/md-skills retrieved per question
+
+ai:
+  no_jargon_default: false    # when true, answers default to plain-language mode
+
+# OPTIONAL ethics refinement via an external moral-core service.
+# Disabled by default — horizon is fully self-contained without it.
+# When enabled, draft answers are sent to `endpoint` for approve/adjust/block.
+# If moral-core is unreachable, horizon falls back to its built-in md skills.
+ethics:
+  enabled: false
+  endpoint: http://moral-core.local/api/evaluate
+
+content_packs:
+  dir: /data/packs            # optional offline Wikipedia / medical ZIM / maps
