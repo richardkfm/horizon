@@ -5,11 +5,15 @@ A *journey* is a node in the skill tree (e.g. "provide safe drinking water for
 or more *guides* (Markdown step-by-step instructions).
 """
 
-from __future__ import annotations
-
 from enum import StrEnum
 
 from sqlmodel import Field, Relationship, SQLModel
+
+# NOTE: This module intentionally omits ``from __future__ import annotations``.
+# With stringified annotations, SQLModel 0.0.39 forwards the literal text
+# ``"list[Journey]"`` to SQLAlchemy's ``relationship()``, which then fails to
+# resolve it ("seems to be using a generic class"). Keeping real annotations
+# (with quoted forward references) lets the link relationships configure.
 
 
 class Category(StrEnum):
@@ -44,9 +48,7 @@ class Guide(SQLModel, table=True):
     summary: str = ""
     path: str  # relative path to the Markdown file under the guides directory
 
-    journeys: list[Journey] = Relationship(
-        back_populates="guides", link_model=JourneyGuideLink
-    )
+    journeys: list["Journey"] = Relationship(back_populates="guides", link_model=JourneyGuideLink)
 
 
 class Journey(SQLModel, table=True):
@@ -59,6 +61,4 @@ class Journey(SQLModel, table=True):
     difficulty: int = 1  # 1 (easy) .. 5 (hard)
     estimated_time: str = ""  # human-readable, e.g. "2 days"
 
-    guides: list[Guide] = Relationship(
-        back_populates="journeys", link_model=JourneyGuideLink
-    )
+    guides: list["Guide"] = Relationship(back_populates="journeys", link_model=JourneyGuideLink)
