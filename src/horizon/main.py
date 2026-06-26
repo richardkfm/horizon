@@ -18,6 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from horizon import __version__
 from horizon.api import ai, guides, journeys, recommend
 from horizon.db import init_db
+from horizon.web import admin as admin_routes
 from horizon.web import routes as web_routes
 
 logger = logging.getLogger("horizon")
@@ -53,6 +54,7 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 # Server-rendered pages.
 app.include_router(web_routes.router)
+app.include_router(admin_routes.router)
 
 # Knowledge + AI APIs (stable integration surface).
 app.include_router(journeys.router)

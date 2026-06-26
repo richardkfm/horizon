@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Admin dashboard — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Content dashboard</h1>
+  <form method="post" action="/admin/logout">
+    <button type="submit" class="btn">Sign out</button>
+  </form>
+</div>
+
+<section class="admin-section">
+  <h2>Totals</h2>
+  <ul class="stat-row">
+    <li><strong>{{ stats.journeys_total }}</strong> journeys</li>
+    <li><strong>{{ stats.guides_total }}</strong> guides</li>
+    <li><strong>{{ stats.guide_links }}</strong> guide links</li>
+    <li><strong>{{ stats.prerequisites }}</strong> prerequisites</li>
+  </ul>
+</section>
+
+<section class="admin-section">
+  <h2>By category</h2>
+  <table class="admin-table">
+    <thead>
+      <tr><th>Category</th><th>Journeys</th><th>Guides</th></tr>
+    </thead>
+    <tbody>
+      {% for row in per_category %}
+      <tr>
+        <td class="category-cell">{{ row.category }}</td>
+        <td>{{ row.journeys }}</td>
+        <td>{{ row.guides }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="admin-section">
+  <h2>Runtime</h2>
+  <table class="admin-table">
+    <tbody>
+      <tr><td>Version</td><td>{{ runtime.version }}</td></tr>
+      <tr><td>Content directory</td><td><code>{{ runtime.content_dir }}</code></td></tr>
+      <tr><td>Database</td><td><code>{{ runtime.database }}</code></td></tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}

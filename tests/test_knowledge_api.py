@@ -80,16 +80,18 @@ def test_get_guide_metadata_and_source():
     assert "slow sand filter" in guide["markdown"].lower()
 
 
-def test_get_guide_html_format_returns_source_until_rendering_lands():
+def test_get_guide_html_format_renders_markdown():
     with TestClient(app) as client:
         resp = client.get("/api/guides/water-slow-sand-filter")
         assert resp.status_code == 200
         guide = resp.json()
 
-    # Markdown is always available; html is null until the rendering step.
+    # Markdown is always available; html is now rendered (rendering slice landed).
     assert guide["markdown"]
-    assert "html" in guide
-    assert guide["html"] is None
+    assert guide["html"]
+    # Rendered HTML, with the YAML front matter stripped out.
+    assert "<h1>" in guide["html"]
+    assert "id: water-slow-sand-filter" not in guide["html"]
 
 
 def test_get_guide_404():

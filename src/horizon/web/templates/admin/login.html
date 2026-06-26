@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Admin — horizon{% endblock %}
+{% block content %}
+<section class="admin-login">
+  <h1>Admin</h1>
+  {% if enabled %}
+  {% if error %}<p class="form-error">{{ error }}</p>{% endif %}
+  <form method="post" action="/admin/login" class="token-form">
+    <label for="token">Admin token</label>
+    <input type="password" id="token" name="token" autocomplete="current-password" autofocus />
+    <button type="submit" class="btn">Sign in</button>
+  </form>
+  {% else %}
+  <p class="empty">
+    The admin area is disabled. Set <code>admin.token</code> in
+    <code>config.yaml</code> (or the <code>HORIZON_ADMIN_TOKEN</code> environment
+    variable) and restart to enable it.
+  </p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -65,6 +65,118 @@ body {
 
 .category-card a:hover { border-color: var(--accent); }
 
+/* Shared UI primitives ---------------------------------------------------- */
+
+.btn {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--bg);
+  color: var(--fg);
+}
+.btn:hover { border-color: var(--accent); }
+
+.category-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.05rem 0.6rem;
+}
+
+.breadcrumb { font-size: 0.9rem; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+.empty { color: #555; }
+.form-error { color: #a11; font-weight: 600; }
+
+/* Journeys list ----------------------------------------------------------- */
+
+.filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.5rem; }
+.filter-chip {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.9rem;
+}
+.filter-chip:hover { border-color: var(--accent); }
+.filter-chip.is-active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.journey-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+.journey-card a {
+  display: block;
+  height: 100%;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--fg);
+}
+.journey-card a:hover { border-color: var(--accent); }
+.journey-card h2 { font-size: 1.1rem; margin: 0.5rem 0 0.3rem; }
+.journey-card p { margin: 0.3rem 0; font-size: 0.95rem; }
+.journey-meta { color: #555; font-size: 0.85rem; }
+
+/* Journey detail ---------------------------------------------------------- */
+
+.journey-detail .journey-meta { margin-top: 0.3rem; }
+.journey-section { margin-top: 1.75rem; }
+.link-list { list-style: none; padding: 0; margin: 0; }
+.link-list li { padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.link-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.link-list a:hover { text-decoration: underline; }
+.guide-summary { display: block; color: #555; font-size: 0.9rem; }
+
+/* Guide viewer ------------------------------------------------------------ */
+
+.guide-actions { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.guide { line-height: 1.6; }
+.guide img { max-width: 100%; height: auto; }
+.guide blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(47, 111, 79, 0.06);
+}
+.guide table { border-collapse: collapse; width: 100%; }
+.guide th, .guide td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: left; }
+
+/* Admin ------------------------------------------------------------------- */
+
+.admin-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.admin-section { margin-top: 1.5rem; }
+.token-form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 22rem; }
+.token-form input {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
+.stat-row { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 0; }
+.admin-table { border-collapse: collapse; width: 100%; max-width: 36rem; }
+.admin-table th, .admin-table td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.7rem;
+  text-align: left;
+}
+.admin-table .category-cell { text-transform: capitalize; }
+
 /* Low-power mode: flatten colours and shadows for e-ink / old displays. */
 body.low-power {
   --bg: #ffffff;
@@ -72,3 +184,5 @@ body.low-power {
   --border: #000000;
 }
 body.low-power .category-card a:hover { background: none; }
+body.low-power .filter-chip.is-active { background: #000; }
+body.low-power .guide blockquote { background: none; }
