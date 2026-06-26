@@ -20,17 +20,7 @@
 {% if journeys %}
 <ul class="journey-grid">
   {% for journey in journeys %}
-  <li class="journey-card">
-    <a href="/journeys/{{ journey.id }}">
-      <span class="category-badge">{{ journey.category }}</span>
-      <h2>{{ journey.title }}</h2>
-      {% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
-      <p class="journey-meta">
-        <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
-        {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
-      </p>
-    </a>
-  </li>
+  {% include "partials/_journey_card.html" %}
   {% endfor %}
 </ul>
 {% else %}

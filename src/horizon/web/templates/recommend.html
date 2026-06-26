@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Find your starting point — horizon{% endblock %}
+{% block content %}
+<section class="recommend-intro">
+  <h1>Find your starting point</h1>
+  <p class="tagline">
+    Describe what you want to achieve and your situation. horizon suggests
+    journeys and guides to start with — all matched locally, no internet needed.
+  </p>
+</section>
+
+<form method="get" action="/recommend" class="recommend-form">
+  <label for="goal">What do you want to do?</label>
+  <input type="text" id="goal" name="goal" value="{{ form.goal }}"
+         placeholder="e.g. provide safe drinking water for our group" autofocus />
+
+  <div class="form-row">
+    <div>
+      <label for="people">People</label>
+      <input type="number" id="people" name="people" min="1" value="{{ form.people }}" />
+    </div>
+    <div>
+      <label for="climate">Climate</label>
+      <input type="text" id="climate" name="climate" value="{{ form.climate }}"
+             placeholder="e.g. cold, arid" />
+    </div>
+    <div>
+      <label for="resources">Resources (comma-separated)</label>
+      <input type="text" id="resources" name="resources" value="{{ form.resources }}"
+             placeholder="e.g. solar, barrel, sand" />
+    </div>
+  </div>
+
+  <button type="submit" class="btn">Suggest a path</button>
+</form>
+
+{% if results is not none %}
+<section class="recommend-results">
+  <h2>Suggested journeys</h2>
+  {% if results.journeys %}
+  <ul class="journey-grid">
+    {% for journey in results.journeys %}
+    {% include "partials/_journey_card.html" %}
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">
+    No matching journeys yet. Try different words, or
+    <a href="/journeys">browse all journeys</a>.
+  </p>
+  {% endif %}
+
+  {% if results.guides %}
+  <h2>Related guides</h2>
+  <ul class="link-list">
+    {% for guide in results.guides %}
+    <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
+      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

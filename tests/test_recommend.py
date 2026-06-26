@@ -1,0 +1,74 @@
+"""Recommendation service, API, and scenario-page tests.
+
+Pure keyword matching over the seeded content — no LLM or vector DB. The app
+lifespan seeds the bundled journeys/guides, so assertions target stable seed ids.
+"""
+
+from __future__ import annotations
+
+from fastapi.testclient import TestClient
+
+from horizon.main import app
+from horizon.services.recommend import recommend_journeys
+
+
+def test_service_matches_food_goal():
+    with TestClient(app):  # trigger lifespan seeding
+        result = recommend_journeys("grow staple crops")
+    ids = {j["id"] for j in result["journeys"]}
+    assert "food-staple-crops" in ids
+
+
+def test_service_water_goal_includes_linked_guide():
+    with TestClient(app):
+        result = recommend_journeys("safe drinking water for our group")
+    journey_ids = {j["id"] for j in result["journeys"]}
+    guide_ids = {g["id"] for g in result["guides"]}
+    assert "water-slow-sand-filter" in journey_ids
+    # The journey's linked guide is surfaced too.
+    assert "water-slow-sand-filter" in guide_ids
+
+
+def test_resources_context_is_folded_in():
+    """A solar resource should surface the solar journey even for a vague goal."""
+    with TestClient(app):
+        result = recommend_journeys("set up power", resources=["solar"])
+    ids = {j["id"] for j in result["journeys"]}
+    assert "energy-low-tech-solar" in ids
+
+
+def test_empty_goal_returns_empty():
+    with TestClient(app):
+        result = recommend_journeys("   ")
+    assert result == {"journeys": [], "guides": []}
+
+
+def test_api_recommend_returns_ranked_results():
+    with TestClient(app) as client:
+        resp = client.post("/api/recommend", json={"goal": "safe drinking water"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert "journeys" in data and "guides" in data
+    assert data["journeys"]  # non-empty
+    assert data["journeys"][0]["category"] == "water"
+
+
+def test_api_recommend_no_match_is_empty_not_error():
+    with TestClient(app) as client:
+        resp = client.post("/api/recommend", json={"goal": "xyzzy nonsense qwerty"})
+    assert resp.status_code == 200
+    assert resp.json() == {"journeys": [], "guides": []}
+
+
+def test_recommend_page_renders_form():
+    with TestClient(app) as client:
+        resp = client.get("/recommend")
+    assert resp.status_code == 200
+    assert 'name="goal"' in resp.text
+
+
+def test_recommend_page_shows_results():
+    with TestClient(app) as client:
+        resp = client.get("/recommend", params={"goal": "safe drinking water"})
+    assert resp.status_code == 200
+    assert "/journeys/water-slow-sand-filter" in resp.text
