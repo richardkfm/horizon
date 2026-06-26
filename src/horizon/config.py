@@ -50,6 +50,17 @@ class ContentPacksConfig(BaseModel):
     dir: str = "/data/packs"
 
 
+class AdminConfig(BaseModel):
+    """Token-gated admin area. Blank token (the default) disables the area.
+
+    The effective token also honours the ``HORIZON_ADMIN_TOKEN`` environment
+    variable at request time, so operators can enable admin without editing
+    ``config.yaml``.
+    """
+
+    token: str = ""
+
+
 class Settings(BaseModel):
     server: ServerConfig = Field(default_factory=ServerConfig)
     data_dir: str = "/data"
@@ -61,6 +72,7 @@ class Settings(BaseModel):
     ai: AIConfig = Field(default_factory=AIConfig)
     ethics: EthicsConfig = Field(default_factory=EthicsConfig)
     content_packs: ContentPacksConfig = Field(default_factory=ContentPacksConfig)
+    admin: AdminConfig = Field(default_factory=AdminConfig)
 
 
 def _config_path() -> Path:

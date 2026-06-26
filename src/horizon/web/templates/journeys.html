@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Journeys — horizon{% endblock %}
+{% block content %}
+<section class="journeys-intro">
+  <h1>Journeys</h1>
+  <p class="tagline">
+    Practical, step-by-step paths to autonomy. Pick a category, or browse them
+    all — each journey lists its prerequisites and linked guides.
+  </p>
+</section>
+
+<nav class="filter-bar" aria-label="Filter journeys by category">
+  <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/journeys">All</a>
+  {% for category in categories %}
+  <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
+     href="/journeys?category={{ category }}">{{ category }}</a>
+  {% endfor %}
+</nav>
+
+{% if journeys %}
+<ul class="journey-grid">
+  {% for journey in journeys %}
+  <li class="journey-card">
+    <a href="/journeys/{{ journey.id }}">
+      <span class="category-badge">{{ journey.category }}</span>
+      <h2>{{ journey.title }}</h2>
+      {% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
+      <p class="journey-meta">
+        <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
+        {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
+      </p>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No journeys in this category yet.</p>
+{% endif %}
+{% endblock %}

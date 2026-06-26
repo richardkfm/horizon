@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ journey.title }} — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="/journeys">← All journeys</a></p>
+
+<article class="journey-detail">
+  <span class="category-badge">{{ journey.category }}</span>
+  <h1>{{ journey.title }}</h1>
+  <p class="journey-meta">
+    <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
+    {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
+  </p>
+  {% if journey.description %}<p class="tagline">{{ journey.description }}</p>{% endif %}
+
+  <section class="journey-section">
+    <h2>Prerequisites</h2>
+    {% if journey.prerequisites %}
+    <ul class="link-list">
+      {% for prereq in journey.prerequisites %}
+      <li><a href="/journeys/{{ prereq.id }}">{{ prereq.title }}</a>
+        <span class="category-badge">{{ prereq.category }}</span></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">None — you can start this journey straight away.</p>
+    {% endif %}
+  </section>
+
+  <section class="journey-section">
+    <h2>Guides</h2>
+    {% if journey.guides %}
+    <ul class="link-list">
+      {% for guide in journey.guides %}
+      <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
+        {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No step-by-step guides linked yet.</p>
+    {% endif %}
+  </section>
+</article>
+{% endblock %}
