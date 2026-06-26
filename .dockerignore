@@ -1,0 +1,13 @@
+.git/
+.venv/
+venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+data/
+config.yaml
+*.md
+!README.md

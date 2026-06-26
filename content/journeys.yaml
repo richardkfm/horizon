@@ -1,0 +1,83 @@
+# Seed journeys — nodes in horizon's skill tree.
+# Each journey: id, title, description, category, difficulty (1-5),
+# estimated_time, prerequisites (other journey ids), guides (guide ids).
+#
+# This is a small seed covering all six categories with a few prerequisite
+# edges. Grow to the 5-10+ journey target in the data-model step.
+
+journeys:
+  - id: water-testing-basics
+    title: Test whether water is safe to drink
+    description: >
+      Learn simple field methods to assess water sources and decide what
+      treatment is needed before drinking.
+    category: water
+    difficulty: 1
+    estimated_time: "2 hours"
+    prerequisites: []
+    guides: []
+
+  - id: water-slow-sand-filter
+    title: Provide safe drinking water for ~20 people
+    description: >
+      Build and run a slow sand filter, then store and distribute treated water
+      safely for a small group.
+    category: water
+    difficulty: 3
+    estimated_time: "3 days"
+    prerequisites: [water-testing-basics]
+    guides: [water-slow-sand-filter]
+
+  - id: food-staple-crops
+    title: Grow staple crops on 500 m²
+    description: >
+      Plan, prepare soil for, and grow calorie-dense staple crops to feed a
+      small household or group through a season.
+    category: food
+    difficulty: 3
+    estimated_time: "1 season"
+    prerequisites: []
+    guides: [food-staple-crops-500m2]
+
+  - id: energy-low-tech-solar
+    title: Set up a small low-tech solar system
+    description: >
+      Size, wire, and safely run a small solar + battery system for lighting and
+      charging.
+    category: energy
+    difficulty: 3
+    estimated_time: "2 days"
+    prerequisites: []
+    guides: []
+
+  - id: shelter-insulation-basics
+    title: Insulate a simple shelter
+    description: >
+      Reduce heat loss in a small shelter with low-cost materials and basic
+      repairs.
+    category: shelter
+    difficulty: 2
+    estimated_time: "1 day"
+    prerequisites: []
+    guides: []
+
+  - id: health-first-aid-basics
+    title: Handle common first-aid situations
+    description: >
+      Assess and respond to common injuries and illnesses with a basic kit.
+    category: health
+    difficulty: 2
+    estimated_time: "4 hours"
+    prerequisites: []
+    guides: []
+
+  - id: cooperation-group-decisions
+    title: Make fair group decisions
+    description: >
+      Run inclusive, non-coercive group decision-making and resolve conflicts so
+      a community can act together.
+    category: cooperation
+    difficulty: 2
+    estimated_time: "3 hours"
+    prerequisites: []
+    guides: [cooperation-group-decisions]

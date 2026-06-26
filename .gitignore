@@ -1,0 +1,21 @@
+# Runtime data (database, vector index, downloaded content packs, copied content)
+/data/
+
+# Local configuration (copy of config.example.yaml)
+config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

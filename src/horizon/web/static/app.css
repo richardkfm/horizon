@@ -1,0 +1,74 @@
+/* horizon UI — minimal, readable, works on low-power and e-ink displays. */
+
+:root {
+  --fg: #1a1a1a;
+  --bg: #fdfdfb;
+  --accent: #2f6f4f;
+  --border: #d8d8d2;
+  --max-width: 60rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.site-header,
+.site-footer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.brand { font-weight: 700; font-size: 1.25rem; color: var(--accent); text-decoration: none; }
+.site-header nav { display: flex; gap: 1rem; margin-left: auto; }
+.site-header a { color: var(--fg); text-decoration: none; }
+.site-header a:hover { text-decoration: underline; }
+
+.content { max-width: var(--max-width); margin: 0 auto; padding: 1.5rem 1.25rem; }
+
+.tagline { font-size: 1.1rem; color: #333; max-width: 45rem; }
+
+.category-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.category-card a {
+  display: block;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--fg);
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.category-card a:hover { border-color: var(--accent); }
+
+/* Low-power mode: flatten colours and shadows for e-ink / old displays. */
+body.low-power {
+  --bg: #ffffff;
+  --accent: #000000;
+  --border: #000000;
+}
+body.low-power .category-card a:hover { background: none; }

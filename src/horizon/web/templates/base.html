@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}horizon{% endblock %}</title>
+  <link rel="stylesheet" href="/static/app.css" />
+  <link rel="stylesheet" href="/static/print.css" media="print" />
+  <!-- Vendored locally so the UI works fully offline. -->
+  <script src="/static/htmx.min.js" defer></script>
+  <script src="/static/alpine.min.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">horizon</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/journeys">Journeys</a>
+      <a href="/assistant">Assistant</a>
+      <a href="/admin">Content</a>
+    </nav>
+  </header>
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <span>horizon — offline autonomy &amp; rebuilding · AGPL-3.0</span>
+  </footer>
+</body>
+</html>

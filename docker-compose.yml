@@ -1,0 +1,34 @@
+# horizon — offline-first deployment.
+# After `docker compose up`, pull a model into Ollama, e.g.:
+#   docker compose exec ollama ollama pull llama3.2:3b
+#   docker compose exec ollama ollama pull nomic-embed-text
+# Then open http://<host>:8080
+
+services:
+  horizon:
+    build: .
+    image: horizon:0.1.0
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - horizon-data:/data
+      # To override defaults, copy config.example.yaml to config.yaml and
+      # uncomment the next line (the bind mount fails if the file is missing):
+      # - ./config.yaml:/app/config.yaml:ro
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ollama-data:/root/.ollama
+    # Port is exposed only to the horizon service by default. Uncomment to
+    # access the Ollama API directly on the host:
+    # ports:
+    #   - "11434:11434"
+
+volumes:
+  horizon-data:
+  ollama-data:
