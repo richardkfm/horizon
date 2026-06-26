@@ -177,6 +177,34 @@ body {
 }
 .admin-table .category-cell { text-transform: capitalize; }
 
+/* Recommend / scenario page --------------------------------------------- */
+
+.cta { font-size: 1.05rem; }
+.cta a { color: var(--accent); font-weight: 600; }
+
+.recommend-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  max-width: 45rem;
+}
+.recommend-form label { font-weight: 600; font-size: 0.9rem; }
+.recommend-form input {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  width: 100%;
+}
+.recommend-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+.recommend-form .btn { align-self: start; }
+.recommend-results { margin-top: 2rem; }
+
 /* Low-power mode: flatten colours and shadows for e-ink / old displays. */
 body.low-power {
   --bg: #ffffff;

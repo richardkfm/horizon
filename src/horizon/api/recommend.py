@@ -5,6 +5,8 @@ from __future__ import annotations
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+from horizon.services.recommend import recommend_journeys
+
 router = APIRouter(prefix="/api", tags=["recommend"])
 
 
@@ -23,4 +25,10 @@ class RecommendResponse(BaseModel):
 @router.post("/recommend", response_model=RecommendResponse)
 def recommend(req: RecommendRequest) -> RecommendResponse:
     """Suggest journeys + guides for a goal. Pure logic — no LLM required."""
-    raise NotImplementedError("Implemented in the recommendation step.")
+    result = recommend_journeys(
+        req.goal,
+        people=req.people,
+        climate=req.climate,
+        resources=req.resources,
+    )
+    return RecommendResponse(**result)

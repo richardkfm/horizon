@@ -21,6 +21,7 @@ from horizon.api.journeys import _guide_summary, _journey_summary
 from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
+from horizon.services.recommend import recommend_journeys
 
 router = APIRouter(tags=["web"])
 
@@ -111,5 +112,40 @@ def guide_page(
         {
             "guide": _guide_summary(guide),
             "body_html": body_html,
+        },
+    )
+
+
+@router.get("/recommend", response_class=HTMLResponse)
+def recommend_page(
+    request: Request,
+    goal: str | None = None,
+    people: int | None = None,
+    climate: str | None = None,
+    resources: str | None = None,
+) -> HTMLResponse:
+    """Scenario helper: suggest journeys/guides for a goal and simple context."""
+    resource_list = [r.strip() for r in (resources or "").split(",") if r.strip()]
+
+    results = None
+    if goal and goal.strip():
+        results = recommend_journeys(
+            goal,
+            people=people,
+            climate=climate,
+            resources=resource_list or None,
+        )
+
+    return templates.TemplateResponse(
+        request,
+        "recommend.html",
+        {
+            "results": results,
+            "form": {
+                "goal": goal or "",
+                "people": people or "",
+                "climate": climate or "",
+                "resources": resources or "",
+            },
         },
     )
