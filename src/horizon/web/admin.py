@@ -24,7 +24,7 @@ from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, func, select
 
 from horizon import __version__
-from horizon.config import low_power_enabled, settings
+from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import (
     Category,
@@ -41,6 +41,7 @@ TEMPLATES_DIR = Path(__file__).parent / "templates"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["filesize"] = packs_service.human_size
 templates.env.globals["low_power_enabled"] = low_power_enabled
+templates.env.globals["assistant_enabled"] = assistant_enabled
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
@@ -253,6 +254,17 @@ def integrations_page(request: Request):
     available = len(packs_service.load_catalog())
 
     integrations = [
+        {
+            "name": "Chat assistant",
+            "detail": "config assistant.enabled · env HORIZON_ASSISTANT_ENABLED",
+            "state": "on" if assistant_enabled() else "off",
+            "ok": assistant_enabled(),
+            "note": (
+                "The optional question box offered in the main menu. When off, the "
+                "Ask a question link and page are hidden; journeys, guides, and "
+                "recommendations are unaffected."
+            ),
+        },
         {
             "name": "Low-power mode",
             "detail": "config power.low_power · env HORIZON_LOW_POWER",

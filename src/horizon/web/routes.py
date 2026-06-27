@@ -22,7 +22,7 @@ from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
-from horizon.config import low_power_enabled, settings
+from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
@@ -35,6 +35,7 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 # Read live (honours the HORIZON_LOW_POWER env override) so every page reflects
 # the current power mode without restarting.
 templates.env.globals["low_power_enabled"] = low_power_enabled
+templates.env.globals["assistant_enabled"] = assistant_enabled
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
@@ -257,7 +258,9 @@ def assistant_page(request: Request) -> HTMLResponse:
     mode, or model-off (guides-only). ``model_off`` is only reached when not in
     low-power mode, where probing the runtime would waste energy.
     """
-    if low_power_enabled():
+    if not assistant_enabled():
+        state = "disabled"
+    elif low_power_enabled():
         state = "low_power"
     else:
         from horizon.services import llm
@@ -283,6 +286,20 @@ def assistant_answer(
     Reuses the AI API's answer logic directly (no HTTP self-call) and resolves
     citation ids to guide titles for display.
     """
+    if not assistant_enabled():
+        return templates.TemplateResponse(
+            request,
+            "partials/_answer.html",
+            {
+                "answer_html": render_markdown(
+                    "The assistant has been turned off by the operator. "
+                    "Browse the [step-by-step plans](/journeys) and "
+                    "[how-to guides](/guides) instead."
+                ),
+                "citations": [],
+            },
+        )
+
     result = ai_answer(AnswerRequest(question=question, no_jargon=no_jargon))
 
     citations = [

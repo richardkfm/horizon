@@ -9,7 +9,14 @@
     them — everything runs offline on this device.
   </p>
 
-  {% if state == "low_power" %}
+  {% if state == "disabled" %}
+  <p class="assistant-note is-warn no-print">
+    <strong>The assistant is turned off.</strong> The operator of this device has
+    disabled the chat assistant. You can still find everything in the
+    <a href="/journeys">step-by-step plans</a> and
+    <a href="/guides">how-to guides</a>.
+  </p>
+  {% elif state == "low_power" %}
   <p class="assistant-note is-info no-print">
     <strong>Low-power mode is on.</strong> To save energy, the local AI model is
     paused. Answers list the most relevant local guides instead of writing a full
@@ -29,6 +36,7 @@
   {% endif %}
 </section>
 
+{% if state != "disabled" %}
 <form class="assistant-form"
       hx-post="/assistant/answer"
       hx-target="#assistant-answer"
@@ -50,4 +58,5 @@
 </form>
 
 <section id="assistant-answer" class="assistant-answer" aria-live="polite"></section>
+{% endif %}
 {% endblock %}

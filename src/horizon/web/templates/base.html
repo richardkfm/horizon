@@ -25,7 +25,7 @@
       <a href="/recommend">Where to start</a>
       <a href="/journeys">Step-by-step plans</a>
       <a href="/guides">How-to guides</a>
-      <a href="/assistant">Ask a question</a>
+      {% if assistant_enabled() %}<a href="/assistant">Ask a question</a>{% endif %}
     </nav>
   </header>
   <main class="content">
