@@ -66,6 +66,17 @@ body {
 }
 
 .category-card a:hover { border-color: var(--accent); }
+.category-icon { display: block; color: var(--accent); margin-bottom: 0.5rem; }
+.category-icon svg { width: 2rem; height: 2rem; }
+.category-name { display: block; font-size: 1.05rem; }
+.category-example {
+  display: block;
+  margin-top: 0.3rem;
+  font-weight: 400;
+  font-size: 0.85rem;
+  text-transform: none;
+  color: #555;
+}
 
 /* Shared UI primitives ---------------------------------------------------- */
 
@@ -79,6 +90,8 @@ body {
   color: var(--fg);
 }
 .btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
+.btn-primary:hover { filter: brightness(1.08); }
 
 .category-badge {
   display: inline-block;

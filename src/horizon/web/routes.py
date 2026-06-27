@@ -40,11 +40,27 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 CATEGORIES = [c.value for c in Category]
 
+# One-line, plain-language example per category so a visitor scanning the home
+# page can recognise their problem without knowing horizon's taxonomy.
+CATEGORY_EXAMPLES = {
+    "water": "Make river or rain water safe to drink",
+    "food": "Grow staple crops and store a harvest",
+    "energy": "Set up a small solar and battery system",
+    "shelter": "Keep a simple shelter warm and dry",
+    "health": "First aid and staying healthy off-grid",
+    "cooperation": "Make fair group decisions together",
+}
+
+
+def _category_cards() -> list[dict]:
+    """Category name plus its plain-language example, for the home page tiles."""
+    return [{"name": c, "example": CATEGORY_EXAMPLES.get(c, "")} for c in CATEGORIES]
+
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
     """Landing view: the six categories and what horizon is for."""
-    return templates.TemplateResponse(request, "landing.html", {"categories": CATEGORIES})
+    return templates.TemplateResponse(request, "landing.html", {"categories": _category_cards()})
 
 
 @router.get("/journeys", response_class=HTMLResponse)
