@@ -284,6 +284,12 @@ body {
 .recommend-form .btn { align-self: start; }
 .recommend-results { margin-top: 2rem; }
 
+.field-hint { font-size: 0.85rem; color: #555; margin: 0.1rem 0 0; }
+.field-hint a { color: var(--accent); }
+.optional { font-weight: 400; color: #777; }
+.empty-suggestions { margin-top: 1rem; }
+.empty-suggestions .filter-bar { margin: 0.75rem 0; }
+
 /* AI assistant */
 .assistant-form {
   display: flex;

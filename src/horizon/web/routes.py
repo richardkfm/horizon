@@ -238,9 +238,9 @@ def recommend_page(
         "recommend.html",
         {
             "results": results,
+            "categories": CATEGORIES,
             "form": {
                 "goal": goal or "",
-                "people": people or "",
                 "climate": climate or "",
                 "resources": resources or "",
             },
