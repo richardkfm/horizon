@@ -8,6 +8,13 @@
     cooperation. Answers are grounded in horizon's local guides and always cite
     them — everything runs offline on this device.
   </p>
+  {% if low_power_enabled() %}
+  <p class="assistant-note no-print">
+    <strong>Low-power mode is on.</strong> To save energy, the local AI model is
+    paused. Answers list the most relevant local guides instead of writing a full
+    reply — open them for complete step-by-step instructions.
+  </p>
+  {% endif %}
 </section>
 
 <form class="assistant-form"

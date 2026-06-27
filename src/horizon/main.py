@@ -38,12 +38,22 @@ async def lifespan(app: FastAPI):
         seed_if_empty()
     except NotImplementedError:
         logger.info("Content seeding not yet implemented; skipping.")
-    try:
-        from horizon.services.rag import reindex_content
+    from horizon.config import low_power_enabled
 
-        reindex_content()
-    except NotImplementedError:
-        logger.info("Vector indexing not yet implemented; skipping.")
+    if low_power_enabled():
+        # Building embeddings for the whole corpus is the heaviest startup cost;
+        # in low-power mode we skip it and let retrieval use the keyword fallback.
+        logger.info(
+            "Low-power mode: skipping vector index build; AI retrieval uses "
+            "keyword search and the assistant answers from local content."
+        )
+    else:
+        try:
+            from horizon.services.rag import reindex_content
+
+            reindex_content()
+        except NotImplementedError:
+            logger.info("Vector indexing not yet implemented; skipping.")
     yield
 
 

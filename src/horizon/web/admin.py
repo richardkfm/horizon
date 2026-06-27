@@ -24,7 +24,7 @@ from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, func, select
 
 from horizon import __version__
-from horizon.config import settings
+from horizon.config import low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import (
     Category,
@@ -40,6 +40,7 @@ router = APIRouter(tags=["admin"])
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["filesize"] = packs_service.human_size
+templates.env.globals["low_power_enabled"] = low_power_enabled
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
@@ -244,19 +245,36 @@ def integrations_page(request: Request):
 
     from horizon.services import llm
 
-    llm_reachable = llm.available()
+    low_power = low_power_enabled()
+    # When low-power mode is on, horizon never reaches for the model, so don't
+    # probe it (the network call itself costs energy and time on a weak supply).
+    llm_reachable = False if low_power else llm.available()
     installed = len(packs_service.installed_packs())
     available = len(packs_service.load_catalog())
 
     integrations = [
         {
+            "name": "Low-power mode",
+            "detail": "config power.low_power · env HORIZON_LOW_POWER",
+            "state": "on" if low_power else "off",
+            "ok": low_power,
+            "note": (
+                "For solar / battery nodes. When on, horizon skips building the "
+                "vector index and pauses the local model; the assistant answers "
+                "from local guides via keyword search."
+            ),
+        },
+        {
             "name": "Local model runtime",
             "detail": f"{settings.llm.provider} · {settings.llm.endpoint}",
-            "state": "reachable" if llm_reachable else "unreachable",
+            "state": "paused (low power)"
+            if low_power
+            else ("reachable" if llm_reachable else "unreachable"),
             "ok": llm_reachable,
             "note": (
-                "Generates and embeds answers. When unreachable the assistant "
-                "falls back to keyword retrieval and points at local guides."
+                "Generates and embeds answers. When unreachable — or paused in "
+                "low-power mode — the assistant falls back to keyword retrieval "
+                "and points at local guides."
             ),
         },
         {

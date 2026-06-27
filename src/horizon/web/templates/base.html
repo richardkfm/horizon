@@ -6,11 +6,18 @@
   <title>{% block title %}horizon{% endblock %}</title>
   <link rel="stylesheet" href="/static/app.css" />
   <link rel="stylesheet" href="/static/print.css" media="print" />
-  <!-- Vendored locally so the UI works fully offline. -->
+  <!-- Vendored locally so the UI works fully offline. htmx drives the assistant
+       form; Alpine is skipped in low-power mode to save a little work. -->
   <script src="/static/htmx.min.js" defer></script>
-  <script src="/static/alpine.min.js" defer></script>
+  {% if not low_power_enabled() %}<script src="/static/alpine.min.js" defer></script>{% endif %}
 </head>
-<body>
+<body{% if low_power_enabled() %} class="low-power"{% endif %}>
+  {% if low_power_enabled() %}
+  <div class="low-power-banner no-print" role="status">
+    Low-power mode — the AI model and vector search are paused to save energy.
+    The assistant points you to local guides instead.
+  </div>
+  {% endif %}
   <header class="site-header">
     <a class="brand" href="/">horizon</a>
     <nav>

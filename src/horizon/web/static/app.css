@@ -288,3 +288,19 @@ body.low-power {
 body.low-power .category-card a:hover { background: none; }
 body.low-power .filter-chip.is-active { background: #000; }
 body.low-power .guide blockquote { background: none; }
+
+/* Banner shown site-wide while low-power mode is active. */
+.low-power-banner {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.assistant-note {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
