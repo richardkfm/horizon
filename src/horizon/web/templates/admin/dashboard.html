@@ -25,6 +25,7 @@
 
 <section class="admin-section">
   <h2>By category</h2>
+  <div class="table-scroll">
   <table class="admin-table">
     <thead>
       <tr><th>Category</th><th>Journeys</th><th>Guides</th></tr>
@@ -39,10 +40,12 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 </section>
 
 <section class="admin-section">
   <h2>Runtime</h2>
+  <div class="table-scroll">
   <table class="admin-table">
     <tbody>
       <tr><td>Version</td><td>{{ runtime.version }}</td></tr>
@@ -50,5 +53,6 @@
       <tr><td>Database</td><td><code>{{ runtime.database }}</code></td></tr>
     </tbody>
   </table>
+  </div>
 </section>
 {% endblock %}

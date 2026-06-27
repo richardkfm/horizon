@@ -81,7 +81,11 @@ body {
 /* Shared UI primitives ---------------------------------------------------- */
 
 .btn {
+  /* inline-block so a link-button used in flowing text stays one solid
+     rectangle instead of splitting its background across wrapped lines. */
+  display: inline-block;
   font: inherit;
+  text-decoration: none;
   cursor: pointer;
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--border);
@@ -202,8 +206,22 @@ body {
   border-left: 3px solid var(--accent);
   background: rgba(47, 111, 79, 0.06);
 }
-.guide table { border-collapse: collapse; width: 100%; }
+/* Markdown tables come from the renderer unwrapped, so make the table itself a
+   scroll container: it shrinks to fit narrow screens and scrolls sideways
+   instead of overflowing the page. */
+.guide table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+}
 .guide th, .guide td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: left; }
+
+/* Wrapper for table markup we control (admin views); scrolls sideways on
+   narrow screens rather than forcing the whole page wider. */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* Admin ------------------------------------------------------------------- */
 
@@ -259,7 +277,7 @@ body {
 /* Recommend / scenario page --------------------------------------------- */
 
 .cta { font-size: 1.05rem; }
-.cta a { color: var(--accent); font-weight: 600; }
+.cta a:not(.btn) { color: var(--accent); font-weight: 600; }
 
 .recommend-form {
   display: flex;
@@ -386,10 +404,20 @@ body.low-power .guide blockquote { background: none; }
 
 @media (max-width: 640px) {
   .site-header { flex-wrap: wrap; gap: 0.5rem 1rem; }
-  .site-header nav { margin-left: 0; width: 100%; }
+  .site-header nav { margin-left: 0; width: 100%; gap: 0.25rem 1rem; }
   .content { padding: 1.25rem 1rem; }
   .intro h1, .journey-detail h1, .guide h1 { font-size: 1.6rem; }
   .tagline { font-size: 1rem; }
-  .filter-bar { gap: 0.4rem; }
+  .filter-bar { gap: 0.5rem; }
   .journey-chain { font-size: 0.9rem; }
+
+  /* Comfortable thumb-sized tap targets on touch screens. ~44px tall. */
+  .site-header nav a,
+  .footer-admin { display: inline-flex; align-items: center; min-height: 44px; }
+  .filter-chip { padding: 0.55rem 1rem; }
+  .link-list a { display: inline-block; padding: 0.25rem 0; min-height: 44px; }
+  .btn { padding: 0.6rem 1.1rem; }
+  .recommend-form input,
+  .search-form input[type="search"] { padding: 0.6rem 0.7rem; }
+  .search-clear { min-height: 44px; display: inline-flex; align-items: center; }
 }
