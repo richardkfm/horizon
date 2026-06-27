@@ -1,0 +1,54 @@
+# horizon content-pack catalog.
+#
+# Content packs are LARGE optional offline resources (an offline Wikipedia, a
+# medical reference, offline maps) that are downloaded while the internet is
+# available and then used fully offline. They are NOT required: horizon's
+# journeys, guides, md skills and assistant all work without any packs.
+#
+# This catalog is shipped read-only with horizon and copied into the data
+# directory on first run, so the list of available packs is known offline.
+# Operators may edit their copy under <content_dir>/packs.yaml to add their own.
+#
+# Each pack:
+#   id           stable identifier used by `horizon-content` and the admin UI
+#   title        human-readable name
+#   description  one line on what the pack is and why you might want it
+#   category     reference | medical | maps (free-form grouping label)
+#   format       file format hint (zim, mbtiles, ...)
+#   url          download URL (used only while online during setup)
+#   size_bytes   approximate download size, for display and disk planning
+#   sha256       optional integrity checksum; verified after download if set
+
+packs:
+  - id: wikipedia-en-mini
+    title: Wikipedia (English, mini)
+    description: >-
+      A compact offline snapshot of English Wikipedia (top articles, no images).
+      Good first pack for weak hardware and small disks.
+    category: reference
+    format: zim
+    url: https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini.zim
+    size_bytes: 350000000
+    sha256: ""
+
+  - id: medical-wikem
+    title: Medical reference (WikEM)
+    description: >-
+      Offline emergency-medicine reference. Point-of-care guidance for first aid
+      and acute care when no clinician or network is available.
+    category: medical
+    format: zim
+    url: https://download.kiwix.org/zim/other/wikem_en_all_maxi.zim
+    size_bytes: 600000000
+    sha256: ""
+
+  - id: maps-world-low
+    title: World map (low zoom)
+    description: >-
+      Low-zoom offline world basemap (vector tiles) for orientation and regional
+      planning without a network connection.
+    category: maps
+    format: mbtiles
+    url: https://data.maptiler.com/downloads/planet/osm-planet-low.mbtiles
+    size_bytes: 1200000000
+    sha256: ""

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Integrations — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Optional integrations</h1>
+  <a href="/admin" class="btn">Back to dashboard</a>
+</div>
+
+<p class="empty">
+  Everything here is <strong>opt-in</strong>. horizon runs fully offline and
+  standalone; these integrations only add capability when present and always
+  fail open to horizon's own behaviour when they are not.
+</p>
+
+<ul class="integration-list">
+  {% for item in integrations %}
+  <li class="integration {{ 'is-ok' if item.ok else 'is-off' }}">
+    <div class="integration-head">
+      <span class="integration-dot" aria-hidden="true"></span>
+      <strong>{{ item.name }}</strong>
+      <span class="integration-state">{{ item.state }}</span>
+    </div>
+    <code class="integration-detail">{{ item.detail }}</code>
+    <p class="integration-note">{{ item.note }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

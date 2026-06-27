@@ -84,6 +84,21 @@ horizon also runs on Debian/Arch, Proxmox LXC, Raspberry Pi, and mini-PCs.
 Clients connect by browser over the local network; an optional Wi-Fi access
 point is documented as a future step.
 
+### Install as a service (systemd)
+
+For an unattended bare-metal box, the installer sets up a service account, a
+virtualenv under `/opt/horizon`, a writable data dir under `/var/lib/horizon`,
+and a systemd unit:
+
+```bash
+sudo ./packaging/install.sh
+sudo systemctl enable --now horizon
+journalctl -u horizon -f
+```
+
+Common tasks are also wrapped in a `Makefile` (`make help`): `make dev`,
+`make run`, `make test`, `make lint`, `make build`, `make docker`.
+
 ## Adding guides, journeys & md skills
 
 Content lives under `content/` in the repo (copied into the data directory on
@@ -163,6 +178,9 @@ hard-depends on them.
   When enabled, draft answers are sent for approve/adjust/block refinement. If
   moral-core is unreachable or disabled, horizon uses its built-in md skills.
 
+The admin area (**Admin → Integrations**) shows the live status of the local
+model runtime, the ethics hook, and installed content packs at a glance.
+
 ## Configuration
 
 Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
@@ -172,21 +190,28 @@ Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
 ## Content packs
 
 Larger offline resources (Wikipedia, medical ZIMs, maps) are optional downloads
-fetched while online and then used offline:
+fetched while online and then used offline. The catalog of available packs lives
+in `content/packs.yaml` (copied to your data dir on first run, so it is editable
+and known offline). Downloads are checksum-verified when the catalog provides a
+`sha256`, and stored under `content_packs.dir`.
 
 ```bash
-horizon-content list
-horizon-content download wikipedia
+horizon-content list                     # available + installed packs
+horizon-content download wikipedia-en-mini
+horizon-content remove wikipedia-en-mini
 ```
 
-A web wizard on the admin page will wrap the same operations.
+The same operations are available as a web wizard under **Admin → Content
+packs**, which downloads in the background and shows live progress.
 
 ## Roadmap
 
-v0.1 is being built in vertical slices, with the local model **last** so horizon
-is useful before any LLM is involved: data model + seed → Knowledge API → web UI
-→ guide rendering + print/PDF → recommendations → RAG + AI assistant → content
-packs + admin → optional integrations → packaging.
+v0.1 is built in vertical slices, with the local model **last** so horizon is
+useful before any LLM is involved: data model + seed → Knowledge API → web UI →
+guide rendering + print/PDF → recommendations → RAG + AI assistant → content
+packs + admin → optional integrations → packaging. The final three slices
+(content packs + admin wizard, the moral-core ethics hook, and bare-metal
+packaging) are now in place.
 
 ## License
 

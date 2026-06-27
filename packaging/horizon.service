@@ -1,0 +1,40 @@
+# systemd unit for a bare-metal horizon install (Raspberry Pi, mini-PC, LXC).
+#
+# Assumes the layout created by packaging/install.sh:
+#   /opt/horizon            the source checkout + virtualenv (.venv)
+#   /var/lib/horizon        runtime data (database, vector index, content packs)
+#   user/group `horizon`    an unprivileged service account
+#
+# Install:  sudo cp packaging/horizon.service /etc/systemd/system/
+#           sudo systemctl daemon-reload && sudo systemctl enable --now horizon
+# Logs:     journalctl -u horizon -f
+
+[Unit]
+Description=horizon — offline-first autonomy & rebuilding node
+Documentation=https://github.com/richardkfm/horizon
+# Network is optional at runtime; only wanted so content-pack downloads work.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=horizon
+Group=horizon
+WorkingDirectory=/opt/horizon
+Environment=HORIZON_CONFIG=/opt/horizon/config.yaml
+# Admin token can be injected here instead of config.yaml:
+# Environment=HORIZON_ADMIN_TOKEN=change-me
+ExecStart=/opt/horizon/.venv/bin/uvicorn horizon.main:app --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=3
+
+# Hardening: horizon only needs to write its data directory.
+StateDirectory=horizon
+ReadWritePaths=/var/lib/horizon
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

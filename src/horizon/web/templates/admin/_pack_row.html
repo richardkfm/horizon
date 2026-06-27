@@ -1,0 +1,40 @@
+{# Single content-pack row. Rendered inline in the table and returned on its own
+   as an HTMX fragment after download/remove and while polling progress. #}
+{% set job = pack.job %}
+{% set active = job and job.phase in ("queued", "downloading", "verifying") %}
+<tr id="pack-row-{{ pack.id }}"
+    {% if active %}hx-get="/admin/packs/{{ pack.id }}/row"
+    hx-trigger="load delay:1500ms" hx-swap="outerHTML"{% endif %}>
+  <td>
+    <strong>{{ pack.title }}</strong>
+    <span class="pack-id">{{ pack.id }}</span>
+    <span class="pack-desc">{{ pack.description }}</span>
+  </td>
+  <td>{{ (pack.installed_size or pack.size_bytes) | filesize }}</td>
+  <td>
+    {% if active %}
+      {% if job.phase == "downloading" and job.total %}
+        <span class="pack-state">downloading {{ (100 * job.downloaded / job.total) | round(0, 'floor') | int }}%</span>
+      {% else %}
+        <span class="pack-state">{{ job.phase }}…</span>
+      {% endif %}
+    {% elif job and job.phase == "error" %}
+      <span class="pack-state pack-error">failed: {{ job.error }}</span>
+    {% elif pack.installed %}
+      <span class="pack-state pack-ok">installed</span>
+    {% else %}
+      <span class="pack-state">available</span>
+    {% endif %}
+  </td>
+  <td class="pack-actions">
+    {% if active %}
+      <span class="htmx-indicator">…</span>
+    {% elif pack.installed %}
+      <button class="btn" hx-post="/admin/packs/{{ pack.id }}/remove"
+              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML">Remove</button>
+    {% elif pack.url %}
+      <button class="btn" hx-post="/admin/packs/{{ pack.id }}/download"
+              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML">Download</button>
+    {% endif %}
+  </td>
+</tr>

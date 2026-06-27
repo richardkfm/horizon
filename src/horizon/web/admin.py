@@ -33,11 +33,13 @@ from horizon.models import (
     JourneyGuideLink,
     JourneyPrerequisite,
 )
+from horizon.services import packs as packs_service
 
 router = APIRouter(tags=["admin"])
 
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+templates.env.filters["filesize"] = packs_service.human_size
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
@@ -67,6 +69,13 @@ def is_authed(request: Request) -> bool:
         return False
     presented = request.cookies.get(COOKIE_NAME, "")
     return hmac.compare_digest(presented, _expected_cookie())
+
+
+def _redirect_if_unauthed(request: Request) -> RedirectResponse | None:
+    """Return a redirect to the login page when the request is not authed."""
+    if not is_authed(request):
+        return RedirectResponse("/admin/login", status_code=303)
+    return None
 
 
 @router.get("/admin/login", response_class=HTMLResponse)
@@ -120,8 +129,8 @@ def logout() -> RedirectResponse:
 @router.get("/admin", response_class=HTMLResponse)
 def dashboard(request: Request, session: SessionDep):
     """Read-only content overview, gated behind the admin cookie."""
-    if not is_authed(request):
-        return RedirectResponse("/admin/login", status_code=303)
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
 
     journey_rows = session.exec(
         select(Journey.category, func.count()).group_by(Journey.category)
@@ -160,4 +169,116 @@ def dashboard(request: Request, session: SessionDep):
             "stats": stats,
             "runtime": runtime,
         },
+    )
+
+
+# --- Content packs wizard ---------------------------------------------------
+
+
+def _pack_row(pack_id: str) -> dict | None:
+    """Build the display row for one pack: catalog/disk state plus any live job."""
+    for row in packs_service.pack_status():
+        if row["id"] == pack_id:
+            row["job"] = packs_service.download_manager.status(pack_id)
+            return row
+    return None
+
+
+@router.get("/admin/packs", response_class=HTMLResponse)
+def packs_page(request: Request):
+    """Content-pack wizard: install/remove optional offline resources."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    rows = packs_service.pack_status()
+    for row in rows:
+        row["job"] = packs_service.download_manager.status(row["id"])
+    return templates.TemplateResponse(
+        request,
+        "admin/packs.html",
+        {"packs": rows, "packs_dir": settings.content_packs.dir},
+    )
+
+
+@router.post("/admin/packs/{pack_id}/download", response_class=HTMLResponse)
+def packs_download(pack_id: str, request: Request):
+    """Kick off a background download and return the pack's row fragment."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    if packs_service.get_spec(pack_id) is not None:
+        packs_service.download_manager.start(pack_id)
+    return _pack_row_fragment(request, pack_id)
+
+
+@router.get("/admin/packs/{pack_id}/row", response_class=HTMLResponse)
+def packs_row(pack_id: str, request: Request):
+    """Return a single pack's row fragment (polled while a download runs)."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    return _pack_row_fragment(request, pack_id)
+
+
+@router.post("/admin/packs/{pack_id}/remove", response_class=HTMLResponse)
+def packs_remove(pack_id: str, request: Request):
+    """Remove an installed pack and return its refreshed row fragment."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    packs_service.remove_pack(pack_id)
+    return _pack_row_fragment(request, pack_id)
+
+
+def _pack_row_fragment(request: Request, pack_id: str) -> HTMLResponse:
+    row = _pack_row(pack_id)
+    if row is None:
+        return HTMLResponse("", status_code=404)
+    return templates.TemplateResponse(request, "admin/_pack_row.html", {"pack": row})
+
+
+# --- Optional integrations status ------------------------------------------
+
+
+@router.get("/admin/integrations", response_class=HTMLResponse)
+def integrations_page(request: Request):
+    """Show the status of horizon's optional, opt-in integrations."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+
+    from horizon.services import llm
+
+    llm_reachable = llm.available()
+    installed = len(packs_service.installed_packs())
+    available = len(packs_service.load_catalog())
+
+    integrations = [
+        {
+            "name": "Local model runtime",
+            "detail": f"{settings.llm.provider} · {settings.llm.endpoint}",
+            "state": "reachable" if llm_reachable else "unreachable",
+            "ok": llm_reachable,
+            "note": (
+                "Generates and embeds answers. When unreachable the assistant "
+                "falls back to keyword retrieval and points at local guides."
+            ),
+        },
+        {
+            "name": "moral-core ethics hook",
+            "detail": settings.ethics.endpoint,
+            "state": "enabled" if settings.ethics.enabled else "disabled",
+            "ok": settings.ethics.enabled,
+            "note": (
+                "Optional answer refinement. Off by default; horizon always "
+                "fails open to its own md-skill values if it is unreachable."
+            ),
+        },
+        {
+            "name": "Content packs",
+            "detail": settings.content_packs.dir,
+            "state": f"{installed} of {available} installed",
+            "ok": installed > 0,
+            "note": "Large optional offline resources (Wikipedia, medical, maps).",
+        },
+    ]
+    return templates.TemplateResponse(
+        request,
+        "admin/integrations.html",
+        {"integrations": integrations},
     )
