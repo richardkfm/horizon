@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
@@ -95,6 +95,33 @@ def journey_detail_page(
     data["guides"] = [_guide_summary(g) for g in journey.guides]
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
+
+
+@router.get("/guides/{guide_id}.pdf")
+def guide_pdf(guide_id: str, session: SessionDep) -> Response:
+    """Render a guide as a downloadable, A4 print-friendly PDF (WeasyPrint).
+
+    WeasyPrint is imported lazily so the rest of the UI still boots and serves
+    where its system libraries are unavailable; in that case this route fails
+    rather than the whole app.
+    """
+    guide = session.get(Guide, guide_id)
+    if guide is None:
+        raise HTTPException(status_code=404, detail=f"Guide not found: {guide_id}")
+
+    from horizon.services.pdf import render_pdf
+
+    document = templates.env.get_template("guide_pdf.html").render(
+        guide=_guide_summary(guide),
+        body_html=render_markdown(_read_body(guide)),
+    )
+    pdf_bytes = render_pdf(document)
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'inline; filename="{guide_id}.pdf"'},
+    )
 
 
 @router.get("/guides/{guide_id}", response_class=HTMLResponse)

@@ -5,7 +5,8 @@
 
 <div class="guide-actions no-print">
   <span class="category-badge">{{ guide.category }}</span>
-  <button type="button" class="btn" onclick="window.print()">Print / Save PDF</button>
+  <button type="button" class="btn" onclick="window.print()">Print</button>
+  <a class="btn" href="/guides/{{ guide.id }}.pdf">Download PDF</a>
 </div>
 
 <article class="guide">

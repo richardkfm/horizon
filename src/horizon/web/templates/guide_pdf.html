@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ guide.title }} — horizon</title>
+  <!-- Standalone document for WeasyPrint: the print stylesheet is applied by
+       services.pdf.render_pdf, so no <link> is needed here (keeps it offline). -->
+</head>
+<body>
+  <article class="guide">
+    {{ body_html | safe }}
+  </article>
+</body>
+</html>
