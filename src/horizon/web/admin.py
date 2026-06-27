@@ -24,7 +24,7 @@ from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, func, select
 
 from horizon import __version__
-from horizon.config import assistant_enabled, low_power_enabled, settings
+from horizon.config import assistant_enabled, low_power_enabled, settings, web_enabled
 from horizon.db import get_session
 from horizon.models import (
     Category,
@@ -254,6 +254,18 @@ def integrations_page(request: Request):
     available = len(packs_service.load_catalog())
 
     integrations = [
+        {
+            "name": "Web UI",
+            "detail": "config web.enabled · env HORIZON_WEB_ENABLED",
+            "state": "on" if web_enabled() else "off",
+            "ok": web_enabled(),
+            "note": (
+                "This browser interface. It is optional: with the horizon-admin "
+                "CLI an operator can run a node with the UI off, leaving only the "
+                "JSON API and the command line. (You are seeing this page, so it "
+                "is on.)"
+            ),
+        },
         {
             "name": "Chat assistant",
             "detail": "config assistant.enabled · env HORIZON_ASSISTANT_ENABLED",

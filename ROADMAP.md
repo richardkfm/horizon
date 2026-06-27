@@ -30,11 +30,16 @@ is a polished, well-maintained node a neighbourhood can rely on.
   degrades gracefully and tells the visitor its live state up front.
 - Admin area: content dashboard, content-pack wizard, integrations status, and
   an assistant on/off toggle.
+- `horizon-admin` CLI: headless status/doctor/reindex/seed/config and pack
+  management, plus reading journeys, guides, recommendations, and assistant
+  answers from the terminal. An optional `web.enabled` switch lets a node run
+  with the browser UI off, on the API + CLI alone.
 - Plain-language UI, accessible tap targets, and a verified responsive layout.
 
 The gaps we'll close next: the UI is functional but plain, the content tells you
-*how* but not always *which to pick*, and an admin can't yet diagnose or repair a
-node without a terminal.
+*how* but not always *which to pick*, and — while the new CLI already diagnoses,
+repairs, and re-seeds from a terminal — an admin can't yet do that *from the
+browser panel*.
 
 ---
 
