@@ -337,5 +337,9 @@ body.low-power .guide blockquote { background: none; }
   padding: 0.6rem 0.9rem;
   font-size: 0.95rem;
   border: 1px solid var(--border);
+  border-left-width: 4px;
   border-radius: 0.4rem;
 }
+.assistant-note.is-ok { border-left-color: var(--accent); background: rgba(47, 111, 79, 0.06); }
+.assistant-note.is-info { border-left-color: #b8860b; background: rgba(184, 134, 11, 0.07); }
+.assistant-note.is-warn { border-left-color: #a11; background: rgba(170, 17, 17, 0.06); }

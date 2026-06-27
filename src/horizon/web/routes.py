@@ -22,7 +22,7 @@ from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
-from horizon.config import low_power_enabled
+from horizon.config import low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
@@ -234,8 +234,25 @@ def recommend_page(
 
 @router.get("/assistant", response_class=HTMLResponse)
 def assistant_page(request: Request) -> HTMLResponse:
-    """The local AI assistant: ask a question, get a cited, locally-grounded answer."""
-    return templates.TemplateResponse(request, "assistant.html", {})
+    """The local AI assistant: ask a question, get a cited, locally-grounded answer.
+
+    Resolve the assistant's live state up front so the page can set expectations
+    *before* the visitor types: full written answers, energy-saving low-power
+    mode, or model-off (guides-only). ``model_off`` is only reached when not in
+    low-power mode, where probing the runtime would waste energy.
+    """
+    if low_power_enabled():
+        state = "low_power"
+    else:
+        from horizon.services import llm
+
+        state = "ready" if llm.available() else "model_off"
+
+    return templates.TemplateResponse(
+        request,
+        "assistant.html",
+        {"state": state, "no_jargon_default": settings.ai.no_jargon_default},
+    )
 
 
 @router.post("/assistant/answer", response_class=HTMLResponse)

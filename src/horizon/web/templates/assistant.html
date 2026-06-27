@@ -8,11 +8,23 @@
     cooperation. Answers are grounded in horizon's local guides and always cite
     them — everything runs offline on this device.
   </p>
-  {% if low_power_enabled() %}
-  <p class="assistant-note no-print">
+
+  {% if state == "low_power" %}
+  <p class="assistant-note is-info no-print">
     <strong>Low-power mode is on.</strong> To save energy, the local AI model is
     paused. Answers list the most relevant local guides instead of writing a full
     reply — open them for complete step-by-step instructions.
+  </p>
+  {% elif state == "model_off" %}
+  <p class="assistant-note is-warn no-print">
+    <strong>The local AI isn't running right now.</strong> You can still ask —
+    horizon will point you to the most relevant local guides — but it can't write
+    a full answer until an operator starts the model.
+  </p>
+  {% else %}
+  <p class="assistant-note is-ok no-print">
+    The local AI is ready. You'll get a short written answer with links to the
+    guides it used.
   </p>
   {% endif %}
 </section>
@@ -28,7 +40,8 @@
 
   <div class="assistant-controls">
     <label class="checkbox">
-      <input type="checkbox" name="no_jargon" value="true" />
+      <input type="checkbox" name="no_jargon" value="true"
+             {% if no_jargon_default %}checked{% endif %} />
       Plain language (no jargon)
     </label>
     <button type="submit" class="btn">Ask</button>

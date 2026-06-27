@@ -27,7 +27,7 @@ rag:
   top_k: 5                    # number of guides/md-skills retrieved per question
 
 ai:
-  no_jargon_default: false    # when true, answers default to plain-language mode
+  no_jargon_default: true     # plain-language answers by default; set false to allow jargon
 
 # OPTIONAL ethics refinement via an external moral-core service.
 # Disabled by default — horizon is fully self-contained without it.

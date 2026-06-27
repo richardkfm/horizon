@@ -36,7 +36,10 @@ class RAGConfig(BaseModel):
 
 
 class AIConfig(BaseModel):
-    no_jargon_default: bool = False
+    # Plain-language answers by default: horizon's audience includes
+    # non-technical neighbours, so favour accessibility. Operators can opt out
+    # per request or flip this in config.yaml.
+    no_jargon_default: bool = True
 
 
 class EthicsConfig(BaseModel):
