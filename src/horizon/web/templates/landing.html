@@ -9,7 +9,8 @@
     infrastructure together, sustainably and without coercion.
   </p>
   <p class="cta">
-    Not sure where to start? <a href="/recommend">Describe your goal →</a>
+    Not sure where to start?
+    <a class="btn btn-primary" href="/recommend">Describe your goal →</a>
   </p>
 </section>
 
@@ -18,8 +19,24 @@
   <ul class="category-grid">
     {% for category in categories %}
     <li class="category-card">
-      <a href="/journeys?category={{ category }}">
-        <span class="category-name">{{ category }}</span>
+      <a href="/journeys?category={{ category.name }}">
+        <span class="category-icon" aria-hidden="true">
+          {%- if category.name == "water" -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg>
+          {%- elif category.name == "food" -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M12 9c0-3 2-5 5-5 0 3-2 5-5 5z"/><path d="M12 11C12 8 10 6 7 6c0 3 2 5 5 5z"/></svg>
+          {%- elif category.name == "energy" -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 13h6l-1 8 8-10h-6l1-8z"/></svg>
+          {%- elif category.name == "shelter" -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg>
+          {%- elif category.name == "health" -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg>
+          {%- else -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.5 2-4 5-4s5 1.5 5 4"/><path d="M13 15.2c.8-.2 1.6-.2 2.5-.2 3 0 5 1.5 5 4"/></svg>
+          {%- endif -%}
+        </span>
+        <span class="category-name">{{ category.name }}</span>
+        {% if category.example %}<span class="category-example">{{ category.example }}</span>{% endif %}
       </a>
     </li>
     {% endfor %}

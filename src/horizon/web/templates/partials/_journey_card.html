@@ -1,6 +1,9 @@
-<li class="journey-card">
+<li class="journey-card{% if journey.is_entry %} is-entry{% endif %}">
   <a href="/journeys/{{ journey.id }}">
-    <span class="category-badge">{{ journey.category }}</span>
+    <span class="badge-row">
+      <span class="category-badge">{{ journey.category }}</span>
+      {% if journey.is_entry %}<span class="start-badge">Start here</span>{% endif %}
+    </span>
     <h2>{{ journey.title }}</h2>
     {% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
     <p class="journey-meta">

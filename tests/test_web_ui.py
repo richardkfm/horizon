@@ -77,3 +77,50 @@ def test_guide_pdf_404():
     with TestClient(app) as client:
         resp = client.get("/guides/does-not-exist.pdf")
     assert resp.status_code == 404
+
+
+def test_entry_journey_shows_start_here_badge():
+    with TestClient(app) as client:
+        listing = client.get("/journeys")
+        detail = client.get("/journeys/water-testing-basics")  # no prerequisites
+    assert "Start here" in listing.text
+    assert "Start here" in detail.text
+
+
+def test_journey_detail_shows_next_step_chain():
+    # water-testing-basics is a prerequisite of water-slow-sand-filter, so the
+    # latter should appear as a next step on the former's page.
+    with TestClient(app) as client:
+        resp = client.get("/journeys/water-testing-basics")
+    assert "What comes next" in resp.text
+    assert "/journeys/water-slow-sand-filter" in resp.text
+
+
+def test_nav_uses_plain_labels_and_hides_admin():
+    with TestClient(app) as client:
+        resp = client.get("/")
+    assert "Step-by-step plans" in resp.text
+    assert "Ask a question" in resp.text
+    # Admin no longer advertised in the public header (footer link only).
+    assert ">Admin<" not in resp.text
+
+
+def test_guides_search_filters_by_term():
+    with TestClient(app) as client:
+        resp = client.get("/guides", params={"q": "water"})
+        miss = client.get("/guides", params={"q": "zzzznope"})
+    assert "/guides/water-slow-sand-filter" in resp.text
+    assert "/guides/food-staple-crops-500m2" not in resp.text
+    assert "No guides match" in miss.text
+
+
+def test_assistant_can_be_disabled_by_operator(monkeypatch):
+    monkeypatch.setenv("HORIZON_ASSISTANT_ENABLED", "false")
+    with TestClient(app) as client:
+        home = client.get("/")
+        page = client.get("/assistant")
+        answer = client.post("/assistant/answer", data={"question": "hi"})
+    assert ">Ask a question<" not in home.text
+    assert "turned off" in page.text
+    assert "assistant-form" not in page.text
+    assert "turned off by the operator" in answer.text

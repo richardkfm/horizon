@@ -22,7 +22,7 @@ from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
-from horizon.config import low_power_enabled
+from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
@@ -35,16 +35,33 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 # Read live (honours the HORIZON_LOW_POWER env override) so every page reflects
 # the current power mode without restarting.
 templates.env.globals["low_power_enabled"] = low_power_enabled
+templates.env.globals["assistant_enabled"] = assistant_enabled
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
 CATEGORIES = [c.value for c in Category]
 
+# One-line, plain-language example per category so a visitor scanning the home
+# page can recognise their problem without knowing horizon's taxonomy.
+CATEGORY_EXAMPLES = {
+    "water": "Make river or rain water safe to drink",
+    "food": "Grow staple crops and store a harvest",
+    "energy": "Set up a small solar and battery system",
+    "shelter": "Keep a simple shelter warm and dry",
+    "health": "First aid and staying healthy off-grid",
+    "cooperation": "Make fair group decisions together",
+}
+
+
+def _category_cards() -> list[dict]:
+    """Category name plus its plain-language example, for the home page tiles."""
+    return [{"name": c, "example": CATEGORY_EXAMPLES.get(c, "")} for c in CATEGORIES]
+
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
     """Landing view: the six categories and what horizon is for."""
-    return templates.TemplateResponse(request, "landing.html", {"categories": CATEGORIES})
+    return templates.TemplateResponse(request, "landing.html", {"categories": _category_cards()})
 
 
 @router.get("/journeys", response_class=HTMLResponse)
@@ -62,6 +79,12 @@ def journeys_page(
         statement = statement.where(Journey.category == Category(category))
     statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
     journeys = [_journey_summary(j) for j in session.exec(statement).all()]
+
+    # Mark entry-point journeys (no prerequisites) so the list can flag a safe
+    # place to begin for visitors who don't know where to start.
+    has_prereqs = set(session.exec(select(JourneyPrerequisite.journey_id).distinct()).all())
+    for journey in journeys:
+        journey["is_entry"] = journey["id"] not in has_prereqs
 
     return templates.TemplateResponse(
         request,
@@ -94,8 +117,21 @@ def journey_detail_page(
         _journey_summary(p) for pid in prereq_ids if (p := session.get(Journey, pid)) is not None
     ]
 
+    # Reverse edges: journeys that list this one as a prerequisite, i.e. the
+    # natural next steps once this journey is done.
+    next_ids = session.exec(
+        select(JourneyPrerequisite.journey_id).where(
+            JourneyPrerequisite.prerequisite_id == journey_id
+        )
+    ).all()
+    next_journeys = [
+        _journey_summary(n) for nid in next_ids if (n := session.get(Journey, nid)) is not None
+    ]
+
     data = _journey_summary(journey)
     data["prerequisites"] = prerequisites
+    data["next_journeys"] = next_journeys
+    data["is_entry"] = len(prerequisites) == 0
     data["guides"] = [_guide_summary(g) for g in journey.guides]
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
@@ -106,8 +142,9 @@ def guides_page(
     request: Request,
     session: SessionDep,
     category: str | None = None,
+    q: str | None = None,
 ) -> HTMLResponse:
-    """Browse all guides, optionally filtered by category."""
+    """Browse all guides, optionally filtered by category and a search term."""
     if category is not None and category not in set(Category):
         raise HTTPException(status_code=400, detail=f"Unknown category: {category}")
 
@@ -117,6 +154,18 @@ def guides_page(
     statement = statement.order_by(Guide.category, Guide.id)
     guides = [_guide_summary(g) for g in session.exec(statement).all()]
 
+    # Plain substring search over title and summary so visitors can find a guide
+    # by name without learning the categories. Kept in-process (no LLM/index) so
+    # it works fully offline and on minimal hardware.
+    query = (q or "").strip()
+    if query:
+        needle = query.lower()
+        guides = [
+            g
+            for g in guides
+            if needle in g["title"].lower() or needle in (g["summary"] or "").lower()
+        ]
+
     return templates.TemplateResponse(
         request,
         "guides.html",
@@ -124,6 +173,7 @@ def guides_page(
             "guides": guides,
             "categories": CATEGORIES,
             "selected_category": category,
+            "query": query,
         },
     )
 
@@ -203,9 +253,9 @@ def recommend_page(
         "recommend.html",
         {
             "results": results,
+            "categories": CATEGORIES,
             "form": {
                 "goal": goal or "",
-                "people": people or "",
                 "climate": climate or "",
                 "resources": resources or "",
             },
@@ -215,8 +265,27 @@ def recommend_page(
 
 @router.get("/assistant", response_class=HTMLResponse)
 def assistant_page(request: Request) -> HTMLResponse:
-    """The local AI assistant: ask a question, get a cited, locally-grounded answer."""
-    return templates.TemplateResponse(request, "assistant.html", {})
+    """The local AI assistant: ask a question, get a cited, locally-grounded answer.
+
+    Resolve the assistant's live state up front so the page can set expectations
+    *before* the visitor types: full written answers, energy-saving low-power
+    mode, or model-off (guides-only). ``model_off`` is only reached when not in
+    low-power mode, where probing the runtime would waste energy.
+    """
+    if not assistant_enabled():
+        state = "disabled"
+    elif low_power_enabled():
+        state = "low_power"
+    else:
+        from horizon.services import llm
+
+        state = "ready" if llm.available() else "model_off"
+
+    return templates.TemplateResponse(
+        request,
+        "assistant.html",
+        {"state": state, "no_jargon_default": settings.ai.no_jargon_default},
+    )
 
 
 @router.post("/assistant/answer", response_class=HTMLResponse)
@@ -231,6 +300,20 @@ def assistant_answer(
     Reuses the AI API's answer logic directly (no HTTP self-call) and resolves
     citation ids to guide titles for display.
     """
+    if not assistant_enabled():
+        return templates.TemplateResponse(
+            request,
+            "partials/_answer.html",
+            {
+                "answer_html": render_markdown(
+                    "The assistant has been turned off by the operator. "
+                    "Browse the [step-by-step plans](/journeys) and "
+                    "[how-to guides](/guides) instead."
+                ),
+                "citations": [],
+            },
+        )
+
     result = ai_answer(AnswerRequest(question=question, no_jargon=no_jargon))
 
     citations = [

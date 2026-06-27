@@ -36,7 +36,22 @@ class RAGConfig(BaseModel):
 
 
 class AIConfig(BaseModel):
-    no_jargon_default: bool = False
+    # Plain-language answers by default: horizon's audience includes
+    # non-technical neighbours, so favour accessibility. Operators can opt out
+    # per request or flip this in config.yaml.
+    no_jargon_default: bool = True
+
+
+class AssistantConfig(BaseModel):
+    """The optional local chat assistant (web UI).
+
+    On by default. Operators who would rather not offer a chat box can turn it
+    off; the rest of horizon (journeys, guides, recommend) is unaffected. The
+    ``HORIZON_ASSISTANT_ENABLED`` environment variable overrides ``config.yaml``
+    at request time, so it can be toggled without a restart.
+    """
+
+    enabled: bool = True
 
 
 class EthicsConfig(BaseModel):
@@ -87,6 +102,7 @@ class Settings(BaseModel):
     vectordb: VectorDBConfig = Field(default_factory=VectorDBConfig)
     rag: RAGConfig = Field(default_factory=RAGConfig)
     ai: AIConfig = Field(default_factory=AIConfig)
+    assistant: AssistantConfig = Field(default_factory=AssistantConfig)
     ethics: EthicsConfig = Field(default_factory=EthicsConfig)
     power: PowerConfig = Field(default_factory=PowerConfig)
     content_packs: ContentPacksConfig = Field(default_factory=ContentPacksConfig)
@@ -126,3 +142,16 @@ def low_power_enabled() -> bool:
     if env is not None:
         return env.strip().lower() in _TRUTHY
     return settings.power.low_power
+
+
+def assistant_enabled() -> bool:
+    """True when the optional chat assistant (web UI) is turned on.
+
+    The ``HORIZON_ASSISTANT_ENABLED`` environment variable overrides
+    ``config.yaml`` when set, read live so an operator can toggle the assistant
+    without a restart.
+    """
+    env = os.environ.get("HORIZON_ASSISTANT_ENABLED")
+    if env is not None:
+        return env.strip().lower() in _TRUTHY
+    return settings.assistant.enabled
