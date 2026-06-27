@@ -22,7 +22,7 @@ and a **local AI assistant** for water, food, energy, shelter, health, and
 cooperative governance — all working **fully offline** after setup, with no
 cloud dependency at runtime.
 
-horizon is about everyday autonomy and relearning basic human skills again. Most of us are one dead
+horizon is about everyday autonomy and relearning basic human skills. Most of us are one dead
 Wi-Fi signal away from being stuck — a single camping trip is enough to show how
 much practical know-how we've quietly outsourced to the internet. horizon puts
 those basic human skills back within reach: living well off-grid, sustainably
