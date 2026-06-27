@@ -362,3 +362,34 @@ body.low-power .guide blockquote { background: none; }
 .assistant-note.is-ok { border-left-color: var(--accent); background: rgba(47, 111, 79, 0.06); }
 .assistant-note.is-info { border-left-color: #b8860b; background: rgba(184, 134, 11, 0.07); }
 .assistant-note.is-warn { border-left-color: #a11; background: rgba(170, 17, 17, 0.06); }
+
+/* Guide search ------------------------------------------------------------ */
+
+.search-form { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1rem 0; }
+.search-form input[type="search"] {
+  font: inherit;
+  flex: 1 1 14rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
+.search-clear { color: var(--accent); font-size: 0.9rem; }
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Narrow screens ---------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .site-header { flex-wrap: wrap; gap: 0.5rem 1rem; }
+  .site-header nav { margin-left: 0; width: 100%; }
+  .content { padding: 1.25rem 1rem; }
+  .intro h1, .journey-detail h1, .guide h1 { font-size: 1.6rem; }
+  .tagline { font-size: 1rem; }
+  .filter-bar { gap: 0.4rem; }
+  .journey-chain { font-size: 0.9rem; }
+}

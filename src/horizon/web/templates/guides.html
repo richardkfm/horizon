@@ -9,11 +9,21 @@
   </p>
 </section>
 
+<form method="get" action="/guides" class="search-form no-print" role="search">
+  {% if selected_category %}<input type="hidden" name="category" value="{{ selected_category }}" />{% endif %}
+  <label class="visually-hidden" for="guide-search">Search guides</label>
+  <input type="search" id="guide-search" name="q" value="{{ query }}"
+         placeholder="Search guides by name…" />
+  <button type="submit" class="btn">Search</button>
+  {% if query %}<a class="search-clear" href="/guides{% if selected_category %}?category={{ selected_category }}{% endif %}">Clear</a>{% endif %}
+</form>
+
 <nav class="filter-bar" aria-label="Filter guides by category">
-  <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/guides">All</a>
+  <a class="filter-chip {% if not selected_category %}is-active{% endif %}"
+     href="/guides{% if query %}?q={{ query }}{% endif %}">All</a>
   {% for category in categories %}
   <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
-     href="/guides?category={{ category }}">{{ category }}</a>
+     href="/guides?category={{ category }}{% if query %}&q={{ query }}{% endif %}">{{ category }}</a>
   {% endfor %}
 </nav>
 
@@ -28,6 +38,11 @@
   {% endfor %}
 </ul>
 {% else %}
+{% if query %}
+<p class="empty">No guides match “{{ query }}”. Try a different word, or
+  <a href="/guides">browse all guides</a>.</p>
+{% else %}
 <p class="empty">No guides in this category yet.</p>
+{% endif %}
 {% endif %}
 {% endblock %}

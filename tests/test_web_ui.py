@@ -105,6 +105,15 @@ def test_nav_uses_plain_labels_and_hides_admin():
     assert ">Admin<" not in resp.text
 
 
+def test_guides_search_filters_by_term():
+    with TestClient(app) as client:
+        resp = client.get("/guides", params={"q": "water"})
+        miss = client.get("/guides", params={"q": "zzzznope"})
+    assert "/guides/water-slow-sand-filter" in resp.text
+    assert "/guides/food-staple-crops-500m2" not in resp.text
+    assert "No guides match" in miss.text
+
+
 def test_assistant_can_be_disabled_by_operator(monkeypatch):
     monkeypatch.setenv("HORIZON_ASSISTANT_ENABLED", "false")
     with TestClient(app) as client:

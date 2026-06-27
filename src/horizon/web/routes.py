@@ -142,8 +142,9 @@ def guides_page(
     request: Request,
     session: SessionDep,
     category: str | None = None,
+    q: str | None = None,
 ) -> HTMLResponse:
-    """Browse all guides, optionally filtered by category."""
+    """Browse all guides, optionally filtered by category and a search term."""
     if category is not None and category not in set(Category):
         raise HTTPException(status_code=400, detail=f"Unknown category: {category}")
 
@@ -153,6 +154,18 @@ def guides_page(
     statement = statement.order_by(Guide.category, Guide.id)
     guides = [_guide_summary(g) for g in session.exec(statement).all()]
 
+    # Plain substring search over title and summary so visitors can find a guide
+    # by name without learning the categories. Kept in-process (no LLM/index) so
+    # it works fully offline and on minimal hardware.
+    query = (q or "").strip()
+    if query:
+        needle = query.lower()
+        guides = [
+            g
+            for g in guides
+            if needle in g["title"].lower() or needle in (g["summary"] or "").lower()
+        ]
+
     return templates.TemplateResponse(
         request,
         "guides.html",
@@ -160,6 +173,7 @@ def guides_page(
             "guides": guides,
             "categories": CATEGORIES,
             "selected_category": category,
+            "query": query,
         },
     )
 
