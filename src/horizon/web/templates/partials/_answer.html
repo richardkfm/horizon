@@ -1,0 +1,17 @@
+<article class="answer-card">
+  <div class="answer-body">{{ answer_html | safe }}</div>
+  {% if citations %}
+  <footer class="answer-citations">
+    <h3>Sources</h3>
+    <ul class="link-list">
+      {% for c in citations %}
+      <li><a href="/guides/{{ c.id }}">{{ c.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
+  {% else %}
+  <footer class="answer-citations">
+    <p class="empty">No local guides matched this question.</p>
+  </footer>
+  {% endif %}
+</article>

@@ -205,6 +205,49 @@ body {
 .recommend-form .btn { align-self: start; }
 .recommend-results { margin-top: 2rem; }
 
+/* AI assistant */
+.assistant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  max-width: 45rem;
+}
+.assistant-form label { font-weight: 600; font-size: 0.9rem; }
+.assistant-form textarea {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  width: 100%;
+  resize: vertical;
+}
+.assistant-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.assistant-controls .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 400;
+}
+/* htmx hides indicators by default; show only while a request is in flight. */
+.htmx-indicator { display: none; color: var(--muted, #666); }
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator { display: inline; }
+.assistant-answer:empty { display: none; }
+.answer-card {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+.answer-citations { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.75rem; }
+.answer-citations h3 { margin: 0 0 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em; }
+
 /* Low-power mode: flatten colours and shadows for e-ink / old displays. */
 body.low-power {
   --bg: #ffffff;

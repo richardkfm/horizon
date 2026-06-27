@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Ask the assistant — horizon{% endblock %}
+{% block content %}
+<section class="assistant-intro">
+  <h1>Ask the local assistant</h1>
+  <p class="tagline">
+    Ask a practical question about water, food, energy, shelter, health, or
+    cooperation. Answers are grounded in horizon's local guides and always cite
+    them — everything runs offline on this device.
+  </p>
+</section>
+
+<form class="assistant-form"
+      hx-post="/assistant/answer"
+      hx-target="#assistant-answer"
+      hx-swap="innerHTML"
+      hx-indicator="#assistant-spinner">
+  <label for="question">Your question</label>
+  <textarea id="question" name="question" rows="3"
+            placeholder="e.g. How do I make river water safe to drink?" autofocus></textarea>
+
+  <div class="assistant-controls">
+    <label class="checkbox">
+      <input type="checkbox" name="no_jargon" value="true" />
+      Plain language (no jargon)
+    </label>
+    <button type="submit" class="btn">Ask</button>
+    <span id="assistant-spinner" class="htmx-indicator">Thinking…</span>
+  </div>
+</form>
+
+<section id="assistant-answer" class="assistant-answer" aria-live="polite"></section>
+{% endblock %}

@@ -1,9 +1,11 @@
 """Server-rendered page routes for the horizon home UI.
 
-Pages: landing, journeys (skill tree), journey detail, and the guide viewer
-(+ in-browser print via ``print.css``). These are thin, DB-direct views over the
-same data the Knowledge API exposes — no HTTP self-calls and no LLM/vector
-dependency, so the UI works fully offline.
+Pages: landing, journeys (skill tree), journey detail, the guide viewer
+(+ in-browser print via ``print.css``), and the AI assistant. Most pages are
+thin, DB-direct views over the same data the Knowledge API exposes — no HTTP
+self-calls. Only the assistant touches the LLM/vector path, and it degrades
+gracefully (keyword retrieval + a local-content fallback) so the UI still works
+fully offline.
 """
 
 from __future__ import annotations
@@ -11,11 +13,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
+from horizon.api.ai import AnswerRequest
+from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
 from horizon.db import get_session
@@ -147,5 +151,41 @@ def recommend_page(
                 "climate": climate or "",
                 "resources": resources or "",
             },
+        },
+    )
+
+
+@router.get("/assistant", response_class=HTMLResponse)
+def assistant_page(request: Request) -> HTMLResponse:
+    """The local AI assistant: ask a question, get a cited, locally-grounded answer."""
+    return templates.TemplateResponse(request, "assistant.html", {})
+
+
+@router.post("/assistant/answer", response_class=HTMLResponse)
+def assistant_answer(
+    request: Request,
+    session: SessionDep,
+    question: Annotated[str, Form()] = "",
+    no_jargon: Annotated[bool, Form()] = False,
+) -> HTMLResponse:
+    """Answer a question and render it as an HTMX fragment with cited guides.
+
+    Reuses the AI API's answer logic directly (no HTTP self-call) and resolves
+    citation ids to guide titles for display.
+    """
+    result = ai_answer(AnswerRequest(question=question, no_jargon=no_jargon))
+
+    citations = [
+        {"id": guide.id, "title": guide.title}
+        for cid in result.citations
+        if (guide := session.get(Guide, cid)) is not None
+    ]
+
+    return templates.TemplateResponse(
+        request,
+        "partials/_answer.html",
+        {
+            "answer_html": render_markdown(result.answer),
+            "citations": citations,
         },
     )
