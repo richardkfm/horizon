@@ -63,6 +63,12 @@ def journeys_page(
     statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
     journeys = [_journey_summary(j) for j in session.exec(statement).all()]
 
+    # Mark entry-point journeys (no prerequisites) so the list can flag a safe
+    # place to begin for visitors who don't know where to start.
+    has_prereqs = set(session.exec(select(JourneyPrerequisite.journey_id).distinct()).all())
+    for journey in journeys:
+        journey["is_entry"] = journey["id"] not in has_prereqs
+
     return templates.TemplateResponse(
         request,
         "journeys.html",
@@ -94,8 +100,21 @@ def journey_detail_page(
         _journey_summary(p) for pid in prereq_ids if (p := session.get(Journey, pid)) is not None
     ]
 
+    # Reverse edges: journeys that list this one as a prerequisite, i.e. the
+    # natural next steps once this journey is done.
+    next_ids = session.exec(
+        select(JourneyPrerequisite.journey_id).where(
+            JourneyPrerequisite.prerequisite_id == journey_id
+        )
+    ).all()
+    next_journeys = [
+        _journey_summary(n) for nid in next_ids if (n := session.get(Journey, nid)) is not None
+    ]
+
     data = _journey_summary(journey)
     data["prerequisites"] = prerequisites
+    data["next_journeys"] = next_journeys
+    data["is_entry"] = len(prerequisites) == 0
     data["guides"] = [_guide_summary(g) for g in journey.guides]
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})

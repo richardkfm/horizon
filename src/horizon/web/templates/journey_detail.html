@@ -4,8 +4,35 @@
 <p class="breadcrumb"><a href="/journeys">← All journeys</a></p>
 
 <article class="journey-detail">
-  <span class="category-badge">{{ journey.category }}</span>
+  <span class="badge-row">
+    <span class="category-badge">{{ journey.category }}</span>
+    {% if journey.is_entry %}<span class="start-badge">Start here</span>{% endif %}
+  </span>
   <h1>{{ journey.title }}</h1>
+
+  {% if journey.prerequisites or journey.next_journeys %}
+  <nav class="journey-chain" aria-label="Where this journey fits">
+    {% if journey.prerequisites %}
+    <span class="chain-step chain-before">
+      <span class="chain-label">Before this</span>
+      {% for prereq in journey.prerequisites %}
+      <a href="/journeys/{{ prereq.id }}">{{ prereq.title }}</a>
+      {% endfor %}
+    </span>
+    <span class="chain-arrow" aria-hidden="true">→</span>
+    {% endif %}
+    <span class="chain-step chain-here">{{ journey.title }}</span>
+    {% if journey.next_journeys %}
+    <span class="chain-arrow" aria-hidden="true">→</span>
+    <span class="chain-step chain-next">
+      <span class="chain-label">Then</span>
+      {% for nxt in journey.next_journeys %}
+      <a href="/journeys/{{ nxt.id }}">{{ nxt.title }}</a>
+      {% endfor %}
+    </span>
+    {% endif %}
+  </nav>
+  {% endif %}
   <p class="journey-meta">
     <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
     {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
@@ -39,5 +66,17 @@
     <p class="empty">No step-by-step guides linked yet.</p>
     {% endif %}
   </section>
+
+  {% if journey.next_journeys %}
+  <section class="journey-section">
+    <h2>What comes next</h2>
+    <ul class="link-list">
+      {% for nxt in journey.next_journeys %}
+      <li><a href="/journeys/{{ nxt.id }}">{{ nxt.title }}</a>
+        <span class="category-badge">{{ nxt.category }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 </article>
 {% endblock %}

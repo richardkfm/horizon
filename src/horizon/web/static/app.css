@@ -89,6 +89,39 @@ body {
   padding: 0.05rem 0.6rem;
 }
 
+.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+
+.start-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 1rem;
+  padding: 0.05rem 0.6rem;
+}
+.journey-card.is-entry a { border-color: var(--accent); }
+
+/* Journey chain: where a journey sits in the prerequisite path. */
+.journey-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 1rem 0 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: rgba(47, 111, 79, 0.05);
+  font-size: 0.95rem;
+}
+.chain-step { display: inline-flex; flex-direction: column; gap: 0.1rem; }
+.chain-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #555; }
+.chain-here { font-weight: 700; }
+.chain-arrow { color: var(--accent); font-weight: 700; }
+.journey-chain a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.journey-chain a:hover { text-decoration: underline; }
+
 .breadcrumb { font-size: 0.9rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
