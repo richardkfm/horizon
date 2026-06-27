@@ -33,9 +33,11 @@ body {
   font-size: 0.85rem;
   color: #555;
 }
+.footer-admin { margin-left: auto; color: #777; text-decoration: none; }
+.footer-admin:hover { text-decoration: underline; }
 
 .brand { font-weight: 700; font-size: 1.25rem; color: var(--accent); text-decoration: none; }
-.site-header nav { display: flex; gap: 1rem; margin-left: auto; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-left: auto; }
 .site-header a { color: var(--fg); text-decoration: none; }
 .site-header a:hover { text-decoration: underline; }
 
