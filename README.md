@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.1 scaffold](https://img.shields.io/badge/status-v0.1%20scaffold-orange.svg)](#roadmap)
+[![Status: v0.1 scaffold](https://img.shields.io/badge/status-v0.1%20scaffold-orange.svg)](#roadmap--changelog)
 
 </div>
 
@@ -30,7 +30,7 @@ and without coercion.
 
 > **Status:** v0.1 scaffold. The structure, APIs, and content layout are in
 > place; feature logic is being filled in step by step (see
-> [Roadmap](#roadmap)).
+> [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
 
 ## Features
 
@@ -38,9 +38,15 @@ and without coercion.
   prerequisite edges (e.g. *water testing → slow sand filtration → storage*).
 - **Visual guides + print mode.** Markdown guides with images, rendered to HTML
   for the web and to a minimal, high-contrast **A4 PDF** for printing.
+- **Find your starting point.** Describe a goal in plain words and horizon
+  recommends journeys and guides to begin with, matched locally — no internet.
 - **Local AI assistant (RAG).** Answers grounded in *your* local guides and
   "md skills", always citing the guides/journeys used — runs against a local
-  model, never the cloud.
+  model, never the cloud. The assistant tells you its live state up front and
+  can be turned off by the operator.
+- **Made for non-technical neighbours.** Plain-language navigation, "Start here"
+  journeys with a visible prerequisite path, guide search, a phone-friendly
+  responsive layout, and plain-language answers by default.
 - **Built-in values.** Sustainability, non-authoritarian cooperation, fairness,
   and anti-exploitation are baked into the assistant via md skills.
 - **Simple, stable APIs.** Other projects (e.g. `neighbourgood`) can link to
@@ -185,7 +191,13 @@ model runtime, the ethics hook, and installed content packs at a glance.
 
 Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
 `data_dir`/`database`, `llm.*` (provider, endpoint, models), `vectordb.*`,
-`rag.top_k`, `ai.no_jargon_default`, `ethics.*`, `content_packs.dir`.
+`rag.top_k`, `ai.no_jargon_default` (plain-language answers, default `true`),
+`assistant.enabled` (the chat assistant, default `true`), `power.low_power`
+(solar/battery mode), `ethics.*`, and `content_packs.dir`.
+
+A few settings also honour environment overrides read at request time, so a
+script can flip them without a restart: `HORIZON_LOW_POWER`,
+`HORIZON_ASSISTANT_ENABLED`, and `HORIZON_ADMIN_TOKEN`.
 
 ## Content packs
 
@@ -204,14 +216,21 @@ horizon-content remove wikipedia-en-mini
 The same operations are available as a web wizard under **Admin → Content
 packs**, which downloads in the background and shows live progress.
 
-## Roadmap
+## Roadmap & changelog
 
-v0.1 is built in vertical slices, with the local model **last** so horizon is
+v0.1 was built in vertical slices, with the local model **last** so horizon is
 useful before any LLM is involved: data model + seed → Knowledge API → web UI →
 guide rendering + print/PDF → recommendations → RAG + AI assistant → content
-packs + admin → optional integrations → packaging. The final three slices
-(content packs + admin wizard, the moral-core ethics hook, and bare-metal
-packaging) are now in place.
+packs + admin → optional integrations → packaging. That scaffold is complete,
+and a UX layer for non-technical neighbours (plain-language navigation, the
+journey skill-path, guide search, and a verified responsive layout) now sits on
+top of it.
+
+The path from here focuses on letting admins tailor a node to the specifics of
+their own house and neighbourhood, and letting users track and personalise their
+journey — see **[ROADMAP.md](ROADMAP.md)** for the plan towards v0.5.
+
+Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 
 ## License
 

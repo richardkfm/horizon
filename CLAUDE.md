@@ -112,3 +112,63 @@ Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
   the step that fills them in; startup tolerates these.
 - Don't add runtime cloud calls. Don't import sibling projects. Don't move value
   judgements out of `content/md_skills/`.
+
+## UX & frontend standards
+
+horizon's primary user is a **non-technical neighbour who just browses the web**.
+Hold these when touching templates, copy, or `web/static/`:
+
+1. **Plain language over jargon.** Name things by the task, not horizon's
+   taxonomy (nav says *Step-by-step plans* / *How-to guides* / *Where to start* /
+   *Ask a question*, not "Journeys/Guides/Recommend/Assistant"). Plain-language
+   answers are the default (`ai.no_jargon_default: true`).
+2. **Don't expose operator surfaces to visitors.** Admin/operator entry points
+   stay out of the public header (a discreet footer link is fine). Public pages
+   assume zero technical knowledge.
+3. **Set expectations before action, not after.** If a feature can degrade
+   (assistant model-off / low-power / disabled), say so *up front* on the page —
+   never let the user discover it only after they act. Resolve the live state in
+   the route and render it.
+4. **Graceful degradation must be visible and friendly.** Mirror the backend's
+   fail-open behaviour in the UI with a clear, non-alarming explanation and a
+   useful fallback (e.g. point at local guides).
+5. **Offline-first frontend.** No external fonts, CDNs, or network assets. Vendor
+   JS/CSS locally; use inline SVG for icons. Everything must work with no
+   internet and render acceptably in print and low-power/e-ink modes.
+6. **Accessible & responsive by default.** No horizontal page overflow at phone
+   width; ~44px touch targets on small screens; wide tables scroll inside their
+   own box (`.table-scroll` for markup we control; the on-screen scroll is undone
+   in `print.css`). Keep `aria-*`/labels on interactive elements.
+7. **Personalisation stays local and private.** Prefer on-device state
+   (localStorage) and config over accounts or servers; no telemetry.
+
+## Verifying UI changes
+
+"Responsive/working by construction" is not verification — **render it**. The
+environment ships Chromium at `/opt/pw-browsers` with Playwright preconfigured
+(`pip install playwright`; do **not** run `playwright install`). For a UI change:
+
+- Launch the app (`uvicorn horizon.main:app …`, set `HORIZON_ADMIN_TOKEN` if you
+  need the admin views) and drive it with Playwright at a phone viewport
+  (e.g. 375×812).
+- Assert **zero horizontal page overflow**
+  (`document.body.scrollWidth - documentElement.clientWidth <= 0`) on each page,
+  and screenshot the key pages to eyeball layout.
+- This is how the broken landing CTA (an inline `.btn` splitting across lines,
+  plus green-on-green text) was caught — automated overflow checks plus a human
+  look at the screenshot. Do both.
+
+## Documentation discipline
+
+Update docs **as part of every user-facing change**, in the same change set:
+
+- **`CHANGELOG.md`** — add entries under `## [Unreleased]` using Keep a Changelog
+  sections (Added / Changed / Fixed). Call out anything that affects the
+  documented HTTP API contract (e.g. a changed default), even when the response
+  shape is unchanged.
+- **`README.md`** — keep Features, Configuration, and the Roadmap/changelog
+  pointers current; fix in-page anchors if a heading changes.
+- **`ROADMAP.md`** — keep the path towards the next milestone (currently v0.5)
+  honest; move shipped items into "Where we are" and the changelog.
+- When you establish a new standard or learn a durable lesson, write it into this
+  file so the next agent inherits it.
