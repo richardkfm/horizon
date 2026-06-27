@@ -29,6 +29,7 @@ dev = [
 ]
 
 [project.scripts]
+horizon-admin = "horizon.scripts.admin:main"
 horizon-content = "horizon.scripts.content:main"
 
 [build-system]

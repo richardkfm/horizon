@@ -14,6 +14,20 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **`horizon-admin` CLI** — a full headless operator + reader interface for a
+  node with no browser. Maintenance: `status` (runtime + content overview with
+  an ASCII banner), `doctor` (health-check every optional integration, non-zero
+  exit only on a hard failure), `seed`, `reindex`, `config` (effective settings,
+  admin token redacted), and `packs list/download/remove`. Content reading:
+  `journeys` / `journey <id>` (with an ASCII prerequisite→next flow), `guides` /
+  `guide <id>` (Markdown rendered as terminal text, `--raw` for source),
+  `recommend <goal>`, and `ask <question>` (cited, offline keyword-fallback
+  answer). Most commands take `--json` for scripting.
+- **Web UI on/off switch** — new `web.enabled` setting (default `true`,
+  overridable at startup via `HORIZON_WEB_ENABLED`). When off, horizon mounts
+  only the JSON API and `/healthz` (root returns a short JSON notice) so a
+  headless node can be run from the `horizon-admin` CLI alone; the documented
+  HTTP API contract is unaffected. Its state shows on **Admin → Integrations**.
 - **Journey skill-path navigation.** Entry-point journeys (no prerequisites)
   carry a **Start here** badge in the list and detail header; journey detail
   pages show a prerequisite chain (*Before this → here → Then*) and a *What

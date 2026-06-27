@@ -17,9 +17,8 @@ from fastapi.staticfiles import StaticFiles
 
 from horizon import __version__
 from horizon.api import ai, guides, journeys, recommend
+from horizon.config import web_enabled
 from horizon.db import init_db
-from horizon.web import admin as admin_routes
-from horizon.web import routes as web_routes
 
 logger = logging.getLogger("horizon")
 
@@ -59,12 +58,36 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="horizon", version=__version__, lifespan=lifespan)
 
-# Static assets (CSS + vendored JS).
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+# The server-rendered web UI is optional: a headless operator can run a node
+# with just the JSON API and the ``horizon-admin`` CLI by setting
+# ``web.enabled: false`` (or ``HORIZON_WEB_ENABLED=0``). The API and health
+# probe below are always mounted so integrations and probes never depend on it.
+if web_enabled():
+    from horizon.web import admin as admin_routes
+    from horizon.web import routes as web_routes
 
-# Server-rendered pages.
-app.include_router(web_routes.router)
-app.include_router(admin_routes.router)
+    # Static assets (CSS + vendored JS).
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+    # Server-rendered pages.
+    app.include_router(web_routes.router)
+    app.include_router(admin_routes.router)
+else:
+    logger.info(
+        "Web UI disabled (web.enabled is off): serving the JSON API only. "
+        "Manage this node with the horizon-admin CLI."
+    )
+
+    @app.get("/", tags=["meta"])
+    def web_disabled_notice() -> dict:
+        """Friendly root response when the browser UI is turned off."""
+        return {
+            "status": "ok",
+            "web_ui": "disabled",
+            "detail": "The web UI is turned off. Use the JSON API under /api or the "
+            "horizon-admin CLI to manage this node.",
+            "api_docs": "/docs",
+        }
+
 
 # Knowledge + AI APIs (stable integration surface).
 app.include_router(journeys.router)
