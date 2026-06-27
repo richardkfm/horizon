@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Content packs — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Content packs</h1>
+  <a href="/admin" class="btn">Back to dashboard</a>
+</div>
+
+<p class="empty">
+  Content packs are large <strong>optional</strong> offline resources. Download
+  them while you have internet; afterwards they work fully offline. horizon is
+  complete without any pack installed. Packs are stored under
+  <code>{{ packs_dir }}</code>.
+</p>
+
+{% if packs %}
+<table class="admin-table packs-table">
+  <thead>
+    <tr><th>Pack</th><th>Size</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for pack in packs %}
+    {% include "admin/_pack_row.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">No packs found in the catalog (<code>packs.yaml</code>).</p>
+{% endif %}
+{% endblock %}

@@ -177,6 +177,37 @@ body {
 }
 .admin-table .category-cell { text-transform: capitalize; }
 
+.admin-nav { display: flex; gap: 1rem; margin-top: 0.5rem; }
+.admin-nav a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.admin-nav a:hover { text-decoration: underline; }
+
+/* Content packs */
+.packs-table { max-width: 52rem; }
+.packs-table td { vertical-align: top; }
+.pack-id { display: block; font-size: 0.8rem; color: #777; font-family: monospace; }
+.pack-desc { display: block; font-size: 0.85rem; color: #555; margin-top: 0.2rem; }
+.pack-actions { white-space: nowrap; }
+.pack-state { font-size: 0.85rem; }
+.pack-ok { color: var(--accent); font-weight: 600; }
+.pack-error { color: #a11; }
+
+/* Integrations */
+.integration-list { list-style: none; padding: 0; display: grid; gap: 1rem; max-width: 44rem; }
+.integration {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+}
+.integration-head { display: flex; align-items: center; gap: 0.5rem; }
+.integration-dot {
+  width: 0.65rem; height: 0.65rem; border-radius: 50%;
+  background: #bbb; flex: none;
+}
+.integration.is-ok .integration-dot { background: var(--accent); }
+.integration-state { margin-left: auto; font-size: 0.85rem; color: #555; text-transform: capitalize; }
+.integration-detail { display: block; margin: 0.4rem 0; font-size: 0.85rem; color: #444; }
+.integration-note { margin: 0.3rem 0 0; font-size: 0.9rem; color: #555; }
+
 /* Recommend / scenario page --------------------------------------------- */
 
 .cta { font-size: 1.05rem; }

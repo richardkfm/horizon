@@ -56,6 +56,23 @@ def embed(texts: list[str]) -> list[list[float]]:
         raise LLMUnavailable(f"Embedding request failed: {exc}") from exc
 
 
+def available() -> bool:
+    """Quick, side-effect-free check that the local model runtime is reachable.
+
+    Used by the admin integrations view. Never raises: any error (including an
+    absent runtime) returns ``False`` so the rest of the app keeps working.
+    """
+    # Ollama lists pulled models at /api/tags; the OpenAI-compatible servers
+    # expose /v1/models. Both are cheap and need no model loaded.
+    path = "/v1/models" if settings.llm.provider == "openai-compatible" else "/api/tags"
+    try:
+        with _client(httpx.Timeout(5.0, connect=3.0)) as client:
+            resp = client.get(f"{_endpoint()}{path}")
+            return resp.status_code < 500
+    except httpx.HTTPError:
+        return False
+
+
 def _endpoint() -> str:
     return settings.llm.endpoint.rstrip("/")
 
