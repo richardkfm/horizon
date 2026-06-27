@@ -14,6 +14,18 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Light & dark themes.** A header theme toggle defaults to the device's
+  `prefers-color-scheme` and remembers the choice on-device (a single
+  `localStorage` display preference — no account). The page sets the theme
+  before paint to avoid a flash. Print and low-power/e-ink keep their fixed
+  high-contrast palettes regardless of the chosen theme.
+- **Visual redesign — a cohesive "paper & ink" design system.** App styling is
+  now driven by design tokens (colour, type, spacing, radius, shadow): a calm
+  "horizon" blue accent, a system-serif display face for headings (no external
+  fonts — still fully offline), softly shadowed cards, clearer focus rings, and
+  restrained hover motion that respects `prefers-reduced-motion`. The recommend
+  and assistant forms read as cards. No markup contract changed; every existing
+  class name is preserved.
 - **Journey skill-path navigation.** Entry-point journeys (no prerequisites)
   carry a **Start here** badge in the list and detail header; journey detail
   pages show a prerequisite chain (*Before this → here → Then*) and a *What

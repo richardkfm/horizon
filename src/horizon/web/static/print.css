@@ -9,7 +9,25 @@ body {
   background: #fff;
   color: #000;
   font-size: 11pt;
+  /* Flatten the screen theme to plain ink-on-paper for printing. */
+  --bg: #fff;
+  --surface: #fff;
+  --surface-sunken: #fff;
+  --fg: #000;
+  --muted: #000;
+  --muted-2: #000;
+  --accent: #000;
+  --accent-strong: #000;
+  --accent-soft: transparent;
+  --border: #000;
+  --border-strong: #000;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-lift: none;
 }
+
+/* Drop card lift/tints so printed pages stay clean. */
+* { box-shadow: none !important; }
 
 /* Hide interactive chrome when printing a guide. */
 .site-header,
