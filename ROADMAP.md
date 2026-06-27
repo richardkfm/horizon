@@ -24,6 +24,10 @@ is a polished, well-maintained node a neighbourhood can rely on.
 
 - Skill tree of journeys + guides, prerequisite/"what comes next" chain, and
   "Start here" entry points.
+- Eleven built-in skill categories: water, food, energy, shelter, health,
+  cooperation, survival basics, culture (music, dance, games), essential
+  language, crafts & repair, and emergencies (blackouts, extreme heat/cold, air
+  raids, conflict, pandemics) — each seeded with journeys and guides offline.
 - Visual guides → HTML + high-contrast A4 PDF; print and low-power/e-ink modes.
 - Goal-based recommendations and a guide search.
 - Offline local AI assistant (RAG over local content), always cited, that

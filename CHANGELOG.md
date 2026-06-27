@@ -14,6 +14,22 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Five new built-in content categories** — `survival` (fire, finding water,
+  navigation, knots, foraging, trapping & fishing), `culture` (simple
+  instruments, group songs, circle dances, no-gear games, storytelling),
+  `language` (core phrases, teaching literacy, communicating across barriers),
+  `crafts` (cordage, mending textiles, tool repair), and `emergencies` —
+  civilian-protection guidance for blackouts, extreme heat and cold, air raids
+  and drone attacks, armed conflict, and pandemics. Each ships with seed journeys
+  and step-by-step guides, plus md skills steering the assistant on survival
+  safety, culture/language inclusion, and emergency safety. They appear on the
+  home page, in the journeys/guides browser, the API, recommendations, and the
+  admin dashboard — all offline, no download required. `GET
+  /api/journeys?category=…` now accepts these five new category values.
+- **Expanded food, shelter, and survival content** — more food guides (year-round
+  vegetable garden, fruit trees and berries, seed saving), more ways to build a
+  home (quick emergency shelter, earth building, timber-frame cabin), and finding
+  food in nature (trapping and fishing) added to the existing categories.
 - **`horizon-admin` CLI** — a full headless operator + reader interface for a
   node with no browser. Maintenance: `status` (runtime + content overview with
   an ASCII banner), `doctor` (health-check every optional integration, non-zero

@@ -2,8 +2,9 @@
 # Each journey: id, title, description, category, difficulty (1-5),
 # estimated_time, prerequisites (other journey ids), guides (guide ids).
 #
-# This is a small seed covering all six categories with a few prerequisite
-# edges. Grow to the 5-10+ journey target in the data-model step.
+# This seed covers all eleven categories (water, food, energy, shelter, health,
+# cooperation, survival, culture, language, crafts, emergencies) with a few
+# prerequisite edges. Grow each category over time.
 
 journeys:
   - id: water-testing-basics
@@ -81,3 +82,337 @@ journeys:
     estimated_time: "3 hours"
     prerequisites: []
     guides: [cooperation-group-decisions]
+
+  # --- Survival / basic human skills ---
+
+  - id: survival-fire
+    title: Make and keep a fire without matches
+    description: >
+      Build, light, and tend a fire safely using friction or a spark, so you can
+      cook, boil water, stay warm, and signal for help.
+    category: survival
+    difficulty: 2
+    estimated_time: "Half a day to practise"
+    prerequisites: []
+    guides: [survival-fire]
+
+  - id: survival-find-water
+    title: Find and collect water in the field
+    description: >
+      Locate likely water sources, collect rain and dew, and gather water to
+      carry, before testing and treating it for drinking.
+    category: survival
+    difficulty: 2
+    estimated_time: "A few hours"
+    prerequisites: []
+    guides: [survival-find-water]
+
+  - id: survival-navigation
+    title: Find direction without a compass
+    description: >
+      Work out north and keep a straight course using the sun, stars, and simple
+      landmarks so you can travel and return safely.
+    category: survival
+    difficulty: 2
+    estimated_time: "A few hours"
+    prerequisites: []
+    guides: [survival-navigation]
+
+  - id: survival-knots
+    title: Tie essential knots and lashings
+    description: >
+      Learn a small set of reliable knots and lashings for shelter, hauling,
+      securing loads, and first aid.
+    category: survival
+    difficulty: 1
+    estimated_time: "1-2 hours"
+    prerequisites: []
+    guides: [survival-knots]
+
+  - id: survival-foraging
+    title: Identify safe wild food and avoid poisoning
+    description: >
+      Use cautious rules to tell likely-safe wild plants from dangerous ones and
+      reduce the risk of poisoning when food is scarce.
+    category: survival
+    difficulty: 3
+    estimated_time: "Ongoing practice"
+    prerequisites: []
+    guides: [survival-foraging]
+
+  # --- Culture: music, dance, games, stories ---
+
+  - id: culture-simple-instruments
+    title: Make simple instruments and keep a rhythm
+    description: >
+      Build basic percussion and wind instruments from found materials and lead a
+      group in keeping a shared rhythm.
+    category: culture
+    difficulty: 1
+    estimated_time: "An afternoon"
+    prerequisites: []
+    guides: [culture-simple-instruments]
+
+  - id: culture-group-songs
+    title: Lead group singing
+    description: >
+      Teach and lead simple call-and-response and round songs that anyone can
+      join, to lift morale and mark shared moments.
+    category: culture
+    difficulty: 1
+    estimated_time: "1 hour"
+    prerequisites: []
+    guides: [culture-group-songs]
+
+  - id: culture-circle-dances
+    title: Teach simple group dances
+    description: >
+      Lead easy circle and line dances that need no equipment, so people of all
+      ages and abilities can take part together.
+    category: culture
+    difficulty: 1
+    estimated_time: "1 hour"
+    prerequisites: []
+    guides: [culture-circle-dances]
+
+  - id: culture-no-gear-games
+    title: Run group games with no equipment
+    description: >
+      Organise inclusive games for mixed ages that need nothing but people, to
+      build trust, exercise, and fun.
+    category: culture
+    difficulty: 1
+    estimated_time: "1 hour"
+    prerequisites: []
+    guides: [culture-no-gear-games]
+
+  - id: culture-storytelling
+    title: Preserve knowledge through storytelling
+    description: >
+      Use storytelling and memory techniques to pass on skills, history, and
+      values when written records are scarce.
+    category: culture
+    difficulty: 2
+    estimated_time: "Ongoing practice"
+    prerequisites: []
+    guides: [culture-storytelling]
+
+  # --- Essential language ---
+
+  - id: language-core-phrases
+    title: Learn and teach essential phrases
+    description: >
+      Build and practise a small core of phrases for greetings, needs, safety,
+      and trade that help people get along quickly.
+    category: language
+    difficulty: 1
+    estimated_time: "Ongoing practice"
+    prerequisites: []
+    guides: [language-core-phrases]
+
+  - id: language-teach-literacy
+    title: Teach basic reading and writing
+    description: >
+      Help a learner of any age start reading and writing using sounds, simple
+      words, and everyday practice without special materials.
+    category: language
+    difficulty: 2
+    estimated_time: "Weeks of short sessions"
+    prerequisites: []
+    guides: [language-teach-literacy]
+
+  - id: language-across-barriers
+    title: Communicate across a language barrier
+    description: >
+      Use gestures, drawings, and a shared word list to understand and be
+      understood when you have no common language and no tools.
+    category: language
+    difficulty: 1
+    estimated_time: "A few hours"
+    prerequisites: []
+    guides: [language-across-barriers]
+
+  # --- Crafts & repair ---
+
+  - id: crafts-cordage
+    title: Make rope and cordage from plant fibre
+    description: >
+      Turn plant fibres into strong cord by reverse-wrap twisting, for shelter,
+      tools, snares, and repairs.
+    category: crafts
+    difficulty: 2
+    estimated_time: "An afternoon"
+    prerequisites: []
+    guides: [crafts-cordage]
+
+  - id: crafts-mending-textiles
+    title: Mend clothes and make basic textiles
+    description: >
+      Repair tears, replace buttons, patch worn cloth, and sew simple items so
+      clothing and fabric last far longer.
+    category: crafts
+    difficulty: 1
+    estimated_time: "1-2 hours"
+    prerequisites: []
+    guides: [crafts-mending-textiles]
+
+  - id: crafts-tool-repair
+    title: Sharpen and repair hand tools
+    description: >
+      Keep knives, axes, and garden tools sharp, tight, and safe with simple
+      maintenance and basic repairs.
+    category: crafts
+    difficulty: 2
+    estimated_time: "1-2 hours"
+    prerequisites: []
+    guides: [crafts-tool-repair]
+
+  # --- Food: more crops, fruit, and vegetables ---
+
+  - id: food-vegetable-garden
+    title: Grow a year-round vegetable garden
+    description: >
+      Plan beds, sow in succession, and tend a mix of vegetables so something is
+      always ready to harvest across the seasons.
+    category: food
+    difficulty: 2
+    estimated_time: "1 season to establish"
+    prerequisites: []
+    guides: [food-vegetable-garden]
+
+  - id: food-fruit-and-berries
+    title: Plant fruit trees and berry bushes
+    description: >
+      Choose, plant, and care for fruit trees, vines, and berry bushes for years
+      of low-effort harvests.
+    category: food
+    difficulty: 3
+    estimated_time: "A planting season, then yearly care"
+    prerequisites: []
+    guides: [food-fruit-and-berries]
+
+  - id: food-seed-saving
+    title: Save and store seeds for next season
+    description: >
+      Select, dry, and store seeds from your best plants so you can grow again
+      next year without buying in.
+    category: food
+    difficulty: 2
+    estimated_time: "A few hours across the season"
+    prerequisites: [food-vegetable-garden]
+    guides: [food-seed-saving]
+
+  # --- Shelter: different types of houses ---
+
+  - id: shelter-emergency-quick
+    title: Build a quick emergency shelter
+    description: >
+      Put up a warm, dry shelter fast from natural or salvaged materials when you
+      have no roof over your head.
+    category: shelter
+    difficulty: 2
+    estimated_time: "A few hours"
+    prerequisites: []
+    guides: [shelter-emergency-quick]
+
+  - id: shelter-earth-building
+    title: Build with earth (cob, adobe, earthbag)
+    description: >
+      Use soil-based methods to build durable, well-insulated walls from
+      low-cost, local materials.
+    category: shelter
+    difficulty: 4
+    estimated_time: "Weeks to months"
+    prerequisites: []
+    guides: [shelter-earth-building]
+
+  - id: shelter-timber-cabin
+    title: Build a simple timber-frame cabin
+    description: >
+      Frame, clad, and roof a small wooden cabin or hut for longer-term living.
+    category: shelter
+    difficulty: 4
+    estimated_time: "Weeks"
+    prerequisites: [shelter-insulation-basics]
+    guides: [shelter-timber-cabin]
+
+  # --- Survival: finding food in nature ---
+
+  - id: survival-trapping-fishing
+    title: Catch fish and small game for food
+    description: >
+      Use simple traps, snares, and fishing methods to find protein in the wild,
+      handling catch safely and humanely.
+    category: survival
+    difficulty: 3
+    estimated_time: "Ongoing practice"
+    prerequisites: []
+    guides: [survival-trapping-fishing]
+
+  # --- Emergencies: surviving extreme situations (civilian protection) ---
+
+  - id: emergency-blackout
+    title: Prepare for and live through a long blackout
+    description: >
+      Keep water, food, warmth, light, and information going when the power is
+      out for days or weeks.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A day to prepare"
+    prerequisites: []
+    guides: [emergency-blackout]
+
+  - id: emergency-extreme-heat
+    title: Survive extreme heat without power
+    description: >
+      Keep yourself and vulnerable people cool and hydrated through a heatwave
+      when there is no air conditioning.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A few hours to prepare"
+    prerequisites: []
+    guides: [emergency-extreme-heat]
+
+  - id: emergency-extreme-cold
+    title: Survive extreme cold without heating
+    description: >
+      Stay warm and avoid frostbite and hypothermia indoors and out when the
+      heating fails in deep cold.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A few hours to prepare"
+    prerequisites: []
+    guides: [emergency-extreme-cold]
+
+  - id: emergency-air-raid
+    title: Stay safe during air raids and drone attacks
+    description: >
+      Recognise warnings and take cover quickly and correctly to protect
+      yourself and others from blasts and debris.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "1-2 hours to plan"
+    prerequisites: []
+    guides: [emergency-air-raid]
+
+  - id: emergency-conflict-safety
+    title: Keep your household safe during armed conflict
+    description: >
+      Plan for civilian safety during invasion, civil unrest, or war: go-bag,
+      documents, communication, evacuation, and staying out of danger.
+    category: emergencies
+    difficulty: 3
+    estimated_time: "A day to prepare"
+    prerequisites: []
+    guides: [emergency-conflict-safety]
+
+  - id: emergency-pandemic
+    title: Protect your household during a disease outbreak
+    description: >
+      Reduce the chance of catching and spreading illness, and care for the sick
+      safely, during an epidemic or pandemic.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A few hours to prepare"
+    prerequisites: []
+    guides: [emergency-pandemic]

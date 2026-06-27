@@ -102,7 +102,11 @@ These are horizon's integration surface; preserve backward compatibility:
   the assistant's values and style.
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
-`cooperation` (see `models.Category`). Restart to re-seed and re-index.
+`cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies` (see
+`models.Category`). Adding a category is a small code change (the `Category`
+enum, plus a `CATEGORY_EXAMPLES` line in `web/routes.py` and an SVG icon in
+`landing.html`); routes, API, seeding, and the admin dashboard auto-discover it.
+Restart to re-seed and re-index.
 
 ## Conventions
 

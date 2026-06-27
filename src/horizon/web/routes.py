@@ -50,6 +50,11 @@ CATEGORY_EXAMPLES = {
     "shelter": "Keep a simple shelter warm and dry",
     "health": "First aid and staying healthy off-grid",
     "cooperation": "Make fair group decisions together",
+    "survival": "Make fire, find water, and find your way",
+    "culture": "Music, dance, and games with no gear",
+    "language": "Learn and teach essential words",
+    "crafts": "Make rope, mend clothes, and fix tools",
+    "emergencies": "Stay safe in blackouts, disasters, and conflict",
 }
 
 
@@ -60,7 +65,7 @@ def _category_cards() -> list[dict]:
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
-    """Landing view: the six categories and what horizon is for."""
+    """Landing view: the skill categories and what horizon is for."""
     return templates.TemplateResponse(request, "landing.html", {"categories": _category_cards()})
 
 
