@@ -16,6 +16,15 @@ equivalent — the things you reach for over SSH:
 Every command stays offline-first: only ``packs download`` reaches the network,
 and only while the operator asks it to. Nothing here imports a sibling project
 or buries a value judgement in logic — it just drives horizon's own services.
+
+Access model: this CLI is deliberately **not** gated by the admin token. That
+token guards the *web* admin area, which is reachable over the network; the CLI
+runs locally, so its security boundary is shell/filesystem access. Anyone who
+can run ``horizon-admin`` can already read ``config.yaml`` (where the token lives
+in plaintext) and the SQLite database directly, so an app-level prompt would add
+friction without adding protection — the same trust model as ``psql`` or
+``systemctl``. Restrict access with OS login + file permissions, not a password
+here. (``config`` still redacts the token so it is never printed.)
 """
 
 from __future__ import annotations

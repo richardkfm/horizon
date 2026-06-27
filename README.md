@@ -233,6 +233,12 @@ Most commands accept `--json` for scripting. Run with `web.enabled: false`
 (or `HORIZON_WEB_ENABLED=0`) to serve only the JSON API and drive the node
 entirely from this CLI.
 
+**Access:** the CLI is not gated by the admin token (that token guards the
+network-exposed web admin area). Like `psql` or `systemctl`, it trusts the OS
+user — anyone who can run it can already read the database and `config.yaml`
+directly. Control access with shell login and file permissions; `horizon-admin
+config` redacts the token so it is never printed.
+
 ## Content packs
 
 Larger offline resources (Wikipedia, medical ZIMs, maps) are optional downloads
