@@ -28,9 +28,8 @@ def get_guide(
     Args:
         format: ``html`` (rendered) or ``markdown`` (raw source).
 
-    The Markdown source is always returned; ``html`` is populated once the
-    guides-rendering step provides Markdown→HTML rendering (until then it is
-    ``null`` so consumers can fall back to the source).
+    The Markdown source is always returned; for ``html`` the body is rendered
+    to an HTML fragment as well.
     """
     if format not in {"html", "markdown"}:
         raise HTTPException(status_code=400, detail=f"Unknown format: {format}")
@@ -61,16 +60,8 @@ def _read_body(guide: Guide) -> str:
     return md_path.read_text(encoding="utf-8")
 
 
-def _render_html(body: str) -> str | None:
-    """Render Markdown to HTML if rendering is available, else ``None``.
-
-    Markdown→HTML rendering lands in the guides-rendering step. Until then this
-    returns ``None`` rather than failing the request, keeping the Knowledge API
-    usable on its own.
-    """
+def _render_html(body: str) -> str:
+    """Render a guide's Markdown body to an HTML fragment."""
     from horizon.services.markdown import render_markdown
 
-    try:
-        return render_markdown(body)
-    except NotImplementedError:
-        return None
+    return render_markdown(body)
