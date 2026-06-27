@@ -29,6 +29,15 @@ def test_service_water_goal_includes_linked_guide():
     assert "water-slow-sand-filter" in guide_ids
 
 
+def test_generic_words_do_not_pull_off_topic_journeys():
+    """A water goal should not surface cooperation just because both say 'group'."""
+    with TestClient(app):
+        result = recommend_journeys("safe drinking water for our group")
+    ids = {j["id"] for j in result["journeys"]}
+    assert "water-slow-sand-filter" in ids
+    assert "cooperation-group-decisions" not in ids
+
+
 def test_resources_context_is_folded_in():
     """A solar resource should surface the solar journey even for a vague goal."""
     with TestClient(app):
