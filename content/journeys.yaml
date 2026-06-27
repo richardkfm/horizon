@@ -15,7 +15,7 @@ journeys:
     difficulty: 1
     estimated_time: "2 hours"
     prerequisites: []
-    guides: []
+    guides: [water-field-testing]
 
   - id: water-slow-sand-filter
     title: Provide safe drinking water for ~20 people
@@ -48,7 +48,7 @@ journeys:
     difficulty: 3
     estimated_time: "2 days"
     prerequisites: []
-    guides: []
+    guides: [energy-low-tech-solar]
 
   - id: shelter-insulation-basics
     title: Insulate a simple shelter
@@ -59,7 +59,7 @@ journeys:
     difficulty: 2
     estimated_time: "1 day"
     prerequisites: []
-    guides: []
+    guides: [shelter-insulation-basics]
 
   - id: health-first-aid-basics
     title: Handle common first-aid situations
@@ -69,7 +69,7 @@ journeys:
     difficulty: 2
     estimated_time: "4 hours"
     prerequisites: []
-    guides: []
+    guides: [health-first-aid-basics]
 
   - id: cooperation-group-decisions
     title: Make fair group decisions

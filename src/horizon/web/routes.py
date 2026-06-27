@@ -97,6 +97,33 @@ def journey_detail_page(
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
 
 
+@router.get("/guides", response_class=HTMLResponse)
+def guides_page(
+    request: Request,
+    session: SessionDep,
+    category: str | None = None,
+) -> HTMLResponse:
+    """Browse all guides, optionally filtered by category."""
+    if category is not None and category not in set(Category):
+        raise HTTPException(status_code=400, detail=f"Unknown category: {category}")
+
+    statement = select(Guide)
+    if category is not None:
+        statement = statement.where(Guide.category == Category(category))
+    statement = statement.order_by(Guide.category, Guide.id)
+    guides = [_guide_summary(g) for g in session.exec(statement).all()]
+
+    return templates.TemplateResponse(
+        request,
+        "guides.html",
+        {
+            "guides": guides,
+            "categories": CATEGORIES,
+            "selected_category": category,
+        },
+    )
+
+
 @router.get("/guides/{guide_id}.pdf")
 def guide_pdf(guide_id: str, session: SessionDep) -> Response:
     """Render a guide as a downloadable, A4 print-friendly PDF (WeasyPrint).

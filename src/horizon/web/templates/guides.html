@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Guides — horizon{% endblock %}
+{% block content %}
+<section class="guides-intro">
+  <h1>Guides</h1>
+  <p class="tagline">
+    Visual, step-by-step instructions you can read on screen, print, or save as a
+    PDF — all stored locally and usable offline.
+  </p>
+</section>
+
+<nav class="filter-bar" aria-label="Filter guides by category">
+  <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/guides">All</a>
+  {% for category in categories %}
+  <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
+     href="/guides?category={{ category }}">{{ category }}</a>
+  {% endfor %}
+</nav>
+
+{% if guides %}
+<ul class="link-list">
+  {% for guide in guides %}
+  <li>
+    <a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
+    <span class="category-badge">{{ guide.category }}</span>
+    {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No guides in this category yet.</p>
+{% endif %}
+{% endblock %}
