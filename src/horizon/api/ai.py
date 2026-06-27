@@ -19,7 +19,7 @@ from pathlib import Path
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from horizon.config import settings
+from horizon.config import low_power_enabled, settings
 from horizon.services.llm import LLMUnavailable, generate
 from horizon.services.rag import retrieve
 
@@ -67,15 +67,21 @@ def answer(req: AnswerRequest) -> AnswerResponse:
     chunks = retrieve(question)
     citations = _citations(chunks)
 
-    no_jargon = req.no_jargon if req.no_jargon is not None else settings.ai.no_jargon_default
-    system = _system_prompt()
-    prompt = _build_prompt(question, chunks)
-
-    try:
-        draft = generate(system, prompt, no_jargon=no_jargon)
-    except LLMUnavailable:
-        logger.info("LLM unavailable; returning local-content fallback answer.")
-        draft = _fallback_answer(chunks)
+    if low_power_enabled():
+        # Running the local model is the single most power-hungry operation
+        # horizon performs. In low-power mode we skip generation entirely and
+        # point at the most relevant local guides instead.
+        logger.info("Low-power mode: skipping LLM generation; returning local-content answer.")
+        draft = _fallback_answer(chunks, low_power=True)
+    else:
+        no_jargon = req.no_jargon if req.no_jargon is not None else settings.ai.no_jargon_default
+        system = _system_prompt()
+        prompt = _build_prompt(question, chunks)
+        try:
+            draft = generate(system, prompt, no_jargon=no_jargon)
+        except LLMUnavailable:
+            logger.info("LLM unavailable; returning local-content fallback answer.")
+            draft = _fallback_answer(chunks)
 
     final = _refine(draft, req.context)
     return AnswerResponse(answer=final, citations=citations)
@@ -135,15 +141,38 @@ def _read_skill_body(path: Path) -> str | None:
     return text
 
 
-def _fallback_answer(chunks: list[dict]) -> str:
-    """Deterministic answer when the model is unavailable: point to local guides."""
-    guides = [c for c in chunks if c["kind"] == "guide"]
-    if not guides:
-        return (
+def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
+    """Deterministic answer that points to local guides instead of running the model.
+
+    Used both when the model is unavailable and, in low-power mode, when horizon
+    deliberately skips generation to save energy. ``low_power`` only changes the
+    explanatory lead-in so the answer reflects *why* there is no generated text.
+    """
+    if low_power:
+        no_guide_lead = (
+            "horizon is in low-power mode to save energy, so the local AI model "
+            "is paused. I couldn't find a local guide matching your question — "
+            "try browsing the journeys, or rephrase your question."
+        )
+        guide_lead = (
+            "horizon is in low-power mode to save energy, so the local AI model "
+            "is paused and I can't write a full answer. Based on your question, "
+            "these local guides are most relevant:"
+        )
+    else:
+        no_guide_lead = (
             "The local AI model isn't running right now, and I couldn't find a "
             "local guide matching your question. Try browsing the journeys, or "
             "rephrase your question."
         )
+        guide_lead = (
+            "The local AI model isn't running right now, so I can't write a full "
+            "answer. Based on your question, these local guides are most relevant:"
+        )
+
+    guides = [c for c in chunks if c["kind"] == "guide"]
+    if not guides:
+        return no_guide_lead
     seen: set[str] = set()
     lines: list[str] = []
     for guide in guides:
@@ -152,12 +181,7 @@ def _fallback_answer(chunks: list[dict]) -> str:
         seen.add(guide["source_id"])
         lines.append(f"- {guide['title']} [{guide['source_id']}]")
     listing = "\n".join(lines)
-    return (
-        "The local AI model isn't running right now, so I can't write a full "
-        "answer. Based on your question, these local guides are most relevant:\n\n"
-        f"{listing}\n\n"
-        "Open them for complete step-by-step instructions."
-    )
+    return f"{guide_lead}\n\n{listing}\n\nOpen them for complete step-by-step instructions."
 
 
 def _refine(draft: str, context: dict | None) -> str:

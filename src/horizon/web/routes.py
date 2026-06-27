@@ -22,6 +22,7 @@ from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
+from horizon.config import low_power_enabled
 from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
@@ -31,6 +32,9 @@ router = APIRouter(tags=["web"])
 
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+# Read live (honours the HORIZON_LOW_POWER env override) so every page reflects
+# the current power mode without restarting.
+templates.env.globals["low_power_enabled"] = low_power_enabled
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

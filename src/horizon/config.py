@@ -46,6 +46,23 @@ class EthicsConfig(BaseModel):
     endpoint: str = "http://moral-core.local/api/evaluate"
 
 
+class PowerConfig(BaseModel):
+    """Low-power mode for solar / battery deployments.
+
+    When enabled, horizon skips its energy-hungry paths so the node sips power on
+    a weak supply: the vector index is **not** built on startup, and the AI
+    assistant answers from local content via keyword retrieval instead of running
+    the local LLM. The UI also switches to a flat, e-ink-friendly stylesheet.
+
+    The effective value also honours the ``HORIZON_LOW_POWER`` environment
+    variable at request time, so an operator — or a battery-monitoring script that
+    flips the node into low power when the charge drops — can toggle it without
+    editing ``config.yaml`` or restarting.
+    """
+
+    low_power: bool = False
+
+
 class ContentPacksConfig(BaseModel):
     dir: str = "/data/packs"
 
@@ -71,6 +88,7 @@ class Settings(BaseModel):
     rag: RAGConfig = Field(default_factory=RAGConfig)
     ai: AIConfig = Field(default_factory=AIConfig)
     ethics: EthicsConfig = Field(default_factory=EthicsConfig)
+    power: PowerConfig = Field(default_factory=PowerConfig)
     content_packs: ContentPacksConfig = Field(default_factory=ContentPacksConfig)
     admin: AdminConfig = Field(default_factory=AdminConfig)
 
@@ -91,3 +109,20 @@ def load_settings() -> Settings:
 
 # Singleton settings instance used across the app.
 settings = load_settings()
+
+
+_TRUTHY = {"1", "true", "yes", "on"}
+
+
+def low_power_enabled() -> bool:
+    """True when low-power mode is active.
+
+    The ``HORIZON_LOW_POWER`` environment variable overrides ``config.yaml`` when
+    set (any of ``1/true/yes/on``, case-insensitive, enables it; anything else
+    disables it). This is read live, so a battery-monitoring script can toggle the
+    node into and out of low power without a restart.
+    """
+    env = os.environ.get("HORIZON_LOW_POWER")
+    if env is not None:
+        return env.strip().lower() in _TRUTHY
+    return settings.power.low_power

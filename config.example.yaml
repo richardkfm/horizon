@@ -37,6 +37,15 @@ ethics:
   enabled: false
   endpoint: http://moral-core.local/api/evaluate
 
+# Low-power mode for solar / battery deployments. When on, horizon skips the
+# energy-hungry paths: it does not build the vector index on startup and the AI
+# assistant answers from local guides (keyword search) instead of running the
+# local model. The UI also switches to a flat, e-ink-friendly stylesheet.
+# Override at runtime with the HORIZON_LOW_POWER env var (1/true/yes/on) so a
+# battery-monitoring script can toggle it without editing this file or restarting.
+power:
+  low_power: false
+
 content_packs:
   dir: /data/packs            # optional offline Wikipedia / medical ZIM / maps
 
