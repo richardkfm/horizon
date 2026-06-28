@@ -78,14 +78,29 @@ git clone https://github.com/richardkfm/horizon && cd horizon
 cp config.example.yaml config.yaml
 
 docker compose up -d
-
-# Pull a small local model + an embedding model into Ollama (one-time, online):
-docker compose exec ollama ollama pull llama3.2:3b
-docker compose exec ollama ollama pull nomic-embed-text
 ```
 
 Then open **http://&lt;host-ip&gt;:8080** from any device on the local network.
 On first run horizon seeds its bundled content and builds the search index.
+
+This default install is small and stays fully offline — **no model runtime is
+pulled**. The "Ask a question" assistant falls back to local guide search until
+you give it a model. The local AI is entirely optional; enable it whichever way
+suits you:
+
+```bash
+# A) Point horizon at a model server you already run (e.g. llama.cpp).
+#    In config.yaml:
+#      llm:
+#        provider: openai-compatible
+#        endpoint: http://<your-host>:8081/v1
+#    No extra container is pulled.
+
+# B) Or run the bundled Ollama container (opt-in `ai` profile; ~3GB image):
+docker compose --profile ai up -d
+docker compose exec ollama ollama pull llama3.2:3b
+docker compose exec ollama ollama pull nomic-embed-text
+```
 
 ## Bare-metal run
 
