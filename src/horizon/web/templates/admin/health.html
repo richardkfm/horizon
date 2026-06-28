@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Check &amp; repair — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Check &amp; repair</h1>
+  <a href="/admin" class="btn">Back to dashboard</a>
+</div>
+
+<p class="empty">
+  A plain-language health view of this node: what's wrong, and the repairs that
+  fix most of it — without SSH, a restart, or guesswork.
+</p>
+
+{% include "admin/_health_body.html" %}
+{% endblock %}

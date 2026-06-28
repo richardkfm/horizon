@@ -1,0 +1,98 @@
+<div id="health-body">
+  {% if result %}
+  <div class="repair-result {{ 'is-ok' if result.ok else 'is-warn' }}" role="status">
+    <strong>{{ result.title }}</strong>
+    <p>{{ result.message }}</p>
+  </div>
+  {% endif %}
+
+  <p class="health-summary {{ 'is-fail' if not report.healthy else ('is-warn' if report.problems else 'is-ok') }}">
+    {% if not report.healthy %}
+      This node has problems that need attention.
+    {% elif report.problems %}
+      This node is running, with {{ report.problems }} thing{{ '' if report.problems == 1 else 's' }} worth a look.
+    {% else %}
+      This node looks healthy.
+    {% endif %}
+    <span class="health-counts">
+      {{ report.counts.ok }} ok · {{ report.counts.warn }} warn · {{ report.counts.fail }} fail
+    </span>
+  </p>
+
+  <section class="admin-section">
+    <h2>Repairs</h2>
+    {% if low_power %}
+    <p class="empty">
+      Low-power mode is on, so rebuilding the search index is paused to protect a
+      weak supply. Re-seeding still works (it only touches the local database);
+      turn off low-power mode to rebuild search.
+    </p>
+    {% endif %}
+    <div class="repair-actions">
+      <form hx-post="/admin/health/repair" hx-target="#health-body" hx-swap="outerHTML"
+            hx-disabled-elt="find button" method="post" action="/admin/health/repair">
+        <input type="hidden" name="action" value="reindex" />
+        <button type="submit" class="btn"{% if low_power %} disabled{% endif %}>
+          Rebuild search index
+        </button>
+      </form>
+      <form hx-post="/admin/health/repair" hx-target="#health-body" hx-swap="outerHTML"
+            hx-disabled-elt="find button" method="post" action="/admin/health/repair">
+        <input type="hidden" name="action" value="reseed" />
+        <button type="submit" class="btn btn-primary">Re-seed content from disk</button>
+      </form>
+      <span class="htmx-indicator repair-working" aria-live="polite">Working…</span>
+    </div>
+    <p class="field-hint">
+      <strong>Re-seed</strong> rebuilds the journeys, guides, and links in the
+      database from the Markdown on disk — use it after editing content or if the
+      metadata has drifted. <strong>Rebuild search index</strong> re-embeds the
+      content so the assistant's semantic search matches what's there.
+    </p>
+  </section>
+
+  <section class="admin-section">
+    <h2>Checks</h2>
+    <ul class="integration-list">
+      {% for c in report.checks %}
+      <li class="integration is-{{ c.status }}">
+        <div class="integration-head">
+          <span class="integration-dot" aria-hidden="true"></span>
+          <strong>{{ c.name }}</strong>
+          <span class="integration-state">{{ c.status }}</span>
+        </div>
+        <p class="integration-note">{{ c.summary }}</p>
+        {% if c.details %}
+        <ul class="health-items">
+          {% for item in c.details[:20] %}<li><code>{{ item }}</code></li>{% endfor %}
+          {% if c.details|length > 20 %}<li>… and {{ c.details|length - 20 }} more</li>{% endif %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% if not checked_model and not low_power %}
+    <p class="field-hint">
+      <a href="/admin/health?check_model=1">Also check the local model runtime</a>
+      — makes one network call to the model, so it is left out by default.
+    </p>
+    {% endif %}
+  </section>
+
+  <section class="admin-section">
+    <h2>Recent events</h2>
+    {% if events %}
+    <ul class="event-feed">
+      {% for e in events %}
+      <li class="event is-{{ e.level|lower }}">
+        <time>{{ e.time.strftime('%H:%M:%S') }}</time>
+        <span class="event-level">{{ e.level }}</span>
+        <span class="event-msg">{{ e.message }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No recent events recorded yet — they appear here as the node works.</p>
+    {% endif %}
+  </section>
+</div>

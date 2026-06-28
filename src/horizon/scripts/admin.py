@@ -8,8 +8,11 @@ equivalent — the things you reach for over SSH:
 * ``status``   — runtime + content overview (what the dashboard shows);
 * ``doctor``   — health checks of every optional integration (the integrations
   page), with a non-zero exit when something the operator asked for is broken;
+* ``check``    — content-health diagnostics (broken links, missing files/images,
+  a stale search index, orphaned or duplicate content) — Admin → Check & repair;
 * ``reindex``  — rebuild the vector index after editing content;
-* ``seed``     — load the bundled content into an empty database;
+* ``seed``     — load the bundled content into an empty database (``--force``
+  re-seeds a populated one from disk);
 * ``packs``    — list / download / remove offline content packs;
 * ``config``   — print the effective, secret-free configuration.
 
@@ -405,12 +408,26 @@ def cmd_reindex(args: argparse.Namespace) -> int:
 
 
 def cmd_seed(args: argparse.Namespace) -> int:
-    """Create database tables and load bundled content if the database is empty."""
+    """Create tables and load bundled content (``--force`` re-seeds a populated db)."""
     logging.basicConfig(level=logging.INFO, format="%(message)s", stream=sys.stderr)
     from horizon.db import init_db
-    from horizon.seed import seed_if_empty
 
     init_db()
+
+    if args.force:
+        # Re-seed from disk even when populated — the headless twin of the admin
+        # panel's "Re-seed content" repair.
+        from horizon.seed import reseed
+
+        summary = reseed()
+        print(
+            f"Re-seeded the database from content on disk: "
+            f"{summary['after']['journeys']} journeys, {summary['after']['guides']} guides."
+        )
+        return 0
+
+    from horizon.seed import seed_if_empty
+
     before = _content_stats()["journeys_total"]
     seed_if_empty()
     after = _content_stats()["journeys_total"]
@@ -418,7 +435,50 @@ def cmd_seed(args: argparse.Namespace) -> int:
     if after > before:
         print(f"Seeded the database: {after} journeys now present.")
     else:
-        print(f"Database already populated ({after} journeys); nothing to seed.")
+        print(
+            f"Database already populated ({after} journeys); nothing to seed. "
+            f"Use `horizon-admin seed --force` to re-seed from disk."
+        )
+    return 0
+
+
+def cmd_check(args: argparse.Namespace) -> int:
+    """Run content-health diagnostics (the headless Admin → Check & repair).
+
+    Exit non-zero on a hard failure (a ``fail`` check), like ``doctor``; warnings
+    are reported but do not fail the command.
+    """
+    from horizon.services.diagnostics import run_checks
+
+    report = run_checks(check_model=args.check_model)
+
+    if args.json:
+        _emit(report, as_json=True)
+        return 1 if not report["healthy"] else 0
+
+    if not args.no_logo:
+        print(_banner())
+
+    width = max(len(c["name"]) for c in report["checks"])
+    for c in report["checks"]:
+        print(f"  [{c['status']:^4}] {c['name']:<{width}}  {c['summary']}")
+        for detail in c["details"]:
+            print(f"           - {detail}")
+    print()
+    counts = report["counts"]
+    print(
+        f"  {counts['ok']} ok, {counts['warn']} warn, {counts['fail']} fail, {counts['off']} off."
+    )
+    if not report["healthy"]:
+        print(
+            "  Some checks failed. Try `horizon-admin seed --force` and `horizon-admin reindex`.",
+            file=sys.stderr,
+        )
+        return 1
+    if report["problems"]:
+        print("  No hard failures, but some items are worth a look (see 'warn' above).")
+    else:
+        print("  This node looks healthy.")
     return 0
 
 
@@ -933,7 +993,22 @@ def build_parser() -> argparse.ArgumentParser:
     p_reindex.set_defaults(func=cmd_reindex)
 
     p_seed = sub.add_parser("seed", help="Seed the database from bundled content if empty.")
+    p_seed.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-seed from disk even if the database is already populated.",
+    )
     p_seed.set_defaults(func=cmd_seed)
+
+    p_check = sub.add_parser("check", help="Content-health diagnostics (links, files, index).")
+    p_check.add_argument(
+        "--check-model",
+        action="store_true",
+        help="Also probe the local model runtime (a network call that costs energy).",
+    )
+    p_check.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_check.add_argument("--no-logo", action="store_true", help="Skip the ASCII banner.")
+    p_check.set_defaults(func=cmd_check)
 
     p_config = sub.add_parser("config", help="Print the effective configuration (no secrets).")
     p_config.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")

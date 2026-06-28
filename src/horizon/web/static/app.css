@@ -656,6 +656,72 @@ a:hover { color: var(--accent-strong); }
 .integration-detail { display: block; margin: 0.4rem 0; font-size: 0.85rem; color: var(--muted); }
 .integration-note { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--muted); }
 
+/* Check & repair (admin health) ----------------------------------------- */
+
+/* Status dots reuse the integration card; add the warn/fail/off colours the
+   integrations page never needed. (off keeps the default muted dot.) */
+.integration.is-warn .integration-dot { background: var(--warn); }
+.integration.is-fail .integration-dot { background: var(--danger); }
+.integration.is-warn { border-color: var(--warn); background: var(--warn-soft); }
+.integration.is-fail { border-color: var(--danger); background: var(--danger-soft); }
+
+.health-summary {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+.health-summary.is-ok { border-left-color: var(--accent); }
+.health-summary.is-warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.health-summary.is-fail { border-left-color: var(--danger); background: var(--danger-soft); }
+.health-counts { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+
+.repair-result {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.repair-result.is-ok { border-left-color: var(--accent); }
+.repair-result.is-warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.repair-result p { margin: 0.3rem 0 0; }
+
+.repair-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.repair-actions form { margin: 0; }
+.repair-working { color: var(--muted); font-size: 0.9rem; }
+/* htmx shows the indicator only while a repair request is in flight. */
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator { display: inline; }
+
+.health-items { margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; color: var(--muted); }
+.health-items li { margin: 0.15rem 0; }
+.health-items code { word-break: break-word; }
+
+.event-feed { list-style: none; margin: 0; padding: 0; font-size: 0.85rem; }
+.event {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.event time { color: var(--muted-2); font-variant-numeric: tabular-nums; flex: none; }
+.event-level { color: var(--muted); flex: none; min-width: 4.5rem; }
+.event-msg { flex: 1 1 16rem; }
+.event.is-warning .event-level { color: var(--warn); font-weight: 600; }
+.event.is-error .event-level,
+.event.is-critical .event-level { color: var(--danger); font-weight: 600; }
+
 /* Recommend / scenario page --------------------------------------------- */
 
 .cta { font-size: 1.05rem; }

@@ -13,6 +13,45 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-06-28
+
+The "**maintainable node**" release: an operator can now diagnose, repair, and
+re-seed a node entirely from the admin panel (or the headless CLI) — no SSH,
+restart, or guesswork.
+
+### Added
+- **Check & repair (Admin → Check & repair).** A new health view that surfaces
+  the real problems on a node in plain language: broken prerequisite and
+  journey→guide links, guides with no Markdown file on disk, missing local guide
+  images, orphaned content (guides nothing links to, journeys with no guides,
+  guide files never seeded), duplicate content ids that silently collapse on
+  seeding, whether the search/RAG index is present and current, and — opt-in,
+  since it costs energy — whether the local model runtime is reachable. Each
+  check is a clear ok/warn/fail/off row with the specific offending items listed.
+- **One-click repairs.** From the same page: **Rebuild search index** (re-embed
+  the content so semantic search matches what's on disk) and **Re-seed content
+  from disk** (rebuild the journeys/guides/links metadata from the Markdown,
+  with a before/after summary, then rebuild the index). Both are
+  **low-power-aware**: the energy-hungry index rebuild is paused under low-power
+  mode with a clear note rather than hammering a weak supply. Repairs run over
+  HTMX with a live result banner and degrade to a plain form post (PRG redirect)
+  with no JavaScript.
+- **A recent-events feed.** A small in-memory ring buffer captures horizon's log
+  events (seeding, indexing, repairs, embedding fall-backs) and shows the latest
+  on the health page, so an operator can see what the node has been doing without
+  tailing a log file. Bounded and offline-first; lost on restart by design.
+- **`horizon-admin check`.** The headless twin of the health view: runs the same
+  content-health diagnostics from the terminal (`--check-model` to also probe the
+  model, `--json` for scripting), exiting non-zero on a hard failure like
+  `doctor`.
+- **`horizon-admin seed --force`.** Re-seed a populated database from the content
+  on disk (the CLI equivalent of the panel's re-seed repair); plain `seed` still
+  only loads into an empty database.
+
+### Changed
+- The admin dashboard navigation now leads with **Check & repair** alongside
+  Library, Content packs, and Integrations.
+
 ## [0.3.0] — 2026-06-28
 
 The "**which should I pick?**" release: horizon now helps you *decide*, not only
@@ -239,7 +278,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/richardkfm/horizon/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/richardkfm/horizon/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/richardkfm/horizon/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/richardkfm/horizon/releases/tag/v0.1.0

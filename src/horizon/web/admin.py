@@ -375,6 +375,63 @@ def library_journey(journey_id: str, request: Request, session: SessionDep):
     )
 
 
+# --- Check & repair (health) ------------------------------------------------
+#
+# The operator's maintenance surface: a plain-language health view of what's
+# wrong (broken links, missing files/images, a stale or absent search index,
+# orphaned or duplicate content, the model runtime) plus the two one-click
+# repairs that fix most of it — rebuild the index and re-seed from disk. All the
+# logic lives in services/diagnostics.py; these routes only render and dispatch.
+
+
+def _render_health(request: Request, *, check_model: bool, result: dict | None = None):
+    """Render the health page (or just its body for an HTMX repair swap)."""
+    from horizon.services.diagnostics import run_checks
+    from horizon.services.eventlog import recent_events
+
+    report = run_checks(check_model=check_model)
+    context = {
+        "report": report,
+        "events": recent_events(limit=40),
+        "low_power": low_power_enabled(),
+        "checked_model": check_model,
+        "result": result,
+    }
+    # HTMX repair posts swap only the live region; full loads render the page.
+    template = "admin/_health_body.html" if "HX-Request" in request.headers else "admin/health.html"
+    return templates.TemplateResponse(request, template, context)
+
+
+@router.get("/admin/health", response_class=HTMLResponse)
+def health_page(request: Request):
+    """Diagnostics + repair view. Probes the model only when explicitly asked."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    # Probing the model runtime costs energy, so it is opt-in via ?check_model=1
+    # and never done in low-power mode (where horizon ignores the model anyway).
+    check_model = (
+        request.query_params.get("check_model") in {"1", "true", "yes", "on"}
+        and not low_power_enabled()
+    )
+    return _render_health(request, check_model=check_model)
+
+
+@router.post("/admin/health/repair", response_class=HTMLResponse)
+def health_repair(request: Request, action: Annotated[str, Form()] = ""):
+    """Run a one-click repair, then re-render the health view with the outcome."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    from horizon.services.diagnostics import run_repair
+
+    result = run_repair(action)
+    # Without JS the form posts normally; redirect (PRG) so a refresh can't
+    # re-run the repair. With HTMX we return the refreshed body fragment, which
+    # carries the before/after result banner.
+    if "HX-Request" not in request.headers:
+        return RedirectResponse("/admin/health", status_code=303)
+    return _render_health(request, check_model=False, result=result)
+
+
 # --- Content packs wizard ---------------------------------------------------
 
 

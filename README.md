@@ -72,6 +72,12 @@ and without coercion.
   low-power/e-ink modes keep their high-contrast palettes.
 - **Built-in values.** Sustainability, non-authoritarian cooperation, fairness,
   and anti-exploitation are baked into the assistant via md skills.
+- **Maintainable from the browser.** A token-gated admin panel browses the whole
+  library and — new in v0.4 — a **Check & repair** page diagnoses the node in
+  plain language (broken links, missing files/images, orphaned or duplicate
+  content, a stale or absent search index), offers one-click repairs (rebuild the
+  search index, re-seed content from disk — low-power-aware), and shows a
+  recent-events feed. No SSH or restart required.
 - **Simple, stable APIs.** Other projects (e.g. `neighbourgood`) can link to
   journeys/guides without horizon knowing anything about them.
 - **Full command-line interface.** `horizon-admin` browses plans, guides,
@@ -292,7 +298,9 @@ interface — everything runs offline (only `packs download` touches the network
 ```bash
 horizon-admin status                 # runtime + content overview (with logo)
 horizon-admin doctor                 # health-check every optional integration
+horizon-admin check                  # content-health diagnostics (links, files, index)
 horizon-admin seed                   # load bundled content into an empty db
+horizon-admin seed --force           # re-seed a populated db from content on disk
 horizon-admin reindex                # rebuild the vector index after edits
 horizon-admin config                 # effective settings (admin token redacted)
 
@@ -344,11 +352,13 @@ and a UX layer for non-technical neighbours (plain-language navigation, the
 journey skill-path, guide search, and a verified responsive layout) now sits on
 top of it.
 
-The design pass (a cohesive "paper & ink" system with **dark/light theming**)
-has shipped. The path from here stays lean and open (no accounts, no profiles,
-no tracking): a deeper "what to pick" content library, and the admin tools to
-keep a node healthy (a check & repair diagnostics feed, and re-seeding from the
-panel) — see **[ROADMAP.md](ROADMAP.md)** for the plan towards v0.5.
+The design pass (a cohesive "paper & ink" system with **dark/light theming**),
+a deeper "what to pick" content library, and the admin tools to keep a node
+healthy — a **check & repair** diagnostics feed with one-click repairs and
+re-seeding from the panel (v0.4) — have all shipped. The path from here stays
+lean and open (no accounts, no profiles, no tracking): a consistent design and
+accessibility pass, and packaging for a tagged release — see
+**[ROADMAP.md](ROADMAP.md)** for the plan towards v0.5.
 
 Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 
