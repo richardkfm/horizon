@@ -91,6 +91,13 @@ Updating this changelog and the README is part of every user-facing change
 - **Project docs** — this changelog and a `ROADMAP.md` towards v0.5.
 
 ### Changed
+- **The bundled Ollama runtime is now opt-in.** `docker compose up` no longer
+  starts (or pulls the ~3GB image for) the `ollama` service, and `horizon` no
+  longer `depends_on` it — the default install is small and boots fully offline,
+  with the assistant falling back to local guide search. Enable the local model
+  either by pointing `llm.endpoint` at your own llama.cpp / OpenAI-compatible
+  server, or by starting the bundled runtime with the `ai` profile
+  (`docker compose --profile ai up -d`). README quickstart updated to match.
 - **Plain-language navigation.** Header links are now task-oriented (*Where to
   start*, *Step-by-step plans*, *How-to guides*, *Ask a question*); the Admin
   link is removed from the public header and reachable via a discreet *Operator

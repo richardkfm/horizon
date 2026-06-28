@@ -1,7 +1,24 @@
 # horizon — offline-first deployment.
-# After `docker compose up`, pull a model into Ollama, e.g.:
-#   docker compose exec ollama ollama pull llama3.2:3b
-#   docker compose exec ollama ollama pull nomic-embed-text
+#
+# The default `docker compose up -d` starts ONLY horizon: a small image, no
+# model runtime, fully offline. The "Ask a question" assistant falls back to
+# local guide search until you point it at a model.
+#
+# The local LLM is OPTIONAL and you have two ways to enable it:
+#
+#   A) Use your own llama.cpp / OpenAI-compatible server (recommended if you
+#      already run one). In config.yaml set:
+#        llm:
+#          provider: openai-compatible
+#          endpoint: http://<your-host>:8081/v1
+#      No extra container is pulled.
+#
+#   B) Run the bundled Ollama container (pulls a ~3GB image). Opt in with the
+#      `ai` profile, then pull a model:
+#        docker compose --profile ai up -d
+#        docker compose exec ollama ollama pull llama3.2:3b
+#        docker compose exec ollama ollama pull nomic-embed-text
+#
 # Then open http://<host>:8080
 
 services:
@@ -16,11 +33,15 @@ services:
       # To override defaults, copy config.example.yaml to config.yaml and
       # uncomment the next line (the bind mount fails if the file is missing):
       # - ./config.yaml:/app/config.yaml:ro
-    depends_on:
-      - ollama
+    # No depends_on: horizon boots and serves without any model runtime, and
+    # connects to the configured llm.endpoint lazily over HTTP when present.
 
+  # OPTIONAL local model runtime. Only started with `--profile ai`, so the
+  # default install stays small and offline-first. Skip this entirely if you
+  # point llm.endpoint at your own llama.cpp / OpenAI-compatible server.
   ollama:
     image: ollama/ollama:latest
+    profiles: ["ai"]
     restart: unless-stopped
     volumes:
       - ollama-data:/root/.ollama
