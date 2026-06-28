@@ -24,14 +24,18 @@
 services:
   horizon:
     build: .
-    image: horizon:0.2.0
+    image: horizon:0.4.0
     restart: unless-stopped
     ports:
       - "8080:8080"
     volumes:
       - horizon-data:/data
-      # To override defaults, copy config.example.yaml to config.yaml and
-      # uncomment the next line (the bind mount fails if the file is missing):
+      # IMPORTANT: the image only ships config.example.yaml. To apply your own
+      # config.yaml (e.g. to set admin.token), copy config.example.yaml to
+      # config.yaml, edit it, and UNCOMMENT the next line — otherwise your
+      # config.yaml is never read by the container, no matter how many times
+      # you `docker compose up --build` (the bind mount fails if the file is
+      # missing, so create it first):
       # - ./config.yaml:/app/config.yaml:ro
     # No depends_on: horizon boots and serves without any model runtime, and
     # connects to the configured llm.endpoint lazily over HTTP when present.

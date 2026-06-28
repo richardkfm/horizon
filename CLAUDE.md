@@ -184,8 +184,18 @@ Update docs **as part of every user-facing change**, in the same change set:
   documented HTTP API contract (e.g. a changed default), even when the response
   shape is unchanged.
 - **`README.md`** — keep Features, Configuration, and the Roadmap/changelog
-  pointers current; fix in-page anchors if a heading changes.
+  pointers current; fix in-page anchors if a heading changes. **On every
+  release bump, also update the status badge and the "Status:" line to match
+  `pyproject.toml`'s `version`** — this has drifted before (stuck at v0.2.0
+  through the v0.3 and v0.4 releases).
 - **`ROADMAP.md`** — keep the path towards the next milestone (currently v0.5)
   honest; move shipped items into "Where we are" and the changelog.
 - When you establish a new standard or learn a durable lesson, write it into this
   file so the next agent inherits it.
+- **`docker-compose.yml`'s `config.yaml` bind mount is commented out by
+  default**, and the image only bakes in `config.example.yaml`. An operator
+  who edits `config.yaml` (e.g. to set `admin.token`) and reruns
+  `docker compose up --build` will see no effect until they uncomment the
+  mount line — the container never reads their file. Keep that comment loud,
+  and check this first when debugging "my config.yaml change didn't take
+  effect" reports.

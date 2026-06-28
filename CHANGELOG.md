@@ -13,6 +13,17 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Fixed
+- README status badge and the "Status:" line still said v0.2.0 after the
+  v0.4.0 release; bumped to match `pyproject.toml`.
+- `docker-compose.yml` pinned the `horizon` image to the stale `0.2.0` tag and
+  its `config.yaml` bind mount was commented out by default, so an operator
+  who set `admin.token` in `config.yaml` and ran `docker compose up --build`
+  would see the admin area still disabled — the container only ever read the
+  bundled `config.example.yaml`. Bumped the image tag to `0.4.0` and clarified
+  the bind-mount comment to spell out that it must be uncommented for
+  `config.yaml` to take effect.
+
 ### Changed
 - **Guides are now the primary thing you browse and read.** Clicking a topic
   from the home page (or a category) goes **straight to the how-to guide**,
