@@ -27,6 +27,7 @@ from horizon.db import get_session
 from horizon.models import Category, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
 from horizon.services.recommend import recommend_journeys
+from horizon.web.assets import static_url
 
 router = APIRouter(tags=["web"])
 
@@ -36,6 +37,7 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 # the current power mode without restarting.
 templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
+templates.env.globals["static_url"] = static_url
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

@@ -34,6 +34,7 @@ from horizon.models import (
     JourneyPrerequisite,
 )
 from horizon.services import packs as packs_service
+from horizon.web.assets import static_url
 
 router = APIRouter(tags=["admin"])
 
@@ -42,6 +43,7 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["filesize"] = packs_service.human_size
 templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
+templates.env.globals["static_url"] = static_url
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

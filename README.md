@@ -105,6 +105,12 @@ docker compose exec ollama ollama pull llama3.2:3b
 docker compose exec ollama ollama pull nomic-embed-text
 ```
 
+The default image stays lean: it ships **without** the heavy vector-search
+stack (chromadb + onnxruntime/tokenizers/…), so it builds fast and the
+assistant retrieves with keyword search. To bake in vector search, build with
+the `ai` extra: `docker compose build --build-arg INSTALL_EXTRAS=ai` (or
+`docker build --build-arg INSTALL_EXTRAS=ai .`).
+
 ## Bare-metal run
 
 ```bash
@@ -113,7 +119,12 @@ sudo apt install libpango-1.0-0 libpangocairo-1.0-0 libcairo2 \
                  libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
 
 python -m venv .venv && source .venv/bin/activate
-pip install -e .
+pip install -e .                 # lean, offline-first install
+
+# Optional: vector search for the AI assistant. This pulls a large dependency
+# tree (chromadb + onnxruntime/tokenizers/…); without it, retrieval falls back
+# to keyword search and everything still works offline.
+# pip install -e .[ai]
 
 # A local model runtime must be reachable (see config.yaml `llm.endpoint`):
 # install Ollama separately and `ollama pull llama3.2:3b nomic-embed-text`

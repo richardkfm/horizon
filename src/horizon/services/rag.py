@@ -17,6 +17,7 @@ Offline-first and resilient by design:
 from __future__ import annotations
 
 import logging
+import os
 import re
 from pathlib import Path
 
@@ -25,6 +26,21 @@ import yaml
 from horizon.config import settings
 
 logger = logging.getLogger("horizon")
+
+
+def _import_chromadb():
+    """Import chromadb lazily with telemetry disabled.
+
+    chromadb is the optional ``ai`` extra; importing it here (not at module load)
+    keeps horizon bootable without it. We also pin off Chroma's anonymous usage
+    telemetry so the node makes no outbound calls, honouring offline-first even
+    on bare-metal installs where the Docker env var isn't set.
+    """
+    os.environ.setdefault("ANONYMIZED_TELEMETRY", "false")
+    import chromadb
+
+    return chromadb
+
 
 # Collection holding one entry per content chunk.
 _COLLECTION = "horizon_content"
@@ -131,8 +147,16 @@ def reindex_content() -> None:
         return
 
     try:
-        import chromadb
+        chromadb = _import_chromadb()
+    except ImportError:
+        logger.warning(
+            "Vector index not built: the optional 'ai' extra is not installed, so "
+            "chromadb is unavailable; AI retrieval will use keyword fallback. "
+            "Install it with `pip install 'horizon[ai]'` to enable vector search."
+        )
+        return
 
+    try:
         client = chromadb.PersistentClient(path=settings.vectordb.path)
         # Rebuild from scratch so the index always mirrors current content.
         try:
@@ -183,8 +207,12 @@ def _retrieve_vector(query: str, top_k: int) -> list[dict] | None:
         return None
 
     try:
-        import chromadb
+        chromadb = _import_chromadb()
+    except ImportError:
+        # Optional 'ai' extra not installed — fall back to keyword retrieval.
+        return None
 
+    try:
         client = chromadb.PersistentClient(path=settings.vectordb.path)
         try:
             collection = client.get_collection(_COLLECTION)
