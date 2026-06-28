@@ -5,7 +5,8 @@
   <h1>Find your starting point</h1>
   <p class="tagline">
     Describe what you want to achieve and your situation. horizon suggests
-    journeys and guides to start with — all matched locally, no internet needed.
+    guides to read and step-by-step plans to follow — all matched locally, no
+    internet needed.
   </p>
 </section>
 
@@ -39,35 +40,29 @@
 
 {% if results is not none %}
 <section class="recommend-results">
-  <h2>Suggested journeys</h2>
-  {% if results.journeys %}
-  <ul class="journey-grid">
-    {% for journey in results.journeys %}
-    {% include "partials/_journey_card.html" %}
+  <h2>Guides to read</h2>
+  {% if results.guides %}
+  <ul class="link-list">
+    {% for guide in results.guides %}
+    <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
+      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
     {% endfor %}
   </ul>
   {% else %}
   <div class="empty-suggestions">
     <p class="empty">
       No close match for those words yet. Try describing it in a different way —
-      plain words like “drink”, “grow”, “warm”, or “power” work well — or start
-      from a topic:
+      plain words like “drink”, “grow”, “warm”, or “power” work well — or browse
+      all <a href="/guides">how-to guides</a>.
     </p>
-    <nav class="filter-bar" aria-label="Browse by topic">
-      {% for c in categories %}
-      <a class="filter-chip" href="/journeys?category={{ c }}">{{ c }}</a>
-      {% endfor %}
-    </nav>
-    <p><a href="/journeys">Or browse all step-by-step plans →</a></p>
   </div>
   {% endif %}
 
-  {% if results.guides %}
-  <h2>Related guides</h2>
-  <ul class="link-list">
-    {% for guide in results.guides %}
-    <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
-      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
+  {% if results.journeys %}
+  <h2>Step-by-step plans that fit</h2>
+  <ul class="journey-grid">
+    {% for journey in results.journeys %}
+    {% include "partials/_journey_card.html" %}
     {% endfor %}
   </ul>
   {% endif %}

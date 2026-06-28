@@ -1,660 +1,136 @@
-# Seed journeys — nodes in horizon's skill tree.
-# Each journey: id, title, description, category, difficulty (1-5),
-# estimated_time, prerequisites (other journey ids), guides (guide ids).
+# Tracks — curated, *ordered* sequences of guides for a multi-step goal.
 #
-# This seed covers all thirteen categories (water, food, energy, shelter,
-# health, cooperation, survival, culture, language, crafts, emergencies,
-# cooking, calculations) with a few prerequisite edges. Grow each over time.
+# A track (modelled as a "journey" for API/contract stability, shown to
+# visitors as a "step-by-step plan") lists its guides in the order you'd work
+# through them. There are no prerequisites: the order *is* the path.
+#
+# Tracks are an optional, curated layer over the guides — only goals with a
+# genuine "do this, then this" progression get one. Most guides are browsed and
+# read directly from the library (/guides); a guide does not need a track to be
+# useful. Each track here threads together guides that already exist under
+# content/guides/.
+#
+# Each track: id, title, description, category, difficulty (1-5),
+# estimated_time, guides (ordered guide ids). Grow the set over time.
 
 journeys:
-  - id: water-testing-basics
-    title: Test whether water is safe to drink
+  - id: safe-drinking-water
+    title: Provide safe drinking water for a group
     description: >
-      Learn simple field methods to assess water sources and decide what
-      treatment is needed before drinking.
-    category: water
-    difficulty: 1
-    estimated_time: "2 hours"
-    prerequisites: []
-    guides: [water-field-testing]
-
-  - id: water-slow-sand-filter
-    title: Provide safe drinking water for ~20 people
-    description: >
-      Build and run a slow sand filter, then store and distribute treated water
-      safely for a small group.
+      Go from an unknown water source to safe, stored drinking water for a small
+      group: judge the source, choose the right treatment, then build and run a
+      slow sand filter.
     category: water
     difficulty: 3
-    estimated_time: "3 days"
-    prerequisites: [water-testing-basics, water-choosing-treatment]
-    guides: [water-slow-sand-filter]
+    estimated_time: "A few days"
+    guides:
+      - water-field-testing
+      - water-choosing-treatment
+      - water-slow-sand-filter
 
-  - id: food-staple-crops
-    title: Grow staple crops on 500 m²
+  - id: grow-and-store-food
+    title: Grow and store your own food
     description: >
-      Plan, prepare soil for, and grow calorie-dense staple crops to feed a
-      small household or group through a season.
+      Plan a first growing season and make it last: pick crops that suit your
+      site, establish a vegetable garden, grow calorie-dense staples, and save
+      seed so you can grow again next year.
     category: food
     difficulty: 3
-    estimated_time: "1 season"
-    prerequisites: [food-choosing-crops]
-    guides: [food-staple-crops-500m2]
+    estimated_time: "A growing season"
+    guides:
+      - food-choosing-crops
+      - food-vegetable-garden
+      - food-staple-crops-500m2
+      - food-seed-saving
 
-  - id: energy-low-tech-solar
-    title: Set up a small low-tech solar system
+  - id: off-grid-power
+    title: Set up off-grid power
     description: >
-      Size, wire, and safely run a small solar + battery system for lighting and
-      charging.
-    category: energy
-    difficulty: 3
-    estimated_time: "2 days"
-    prerequisites: [energy-sizing-solar-battery]
-    guides: [energy-low-tech-solar]
-
-  - id: shelter-insulation-basics
-    title: Insulate a simple shelter
-    description: >
-      Reduce heat loss in a small shelter with low-cost materials and basic
-      repairs.
-    category: shelter
-    difficulty: 2
-    estimated_time: "1 day"
-    prerequisites: [shelter-choosing]
-    guides: [shelter-insulation-basics]
-
-  - id: health-first-aid-basics
-    title: Handle common first-aid situations
-    description: >
-      Assess and respond to common injuries and illnesses with a basic kit.
-    category: health
-    difficulty: 2
-    estimated_time: "4 hours"
-    prerequisites: []
-    guides: [health-first-aid-basics]
-
-  - id: cooperation-group-decisions
-    title: Make fair group decisions
-    description: >
-      Run inclusive, non-coercive group decision-making and resolve conflicts so
-      a community can act together.
-    category: cooperation
-    difficulty: 2
-    estimated_time: "3 hours"
-    prerequisites: []
-    guides: [cooperation-group-decisions]
-
-  # --- Survival / basic human skills ---
-
-  - id: survival-fire
-    title: Make and keep a fire without matches
-    description: >
-      Build, light, and tend a fire safely using friction or a spark, so you can
-      cook, boil water, stay warm, and signal for help.
-    category: survival
-    difficulty: 2
-    estimated_time: "Half a day to practise"
-    prerequisites: []
-    guides: [survival-fire]
-
-  - id: survival-find-water
-    title: Find and collect water in the field
-    description: >
-      Locate likely water sources, collect rain and dew, and gather water to
-      carry, before testing and treating it for drinking.
-    category: survival
-    difficulty: 2
-    estimated_time: "A few hours"
-    prerequisites: []
-    guides: [survival-find-water]
-
-  - id: survival-navigation
-    title: Find direction without a compass
-    description: >
-      Work out north and keep a straight course using the sun, stars, and simple
-      landmarks so you can travel and return safely.
-    category: survival
-    difficulty: 2
-    estimated_time: "A few hours"
-    prerequisites: []
-    guides: [survival-navigation]
-
-  - id: survival-knots
-    title: Tie essential knots and lashings
-    description: >
-      Learn a small set of reliable knots and lashings for shelter, hauling,
-      securing loads, and first aid.
-    category: survival
-    difficulty: 1
-    estimated_time: "1-2 hours"
-    prerequisites: []
-    guides: [survival-knots]
-
-  - id: survival-foraging
-    title: Identify safe wild food and avoid poisoning
-    description: >
-      Use cautious rules to tell likely-safe wild plants from dangerous ones and
-      reduce the risk of poisoning when food is scarce.
-    category: survival
-    difficulty: 3
-    estimated_time: "Ongoing practice"
-    prerequisites: []
-    guides: [survival-foraging]
-
-  # --- Culture: music, dance, games, stories ---
-
-  - id: culture-simple-instruments
-    title: Make simple instruments and keep a rhythm
-    description: >
-      Build basic percussion and wind instruments from found materials and lead a
-      group in keeping a shared rhythm.
-    category: culture
-    difficulty: 1
-    estimated_time: "An afternoon"
-    prerequisites: []
-    guides: [culture-simple-instruments]
-
-  - id: culture-group-songs
-    title: Lead group singing
-    description: >
-      Teach and lead simple call-and-response and round songs that anyone can
-      join, to lift morale and mark shared moments.
-    category: culture
-    difficulty: 1
-    estimated_time: "1 hour"
-    prerequisites: []
-    guides: [culture-group-songs]
-
-  - id: culture-circle-dances
-    title: Teach simple group dances
-    description: >
-      Lead easy circle and line dances that need no equipment, so people of all
-      ages and abilities can take part together.
-    category: culture
-    difficulty: 1
-    estimated_time: "1 hour"
-    prerequisites: []
-    guides: [culture-circle-dances]
-
-  - id: culture-no-gear-games
-    title: Run group games with no equipment
-    description: >
-      Organise inclusive games for mixed ages that need nothing but people, to
-      build trust, exercise, and fun.
-    category: culture
-    difficulty: 1
-    estimated_time: "1 hour"
-    prerequisites: []
-    guides: [culture-no-gear-games]
-
-  - id: culture-storytelling
-    title: Preserve knowledge through storytelling
-    description: >
-      Use storytelling and memory techniques to pass on skills, history, and
-      values when written records are scarce.
-    category: culture
-    difficulty: 2
-    estimated_time: "Ongoing practice"
-    prerequisites: []
-    guides: [culture-storytelling]
-
-  # --- Essential language ---
-
-  - id: language-core-phrases
-    title: Learn and teach essential phrases
-    description: >
-      Build and practise a small core of phrases for greetings, needs, safety,
-      and trade that help people get along quickly.
-    category: language
-    difficulty: 1
-    estimated_time: "Ongoing practice"
-    prerequisites: []
-    guides: [language-core-phrases]
-
-  - id: language-teach-literacy
-    title: Teach basic reading and writing
-    description: >
-      Help a learner of any age start reading and writing using sounds, simple
-      words, and everyday practice without special materials.
-    category: language
-    difficulty: 2
-    estimated_time: "Weeks of short sessions"
-    prerequisites: []
-    guides: [language-teach-literacy]
-
-  - id: language-across-barriers
-    title: Communicate across a language barrier
-    description: >
-      Use gestures, drawings, and a shared word list to understand and be
-      understood when you have no common language and no tools.
-    category: language
-    difficulty: 1
-    estimated_time: "A few hours"
-    prerequisites: []
-    guides: [language-across-barriers]
-
-  # --- Crafts & repair ---
-
-  - id: crafts-cordage
-    title: Make rope and cordage from plant fibre
-    description: >
-      Turn plant fibres into strong cord by reverse-wrap twisting, for shelter,
-      tools, snares, and repairs.
-    category: crafts
-    difficulty: 2
-    estimated_time: "An afternoon"
-    prerequisites: []
-    guides: [crafts-cordage]
-
-  - id: crafts-mending-textiles
-    title: Mend clothes and make basic textiles
-    description: >
-      Repair tears, replace buttons, patch worn cloth, and sew simple items so
-      clothing and fabric last far longer.
-    category: crafts
-    difficulty: 1
-    estimated_time: "1-2 hours"
-    prerequisites: []
-    guides: [crafts-mending-textiles]
-
-  - id: crafts-tool-repair
-    title: Sharpen and repair hand tools
-    description: >
-      Keep knives, axes, and garden tools sharp, tight, and safe with simple
-      maintenance and basic repairs.
-    category: crafts
-    difficulty: 2
-    estimated_time: "1-2 hours"
-    prerequisites: []
-    guides: [crafts-tool-repair]
-
-  # --- Food: more crops, fruit, and vegetables ---
-
-  - id: food-vegetable-garden
-    title: Grow a year-round vegetable garden
-    description: >
-      Plan beds, sow in succession, and tend a mix of vegetables so something is
-      always ready to harvest across the seasons.
-    category: food
-    difficulty: 2
-    estimated_time: "1 season to establish"
-    prerequisites: []
-    guides: [food-vegetable-garden]
-
-  - id: food-fruit-and-berries
-    title: Plant fruit trees and berry bushes
-    description: >
-      Choose, plant, and care for fruit trees, vines, and berry bushes for years
-      of low-effort harvests.
-    category: food
-    difficulty: 3
-    estimated_time: "A planting season, then yearly care"
-    prerequisites: []
-    guides: [food-fruit-and-berries]
-
-  - id: food-seed-saving
-    title: Save and store seeds for next season
-    description: >
-      Select, dry, and store seeds from your best plants so you can grow again
-      next year without buying in.
-    category: food
-    difficulty: 2
-    estimated_time: "A few hours across the season"
-    prerequisites: [food-vegetable-garden]
-    guides: [food-seed-saving]
-
-  # --- Shelter: different types of houses ---
-
-  - id: shelter-emergency-quick
-    title: Build a quick emergency shelter
-    description: >
-      Put up a warm, dry shelter fast from natural or salvaged materials when you
-      have no roof over your head.
-    category: shelter
-    difficulty: 2
-    estimated_time: "A few hours"
-    prerequisites: []
-    guides: [shelter-emergency-quick]
-
-  - id: shelter-earth-building
-    title: Build with earth (cob, adobe, earthbag)
-    description: >
-      Use soil-based methods to build durable, well-insulated walls from
-      low-cost, local materials.
-    category: shelter
-    difficulty: 4
-    estimated_time: "Weeks to months"
-    prerequisites: []
-    guides: [shelter-earth-building]
-
-  - id: shelter-timber-cabin
-    title: Build a simple timber-frame cabin
-    description: >
-      Frame, clad, and roof a small wooden cabin or hut for longer-term living.
-    category: shelter
-    difficulty: 4
-    estimated_time: "Weeks"
-    prerequisites: [shelter-insulation-basics]
-    guides: [shelter-timber-cabin]
-
-  # --- Survival: finding food in nature ---
-
-  - id: survival-trapping-fishing
-    title: Catch fish and small game for food
-    description: >
-      Use simple traps, snares, and fishing methods to find protein in the wild,
-      handling catch safely and humanely.
-    category: survival
-    difficulty: 3
-    estimated_time: "Ongoing practice"
-    prerequisites: []
-    guides: [survival-trapping-fishing]
-
-  # --- Emergencies: surviving extreme situations (civilian protection) ---
-
-  - id: emergency-blackout
-    title: Prepare for and live through a long blackout
-    description: >
-      Keep water, food, warmth, light, and information going when the power is
-      out for days or weeks.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A day to prepare"
-    prerequisites: []
-    guides: [emergency-blackout]
-
-  - id: emergency-extreme-heat
-    title: Survive extreme heat without power
-    description: >
-      Keep yourself and vulnerable people cool and hydrated through a heatwave
-      when there is no air conditioning.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A few hours to prepare"
-    prerequisites: []
-    guides: [emergency-extreme-heat]
-
-  - id: emergency-extreme-cold
-    title: Survive extreme cold without heating
-    description: >
-      Stay warm and avoid frostbite and hypothermia indoors and out when the
-      heating fails in deep cold.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A few hours to prepare"
-    prerequisites: []
-    guides: [emergency-extreme-cold]
-
-  - id: emergency-air-raid
-    title: Stay safe during air raids and drone attacks
-    description: >
-      Recognise warnings and take cover quickly and correctly to protect
-      yourself and others from blasts and debris.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "1-2 hours to plan"
-    prerequisites: []
-    guides: [emergency-air-raid]
-
-  - id: emergency-conflict-safety
-    title: Keep your household safe during armed conflict
-    description: >
-      Plan for civilian safety during invasion, civil unrest, or war: go-bag,
-      documents, communication, evacuation, and staying out of danger.
-    category: emergencies
-    difficulty: 3
-    estimated_time: "A day to prepare"
-    prerequisites: []
-    guides: [emergency-conflict-safety]
-
-  - id: emergency-pandemic
-    title: Protect your household during a disease outbreak
-    description: >
-      Reduce the chance of catching and spreading illness, and care for the sick
-      safely, during an epidemic or pandemic.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A few hours to prepare"
-    prerequisites: []
-    guides: [emergency-pandemic]
-
-  # --- Energy: producing power from solar and wind ---
-
-  - id: energy-wind-power
-    title: Generate power from a small wind turbine
-    description: >
-      Choose a site, build or set up a small wind turbine, and feed its power
-      safely into your battery system.
+      Build a small renewable power system step by step: size it from your real
+      energy use, wire up solar, store it in a battery bank, and add wind for
+      the darker months.
     category: energy
     difficulty: 4
     estimated_time: "Several days"
-    prerequisites: [calc-energy-sizing]
-    guides: [energy-wind-power]
+    guides:
+      - energy-sizing-solar-battery
+      - energy-low-tech-solar
+      - energy-battery-storage
+      - energy-wind-power
 
-  - id: energy-battery-storage
-    title: Store and manage your power
+  - id: build-a-shelter
+    title: Plan and build a shelter
     description: >
-      Size, wire, and care for a battery bank so solar or wind power is there
-      when you need it, safely.
-    category: energy
-    difficulty: 3
-    estimated_time: "1-2 days"
-    prerequisites: [energy-low-tech-solar]
-    guides: [energy-battery-storage]
+      Decide what to build, then build it to last: choose the right shelter for
+      your climate and needs, keep it warm and dry with good insulation, and
+      frame a simple timber cabin for longer-term living.
+    category: shelter
+    difficulty: 4
+    estimated_time: "Weeks"
+    guides:
+      - shelter-choosing
+      - shelter-insulation-basics
+      - shelter-timber-cabin
 
-  - id: energy-solar-water-heating
-    title: Heat water with the sun
+  - id: cook-from-scratch
+    title: Cook good food from scratch
     description: >
-      Build a simple solar water heater for washing and cleaning without using
-      any electricity.
-    category: energy
-    difficulty: 2
-    estimated_time: "1 day"
-    prerequisites: []
-    guides: [energy-solar-water-heating]
-
-  # --- Cooking: simple plant-based (vegan) cooking and baking ---
-
-  - id: cooking-one-pot-meals
-    title: Cook simple one-pot plant-based meals
-    description: >
-      Turn beans, grains, and vegetables into nourishing vegan meals on a single
-      fire or stove, with little fuel and few tools.
-    category: cooking
-    difficulty: 1
-    estimated_time: "1-2 hours"
-    prerequisites: []
-    guides: [cooking-one-pot-meals]
-
-  - id: cooking-plant-protein
-    title: Cook and balance plant proteins
-    description: >
-      Prepare beans, lentils, and other plant proteins and combine foods so a
-      vegan diet stays nourishing and complete.
+      Build everyday cooking skills with little fuel and few tools: simple
+      one-pot meals, balanced plant proteins, bread by hand, and preserving a
+      harvest so nothing goes to waste.
     category: cooking
     difficulty: 2
     estimated_time: "Ongoing practice"
-    prerequisites: []
-    guides: [cooking-plant-protein]
+    guides:
+      - cooking-one-pot-meals
+      - cooking-plant-protein
+      - cooking-bread-baking
+      - cooking-preserving
 
-  - id: cooking-bread-baking
-    title: Bake bread without modern equipment
+  - id: wilderness-survival-basics
+    title: Core wilderness survival skills
     description: >
-      Make flatbreads and leavened loaves by hand, including a natural sourdough
-      starter, with no commercial yeast or oven required.
-    category: cooking
-    difficulty: 2
-    estimated_time: "Half a day (plus rising)"
-    prerequisites: []
-    guides: [cooking-bread-baking]
+      The hands-on basics for being out in the field: make fire, find and carry
+      water, find your way without a compass, tie essential knots, and find food
+      by foraging and simple trapping or fishing.
+    category: survival
+    difficulty: 3
+    estimated_time: "Ongoing practice"
+    guides:
+      - survival-fire
+      - survival-find-water
+      - survival-navigation
+      - survival-knots
+      - survival-foraging
+      - survival-trapping-fishing
 
-  - id: cooking-preserving
-    title: Preserve food by drying, fermenting, and pickling
+  - id: share-culture-together
+    title: Bring people together with culture
     description: >
-      Keep a harvest edible for months without refrigeration using drying,
-      lacto-fermentation, and pickling — all plant-based.
-    category: cooking
-    difficulty: 2
-    estimated_time: "A few hours, then waiting"
-    prerequisites: []
-    guides: [cooking-preserving]
+      Easy, no-gear ways to lift morale and build trust in a group: lead group
+      songs and simple dances, run games anyone can join, make basic
+      instruments, and keep knowledge alive through storytelling.
+    category: culture
+    difficulty: 1
+    estimated_time: "An afternoon to start"
+    guides:
+      - culture-group-songs
+      - culture-circle-dances
+      - culture-no-gear-games
+      - culture-simple-instruments
+      - culture-storytelling
 
-  # --- Calculations: practical numbers for self-reliance ---
-
-  - id: calc-energy-sizing
-    title: Size an energy system
+  - id: practical-building-maths
+    title: Practical maths for planning and building
     description: >
-      Work out your daily energy use and size the panels, turbine, and batteries
-      to meet it, with margin to spare.
+      The everyday numbers self-reliance needs: measure area and volume, turn a
+      plan into material quantities, judge safe weights and loads, and size an
+      energy system — in that order of difficulty.
     category: calculations
     difficulty: 3
-    estimated_time: "2-3 hours"
-    prerequisites: []
-    guides: [calc-energy-sizing]
-
-  - id: calc-area-volume
-    title: Calculate area and volume
-    description: >
-      Measure and calculate the area and volume of rooms, gardens, tanks, and
-      stores so you can plan and buy the right amounts.
-    category: calculations
-    difficulty: 1
-    estimated_time: "1 hour"
-    prerequisites: []
-    guides: [calc-area-volume]
-
-  - id: calc-materials-quantities
-    title: Estimate material and supply quantities
-    description: >
-      Turn a plan into quantities: how much earth, wood, water, firewood, food,
-      or seed you need, and for how long.
-    category: calculations
-    difficulty: 2
-    estimated_time: "1-2 hours"
-    prerequisites: [calc-area-volume]
-    guides: [calc-materials-quantities]
-
-  - id: calc-structural-loads
-    title: Estimate weights and loads in building
-    description: >
-      Estimate the weight a floor, beam, or roof must carry and judge safe spans,
-      with sensible safety margins — and when to get expert help.
-    category: calculations
-    difficulty: 4
-    estimated_time: "2-3 hours"
-    prerequisites: [calc-area-volume]
-    guides: [calc-structural-loads]
-
-  # --- Emergencies: natural disasters (urban and out of town) ---
-
-  - id: emergency-flood
-    title: Stay safe in a flood
-    description: >
-      Prepare for, survive, and recover from flooding in town or in the country —
-      moving to safety, avoiding deadly floodwater, and coming back safely.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A day to prepare"
-    prerequisites: []
-    guides: [emergency-flood]
-
-  - id: emergency-earthquake
-    title: Stay safe in an earthquake
-    description: >
-      Protect yourself during the shaking and handle the aftermath — aftershocks,
-      gas and structural hazards — in a city building or a remote area.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A few hours to prepare"
-    prerequisites: []
-    guides: [emergency-earthquake]
-
-  - id: emergency-drought
-    title: Get through a drought
-    description: >
-      Stretch and protect scarce water, keep clean, and keep crops and animals
-      alive through a long dry spell, in town or on the land.
-    category: emergencies
-    difficulty: 3
-    estimated_time: "Ongoing"
-    prerequisites: []
-    guides: [emergency-drought]
-
-  - id: emergency-radiation
-    title: Stay safe in a nuclear or radiological emergency
-    description: >
-      Protect yourself from a radioactive release — get inside, stay inside, stay
-      tuned — including sheltering, decontamination, and when iodine helps.
-    category: emergencies
-    difficulty: 3
-    estimated_time: "1-2 hours to plan"
-    prerequisites: []
-    guides: [emergency-radiation]
-
-  - id: emergency-wildfire
-    title: Stay safe in a wildfire
-    description: >
-      Reduce fire risk around a home, leave early and safely, cope with smoke, and
-      know what to do if fire approaches — at the city edge or in the country.
-    category: emergencies
-    difficulty: 3
-    estimated_time: "A day to prepare"
-    prerequisites: []
-    guides: [emergency-wildfire]
-
-  - id: emergency-storm
-    title: Stay safe in severe storms
-    description: >
-      Prepare for and ride out high winds, hurricanes, tornadoes, and lightning,
-      and stay safe afterwards, whether in a city or exposed countryside.
-    category: emergencies
-    difficulty: 2
-    estimated_time: "A few hours to prepare"
-    prerequisites: []
-    guides: [emergency-storm]
-
-  # --- Decision journeys (v0.3): "which should I pick?" entry points. Each
-  # leads with a decision guide and is a prerequisite of the matching build
-  # journey, so a track reads "decide → build".
-  - id: water-choosing-treatment
-    title: Choose the right water treatment
-    description: >
-      Decide which filter or disinfection method fits your water source, group
-      size, and the risks — before you build anything.
-    category: water
-    difficulty: 1
-    estimated_time: "30 minutes"
-    prerequisites: []
-    guides: [water-choosing-treatment]
-
-  - id: energy-sizing-solar-battery
-    title: Size a solar + battery system
-    description: >
-      Work out the panel and battery size you actually need from your daily
-      energy use, with a worked example — before you buy or build.
-    category: energy
-    difficulty: 2
-    estimated_time: "1 hour"
-    prerequisites: []
-    guides: [energy-sizing-solar-battery]
-
-  - id: food-choosing-crops
-    title: Choose which crops to plant
-    description: >
-      Match crops to your season, climate, and goal — calories, quick food, or
-      a harvest that stores — so a first plot does not go to waste.
-    category: food
-    difficulty: 1
-    estimated_time: "45 minutes"
-    prerequisites: []
-    guides: [food-choosing-crops]
-
-  - id: shelter-choosing
-    title: Choose which shelter to build
-    description: >
-      Match the shelter to how long you need it, your climate, and the materials
-      and skills you have — the right call before the first cut.
-    category: shelter
-    difficulty: 1
-    estimated_time: "30 minutes"
-    prerequisites: []
-    guides: [shelter-choosing]
+    estimated_time: "A few hours"
+    guides:
+      - calc-area-volume
+      - calc-materials-quantities
+      - calc-structural-loads
+      - calc-energy-sizing

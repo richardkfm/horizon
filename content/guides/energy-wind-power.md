@@ -3,6 +3,8 @@ id: energy-wind-power
 title: Generate power from a small wind turbine
 category: energy
 summary: Site, build or set up, and safely connect a small wind turbine to your battery system.
+difficulty: 4
+estimated_time: "Several days"
 ---
 
 # Generate power from a small wind turbine

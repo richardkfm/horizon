@@ -3,6 +3,8 @@ id: food-seed-saving
 title: Save and store seeds for next season
 category: food
 summary: Select, dry, and store seeds from your best plants so you can grow again for free.
+difficulty: 2
+estimated_time: "A few hours across the season"
 ---
 
 # Save and store seeds for next season

@@ -3,6 +3,8 @@ id: emergency-air-raid
 title: Stay safe during air raids and drone attacks
 category: emergencies
 summary: Recognise warnings and take cover correctly to protect yourself from blasts and debris.
+difficulty: 2
+estimated_time: "1-2 hours to plan"
 ---
 
 # Stay safe during air raids and drone attacks

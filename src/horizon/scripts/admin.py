@@ -102,7 +102,6 @@ def _content_stats() -> dict:
         Guide,
         Journey,
         JourneyGuideLink,
-        JourneyPrerequisite,
     )
 
     with Session(engine) as session:
@@ -126,7 +125,6 @@ def _content_stats() -> dict:
             "journeys_total": sum(journeys.values()),
             "guides_total": sum(guides.values()),
             "guide_links": len(session.exec(select(JourneyGuideLink)).all()),
-            "prerequisites": len(session.exec(select(JourneyPrerequisite)).all()),
             "per_category": per_category,
         }
 
@@ -180,10 +178,9 @@ def cmd_status(args: argparse.Namespace) -> int:
         return 1
 
     print(
-        f"  content: {stats['journeys_total']} journeys, "
+        f"  content: {stats['journeys_total']} plans, "
         f"{stats['guides_total']} guides, "
-        f"{stats['guide_links']} guide links, "
-        f"{stats['prerequisites']} prerequisites"
+        f"{stats['guide_links']} guide links"
     )
     width = max((len(r["category"]) for r in stats["per_category"]), default=8)
     for row in stats["per_category"]:
@@ -649,7 +646,7 @@ def cmd_journeys(args: argparse.Namespace) -> int:
     from sqlmodel import Session, select
 
     from horizon.db import engine
-    from horizon.models import Category, Journey, JourneyPrerequisite
+    from horizon.models import Category, Journey
 
     with Session(engine) as session:
         statement = select(Journey)
@@ -657,9 +654,6 @@ def cmd_journeys(args: argparse.Namespace) -> int:
             statement = statement.where(Journey.category == Category(args.category))
         statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
         journeys = session.exec(statement).all()
-        entry_points = {j.id for j in journeys} - set(
-            session.exec(select(JourneyPrerequisite.journey_id)).all()
-        )
         rows = [
             {
                 "id": j.id,
@@ -667,7 +661,6 @@ def cmd_journeys(args: argparse.Namespace) -> int:
                 "category": j.category.value,
                 "difficulty": j.difficulty,
                 "estimated_time": j.estimated_time,
-                "start_here": j.id in entry_points,
             }
             for j in journeys
         ]
@@ -677,7 +670,7 @@ def cmd_journeys(args: argparse.Namespace) -> int:
         return 0
 
     if not rows:
-        print("No journeys found. Run `horizon-admin seed` to load bundled content.")
+        print("No plans found. Run `horizon-admin seed` to load bundled content.")
         return 0
 
     current = None
@@ -686,45 +679,29 @@ def cmd_journeys(args: argparse.Namespace) -> int:
             current = row["category"]
             print()
             print(_heading(current.upper()))
-        marker = "*" if row["start_here"] else "-"
-        print(f"  {marker} {row['title']}  ({row['id']})")
+        print(f"  - {row['title']}  ({row['id']})")
         meta = f"      {_difficulty_bar(row['difficulty'])}"
         if row["estimated_time"]:
             meta += f" - {row['estimated_time']}"
-        if row["start_here"]:
-            meta += "  << start here"
         print(meta)
     print()
-    print("  * = a good place to start (no prerequisites).")
     print("  See a plan in full:  horizon-admin journey <id>")
     return 0
 
 
 def cmd_journey(args: argparse.Namespace) -> int:
-    """Show one journey in full: prerequisites, this step, what comes next, guides."""
-    from sqlmodel import Session, select
+    """Show one plan in full: its metadata and its ordered guides."""
+    from sqlmodel import Session
 
+    from horizon.api.journeys import ordered_guides
     from horizon.db import engine
-    from horizon.models import Journey, JourneyPrerequisite
+    from horizon.models import Journey
 
     with Session(engine) as session:
         journey = session.get(Journey, args.id)
         if journey is None:
-            print(f"Journey not found: {args.id!r}. Try `horizon-admin journeys`.", file=sys.stderr)
+            print(f"Plan not found: {args.id!r}. Try `horizon-admin journeys`.", file=sys.stderr)
             return 1
-
-        prereq_ids = session.exec(
-            select(JourneyPrerequisite.prerequisite_id).where(
-                JourneyPrerequisite.journey_id == journey.id
-            )
-        ).all()
-        next_ids = session.exec(
-            select(JourneyPrerequisite.journey_id).where(
-                JourneyPrerequisite.prerequisite_id == journey.id
-            )
-        ).all()
-        prereqs = [p for pid in prereq_ids if (p := session.get(Journey, pid)) is not None]
-        nexts = [n for nid in next_ids if (n := session.get(Journey, nid)) is not None]
 
         data = {
             "id": journey.id,
@@ -733,9 +710,7 @@ def cmd_journey(args: argparse.Namespace) -> int:
             "category": journey.category.value,
             "difficulty": journey.difficulty,
             "estimated_time": journey.estimated_time,
-            "prerequisites": [{"id": p.id, "title": p.title} for p in prereqs],
-            "next": [{"id": n.id, "title": n.title} for n in nexts],
-            "guides": [{"id": g.id, "title": g.title} for g in journey.guides],
+            "guides": [{"id": g.id, "title": g.title} for g in ordered_guides(session, journey.id)],
         }
 
     if args.json:
@@ -752,25 +727,9 @@ def cmd_journey(args: argparse.Namespace) -> int:
         print()
         print(_wrap(data["description"]))
 
-    # An ASCII flow: prerequisites -> THIS step -> what comes next.
-    print()
-    if data["prerequisites"]:
-        print("  Before this plan")
-        for p in data["prerequisites"]:
-            print(f"    - {p['title']}  ({p['id']})")
-        print("        |")
-        print("        v")
-    print(f"  [ YOU ARE HERE ]  {data['title']}")
-    if data["next"]:
-        print("        |")
-        print("        v")
-        print("  Then you could move on to")
-        for n in data["next"]:
-            print(f"    - {n['title']}  ({n['id']})")
-
     print()
     if data["guides"]:
-        print("  Guides in this plan")
+        print("  Guides, in order")
         for i, g in enumerate(data["guides"], start=1):
             print(f"    {i}. {g['title']}  ({g['id']})")
         print()
@@ -1019,7 +978,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_journeys.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     p_journeys.set_defaults(func=cmd_journeys)
 
-    p_journey = sub.add_parser("journey", help="Show one plan in full (prereqs + guides).")
+    p_journey = sub.add_parser("journey", help="Show one plan in full (ordered guides).")
     p_journey.add_argument("id", help="Journey identifier.")
     p_journey.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     p_journey.set_defaults(func=cmd_journey)

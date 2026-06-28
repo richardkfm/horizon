@@ -3,6 +3,8 @@ id: survival-trapping-fishing
 title: Catch fish and small game for food
 category: survival
 summary: Use simple traps, snares, and fishing methods to find protein in the wild.
+difficulty: 3
+estimated_time: "Ongoing practice"
 ---
 
 # Catch fish and small game for food

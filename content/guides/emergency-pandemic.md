@@ -3,6 +3,8 @@ id: emergency-pandemic
 title: Protect your household during a disease outbreak
 category: emergencies
 summary: Reduce the chance of catching and spreading illness, and care for the sick safely.
+difficulty: 2
+estimated_time: "A few hours to prepare"
 ---
 
 # Protect your household during a disease outbreak

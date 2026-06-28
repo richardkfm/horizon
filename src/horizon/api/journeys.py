@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from horizon.db import get_session
-from horizon.models import Category, Guide, Journey, JourneyPrerequisite
+from horizon.models import Category, Guide, Journey, JourneyGuideLink
 
 router = APIRouter(prefix="/api/journeys", tags=["journeys"])
 
@@ -16,7 +16,7 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 
 def _journey_summary(journey: Journey) -> dict:
-    """Basic metadata shared by list and nested (prerequisite) views."""
+    """Basic track metadata shared by the list and detail views."""
     return {
         "id": journey.id,
         "title": journey.title,
@@ -33,7 +33,20 @@ def _guide_summary(guide: Guide) -> dict:
         "title": guide.title,
         "category": guide.category.value,
         "summary": guide.summary,
+        "difficulty": guide.difficulty,
+        "estimated_time": guide.estimated_time,
     }
+
+
+def ordered_guides(session: Session, journey_id: str) -> list[Guide]:
+    """Return a track's guides in their stored ``position`` order."""
+    rows = session.exec(
+        select(Guide)
+        .join(JourneyGuideLink, JourneyGuideLink.guide_id == Guide.id)
+        .where(JourneyGuideLink.journey_id == journey_id)
+        .order_by(JourneyGuideLink.position)
+    ).all()
+    return list(rows)
 
 
 @router.get("")
@@ -57,21 +70,17 @@ def get_journey(
     journey_id: str,
     session: SessionDep,
 ) -> dict:
-    """Return full journey data, including prerequisites and linked guides."""
+    """Return full track data: its ordered guides.
+
+    ``prerequisites`` is retained as an always-empty list for backward
+    compatibility with the documented response shape; tracks no longer use a
+    prerequisite graph (the guide order is the path).
+    """
     journey = session.get(Journey, journey_id)
     if journey is None:
         raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
 
-    prereq_ids = session.exec(
-        select(JourneyPrerequisite.prerequisite_id).where(
-            JourneyPrerequisite.journey_id == journey_id
-        )
-    ).all()
-    prerequisites = [
-        _journey_summary(p) for pid in prereq_ids if (p := session.get(Journey, pid)) is not None
-    ]
-
     data = _journey_summary(journey)
-    data["prerequisites"] = prerequisites
-    data["guides"] = [_guide_summary(g) for g in journey.guides]
+    data["prerequisites"] = []
+    data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
     return data

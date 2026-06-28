@@ -3,6 +3,8 @@ id: culture-storytelling
 title: Preserve knowledge through storytelling
 category: culture
 summary: Use stories and memory techniques to pass on skills, history, and values.
+difficulty: 2
+estimated_time: "Ongoing practice"
 ---
 
 # Preserve knowledge through storytelling

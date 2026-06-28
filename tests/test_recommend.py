@@ -15,35 +15,38 @@ from horizon.services.recommend import recommend_journeys
 def test_service_matches_food_goal():
     with TestClient(app):  # trigger lifespan seeding
         result = recommend_journeys("grow staple crops")
-    ids = {j["id"] for j in result["journeys"]}
-    assert "food-staple-crops" in ids
+    guide_ids = {g["id"] for g in result["guides"]}
+    track_ids = {j["id"] for j in result["journeys"]}
+    # Guides are the primary unit; the staple-crops guide leads.
+    assert "food-staple-crops-500m2" in guide_ids
+    # The matching curated track is surfaced alongside.
+    assert "grow-and-store-food" in track_ids
 
 
-def test_service_water_goal_includes_linked_guide():
+def test_service_water_goal_surfaces_guides_and_track():
     with TestClient(app):
         result = recommend_journeys("safe drinking water for our group")
-    journey_ids = {j["id"] for j in result["journeys"]}
+    track_ids = {j["id"] for j in result["journeys"]}
     guide_ids = {g["id"] for g in result["guides"]}
-    assert "water-slow-sand-filter" in journey_ids
-    # The journey's linked guide is surfaced too.
     assert "water-slow-sand-filter" in guide_ids
+    assert "safe-drinking-water" in track_ids
 
 
-def test_generic_words_do_not_pull_off_topic_journeys():
+def test_generic_words_do_not_pull_off_topic_results():
     """A water goal should not surface cooperation just because both say 'group'."""
     with TestClient(app):
         result = recommend_journeys("safe drinking water for our group")
-    ids = {j["id"] for j in result["journeys"]}
-    assert "water-slow-sand-filter" in ids
-    assert "cooperation-group-decisions" not in ids
+    guide_ids = {g["id"] for g in result["guides"]}
+    assert "water-slow-sand-filter" in guide_ids
+    assert "cooperation-group-decisions" not in guide_ids
 
 
 def test_resources_context_is_folded_in():
-    """A solar resource should surface the solar journey even for a vague goal."""
+    """A solar resource should surface the solar guide even for a vague goal."""
     with TestClient(app):
         result = recommend_journeys("set up power", resources=["solar"])
-    ids = {j["id"] for j in result["journeys"]}
-    assert "energy-low-tech-solar" in ids
+    guide_ids = {g["id"] for g in result["guides"]}
+    assert "energy-low-tech-solar" in guide_ids
 
 
 def test_empty_goal_returns_empty():
@@ -80,4 +83,6 @@ def test_recommend_page_shows_results():
     with TestClient(app) as client:
         resp = client.get("/recommend", params={"goal": "safe drinking water"})
     assert resp.status_code == 200
-    assert "/journeys/water-slow-sand-filter" in resp.text
+    # Guides lead the results; the matching curated plan is shown too.
+    assert "/guides/water-slow-sand-filter" in resp.text
+    assert "/journeys/safe-drinking-water" in resp.text

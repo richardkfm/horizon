@@ -50,7 +50,7 @@
   <div class="table-scroll">
   <table class="admin-table lib-table">
     <thead>
-      <tr><th>Title</th><th>Category</th><th>Difficulty</th><th>Guides</th><th>Builds on</th><th>Notes</th></tr>
+      <tr><th>Title</th><th>Category</th><th>Difficulty</th><th>Guides</th><th>Notes</th></tr>
     </thead>
     <tbody>
       {% for j in journeys %}
@@ -62,7 +62,6 @@
         <td class="category-cell">{{ j.category }}</td>
         <td>{{ j.difficulty }}</td>
         <td>{{ j.guides }}</td>
-        <td>{{ j.prerequisites }}</td>
         <td>
           {% for flag in j.flags %}<span class="lib-flag">{{ flag }}</span>{% endfor %}
         </td>

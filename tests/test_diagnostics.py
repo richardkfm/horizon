@@ -13,7 +13,7 @@ from sqlmodel import Session, select
 
 from horizon.config import settings
 from horizon.db import engine, init_db
-from horizon.models import Guide, Journey, JourneyGuideLink, JourneyPrerequisite
+from horizon.models import Guide, Journey, JourneyGuideLink
 from horizon.seed import reseed, seed_if_empty
 from horizon.services import diagnostics
 
@@ -34,24 +34,24 @@ def test_healthy_node_passes_all_checks():
     assert report["healthy"] is True
     assert report["counts"]["fail"] == 0
     # Core structural checks resolve cleanly.
-    for cid in ("database", "prerequisite_links", "guide_links", "guide_files", "duplicates"):
+    for cid in ("database", "guide_links", "guide_files", "duplicates"):
         assert _check(report, cid)["status"] == "ok"
 
 
-def test_broken_prerequisite_link_is_flagged():
+def test_broken_guide_link_is_flagged():
     _ensure_seeded()
     with Session(engine) as session:
         journey_id = session.exec(select(Journey.id)).first()
-        session.add(JourneyPrerequisite(journey_id=journey_id, prerequisite_id="does-not-exist"))
+        session.add(JourneyGuideLink(journey_id=journey_id, guide_id="does-not-exist"))
         session.commit()
     try:
         report = diagnostics.run_checks()
-        prereq = _check(report, "prerequisite_links")
-        assert prereq["status"] == "warn"
-        assert any("does-not-exist" in d for d in prereq["details"])
+        links = _check(report, "guide_links")
+        assert links["status"] == "warn"
+        assert any("does-not-exist" in d for d in links["details"])
     finally:
         with Session(engine) as session:
-            edge = session.get(JourneyPrerequisite, (journey_id, "does-not-exist"))
+            edge = session.get(JourneyGuideLink, (journey_id, "does-not-exist"))
             if edge:
                 session.delete(edge)
                 session.commit()
@@ -124,8 +124,6 @@ def test_reseed_repair_restores_deleted_content():
         # Wipe a journey and confirm the repair brings the set back.
         for link in session.exec(select(JourneyGuideLink)).all():
             session.delete(link)
-        for edge in session.exec(select(JourneyPrerequisite)).all():
-            session.delete(edge)
         for j in session.exec(select(Journey)).all():
             session.delete(j)
         session.commit()

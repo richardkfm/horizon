@@ -3,6 +3,8 @@ id: cooking-plant-protein
 title: Cook and balance plant proteins
 category: cooking
 summary: Prepare beans, lentils, and other plant proteins so a vegan diet stays nourishing.
+difficulty: 2
+estimated_time: "Ongoing practice"
 ---
 
 # Cook and balance plant proteins

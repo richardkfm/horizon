@@ -3,6 +3,8 @@ id: energy-battery-storage
 title: Store and manage your power
 category: energy
 summary: Size, wire, and care for a battery bank so solar or wind power is there when you need it.
+difficulty: 3
+estimated_time: "1-2 days"
 ---
 
 # Store and manage your power

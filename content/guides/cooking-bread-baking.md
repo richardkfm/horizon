@@ -3,6 +3,8 @@ id: cooking-bread-baking
 title: Bake bread without modern equipment
 category: cooking
 summary: Make flatbreads and sourdough loaves by hand, with no commercial yeast or oven required.
+difficulty: 2
+estimated_time: "Half a day (plus rising)"
 ---
 
 # Bake bread without modern equipment

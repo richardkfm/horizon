@@ -3,6 +3,8 @@ id: culture-simple-instruments
 title: Make simple instruments and keep a rhythm
 category: culture
 summary: Build basic instruments from found materials and lead a group in a shared beat.
+difficulty: 1
+estimated_time: "An afternoon"
 ---
 
 # Make simple instruments and keep a rhythm

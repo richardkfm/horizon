@@ -3,6 +3,8 @@ id: emergency-radiation
 title: Stay safe in a nuclear or radiological emergency
 category: emergencies
 summary: Get inside, stay inside, stay tuned — shelter, decontaminate, and know when iodine helps.
+difficulty: 3
+estimated_time: "1-2 hours to plan"
 ---
 
 # Stay safe in a nuclear or radiological emergency

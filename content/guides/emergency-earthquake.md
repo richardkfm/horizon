@@ -3,6 +3,8 @@ id: emergency-earthquake
 title: Stay safe in an earthquake
 category: emergencies
 summary: Drop, cover, and hold on during the shaking, then handle aftershocks and hazards safely.
+difficulty: 2
+estimated_time: "A few hours to prepare"
 ---
 
 # Stay safe in an earthquake

@@ -3,6 +3,8 @@ id: emergency-wildfire
 title: Stay safe in a wildfire
 category: emergencies
 summary: Cut fire risk around a home, leave early and safely, cope with smoke, and act if fire approaches.
+difficulty: 3
+estimated_time: "A day to prepare"
 ---
 
 # Stay safe in a wildfire

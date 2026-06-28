@@ -3,6 +3,8 @@ id: shelter-insulation-basics
 title: Insulate a simple shelter
 category: shelter
 summary: Cut heat loss in a small shelter with low-cost materials and basic draught-proofing.
+difficulty: 2
+estimated_time: "1 day"
 ---
 
 # Insulate a simple shelter

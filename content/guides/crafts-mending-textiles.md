@@ -3,6 +3,8 @@ id: crafts-mending-textiles
 title: Mend clothes and make basic textiles
 category: crafts
 summary: Repair tears, replace buttons, and patch worn cloth so clothing lasts far longer.
+difficulty: 1
+estimated_time: "1-2 hours"
 ---
 
 # Mend clothes and make basic textiles

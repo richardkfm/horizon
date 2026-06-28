@@ -5,9 +5,11 @@ Guidance for AI agents and developers working in this repository.
 ## What horizon is
 
 horizon is an **offline-first "autonomy & rebuilding" node**: a self-contained
-server offering a skill tree of practical *journeys*, visual step-by-step
-*guides*, and a *local AI assistant* (RAG over local content) for water, food,
-energy, shelter, health, and cooperative governance. It targets constrained,
+server offering a library of visual step-by-step *guides* (the primary unit you
+browse and read), a few curated, ordered *step-by-step plans* ("journeys" in the
+code) that thread guides together, and a *local AI assistant* (RAG over local
+content) for water, food, energy, shelter, health, and cooperative governance.
+It targets constrained,
 self-hosted hardware (Raspberry Pi, mini-PC, Proxmox LXC, Debian/Arch) and must
 be useful out of the box, fully offline.
 
@@ -37,8 +39,8 @@ Hold these when making any change:
 - **Web framework:** FastAPI + Uvicorn (`src/horizon/main.py`).
 - **UI:** server-rendered Jinja2 + HTMX + Alpine.js (vendored locally, no build
   step), with a print/low-power friendly stylesheet (`web/static/print.css`).
-- **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — journeys,
-  guides, prerequisite/guide-link edges.
+- **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — guides,
+  plans (`Journey`), and the ordered guide-link edges between them.
 - **Content:** Markdown guides + md skills on disk under `content/` (seeded into
   `settings.content_dir` on first run).
 - **Vector index:** embedded Chroma over guides + md skills (`services/rag.py`).
@@ -54,7 +56,7 @@ Hold these when making any change:
 content/            seed content shipped in the repo
   guides/           Markdown guides (+ images/)
   md_skills/        values, answer-style, domain checklists
-  journeys.yaml     seed skill-tree nodes + edges
+  journeys.yaml     seed step-by-step plans (ordered guide lists)
 src/horizon/
   main.py           FastAPI app: routers, static, lifespan
   config.py         typed settings loaded from config.yaml
@@ -94,10 +96,15 @@ These are horizon's integration surface; preserve backward compatibility:
 
 ## Adding content
 
-- **Guide:** `content/guides/<id>.md` with front matter (`id`, `title`,
-  `category`, `summary`); images under `content/guides/images/`.
-- **Journey:** an entry in `content/journeys.yaml` (`id`, `title`, `description`,
-  `category`, `difficulty` 1–5, `estimated_time`, `prerequisites[]`, `guides[]`).
+- **Guide (the primary unit):** `content/guides/<id>.md` with front matter
+  (`id`, `title`, `category`, `summary`, `difficulty` 1–5, `estimated_time`);
+  images under `content/guides/images/`. A guide stands on its own — it does not
+  need a plan to be browsable or useful.
+- **Step-by-step plan ("journey"):** an entry in `content/journeys.yaml` (`id`,
+  `title`, `description`, `category`, `difficulty` 1–5, `estimated_time`,
+  `guides[]`). `guides` is an **ordered** list — the order *is* the path; there
+  are no prerequisites. Only add a plan where guides form a genuine "do this,
+  then this" progression; most guides need no plan.
 - **md skill:** `content/md_skills/<id>.md` — indexed alongside guides to steer
   the assistant's values and style.
 
@@ -116,6 +123,12 @@ Restart to re-seed and re-index.
   the step that fills them in; startup tolerates these.
 - Don't add runtime cloud calls. Don't import sibling projects. Don't move value
   judgements out of `content/md_skills/`.
+- **Guides are the primary unit; plans are an optional curated layer.** Never
+  wrap a single guide in its own plan ("journey") just to give it a node — that
+  was the old design and it bought an interstitial click and empty prerequisite
+  dead-ends for no benefit. A plan must thread *several* guides into a real
+  ordered path. Browsing (home tiles, categories, recommend) points at guides;
+  plans are a small, hand-picked set on top.
 
 ## UX & frontend standards
 

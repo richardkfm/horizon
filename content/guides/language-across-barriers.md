@@ -3,6 +3,8 @@ id: language-across-barriers
 title: Communicate across a language barrier
 category: language
 summary: Use gestures, drawings, and a shared word list when you have no common language.
+difficulty: 1
+estimated_time: "A few hours"
 ---
 
 # Communicate across a language barrier

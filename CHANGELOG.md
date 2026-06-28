@@ -13,6 +13,31 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Changed
+- **Guides are now the primary thing you browse and read.** Clicking a topic
+  from the home page (or a category) goes **straight to the how-to guide**,
+  instead of an interstitial "journey" page that wrapped a single guide and an
+  empty prerequisites list. Each guide now carries its own difficulty and
+  estimated time (migrated into guide front matter) and links back to any plan
+  it belongs to.
+- **"Journeys" are now a small set of curated, ordered "step-by-step plans"
+  (tracks).** A plan strings several guides together in the order you'd work
+  through them (e.g. *Provide safe drinking water for a group*: test → choose
+  treatment → build a filter). The 57 single-guide journeys are gone; guides
+  outside a plan are still fully browsable from the library. Prerequisites
+  (often empty, and an extra click) have been removed — a plan's guide order is
+  the path.
+- **`/recommend` leads with guides**, then surfaces the curated plans that fit.
+
+### API
+- `GET /api/journeys` now returns the curated plans (a handful), not one entry
+  per guide. `GET /api/journeys/{id}` returns its guides **in order**; the
+  `prerequisites` field is retained but is **always an empty list** (kept for
+  response-shape compatibility). Guide summaries in this response, and the
+  `GET /api/guides/{id}` response, now include `difficulty` and
+  `estimated_time`. Endpoint paths and the rest of the response shapes are
+  unchanged.
+
 ## [0.4.0] — 2026-06-28
 
 The "**maintainable node**" release: an operator can now diagnose, repair, and

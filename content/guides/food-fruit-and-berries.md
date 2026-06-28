@@ -3,6 +3,8 @@ id: food-fruit-and-berries
 title: Plant fruit trees and berry bushes
 category: food
 summary: Choose, plant, and care for fruit trees, vines, and berries for years of harvests.
+difficulty: 3
+estimated_time: "A planting season, then yearly care"
 ---
 
 # Plant fruit trees and berry bushes

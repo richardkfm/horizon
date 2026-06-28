@@ -3,6 +3,8 @@ id: energy-solar-water-heating
 title: Heat water with the sun
 category: energy
 summary: Build a simple solar water heater for washing and cleaning, using no electricity.
+difficulty: 2
+estimated_time: "1 day"
 ---
 
 # Heat water with the sun

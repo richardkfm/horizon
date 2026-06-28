@@ -28,7 +28,6 @@ from horizon.models import (
     Guide,
     Journey,
     JourneyGuideLink,
-    JourneyPrerequisite,
 )
 from horizon.seed import _split_front_matter
 
@@ -75,29 +74,8 @@ def _check_database(session: Session) -> dict:
     )
 
 
-def _check_prerequisite_links(session: Session) -> dict:
-    """Prerequisite edges that point at a journey that no longer exists."""
-    journey_ids = set(session.exec(select(Journey.id)).all())
-    broken = [
-        f"{jid} → {pid}"
-        for jid, pid in session.exec(
-            select(JourneyPrerequisite.journey_id, JourneyPrerequisite.prerequisite_id)
-        ).all()
-        if jid not in journey_ids or pid not in journey_ids
-    ]
-    if broken:
-        return _check(
-            "prerequisite_links",
-            "Prerequisite links",
-            WARN,
-            f"{len(broken)} prerequisite link(s) point to a missing journey.",
-            broken,
-        )
-    return _check("prerequisite_links", "Prerequisite links", OK, "All prerequisite links resolve.")
-
-
 def _check_guide_links(session: Session) -> dict:
-    """Journey→guide links whose journey or guide is missing."""
+    """Track→guide links whose track or guide is missing."""
     journey_ids = set(session.exec(select(Journey.id)).all())
     guide_ids = set(session.exec(select(Guide.id)).all())
     broken = [
@@ -168,19 +146,14 @@ def _check_guide_images(session: Session) -> dict:
 
 
 def _check_orphans(session: Session) -> dict:
-    """Content that is present but unreachable: nothing links it, or it is extra.
+    """Content that is present but unreachable, or broken.
 
-    Three kinds: guides no journey links (a visitor only ever reaches a guide
-    through a journey or search), journeys with no guides (a plan with no steps),
-    and guide Markdown files on disk with no database row (an extra file that was
-    never seeded).
+    Two kinds: tracks with no guides (a plan with no steps), and guide Markdown
+    files on disk with no database row (an extra file that was never seeded).
+    A guide that belongs to no track is *not* orphaned — it is browsed and read
+    directly from the library (/guides/{id}).
     """
     items: list[str] = []
-
-    linked_guides = set(session.exec(select(JourneyGuideLink.guide_id)).all())
-    for g in session.exec(select(Guide)).all():
-        if g.id not in linked_guides:
-            items.append(f"guide not linked by any journey: {g.id}")
 
     journeys_with_guides = set(session.exec(select(JourneyGuideLink.journey_id)).all())
     for j in session.exec(select(Journey)).all():
@@ -329,7 +302,6 @@ def run_checks(check_model: bool = False) -> dict:
     with Session(engine) as session:
         checks = [
             _check_database(session),
-            _check_prerequisite_links(session),
             _check_guide_links(session),
             _check_guide_files(session),
             _check_guide_images(session),
