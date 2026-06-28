@@ -21,7 +21,15 @@ def test_landing_lists_new_categories():
     with TestClient(app) as client:
         resp = client.get("/")
     assert resp.status_code == 200
-    for name in ("survival", "culture", "language", "crafts", "emergencies"):
+    for name in (
+        "survival",
+        "culture",
+        "language",
+        "crafts",
+        "emergencies",
+        "cooking",
+        "calculations",
+    ):
         assert name in resp.text
 
 
@@ -33,6 +41,8 @@ def test_landing_lists_new_categories():
         ("language", "Learn and teach essential phrases"),
         ("crafts", "Make rope and cordage from plant fibre"),
         ("emergencies", "Prepare for and live through a long blackout"),
+        ("cooking", "Cook simple one-pot plant-based meals"),
+        ("calculations", "Size an energy system"),
     ],
 )
 def test_new_category_journeys_listed(category, expected_title):

@@ -55,6 +55,8 @@ CATEGORY_EXAMPLES = {
     "language": "Learn and teach essential words",
     "crafts": "Make rope, mend clothes, and fix tools",
     "emergencies": "Stay safe in blackouts, disasters, and conflict",
+    "cooking": "Cook and bake simple plant-based meals",
+    "calculations": "Size a system, a room, or a load",
 }
 
 

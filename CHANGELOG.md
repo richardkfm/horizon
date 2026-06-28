@@ -30,6 +30,16 @@ Updating this changelog and the README is part of every user-facing change
   vegetable garden, fruit trees and berries, seed saving), more ways to build a
   home (quick emergency shelter, earth building, timber-frame cabin), and finding
   food in nature (trapping and fishing) added to the existing categories.
+- **Two more built-in categories** — `cooking` (plant-based / vegan only: one-pot
+  meals, balancing plant proteins, baking bread without modern equipment, and
+  preserving by drying/fermenting/pickling) and `calculations` (practical
+  numeracy: sizing an energy system, area and volume, estimating material and
+  supply quantities, and weights/loads in building). Each ships seed journeys and
+  guides plus an md skill (plant-based cooking style; calculation answer safety).
+  `GET /api/journeys?category=…` now also accepts `cooking` and `calculations`.
+- **Energy production content** — new guides for generating power from a small
+  wind turbine, storing and managing power in a battery bank, and heating water
+  with the sun, added to the existing `energy` category.
 - **`horizon-admin` CLI** — a full headless operator + reader interface for a
   node with no browser. Maintenance: `status` (runtime + content overview with
   an ASCII banner), `doctor` (health-check every optional integration, non-zero

@@ -2,9 +2,9 @@
 # Each journey: id, title, description, category, difficulty (1-5),
 # estimated_time, prerequisites (other journey ids), guides (guide ids).
 #
-# This seed covers all eleven categories (water, food, energy, shelter, health,
-# cooperation, survival, culture, language, crafts, emergencies) with a few
-# prerequisite edges. Grow each category over time.
+# This seed covers all thirteen categories (water, food, energy, shelter,
+# health, cooperation, survival, culture, language, crafts, emergencies,
+# cooking, calculations) with a few prerequisite edges. Grow each over time.
 
 journeys:
   - id: water-testing-basics
@@ -416,3 +416,130 @@ journeys:
     estimated_time: "A few hours to prepare"
     prerequisites: []
     guides: [emergency-pandemic]
+
+  # --- Energy: producing power from solar and wind ---
+
+  - id: energy-wind-power
+    title: Generate power from a small wind turbine
+    description: >
+      Choose a site, build or set up a small wind turbine, and feed its power
+      safely into your battery system.
+    category: energy
+    difficulty: 4
+    estimated_time: "Several days"
+    prerequisites: [calc-energy-sizing]
+    guides: [energy-wind-power]
+
+  - id: energy-battery-storage
+    title: Store and manage your power
+    description: >
+      Size, wire, and care for a battery bank so solar or wind power is there
+      when you need it, safely.
+    category: energy
+    difficulty: 3
+    estimated_time: "1-2 days"
+    prerequisites: [energy-low-tech-solar]
+    guides: [energy-battery-storage]
+
+  - id: energy-solar-water-heating
+    title: Heat water with the sun
+    description: >
+      Build a simple solar water heater for washing and cleaning without using
+      any electricity.
+    category: energy
+    difficulty: 2
+    estimated_time: "1 day"
+    prerequisites: []
+    guides: [energy-solar-water-heating]
+
+  # --- Cooking: simple plant-based (vegan) cooking and baking ---
+
+  - id: cooking-one-pot-meals
+    title: Cook simple one-pot plant-based meals
+    description: >
+      Turn beans, grains, and vegetables into nourishing vegan meals on a single
+      fire or stove, with little fuel and few tools.
+    category: cooking
+    difficulty: 1
+    estimated_time: "1-2 hours"
+    prerequisites: []
+    guides: [cooking-one-pot-meals]
+
+  - id: cooking-plant-protein
+    title: Cook and balance plant proteins
+    description: >
+      Prepare beans, lentils, and other plant proteins and combine foods so a
+      vegan diet stays nourishing and complete.
+    category: cooking
+    difficulty: 2
+    estimated_time: "Ongoing practice"
+    prerequisites: []
+    guides: [cooking-plant-protein]
+
+  - id: cooking-bread-baking
+    title: Bake bread without modern equipment
+    description: >
+      Make flatbreads and leavened loaves by hand, including a natural sourdough
+      starter, with no commercial yeast or oven required.
+    category: cooking
+    difficulty: 2
+    estimated_time: "Half a day (plus rising)"
+    prerequisites: []
+    guides: [cooking-bread-baking]
+
+  - id: cooking-preserving
+    title: Preserve food by drying, fermenting, and pickling
+    description: >
+      Keep a harvest edible for months without refrigeration using drying,
+      lacto-fermentation, and pickling — all plant-based.
+    category: cooking
+    difficulty: 2
+    estimated_time: "A few hours, then waiting"
+    prerequisites: []
+    guides: [cooking-preserving]
+
+  # --- Calculations: practical numbers for self-reliance ---
+
+  - id: calc-energy-sizing
+    title: Size an energy system
+    description: >
+      Work out your daily energy use and size the panels, turbine, and batteries
+      to meet it, with margin to spare.
+    category: calculations
+    difficulty: 3
+    estimated_time: "2-3 hours"
+    prerequisites: []
+    guides: [calc-energy-sizing]
+
+  - id: calc-area-volume
+    title: Calculate area and volume
+    description: >
+      Measure and calculate the area and volume of rooms, gardens, tanks, and
+      stores so you can plan and buy the right amounts.
+    category: calculations
+    difficulty: 1
+    estimated_time: "1 hour"
+    prerequisites: []
+    guides: [calc-area-volume]
+
+  - id: calc-materials-quantities
+    title: Estimate material and supply quantities
+    description: >
+      Turn a plan into quantities: how much earth, wood, water, firewood, food,
+      or seed you need, and for how long.
+    category: calculations
+    difficulty: 2
+    estimated_time: "1-2 hours"
+    prerequisites: [calc-area-volume]
+    guides: [calc-materials-quantities]
+
+  - id: calc-structural-loads
+    title: Estimate weights and loads in building
+    description: >
+      Estimate the weight a floor, beam, or roof must carry and judge safe spans,
+      with sensible safety margins — and when to get expert help.
+    category: calculations
+    difficulty: 4
+    estimated_time: "2-3 hours"
+    prerequisites: [calc-area-volume]
+    guides: [calc-structural-loads]
