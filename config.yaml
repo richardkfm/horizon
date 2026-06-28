@@ -1,0 +1,87 @@
+# horizon configuration.
+# Tracked in the repo with safe defaults so `docker compose up -d` works out of
+# the box; edit in place for your deployment (see config.example.yaml for the
+# fully annotated reference). horizon runs fully offline at runtime; network is
+# only used during initial setup and optional content-pack downloads.
+
+server:
+  host: 0.0.0.0
+  port: 8080
+
+# Runtime data lives here (database, vector index, downloaded content packs).
+# Seed content from the repo `content/` directory is copied in on first run.
+data_dir: /data
+database: /data/horizon.db
+content_dir: /data/content
+
+# The local model runtime. OPTIONAL — horizon boots and serves fully offline
+# without it, and the assistant falls back to local guide search until a model
+# is reachable. Two supported providers:
+#
+#   * ollama (default) — easiest to run and maintain. With Docker, start the
+#     bundled runtime with the `ai` profile (`docker compose --profile ai up -d`)
+#     and pull a model (`ollama pull llama3.2:3b nomic-embed-text`).
+#   * openai-compatible — point horizon at an OpenAI-style /v1 endpoint you
+#     already run, e.g. a llama.cpp server (`llama-server --port 8081`). No extra
+#     container is pulled. See the commented block below.
+llm:
+  provider: ollama            # ollama | openai-compatible (e.g. llama.cpp server)
+  endpoint: http://ollama:11434
+  model: llama3.2:3b          # small, runs on Pi-class hardware
+  embedding_model: nomic-embed-text
+
+  # --- Example: connect to your own llama.cpp / OpenAI-compatible server ---
+  # Comment out the three lines above and use these instead. The endpoint is the
+  # server's OpenAI-compatible base URL (note the /v1). `model` is whatever your
+  # server serves; set `embedding_model` only if it exposes an embeddings route.
+  # provider: openai-compatible
+  # endpoint: http://192.168.1.10:8081/v1
+  # model: local-model
+  # embedding_model: nomic-embed-text
+
+vectordb:
+  provider: chroma            # embedded, persistent — no separate service
+  path: /data/chroma
+
+rag:
+  top_k: 5                    # number of guides/md-skills retrieved per question
+
+ai:
+  no_jargon_default: true     # plain-language answers by default; set false to allow jargon
+
+assistant:
+  enabled: true               # the optional chat assistant; set false to hide the Ask a question box
+                              # (env HORIZON_ASSISTANT_ENABLED overrides this at runtime)
+
+# The server-rendered web UI. On by default. horizon also ships a full
+# `horizon-admin` CLI (browse plans/guides, recommend, ask, operator upkeep), so
+# a headless node can run with the browser UI off entirely — leaving just the
+# JSON API and the CLI. Override at startup with HORIZON_WEB_ENABLED (1/true/yes/on).
+web:
+  enabled: true               # set false to serve only the JSON API + manage via horizon-admin
+
+# OPTIONAL ethics refinement via an external moral-core service.
+# Disabled by default — horizon is fully self-contained without it.
+# When enabled, draft answers are sent to `endpoint` for approve/adjust/block.
+# If moral-core is unreachable, horizon falls back to its built-in md skills.
+ethics:
+  enabled: false
+  endpoint: http://moral-core.local/api/evaluate
+
+# Low-power mode for solar / battery deployments. When on, horizon skips the
+# energy-hungry paths: it does not build the vector index on startup and the AI
+# assistant answers from local guides (keyword search) instead of running the
+# local model. The UI also switches to a flat, e-ink-friendly stylesheet.
+# Override at runtime with the HORIZON_LOW_POWER env var (1/true/yes/on) so a
+# battery-monitoring script can toggle it without editing this file or restarting.
+power:
+  low_power: false
+
+content_packs:
+  dir: /data/packs            # optional offline Wikipedia / medical ZIM / maps
+
+# Token-gated admin area (a read-only content dashboard).
+# Leave `token` blank to keep the admin area disabled. Set a strong value to
+# enable it, or override at runtime with the HORIZON_ADMIN_TOKEN env var.
+admin:
+  token: ""

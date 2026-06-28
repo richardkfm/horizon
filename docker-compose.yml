@@ -30,13 +30,11 @@ services:
       - "8080:8080"
     volumes:
       - horizon-data:/data
-      # IMPORTANT: the image only ships config.example.yaml. To apply your own
-      # config.yaml (e.g. to set admin.token), copy config.example.yaml to
-      # config.yaml, edit it, and UNCOMMENT the next line — otherwise your
-      # config.yaml is never read by the container, no matter how many times
-      # you `docker compose up --build` (the bind mount fails if the file is
-      # missing, so create it first):
-      # - ./config.yaml:/app/config.yaml:ro
+      # config.yaml is tracked in the repo with safe defaults (admin disabled,
+      # no model runtime required), so this mount always has a source — edit
+      # config.yaml directly and `docker compose up -d --force-recreate` to
+      # apply changes (e.g. setting admin.token).
+      - ./config.yaml:/app/config.yaml:ro
     # No depends_on: horizon boots and serves without any model runtime, and
     # connects to the configured llm.endpoint lazily over HTTP when present.
 

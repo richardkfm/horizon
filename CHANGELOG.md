@@ -16,13 +16,24 @@ Updating this changelog and the README is part of every user-facing change
 ### Fixed
 - README status badge and the "Status:" line still said v0.2.0 after the
   v0.4.0 release; bumped to match `pyproject.toml`.
-- `docker-compose.yml` pinned the `horizon` image to the stale `0.2.0` tag and
-  its `config.yaml` bind mount was commented out by default, so an operator
-  who set `admin.token` in `config.yaml` and ran `docker compose up --build`
-  would see the admin area still disabled — the container only ever read the
-  bundled `config.example.yaml`. Bumped the image tag to `0.4.0` and clarified
-  the bind-mount comment to spell out that it must be uncommented for
-  `config.yaml` to take effect.
+- `docker-compose.yml` pinned the `horizon` image to the stale `0.2.0` tag;
+  bumped to `0.4.0`.
+- **`config.yaml` is now tracked in the repo (with safe, all-disabled
+  defaults) and bind-mounted unconditionally in `docker-compose.yml`.**
+  Previously it was gitignored and the mount was commented out by default, so
+  an operator following the documented "copy config.example.yaml to
+  config.yaml and edit it" step would see no effect — the container only ever
+  read the bundled `config.example.yaml`, regardless of `docker compose up
+  --build`. New installs now work out of the box (`git clone && docker
+  compose up -d`, no copy step), and editing `config.yaml` always takes
+  effect after `docker compose up -d --force-recreate`.
+- Upgrading an existing `horizon-data` volume across a release that adds
+  columns to `Guide`/`Journey` (e.g. the `difficulty`/`estimated_time` move in
+  v0.3) crashed every guide/journey page with `sqlite3.OperationalError: no
+  such column`, because `init_db()` only creates missing tables, never adds
+  missing columns to an existing one. *(Tracked for a follow-up migration
+  fix — current workaround: delete `/data/horizon.db` and restart to reseed
+  from `content/`.)*
 
 ### Changed
 - **Guides are now the primary thing you browse and read.** Clicking a topic
