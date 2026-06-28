@@ -18,8 +18,10 @@
 horizon is a small, self-contained server you run on your own hardware (a
 Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
 curated **skill tree** of practical "journeys", **visual step-by-step guides**,
-and a **local AI assistant** for water, food, energy, shelter, health, and
-cooperative governance — all working **fully offline** after setup, with no
+and a **local AI assistant** across water, food, energy, shelter, health,
+cooperative governance, survival basics, culture (music, dance, games),
+essential language, crafts & repair, emergencies, plant-based cooking, and
+practical calculations — all working **fully offline** after setup, with no
 cloud dependency at runtime.
 
 horizon is about everyday autonomy and relearning basic human skills. Most of us are one dead
@@ -36,6 +38,12 @@ and without coercion.
 
 - **Skill tree ("journeys").** Capabilities modelled as a graph of journeys with
   prerequisite edges (e.g. *water testing → slow sand filtration → storage*).
+- **Thirteen skill categories.** Water, food, energy, shelter, health,
+  cooperation, survival basics, culture (music, dance, games), essential
+  language, crafts & repair, emergencies (blackouts, extreme heat/cold, air
+  raids, conflict, pandemics), plant-based cooking (vegan), and practical
+  calculations (energy sizing, areas/volumes, loads) — each with built-in
+  journeys and guides, no download required.
 - **Visual guides + print mode.** Markdown guides with images, rendered to HTML
   for the web and to a minimal, high-contrast **A4 PDF** for printing.
 - **Find your starting point.** Describe a goal in plain words and horizon

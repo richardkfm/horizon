@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
 
 from horizon.main import app
+from horizon.models import Category
 
 
 def test_landing_lists_categories():
@@ -12,6 +14,51 @@ def test_landing_lists_categories():
         resp = client.get("/")
     assert resp.status_code == 200
     assert "water" in resp.text
+
+
+def test_landing_lists_new_categories():
+    # The expanded built-in library adds survival, culture, language, and crafts.
+    with TestClient(app) as client:
+        resp = client.get("/")
+    assert resp.status_code == 200
+    for name in (
+        "survival",
+        "culture",
+        "language",
+        "crafts",
+        "emergencies",
+        "cooking",
+        "calculations",
+    ):
+        assert name in resp.text
+
+
+@pytest.mark.parametrize(
+    ("category", "expected_title"),
+    [
+        ("survival", "Make and keep a fire without matches"),
+        ("culture", "Lead group singing"),
+        ("language", "Learn and teach essential phrases"),
+        ("crafts", "Make rope and cordage from plant fibre"),
+        ("emergencies", "Prepare for and live through a long blackout"),
+        ("cooking", "Cook simple one-pot plant-based meals"),
+        ("calculations", "Size an energy system"),
+    ],
+)
+def test_new_category_journeys_listed(category, expected_title):
+    with TestClient(app) as client:
+        resp = client.get("/journeys", params={"category": category})
+    assert resp.status_code == 200
+    assert expected_title in resp.text
+
+
+def test_every_category_has_a_seeded_journey():
+    # Guard against adding a category to the enum without any content behind it.
+    with TestClient(app) as client:
+        for category in Category:
+            resp = client.get("/api/journeys", params={"category": category.value})
+            assert resp.status_code == 200
+            assert resp.json(), f"no seeded journeys for category {category.value}"
 
 
 def test_journeys_page_lists_seed_journeys():
