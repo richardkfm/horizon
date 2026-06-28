@@ -13,6 +13,7 @@ of the AI machinery exists.
 from __future__ import annotations
 
 import logging
+import os
 import shutil
 from pathlib import Path
 
@@ -102,19 +103,36 @@ def _ensure_content_dir() -> Path:
 
 
 def _bundled_content_dir() -> Path:
-    """Locate the content directory shipped in the repo.
+    """Locate the ``content/`` directory shipped with horizon.
 
-    Walks up from this module until it finds a ``content/journeys.yaml``. This
-    works for editable installs (the common dev/offline setup) where the source
-    tree is intact.
+    Resilient across install layouts, checked in order:
+
+    1. ``HORIZON_BUNDLED_CONTENT`` env var (the Docker image sets this).
+    2. ``content/`` next to the installed package (if shipped as package data).
+    3. Walking up the source tree — editable installs and running from the repo.
+    4. ``content/`` under the current working directory — covers a regular
+       ``pip install`` whose process runs from the project root (e.g. the Docker
+       image's ``WORKDIR /app`` with ``COPY content ./content``).
+
+    Without this, a non-editable install (the Docker build) would never find the
+    repo-root ``content/`` by walking up from ``site-packages`` and would crash
+    first-run seeding.
     """
     here = Path(__file__).resolve()
-    for parent in here.parents:
-        candidate = parent / "content"
+    candidates: list[Path] = []
+    env = os.environ.get("HORIZON_BUNDLED_CONTENT")
+    if env:
+        candidates.append(Path(env))
+    candidates.append(here.parent / "content")
+    candidates.extend(parent / "content" for parent in here.parents)
+    candidates.append(Path.cwd() / "content")
+
+    for candidate in candidates:
         if (candidate / "journeys.yaml").is_file():
             return candidate
     raise FileNotFoundError(
-        "Could not locate bundled content/ directory (journeys.yaml not found)."
+        "Could not locate bundled content/ directory (journeys.yaml not found). "
+        "Set HORIZON_BUNDLED_CONTENT to the directory holding journeys.yaml."
     )
 
 

@@ -39,6 +39,17 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Ship the server-rendered UI assets inside the wheel. These are not Python
+# modules, so without this a real (non-editable) ``pip install`` drops them and
+# the app crashes at startup mounting a missing ``web/static`` directory.
+[tool.setuptools.package-data]
+"horizon.web" = [
+    "static/*",
+    "static/**/*",
+    "templates/*",
+    "templates/**/*",
+]
+
 [tool.ruff]
 line-length = 100
 target-version = "py311"
