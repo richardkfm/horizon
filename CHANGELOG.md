@@ -13,6 +13,22 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **A horizon logo mark and favicon.** The header now carries a small inline-SVG
+  emblem (a sun rising over hills and water, echoing the project logo) beside the
+  wordmark, and the site ships a vendored `favicon.svg` (`/static/favicon.svg`).
+  Both are local assets — no external request — so the brand still works fully
+  offline. The wordmark also moves to a soft rounded font stack that resolves to
+  fonts already on the device.
+
+### Changed
+- **The mobile header collapses behind a menu button.** On phone-width screens
+  the navigation links used to stack into several tall rows, eating roughly half
+  the first screen. They now fold into a hamburger menu, so the header is a single
+  compact row (~60px) until tapped open. The toggle is plain JS, so it works in
+  low-power mode too; on desktop the nav stays inline as before. Verified with
+  Playwright at 375×812 and 1200×800 (zero horizontal overflow on every page).
+
 ### Fixed
 - **The Docker image no longer crash-loops on a missing `web/static` directory.**
   The server-rendered UI assets (`web/static`, `web/templates`) were not declared
