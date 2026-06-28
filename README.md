@@ -227,6 +227,23 @@ Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
 `assistant.enabled` (the chat assistant, default `true`), `power.low_power`
 (solar/battery mode), `ethics.*`, and `content_packs.dir`.
 
+**Local model runtime (optional).** horizon supports two providers; the assistant
+falls back to local guide search until one is reachable:
+
+- **Ollama (default)** — easiest to run and maintain. With Docker, start the
+  bundled runtime with the `ai` profile (`docker compose --profile ai up -d`) and
+  pull a model. This is the recommended path for most users.
+- **llama.cpp / OpenAI-compatible** — if you already run a `llama-server` (or any
+  OpenAI-style endpoint), point horizon at it instead of pulling a container:
+
+  ```yaml
+  llm:
+    provider: openai-compatible
+    endpoint: http://192.168.1.10:8081/v1   # your server's OpenAI-compatible base URL
+    model: local-model                      # whatever your server serves
+    embedding_model: nomic-embed-text        # only if it exposes an embeddings route
+  ```
+
 `web.enabled` (default `true`) controls the server-rendered web UI; turn it off
 to run a headless node with only the JSON API and the `horizon-admin` CLI.
 
