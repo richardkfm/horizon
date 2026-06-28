@@ -176,6 +176,205 @@ def dashboard(request: Request, session: SessionDep):
     )
 
 
+# --- Library browser --------------------------------------------------------
+#
+# A complete, previewable view of every guide, journey, and md skill on the
+# node, so an operator can see what is there and what is thin — the dashboard
+# only shows category counts. Reads the same SQLite metadata as the public UI
+# plus md skills straight off disk (they have no public page).
+
+
+def _skill_files() -> list[dict]:
+    """List md skills on disk with their front-matter id/title.
+
+    md skills steer the assistant's values/style and are not stored in SQLite,
+    so we read them directly from the content directory. Keyed by file *stem*
+    (a stable slug) for the preview route, since ids may repeat the filename.
+    """
+    from horizon.seed import _split_front_matter
+
+    skills_dir = Path(settings.content_dir) / "md_skills"
+    skills: list[dict] = []
+    if not skills_dir.is_dir():
+        return skills
+    for md_path in sorted(skills_dir.glob("*.md")):
+        meta, body = _split_front_matter(md_path.read_text(encoding="utf-8"))
+        skills.append(
+            {
+                "slug": md_path.stem,
+                "id": meta.get("id") or md_path.stem,
+                "title": meta.get("title") or md_path.stem,
+                "thin": len(body.strip()) < 200,
+            }
+        )
+    return skills
+
+
+@router.get("/admin/library", response_class=HTMLResponse)
+def library(request: Request, session: SessionDep):
+    """Browse the whole library: every guide, journey, and md skill on the node."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+
+    # How many journeys link each guide, so we can flag guides nothing points to.
+    link_counts: Counter[str] = Counter(session.exec(select(JourneyGuideLink.guide_id)).all())
+
+    guides = []
+    for g in session.exec(select(Guide).order_by(Guide.category, Guide.id)).all():
+        used = link_counts.get(g.id, 0)
+        flags = []
+        if not g.summary.strip():
+            flags.append("no summary")
+        if used == 0:
+            flags.append("no journey links")
+        guides.append(
+            {
+                "id": g.id,
+                "title": g.title,
+                "category": g.category.value,
+                "summary": g.summary,
+                "journeys": used,
+                "flags": flags,
+            }
+        )
+
+    guide_link_counts: Counter[str] = Counter(
+        session.exec(select(JourneyGuideLink.journey_id)).all()
+    )
+    prereq_counts: Counter[str] = Counter(
+        session.exec(select(JourneyPrerequisite.journey_id)).all()
+    )
+
+    journeys = []
+    for j in session.exec(
+        select(Journey).order_by(Journey.category, Journey.difficulty, Journey.id)
+    ).all():
+        n_guides = guide_link_counts.get(j.id, 0)
+        flags = []
+        if n_guides == 0:
+            flags.append("no guides")
+        if not j.description.strip():
+            flags.append("no description")
+        journeys.append(
+            {
+                "id": j.id,
+                "title": j.title,
+                "category": j.category.value,
+                "difficulty": j.difficulty,
+                "guides": n_guides,
+                "prerequisites": prereq_counts.get(j.id, 0),
+                "flags": flags,
+            }
+        )
+
+    skills = _skill_files()
+
+    totals = {
+        "guides": len(guides),
+        "journeys": len(journeys),
+        "skills": len(skills),
+        "thin": sum(1 for g in guides if g["flags"])
+        + sum(1 for j in journeys if j["flags"])
+        + sum(1 for s in skills if s["thin"]),
+    }
+
+    return templates.TemplateResponse(
+        request,
+        "admin/library.html",
+        {"guides": guides, "journeys": journeys, "skills": skills, "totals": totals},
+    )
+
+
+@router.get("/admin/library/guides/{guide_id}", response_class=HTMLResponse)
+def library_guide(guide_id: str, request: Request, session: SessionDep):
+    """Preview a single guide (rendered Markdown) inside the admin panel."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    from horizon.api.guides import _read_body
+    from horizon.services.markdown import render_markdown
+
+    guide = session.get(Guide, guide_id)
+    if guide is None:
+        return HTMLResponse("Guide not found", status_code=404)
+    return templates.TemplateResponse(
+        request,
+        "admin/library_item.html",
+        {
+            "kind": "Guide",
+            "title": guide.title,
+            "meta": {"id": guide.id, "category": guide.category.value, "summary": guide.summary},
+            "public_url": f"/guides/{guide.id}",
+            "body_html": render_markdown(_read_body(guide)),
+        },
+    )
+
+
+@router.get("/admin/library/skills/{slug}", response_class=HTMLResponse)
+def library_skill(slug: str, request: Request):
+    """Preview a single md skill (rendered Markdown) inside the admin panel."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    from horizon.services.markdown import render_markdown
+
+    md_path = Path(settings.content_dir) / "md_skills" / f"{slug}.md"
+    if not md_path.is_file():
+        return HTMLResponse("Skill not found", status_code=404)
+    text = md_path.read_text(encoding="utf-8")
+    from horizon.seed import _split_front_matter
+
+    meta, _ = _split_front_matter(text)
+    return templates.TemplateResponse(
+        request,
+        "admin/library_item.html",
+        {
+            "kind": "md skill",
+            "title": meta.get("title") or slug,
+            "meta": {"id": meta.get("id") or slug, "file": md_path.name},
+            "public_url": None,
+            "body_html": render_markdown(text),
+        },
+    )
+
+
+@router.get("/admin/library/journeys/{journey_id}", response_class=HTMLResponse)
+def library_journey(journey_id: str, request: Request, session: SessionDep):
+    """Preview a single journey: its metadata, prerequisites, and linked guides."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+
+    journey = session.get(Journey, journey_id)
+    if journey is None:
+        return HTMLResponse("Journey not found", status_code=404)
+
+    prereq_ids = session.exec(
+        select(JourneyPrerequisite.prerequisite_id).where(
+            JourneyPrerequisite.journey_id == journey_id
+        )
+    ).all()
+    prerequisites = [
+        {"id": p.id, "title": p.title}
+        for pid in prereq_ids
+        if (p := session.get(Journey, pid)) is not None
+    ]
+    return templates.TemplateResponse(
+        request,
+        "admin/library_journey.html",
+        {
+            "journey": {
+                "id": journey.id,
+                "title": journey.title,
+                "category": journey.category.value,
+                "difficulty": journey.difficulty,
+                "estimated_time": journey.estimated_time,
+                "description": journey.description,
+            },
+            "prerequisites": prerequisites,
+            "guides": [{"id": g.id, "title": g.title} for g in journey.guides],
+            "public_url": f"/journeys/{journey.id}",
+        },
+    )
+
+
 # --- Content packs wizard ---------------------------------------------------
 
 

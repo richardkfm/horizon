@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — Library — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/admin/library">← Library</a></p>
+
+<div class="admin-header">
+  <h1>{{ title }}</h1>
+  {% if public_url %}<a href="{{ public_url }}" class="btn">Open public page</a>{% endif %}
+</div>
+
+<p class="lib-meta">
+  <span class="category-badge">{{ kind }}</span>
+  {% for key, value in meta.items() %}
+    {% if value %}<span class="lib-id">{{ key }}: {{ value }}</span>{% endif %}
+  {% endfor %}
+</p>
+
+<article class="guide library-preview">
+  {{ body_html | safe }}
+</article>
+{% endblock %}

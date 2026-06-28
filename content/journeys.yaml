@@ -26,7 +26,7 @@ journeys:
     category: water
     difficulty: 3
     estimated_time: "3 days"
-    prerequisites: [water-testing-basics]
+    prerequisites: [water-testing-basics, water-choosing-treatment]
     guides: [water-slow-sand-filter]
 
   - id: food-staple-crops
@@ -37,7 +37,7 @@ journeys:
     category: food
     difficulty: 3
     estimated_time: "1 season"
-    prerequisites: []
+    prerequisites: [food-choosing-crops]
     guides: [food-staple-crops-500m2]
 
   - id: energy-low-tech-solar
@@ -48,7 +48,7 @@ journeys:
     category: energy
     difficulty: 3
     estimated_time: "2 days"
-    prerequisites: []
+    prerequisites: [energy-sizing-solar-battery]
     guides: [energy-low-tech-solar]
 
   - id: shelter-insulation-basics
@@ -59,7 +59,7 @@ journeys:
     category: shelter
     difficulty: 2
     estimated_time: "1 day"
-    prerequisites: []
+    prerequisites: [shelter-choosing]
     guides: [shelter-insulation-basics]
 
   - id: health-first-aid-basics
@@ -611,3 +611,50 @@ journeys:
     estimated_time: "A few hours to prepare"
     prerequisites: []
     guides: [emergency-storm]
+
+  # --- Decision journeys (v0.3): "which should I pick?" entry points. Each
+  # leads with a decision guide and is a prerequisite of the matching build
+  # journey, so a track reads "decide → build".
+  - id: water-choosing-treatment
+    title: Choose the right water treatment
+    description: >
+      Decide which filter or disinfection method fits your water source, group
+      size, and the risks — before you build anything.
+    category: water
+    difficulty: 1
+    estimated_time: "30 minutes"
+    prerequisites: []
+    guides: [water-choosing-treatment]
+
+  - id: energy-sizing-solar-battery
+    title: Size a solar + battery system
+    description: >
+      Work out the panel and battery size you actually need from your daily
+      energy use, with a worked example — before you buy or build.
+    category: energy
+    difficulty: 2
+    estimated_time: "1 hour"
+    prerequisites: []
+    guides: [energy-sizing-solar-battery]
+
+  - id: food-choosing-crops
+    title: Choose which crops to plant
+    description: >
+      Match crops to your season, climate, and goal — calories, quick food, or
+      a harvest that stores — so a first plot does not go to waste.
+    category: food
+    difficulty: 1
+    estimated_time: "45 minutes"
+    prerequisites: []
+    guides: [food-choosing-crops]
+
+  - id: shelter-choosing
+    title: Choose which shelter to build
+    description: >
+      Match the shelter to how long you need it, your climate, and the materials
+      and skills you have — the right call before the first cut.
+    category: shelter
+    difficulty: 1
+    estimated_time: "30 minutes"
+    prerequisites: []
+    guides: [shelter-choosing]

@@ -13,7 +13,39 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-06-28
+
+The "**which should I pick?**" release: horizon now helps you *decide*, not only
+*do*. New decision guides, a richer guide format for comparing options, and an
+admin library that shows the whole node at a glance.
+
 ### Added
+- **Decision guides ("which to pick").** A new kind of guide that helps a visitor
+  *choose* before they build, answerable entirely from local content: which water
+  treatment for which source and threat, how big a solar + battery system for your
+  loads (with a worked example and sizing table), which crops for your season,
+  climate, and goal, and which shelter for how long you need it and your climate.
+  Each leads a new *entry-point* journey (a "Start here" decision step) that the
+  matching build journey now builds on, so a track reads **decide → build**.
+- **Richer guide format — callouts.** Guides can mark a labelled blockquote
+  (`> **Pick this if:** …`, `> **Avoid if:** …`, `> **Spec:** …`, `Decide`,
+  `Risk`, `Tip`, `Note`) and horizon renders it as a distinct, scannable callout.
+  It is pure CommonMark under the hood, so it **degrades gracefully**: anywhere
+  the styling is absent (plain Markdown, another renderer) the bold label still
+  carries the meaning. Comparison tables already scroll responsively; callouts
+  flatten to a high-contrast rule + bold label in print and low-power/e-ink.
+- **Browse the whole library in admin.** A new **Admin → Library** page lists
+  every guide, journey, and md skill on the node — previewable in the panel
+  (rendered Markdown, including md skills, which have no public page) — and flags
+  thin content (a guide with no summary or no journey links, a journey with no
+  guides, a very short md skill) so an operator can see what's there and what
+  needs filling out.
+- **A "choosing well" md skill.** New `content/md_skills/choosing-well.md` steers
+  the assistant to help people decide honestly — start from their situation, make
+  trade-offs visible, put safety first, recommend criteria not brands — keeping
+  the new steering in content, not business logic.
+
+### Added (earlier, unreleased before 0.3.0)
 - **A skill-tree view of the plans.** The *Step-by-step plans* page no longer
   renders one undifferentiated grid: journeys are now grouped into per-topic
   tracks, each with its category icon, a plain-language example, and a plan
@@ -207,6 +239,7 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/richardkfm/horizon/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/richardkfm/horizon/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/richardkfm/horizon/releases/tag/v0.1.0
