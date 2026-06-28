@@ -3,6 +3,8 @@ id: calc-structural-loads
 title: Estimate weights and loads in building
 category: calculations
 summary: Estimate the weight a floor, beam, or roof must carry and judge safe spans with margins.
+difficulty: 4
+estimated_time: "2-3 hours"
 ---
 
 # Estimate weights and loads in building

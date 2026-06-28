@@ -3,6 +3,8 @@ id: culture-group-songs
 title: Lead group singing
 category: culture
 summary: Teach simple call-and-response and round songs anyone can join.
+difficulty: 1
+estimated_time: "1 hour"
 ---
 
 # Lead group singing

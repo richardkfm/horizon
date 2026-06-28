@@ -45,6 +45,8 @@ def get_guide(
         "title": guide.title,
         "category": guide.category.value,
         "summary": guide.summary,
+        "difficulty": guide.difficulty,
+        "estimated_time": guide.estimated_time,
         "markdown": body,
     }
     if format == "html":

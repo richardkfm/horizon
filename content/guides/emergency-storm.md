@@ -3,6 +3,8 @@ id: emergency-storm
 title: Stay safe in severe storms
 category: emergencies
 summary: Prepare for and ride out high winds, hurricanes, tornadoes, and lightning — and stay safe after.
+difficulty: 2
+estimated_time: "A few hours to prepare"
 ---
 
 # Stay safe in severe storms

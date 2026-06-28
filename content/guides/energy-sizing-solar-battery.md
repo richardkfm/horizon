@@ -3,6 +3,8 @@ id: energy-sizing-solar-battery
 title: How big a solar + battery system do you need?
 category: energy
 summary: A decision guide — work out the panel and battery size for your loads, with a worked example and sizing table.
+difficulty: 2
+estimated_time: "1 hour"
 ---
 
 # How big a solar + battery system do you need?

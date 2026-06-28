@@ -3,6 +3,8 @@ id: calc-energy-sizing
 title: Size an energy system
 category: calculations
 summary: Work out your daily energy use and size panels, turbine, and batteries to meet it.
+difficulty: 3
+estimated_time: "2-3 hours"
 ---
 
 # Size an energy system

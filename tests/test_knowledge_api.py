@@ -13,28 +13,24 @@ from horizon.main import app
 from horizon.models import Category
 
 
-def test_seed_loads_all_categories():
-    """The bundled seed covers every category and links guides/prerequisites."""
+def test_seed_loads_curated_tracks():
+    """The bundled seed exposes the curated multi-guide tracks."""
     with TestClient(app) as client:
         resp = client.get("/api/journeys")
         assert resp.status_code == 200
         journeys = resp.json()
 
     ids = {j["id"] for j in journeys}
-    # A representative journey from each category is present.
+    # The curated tracks are present…
     assert {
-        "water-testing-basics",
-        "water-slow-sand-filter",
-        "food-staple-crops",
-        "energy-low-tech-solar",
-        "shelter-insulation-basics",
-        "health-first-aid-basics",
-        "cooperation-group-decisions",
+        "safe-drinking-water",
+        "off-grid-power",
+        "build-a-shelter",
+        "grow-and-store-food",
     } <= ids
-
-    # Every category defined in the model has at least one seeded journey.
+    # …and every track sits in a known category.
     categories = {j["category"] for j in journeys}
-    assert categories == {c.value for c in Category}
+    assert categories <= {c.value for c in Category}
 
 
 def test_list_journeys_category_filter():
@@ -49,18 +45,24 @@ def test_list_journeys_category_filter():
         assert bad.status_code == 400
 
 
-def test_get_journey_detail_with_prereqs_and_guides():
+def test_get_track_detail_returns_ordered_guides():
     with TestClient(app) as client:
-        resp = client.get("/api/journeys/water-slow-sand-filter")
+        resp = client.get("/api/journeys/safe-drinking-water")
         assert resp.status_code == 200
         journey = resp.json()
 
-    assert journey["id"] == "water-slow-sand-filter"
+    assert journey["id"] == "safe-drinking-water"
     assert journey["category"] == "water"
-    prereq_ids = {p["id"] for p in journey["prerequisites"]}
-    assert "water-testing-basics" in prereq_ids
-    guide_ids = {g["id"] for g in journey["guides"]}
-    assert "water-slow-sand-filter" in guide_ids
+    # Tracks have no prerequisite graph; the key stays for shape compatibility.
+    assert journey["prerequisites"] == []
+    # Guides are returned in their stored order, and carry their own context.
+    guide_ids = [g["id"] for g in journey["guides"]]
+    assert guide_ids == [
+        "water-field-testing",
+        "water-choosing-treatment",
+        "water-slow-sand-filter",
+    ]
+    assert all("difficulty" in g and "estimated_time" in g for g in journey["guides"])
 
 
 def test_get_journey_404():

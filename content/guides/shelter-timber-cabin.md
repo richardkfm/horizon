@@ -3,6 +3,8 @@ id: shelter-timber-cabin
 title: Build a simple timber-frame cabin
 category: shelter
 summary: Frame, clad, and roof a small wooden cabin or hut for longer-term living.
+difficulty: 4
+estimated_time: "Weeks"
 ---
 
 # Build a simple timber-frame cabin

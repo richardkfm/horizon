@@ -3,6 +3,8 @@ id: calc-area-volume
 title: Calculate area and volume
 category: calculations
 summary: Measure and calculate the area and volume of rooms, gardens, tanks, and stores.
+difficulty: 1
+estimated_time: "1 hour"
 ---
 
 # Calculate area and volume

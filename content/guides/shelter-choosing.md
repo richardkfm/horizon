@@ -3,6 +3,8 @@ id: shelter-choosing
 title: Which shelter should you build?
 category: shelter
 summary: A decision guide — match the shelter to how long you need it, your climate, and the materials and skills you have.
+difficulty: 1
+estimated_time: "30 minutes"
 ---
 
 # Which shelter should you build?

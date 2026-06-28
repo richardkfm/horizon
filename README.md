@@ -17,7 +17,7 @@
 
 horizon is a small, self-contained server you run on your own hardware (a
 Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
-curated **skill tree** of practical "journeys", **visual step-by-step guides**,
+library of **visual step-by-step guides**, a few curated **step-by-step plans**,
 and a **local AI assistant** across water, food, energy, shelter, health,
 cooperative governance, survival basics, culture (music, dance, games),
 essential language, crafts & repair, emergencies, plant-based cooking, and
@@ -39,33 +39,35 @@ and without coercion.
 
 ## Features
 
-- **Skill tree ("journeys").** Capabilities modelled as a graph of journeys with
-  prerequisite edges (e.g. *water testing → slow sand filtration → storage*),
-  browsable as per-topic tracks that show entry points first and what each plan
-  builds on.
+- **Guides first, with curated "step-by-step plans".** Guides are the unit you
+  browse and read — pick a topic and go straight to the how-to. A small set of
+  **step-by-step plans** string several guides together in the order you'd work
+  through them (e.g. *test water → choose treatment → build a slow sand
+  filter*); guides outside a plan are still fully browsable from the library.
 - **Thirteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture (music, dance, games), essential
   language, crafts & repair, emergencies (natural disasters — floods,
   earthquakes, drought, wildfire, storms, radiological — plus blackouts, extreme
   heat/cold, air raids, conflict, pandemics), plant-based cooking (vegan), and
   practical calculations (energy sizing, areas/volumes, loads) — each with
-  built-in journeys and guides, no download required.
+  built-in guides, no download required.
 - **Visual guides + print mode.** Markdown guides with images, comparison
   tables, and **callouts** (`Pick this if` / `Avoid if` / `Spec` …), rendered to
   HTML for the web and to a minimal, high-contrast **A4 PDF** for printing.
 - **Decision guides ("which to pick").** Guides that help you *choose*, not only
   *do* — which water treatment for your source, how big a solar + battery system
   for your loads, which crops for your season, which shelter for your situation —
-  each a "Start here" step the matching build plan builds on.
+  each the opening guide of the matching step-by-step plan.
 - **Find your starting point.** Describe a goal in plain words and horizon
-  recommends journeys and guides to begin with, matched locally — no internet.
+  recommends guides to read (and the plans that fit) to begin with, matched
+  locally — no internet.
 - **Local AI assistant (RAG).** Answers grounded in *your* local guides and
-  "md skills", always citing the guides/journeys used — runs against a local
+  "md skills", always citing the guides used — runs against a local
   model, never the cloud. The assistant tells you its live state up front and
   can be turned off by the operator.
-- **Made for non-technical neighbours.** Plain-language navigation, "Start here"
-  journeys with a visible prerequisite path, guide search, a phone-friendly
-  responsive layout, and plain-language answers by default.
+- **Made for non-technical neighbours.** Plain-language navigation, guides that
+  open straight to the how-to, guide search, a phone-friendly responsive layout,
+  and plain-language answers by default.
 - **Comfortable to look at, day or night.** A calm "paper & ink" design with
   light and dark themes (remembered on-device, defaulting to your system
   setting). All styling is vendored — no external fonts or CDNs — and print and
@@ -177,6 +179,8 @@ first run):
   title: Harvest and store rainwater
   category: water
   summary: Collect roof runoff and store it safely.
+  difficulty: 2
+  estimated_time: "1 day"
   ---
   # ...steps, materials, risks, images...
   ```
@@ -194,9 +198,11 @@ first run):
   Labels map to `pick` / `avoid` / `spec` / `decision` / `risk` / `tip` / `note`
   (with synonyms); an unrecognised label stays an ordinary blockquote.
 
-- **Journeys** — add an entry to `content/journeys.yaml` with `id`, `title`,
-  `description`, `category`, `difficulty`, `estimated_time`, `prerequisites`
-  (other journey ids), and `guides` (guide ids).
+- **Step-by-step plans** — add an entry to `content/journeys.yaml` with `id`,
+  `title`, `description`, `category`, `difficulty`, `estimated_time`, and
+  `guides` (an **ordered** list of guide ids). A plan is only worth adding where
+  guides form a genuine "do this, then this" path; the guide order is the path
+  (there are no prerequisites). Guides need no plan to be useful.
 
 - **md skills** — `content/md_skills/<id>.md`: values, answer style, and domain
   checklists that steer the assistant. These are indexed alongside guides.
@@ -209,10 +215,10 @@ Read-only **Knowledge API**:
 
 | Method & path | Purpose |
 | --- | --- |
-| `GET /api/journeys` | List journeys (basic metadata); `?category=` to filter. |
-| `GET /api/journeys/{id}` | Full journey: prerequisites + linked guides. |
+| `GET /api/journeys` | List the curated step-by-step plans; `?category=` to filter. |
+| `GET /api/journeys/{id}` | Full plan: its guides **in order** (`prerequisites` is always `[]`). |
 | `GET /api/guides/{id}` | Guide metadata + rendered HTML (`?format=markdown` for source). |
-| `POST /api/recommend` | Suggest journeys/guides for a goal + context. |
+| `POST /api/recommend` | Suggest guides (and the plans that fit) for a goal + context. |
 
 `POST /api/recommend` example:
 
@@ -304,8 +310,8 @@ horizon-admin seed --force           # re-seed a populated db from content on di
 horizon-admin reindex                # rebuild the vector index after edits
 horizon-admin config                 # effective settings (admin token redacted)
 
-horizon-admin journeys               # browse step-by-step plans
-horizon-admin journey <id>           # one plan: prerequisites -> here -> next + guides
+horizon-admin journeys               # browse the curated step-by-step plans
+horizon-admin journey <id>           # one plan: its guides, in order
 horizon-admin guides --search water  # browse / search how-to guides
 horizon-admin guide <id>             # read a guide as terminal text (--raw for Markdown)
 horizon-admin recommend safe water   # suggest where to start for a goal
@@ -348,9 +354,9 @@ v0.1 was built in vertical slices, with the local model **last** so horizon is
 useful before any LLM is involved: data model + seed → Knowledge API → web UI →
 guide rendering + print/PDF → recommendations → RAG + AI assistant → content
 packs + admin → optional integrations → packaging. That scaffold is complete,
-and a UX layer for non-technical neighbours (plain-language navigation, the
-journey skill-path, guide search, and a verified responsive layout) now sits on
-top of it.
+and a UX layer for non-technical neighbours (plain-language navigation,
+guides-first browsing with curated step-by-step plans, guide search, and a
+verified responsive layout) now sits on top of it.
 
 The design pass (a cohesive "paper & ink" system with **dark/light theming**),
 a deeper "what to pick" content library, and the admin tools to keep a node

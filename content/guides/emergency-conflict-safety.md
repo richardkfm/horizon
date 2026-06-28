@@ -3,6 +3,8 @@ id: emergency-conflict-safety
 title: Keep your household safe during armed conflict
 category: emergencies
 summary: Plan civilian safety during invasion, unrest, or war — go-bag, documents, comms, evacuation.
+difficulty: 3
+estimated_time: "A day to prepare"
 ---
 
 # Keep your household safe during armed conflict

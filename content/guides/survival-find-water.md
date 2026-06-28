@@ -3,6 +3,8 @@ id: survival-find-water
 title: Find and collect water in the field
 category: survival
 summary: Locate, collect, and carry water from the land — then test and treat it before drinking.
+difficulty: 2
+estimated_time: "A few hours"
 ---
 
 # Find and collect water in the field

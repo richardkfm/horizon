@@ -3,6 +3,8 @@ id: language-teach-literacy
 title: Teach basic reading and writing
 category: language
 summary: Help a learner of any age start reading and writing with no special materials.
+difficulty: 2
+estimated_time: "Weeks of short sessions"
 ---
 
 # Teach basic reading and writing

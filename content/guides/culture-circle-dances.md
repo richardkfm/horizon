@@ -3,6 +3,8 @@ id: culture-circle-dances
 title: Teach simple group dances
 category: culture
 summary: Lead easy circle and line dances that need no equipment and welcome all ages.
+difficulty: 1
+estimated_time: "1 hour"
 ---
 
 # Teach simple group dances

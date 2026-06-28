@@ -3,6 +3,8 @@ id: crafts-tool-repair
 title: Sharpen and repair hand tools
 category: crafts
 summary: Keep knives, axes, and garden tools sharp, tight, and safe with simple maintenance.
+difficulty: 2
+estimated_time: "1-2 hours"
 ---
 
 # Sharpen and repair hand tools

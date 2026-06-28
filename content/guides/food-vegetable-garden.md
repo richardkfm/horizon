@@ -3,6 +3,8 @@ id: food-vegetable-garden
 title: Grow a year-round vegetable garden
 category: food
 summary: Plan beds, sow in succession, and tend a mix of vegetables for harvests across the seasons.
+difficulty: 2
+estimated_time: "1 season to establish"
 ---
 
 # Grow a year-round vegetable garden

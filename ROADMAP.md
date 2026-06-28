@@ -1,14 +1,14 @@
 # horizon roadmap — towards v0.5
 
-This roadmap builds on the experience horizon offers **today**: a browsable skill
-tree of journeys, visual guides with print/PDF, a goal-based recommender, and an
-offline local assistant — now with plain-language navigation, "Start here"
-journeys, a visible prerequisite chain, a self-describing assistant, guide
-search, a phone-friendly responsive layout, decision guides that help you
-*choose*, a richer guide format (comparison tables and callouts), an admin
-library that shows the whole node at a glance, and — new in v0.4 — a
-**check & repair** panel that lets an operator diagnose, repair, and re-seed a
-node entirely from the browser.
+This roadmap builds on the experience horizon offers **today**: a browsable
+library of visual guides (with print/PDF) you open straight to, a few curated
+step-by-step plans that thread guides together in order, a goal-based
+recommender, and an offline local assistant — now with plain-language
+navigation, a self-describing assistant, guide search, a phone-friendly
+responsive layout, decision guides that help you *choose*, a richer guide format
+(comparison tables and callouts), an admin library that shows the whole node at
+a glance, and — new in v0.4 — a **check & repair** panel that lets an operator
+diagnose, repair, and re-seed a node entirely from the browser.
 
 The focus from here is **lean and simple**: make horizon look and feel great,
 deepen the content so it actually helps you *choose*, and give the admin the few

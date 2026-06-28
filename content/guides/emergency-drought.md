@@ -3,6 +3,8 @@ id: emergency-drought
 title: Get through a drought
 category: emergencies
 summary: Stretch and protect scarce water, keep clean, and keep crops and animals alive through a dry spell.
+difficulty: 3
+estimated_time: "Ongoing"
 ---
 
 # Get through a drought

@@ -1,10 +1,10 @@
-"""Journey recommendation logic.
+"""Recommendation logic.
 
-Given a goal and simple context (people, climate, resources), rank journeys and
-collect their guides. This is deliberately pure (no LLM, no vector DB) so
-``/api/recommend`` and the scenario page work on minimal hardware and are easy to
-unit-test. Matching is a lightweight keyword overlap over the seeded journey and
-guide metadata in SQLite.
+Given a goal and simple context (people, climate, resources), rank guides (the
+primary unit a visitor reads) and the curated tracks that match. This is
+deliberately pure (no LLM, no vector DB) so ``/api/recommend`` and the scenario
+page work on minimal hardware and are easy to unit-test. Matching is a
+lightweight keyword overlap over the seeded guide and track metadata in SQLite.
 """
 
 from __future__ import annotations
@@ -128,6 +128,8 @@ def _guide_summary(guide: Guide) -> dict:
         "title": guide.title,
         "category": guide.category.value,
         "summary": guide.summary,
+        "difficulty": guide.difficulty,
+        "estimated_time": guide.estimated_time,
     }
 
 
@@ -138,10 +140,12 @@ def recommend_journeys(
     climate: str | None = None,
     resources: list[str] | None = None,
 ) -> dict:
-    """Return suggested journeys + guides for the given goal and context.
+    """Return suggested guides + tracks for the given goal and context.
 
-    ``climate`` and ``resources`` are folded into the keyword query as extra
-    signals; ``people`` is informational only (no journey field encodes group
+    Guides are the primary unit (what a visitor reads), so they are ranked
+    directly; matching tracks ("journeys") are surfaced alongside as multi-step
+    paths. ``climate`` and ``resources`` are folded into the keyword query as
+    extra signals; ``people`` is informational only (no field encodes group
     size). An empty goal yields empty results.
     """
     parts = [goal or ""]
@@ -158,6 +162,24 @@ def recommend_journeys(
         journeys = session.exec(select(Journey)).all()
         guides = session.exec(select(Guide)).all()
 
+        # Rank guides directly — they are the thing a visitor opens and reads.
+        scored_guides = [
+            (g, s)
+            for g in guides
+            if (
+                s := _score(
+                    query,
+                    title=g.title,
+                    text=g.summary,
+                    category=g.category.value,
+                )
+            )
+            > 0
+        ]
+        scored_guides.sort(key=lambda pair: (-pair[1], pair[0].difficulty, pair[0].id))
+        top_guides = [g for g, _ in scored_guides[:_TOP_N]]
+
+        # Surface curated tracks that match, as multi-step paths to follow.
         scored_journeys = [
             (j, s)
             for j in journeys
@@ -174,32 +196,7 @@ def recommend_journeys(
         scored_journeys.sort(key=lambda pair: (-pair[1], pair[0].difficulty, pair[0].id))
         top_journeys = [j for j, _ in scored_journeys[:_TOP_N]]
 
-        # Guides linked to the chosen journeys take priority, in journey order.
-        guide_order: dict[str, Guide] = {}
-        for journey in top_journeys:
-            for guide in journey.guides:
-                guide_order.setdefault(guide.id, guide)
-
-        # Add guides that match the query directly, ranked by score.
-        scored_guides = [
-            (g, s)
-            for g in guides
-            if g.id not in guide_order
-            and (
-                s := _score(
-                    query,
-                    title=g.title,
-                    text=g.summary,
-                    category=g.category.value,
-                )
-            )
-            > 0
-        ]
-        scored_guides.sort(key=lambda pair: (-pair[1], pair[0].id))
-
-        top_guides = list(guide_order.values()) + [g for g, _ in scored_guides]
-
         return {
             "journeys": [_journey_summary(j) for j in top_journeys],
-            "guides": [_guide_summary(g) for g in top_guides[:_TOP_N]],
+            "guides": [_guide_summary(g) for g in top_guides],
         }

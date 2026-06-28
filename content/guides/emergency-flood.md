@@ -3,6 +3,8 @@ id: emergency-flood
 title: Stay safe in a flood
 category: emergencies
 summary: Prepare for, survive, and recover from flooding in town or country — without entering deadly floodwater.
+difficulty: 2
+estimated_time: "A day to prepare"
 ---
 
 # Stay safe in a flood

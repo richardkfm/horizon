@@ -3,6 +3,8 @@ id: crafts-cordage
 title: Make rope and cordage from plant fibre
 category: crafts
 summary: Turn plant fibres into strong cord by reverse-wrap twisting.
+difficulty: 2
+estimated_time: "An afternoon"
 ---
 
 # Make rope and cordage from plant fibre

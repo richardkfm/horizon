@@ -3,6 +3,8 @@ id: food-staple-crops-500m2
 title: Grow staple crops on 500 m²
 category: food
 summary: Plan and grow calorie-dense staples to feed a small group through a season.
+difficulty: 3
+estimated_time: "1 season"
 ---
 
 # Grow staple crops on 500 m²

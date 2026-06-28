@@ -3,6 +3,8 @@ id: survival-knots
 title: Tie essential knots and lashings
 category: survival
 summary: A small set of reliable knots and lashings for shelter, hauling, and securing loads.
+difficulty: 1
+estimated_time: "1-2 hours"
 ---
 
 # Tie essential knots and lashings

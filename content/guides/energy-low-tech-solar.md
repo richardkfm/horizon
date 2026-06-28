@@ -3,6 +3,8 @@ id: energy-low-tech-solar
 title: Set up a small low-tech solar system
 category: energy
 summary: Size, wire, and safely run a small 12 V solar + battery system for lighting and charging.
+difficulty: 3
+estimated_time: "2 days"
 ---
 
 # Set up a small low-tech solar system

@@ -45,9 +45,10 @@ def test_landing_lists_new_categories():
         ("calculations", "Size an energy system"),
     ],
 )
-def test_new_category_journeys_listed(category, expected_title):
+def test_category_guides_listed(category, expected_title):
+    # Guides are browsed directly from the library, filtered by category.
     with TestClient(app) as client:
-        resp = client.get("/journeys", params={"category": category})
+        resp = client.get("/guides", params={"category": category})
     assert resp.status_code == 200
     assert expected_title in resp.text
 
@@ -55,7 +56,7 @@ def test_new_category_journeys_listed(category, expected_title):
 def test_emergencies_cover_natural_disasters():
     # Natural-disaster coverage in the emergencies category (urban and rural).
     with TestClient(app) as client:
-        resp = client.get("/journeys", params={"category": "emergencies"})
+        resp = client.get("/guides", params={"category": "emergencies"})
     assert resp.status_code == 200
     for title in (
         "Stay safe in a flood",
@@ -68,39 +69,60 @@ def test_emergencies_cover_natural_disasters():
         assert title in resp.text
 
 
-def test_every_category_has_a_seeded_journey():
+def test_every_category_has_a_seeded_guide():
     # Guard against adding a category to the enum without any content behind it.
+    # Guides — not tracks — are the unit that must cover every category.
     with TestClient(app) as client:
         for category in Category:
-            resp = client.get("/api/journeys", params={"category": category.value})
+            resp = client.get("/guides", params={"category": category.value})
             assert resp.status_code == 200
-            assert resp.json(), f"no seeded journeys for category {category.value}"
+            assert "No guides in this category yet" not in resp.text, (
+                f"no seeded guides for category {category.value}"
+            )
 
 
-def test_journeys_page_lists_seed_journeys():
+def test_landing_tiles_link_straight_to_guides():
+    # A category tile takes a visitor straight to the guide library, not an
+    # interstitial step-by-step plan.
+    with TestClient(app) as client:
+        resp = client.get("/")
+    assert "/guides?category=water" in resp.text
+
+
+def test_journeys_page_lists_tracks():
     with TestClient(app) as client:
         resp = client.get("/journeys")
     assert resp.status_code == 200
-    assert "Grow staple crops on 500 m" in resp.text
+    assert 'class="track-list"' in resp.text
+    assert "Set up off-grid power" in resp.text
+    # A track previews its ordered guides, each linking straight to the guide.
+    assert "/guides/energy-low-tech-solar" in resp.text
 
 
 def test_journeys_page_category_filter():
     with TestClient(app) as client:
         resp = client.get("/journeys", params={"category": "water"})
         assert resp.status_code == 200
-        assert "safe drinking water" in resp.text.lower()
+        assert "Provide safe drinking water for a group" in resp.text
 
         bad = client.get("/journeys", params={"category": "nonsense"})
         assert bad.status_code == 400
 
 
-def test_journey_detail_shows_prereqs_and_guides():
+def test_track_detail_lists_ordered_guides():
     with TestClient(app) as client:
-        resp = client.get("/journeys/water-slow-sand-filter")
+        resp = client.get("/journeys/off-grid-power")
     assert resp.status_code == 200
-    # Prerequisite journey and linked guide both appear, as clickable links.
-    assert "/journeys/water-testing-basics" in resp.text
-    assert "/guides/water-slow-sand-filter" in resp.text
+    # The track's guides appear as direct links, in order; no prerequisite
+    # scaffolding to click through.
+    for gid in (
+        "energy-sizing-solar-battery",
+        "energy-low-tech-solar",
+        "energy-battery-storage",
+        "energy-wind-power",
+    ):
+        assert f"/guides/{gid}" in resp.text
+    assert "Prerequisite" not in resp.text
 
 
 def test_journey_detail_404():
@@ -119,6 +141,16 @@ def test_guide_page_renders_markdown():
     # The print and PDF-download affordances are present.
     assert "window.print()" in resp.text
     assert "/guides/water-slow-sand-filter.pdf" in resp.text
+
+
+def test_guide_page_shows_difficulty_and_track_backlink():
+    with TestClient(app) as client:
+        resp = client.get("/guides/energy-low-tech-solar")
+    assert resp.status_code == 200
+    # The guide carries its own context now (no enclosing journey needed)…
+    assert "Difficulty" in resp.text
+    # …and links back to the curated plan it is part of.
+    assert "/journeys/off-grid-power" in resp.text
 
 
 def test_guide_page_404():
@@ -140,43 +172,6 @@ def test_guide_pdf_404():
     with TestClient(app) as client:
         resp = client.get("/guides/does-not-exist.pdf")
     assert resp.status_code == 404
-
-
-def test_entry_journey_shows_start_here_badge():
-    with TestClient(app) as client:
-        listing = client.get("/journeys")
-        detail = client.get("/journeys/water-testing-basics")  # no prerequisites
-    assert "Start here" in listing.text
-    assert "Start here" in detail.text
-
-
-def test_journeys_page_groups_into_topic_tracks():
-    # The list is grouped into per-topic "skill tracks", each with a heading and
-    # a plain-language example, rather than one undifferentiated grid.
-    with TestClient(app) as client:
-        resp = client.get("/journeys")
-    assert resp.status_code == 200
-    assert 'class="skill-track"' in resp.text
-    assert 'id="track-water"' in resp.text
-    assert "Make river or rain water safe to drink" in resp.text  # category example
-
-
-def test_journey_card_shows_builds_on_prerequisite():
-    # water-slow-sand-filter builds on water-testing-basics, so its card in the
-    # listing surfaces that prerequisite as a "Builds on …" connector.
-    with TestClient(app) as client:
-        resp = client.get("/journeys", params={"category": "water"})
-    assert resp.status_code == 200
-    assert "Builds on" in resp.text
-
-
-def test_journey_detail_shows_next_step_chain():
-    # water-testing-basics is a prerequisite of water-slow-sand-filter, so the
-    # latter should appear as a next step on the former's page.
-    with TestClient(app) as client:
-        resp = client.get("/journeys/water-testing-basics")
-    assert "What comes next" in resp.text
-    assert "/journeys/water-slow-sand-filter" in resp.text
 
 
 def test_nav_uses_plain_labels_and_hides_admin():
