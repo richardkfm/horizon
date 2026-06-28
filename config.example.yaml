@@ -13,11 +13,30 @@ data_dir: /data
 database: /data/horizon.db
 content_dir: /data/content
 
+# The local model runtime. OPTIONAL — horizon boots and serves fully offline
+# without it, and the assistant falls back to local guide search until a model
+# is reachable. Two supported providers:
+#
+#   * ollama (default) — easiest to run and maintain. With Docker, start the
+#     bundled runtime with the `ai` profile (`docker compose --profile ai up -d`)
+#     and pull a model (`ollama pull llama3.2:3b nomic-embed-text`).
+#   * openai-compatible — point horizon at an OpenAI-style /v1 endpoint you
+#     already run, e.g. a llama.cpp server (`llama-server --port 8081`). No extra
+#     container is pulled. See the commented block below.
 llm:
   provider: ollama            # ollama | openai-compatible (e.g. llama.cpp server)
   endpoint: http://ollama:11434
   model: llama3.2:3b          # small, runs on Pi-class hardware
   embedding_model: nomic-embed-text
+
+  # --- Example: connect to your own llama.cpp / OpenAI-compatible server ---
+  # Comment out the three lines above and use these instead. The endpoint is the
+  # server's OpenAI-compatible base URL (note the /v1). `model` is whatever your
+  # server serves; set `embedding_model` only if it exposes an embeddings route.
+  # provider: openai-compatible
+  # endpoint: http://192.168.1.10:8081/v1
+  # model: local-model
+  # embedding_model: nomic-embed-text
 
 vectordb:
   provider: chroma            # embedded, persistent — no separate service
