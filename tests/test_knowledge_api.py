@@ -10,6 +10,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from horizon.main import app
+from horizon.models import Category
 
 
 def test_seed_loads_all_categories():
@@ -31,8 +32,9 @@ def test_seed_loads_all_categories():
         "cooperation-group-decisions",
     } <= ids
 
+    # Every category defined in the model has at least one seeded journey.
     categories = {j["category"] for j in journeys}
-    assert categories == {"water", "food", "energy", "shelter", "health", "cooperation"}
+    assert categories == {c.value for c in Category}
 
 
 def test_list_journeys_category_filter():

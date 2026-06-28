@@ -23,6 +23,13 @@ class Category(StrEnum):
     shelter = "shelter"
     health = "health"
     cooperation = "cooperation"
+    survival = "survival"
+    culture = "culture"
+    language = "language"
+    crafts = "crafts"
+    emergencies = "emergencies"
+    cooking = "cooking"
+    calculations = "calculations"
 
 
 class JourneyPrerequisite(SQLModel, table=True):

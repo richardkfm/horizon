@@ -54,6 +54,24 @@ class AssistantConfig(BaseModel):
     enabled: bool = True
 
 
+class WebConfig(BaseModel):
+    """The server-rendered web UI.
+
+    On by default. Now that horizon ships a full ``horizon-admin`` CLI (browse
+    journeys/guides, recommend, ask the assistant, operator maintenance), a
+    headless operator can run a node with the browser UI turned off entirely —
+    leaving only the JSON API and the CLI. The ``HORIZON_WEB_ENABLED``
+    environment variable overrides ``config.yaml`` at startup, so the UI can be
+    toggled without editing the file.
+
+    Disabling the UI only removes the HTML pages, admin web area, and static
+    assets; the documented JSON API (``/api/...``) and ``/healthz`` stay up so
+    integrations and probes are unaffected.
+    """
+
+    enabled: bool = True
+
+
 class EthicsConfig(BaseModel):
     """Optional external ethics refinement (moral-core). Off by default."""
 
@@ -103,6 +121,7 @@ class Settings(BaseModel):
     rag: RAGConfig = Field(default_factory=RAGConfig)
     ai: AIConfig = Field(default_factory=AIConfig)
     assistant: AssistantConfig = Field(default_factory=AssistantConfig)
+    web: WebConfig = Field(default_factory=WebConfig)
     ethics: EthicsConfig = Field(default_factory=EthicsConfig)
     power: PowerConfig = Field(default_factory=PowerConfig)
     content_packs: ContentPacksConfig = Field(default_factory=ContentPacksConfig)
@@ -142,6 +161,19 @@ def low_power_enabled() -> bool:
     if env is not None:
         return env.strip().lower() in _TRUTHY
     return settings.power.low_power
+
+
+def web_enabled() -> bool:
+    """True when the server-rendered web UI should be mounted.
+
+    The ``HORIZON_WEB_ENABLED`` environment variable overrides ``config.yaml``
+    when set (any of ``1/true/yes/on`` enables it; anything else disables it).
+    Read at startup, when the app decides whether to mount the UI routes.
+    """
+    env = os.environ.get("HORIZON_WEB_ENABLED")
+    if env is not None:
+        return env.strip().lower() in _TRUTHY
+    return settings.web.enabled
 
 
 def assistant_enabled() -> bool:

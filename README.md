@@ -18,8 +18,10 @@
 horizon is a small, self-contained server you run on your own hardware (a
 Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
 curated **skill tree** of practical "journeys", **visual step-by-step guides**,
-and a **local AI assistant** for water, food, energy, shelter, health, and
-cooperative governance — all working **fully offline** after setup, with no
+and a **local AI assistant** across water, food, energy, shelter, health,
+cooperative governance, survival basics, culture (music, dance, games),
+essential language, crafts & repair, emergencies, plant-based cooking, and
+practical calculations — all working **fully offline** after setup, with no
 cloud dependency at runtime.
 
 horizon is about everyday autonomy and relearning basic human skills. Most of us are one dead
@@ -36,6 +38,12 @@ and without coercion.
 
 - **Skill tree ("journeys").** Capabilities modelled as a graph of journeys with
   prerequisite edges (e.g. *water testing → slow sand filtration → storage*).
+- **Thirteen skill categories.** Water, food, energy, shelter, health,
+  cooperation, survival basics, culture (music, dance, games), essential
+  language, crafts & repair, emergencies (blackouts, extreme heat/cold, air
+  raids, conflict, pandemics), plant-based cooking (vegan), and practical
+  calculations (energy sizing, areas/volumes, loads) — each with built-in
+  journeys and guides, no download required.
 - **Visual guides + print mode.** Markdown guides with images, rendered to HTML
   for the web and to a minimal, high-contrast **A4 PDF** for printing.
 - **Find your starting point.** Describe a goal in plain words and horizon
@@ -55,6 +63,10 @@ and without coercion.
   and anti-exploitation are baked into the assistant via md skills.
 - **Simple, stable APIs.** Other projects (e.g. `neighbourgood`) can link to
   journeys/guides without horizon knowing anything about them.
+- **Full command-line interface.** `horizon-admin` browses plans, guides,
+  recommendations, and assistant answers and handles operator upkeep
+  (status, health checks, reindex, seed, content packs) — so a headless node can
+  run with the web UI switched off (`web.enabled: false`).
 
 ## Quickstart (Docker, recommended)
 
@@ -199,9 +211,45 @@ Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
 `assistant.enabled` (the chat assistant, default `true`), `power.low_power`
 (solar/battery mode), `ethics.*`, and `content_packs.dir`.
 
-A few settings also honour environment overrides read at request time, so a
-script can flip them without a restart: `HORIZON_LOW_POWER`,
-`HORIZON_ASSISTANT_ENABLED`, and `HORIZON_ADMIN_TOKEN`.
+`web.enabled` (default `true`) controls the server-rendered web UI; turn it off
+to run a headless node with only the JSON API and the `horizon-admin` CLI.
+
+A few settings also honour environment overrides, so a script can flip them
+without editing `config.yaml`: `HORIZON_LOW_POWER`, `HORIZON_ASSISTANT_ENABLED`,
+and `HORIZON_ADMIN_TOKEN` are read at request time; `HORIZON_WEB_ENABLED` is read
+at startup.
+
+## Command line (`horizon-admin`)
+
+For a node with no browser, `horizon-admin` is a full operator **and** reader
+interface — everything runs offline (only `packs download` touches the network):
+
+```bash
+horizon-admin status                 # runtime + content overview (with logo)
+horizon-admin doctor                 # health-check every optional integration
+horizon-admin seed                   # load bundled content into an empty db
+horizon-admin reindex                # rebuild the vector index after edits
+horizon-admin config                 # effective settings (admin token redacted)
+
+horizon-admin journeys               # browse step-by-step plans
+horizon-admin journey <id>           # one plan: prerequisites -> here -> next + guides
+horizon-admin guides --search water  # browse / search how-to guides
+horizon-admin guide <id>             # read a guide as terminal text (--raw for Markdown)
+horizon-admin recommend safe water   # suggest where to start for a goal
+horizon-admin ask "how do I store rainwater"   # cited assistant answer (offline fallback)
+
+horizon-admin packs list             # manage offline content packs
+```
+
+Most commands accept `--json` for scripting. Run with `web.enabled: false`
+(or `HORIZON_WEB_ENABLED=0`) to serve only the JSON API and drive the node
+entirely from this CLI.
+
+**Access:** the CLI is not gated by the admin token (that token guards the
+network-exposed web admin area). Like `psql` or `systemctl`, it trusts the OS
+user — anyone who can run it can already read the database and `config.yaml`
+directly. Control access with shell login and file permissions; `horizon-admin
+config` redacts the token so it is never printed.
 
 ## Content packs
 
@@ -217,8 +265,9 @@ horizon-content download wikipedia-en-mini
 horizon-content remove wikipedia-en-mini
 ```
 
-The same operations are available as a web wizard under **Admin → Content
-packs**, which downloads in the background and shows live progress.
+The same operations are also available under `horizon-admin packs …` and as a
+web wizard under **Admin → Content packs**, which downloads in the background and
+shows live progress.
 
 ## Roadmap & changelog
 

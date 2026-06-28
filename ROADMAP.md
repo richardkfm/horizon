@@ -24,12 +24,22 @@ is a polished, well-maintained node a neighbourhood can rely on.
 
 - Skill tree of journeys + guides, prerequisite/"what comes next" chain, and
   "Start here" entry points.
+- Thirteen built-in skill categories: water, food, energy, shelter, health,
+  cooperation, survival basics, culture (music, dance, games), essential
+  language, crafts & repair, emergencies (blackouts, extreme heat/cold, air
+  raids, conflict, pandemics), plant-based cooking (vegan), and practical
+  calculations (energy sizing, areas/volumes, loads) — each seeded with journeys
+  and guides offline.
 - Visual guides → HTML + high-contrast A4 PDF; print and low-power/e-ink modes.
 - Goal-based recommendations and a guide search.
 - Offline local AI assistant (RAG over local content), always cited, that
   degrades gracefully and tells the visitor its live state up front.
 - Admin area: content dashboard, content-pack wizard, integrations status, and
   an assistant on/off toggle.
+- `horizon-admin` CLI: headless status/doctor/reindex/seed/config and pack
+  management, plus reading journeys, guides, recommendations, and assistant
+  answers from the terminal. An optional `web.enabled` switch lets a node run
+  with the browser UI off, on the API + CLI alone.
 - Plain-language UI, accessible tap targets, and a verified responsive layout.
 - A cohesive "paper & ink" design system (colour/type/space/radius/shadow
   tokens) with light and dark themes, remembered on-device and defaulting to the
@@ -39,6 +49,10 @@ The gaps we'll close next: the design system still needs the nicer skill-tree
 visuals and a consistent pass over the admin panel; the content tells you *how*
 but not always *which to pick*; and an admin can't yet diagnose or repair a node
 without a terminal.
+The gaps we'll close next: the UI is functional but plain, the content tells you
+*how* but not always *which to pick*, and — while the new CLI already diagnoses,
+repairs, and re-seeds from a terminal — an admin can't yet do that *from the
+browser panel*.
 
 ---
 
