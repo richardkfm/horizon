@@ -1,15 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Journeys — horizon{% endblock %}
+{% from "partials/_icons.html" import category_icon %}
+{% block title %}Step-by-step plans — horizon{% endblock %}
 {% block content %}
 <section class="journeys-intro">
-  <h1>Journeys</h1>
+  <h1>Step-by-step plans</h1>
   <p class="tagline">
-    Practical, step-by-step paths to autonomy. Pick a category, or browse them
-    all — each journey lists its prerequisites and linked guides.
+    Practical paths to autonomy, grouped by topic. Each plan shows where to
+    start (<span class="start-badge">Start here</span>) and what builds on what,
+    so you can follow a path rather than guess.
   </p>
 </section>
 
-<nav class="filter-bar" aria-label="Filter journeys by category">
+<nav class="filter-bar" aria-label="Filter plans by topic">
   <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/journeys">All</a>
   {% for category in categories %}
   <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
@@ -17,13 +19,25 @@
   {% endfor %}
 </nav>
 
-{% if journeys %}
-<ul class="journey-grid">
-  {% for journey in journeys %}
-  {% include "partials/_journey_card.html" %}
-  {% endfor %}
-</ul>
+{% if groups %}
+{% for group in groups %}
+<section class="skill-track" aria-labelledby="track-{{ group.category }}">
+  <header class="track-head">
+    <span class="track-icon" aria-hidden="true">{{ category_icon(group.category) }}</span>
+    <div class="track-titles">
+      <h2 id="track-{{ group.category }}">{{ group.category }}</h2>
+      {% if group.example %}<p class="track-example">{{ group.example }}</p>{% endif %}
+    </div>
+    <span class="track-count">{{ group.journeys|length }} plan{{ "" if group.journeys|length == 1 else "s" }}</span>
+  </header>
+  <ul class="journey-grid">
+    {% for journey in group.journeys %}
+    {% include "partials/_journey_card.html" %}
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
 {% else %}
-<p class="empty">No journeys in this category yet.</p>
+<p class="empty">No plans in this topic yet.</p>
 {% endif %}
 {% endblock %}

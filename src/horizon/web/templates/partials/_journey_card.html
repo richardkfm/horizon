@@ -6,6 +6,14 @@
     </span>
     <h2>{{ journey.title }}</h2>
     {% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
+    {% if journey.prerequisites %}
+    {# Plain text, not links: the whole card is already one anchor. #}
+    <p class="card-prereq">
+      <span class="prereq-arrow" aria-hidden="true">↳</span>
+      Builds on
+      {%- for prereq in journey.prerequisites %} {{ prereq.title }}{{ "," if not loop.last }}{% endfor %}
+    </p>
+    {% endif %}
     <p class="journey-meta">
       <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
       {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}

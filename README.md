@@ -40,7 +40,9 @@ and without coercion.
 ## Features
 
 - **Skill tree ("journeys").** Capabilities modelled as a graph of journeys with
-  prerequisite edges (e.g. *water testing → slow sand filtration → storage*).
+  prerequisite edges (e.g. *water testing → slow sand filtration → storage*),
+  browsable as per-topic tracks that show entry points first and what each plan
+  builds on.
 - **Thirteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture (music, dance, games), essential
   language, crafts & repair, emergencies (natural disasters — floods,

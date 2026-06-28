@@ -450,6 +450,51 @@ a:hover { color: var(--accent-strong); }
 /* "Start here" cards carry a soft accent edge to draw the eye first. */
 .journey-card.is-entry a { border-color: var(--accent); box-shadow: var(--shadow); }
 
+/* "Builds on …" connector: shows a card's place in the prerequisite path. */
+.card-prereq {
+  margin: var(--space-2) 0 0;
+  font-size: 0.8rem;
+  color: var(--muted-2);
+}
+.card-prereq .prereq-arrow { color: var(--accent); font-weight: 700; margin-right: 0.15rem; }
+
+/* Skill tree: journeys grouped into per-topic "tracks". --------------------- */
+.skill-track { margin: 0 0 var(--space-6); }
+
+.track-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+.track-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.track-icon svg { width: 1.4rem; height: 1.4rem; }
+.track-titles { flex: 1 1 auto; min-width: 0; }
+.track-titles h2 { margin: 0; text-transform: capitalize; }
+.track-example { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.track-count {
+  flex: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-pill);
+  padding: 0.15rem 0.7rem;
+  white-space: nowrap;
+}
+
 /* Journey detail ---------------------------------------------------------- */
 
 .journey-detail .journey-meta { margin-top: 0.3rem; }
@@ -735,6 +780,9 @@ body.low-power .guide blockquote { background: none; }
   .tagline { font-size: 1.05rem; }
   .filter-bar { gap: var(--space-2); }
   .journey-chain { font-size: 0.9rem; }
+  /* Keep the topic icon + title on one row; the count drops below if tight. */
+  .track-head { flex-wrap: wrap; }
+  .track-count { order: 3; }
   .recommend-form, .assistant-form { padding: var(--space-4); }
 
   /* Comfortable thumb-sized tap targets on touch screens. ~44px tall. */
