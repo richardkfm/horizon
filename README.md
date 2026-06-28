@@ -55,6 +55,10 @@ and without coercion.
 - **Made for non-technical neighbours.** Plain-language navigation, "Start here"
   journeys with a visible prerequisite path, guide search, a phone-friendly
   responsive layout, and plain-language answers by default.
+- **Comfortable to look at, day or night.** A calm "paper & ink" design with
+  light and dark themes (remembered on-device, defaulting to your system
+  setting). All styling is vendored — no external fonts or CDNs — and print and
+  low-power/e-ink modes keep their high-contrast palettes.
 - **Built-in values.** Sustainability, non-authoritarian cooperation, fairness,
   and anti-exploitation are baked into the assistant via md skills.
 - **Simple, stable APIs.** Other projects (e.g. `neighbourgood`) can link to

@@ -41,7 +41,14 @@ is a polished, well-maintained node a neighbourhood can rely on.
   answers from the terminal. An optional `web.enabled` switch lets a node run
   with the browser UI off, on the API + CLI alone.
 - Plain-language UI, accessible tap targets, and a verified responsive layout.
+- A cohesive "paper & ink" design system (colour/type/space/radius/shadow
+  tokens) with light and dark themes, remembered on-device and defaulting to the
+  system setting — print and low-power/e-ink keep their high-contrast palettes.
 
+The gaps we'll close next: the design system still needs the nicer skill-tree
+visuals and a consistent pass over the admin panel; the content tells you *how*
+but not always *which to pick*; and an admin can't yet diagnose or repair a node
+without a terminal.
 The gaps we'll close next: the UI is functional but plain, the content tells you
 *how* but not always *which to pick*, and — while the new CLI already diagnoses,
 repairs, and re-seeds from a terminal — an admin can't yet do that *from the
@@ -54,15 +61,16 @@ browser panel*.
 A focused design pass so horizon is a pleasure to use and easy on the eyes —
 without adding weight or breaking offline/low-power/print.
 
-- **Dark mode & light mode.** A theme toggle that defaults to the device's
-  `prefers-color-scheme` and remembers the choice on-device (a single display
-  preference in `localStorage` — not an account). Built on CSS custom
+- **Dark mode & light mode.** *(Shipped.)* A theme toggle that defaults to the
+  device's `prefers-color-scheme` and remembers the choice on-device (a single
+  display preference in `localStorage` — not an account). Built on CSS custom
   properties; print and low-power/e-ink keep their high-contrast palettes.
   *Users:* read comfortably day or night. *Admins:* nothing to configure.
-- **Visual redesign.** A cohesive design system — colour tokens, typography,
-  spacing, cards, and iconography — applied across the pages, including nicer
-  journey/skill-tree visuals that build on the prerequisite chain we already
-  render. *Users:* the node feels trustworthy and modern.
+- **Visual redesign.** *(Largely shipped.)* A cohesive design system — colour
+  tokens, typography, spacing, cards, and iconography — applied across the
+  pages. Still to do: nicer journey/skill-tree visuals that build on the
+  prerequisite chain we already render. *Users:* the node feels trustworthy and
+  modern.
 - **Usability polish.** Consistent components, clear focus/hover states,
   restrained motion, and a tidy mobile layout. *Users:* obvious what to tap and
   where they are.
