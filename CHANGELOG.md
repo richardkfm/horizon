@@ -52,6 +52,10 @@ Updating this changelog and the README is part of every user-facing change
 - **Energy production content** — new guides for generating power from a small
   wind turbine, storing and managing power in a battery bank, and heating water
   with the sun, added to the existing `energy` category.
+- **Natural-disaster guides** — the `emergencies` category gains civilian-safety
+  guidance for floods, earthquakes, drought, nuclear/radiological emergencies,
+  wildfires, and severe storms (high wind, hurricanes, tornadoes, lightning),
+  each written for both urban and out-of-town/rural settings.
 - **`horizon-admin` CLI** — a full headless operator + reader interface for a
   node with no browser. Maintenance: `status` (runtime + content overview with
   an ASCII banner), `doctor` (health-check every optional integration, non-zero

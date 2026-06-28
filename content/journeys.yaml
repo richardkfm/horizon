@@ -543,3 +543,71 @@ journeys:
     estimated_time: "2-3 hours"
     prerequisites: [calc-area-volume]
     guides: [calc-structural-loads]
+
+  # --- Emergencies: natural disasters (urban and out of town) ---
+
+  - id: emergency-flood
+    title: Stay safe in a flood
+    description: >
+      Prepare for, survive, and recover from flooding in town or in the country —
+      moving to safety, avoiding deadly floodwater, and coming back safely.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A day to prepare"
+    prerequisites: []
+    guides: [emergency-flood]
+
+  - id: emergency-earthquake
+    title: Stay safe in an earthquake
+    description: >
+      Protect yourself during the shaking and handle the aftermath — aftershocks,
+      gas and structural hazards — in a city building or a remote area.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A few hours to prepare"
+    prerequisites: []
+    guides: [emergency-earthquake]
+
+  - id: emergency-drought
+    title: Get through a drought
+    description: >
+      Stretch and protect scarce water, keep clean, and keep crops and animals
+      alive through a long dry spell, in town or on the land.
+    category: emergencies
+    difficulty: 3
+    estimated_time: "Ongoing"
+    prerequisites: []
+    guides: [emergency-drought]
+
+  - id: emergency-radiation
+    title: Stay safe in a nuclear or radiological emergency
+    description: >
+      Protect yourself from a radioactive release — get inside, stay inside, stay
+      tuned — including sheltering, decontamination, and when iodine helps.
+    category: emergencies
+    difficulty: 3
+    estimated_time: "1-2 hours to plan"
+    prerequisites: []
+    guides: [emergency-radiation]
+
+  - id: emergency-wildfire
+    title: Stay safe in a wildfire
+    description: >
+      Reduce fire risk around a home, leave early and safely, cope with smoke, and
+      know what to do if fire approaches — at the city edge or in the country.
+    category: emergencies
+    difficulty: 3
+    estimated_time: "A day to prepare"
+    prerequisites: []
+    guides: [emergency-wildfire]
+
+  - id: emergency-storm
+    title: Stay safe in severe storms
+    description: >
+      Prepare for and ride out high winds, hurricanes, tornadoes, and lightning,
+      and stay safe afterwards, whether in a city or exposed countryside.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "A few hours to prepare"
+    prerequisites: []
+    guides: [emergency-storm]

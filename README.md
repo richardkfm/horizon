@@ -40,10 +40,11 @@ and without coercion.
   prerequisite edges (e.g. *water testing → slow sand filtration → storage*).
 - **Thirteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture (music, dance, games), essential
-  language, crafts & repair, emergencies (blackouts, extreme heat/cold, air
-  raids, conflict, pandemics), plant-based cooking (vegan), and practical
-  calculations (energy sizing, areas/volumes, loads) — each with built-in
-  journeys and guides, no download required.
+  language, crafts & repair, emergencies (natural disasters — floods,
+  earthquakes, drought, wildfire, storms, radiological — plus blackouts, extreme
+  heat/cold, air raids, conflict, pandemics), plant-based cooking (vegan), and
+  practical calculations (energy sizing, areas/volumes, loads) — each with
+  built-in journeys and guides, no download required.
 - **Visual guides + print mode.** Markdown guides with images, rendered to HTML
   for the web and to a minimal, high-contrast **A4 PDF** for printing.
 - **Find your starting point.** Describe a goal in plain words and horizon
