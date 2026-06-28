@@ -14,6 +14,15 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Fixed
+- **The Docker image no longer crash-loops on a missing `web/static` directory.**
+  The server-rendered UI assets (`web/static`, `web/templates`) were not declared
+  as package data, so a real `pip install .` (the Docker build) dropped them and
+  the app died at startup mounting a non-existent directory — looping forever
+  under `restart: unless-stopped`. They are now shipped in the wheel. The bundled
+  seed `content/` is likewise located across install layouts (new
+  `HORIZON_BUNDLED_CONTENT` override, set by the image) so first-run seeding works
+  when horizon is installed away from the source tree. Verified by installing the
+  built wheel into a clean environment and booting it.
 - **A malformed `config.yaml` no longer crash-loops the node.** Settings are
   loaded at import time, so an invalid or badly-indented `config.yaml` used to
   raise during startup — under Docker's `restart: unless-stopped` that meant an

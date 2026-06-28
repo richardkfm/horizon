@@ -19,6 +19,11 @@ COPY config.example.yaml ./
 
 RUN pip install --no-cache-dir .
 
+# The web UI assets ship inside the wheel (see pyproject package-data); the
+# bundled seed content stays at /app/content and is located via this env var on
+# first run (it is copied into the /data volume, then served from there).
+ENV HORIZON_BUNDLED_CONTENT=/app/content
+
 # Runtime data (database, vector index, content packs) lives on a volume.
 VOLUME ["/data"]
 EXPOSE 8080
