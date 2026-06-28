@@ -45,6 +45,9 @@ is a polished, well-maintained node a neighbourhood can rely on.
 - A cohesive "paper & ink" design system (colour/type/space/radius/shadow
   tokens) with light and dark themes, remembered on-device and defaulting to the
   system setting — print and low-power/e-ink keep their high-contrast palettes.
+- A skill-tree view of the plans: journeys grouped into per-topic tracks with
+  shared category icons, entry points first, and a "Builds on …" connector that
+  surfaces the prerequisite path on each card.
 - Brand and mobile polish: a vendored logo mark + favicon, a softer wordmark,
   and a collapsible phone-width header — verified at 375×812 with zero
   horizontal overflow.
@@ -57,8 +60,7 @@ The gaps we'll close next: the content tells you *how* but not always *which to
 pick*; the admin panel shows category counts but you can't yet browse the actual
 library from the browser; and — while the `horizon-admin` CLI already diagnoses,
 repairs, and re-seeds from a terminal — an admin can't yet do that *from the
-browser panel*. The remaining design touch is nicer journey/skill-tree visuals
-on top of the prerequisite chain we already render.
+browser panel*.
 
 ---
 

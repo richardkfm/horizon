@@ -150,6 +150,26 @@ def test_entry_journey_shows_start_here_badge():
     assert "Start here" in detail.text
 
 
+def test_journeys_page_groups_into_topic_tracks():
+    # The list is grouped into per-topic "skill tracks", each with a heading and
+    # a plain-language example, rather than one undifferentiated grid.
+    with TestClient(app) as client:
+        resp = client.get("/journeys")
+    assert resp.status_code == 200
+    assert 'class="skill-track"' in resp.text
+    assert 'id="track-water"' in resp.text
+    assert "Make river or rain water safe to drink" in resp.text  # category example
+
+
+def test_journey_card_shows_builds_on_prerequisite():
+    # water-slow-sand-filter builds on water-testing-basics, so its card in the
+    # listing surfaces that prerequisite as a "Builds on …" connector.
+    with TestClient(app) as client:
+        resp = client.get("/journeys", params={"category": "water"})
+    assert resp.status_code == 200
+    assert "Builds on" in resp.text
+
+
 def test_journey_detail_shows_next_step_chain():
     # water-testing-basics is a prerequisite of water-slow-sand-filter, so the
     # latter should appear as a next step on the former's page.

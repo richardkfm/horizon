@@ -89,17 +89,48 @@ def journeys_page(
     statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
     journeys = [_journey_summary(j) for j in session.exec(statement).all()]
 
-    # Mark entry-point journeys (no prerequisites) so the list can flag a safe
-    # place to begin for visitors who don't know where to start.
-    has_prereqs = set(session.exec(select(JourneyPrerequisite.journey_id).distinct()).all())
+    # Prerequisite edges, fetched once: which journeys have prerequisites (so we
+    # can flag entry points) and, per journey, what it builds on. A prerequisite
+    # may live in another category, so resolve titles from a global id→title map.
+    has_prereqs: set[str] = set()
+    prereq_ids: dict[str, list[str]] = {}
+    for jid, pid in session.exec(
+        select(JourneyPrerequisite.journey_id, JourneyPrerequisite.prerequisite_id)
+    ).all():
+        has_prereqs.add(jid)
+        prereq_ids.setdefault(jid, []).append(pid)
+    titles = dict(session.exec(select(Journey.id, Journey.title)).all())
+
     for journey in journeys:
         journey["is_entry"] = journey["id"] not in has_prereqs
+        journey["prerequisites"] = [
+            {"id": pid, "title": titles[pid]}
+            for pid in prereq_ids.get(journey["id"], [])
+            if pid in titles
+        ]
+
+    # Group into per-category "skill tracks" in the fixed category order, with
+    # entry points first within each so a track reads as a path: start here →
+    # what builds on it.
+    groups = []
+    for cat in Category:
+        items = [j for j in journeys if j["category"] == cat.value]
+        if not items:
+            continue
+        items.sort(key=lambda j: (not j["is_entry"], j["difficulty"], j["id"]))
+        groups.append(
+            {
+                "category": cat.value,
+                "example": CATEGORY_EXAMPLES.get(cat.value, ""),
+                "journeys": items,
+            }
+        )
 
     return templates.TemplateResponse(
         request,
         "journeys.html",
         {
-            "journeys": journeys,
+            "groups": groups,
             "categories": CATEGORIES,
             "selected_category": category,
         },

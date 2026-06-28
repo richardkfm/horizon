@@ -14,6 +14,16 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **A skill-tree view of the plans.** The *Step-by-step plans* page no longer
+  renders one undifferentiated grid: journeys are now grouped into per-topic
+  tracks, each with its category icon, a plain-language example, and a plan
+  count. Within a track, entry points come first (still flagged *Start here*)
+  and any journey that builds on another shows a "Builds on …" connector, so the
+  prerequisite path is visible while browsing — not only on the detail page. The
+  category icons are factored into a shared template macro reused by the home
+  page, keeping the iconography consistent and fully offline (inline SVG, no
+  external requests). Verified with Playwright at 375×812 and 1200×800 (zero
+  horizontal overflow on every page).
 - **A horizon logo mark and favicon.** The header now carries a small inline-SVG
   emblem (a sun rising over hills and water, echoing the project logo) beside the
   wordmark, and the site ships a vendored `favicon.svg` (`/static/favicon.svg`).
