@@ -28,6 +28,11 @@ STATIC_DIR = Path(__file__).parent / "web" / "static"
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialise DB, seed content, and build the index on startup."""
+    # Capture recent log events in memory first, so the admin health feed shows
+    # the seed/index lifespan steps and any later repairs.
+    from horizon.services.eventlog import install as install_event_log
+
+    install_event_log()
     init_db()
     # Seeding and indexing are implemented in later steps; keep startup resilient
     # so the app boots even before that logic exists.

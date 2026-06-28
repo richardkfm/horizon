@@ -83,6 +83,56 @@ def seed_if_empty() -> None:
         )
 
 
+def reseed() -> dict:
+    """Wipe the content tables and reload bundled content from disk.
+
+    Unlike :func:`seed_if_empty`, this runs even when the database is already
+    populated — it is the "re-seed from the panel" repair: an operator who has
+    edited or corrupted their content directory (or whose metadata has drifted
+    from the files on disk) can rebuild the SQLite metadata from the content
+    directory without a restart or the command line.
+
+    Returns a small before/after summary so the caller can show what changed.
+    Only metadata is touched (journeys, guides, and the edge tables); the
+    Markdown files on disk and the vector index are left alone — callers reindex
+    separately so the heavy embedding step stays opt-in and low-power-aware.
+    """
+    with Session(engine) as session:
+        before = {
+            "journeys": len(session.exec(select(Journey)).all()),
+            "guides": len(session.exec(select(Guide)).all()),
+        }
+
+        # Clear edges first so foreign keys resolve, then the nodes.
+        for link in session.exec(select(JourneyGuideLink)).all():
+            session.delete(link)
+        for edge in session.exec(select(JourneyPrerequisite)).all():
+            session.delete(edge)
+        for guide in session.exec(select(Guide)).all():
+            session.delete(guide)
+        for journey in session.exec(select(Journey)).all():
+            session.delete(journey)
+        session.commit()
+
+    # seed_if_empty is now a no-op-free path: the tables are empty, so it reloads
+    # from the content directory (copying bundled content if it is missing).
+    seed_if_empty()
+
+    with Session(engine) as session:
+        after = {
+            "journeys": len(session.exec(select(Journey)).all()),
+            "guides": len(session.exec(select(Guide)).all()),
+        }
+    logger.info(
+        "Re-seeded content: journeys %d -> %d, guides %d -> %d",
+        before["journeys"],
+        after["journeys"],
+        before["guides"],
+        after["guides"],
+    )
+    return {"before": before, "after": after}
+
+
 def _ensure_content_dir() -> Path:
     """Return the live content directory, copying bundled content on first run.
 

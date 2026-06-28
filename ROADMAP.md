@@ -4,9 +4,11 @@ This roadmap builds on the experience horizon offers **today**: a browsable skil
 tree of journeys, visual guides with print/PDF, a goal-based recommender, and an
 offline local assistant — now with plain-language navigation, "Start here"
 journeys, a visible prerequisite chain, a self-describing assistant, guide
-search, a phone-friendly responsive layout, and — new in v0.3 — **decision
-guides** that help you *choose*, a richer guide format (comparison tables and
-callouts), and an admin library that shows the whole node at a glance.
+search, a phone-friendly responsive layout, decision guides that help you
+*choose*, a richer guide format (comparison tables and callouts), an admin
+library that shows the whole node at a glance, and — new in v0.4 — a
+**check & repair** panel that lets an operator diagnose, repair, and re-seed a
+node entirely from the browser.
 
 The focus from here is **lean and simple**: make horizon look and feel great,
 deepen the content so it actually helps you *choose*, and give the admin the few
@@ -21,6 +23,24 @@ Milestones are vertical and shippable: each one is useful on its own, and v0.5
 is a polished, well-maintained node a neighbourhood can rely on.
 
 ---
+
+## Where we are — v0.4.0 (shipped)
+
+- **A maintainable node — check & repair.** A new **Admin → Check & repair**
+  panel (and the headless `horizon-admin check`) gives an operator a
+  plain-language health view of the node: broken prerequisite/guide links,
+  guides with no file on disk, missing guide images, orphaned or duplicated
+  content, whether the search index is present and current, and — opt-in — the
+  model runtime. Each problem is listed with the specific offending items.
+- **One-click repairs, low-power-aware.** Rebuild the search index and re-seed
+  the content metadata from disk straight from the browser, with a clear
+  before/after summary; the energy-hungry index build is paused under low-power
+  mode rather than hammering a weak supply. Repairs run over HTMX with a live
+  result banner and degrade to a plain form post with no JavaScript. The CLI
+  gains `horizon-admin seed --force` as the headless re-seed.
+- **A recent-events feed.** A small in-memory ring buffer shows what the node
+  has been doing (seeding, indexing, repairs, embedding fall-backs) on the
+  health page, so an operator can debug without tailing a log file.
 
 ## Where we are — v0.3.0 (shipped)
 
@@ -77,34 +97,11 @@ is a polished, well-maintained node a neighbourhood can rely on.
   assets and locates bundled content across install layouts, static assets are
   cache-busted, and a malformed `config.yaml` no longer crash-loops the node.
 
-The gap we'll close next: while the `horizon-admin` CLI already diagnoses,
-repairs, and re-seeds from a terminal — and the admin panel can now *browse* the
-whole library — an admin still can't *diagnose, repair, or re-seed* from the
-browser panel, and there's no health view that surfaces broken links, missing
-images, or unindexed content in plain language.
-
----
-
-## v0.4 — A maintainable node (admin tooling)
-
-Give the operator the handful of tools they need to keep a node healthy —
-without SSH, restarts, or guesswork.
-
-- **Check & repair feed (diagnostics).** A health view that surfaces real
-  problems: broken prerequisite/guide links, missing guide images, content not
-  in the search/RAG index, an unreachable model runtime, orphaned or duplicate
-  content, and a readable recent-events/log feed for debugging. *Admins:* see
-  what's wrong, in plain language, in one place.
-- **One-click repair.** Fix what the checks find: rebuild the search/vector
-  index, refresh links, clear caches — low-power-aware so it won't hammer a weak
-  supply. *Admins:* resolve issues from the browser.
-- **Re-seed from the panel.** Re-seed bundled content and re-index on demand
-  (today this needs a restart), with a clear before/after summary. *Admins:*
-  recover or refresh a node safely without the command line.
-
-**v0.4 done when:** an admin can diagnose, repair, and re-seed a node entirely
-from the admin panel, and the feed tells them honestly whether the node is
-healthy.
+The gap we'll close next: the design system isn't yet applied consistently
+across every page and the admin panel, and there's no dedicated accessibility &
+responsive pass (keyboard/screen-reader review, a tablet breakpoint, a
+larger-text/high-contrast option) — the work that turns a maintainable node into
+a release a neighbourhood can rely on.
 
 ---
 

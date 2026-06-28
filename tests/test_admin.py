@@ -103,3 +103,66 @@ def test_admin_library_previews(monkeypatch):
 
         missing = client.get("/admin/library/guides/does-not-exist")
         assert missing.status_code == 404
+
+
+def test_admin_health_requires_login(monkeypatch):
+    monkeypatch.setenv("HORIZON_ADMIN_TOKEN", TOKEN)
+    with TestClient(app) as client:
+        resp = client.get("/admin/health", follow_redirects=False)
+        assert resp.status_code == 303
+        assert resp.headers["location"] == "/admin/login"
+
+
+def test_admin_health_page_renders_checks_and_feed(monkeypatch):
+    monkeypatch.setenv("HORIZON_ADMIN_TOKEN", TOKEN)
+    with TestClient(app) as client:
+        client.post("/admin/login", data={"token": TOKEN})
+        page = client.get("/admin/health")
+        assert page.status_code == 200
+        # The diagnostics, repairs, and event feed are all present.
+        assert "Checks" in page.text
+        assert "Database" in page.text
+        assert "Search index" in page.text
+        assert "Rebuild search index" in page.text
+        assert "Re-seed content" in page.text
+        assert "Recent events" in page.text
+
+
+def test_admin_health_reseed_repair_via_htmx(monkeypatch):
+    monkeypatch.setenv("HORIZON_ADMIN_TOKEN", TOKEN)
+    with TestClient(app) as client:
+        client.post("/admin/login", data={"token": TOKEN})
+        # An HTMX repair returns the refreshed body fragment with a result banner.
+        resp = client.post(
+            "/admin/health/repair",
+            data={"action": "reseed"},
+            headers={"HX-Request": "true"},
+        )
+        assert resp.status_code == 200
+        assert "Re-seeded content from disk" in resp.text
+        # The fragment is the live region, not a full page.
+        assert "<!DOCTYPE html>" not in resp.text
+
+
+def test_admin_health_repair_without_js_redirects(monkeypatch):
+    monkeypatch.setenv("HORIZON_ADMIN_TOKEN", TOKEN)
+    with TestClient(app) as client:
+        client.post("/admin/login", data={"token": TOKEN})
+        # No HX-Request header: a plain form post redirects (PRG) back to the page.
+        resp = client.post(
+            "/admin/health/repair",
+            data={"action": "reindex"},
+            follow_redirects=False,
+        )
+        assert resp.status_code == 303
+        assert resp.headers["location"] == "/admin/health"
+
+
+def test_admin_health_repair_requires_login(monkeypatch):
+    monkeypatch.setenv("HORIZON_ADMIN_TOKEN", TOKEN)
+    with TestClient(app) as client:
+        resp = client.post(
+            "/admin/health/repair", data={"action": "reseed"}, follow_redirects=False
+        )
+        assert resp.status_code == 303
+        assert resp.headers["location"] == "/admin/login"

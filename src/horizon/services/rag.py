@@ -178,6 +178,52 @@ def reindex_content() -> None:
         logger.warning("Vector index build failed; using keyword fallback: %s", exc)
 
 
+def index_stats() -> dict:
+    """Describe the vector index versus the content on disk, cheaply.
+
+    Used by the admin health view to tell an operator whether the search index
+    is present and current. Deliberately needs **no** embedding model: it only
+    counts on-disk chunks and reads the existing Chroma collection's size, so it
+    is safe to run on every page load and in low-power mode.
+
+    Returns ``chromadb_installed`` (is the optional ``ai`` extra present),
+    ``index_built`` (does the collection exist), ``indexed_chunks`` (its size, or
+    ``None``), and ``disk_chunks`` (chunks the current content would produce).
+    """
+    try:
+        disk_chunks: int | None = len(_load_chunks())
+    except Exception:  # noqa: BLE001 - report rather than crash the health view
+        disk_chunks = None
+
+    try:
+        chromadb = _import_chromadb()
+    except ImportError:
+        return {
+            "chromadb_installed": False,
+            "index_built": False,
+            "indexed_chunks": None,
+            "disk_chunks": disk_chunks,
+        }
+
+    try:
+        client = chromadb.PersistentClient(path=settings.vectordb.path)
+        collection = client.get_collection(_COLLECTION)
+        indexed = collection.count()
+        return {
+            "chromadb_installed": True,
+            "index_built": True,
+            "indexed_chunks": indexed,
+            "disk_chunks": disk_chunks,
+        }
+    except Exception:  # noqa: BLE001 - collection absent or store unreadable
+        return {
+            "chromadb_installed": True,
+            "index_built": False,
+            "indexed_chunks": None,
+            "disk_chunks": disk_chunks,
+        }
+
+
 # --- Retrieval --------------------------------------------------------------
 
 

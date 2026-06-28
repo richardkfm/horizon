@@ -87,3 +87,25 @@ def test_packs_list_empty(capsys):
     # The hermetic temp content dir ships no packs.yaml, so the catalog is empty.
     out = capsys.readouterr().out
     assert "content packs" in out.lower() or "PACK" in out
+
+
+def test_check_reports_healthy_node(seeded, capsys):
+    # A freshly seeded node has no hard failures: exit code 0.
+    assert cli.main(["check", "--json"]) == 0
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["healthy"] is True
+    ids = {c["id"] for c in payload["checks"]}
+    assert {"database", "guide_files", "search_index"} <= ids
+
+
+def test_check_human_output(seeded, capsys):
+    assert cli.main(["check", "--no-logo"]) == 0
+    out = capsys.readouterr().out
+    assert "Database" in out
+    assert "ok" in out
+
+
+def test_seed_force_reseeds_populated_db(seeded, capsys):
+    assert cli.main(["seed", "--force"]) == 0
+    out = capsys.readouterr().out
+    assert "Re-seeded" in out
