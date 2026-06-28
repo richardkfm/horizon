@@ -45,42 +45,20 @@ is a polished, well-maintained node a neighbourhood can rely on.
 - A cohesive "paper & ink" design system (colour/type/space/radius/shadow
   tokens) with light and dark themes, remembered on-device and defaulting to the
   system setting — print and low-power/e-ink keep their high-contrast palettes.
+- Brand and mobile polish: a vendored logo mark + favicon, a softer wordmark,
+  and a collapsible phone-width header — verified at 375×812 with zero
+  horizontal overflow.
+- A lean, robust install: `chromadb` is now the optional `ai` extra (the default
+  `pip install` and Docker image are small and fast), the wheel ships the web
+  assets and locates bundled content across install layouts, static assets are
+  cache-busted, and a malformed `config.yaml` no longer crash-loops the node.
 
-The gaps we'll close next: the design system still needs the nicer skill-tree
-visuals and a consistent pass over the admin panel; the content tells you *how*
-but not always *which to pick*; and an admin can't yet diagnose or repair a node
-without a terminal.
-The gaps we'll close next: the UI is functional but plain, the content tells you
-*how* but not always *which to pick*, and — while the new CLI already diagnoses,
+The gaps we'll close next: the content tells you *how* but not always *which to
+pick*; the admin panel shows category counts but you can't yet browse the actual
+library from the browser; and — while the `horizon-admin` CLI already diagnoses,
 repairs, and re-seeds from a terminal — an admin can't yet do that *from the
-browser panel*.
-
----
-
-## v0.2 — Look & feel (make it cool, make it comfortable)
-
-A focused design pass so horizon is a pleasure to use and easy on the eyes —
-without adding weight or breaking offline/low-power/print.
-
-- **Dark mode & light mode.** *(Shipped.)* A theme toggle that defaults to the
-  device's `prefers-color-scheme` and remembers the choice on-device (a single
-  display preference in `localStorage` — not an account). Built on CSS custom
-  properties; print and low-power/e-ink keep their high-contrast palettes.
-  *Users:* read comfortably day or night. *Admins:* nothing to configure.
-- **Visual redesign.** *(Largely shipped.)* A cohesive design system — colour
-  tokens, typography, spacing, cards, and iconography — applied across the
-  pages. Still to do: nicer journey/skill-tree visuals that build on the
-  prerequisite chain we already render. *Users:* the node feels trustworthy and
-  modern.
-- **Usability polish.** Consistent components, clear focus/hover states,
-  restrained motion, and a tidy mobile layout. *Users:* obvious what to tap and
-  where they are.
-- **Still offline & frugal.** No external fonts/CDNs; everything vendored; must
-  render acceptably in print and on weak/e-ink hardware.
-
-**v0.2 done when:** horizon looks polished, switches cleanly between dark and
-light, and still prints and runs on a Raspberry Pi without regressions —
-verified at a real phone width.
+browser panel*. The remaining design touch is nicer journey/skill-tree visuals
+on top of the prerequisite chain we already render.
 
 ---
 

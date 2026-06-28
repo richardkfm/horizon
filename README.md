@@ -326,11 +326,11 @@ and a UX layer for non-technical neighbours (plain-language navigation, the
 journey skill-path, guide search, and a verified responsive layout) now sits on
 top of it.
 
-The path from here stays lean and open (no accounts, no profiles, no tracking):
-a design pass with **dark/light theming**, a deeper "what to pick" content
-library, and the admin tools to keep a node healthy (a check & repair
-diagnostics feed, and re-seeding from the panel) — see **[ROADMAP.md](ROADMAP.md)**
-for the plan towards v0.5.
+The design pass (a cohesive "paper & ink" system with **dark/light theming**)
+has shipped. The path from here stays lean and open (no accounts, no profiles,
+no tracking): a deeper "what to pick" content library, and the admin tools to
+keep a node healthy (a check & repair diagnostics feed, and re-seeding from the
+panel) — see **[ROADMAP.md](ROADMAP.md)** for the plan towards v0.5.
 
 Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 
