@@ -7,11 +7,14 @@ horizon stays functional if they are unreachable.
 
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
 
 import yaml
 from pydantic import BaseModel, Field
+
+logger = logging.getLogger("horizon")
 
 
 class ServerConfig(BaseModel):
@@ -134,12 +137,30 @@ def _config_path() -> Path:
 
 
 def load_settings() -> Settings:
-    """Load settings from ``config.yaml`` if present, else use defaults."""
+    """Load settings from ``config.yaml`` if present, else use defaults.
+
+    Resilient by design: a malformed or invalid ``config.yaml`` must never take
+    the node down. ``load_settings`` runs at import time, so an unhandled error
+    here would crash startup — under Docker's ``restart: unless-stopped`` that is
+    an endless restart loop with nothing served. Instead we log a clear, loud
+    warning naming the file and the problem, and fall back to built-in defaults
+    so the node still boots and serves its local content (offline-first).
+    """
     path = _config_path()
-    if path.is_file():
+    if not path.is_file():
+        return Settings()
+    try:
         data = yaml.safe_load(path.read_text()) or {}
         return Settings.model_validate(data)
-    return Settings()
+    except Exception as exc:  # noqa: BLE001 - never crash startup on a bad config
+        logger.error(
+            "Could not load configuration from %s: %s. Falling back to built-in "
+            "defaults so the node still starts — fix the file and restart to apply "
+            "your settings.",
+            path,
+            exc,
+        )
+        return Settings()
 
 
 # Singleton settings instance used across the app.
