@@ -18,14 +18,22 @@ dependencies = [
     "python-multipart>=0.0.9",   # form uploads (admin guide upload)
     "markdown-it-py>=3.0",        # Markdown -> HTML
     "weasyprint>=61.0",           # HTML -> A4 PDF (print mode)
-    "chromadb>=0.5",              # embedded vector DB
     "httpx>=0.27",                # Ollama / moral-core HTTP client
 ]
 
 [project.optional-dependencies]
+# Vector search for the AI assistant. Kept optional because chromadb pulls a
+# large, mostly-unused tree (onnxruntime, tokenizers, huggingface-hub, grpcio,
+# …) — horizon supplies its own embeddings (Ollama/llama.cpp) and never uses
+# Chroma's bundled model. Without this extra, retrieval falls back to keyword
+# search, so the app still boots and answers fully offline.
+ai = [
+    "chromadb>=0.5",
+]
 dev = [
     "pytest>=8.0",
     "ruff>=0.4",
+    "chromadb>=0.5",   # exercise the vector path in tests when a model is present
 ]
 
 [project.scripts]

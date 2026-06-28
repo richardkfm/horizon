@@ -28,8 +28,26 @@ Updating this changelog and the README is part of every user-facing change
   compact row (~60px) until tapped open. The toggle is plain JS, so it works in
   low-power mode too; on desktop the nav stays inline as before. Verified with
   Playwright at 375×812 and 1200×800 (zero horizontal overflow on every page).
+- **`chromadb` is now the optional `ai` extra, not a core dependency.** It pulled
+  a large, mostly-unused tree (onnxruntime, tokenizers, huggingface-hub, grpcio,
+  kubernetes, …) on every install and Docker build, even though horizon supplies
+  its own embeddings (Ollama/llama.cpp) and never uses Chroma's bundled model.
+  The default `pip install .` and Docker image are now lean and fast to build;
+  vector search is opt-in via `pip install '.[ai]'` or
+  `docker build --build-arg INSTALL_EXTRAS=ai`. Retrieval falls back to keyword
+  search when it is absent, so the assistant still answers fully offline. Chroma's
+  anonymous telemetry is also pinned off (`ANONYMIZED_TELEMETRY=false`) for
+  offline-first deploys.
+- **The Docker build caches pip downloads between builds.** The build now uses a
+  BuildKit cache mount instead of `--no-cache-dir`, so a clean rebuild reuses
+  already-downloaded wheels rather than re-fetching them from PyPI each time.
 
 ### Fixed
+- **Static assets are cache-busted, so a deploy no longer serves a stale
+  stylesheet.** `app.css`/JS are linked with a content-derived `?v=` token, so a
+  new build yields a URL the browser hasn't cached. Previously a fresh template
+  could render against the old, browser-cached CSS — the header looked broken
+  until a manual hard refresh.
 - **The Docker image no longer crash-loops on a missing `web/static` directory.**
   The server-rendered UI assets (`web/static`, `web/templates`) were not declared
   as package data, so a real `pip install .` (the Docker build) dropped them and

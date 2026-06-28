@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% block title %}horizon{% endblock %}</title>
-  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-  <link rel="mask-icon" href="/static/favicon.svg" color="#5b8aa6" />
+  <link rel="icon" href="{{ static_url('favicon.svg') }}" type="image/svg+xml" />
+  <link rel="mask-icon" href="{{ static_url('favicon.svg') }}" color="#5b8aa6" />
   {% if not low_power_enabled() %}
   <!-- Set the colour theme before the page paints to avoid a flash. Reads the
        on-device choice (a single display preference, not an account); falls back
@@ -22,12 +22,12 @@
     })();
   </script>
   {% endif %}
-  <link rel="stylesheet" href="/static/app.css" />
-  <link rel="stylesheet" href="/static/print.css" media="print" />
+  <link rel="stylesheet" href="{{ static_url('app.css') }}" />
+  <link rel="stylesheet" href="{{ static_url('print.css') }}" media="print" />
   <!-- Vendored locally so the UI works fully offline. htmx drives the assistant
        form; Alpine is skipped in low-power mode to save a little work. -->
-  <script src="/static/htmx.min.js" defer></script>
-  {% if not low_power_enabled() %}<script src="/static/alpine.min.js" defer></script>{% endif %}
+  <script src="{{ static_url('htmx.min.js') }}" defer></script>
+  {% if not low_power_enabled() %}<script src="{{ static_url('alpine.min.js') }}" defer></script>{% endif %}
 </head>
 <body{% if low_power_enabled() %} class="low-power"{% endif %}>
   {% if low_power_enabled() %}
