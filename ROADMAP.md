@@ -20,7 +20,7 @@ is a polished, well-maintained node a neighbourhood can rely on.
 
 ---
 
-## Where we are — v0.1.x (shipped)
+## Where we are — v0.2.0 (shipped)
 
 - Skill tree of journeys + guides, prerequisite/"what comes next" chain, and
   "Start here" entry points.

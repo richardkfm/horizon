@@ -13,6 +13,16 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Fixed
+- **A malformed `config.yaml` no longer crash-loops the node.** Settings are
+  loaded at import time, so an invalid or badly-indented `config.yaml` used to
+  raise during startup — under Docker's `restart: unless-stopped` that meant an
+  endless restart loop serving nothing. horizon now logs a clear error naming the
+  file and the problem and falls back to built-in defaults so the node still
+  boots and serves its local content; fix the file and restart to apply settings.
+
+## [0.2.0] — 2026-06-28
+
 ### Added
 - **Light & dark themes.** A header theme toggle defaults to the device's
   `prefers-color-scheme` and remembers the choice on-device (a single
@@ -144,5 +154,6 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/richardkfm/horizon/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/richardkfm/horizon/releases/tag/v0.1.0
