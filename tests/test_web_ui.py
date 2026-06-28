@@ -52,6 +52,22 @@ def test_new_category_journeys_listed(category, expected_title):
     assert expected_title in resp.text
 
 
+def test_emergencies_cover_natural_disasters():
+    # Natural-disaster coverage in the emergencies category (urban and rural).
+    with TestClient(app) as client:
+        resp = client.get("/journeys", params={"category": "emergencies"})
+    assert resp.status_code == 200
+    for title in (
+        "Stay safe in a flood",
+        "Stay safe in an earthquake",
+        "Get through a drought",
+        "Stay safe in a nuclear or radiological emergency",
+        "Stay safe in a wildfire",
+        "Stay safe in severe storms",
+    ):
+        assert title in resp.text
+
+
 def test_every_category_has_a_seeded_journey():
     # Guard against adding a category to the enum without any content behind it.
     with TestClient(app) as client:

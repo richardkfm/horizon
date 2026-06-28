@@ -26,10 +26,11 @@ is a polished, well-maintained node a neighbourhood can rely on.
   "Start here" entry points.
 - Thirteen built-in skill categories: water, food, energy, shelter, health,
   cooperation, survival basics, culture (music, dance, games), essential
-  language, crafts & repair, emergencies (blackouts, extreme heat/cold, air
-  raids, conflict, pandemics), plant-based cooking (vegan), and practical
-  calculations (energy sizing, areas/volumes, loads) — each seeded with journeys
-  and guides offline.
+  language, crafts & repair, emergencies (natural disasters — floods,
+  earthquakes, drought, wildfire, storms, radiological — plus blackouts, extreme
+  heat/cold, air raids, conflict, pandemics), plant-based cooking (vegan), and
+  practical calculations (energy sizing, areas/volumes, loads) — each seeded with
+  journeys and guides offline.
 - Visual guides → HTML + high-contrast A4 PDF; print and low-power/e-ink modes.
 - Goal-based recommendations and a guide search.
 - Offline local AI assistant (RAG over local content), always cited, that
