@@ -526,6 +526,42 @@ a:hover { color: var(--accent-strong); }
   padding: 0.1rem 0.35rem;
   border-radius: 0.3rem;
 }
+
+/* Callouts — labelled blockquotes used in "which should I pick?" guides
+   (rendered by services.markdown). Each keeps the blockquote base look but
+   takes its own accent so a reader can scan for "pick / avoid / spec" at a
+   glance. The opening bold label is the cue, so these stay meaningful even
+   where the colour is stripped (print, e-ink). */
+.guide .callout { border-left-width: 4px; }
+.guide .callout strong:first-child { display: inline; }
+.guide .callout-pick {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+.guide .callout-avoid {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+}
+.guide .callout-spec {
+  border-left-color: var(--muted-2);
+  background: var(--surface-sunken);
+}
+.guide .callout-decision {
+  border-left-color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+.guide .callout-risk {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+}
+.guide .callout-tip {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+.guide .callout-note {
+  border-left-color: var(--border-strong);
+  background: var(--surface-sunken);
+}
 /* Markdown tables come from the renderer unwrapped, so make the table itself a
    scroll container: it shrinks to fit narrow screens and scrolls sideways
    instead of overflowing the page. */
@@ -566,6 +602,26 @@ a:hover { color: var(--accent-strong); }
 }
 .admin-table th { background: var(--surface-sunken); }
 .admin-table .category-cell { text-transform: capitalize; }
+
+/* Library browser */
+.lib-table { max-width: none; }
+.lib-table td a { font-weight: 600; }
+.lib-id { display: block; font-size: 0.78rem; color: var(--muted-2); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.lib-count { color: var(--muted); font-weight: 400; font-size: 0.9rem; }
+.lib-note { color: var(--muted); font-size: 0.9rem; }
+.lib-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-4); }
+.lib-meta .lib-id { display: inline; }
+.library-preview { margin-top: var(--space-4); }
+.lib-flag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.05rem 0.4rem;
+  margin: 0.1rem 0.15rem 0.1rem 0;
+  border-radius: var(--radius-sm);
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
 
 .admin-nav { display: flex; gap: var(--space-4); margin-top: var(--space-2); }
 .admin-nav a { color: var(--accent); font-weight: 600; text-decoration: none; }
@@ -736,6 +792,9 @@ body.low-power .category-card a:hover,
 body.low-power .journey-card a:hover { background: none; transform: none; }
 body.low-power .filter-chip.is-active { background: #000; }
 body.low-power .guide blockquote { background: none; }
+/* Callouts keep a high-contrast border + bold label in the e-ink palette so
+   "pick / avoid / spec" stays distinguishable without colour fills. */
+body.low-power .guide .callout { background: none; border-left-color: #000; }
 
 /* Banner shown site-wide while low-power mode is active. */
 .low-power-banner {

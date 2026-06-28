@@ -34,3 +34,31 @@ def test_render_markdown_tables_enabled():
     html = render_markdown(table)
     assert "<table>" in html
     assert "<td>1</td>" in html
+
+
+def test_callout_blockquote_gets_class():
+    html = render_markdown("> **Pick this if:** the water is cloudy.")
+    assert 'class="callout callout-pick"' in html
+    # The bold label survives so the callout reads correctly even unstyled.
+    assert "<strong>Pick this if:</strong>" in html
+
+
+def test_callout_label_synonyms_map_to_kind():
+    assert 'callout-avoid"' in render_markdown("> **Skip if:** the source is clean.")
+    assert 'callout-spec"' in render_markdown("> **At a glance:** 60 cm sand bed.")
+    assert 'callout-risk"' in render_markdown("> **Warning:** never skip testing.")
+
+
+def test_callout_matching_is_case_insensitive():
+    assert 'callout-tip"' in render_markdown("> **tip:** wash the sand first.")
+
+
+def test_plain_blockquote_is_not_a_callout():
+    html = render_markdown("> Just a quote, no label.")
+    assert "callout" not in html
+    assert "<blockquote>" in html
+
+
+def test_unknown_label_stays_plain_blockquote():
+    html = render_markdown("> **Heads up:** an unrecognised label.")
+    assert "callout" not in html

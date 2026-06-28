@@ -50,8 +50,13 @@ and without coercion.
   heat/cold, air raids, conflict, pandemics), plant-based cooking (vegan), and
   practical calculations (energy sizing, areas/volumes, loads) — each with
   built-in journeys and guides, no download required.
-- **Visual guides + print mode.** Markdown guides with images, rendered to HTML
-  for the web and to a minimal, high-contrast **A4 PDF** for printing.
+- **Visual guides + print mode.** Markdown guides with images, comparison
+  tables, and **callouts** (`Pick this if` / `Avoid if` / `Spec` …), rendered to
+  HTML for the web and to a minimal, high-contrast **A4 PDF** for printing.
+- **Decision guides ("which to pick").** Guides that help you *choose*, not only
+  *do* — which water treatment for your source, how big a solar + battery system
+  for your loads, which crops for your season, which shelter for your situation —
+  each a "Start here" step the matching build plan builds on.
 - **Find your starting point.** Describe a goal in plain words and horizon
   recommends journeys and guides to begin with, matched locally — no internet.
 - **Local AI assistant (RAG).** Answers grounded in *your* local guides and
@@ -170,7 +175,18 @@ first run):
   # ...steps, materials, risks, images...
   ```
 
-  Put images in `content/guides/images/`.
+  Put images in `content/guides/images/`. Bodies are CommonMark with GFM tables.
+  To draw attention to a choice, start a blockquote with a recognised **bold
+  label** and horizon renders it as a callout:
+
+  ```markdown
+  > **Pick this if:** your water is cloudy or from a river.
+  > **Avoid if:** it could carry chemicals or salt.
+  > **Spec:** 60 cm sand bed, ~0.1 m/h flow.
+  ```
+
+  Labels map to `pick` / `avoid` / `spec` / `decision` / `risk` / `tip` / `note`
+  (with synonyms); an unrecognised label stays an ordinary blockquote.
 
 - **Journeys** — add an entry to `content/journeys.yaml` with `id`, `title`,
   `description`, `category`, `difficulty`, `estimated_time`, `prerequisites`

@@ -4,7 +4,9 @@ This roadmap builds on the experience horizon offers **today**: a browsable skil
 tree of journeys, visual guides with print/PDF, a goal-based recommender, and an
 offline local assistant — now with plain-language navigation, "Start here"
 journeys, a visible prerequisite chain, a self-describing assistant, guide
-search, and a phone-friendly responsive layout.
+search, a phone-friendly responsive layout, and — new in v0.3 — **decision
+guides** that help you *choose*, a richer guide format (comparison tables and
+callouts), and an admin library that shows the whole node at a glance.
 
 The focus from here is **lean and simple**: make horizon look and feel great,
 deepen the content so it actually helps you *choose*, and give the admin the few
@@ -19,6 +21,25 @@ Milestones are vertical and shippable: each one is useful on its own, and v0.5
 is a polished, well-maintained node a neighbourhood can rely on.
 
 ---
+
+## Where we are — v0.3.0 (shipped)
+
+- **Decision guides ("which to pick").** Local content that helps a visitor
+  *choose*, not only *do*: which water treatment for which source, how big a
+  solar + battery system (with a worked example and sizing table), which crops
+  for which season/climate, and which shelter for which situation. Each leads a
+  "Start here" decision journey that the matching build journey now builds on, so
+  a track reads decide → build.
+- **Richer guide format.** Comparison tables (responsive scroll) plus **callouts**
+  — labelled blockquotes (`Pick this if` / `Avoid if` / `Spec` / `Decide` /
+  `Risk` / `Tip` / `Note`) rendered as scannable boxes that degrade gracefully to
+  a bold label everywhere the styling is absent, including print and e-ink.
+- **Browse the whole library in admin.** Admin → Library lists and previews every
+  guide, journey, and md skill on the node (md skills included, despite having no
+  public page) and flags thin content so an operator knows the library at a glance.
+- **Values stay in content.** A new `choosing-well` md skill steers the assistant
+  to help people decide honestly — situation first, trade-offs visible, safety
+  first, criteria not brands.
 
 ## Where we are — v0.2.0 (shipped)
 
@@ -56,33 +77,11 @@ is a polished, well-maintained node a neighbourhood can rely on.
   assets and locates bundled content across install layouts, static assets are
   cache-busted, and a malformed `config.yaml` no longer crash-loops the node.
 
-The gaps we'll close next: the content tells you *how* but not always *which to
-pick*; the admin panel shows category counts but you can't yet browse the actual
-library from the browser; and — while the `horizon-admin` CLI already diagnoses,
-repairs, and re-seeds from a terminal — an admin can't yet do that *from the
-browser panel*.
-
----
-
-## v0.3 — A deeper "what to pick" library
-
-Today's guides tell you *how*. This milestone deepens the content so it also
-helps you *decide* — the part people most often get wrong off-grid.
-
-- **Decision guides.** "Which to choose" reference material: selection criteria,
-  trade-offs, and worked examples (e.g. *which water filter for which source*,
-  *how big a solar + battery setup*, *which crops for which season*).
-- **Richer guide format.** Support comparison tables, decision steps, and spec
-  callouts in guides — rendering responsively (the wide-table scroll already
-  works) and in print/PDF. *Users:* fewer dead-ends and costly wrong choices.
-- **Browse the full library in admin.** A complete, previewable view of every
-  guide, journey, and md skill on the node, so an admin can see what's there and
-  what's thin. *Admins:* know the library at a glance.
-- **Values stay in content.** Any new steering lives in `content/md_skills/`,
-  not in business logic.
-
-**v0.3 done when:** a visitor can answer "which one should I pick?" from local
-content alone, and an admin can see the whole library from the panel.
+The gap we'll close next: while the `horizon-admin` CLI already diagnoses,
+repairs, and re-seeds from a terminal — and the admin panel can now *browse* the
+whole library — an admin still can't *diagnose, repair, or re-seed* from the
+browser panel, and there's no health view that surfaces broken links, missing
+images, or unindexed content in plain language.
 
 ---
 

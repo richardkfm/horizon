@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Library — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Library</h1>
+  <a href="/admin" class="btn">Back to dashboard</a>
+</div>
+
+<p class="empty">
+  Everything on this node: every guide, journey, and md skill. Items flagged
+  <span class="lib-flag">like this</span> look thin — missing a summary, no
+  links, or very short — so you can see at a glance what needs filling out.
+</p>
+
+<ul class="stat-row">
+  <li><strong>{{ totals.guides }}</strong> guides</li>
+  <li><strong>{{ totals.journeys }}</strong> journeys</li>
+  <li><strong>{{ totals.skills }}</strong> md skills</li>
+  <li><strong>{{ totals.thin }}</strong> flagged thin</li>
+</ul>
+
+<section class="admin-section">
+  <h2>Guides <span class="lib-count">({{ guides|length }})</span></h2>
+  <div class="table-scroll">
+  <table class="admin-table lib-table">
+    <thead>
+      <tr><th>Title</th><th>Category</th><th>Journeys</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      {% for g in guides %}
+      <tr>
+        <td>
+          <a href="/admin/library/guides/{{ g.id }}">{{ g.title }}</a>
+          <span class="lib-id">{{ g.id }}</span>
+        </td>
+        <td class="category-cell">{{ g.category }}</td>
+        <td>{{ g.journeys }}</td>
+        <td>
+          {% for flag in g.flags %}<span class="lib-flag">{{ flag }}</span>{% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="admin-section">
+  <h2>Journeys <span class="lib-count">({{ journeys|length }})</span></h2>
+  <div class="table-scroll">
+  <table class="admin-table lib-table">
+    <thead>
+      <tr><th>Title</th><th>Category</th><th>Difficulty</th><th>Guides</th><th>Builds on</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      {% for j in journeys %}
+      <tr>
+        <td>
+          <a href="/admin/library/journeys/{{ j.id }}">{{ j.title }}</a>
+          <span class="lib-id">{{ j.id }}</span>
+        </td>
+        <td class="category-cell">{{ j.category }}</td>
+        <td>{{ j.difficulty }}</td>
+        <td>{{ j.guides }}</td>
+        <td>{{ j.prerequisites }}</td>
+        <td>
+          {% for flag in j.flags %}<span class="lib-flag">{{ flag }}</span>{% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="admin-section">
+  <h2>md skills <span class="lib-count">({{ skills|length }})</span></h2>
+  <p class="lib-note">
+    Markdown that steers the assistant's values and answer style. Indexed
+    alongside guides; not shown on public pages.
+  </p>
+  <div class="table-scroll">
+  <table class="admin-table lib-table">
+    <thead>
+      <tr><th>Title</th><th>File</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      {% for s in skills %}
+      <tr>
+        <td><a href="/admin/library/skills/{{ s.slug }}">{{ s.title }}</a></td>
+        <td><code>{{ s.slug }}.md</code></td>
+        <td>{% if s.thin %}<span class="lib-flag">very short</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+{% endblock %}

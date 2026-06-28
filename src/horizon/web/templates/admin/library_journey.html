@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ journey.title }} — Library — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/admin/library">← Library</a></p>
+
+<div class="admin-header">
+  <h1>{{ journey.title }}</h1>
+  <a href="{{ public_url }}" class="btn">Open public page</a>
+</div>
+
+<p class="lib-meta">
+  <span class="category-badge">Journey</span>
+  <span class="lib-id">id: {{ journey.id }}</span>
+  <span class="lib-id">category: {{ journey.category }}</span>
+  <span class="lib-id">difficulty: {{ journey.difficulty }}/5</span>
+  {% if journey.estimated_time %}<span class="lib-id">time: {{ journey.estimated_time }}</span>{% endif %}
+</p>
+
+{% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
+
+<section class="admin-section">
+  <h2>Builds on</h2>
+  {% if prerequisites %}
+  <ul class="link-list">
+    {% for p in prerequisites %}
+    <li><a href="/admin/library/journeys/{{ p.id }}">{{ p.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="lib-note">Entry point — no prerequisites.</p>
+  {% endif %}
+</section>
+
+<section class="admin-section">
+  <h2>Guides</h2>
+  {% if guides %}
+  <ul class="link-list">
+    {% for g in guides %}
+    <li><a href="/admin/library/guides/{{ g.id }}">{{ g.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="lib-note"><span class="lib-flag">no guides</span> This journey links no guides yet.</p>
+  {% endif %}
+</section>
+{% endblock %}
