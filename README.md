@@ -91,15 +91,17 @@ and without coercion.
 
 ```bash
 git clone https://github.com/richardkfm/horizon && cd horizon
-
-# (optional) customise configuration
-cp config.example.yaml config.yaml
-
 docker compose up -d
 ```
 
 Then open **http://&lt;host-ip&gt;:8080** from any device on the local network.
 On first run horizon seeds its bundled content and builds the search index.
+
+`config.yaml` ships in the repo with safe defaults (the admin area is disabled
+until you set a token) and is bind-mounted into the container by
+`docker-compose.yml`, so editing it always takes effect — no copy step needed.
+After changing it, apply with `docker compose up -d --force-recreate`. See
+`config.example.yaml` for every option, fully annotated.
 
 This default install is small and stays fully offline — **no model runtime is
 pulled**. The "Ask a question" assistant falls back to local guide search until
@@ -265,7 +267,8 @@ model runtime, the ethics hook, and installed content packs at a glance.
 
 ## Configuration
 
-Copy `config.example.yaml` → `config.yaml`. Key settings: `server.port`,
+Edit `config.yaml` directly (tracked in the repo with safe defaults; see
+`config.example.yaml` for the fully annotated reference). Key settings: `server.port`,
 `data_dir`/`database`, `llm.*` (provider, endpoint, models), `vectordb.*`,
 `rag.top_k`, `ai.no_jargon_default` (plain-language answers, default `true`),
 `assistant.enabled` (the chat assistant, default `true`), `power.low_power`

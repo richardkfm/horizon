@@ -192,10 +192,21 @@ Update docs **as part of every user-facing change**, in the same change set:
   honest; move shipped items into "Where we are" and the changelog.
 - When you establish a new standard or learn a durable lesson, write it into this
   file so the next agent inherits it.
-- **`docker-compose.yml`'s `config.yaml` bind mount is commented out by
-  default**, and the image only bakes in `config.example.yaml`. An operator
-  who edits `config.yaml` (e.g. to set `admin.token`) and reruns
-  `docker compose up --build` will see no effect until they uncomment the
-  mount line — the container never reads their file. Keep that comment loud,
-  and check this first when debugging "my config.yaml change didn't take
-  effect" reports.
+- **`config.yaml` is tracked in the repo** (safe, all-disabled defaults) and
+  `docker-compose.yml` bind-mounts it **unconditionally**. This used to be
+  gitignored with the mount commented out by default, which meant the
+  documented "copy config.example.yaml to config.yaml and edit it" step
+  silently did nothing — a real-world report ("set admin.token, rebuilt, still
+  can't log in") traced back to exactly this. Don't reintroduce that gap:
+  keep `config.yaml` tracked and the mount line uncommented, so editing it
+  always takes effect after `docker compose up -d --force-recreate`.
+- **`init_db()` only creates missing tables (`SQLModel.metadata.create_all`),
+  never adds missing columns to an existing table.** A release that adds a
+  column to `Guide`/`Journey` (e.g. the v0.3 `difficulty`/`estimated_time`
+  move) will crash every page touching that table for anyone upgrading an
+  existing `horizon-data` volume in place, with
+  `sqlite3.OperationalError: no such column: ...`. There is no migration step
+  yet — flag this in review for any model change that adds/renames a column,
+  and consider adding a lightweight startup migration (no Alembic needed:
+  inspect existing columns and `ALTER TABLE ... ADD COLUMN` for any that are
+  missing) before the next schema change ships.

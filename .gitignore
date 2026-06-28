@@ -1,9 +1,6 @@
 # Runtime data (database, vector index, downloaded content packs, copied content)
 /data/
 
-# Local configuration (copy of config.example.yaml)
-config.yaml
-
 # Python
 __pycache__/
 *.py[cod]
