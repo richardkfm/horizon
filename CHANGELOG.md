@@ -60,6 +60,23 @@ Updating this changelog and the README is part of every user-facing change
   missing columns to an existing one. *(Tracked for a follow-up migration
   fix — current workaround: delete `/data/horizon.db` and restart to reseed
   from `content/`.)*
+- Existing deployments whose `content_dir` predated the multi-guide
+  `journeys.yaml` rework or the checklists feature kept seeing single-guide
+  plans and an empty checklists list forever, because `_ensure_content_dir()`
+  treated *any* existing `journeys.yaml` as a fully up-to-date content
+  directory and skipped copying bundled content entirely. It now always
+  refreshes `journeys.yaml` (shipped, curated content) and fills in any
+  guide/checklist/skill files missing from an existing `content_dir`, without
+  touching files an operator has already edited. Trigger the admin panel's
+  "reseed content" action (or delete the journeys/guides/checklists rows) to
+  pick this up on an existing install.
+- The site header and footer stretched to the full viewport width instead of
+  lining up with the centred page content; they now share the same
+  `max-width`/centred container as `.content`.
+- The page `<title>` and homepage tagline used an em dash and described
+  horizon as being "about rebuilding"; reworded to plain language matching
+  `CLAUDE.md`'s description (a library of guides and a local AI assistant for
+  water, food, energy, shelter, and health).
 
 ### Changed
 - **Guides are now the primary thing you browse and read.** Clicking a topic

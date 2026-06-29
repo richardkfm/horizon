@@ -37,6 +37,7 @@
   </div>
   {% endif %}
   <header class="site-header">
+   <div class="site-header-inner">
     <a class="brand" href="/">
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
         <defs>
@@ -84,13 +85,16 @@
       </button>
       {% endif %}
     </div>
+   </div>
   </header>
   <main class="content">
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
-    <span>horizon — offline autonomy &amp; rebuilding · AGPL-3.0</span>
+   <div class="site-footer-inner">
+    <span>horizon · offline guides and a local AI assistant for water, food, energy, shelter, and health · AGPL-3.0</span>
     <a class="footer-admin no-print" href="/admin">Operator login</a>
+   </div>
   </footer>
   <script>
     // Collapsible navigation for small screens. Plain JS so it works in every

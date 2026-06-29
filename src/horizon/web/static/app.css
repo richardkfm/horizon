@@ -159,12 +159,18 @@ a:hover { color: var(--accent-strong); }
 
 .site-header,
 .site-footer {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.site-header-inner,
+.site-footer-inner {
   display: flex;
   gap: var(--space-4);
   align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
   padding: var(--space-3) var(--space-5);
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
 }
 
 .site-footer {

@@ -136,17 +136,41 @@ def _ensure_content_dir() -> Path:
 
     horizon ships seed content inside the repo. On first boot we copy it into
     ``settings.content_dir`` so operators have a writable copy to edit and add
-    to. If that directory already holds content we use it as-is.
+    to.
+
+    If that directory already exists (an upgrade of an existing install), we
+    still need later releases' shipped content to reach it: ``journeys.yaml``
+    is curated, shipped content rather than operator data, so it is always
+    refreshed from the bundle; guide/checklist/skill files are only added if
+    missing, so any operator edits or additions are preserved. Without this, a
+    content_dir created before a journeys.yaml or checklists update would
+    silently keep stale data forever, since seeding only runs once.
     """
     target = Path(settings.content_dir)
-    if (target / "journeys.yaml").is_file():
-        return target
-
     bundled = _bundled_content_dir()
     target.mkdir(parents=True, exist_ok=True)
-    # copytree with dirs_exist_ok so a partially-populated target is tolerated.
-    shutil.copytree(bundled, target, dirs_exist_ok=True)
-    logger.info("Copied bundled content from %s to %s", bundled, target)
+
+    if not (target / "journeys.yaml").is_file():
+        # copytree with dirs_exist_ok so a partially-populated target is tolerated.
+        shutil.copytree(bundled, target, dirs_exist_ok=True)
+        logger.info("Copied bundled content from %s to %s", bundled, target)
+        return target
+
+    shutil.copy2(bundled / "journeys.yaml", target / "journeys.yaml")
+    for sub in ("guides", "checklists", "md_skills"):
+        src_dir = bundled / sub
+        if not src_dir.is_dir():
+            continue
+        dst_dir = target / sub
+        dst_dir.mkdir(exist_ok=True)
+        for item in src_dir.iterdir():
+            dst_item = dst_dir / item.name
+            if dst_item.exists():
+                continue
+            if item.is_dir():
+                shutil.copytree(item, dst_item)
+            else:
+                shutil.copy2(item, dst_item)
     return target
 
 
