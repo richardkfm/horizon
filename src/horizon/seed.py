@@ -24,6 +24,7 @@ from horizon.config import settings
 from horizon.db import engine
 from horizon.models import (
     Category,
+    Checklist,
     Guide,
     Journey,
     JourneyGuideLink,
@@ -44,10 +45,12 @@ def seed_if_empty() -> None:
 
         content_dir = _ensure_content_dir()
         guides = _load_guides(content_dir / "guides")
+        checklists = _load_checklists(content_dir / "checklists")
         journeys, guide_links = _load_journeys(content_dir / "journeys.yaml")
 
         # Insert nodes first so the edge table's foreign keys resolve.
         session.add_all(guides)
+        session.add_all(checklists)
         session.add_all(journeys)
         session.commit()
 
@@ -66,9 +69,10 @@ def seed_if_empty() -> None:
         session.commit()
 
         logger.info(
-            "Seeded %d journeys and %d guides into %s",
+            "Seeded %d journeys, %d guides, and %d checklists into %s",
             len(journeys),
             len(guides),
+            len(checklists),
             settings.database,
         )
 
@@ -91,6 +95,7 @@ def reseed() -> dict:
         before = {
             "journeys": len(session.exec(select(Journey)).all()),
             "guides": len(session.exec(select(Guide)).all()),
+            "checklists": len(session.exec(select(Checklist)).all()),
         }
 
         # Clear edges first so foreign keys resolve, then the nodes.
@@ -98,6 +103,8 @@ def reseed() -> dict:
             session.delete(link)
         for guide in session.exec(select(Guide)).all():
             session.delete(guide)
+        for checklist in session.exec(select(Checklist)).all():
+            session.delete(checklist)
         for journey in session.exec(select(Journey)).all():
             session.delete(journey)
         session.commit()
@@ -110,13 +117,16 @@ def reseed() -> dict:
         after = {
             "journeys": len(session.exec(select(Journey)).all()),
             "guides": len(session.exec(select(Guide)).all()),
+            "checklists": len(session.exec(select(Checklist)).all()),
         }
     logger.info(
-        "Re-seeded content: journeys %d -> %d, guides %d -> %d",
+        "Re-seeded content: journeys %d -> %d, guides %d -> %d, checklists %d -> %d",
         before["journeys"],
         after["journeys"],
         before["guides"],
         after["guides"],
+        before["checklists"],
+        after["checklists"],
     )
     return {"before": before, "after": after}
 
@@ -212,6 +222,40 @@ def _load_guides(guides_dir: Path) -> list[Guide]:
             )
         )
     return guides
+
+
+def _load_checklists(checklists_dir: Path) -> list[Checklist]:
+    """Read checklist metadata from the Markdown files' front matter.
+
+    Mirrors :func:`_load_guides`: checklists are auto-discovered by scanning the
+    directory, so dropping in a new ``*.md`` file is enough to publish it. The
+    ``category`` front-matter key is optional (a checklist may span topics); when
+    present it must be a known :class:`~horizon.models.Category`.
+    """
+    checklists: list[Checklist] = []
+    if not checklists_dir.is_dir():
+        return checklists
+    for md_path in sorted(checklists_dir.glob("*.md")):
+        meta, _body = _split_front_matter(md_path.read_text(encoding="utf-8"))
+        checklist_id = meta.get("id") or md_path.stem
+        category = meta.get("category")
+        if category is not None and category not in set(Category):
+            logger.warning(
+                "Skipping checklist %s: invalid category %r",
+                md_path.name,
+                category,
+            )
+            continue
+        checklists.append(
+            Checklist(
+                id=checklist_id,
+                title=meta.get("title", checklist_id),
+                category=Category(category) if category is not None else None,
+                summary=meta.get("summary", ""),
+                path=md_path.name,
+            )
+        )
+    return checklists
 
 
 def _load_journeys(

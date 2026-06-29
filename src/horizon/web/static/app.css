@@ -533,6 +533,52 @@ a:hover { color: var(--accent-strong); }
   border-left-color: var(--border-strong);
   background: var(--surface-sunken);
 }
+/* "Do now" — immediate, life-safety action. The most urgent callout: a heavier
+   rule and a stronger fill so it reads as "act on this first" at a glance. */
+.guide .callout-now {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+  border-left-width: 6px;
+}
+.guide .callout-now strong:first-child { text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* Figures — a lone-image paragraph wrapped by services.markdown. Line drawings
+   sit on a light card so the dark strokes stay legible in any theme and in
+   print/e-ink, with a small muted caption beneath. */
+.guide figure.guide-figure { margin: var(--space-4) 0; text-align: center; }
+.guide figure.guide-figure img {
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.guide figure.guide-figure figcaption {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Checklists — task-list items rendered as real checkboxes. Drop the bullet,
+   give each row a comfortable touch target, and a clear box. */
+.guide .task-list { list-style: none; padding-left: 0; }
+.guide .task-list .task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0.15rem 0;
+}
+.guide .task-check {
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.2rem;
+  accent-color: var(--accent-strong);
+  cursor: pointer;
+}
 /* Markdown tables come from the renderer unwrapped, so make the table itself a
    scroll container: it shrinks to fit narrow screens and scrolls sideways
    instead of overflowing the page. */

@@ -45,8 +45,28 @@ img, figure, table { page-break-inside: avoid; max-width: 100%; }
 .guide table { display: table; width: 100%; overflow: visible; }
 
 /* Callouts flatten to a solid black rule + bold label on paper; the label
-   alone carries "pick / avoid / spec", so no colour is needed. */
+   alone carries "pick / avoid / spec / do now", so no colour is needed. */
 .guide .callout { background: none !important; border-left: 3px solid #000 !important; }
+
+/* Figures: light frame becomes a thin black border around the line drawing. */
+.guide figure.guide-figure img { background: #fff; border: 1px solid #000; }
+.guide figure.guide-figure figcaption { font-style: italic; }
+
+/* Checklists print as clear, hand-tickable empty squares — no bullet, a crisp
+   box per item — so a printed list works like a paper checklist. */
+.guide .task-list { list-style: none; padding-left: 0; }
+.guide .task-list .task-item { display: flex; align-items: flex-start; gap: 0.4rem; }
+.guide .task-check {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 1.4px solid #000;
+  border-radius: 2px;
+  background: #fff;
+  margin-top: 0.2rem;
+  flex: 0 0 auto;
+}
 
 a { color: #000; text-decoration: underline; }
 /* Expand links so printed guides remain useful offline. */

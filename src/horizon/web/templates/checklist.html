@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ checklist.title }} — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
+
+<div class="guide-actions no-print">
+  {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+  <button type="button" class="btn" onclick="window.print()">Print</button>
+  <button type="button" class="btn" id="checklist-clear">Clear ticks</button>
+</div>
+
+<article class="guide checklist" data-checklist="{{ checklist.id }}">
+  {{ body_html | safe }}
+</article>
+
+<script>
+  // Persist ticked items on this device only (no account, no server, no
+  // telemetry). Plain JS so it works in every mode, including low-power where
+  // Alpine is skipped. Items are keyed by their order in the list, so editing the
+  // checklist text is safe; reordering simply re-keys them.
+  (function () {
+    var root = document.querySelector("[data-checklist]");
+    if (!root) return;
+    var key = "horizon-checklist:" + root.getAttribute("data-checklist");
+    var boxes = Array.prototype.slice.call(root.querySelectorAll("input.task-check"));
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) {}
+    function save() {
+      var state = {};
+      boxes.forEach(function (b, j) { if (b.checked) state[j] = 1; });
+      try { localStorage.setItem(key, JSON.stringify(state)); } catch (e) {}
+    }
+    boxes.forEach(function (box, i) {
+      if (saved[i]) box.checked = true;
+      box.addEventListener("change", save);
+    });
+    var clear = document.getElementById("checklist-clear");
+    if (clear) {
+      clear.addEventListener("click", function () {
+        boxes.forEach(function (b) { b.checked = false; });
+        try { localStorage.removeItem(key); } catch (e) {}
+      });
+    }
+  })();
+</script>
+{% endblock %}

@@ -62,3 +62,49 @@ def test_plain_blockquote_is_not_a_callout():
 def test_unknown_label_stays_plain_blockquote():
     html = render_markdown("> **Heads up:** an unrecognised label.")
     assert "callout" not in html
+
+
+def test_do_now_callout_gets_now_kind():
+    html = render_markdown("> **Do now:** get out and stay out.")
+    assert 'class="callout callout-now"' in html
+    assert "<strong>Do now:</strong>" in html
+    # "Act now" / "Right now" are synonyms for the same urgent kind.
+    assert 'callout-now"' in render_markdown("> **Act now:** move to cover.")
+
+
+def test_lone_image_paragraph_becomes_figure():
+    html = render_markdown("![Fig. 1: a simple shower](images/shower.svg)")
+    assert "<figure" in html and 'class="guide-figure"' in html
+    assert '<img src="images/shower.svg"' in html
+    assert "<figcaption>Fig. 1: a simple shower</figcaption>" in html
+
+
+def test_inline_image_is_not_wrapped_in_figure():
+    html = render_markdown("See this ![x](a.png) inline image.")
+    assert "<figure" not in html
+    assert "<p>" in html and '<img src="a.png"' in html
+
+
+def test_figcaption_is_escaped():
+    html = render_markdown("![a <b> & c](x.svg)")
+    assert "<figcaption>a &lt;b&gt; &amp; c</figcaption>" in html
+
+
+def test_task_list_renders_checkboxes():
+    html = render_markdown("- [ ] water\n- [x] torch\n")
+    assert 'class="task-list"' in html
+    # Exactly one class, not duplicated per item.
+    assert html.count("task-list") == 1
+    assert '<li class="task-item"><input type="checkbox" class="task-check"> water' in html
+    assert '<li class="task-item"><input type="checkbox" class="task-check" checked> torch' in html
+
+
+def test_task_marker_accepts_upper_x():
+    html = render_markdown("- [X] done\n")
+    assert 'class="task-check" checked>' in html
+
+
+def test_plain_list_is_not_a_task_list():
+    html = render_markdown("- one\n- two\n")
+    assert "task-list" not in html
+    assert "checkbox" not in html

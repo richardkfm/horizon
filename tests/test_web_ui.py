@@ -192,6 +192,75 @@ def test_guides_search_filters_by_term():
     assert "No guides match" in miss.text
 
 
+def test_nav_links_to_checklists():
+    with TestClient(app) as client:
+        resp = client.get("/")
+    assert "Checklists" in resp.text
+    assert "/checklists" in resp.text
+
+
+def test_checklists_index_lists_seeded_checklists():
+    with TestClient(app) as client:
+        resp = client.get("/checklists")
+    assert resp.status_code == 200
+    assert "/checklists/go-bag" in resp.text
+    assert "/checklists/first-aid-kit" in resp.text
+
+
+def test_checklist_page_renders_checkboxes():
+    with TestClient(app) as client:
+        resp = client.get("/checklists/go-bag")
+    assert resp.status_code == 200
+    # Task-list items become real checkboxes inside a task-list.
+    assert 'class="task-list"' in resp.text
+    assert 'type="checkbox"' in resp.text
+    # Front matter is stripped; the print affordance is present.
+    assert "id: go-bag" not in resp.text
+    assert "window.print()" in resp.text
+
+
+def test_checklist_page_404():
+    with TestClient(app) as client:
+        resp = client.get("/checklists/does-not-exist")
+    assert resp.status_code == 404
+
+
+def test_guide_renders_figure_with_caption():
+    # The make-your-own-tools guide demonstrates the figure convention.
+    with TestClient(app) as client:
+        resp = client.get("/guides/crafts-make-tools")
+    assert resp.status_code == 200
+    assert "<figure" in resp.text and "guide-figure" in resp.text
+    assert "<figcaption>" in resp.text
+    assert "images/hafted-tool.svg" in resp.text
+
+
+def test_guide_image_is_served():
+    with TestClient(app) as client:
+        resp = client.get("/guides/images/hafted-tool.svg")
+    assert resp.status_code == 200
+    assert "svg" in resp.headers["content-type"]
+
+
+def test_new_medical_and_fire_guides_are_seeded():
+    with TestClient(app) as client:
+        for guide_id, expected in (
+            ("health-bleeding-control", "Stop severe bleeding"),
+            ("health-choking-and-cpr", "not breathing"),
+            ("emergency-extinguish-fire", "Put out a fire safely"),
+            ("crafts-make-tools", "hand tools"),
+        ):
+            resp = client.get(f"/guides/{guide_id}")
+            assert resp.status_code == 200, guide_id
+            assert expected in resp.text
+
+
+def test_do_now_callout_renders_on_fire_guide():
+    with TestClient(app) as client:
+        resp = client.get("/guides/emergency-extinguish-fire")
+    assert "callout-now" in resp.text
+
+
 def test_assistant_can_be_disabled_by_operator(monkeypatch):
     monkeypatch.setenv("HORIZON_ASSISTANT_ENABLED", "false")
     with TestClient(app) as client:
