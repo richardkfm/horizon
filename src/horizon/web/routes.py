@@ -24,7 +24,7 @@ from horizon.api.guides import _read_body
 from horizon.api.journeys import _guide_summary, _journey_summary
 from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
-from horizon.models import Category, Guide, Journey, JourneyPrerequisite
+from horizon.models import Category, Checklist, Guide, Journey, JourneyPrerequisite
 from horizon.services.markdown import render_markdown
 from horizon.services.recommend import recommend_journeys
 from horizon.web.assets import static_url
@@ -263,6 +263,61 @@ def guide_page(
         "guide.html",
         {
             "guide": _guide_summary(guide),
+            "body_html": body_html,
+        },
+    )
+
+
+def _checklist_summary(checklist: Checklist) -> dict:
+    """Plain dict for a checklist (mirrors ``_guide_summary``)."""
+    return {
+        "id": checklist.id,
+        "title": checklist.title,
+        "category": checklist.category.value if checklist.category else None,
+        "summary": checklist.summary,
+    }
+
+
+def _read_checklist_body(checklist: Checklist) -> str:
+    """Read a checklist's Markdown body from the content directory."""
+    md_path = Path(settings.content_dir) / "checklists" / checklist.path
+    if not md_path.is_file():
+        raise HTTPException(
+            status_code=404, detail=f"Checklist file missing on disk: {checklist.path}"
+        )
+    return md_path.read_text(encoding="utf-8")
+
+
+@router.get("/checklists", response_class=HTMLResponse)
+def checklists_page(request: Request, session: SessionDep) -> HTMLResponse:
+    """List all checklists — printable lists of things to gather, pack, or do."""
+    statement = select(Checklist).order_by(Checklist.title, Checklist.id)
+    checklists = [_checklist_summary(c) for c in session.exec(statement).all()]
+    return templates.TemplateResponse(
+        request,
+        "checklists.html",
+        {"checklists": checklists},
+    )
+
+
+@router.get("/checklists/{checklist_id}", response_class=HTMLResponse)
+def checklist_page(
+    checklist_id: str,
+    request: Request,
+    session: SessionDep,
+) -> HTMLResponse:
+    """Render a single checklist with tick-able, printable items."""
+    checklist = session.get(Checklist, checklist_id)
+    if checklist is None:
+        raise HTTPException(status_code=404, detail=f"Checklist not found: {checklist_id}")
+
+    body_html = render_markdown(_read_checklist_body(checklist))
+
+    return templates.TemplateResponse(
+        request,
+        "checklist.html",
+        {
+            "checklist": _checklist_summary(checklist),
             "body_html": body_html,
         },
     )

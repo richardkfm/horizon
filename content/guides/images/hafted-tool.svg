@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" role="img"
+     aria-label="A stone blade lashed to a wooden handle with cord">
+  <!-- Simple line drawing: a hand tool made by lashing a shaped stone to a
+       split wooden handle. Black strokes on transparent so it prints and shows
+       on e-ink; the stylesheet gives the figure a light background. -->
+  <g fill="none" stroke="#1d1d1d" stroke-width="2.4"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Handle -->
+    <path d="M70 165 L150 95" />
+    <path d="M84 178 L168 104" />
+    <path d="M70 165 Q62 172 66 180 Q74 186 84 178" />
+    <!-- Split at the head end where the stone sits -->
+    <path d="M150 95 L176 72" />
+    <path d="M168 104 L196 82" />
+    <!-- Stone blade -->
+    <path d="M176 72 L214 40 L256 58 L244 104 L196 110 L176 92 Z" />
+    <!-- Cutting edge highlight -->
+    <path d="M214 40 L256 58" stroke-width="1.4" />
+    <!-- Lashing (cordage) wrapping the joint -->
+    <path d="M162 110 L188 86" stroke-width="1.6" />
+    <path d="M156 104 L182 80" stroke-width="1.6" />
+    <path d="M168 116 L194 92" stroke-width="1.6" />
+  </g>
+</svg>

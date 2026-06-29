@@ -24,6 +24,20 @@ is a polished, well-maintained node a neighbourhood can rely on.
 
 ---
 
+## Where we are — Unreleased (since v0.4.0)
+
+- **Printable checklists.** A new standalone content type at `/checklists`:
+  tick-able, print/e-ink-friendly lists (go-bag, water/food stores, first-aid kit,
+  tools, and a mutual-aid "goods to share and barter" list), auto-discovered from
+  `content/checklists/` and saved on-device only.
+- **Guide figures.** A pure-Markdown figure convention — a lone-image paragraph
+  becomes a captioned `<figure>` — with monochrome SVG line art that stays crisp
+  in print and e-ink; guide images are now served from the content directory.
+- **More how-to content.** Quick medical-help guides (bleeding, burns, choking/CPR,
+  cold and heat injuries, fractures), a "put out a fire safely" guide, and a "make
+  your own hand tools" guide, plus a `health-safety` answer-style skill and a new
+  `Do now` callout for immediate life-safety actions.
+
 ## Where we are — v0.4.0 (shipped)
 
 - **A maintainable node — check & repair.** A new **Admin → Check & repair**

@@ -13,6 +13,32 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **Checklists (`/checklists`).** A new printable content type — a self-contained,
+  tick-able list of things to gather, pack, or do. Ships a starter set: a go-bag,
+  water store, food store, first-aid kit, tools and materials, and a
+  cooperation-flavoured "goods to share and barter" list (framed as mutual aid, not
+  profiteering). Checklists are auto-discovered from `content/checklists/*.md`
+  (drop in a file to publish one), reachable from the header nav and the landing
+  page, and print/e-ink friendly. Ticked items are saved **on the device only**
+  (localStorage — no account, server, or telemetry) and degrade gracefully where
+  JavaScript is off.
+- **Guide figures.** A pure-Markdown figure convention: a paragraph containing only
+  an image is rendered as a `<figure>` with the image's alt text as a visible
+  caption. Line-drawing SVGs sit on a light card so they stay legible in any theme
+  and in print/e-ink. Guide illustrations under `content/guides/images/` are now
+  served (at `/guides/images`). Demonstrated on the new "make your own hand tools"
+  guide.
+- **New how-to guides.** Quick medical-help guides — *stop severe bleeding*,
+  *treat burns and scalds*, *help someone choking or not breathing*, *treat
+  hypothermia and frostbite*, *treat heat exhaustion and heat stroke*, *splint
+  fractures and sprains* — plus *put out a fire safely* and *make your own hand
+  tools*. A `health-safety` answer-style skill steers the assistant to treat these
+  as first aid and defer to professional care.
+- **"Do now" callout.** A new callout kind (`> **Do now:** …`) for immediate,
+  life-safety actions, rendered with the most urgent styling and used by the
+  medical and fire guides.
+
 ## [0.4.0] — 2026-06-28
 
 The "**maintainable node**" release: an operator can now diagnose, repair, and

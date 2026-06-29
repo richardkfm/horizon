@@ -58,6 +58,21 @@ class Guide(SQLModel, table=True):
     journeys: list["Journey"] = Relationship(back_populates="guides", link_model=JourneyGuideLink)
 
 
+class Checklist(SQLModel, table=True):
+    """A printable, checkable list. Body is stored on disk under ``content_dir/checklists``.
+
+    Standalone content (no journey links): a checklist is a self-contained,
+    print/e-ink-friendly list of things to gather or do, mirroring the supply and
+    go-bag lists in survival handbooks. Check state lives client-side only.
+    """
+
+    id: str = Field(primary_key=True)
+    title: str
+    category: Category | None = None
+    summary: str = ""
+    path: str  # relative path to the Markdown file under the checklists directory
+
+
 class Journey(SQLModel, table=True):
     """A node in the skill tree."""
 

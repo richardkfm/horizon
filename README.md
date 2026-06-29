@@ -50,9 +50,16 @@ and without coercion.
   heat/cold, air raids, conflict, pandemics), plant-based cooking (vegan), and
   practical calculations (energy sizing, areas/volumes, loads) — each with
   built-in journeys and guides, no download required.
-- **Visual guides + print mode.** Markdown guides with images, comparison
-  tables, and **callouts** (`Pick this if` / `Avoid if` / `Spec` …), rendered to
-  HTML for the web and to a minimal, high-contrast **A4 PDF** for printing.
+- **Visual guides + print mode.** Markdown guides with **figures** (a lone image
+  becomes a captioned `<figure>`; line-drawing SVGs stay crisp on screen, paper,
+  and e-ink), comparison tables, and **callouts** (`Pick this if` / `Avoid if` /
+  `Spec` / `Do now` …), rendered to HTML for the web and to a minimal,
+  high-contrast **A4 PDF** for printing.
+- **Printable checklists.** Tick-able lists of what to gather, pack, and keep
+  ready — a go-bag, water and food stores, a first-aid kit, tools, and goods to
+  share — written in plain Markdown task lists, auto-discovered from
+  `content/checklists/`, and print/e-ink friendly. Ticks are saved on the device
+  only (no account, server, or telemetry).
 - **Decision guides ("which to pick").** Guides that help you *choose*, not only
   *do* — which water treatment for your source, how big a solar + battery system
   for your loads, which crops for your season, which shelter for your situation —
@@ -181,18 +188,45 @@ first run):
   # ...steps, materials, risks, images...
   ```
 
-  Put images in `content/guides/images/`. Bodies are CommonMark with GFM tables.
-  To draw attention to a choice, start a blockquote with a recognised **bold
-  label** and horizon renders it as a callout:
+  Put images in `content/guides/images/` (served at `/guides/images`). Bodies are
+  CommonMark with GFM tables. To draw attention to a choice, start a blockquote
+  with a recognised **bold label** and horizon renders it as a callout:
 
   ```markdown
   > **Pick this if:** your water is cloudy or from a river.
   > **Avoid if:** it could carry chemicals or salt.
   > **Spec:** 60 cm sand bed, ~0.1 m/h flow.
+  > **Do now:** get out, stay out, and call for help.
   ```
 
-  Labels map to `pick` / `avoid` / `spec` / `decision` / `risk` / `tip` / `note`
-  (with synonyms); an unrecognised label stays an ordinary blockquote.
+  Labels map to `pick` / `avoid` / `spec` / `decision` / `risk` / `do now` /
+  `tip` / `note` (with synonyms); an unrecognised label stays an ordinary
+  blockquote.
+
+  For a **figure**, write a paragraph that is *only* an image; horizon wraps it in
+  a captioned `<figure>` using the alt text as the caption. Prefer simple
+  monochrome **SVG** line art so it stays crisp in print/e-ink:
+
+  ```markdown
+  ![Fig. 1: a stone blade lashed to a wooden handle](images/hafted-tool.svg)
+  ```
+
+- **Checklists** — `content/checklists/<id>.md`, with the same front matter as a
+  guide (`category` optional). Write items as a Markdown task list and horizon
+  renders real, tick-able checkboxes (ticks saved on-device only) that print as
+  empty squares:
+
+  ```markdown
+  ---
+  id: go-bag
+  title: Go-bag (grab-and-go kit)
+  summary: A packed bag by the door so you can leave within minutes.
+  ---
+  - [ ] Water bottle and purification tablets
+  - [ ] Torch and spare batteries
+  ```
+
+  Like guides, checklists are auto-discovered — drop in a file to publish one.
 
 - **Journeys** — add an entry to `content/journeys.yaml` with `id`, `title`,
   `description`, `category`, `difficulty`, `estimated_time`, `prerequisites`

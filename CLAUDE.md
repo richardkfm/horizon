@@ -95,11 +95,26 @@ These are horizon's integration surface; preserve backward compatibility:
 ## Adding content
 
 - **Guide:** `content/guides/<id>.md` with front matter (`id`, `title`,
-  `category`, `summary`); images under `content/guides/images/`.
+  `category`, `summary`); images under `content/guides/images/` (auto-discovered
+  by scanning the dir — a new file seeds and indexes itself, no journey required).
+- **Figure:** write a paragraph containing *only* an image and `services.markdown`
+  wraps it in a captioned `<figure>` (alt text = caption). Prefer monochrome
+  **SVG** line art so it stays legible on screen, paper, and e-ink; the stylesheet
+  sits figures on a light card for contrast in any theme. Images are served at
+  `/guides/images` (mounted in `main.py`).
+- **Checklist:** `content/checklists/<id>.md` with front matter (`id`, `title`,
+  `summary`, optional `category`); body is a Markdown task list (`- [ ] item`)
+  rendered as tick-able checkboxes. Auto-discovered like guides; standalone (no
+  journey links); tick state is localStorage-only. Backed by the `Checklist`
+  model and `seed._load_checklists`.
 - **Journey:** an entry in `content/journeys.yaml` (`id`, `title`, `description`,
   `category`, `difficulty` 1–5, `estimated_time`, `prerequisites[]`, `guides[]`).
 - **md skill:** `content/md_skills/<id>.md` — indexed alongside guides to steer
   the assistant's values and style.
+- **Callouts:** start a blockquote with a recognised bold label — `Pick this if` /
+  `Avoid if` / `Spec` / `Decision` / `Risk` / `Do now` / `Tip` / `Note` (with
+  synonyms; see `services.markdown._CALLOUT_LABELS`). `Do now` is the most urgent,
+  for immediate life-safety actions.
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,

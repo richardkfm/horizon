@@ -73,6 +73,18 @@ if web_enabled():
 
     # Static assets (CSS + vendored JS).
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+    # Guide illustrations live alongside the Markdown under the content directory
+    # so content packs can ship their own figures. ``check_dir=False`` because the
+    # content directory is materialised during the seeding lifespan step, after
+    # this mount is created; the dir exists by the time any request is served.
+    from horizon.config import settings
+
+    guide_images = Path(settings.content_dir) / "guides" / "images"
+    app.mount(
+        "/guides/images",
+        StaticFiles(directory=str(guide_images), check_dir=False),
+        name="guide-images",
+    )
     # Server-rendered pages.
     app.include_router(web_routes.router)
     app.include_router(admin_routes.router)

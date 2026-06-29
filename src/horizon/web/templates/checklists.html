@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Checklists — horizon{% endblock %}
+{% block content %}
+<section class="guides-intro">
+  <h1>Checklists</h1>
+  <p class="tagline">
+    Printable lists of what to gather, pack, and keep ready — a go-bag, water and
+    food stores, a first-aid kit, tools, and goods to share. Tick items off as you
+    go; your ticks are saved on this device only.
+  </p>
+</section>
+
+{% if checklists %}
+<ul class="link-list">
+  {% for checklist in checklists %}
+  <li>
+    <a href="/checklists/{{ checklist.id }}">{{ checklist.title }}</a>
+    {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+    {% if checklist.summary %}<span class="guide-summary">{{ checklist.summary }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No checklists yet.</p>
+{% endif %}
+{% endblock %}
