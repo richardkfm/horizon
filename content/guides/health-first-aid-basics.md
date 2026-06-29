@@ -3,6 +3,8 @@ id: health-first-aid-basics
 title: Handle common first-aid situations
 category: health
 summary: A basic kit and a calm, ordered approach to common injuries and illnesses.
+difficulty: 2
+estimated_time: "4 hours"
 ---
 
 # Handle common first-aid situations

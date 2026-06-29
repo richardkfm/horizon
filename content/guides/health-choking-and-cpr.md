@@ -3,6 +3,7 @@ id: health-choking-and-cpr
 title: Help someone choking or not breathing
 category: health
 summary: Clear a blocked airway with back blows and abdominal thrusts, and start CPR if breathing stops.
+difficulty: 2
 ---
 
 # Help someone choking or not breathing

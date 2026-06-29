@@ -3,6 +3,8 @@ id: shelter-earth-building
 title: Build with earth (cob, adobe, earthbag)
 category: shelter
 summary: Use soil-based methods to build durable, well-insulated walls from local materials.
+difficulty: 4
+estimated_time: "Weeks to months"
 ---
 
 # Build with earth (cob, adobe, earthbag)

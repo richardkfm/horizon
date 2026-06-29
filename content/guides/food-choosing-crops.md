@@ -3,6 +3,8 @@ id: food-choosing-crops
 title: Which crops should you plant?
 category: food
 summary: A decision guide — choose crops by season, climate, and your goal (calories, quick food, or storage).
+difficulty: 1
+estimated_time: "45 minutes"
 ---
 
 # Which crops should you plant?

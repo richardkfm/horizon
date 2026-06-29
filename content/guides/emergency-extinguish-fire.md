@@ -3,6 +3,7 @@ id: emergency-extinguish-fire
 title: Put out a fire safely
 category: emergencies
 summary: Tackle small fires the right way by type, and know the moment to stop and get out.
+difficulty: 2
 ---
 
 # Put out a fire safely

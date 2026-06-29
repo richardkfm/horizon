@@ -3,6 +3,8 @@ id: crafts-make-tools
 title: Make your own hand tools
 category: crafts
 summary: Make basic cutting, digging, and striking tools from wood, stone, bone, and salvage.
+difficulty: 3
+estimated_time: "An afternoon"
 ---
 
 # Make your own hand tools

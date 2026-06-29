@@ -28,7 +28,6 @@ from horizon.models import (
     Guide,
     Journey,
     JourneyGuideLink,
-    JourneyPrerequisite,
 )
 
 logger = logging.getLogger("horizon")
@@ -47,9 +46,9 @@ def seed_if_empty() -> None:
         content_dir = _ensure_content_dir()
         guides = _load_guides(content_dir / "guides")
         checklists = _load_checklists(content_dir / "checklists")
-        journeys, guide_links, prerequisites = _load_journeys(content_dir / "journeys.yaml")
+        journeys, guide_links = _load_journeys(content_dir / "journeys.yaml")
 
-        # Insert nodes first so the edge tables' foreign keys resolve.
+        # Insert nodes first so the edge table's foreign keys resolve.
         session.add_all(guides)
         session.add_all(checklists)
         session.add_all(journeys)
@@ -66,15 +65,6 @@ def seed_if_empty() -> None:
                     "Skipping guide link %s -> %s: missing node",
                     link.journey_id,
                     link.guide_id,
-                )
-        for edge in prerequisites:
-            if edge.prerequisite_id in journey_ids and edge.journey_id in journey_ids:
-                session.add(edge)
-            else:
-                logger.warning(
-                    "Skipping prerequisite %s -> %s: missing journey",
-                    edge.journey_id,
-                    edge.prerequisite_id,
                 )
         session.commit()
 
@@ -111,8 +101,6 @@ def reseed() -> dict:
         # Clear edges first so foreign keys resolve, then the nodes.
         for link in session.exec(select(JourneyGuideLink)).all():
             session.delete(link)
-        for edge in session.exec(select(JourneyPrerequisite)).all():
-            session.delete(edge)
         for guide in session.exec(select(Guide)).all():
             session.delete(guide)
         for checklist in session.exec(select(Checklist)).all():
@@ -228,6 +216,8 @@ def _load_guides(guides_dir: Path) -> list[Guide]:
                 title=meta.get("title", guide_id),
                 category=Category(category),
                 summary=meta.get("summary", ""),
+                difficulty=int(meta.get("difficulty", 1)),
+                estimated_time=meta.get("estimated_time", ""),
                 path=md_path.name,
             )
         )
@@ -270,14 +260,18 @@ def _load_checklists(checklists_dir: Path) -> list[Checklist]:
 
 def _load_journeys(
     yaml_path: Path,
-) -> tuple[list[Journey], list[JourneyGuideLink], list[JourneyPrerequisite]]:
-    """Parse ``journeys.yaml`` into Journey rows and edge rows."""
+) -> tuple[list[Journey], list[JourneyGuideLink]]:
+    """Parse ``journeys.yaml`` into track (Journey) rows and ordered guide links.
+
+    A track's ``guides`` list is ordered; each link records its ``position`` so
+    the track reads as a path. Tracks have no prerequisites — the order is the
+    path.
+    """
     data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
     entries = data.get("journeys", [])
 
     journeys: list[Journey] = []
     guide_links: list[JourneyGuideLink] = []
-    prerequisites: list[JourneyPrerequisite] = []
 
     for entry in entries:
         journey_id = entry["id"]
@@ -299,11 +293,9 @@ def _load_journeys(
                 estimated_time=entry.get("estimated_time", ""),
             )
         )
-        for guide_id in entry.get("guides") or []:
-            guide_links.append(JourneyGuideLink(journey_id=journey_id, guide_id=guide_id))
-        for prereq_id in entry.get("prerequisites") or []:
-            prerequisites.append(
-                JourneyPrerequisite(journey_id=journey_id, prerequisite_id=prereq_id)
+        for position, guide_id in enumerate(entry.get("guides") or []):
+            guide_links.append(
+                JourneyGuideLink(journey_id=journey_id, guide_id=guide_id, position=position)
             )
 
-    return journeys, guide_links, prerequisites
+    return journeys, guide_links

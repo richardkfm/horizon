@@ -3,6 +3,8 @@ id: culture-no-gear-games
 title: Run group games with no equipment
 category: culture
 summary: Organise inclusive games for mixed ages that need nothing but people.
+difficulty: 1
+estimated_time: "1 hour"
 ---
 
 # Run group games with no equipment

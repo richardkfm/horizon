@@ -364,37 +364,6 @@ a:hover { color: var(--accent-strong); }
 
 .badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 
-.start-badge {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--on-accent);
-  background: var(--accent);
-  border-radius: var(--radius-pill);
-  padding: 0.1rem 0.65rem;
-}
-
-/* Journey chain: where a journey sits in the prerequisite path. */
-.journey-chain {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2) var(--space-3);
-  margin: var(--space-4) 0 var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--accent-soft);
-  font-size: 0.95rem;
-}
-.chain-step { display: inline-flex; flex-direction: column; gap: 0.1rem; }
-.chain-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.chain-here { font-weight: 700; }
-.chain-arrow { color: var(--accent); font-weight: 700; }
-.journey-chain a { color: var(--accent); text-decoration: none; font-weight: 600; }
-.journey-chain a:hover { text-decoration: underline; }
-
 .breadcrumb { font-size: 0.9rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
@@ -446,28 +415,22 @@ a:hover { color: var(--accent-strong); }
 }
 .journey-card h2 { font-size: 1.2rem; margin: 0.5rem 0 0.3rem; }
 .journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
-.journey-meta { color: var(--muted-2); font-size: 0.85rem; }
-/* "Start here" cards carry a soft accent edge to draw the eye first. */
-.journey-card.is-entry a { border-color: var(--accent); box-shadow: var(--shadow); }
+.journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-/* "Builds on …" connector: shows a card's place in the prerequisite path. */
-.card-prereq {
-  margin: var(--space-2) 0 0;
-  font-size: 0.8rem;
-  color: var(--muted-2);
+/* Tracks: curated, ordered "step-by-step plans" over the guides. ----------- */
+.track-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
+.track-card {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
-.card-prereq .prereq-arrow { color: var(--accent); font-weight: 700; margin-right: 0.15rem; }
-
-/* Skill tree: journeys grouped into per-topic "tracks". --------------------- */
-.skill-track { margin: 0 0 var(--space-6); }
-
-.track-head {
+.track-card-head {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin-bottom: var(--space-4);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-2);
 }
 .track-icon {
   display: inline-flex;
@@ -482,18 +445,15 @@ a:hover { color: var(--accent-strong); }
 }
 .track-icon svg { width: 1.4rem; height: 1.4rem; }
 .track-titles { flex: 1 1 auto; min-width: 0; }
-.track-titles h2 { margin: 0; text-transform: capitalize; }
-.track-example { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--muted); }
-.track-count {
-  flex: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-radius: var(--radius-pill);
-  padding: 0.15rem 0.7rem;
-  white-space: nowrap;
-}
+.track-titles h2 { margin: 0.2rem 0 0; font-size: 1.2rem; }
+.track-titles h2 a { color: var(--fg); text-decoration: none; }
+.track-titles h2 a:hover { color: var(--accent); }
+.track-desc { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
+.track-steps { margin: var(--space-2) 0 0; padding-left: 1.4rem; }
+.track-steps li { padding: 0.2rem 0; }
+.track-steps a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.track-steps a:hover { text-decoration: underline; }
+.track-steps-detail li { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
 
 /* Journey detail ---------------------------------------------------------- */
 
@@ -508,6 +468,17 @@ a:hover { color: var(--accent-strong); }
 /* Guide viewer ------------------------------------------------------------ */
 
 .guide-actions { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.guide-meta { margin: 0 0 var(--space-4); }
+.guide-tracks {
+  margin: 0 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+}
+.guide-tracks > p { margin: 0 0 var(--space-2); font-weight: 600; }
+.guide-tracks .link-list li { padding: var(--space-2) 0; border-bottom: none; }
 .guide { line-height: 1.7; }
 .guide img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
 .guide h1 { font-size: 2.2rem; }

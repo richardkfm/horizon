@@ -3,6 +3,8 @@ id: calc-materials-quantities
 title: Estimate material and supply quantities
 category: calculations
 summary: Turn a plan into quantities — earth, wood, water, firewood, food, or seed, and for how long.
+difficulty: 2
+estimated_time: "1-2 hours"
 ---
 
 # Estimate material and supply quantities

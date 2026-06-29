@@ -3,6 +3,8 @@ id: survival-foraging
 title: Identify safe wild food and avoid poisoning
 category: survival
 summary: Cautious rules for telling likely-safe wild plants from dangerous ones.
+difficulty: 3
+estimated_time: "Ongoing practice"
 ---
 
 # Identify safe wild food and avoid poisoning

@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{ guide.title }} — horizon{% endblock %}
 {% block content %}
-<p class="breadcrumb no-print"><a href="/journeys">← Journeys</a></p>
+<p class="breadcrumb no-print"><a href="/guides">← All guides</a></p>
 
 <div class="guide-actions no-print">
   <span class="category-badge">{{ guide.category }}</span>
   <button type="button" class="btn" onclick="window.print()">Print</button>
   <a class="btn" href="/guides/{{ guide.id }}.pdf">Download PDF</a>
 </div>
+
+<p class="journey-meta guide-meta">
+  <span title="Difficulty 1–5">Difficulty {{ guide.difficulty }}/5</span>
+  {% if guide.estimated_time %}<span>· {{ guide.estimated_time }}</span>{% endif %}
+</p>
+
+{% if in_tracks %}
+<aside class="guide-tracks no-print" aria-label="Step-by-step plans this guide is part of">
+  <p>Part of {{ "this plan" if in_tracks|length == 1 else "these plans" }}:</p>
+  <ul class="link-list">
+    {% for track in in_tracks %}
+    <li><a href="/journeys/{{ track.id }}">{{ track.title }}</a></li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
 
 <article class="guide">
   {{ body_html | safe }}

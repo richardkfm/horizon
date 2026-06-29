@@ -3,6 +3,8 @@ id: water-choosing-treatment
 title: Which water treatment should you use?
 category: water
 summary: A decision guide — match the right filter or disinfection method to your water source, group size, and risks.
+difficulty: 1
+estimated_time: "30 minutes"
 ---
 
 # Which water treatment should you use?

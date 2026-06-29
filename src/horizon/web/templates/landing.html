@@ -24,7 +24,7 @@
   <ul class="category-grid">
     {% for category in categories %}
     <li class="category-card">
-      <a href="/journeys?category={{ category.name }}">
+      <a href="/guides?category={{ category.name }}">
         <span class="category-icon" aria-hidden="true">{{ category_icon(category.name) }}</span>
         <span class="category-name">{{ category.name }}</span>
         {% if category.example %}<span class="category-example">{{ category.example }}</span>{% endif %}

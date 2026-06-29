@@ -3,6 +3,8 @@ id: cooking-preserving
 title: Preserve food by drying, fermenting, and pickling
 category: cooking
 summary: Keep a harvest edible for months without refrigeration — all plant-based.
+difficulty: 2
+estimated_time: "A few hours, then waiting"
 ---
 
 # Preserve food by drying, fermenting, and pickling

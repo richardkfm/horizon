@@ -3,6 +3,8 @@ id: survival-fire
 title: Make and keep a fire without matches
 category: survival
 summary: Lay, light, and tend a safe fire using a spark or friction, then keep it going.
+difficulty: 2
+estimated_time: "Half a day to practise"
 ---
 
 # Make and keep a fire without matches

@@ -31,7 +31,6 @@ from horizon.models import (
     Guide,
     Journey,
     JourneyGuideLink,
-    JourneyPrerequisite,
 )
 from horizon.services import packs as packs_service
 from horizon.web.assets import static_url
@@ -156,7 +155,6 @@ def dashboard(request: Request, session: SessionDep):
         "journeys_total": sum(journey_counts.values()),
         "guides_total": sum(guide_counts.values()),
         "guide_links": len(session.exec(select(JourneyGuideLink)).all()),
-        "prerequisites": len(session.exec(select(JourneyPrerequisite)).all()),
     }
 
     runtime = {
@@ -216,7 +214,8 @@ def library(request: Request, session: SessionDep):
     if (redirect := _redirect_if_unauthed(request)) is not None:
         return redirect
 
-    # How many journeys link each guide, so we can flag guides nothing points to.
+    # How many tracks include each guide (a guide outside any track is normal,
+    # so this is informational, not a defect flag).
     link_counts: Counter[str] = Counter(session.exec(select(JourneyGuideLink.guide_id)).all())
 
     guides = []
@@ -225,8 +224,6 @@ def library(request: Request, session: SessionDep):
         flags = []
         if not g.summary.strip():
             flags.append("no summary")
-        if used == 0:
-            flags.append("no journey links")
         guides.append(
             {
                 "id": g.id,
@@ -240,9 +237,6 @@ def library(request: Request, session: SessionDep):
 
     guide_link_counts: Counter[str] = Counter(
         session.exec(select(JourneyGuideLink.journey_id)).all()
-    )
-    prereq_counts: Counter[str] = Counter(
-        session.exec(select(JourneyPrerequisite.journey_id)).all()
     )
 
     journeys = []
@@ -262,7 +256,6 @@ def library(request: Request, session: SessionDep):
                 "category": j.category.value,
                 "difficulty": j.difficulty,
                 "guides": n_guides,
-                "prerequisites": prereq_counts.get(j.id, 0),
                 "flags": flags,
             }
         )
@@ -338,7 +331,7 @@ def library_skill(slug: str, request: Request):
 
 @router.get("/admin/library/journeys/{journey_id}", response_class=HTMLResponse)
 def library_journey(journey_id: str, request: Request, session: SessionDep):
-    """Preview a single journey: its metadata, prerequisites, and linked guides."""
+    """Preview a single track: its metadata and its ordered guides."""
     if (redirect := _redirect_if_unauthed(request)) is not None:
         return redirect
 
@@ -346,16 +339,9 @@ def library_journey(journey_id: str, request: Request, session: SessionDep):
     if journey is None:
         return HTMLResponse("Journey not found", status_code=404)
 
-    prereq_ids = session.exec(
-        select(JourneyPrerequisite.prerequisite_id).where(
-            JourneyPrerequisite.journey_id == journey_id
-        )
-    ).all()
-    prerequisites = [
-        {"id": p.id, "title": p.title}
-        for pid in prereq_ids
-        if (p := session.get(Journey, pid)) is not None
-    ]
+    from horizon.api.journeys import ordered_guides
+
+    guides = [{"id": g.id, "title": g.title} for g in ordered_guides(session, journey_id)]
     return templates.TemplateResponse(
         request,
         "admin/library_journey.html",
@@ -368,8 +354,7 @@ def library_journey(journey_id: str, request: Request, session: SessionDep):
                 "estimated_time": journey.estimated_time,
                 "description": journey.description,
             },
-            "prerequisites": prerequisites,
-            "guides": [{"id": g.id, "title": g.title} for g in journey.guides],
+            "guides": guides,
             "public_url": f"/journeys/{journey.id}",
         },
     )

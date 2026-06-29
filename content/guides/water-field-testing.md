@@ -3,6 +3,8 @@ id: water-field-testing
 title: Test whether water is safe to drink
 category: water
 summary: Simple field checks to judge a water source and decide what treatment it needs.
+difficulty: 1
+estimated_time: "2 hours"
 ---
 
 # Test whether water is safe to drink

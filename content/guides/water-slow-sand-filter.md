@@ -3,6 +3,8 @@ id: water-slow-sand-filter
 title: Build a slow sand filter for safe drinking water
 category: water
 summary: A low-tech biological filter that produces safe drinking water for a small group.
+difficulty: 3
+estimated_time: "3 days"
 ---
 
 # Build a slow sand filter

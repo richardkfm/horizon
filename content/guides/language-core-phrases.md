@@ -3,6 +3,8 @@ id: language-core-phrases
 title: Learn and teach essential phrases
 category: language
 summary: Build a small core of phrases for greetings, needs, safety, and trade.
+difficulty: 1
+estimated_time: "Ongoing practice"
 ---
 
 # Learn and teach essential phrases

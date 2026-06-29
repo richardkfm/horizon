@@ -3,6 +3,7 @@ id: health-fractures-and-sprains
 title: Splint fractures and sprains
 category: health
 summary: Steady a broken bone or sprain, improvise a splint, and avoid making the injury worse.
+difficulty: 2
 ---
 
 # Splint fractures and sprains

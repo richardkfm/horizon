@@ -3,6 +3,8 @@ id: emergency-extreme-heat
 title: Survive extreme heat without power
 category: emergencies
 summary: Keep yourself and vulnerable people cool and hydrated through a heatwave with no AC.
+difficulty: 2
+estimated_time: "A few hours to prepare"
 ---
 
 # Survive extreme heat without power

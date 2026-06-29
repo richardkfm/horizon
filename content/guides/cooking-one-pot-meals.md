@@ -3,6 +3,8 @@ id: cooking-one-pot-meals
 title: Cook simple one-pot plant-based meals
 category: cooking
 summary: Turn beans, grains, and vegetables into nourishing vegan meals with little fuel and few tools.
+difficulty: 1
+estimated_time: "1-2 hours"
 ---
 
 # Cook simple one-pot plant-based meals

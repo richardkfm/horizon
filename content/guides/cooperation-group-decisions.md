@@ -3,6 +3,8 @@ id: cooperation-group-decisions
 title: Make fair group decisions
 category: cooperation
 summary: Run inclusive, non-coercive decisions and resolve conflict so a group can act together.
+difficulty: 2
+estimated_time: "3 hours"
 ---
 
 # Make fair group decisions

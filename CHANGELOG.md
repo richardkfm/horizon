@@ -39,6 +39,53 @@ Updating this changelog and the README is part of every user-facing change
   life-safety actions, rendered with the most urgent styling and used by the
   medical and fire guides.
 
+### Fixed
+- README status badge and the "Status:" line still said v0.2.0 after the
+  v0.4.0 release; bumped to match `pyproject.toml`.
+- `docker-compose.yml` pinned the `horizon` image to the stale `0.2.0` tag;
+  bumped to `0.4.0`.
+- **`config.yaml` is now tracked in the repo (with safe, all-disabled
+  defaults) and bind-mounted unconditionally in `docker-compose.yml`.**
+  Previously it was gitignored and the mount was commented out by default, so
+  an operator following the documented "copy config.example.yaml to
+  config.yaml and edit it" step would see no effect — the container only ever
+  read the bundled `config.example.yaml`, regardless of `docker compose up
+  --build`. New installs now work out of the box (`git clone && docker
+  compose up -d`, no copy step), and editing `config.yaml` always takes
+  effect after `docker compose up -d --force-recreate`.
+- Upgrading an existing `horizon-data` volume across a release that adds
+  columns to `Guide`/`Journey` (e.g. the `difficulty`/`estimated_time` move in
+  v0.3) crashed every guide/journey page with `sqlite3.OperationalError: no
+  such column`, because `init_db()` only creates missing tables, never adds
+  missing columns to an existing one. *(Tracked for a follow-up migration
+  fix — current workaround: delete `/data/horizon.db` and restart to reseed
+  from `content/`.)*
+
+### Changed
+- **Guides are now the primary thing you browse and read.** Clicking a topic
+  from the home page (or a category) goes **straight to the how-to guide**,
+  instead of an interstitial "journey" page that wrapped a single guide and an
+  empty prerequisites list. Each guide now carries its own difficulty and
+  estimated time (migrated into guide front matter) and links back to any plan
+  it belongs to.
+- **"Journeys" are now a small set of curated, ordered "step-by-step plans"
+  (tracks).** A plan strings several guides together in the order you'd work
+  through them (e.g. *Provide safe drinking water for a group*: test → choose
+  treatment → build a filter). The 57 single-guide journeys are gone; guides
+  outside a plan are still fully browsable from the library. Prerequisites
+  (often empty, and an extra click) have been removed — a plan's guide order is
+  the path.
+- **`/recommend` leads with guides**, then surfaces the curated plans that fit.
+
+### API
+- `GET /api/journeys` now returns the curated plans (a handful), not one entry
+  per guide. `GET /api/journeys/{id}` returns its guides **in order**; the
+  `prerequisites` field is retained but is **always an empty list** (kept for
+  response-shape compatibility). Guide summaries in this response, and the
+  `GET /api/guides/{id}` response, now include `difficulty` and
+  `estimated_time`. Endpoint paths and the rest of the response shapes are
+  unchanged.
+
 ## [0.4.0] — 2026-06-28
 
 The "**maintainable node**" release: an operator can now diagnose, repair, and

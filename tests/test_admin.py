@@ -97,9 +97,9 @@ def test_admin_library_previews(monkeypatch):
         assert skill.status_code == 200
         assert "Helping people choose well" in skill.text
 
-        journey = client.get("/admin/library/journeys/water-slow-sand-filter")
+        journey = client.get("/admin/library/journeys/safe-drinking-water")
         assert journey.status_code == 200
-        assert "Builds on" in journey.text
+        assert "Guides, in order" in journey.text
 
         missing = client.get("/admin/library/guides/does-not-exist")
         assert missing.status_code == 404

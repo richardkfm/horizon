@@ -5,9 +5,11 @@ Guidance for AI agents and developers working in this repository.
 ## What horizon is
 
 horizon is an **offline-first "autonomy & rebuilding" node**: a self-contained
-server offering a skill tree of practical *journeys*, visual step-by-step
-*guides*, and a *local AI assistant* (RAG over local content) for water, food,
-energy, shelter, health, and cooperative governance. It targets constrained,
+server offering a library of visual step-by-step *guides* (the primary unit you
+browse and read), a few curated, ordered *step-by-step plans* ("journeys" in the
+code) that thread guides together, and a *local AI assistant* (RAG over local
+content) for water, food, energy, shelter, health, and cooperative governance.
+It targets constrained,
 self-hosted hardware (Raspberry Pi, mini-PC, Proxmox LXC, Debian/Arch) and must
 be useful out of the box, fully offline.
 
@@ -37,8 +39,8 @@ Hold these when making any change:
 - **Web framework:** FastAPI + Uvicorn (`src/horizon/main.py`).
 - **UI:** server-rendered Jinja2 + HTMX + Alpine.js (vendored locally, no build
   step), with a print/low-power friendly stylesheet (`web/static/print.css`).
-- **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — journeys,
-  guides, prerequisite/guide-link edges.
+- **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — guides,
+  plans (`Journey`), and the ordered guide-link edges between them.
 - **Content:** Markdown guides + md skills on disk under `content/` (seeded into
   `settings.content_dir` on first run).
 - **Vector index:** embedded Chroma over guides + md skills (`services/rag.py`).
@@ -54,7 +56,7 @@ Hold these when making any change:
 content/            seed content shipped in the repo
   guides/           Markdown guides (+ images/)
   md_skills/        values, answer-style, domain checklists
-  journeys.yaml     seed skill-tree nodes + edges
+  journeys.yaml     seed step-by-step plans (ordered guide lists)
 src/horizon/
   main.py           FastAPI app: routers, static, lifespan
   config.py         typed settings loaded from config.yaml
@@ -94,9 +96,11 @@ These are horizon's integration surface; preserve backward compatibility:
 
 ## Adding content
 
-- **Guide:** `content/guides/<id>.md` with front matter (`id`, `title`,
-  `category`, `summary`); images under `content/guides/images/` (auto-discovered
-  by scanning the dir — a new file seeds and indexes itself, no journey required).
+- **Guide (the primary unit):** `content/guides/<id>.md` with front matter
+  (`id`, `title`, `category`, `summary`, `difficulty` 1–5, `estimated_time`);
+  images under `content/guides/images/`. Auto-discovered by scanning the dir — a
+  new file seeds and indexes itself, no plan required. A guide stands on its own —
+  it does not need a plan to be browsable or useful.
 - **Figure:** write a paragraph containing *only* an image and `services.markdown`
   wraps it in a captioned `<figure>` (alt text = caption). Prefer monochrome
   **SVG** line art so it stays legible on screen, paper, and e-ink; the stylesheet
@@ -105,10 +109,13 @@ These are horizon's integration surface; preserve backward compatibility:
 - **Checklist:** `content/checklists/<id>.md` with front matter (`id`, `title`,
   `summary`, optional `category`); body is a Markdown task list (`- [ ] item`)
   rendered as tick-able checkboxes. Auto-discovered like guides; standalone (no
-  journey links); tick state is localStorage-only. Backed by the `Checklist`
+  plan links); tick state is localStorage-only. Backed by the `Checklist`
   model and `seed._load_checklists`.
-- **Journey:** an entry in `content/journeys.yaml` (`id`, `title`, `description`,
-  `category`, `difficulty` 1–5, `estimated_time`, `prerequisites[]`, `guides[]`).
+- **Step-by-step plan ("journey"):** an entry in `content/journeys.yaml` (`id`,
+  `title`, `description`, `category`, `difficulty` 1–5, `estimated_time`,
+  `guides[]`). `guides` is an **ordered** list — the order *is* the path; there
+  are no prerequisites. Only add a plan where guides form a genuine "do this,
+  then this" progression; most guides need no plan.
 - **md skill:** `content/md_skills/<id>.md` — indexed alongside guides to steer
   the assistant's values and style.
 - **Callouts:** start a blockquote with a recognised bold label — `Pick this if` /
@@ -131,6 +138,12 @@ Restart to re-seed and re-index.
   the step that fills them in; startup tolerates these.
 - Don't add runtime cloud calls. Don't import sibling projects. Don't move value
   judgements out of `content/md_skills/`.
+- **Guides are the primary unit; plans are an optional curated layer.** Never
+  wrap a single guide in its own plan ("journey") just to give it a node — that
+  was the old design and it bought an interstitial click and empty prerequisite
+  dead-ends for no benefit. A plan must thread *several* guides into a real
+  ordered path. Browsing (home tiles, categories, recommend) points at guides;
+  plans are a small, hand-picked set on top.
 
 ## UX & frontend standards
 
@@ -186,8 +199,29 @@ Update docs **as part of every user-facing change**, in the same change set:
   documented HTTP API contract (e.g. a changed default), even when the response
   shape is unchanged.
 - **`README.md`** — keep Features, Configuration, and the Roadmap/changelog
-  pointers current; fix in-page anchors if a heading changes.
+  pointers current; fix in-page anchors if a heading changes. **On every
+  release bump, also update the status badge and the "Status:" line to match
+  `pyproject.toml`'s `version`** — this has drifted before (stuck at v0.2.0
+  through the v0.3 and v0.4 releases).
 - **`ROADMAP.md`** — keep the path towards the next milestone (currently v0.5)
   honest; move shipped items into "Where we are" and the changelog.
 - When you establish a new standard or learn a durable lesson, write it into this
   file so the next agent inherits it.
+- **`config.yaml` is tracked in the repo** (safe, all-disabled defaults) and
+  `docker-compose.yml` bind-mounts it **unconditionally**. This used to be
+  gitignored with the mount commented out by default, which meant the
+  documented "copy config.example.yaml to config.yaml and edit it" step
+  silently did nothing — a real-world report ("set admin.token, rebuilt, still
+  can't log in") traced back to exactly this. Don't reintroduce that gap:
+  keep `config.yaml` tracked and the mount line uncommented, so editing it
+  always takes effect after `docker compose up -d --force-recreate`.
+- **`init_db()` only creates missing tables (`SQLModel.metadata.create_all`),
+  never adds missing columns to an existing table.** A release that adds a
+  column to `Guide`/`Journey` (e.g. the v0.3 `difficulty`/`estimated_time`
+  move) will crash every page touching that table for anyone upgrading an
+  existing `horizon-data` volume in place, with
+  `sqlite3.OperationalError: no such column: ...`. There is no migration step
+  yet — flag this in review for any model change that adds/renames a column,
+  and consider adding a lightweight startup migration (no Alembic needed:
+  inspect existing columns and `ALTER TABLE ... ADD COLUMN` for any that are
+  missing) before the next schema change ships.

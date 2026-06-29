@@ -3,6 +3,8 @@ id: shelter-emergency-quick
 title: Build a quick emergency shelter
 category: shelter
 summary: Put up a warm, dry shelter fast from natural or salvaged materials.
+difficulty: 2
+estimated_time: "A few hours"
 ---
 
 # Build a quick emergency shelter

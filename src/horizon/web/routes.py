@@ -21,10 +21,10 @@ from sqlmodel import Session, select
 from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
-from horizon.api.journeys import _guide_summary, _journey_summary
+from horizon.api.journeys import _guide_summary, _journey_summary, ordered_guides
 from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
-from horizon.models import Category, Checklist, Guide, Journey, JourneyPrerequisite
+from horizon.models import Category, Checklist, Guide, Journey, JourneyGuideLink
 from horizon.services.markdown import render_markdown
 from horizon.services.recommend import recommend_journeys
 from horizon.web.assets import static_url
@@ -79,7 +79,11 @@ def journeys_page(
     session: SessionDep,
     category: str | None = None,
 ) -> HTMLResponse:
-    """List journeys, optionally filtered by category."""
+    """List the curated step-by-step plans (tracks), optionally by category.
+
+    Each track previews its ordered guides so a visitor sees the path at a
+    glance and can jump straight to any guide.
+    """
     if category is not None and category not in set(Category):
         raise HTTPException(status_code=400, detail=f"Unknown category: {category}")
 
@@ -87,51 +91,23 @@ def journeys_page(
     if category is not None:
         statement = statement.where(Journey.category == Category(category))
     statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
-    journeys = [_journey_summary(j) for j in session.exec(statement).all()]
 
-    # Prerequisite edges, fetched once: which journeys have prerequisites (so we
-    # can flag entry points) and, per journey, what it builds on. A prerequisite
-    # may live in another category, so resolve titles from a global id→title map.
-    has_prereqs: set[str] = set()
-    prereq_ids: dict[str, list[str]] = {}
-    for jid, pid in session.exec(
-        select(JourneyPrerequisite.journey_id, JourneyPrerequisite.prerequisite_id)
-    ).all():
-        has_prereqs.add(jid)
-        prereq_ids.setdefault(jid, []).append(pid)
-    titles = dict(session.exec(select(Journey.id, Journey.title)).all())
+    tracks = []
+    for journey in session.exec(statement).all():
+        data = _journey_summary(journey)
+        data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey.id)]
+        tracks.append(data)
 
-    for journey in journeys:
-        journey["is_entry"] = journey["id"] not in has_prereqs
-        journey["prerequisites"] = [
-            {"id": pid, "title": titles[pid]}
-            for pid in prereq_ids.get(journey["id"], [])
-            if pid in titles
-        ]
-
-    # Group into per-category "skill tracks" in the fixed category order, with
-    # entry points first within each so a track reads as a path: start here →
-    # what builds on it.
-    groups = []
-    for cat in Category:
-        items = [j for j in journeys if j["category"] == cat.value]
-        if not items:
-            continue
-        items.sort(key=lambda j: (not j["is_entry"], j["difficulty"], j["id"]))
-        groups.append(
-            {
-                "category": cat.value,
-                "example": CATEGORY_EXAMPLES.get(cat.value, ""),
-                "journeys": items,
-            }
-        )
+    # Only show category filters that actually have a track, so the chips never
+    # lead to an empty page.
+    track_categories = sorted({t["category"] for t in tracks}, key=CATEGORIES.index)
 
     return templates.TemplateResponse(
         request,
         "journeys.html",
         {
-            "groups": groups,
-            "categories": CATEGORIES,
+            "tracks": tracks,
+            "categories": track_categories,
             "selected_category": category,
         },
     )
@@ -143,36 +119,13 @@ def journey_detail_page(
     request: Request,
     session: SessionDep,
 ) -> HTMLResponse:
-    """Show a journey with its prerequisites and linked guides."""
+    """Show a track as an ordered list of guides linking straight to each guide."""
     journey = session.get(Journey, journey_id)
     if journey is None:
         raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
 
-    prereq_ids = session.exec(
-        select(JourneyPrerequisite.prerequisite_id).where(
-            JourneyPrerequisite.journey_id == journey_id
-        )
-    ).all()
-    prerequisites = [
-        _journey_summary(p) for pid in prereq_ids if (p := session.get(Journey, pid)) is not None
-    ]
-
-    # Reverse edges: journeys that list this one as a prerequisite, i.e. the
-    # natural next steps once this journey is done.
-    next_ids = session.exec(
-        select(JourneyPrerequisite.journey_id).where(
-            JourneyPrerequisite.prerequisite_id == journey_id
-        )
-    ).all()
-    next_journeys = [
-        _journey_summary(n) for nid in next_ids if (n := session.get(Journey, nid)) is not None
-    ]
-
     data = _journey_summary(journey)
-    data["prerequisites"] = prerequisites
-    data["next_journeys"] = next_journeys
-    data["is_entry"] = len(prerequisites) == 0
-    data["guides"] = [_guide_summary(g) for g in journey.guides]
+    data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
 
@@ -258,12 +211,22 @@ def guide_page(
 
     body_html = render_markdown(_read_body(guide))
 
+    # Curated tracks this guide is part of, so a reader can pick up the wider
+    # step-by-step plan it belongs to.
+    track_ids = session.exec(
+        select(JourneyGuideLink.journey_id).where(JourneyGuideLink.guide_id == guide_id)
+    ).all()
+    in_tracks = [
+        _journey_summary(j) for jid in track_ids if (j := session.get(Journey, jid)) is not None
+    ]
+
     return templates.TemplateResponse(
         request,
         "guide.html",
         {
             "guide": _guide_summary(guide),
             "body_html": body_html,
+            "in_tracks": in_tracks,
         },
     )
 

@@ -3,6 +3,8 @@ id: emergency-blackout
 title: Prepare for and live through a long blackout
 category: emergencies
 summary: Keep water, food, warmth, light, and information going when the power is out for days.
+difficulty: 2
+estimated_time: "A day to prepare"
 ---
 
 # Prepare for and live through a long blackout

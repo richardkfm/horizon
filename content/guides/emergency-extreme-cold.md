@@ -3,6 +3,8 @@ id: emergency-extreme-cold
 title: Survive extreme cold without heating
 category: emergencies
 summary: Stay warm and avoid frostbite and hypothermia when the heating fails in deep cold.
+difficulty: 2
+estimated_time: "A few hours to prepare"
 ---
 
 # Survive extreme cold without heating

@@ -3,6 +3,7 @@ id: health-bleeding-control
 title: Stop severe bleeding
 category: health
 summary: Control heavy bleeding fast with direct pressure, packing, and a tourniquet when needed.
+difficulty: 2
 ---
 
 # Stop severe bleeding

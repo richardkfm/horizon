@@ -3,6 +3,8 @@ id: survival-navigation
 title: Find direction without a compass
 category: survival
 summary: Use the sun, stars, and landmarks to find north and keep a straight course.
+difficulty: 2
+estimated_time: "A few hours"
 ---
 
 # Find direction without a compass

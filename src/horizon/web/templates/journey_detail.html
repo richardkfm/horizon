@@ -1,38 +1,13 @@
 {% extends "base.html" %}
 {% block title %}{{ journey.title }} — horizon{% endblock %}
 {% block content %}
-<p class="breadcrumb"><a href="/journeys">← All journeys</a></p>
+<p class="breadcrumb"><a href="/journeys">← All step-by-step plans</a></p>
 
 <article class="journey-detail">
   <span class="badge-row">
     <span class="category-badge">{{ journey.category }}</span>
-    {% if journey.is_entry %}<span class="start-badge">Start here</span>{% endif %}
   </span>
   <h1>{{ journey.title }}</h1>
-
-  {% if journey.prerequisites or journey.next_journeys %}
-  <nav class="journey-chain" aria-label="Where this journey fits">
-    {% if journey.prerequisites %}
-    <span class="chain-step chain-before">
-      <span class="chain-label">Before this</span>
-      {% for prereq in journey.prerequisites %}
-      <a href="/journeys/{{ prereq.id }}">{{ prereq.title }}</a>
-      {% endfor %}
-    </span>
-    <span class="chain-arrow" aria-hidden="true">→</span>
-    {% endif %}
-    <span class="chain-step chain-here">{{ journey.title }}</span>
-    {% if journey.next_journeys %}
-    <span class="chain-arrow" aria-hidden="true">→</span>
-    <span class="chain-step chain-next">
-      <span class="chain-label">Then</span>
-      {% for nxt in journey.next_journeys %}
-      <a href="/journeys/{{ nxt.id }}">{{ nxt.title }}</a>
-      {% endfor %}
-    </span>
-    {% endif %}
-  </nav>
-  {% endif %}
   <p class="journey-meta">
     <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
     {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
@@ -40,43 +15,19 @@
   {% if journey.description %}<p class="tagline">{{ journey.description }}</p>{% endif %}
 
   <section class="journey-section">
-    <h2>Prerequisites</h2>
-    {% if journey.prerequisites %}
-    <ul class="link-list">
-      {% for prereq in journey.prerequisites %}
-      <li><a href="/journeys/{{ prereq.id }}">{{ prereq.title }}</a>
-        <span class="category-badge">{{ prereq.category }}</span></li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="empty">None — you can start this journey straight away.</p>
-    {% endif %}
-  </section>
-
-  <section class="journey-section">
-    <h2>Guides</h2>
+    <h2>The guides, in order</h2>
     {% if journey.guides %}
-    <ul class="link-list">
+    <ol class="track-steps track-steps-detail">
       {% for guide in journey.guides %}
-      <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
-        {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
+      <li>
+        <a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
+        {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+      </li>
       {% endfor %}
-    </ul>
+    </ol>
     {% else %}
-    <p class="empty">No step-by-step guides linked yet.</p>
+    <p class="empty">No guides linked to this plan yet.</p>
     {% endif %}
   </section>
-
-  {% if journey.next_journeys %}
-  <section class="journey-section">
-    <h2>What comes next</h2>
-    <ul class="link-list">
-      {% for nxt in journey.next_journeys %}
-      <li><a href="/journeys/{{ nxt.id }}">{{ nxt.title }}</a>
-        <span class="category-badge">{{ nxt.category }}</span></li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endif %}
 </article>
 {% endblock %}
