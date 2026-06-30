@@ -120,6 +120,22 @@ journeys:
       - culture-simple-instruments
       - culture-storytelling
 
+  - id: craft-and-maintain-tools
+    title: Make and maintain your own tools
+    description: >
+      Build basic self-sufficiency in craft: twist plant fibre into strong
+      cordage, make simple cutting and digging tools from wood, stone, and
+      salvage, then keep those tools sharp and safe, and carry the same
+      hand-repair mindset into mending and making cloth.
+    category: crafts
+    difficulty: 2
+    estimated_time: "A few afternoons"
+    guides:
+      - crafts-cordage
+      - crafts-make-tools
+      - crafts-tool-repair
+      - crafts-mending-textiles
+
   - id: practical-building-maths
     title: Practical maths for planning and building
     description: >
