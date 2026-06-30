@@ -27,6 +27,24 @@ hands-on training — take a first-aid course when you can.
 - A digital thermometer and a foil/space blanket
 - Oral rehydration salts and any personal medicines (with a written list)
 
+```ascii
+   1 SAFE?  -- make the scene safe for yourself first
+      |
+      v
+   2 RESPONSIVE & BREATHING normally? -- no --> start CPR, call for help
+      | yes
+      v
+   3 SERIOUS BLEEDING? -- yes --> firm, direct pressure; add layers,
+      | no                       don't peek
+      v
+   4 SIGNS OF SHOCK? -- yes --> lay them down, keep warm & reassured
+      | no
+      v
+   5 lesser injuries -- treat once every life-threat above is handled
+```
+
+*Fig. 1: a calm order of priorities — work through it top to bottom*
+
 ## A calm order of priorities
 
 1. **Make the scene safe** for you first — you are no help as a second casualty.
@@ -53,5 +71,3 @@ hands-on training — take a first-aid course when you can.
 - Keep the kit stocked, dry, and where everyone can find it.
 - Note allergies and medicines for each household member.
 - Learn CPR and the recovery position in person before you need them.
-
-*(Diagrams will be added under `images/` in the guides-rendering step.)*

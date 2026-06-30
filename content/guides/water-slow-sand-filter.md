@@ -26,6 +26,27 @@ drink. Water trickles slowly through fine sand where a living biological layer
 - A perforated outlet pipe and tap
 - A diffuser plate (to avoid disturbing the sand surface)
 
+```ascii
+   +--------------------------------+
+   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   standing water (a few cm, always)
+   +--------------------------------+
+   |            diffuser             |   spreads inflow, protects the bed
+   +--------------------------------+
+   | . . . . . . . . . . . . . . . . |
+   | . . . .  fine sand  . . . . . . |   >= 60 cm — this is the filter
+   | . . . . . . . . . . . . . . . . |
+   | . . . . . . . . . . . . . . . . |
+   +--------------------------------+
+   | o o o   coarse gravel   o o o o |   support layer, drains to outlet
+   +--------------------------------+
+                 |    |
+                 +----+   perforated outlet pipe
+                   ||
+                 [ tap ]   draw filtered water off here
+```
+
+*Fig. 1: slow sand filter cross-section — water always stands above a deep sand bed, sitting on gravel that drains to the outlet*
+
 ## Procedure
 
 1. **Wash the sand and gravel** thoroughly until rinse water runs clear.
@@ -43,5 +64,3 @@ drink. Water trickles slowly through fine sand where a living biological layer
 - Store filtered water in clean, covered containers.
 - Use a tap or ladle to avoid recontamination by hands.
 - Test the output periodically.
-
-*(Diagrams will be added under `images/` in the guides-rendering step.)*

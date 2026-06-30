@@ -25,6 +25,21 @@ in circles. None of this needs a compass — just the sky and some care.
   and north is at right angles to it.
 - An analogue watch can help, but the shadow-stick works anywhere.
 
+```ascii
+                         N
+                         |
+                         |
+            W o----------+----------o E
+          (1st mark)     |      (2nd mark, ~15-20 min later)
+                         |
+                         S
+
+                    * stick (upright,
+                      planted at the +)
+```
+
+*Fig. 1: shadow-stick method, viewed from above — the line from the first shadow-tip mark (west) to the second (east) gives an east-west line; north is at right angles to it*
+
 ## By the stars (clear night)
 
 - **Northern Hemisphere:** find the Big Dipper; the two stars at the end of its

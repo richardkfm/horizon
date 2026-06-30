@@ -37,6 +37,19 @@ The advantage of traps is that many can work at once, day and night:
   not out; or a basket trap baited and sunk. Passive and productive.
 - **Stranding pools:** in shallows, build a low stone wall trapping fish as water
   drops.
+
+```ascii
+   bank  \                                  /  bank
+          \      funnel of woven sticks   /
+           \           or stones        /
+   flow --> \                         /
+             \                     /
+              \___________________/
+                       ||
+                [ basket / weir trap ]
+```
+
+*Fig. 1: a fish funnel trap — the wide mouth lets fish swim in with the current; the narrowing throat stops them finding the way back out*
 - Look for fish near **cover, inflows, and shade**, most active at dawn and dusk.
 
 ## Other wild protein

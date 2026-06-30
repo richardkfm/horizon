@@ -90,6 +90,43 @@ def test_figcaption_is_escaped():
     assert "<figcaption>a &lt;b&gt; &amp; c</figcaption>" in html
 
 
+def test_ascii_fence_with_italic_caption_becomes_figure():
+    html = render_markdown("```ascii\n+---+\n| A |\n+---+\n```\n\n*Fig. 1: a box*\n")
+    assert '<figure class="guide-figure guide-ascii">' in html
+    assert '<pre><code class="language-ascii">+---+' in html
+    assert "<figcaption>Fig. 1: a box</figcaption>" in html
+
+
+def test_ascii_fence_without_caption_still_gets_figure_card_but_no_figcaption():
+    html = render_markdown("```ascii\n+---+\n```\n")
+    assert '<figure class="guide-figure guide-ascii">' in html
+    assert "<figcaption>" not in html
+    assert '<pre><code class="language-ascii">+---+' in html
+
+
+def test_ascii_fence_does_not_swallow_unrelated_next_paragraph():
+    html = render_markdown("```ascii\n+---+\n```\n\nJust a normal paragraph after it.\n")
+    assert "<figcaption>" not in html
+    assert "<p>Just a normal paragraph after it.</p>" in html
+
+
+def test_ascii_diagram_caption_is_escaped():
+    html = render_markdown("```ascii\nx\n```\n\n*a <b> & c*\n")
+    assert "<figcaption>a &lt;b&gt; &amp; c</figcaption>" in html
+
+
+def test_ascii_fence_content_is_escaped():
+    html = render_markdown('```ascii\n<tag> & "quotes"\n```\n')
+    assert "&lt;tag&gt; &amp; &quot;quotes&quot;" in html
+    assert "<tag>" not in html
+
+
+def test_non_ascii_fence_is_left_as_plain_code_block():
+    html = render_markdown("```python\nprint(1)\n```\n")
+    assert "<figure" not in html
+    assert '<pre><code class="language-python">' in html
+
+
 def test_task_list_renders_checkboxes():
     html = render_markdown("- [ ] water\n- [x] torch\n")
     assert 'class="task-list"' in html

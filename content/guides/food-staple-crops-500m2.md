@@ -38,4 +38,18 @@ few reliable staples suited to your climate.
 - Let a few of your strongest plants go to seed.
 - Dry seeds fully and store them cool, dark, and dry, labelled with the date.
 
-*(Diagrams will be added under `images/` in the guides-rendering step.)*
+```ascii
+        <---------------- 25 m ---------------->
+   +-----------+-----------+-----------+   ^
+   |     A     |     B     |     C     |   |
+   +-----------+-----------+-----------+   20 m
+   |     D     |     E     |     F     |   |
+   +-----------+-----------+-----------+   v
+
+   A potatoes              C squash (sprawling, mulched)
+   B beans (bush/climbing)  D maize (block, wind-pollinated)
+   E compost & mulch staging   F seed-saving row
+```
+
+*Fig. 1: one way to lay out a 500 m² plot — a block of wind-pollinated maize,
+mixed beds for the rest, a staging area for compost, and a row left to seed*

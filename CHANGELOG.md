@@ -45,6 +45,17 @@ Updating this changelog and the README is part of every user-facing change
 - **"Do now" callout.** A new callout kind (`> **Do now:** …`) for immediate,
   life-safety actions, rendered with the most urgent styling and used by the
   medical and fire guides.
+- **ASCII diagram convention.** A pure-Markdown alternative to image figures: a
+  fenced ` ```ascii ` code block followed by an `*italic caption*` renders as the
+  same captioned `<figure>` card as an image, but needs no image file and reads
+  correctly as-is in a CLI, `cat`, or any plain Markdown viewer — and degrades to
+  print without losing any meaning. Added monospace line-art diagrams to ten
+  guides that had no illustration: the slow sand filter cross-section, the
+  low-tech solar wiring order, where a shelter loses heat, a water-safety
+  decision tree, a 500 m² staple-crop plot layout, the first-aid priority order,
+  teepee and lean-to fire lays, a fish funnel trap, the shadow-stick navigation
+  method, and the area/volume formula shapes. Six of these guides previously
+  carried a "diagrams will be added" placeholder note, now removed.
 
 ### Fixed
 - README status badge and the "Status:" line still said v0.2.0 after the

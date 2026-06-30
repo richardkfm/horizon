@@ -18,6 +18,20 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
 > carbon monoxide is invisible and deadly. Keep a vent and, ideally, a CO alarm.
 > Keep insulation clear of stove pipes and flues to avoid fire.
 
+```ascii
+                /\
+               /  \
+              / 2  \           priority order:
+             /------\          1  draughts — doors, windows, floor gaps
+            |   3    |            (fix first, biggest win for the effort)
+            |  [==]  |         2  roof / ceiling (warm air rises)
+          1 |        | 1       3  windows (cover at night)
+            |        |         4  walls & floor (bigger job, still
+            |___4____|            worth it over a long cold season)
+```
+
+*Fig. 1: where heat escapes a simple shelter, tackled in priority order*
+
 ## Where heat escapes (tackle in this order)
 
 1. **Draughts:** gaps around doors, windows, and the floor move the most air and
@@ -46,5 +60,3 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
    — wet insulation barely works and rots.
 5. **Shrink the heated space:** curtain off one room to warm rather than the whole
    shelter.
-
-*(Diagrams will be added under `images/` in the guides-rendering step.)*

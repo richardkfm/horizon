@@ -52,6 +52,15 @@ img, figure, table { page-break-inside: avoid; max-width: 100%; }
 .guide figure.guide-figure img { background: #fff; border: 1px solid #000; }
 .guide figure.guide-figure figcaption { font-style: italic; }
 
+/* ASCII diagrams: undo the on-screen horizontal scroll so the whole diagram
+   lays out on paper, with a thin black border like an image figure. */
+.guide figure.guide-ascii pre {
+  overflow: visible;
+  border: 1px solid #000;
+  page-break-inside: avoid;
+}
+.guide figure.guide-ascii code { color: #000; }
+
 /* Checklists print as clear, hand-tickable empty squares — no bullet, a crisp
    box per item — so a printed list works like a paper checklist. */
 .guide .task-list { list-style: none; padding-left: 0; }
