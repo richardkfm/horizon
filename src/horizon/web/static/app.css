@@ -567,6 +567,36 @@ a:hover { color: var(--accent-strong); }
   font-style: italic;
 }
 
+/* ASCII diagrams — a captioned ```ascii fence wrapped by services.markdown.
+   Same card treatment as an image figure, but the "art" is the monospace text
+   itself: a light, bordered box keeps it legible while leaving line spacing
+   and characters untouched so the diagram still lines up. Scrolls sideways
+   on narrow screens instead of overflowing the page (CLAUDE.md: zero
+   horizontal page overflow). */
+.guide figure.guide-ascii pre {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+.guide figure.guide-ascii code {
+  display: inline-block;
+  min-width: 100%;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #111;
+  white-space: pre;
+}
+
 /* Checklists — task-list items rendered as real checkboxes. Drop the bullet,
    give each row a comfortable touch target, and a clear box. */
 .guide .task-list { list-style: none; padding-left: 0; }

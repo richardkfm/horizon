@@ -35,6 +35,20 @@ phones and radios, and keep small devices alive off-grid. Keeping it low-voltage
 3. **Panel:** size it to replace a day's use within your worst-case sun hours;
    a panel watt rating near your daily amp-hours is a sane starting point.
 
+```ascii
+   +-------------+        +------------------+        +------------+
+   |   solar     |  (2)   |     charge       |  (3)   | 12V loads  |
+   |   panel     |------->|   controller     |------->| lights,    |
+   +-------------+        +------------------+        | USB, etc.  |
+                                   ^                   +------------+
+                                   | (1)
+                            +-------------+
+                            |   battery   |--[FUSE]-- + terminal
+                            +-------------+
+```
+
+*Fig. 1: wiring order — connect (1) battery to the controller first, then (2) the panel, then (3) the loads; the fuse sits within a few centimetres of the battery's positive terminal*
+
 ## Wiring order (safety matters)
 
 1. Mount the panel where it gets unshaded midday sun, tilted toward the equator.
@@ -48,5 +62,3 @@ phones and radios, and keep small devices alive off-grid. Keeping it low-voltage
 - Don't discharge lead-acid below ~50%; deep discharges shorten its life.
 - Keep terminals clean and tight; check water levels on flooded batteries.
 - Keep the panel clean and unshaded — even partial shade cuts output sharply.
-
-*(Diagrams will be added under `images/` in the guides-rendering step.)*

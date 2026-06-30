@@ -39,6 +39,27 @@ wood off the ground.
 
 Leave gaps so air can flow — fire needs fuel, heat, *and* air.
 
+```ascii
+              /\
+             /  \
+            /    \
+           /  /\  \
+          /  /  \  \
+         /__/    \__\
+            ~~~~
+```
+
+*Fig. 1: teepee lay — kindling stood in a cone over a tinder bundle (~~~), open enough for air to feed the flame*
+
+```ascii
+        ________________
+       |________________\
+      / // // // // // /
+     ~~~~~~~~~~~~~~~~~~~~
+```
+
+*Fig. 2: lean-to lay — kindling leaned against a thicker log that blocks the wind, with the tinder bundle (~~~) underneath*
+
 ## Get an ember
 
 - **Spark (ferro rod or flint and steel):** scrape sparks straight into a tight

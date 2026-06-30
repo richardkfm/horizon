@@ -29,6 +29,20 @@ Area is measured in **square units** (m², etc.):
 
 Use area for: floors, walls (for paint/plaster), garden beds, roofs, land.
 
+```ascii
+   <------ length ------>
+   +---------------------+   ^             /\
+   |                     |   |            /  \
+   |  area = length x    | width         /    \  height
+   |         width       |   |          /      \
+   +---------------------+   v         /__________\
+                                        <--- base --->
+
+                                   area = 1/2 x base x height
+```
+
+*Fig. 1: rectangle and triangle — the two area formulas most building and garden jobs need*
+
 ## Volume (3-D space)
 
 Volume is in **cubic units** (m³, etc.); capacity often in **litres**
@@ -40,6 +54,22 @@ Volume is in **cubic units** (m³, etc.); capacity often in **litres**
 
 Use volume for: water tanks, soil/earth to move, firewood stacks, storage bins,
 concrete or cob to mix.
+
+```ascii
+        <- diameter ->
+       .---------------.
+      /                 \
+     |-------------------| ^
+     |                   | |
+     |                   | height
+     |                   | |
+      \                 /  v
+       '---------------'
+
+   volume = pi x radius^2 x height   (radius = half the diameter)
+```
+
+*Fig. 2: cylinder (tank, barrel, post) — circle area times height*
 
 ## Worked examples
 

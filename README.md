@@ -53,9 +53,11 @@ and without coercion.
   built-in guides, no download required.
 - **Visual guides + print mode.** Markdown guides with **figures** (a lone image
   becomes a captioned `<figure>`; line-drawing SVGs stay crisp on screen, paper,
-  and e-ink), comparison tables, and **callouts** (`Pick this if` / `Avoid if` /
-  `Spec` / `Do now` …), rendered to HTML for the web and to a minimal,
-  high-contrast **A4 PDF** for printing.
+  and e-ink), **ASCII diagrams** (a captioned ` ```ascii ` code block — no image
+  file needed, and it still reads correctly raw, in a CLI, or in any plain
+  Markdown viewer), comparison tables, and **callouts** (`Pick this if` /
+  `Avoid if` / `Spec` / `Do now` …), rendered to HTML for the web and to a
+  minimal, high-contrast **A4 PDF** for printing.
 - **Printable checklists.** Tick-able lists of what to gather, pack, and keep
   ready — a go-bag, water and food stores, a first-aid kit, tools, and goods to
   share — written in plain Markdown task lists, auto-discovered from
@@ -216,6 +218,22 @@ first run):
   ```markdown
   ![Fig. 1: a stone blade lashed to a wooden handle](images/hafted-tool.svg)
   ```
+
+  For a simple line diagram with no image file, use an **ASCII diagram**: a
+  fenced ` ```ascii ` code block followed by an `*italic caption*` line gets the
+  same captioned `<figure>` card. It still reads correctly with no rendering at
+  all — raw Markdown, a CLI, `cat` — so it's a good default before reaching for
+  an SVG:
+
+  ````markdown
+  ```ascii
+  +---+
+  | A |
+  +---+
+  ```
+
+  *Fig. 1: a labelled box*
+  ````
 
 - **Checklists** — `content/checklists/<id>.md`, with the same front matter as a
   guide (`category` optional). Write items as a Markdown task list and horizon
