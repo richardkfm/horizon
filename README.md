@@ -263,6 +263,33 @@ first run):
 
 Restart horizon to re-seed and re-index.
 
+### Importing external content (WikiHow, books)
+
+`horizon-content import` turns outside material into a guide in the same
+format, written under `<content_dir>/guides` (never the repo's bundled
+`content/`, so third-party text never gets committed):
+
+```bash
+# A WikiHow-shaped how-to page: title, intro, numbered steps, step images.
+# WikiHow spans every topic, so --category is required, not guessed.
+horizon-content import wikihow https://www.wikihow.com/Some-Article \
+  --category crafts --reseed
+
+# A local text/Markdown book, split into one guide per detected chapter.
+# Defaults to category: culture (override with --category for other subjects).
+horizon-content import book ./folklore-of-the-valley.txt \
+  --id-prefix culture-valley-folklore --reseed
+```
+
+Both estimate a reading time from word count, download step images locally so
+the guide still renders fully offline, and end the guide with a "Note" callout
+recording the source and a reminder to check its licence (WikiHow text is
+CC BY-NC-SA; a book may be copyrighted) before sharing the content further.
+Network is only touched during the import itself — once written, an imported
+guide is no different from a hand-authored one. Without `--reseed`, run
+`horizon-admin seed --force` and `horizon-admin reindex` afterwards. See
+`horizon-content import wikihow --help` / `import book --help` for all options.
+
 ## API reference
 
 Read-only **Knowledge API**:

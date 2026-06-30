@@ -122,6 +122,14 @@ These are horizon's integration surface; preserve backward compatibility:
   `Avoid if` / `Spec` / `Decision` / `Risk` / `Do now` / `Tip` / `Note` (with
   synonyms; see `services.markdown._CALLOUT_LABELS`). `Do now` is the most urgent,
   for immediate life-safety actions.
+- **Importing external content:** `horizon-content import wikihow <url>` /
+  `import book <path>` (see `services/importer.py`) convert a how-to page or a
+  local book into guide Markdown and write it under `<content_dir>/guides` — never
+  into the repo's bundled `content/`, since imported text (WikiHow is
+  CC BY-NC-SA; a book may be copyrighted) must never get committed into the
+  AGPL-licensed seed bundle. Keep the conversion logic in `importer.py` pure
+  (no network) and isolate fetching in `scripts/content.py`, mirroring the
+  content-packs split.
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,

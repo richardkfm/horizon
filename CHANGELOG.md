@@ -14,6 +14,21 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Import external content as guides (`horizon-content import`).** Two new
+  headless subcommands turn outside material into regular guides:
+  `horizon-content import wikihow <url>` fetches an "intro + numbered steps"
+  how-to page and converts it to guide Markdown (steps, bold step leads, and
+  step images downloaded locally so the guide still renders fully offline);
+  `horizon-content import book <path>` splits a local text/Markdown book into
+  one guide per detected chapter and defaults to category `culture`. WikiHow
+  spans every topic, so `wikihow` has no default — `--category` is required
+  there. Both write into `<content_dir>/guides` so they never touch the
+  git-tracked seed content, and append a "Note" callout recording the source and
+  a reminder to check its licence before redistributing. `--reseed` reloads the
+  database immediately; otherwise the usual `horizon-admin seed --force` +
+  `reindex` picks the new guide(s) up. The conversion logic
+  (`horizon.services.importer`) is pure and network-free, unit-tested without
+  any HTTP fetch.
 - **New step-by-step plan: "Make and maintain your own tools."** Threads the
   four crafts guides into an ordered path — cordage, making hand tools,
   sharpening/repair, and mending textiles.
