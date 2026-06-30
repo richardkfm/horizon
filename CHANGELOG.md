@@ -20,8 +20,9 @@ Updating this changelog and the README is part of every user-facing change
   how-to page and converts it to guide Markdown (steps, bold step leads, and
   step images downloaded locally so the guide still renders fully offline);
   `horizon-content import book <path>` splits a local text/Markdown book into
-  one guide per detected chapter. Both default to category `culture` (override
-  with `--category`), write into `<content_dir>/guides` so they never touch the
+  one guide per detected chapter and defaults to category `culture`. WikiHow
+  spans every topic, so `wikihow` has no default — `--category` is required
+  there. Both write into `<content_dir>/guides` so they never touch the
   git-tracked seed content, and append a "Note" callout recording the source and
   a reminder to check its licence before redistributing. `--reseed` reloads the
   database immediately; otherwise the usual `horizon-admin seed --force` +

@@ -314,9 +314,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_wikihow.add_argument("--id", help="Guide id (default: slug of the article title).")
     p_wikihow.add_argument(
         "--category",
-        default="culture",
+        required=True,
         choices=categories,
-        help="Guide category (default: culture).",
+        help="Guide category. WikiHow spans every topic, so there is no sensible "
+        "default — pick the one this article belongs in.",
     )
     p_wikihow.add_argument(
         "--difficulty",

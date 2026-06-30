@@ -271,17 +271,18 @@ format, written under `<content_dir>/guides` (never the repo's bundled
 
 ```bash
 # A WikiHow-shaped how-to page: title, intro, numbered steps, step images.
+# WikiHow spans every topic, so --category is required, not guessed.
 horizon-content import wikihow https://www.wikihow.com/Some-Article \
-  --category culture --reseed
+  --category crafts --reseed
 
 # A local text/Markdown book, split into one guide per detected chapter.
+# Defaults to category: culture (override with --category for other subjects).
 horizon-content import book ./folklore-of-the-valley.txt \
-  --id-prefix culture-valley-folklore --category culture --reseed
+  --id-prefix culture-valley-folklore --reseed
 ```
 
-Both default to `category: culture` (any category works with `--category`),
-estimate a reading time from word count, download step images locally so the
-guide still renders fully offline, and end the guide with a "Note" callout
+Both estimate a reading time from word count, download step images locally so
+the guide still renders fully offline, and end the guide with a "Note" callout
 recording the source and a reminder to check its licence (WikiHow text is
 CC BY-NC-SA; a book may be copyrighted) before sharing the content further.
 Network is only touched during the import itself — once written, an imported

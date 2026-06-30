@@ -80,7 +80,15 @@ def _run(args: list[str]) -> int:
 
 def test_import_wikihow_writes_guide(env, monkeypatch, capsys):
     _patch_http(monkeypatch)
-    rc = _run(["import", "wikihow", "https://www.wikihow.com/Build-a-Story-Circle"])
+    rc = _run(
+        [
+            "import",
+            "wikihow",
+            "https://www.wikihow.com/Build-a-Story-Circle",
+            "--category",
+            "culture",
+        ]
+    )
     assert rc == 0
 
     out_path = env / "content" / "guides" / "how-to-build-a-story-circle.md"
@@ -117,19 +125,46 @@ def test_import_wikihow_custom_id_and_category(env, monkeypatch):
 
 def test_import_wikihow_refuses_to_overwrite_without_force(env, monkeypatch, capsys):
     _patch_http(monkeypatch)
-    _run(["import", "wikihow", "https://www.wikihow.com/X", "--id", "dup", "--no-images"])
-    rc = _run(["import", "wikihow", "https://www.wikihow.com/X", "--id", "dup", "--no-images"])
+    args = [
+        "import",
+        "wikihow",
+        "https://www.wikihow.com/X",
+        "--id",
+        "dup",
+        "--category",
+        "culture",
+        "--no-images",
+    ]
+    _run(args)
+    rc = _run(args)
     assert rc == 1
     assert "already exists" in capsys.readouterr().err
 
 
 def test_import_wikihow_force_overwrites(env, monkeypatch):
     _patch_http(monkeypatch)
-    _run(["import", "wikihow", "https://www.wikihow.com/X", "--id", "dup", "--no-images"])
-    rc = _run(
-        ["import", "wikihow", "https://www.wikihow.com/X", "--id", "dup", "--no-images", "--force"]
-    )
+    args = [
+        "import",
+        "wikihow",
+        "https://www.wikihow.com/X",
+        "--id",
+        "dup",
+        "--category",
+        "culture",
+        "--no-images",
+    ]
+    _run(args)
+    rc = _run([*args, "--force"])
     assert rc == 0
+
+
+def test_import_wikihow_requires_category(env, monkeypatch, capsys):
+    """WikiHow spans every topic, so there is no sensible default category."""
+    _patch_http(monkeypatch)
+    with pytest.raises(SystemExit) as exc_info:
+        cli.build_parser().parse_args(["import", "wikihow", "https://www.wikihow.com/X"])
+    assert exc_info.value.code == 2
+    assert "--category" in capsys.readouterr().err
 
 
 def test_import_wikihow_reseed_loads_into_db(env, monkeypatch):
@@ -160,6 +195,8 @@ def test_import_wikihow_reseed_loads_into_db(env, monkeypatch):
             "https://www.wikihow.com/Build-a-Story-Circle",
             "--id",
             "culture-story-circle",
+            "--category",
+            "culture",
             "--no-images",
             "--reseed",
         ]
