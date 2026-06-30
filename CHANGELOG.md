@@ -14,6 +14,13 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **New step-by-step plan: "Make and maintain your own tools."** Threads the
+  four crafts guides into an ordered path — cordage, making hand tools,
+  sharpening/repair, and mending textiles.
+- **Two new checklists.** "Home emergency preparedness" (stocking the home
+  itself, distinct from the go-bag, for blackouts, storms, floods, and a
+  medical emergency) and "Off-grid power build" (tools, parts, and safety
+  gear to pair with the off-grid-power plan).
 - **Checklists (`/checklists`).** A new printable content type — a self-contained,
   tick-able list of things to gather, pack, or do. Ships a starter set: a go-bag,
   water store, food store, first-aid kit, tools and materials, and a
