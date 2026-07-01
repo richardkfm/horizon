@@ -69,6 +69,8 @@ Plant with the weather, not the calendar. The rule that travels everywhere:
 
 ## Where to go next
 
+- If the ground is bare, exhausted, or eroding, start with the soil and land
+  restoration guide before planting.
 - Grow the staples: follow the staple-crops guide for soil prep and spacing.
 - Keep what you grow: read seed saving so next year's crop costs nothing.
 - Plan year-round eating with the vegetable-garden guide.

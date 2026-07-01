@@ -358,6 +358,20 @@ _CHAPTER_RE = re.compile(
     r"^(?:chapter|part|book)\s+([ivxlcdm\d]+)\b\s*[:.\-–—]?\s*(.*)$",
     re.IGNORECASE,
 )
+_CHAPTER_PREFIX_RE = re.compile(
+    r"^(?:chapter|part|book)\s+[ivxlcdm\d]+\b\s*[:.\-–—]?\s*", re.IGNORECASE
+)
+
+
+def chapter_slug_suffix(title: str) -> str:
+    """Slugify a chapter title for a guide-id suffix, dropping a leading "Chapter N".
+
+    The numbered-index prefix (``-01-``, ``-02-``, ...) already encodes the
+    chapter's position, so repeating "chapter-1-" in the slug would just be
+    noise; the title's actual subject (e.g. "Greetings") is more useful.
+    """
+    remainder = _CHAPTER_PREFIX_RE.sub("", title).strip()
+    return slugify(remainder or title)
 
 
 def split_book_into_chapters(text: str) -> list[ParsedChapter]:

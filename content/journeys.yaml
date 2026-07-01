@@ -31,13 +31,14 @@ journeys:
   - id: grow-and-store-food
     title: Grow and store your own food
     description: >
-      Plan a first growing season and make it last: pick crops that suit your
-      site, establish a vegetable garden, grow calorie-dense staples, and save
-      seed so you can grow again next year.
+      Plan a first growing season and make it last: rebuild worn-out ground,
+      pick crops that suit your site, establish a vegetable garden, grow
+      calorie-dense staples, and save seed so you can grow again next year.
     category: food
     difficulty: 3
     estimated_time: "A growing season"
     guides:
+      - food-soil-and-land-restoration
       - food-choosing-crops
       - food-vegetable-garden
       - food-staple-crops-500m2

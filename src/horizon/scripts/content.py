@@ -16,10 +16,8 @@ for the (pure, offline-testable) conversion logic.
 from __future__ import annotations
 
 import argparse
-import re
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 
 from horizon.services.packs import (
     PackError,
@@ -30,8 +28,6 @@ from horizon.services.packs import (
     read_manifest,
     remove_pack,
 )
-
-_IMPORT_USER_AGENT = "horizon-content-importer/1 (offline self-hosted import tool)"
 
 
 def cmd_list(args: argparse.Namespace) -> int:
@@ -97,69 +93,6 @@ def _guides_dest(args: argparse.Namespace) -> Path:
     return Path(settings.content_dir) / "guides"
 
 
-def _fetch_text(url: str) -> str:
-    import httpx
-
-    with httpx.Client(
-        timeout=30, follow_redirects=True, headers={"User-Agent": _IMPORT_USER_AGENT}
-    ) as client:
-        response = client.get(url)
-        response.raise_for_status()
-        return response.text
-
-
-_CHAPTER_PREFIX_RE = re.compile(
-    r"^(?:chapter|part|book)\s+[ivxlcdm\d]+\b\s*[:.\-–—]?\s*", re.IGNORECASE
-)
-
-
-def _chapter_slug_suffix(title: str) -> str:
-    """Slugify a chapter title for a guide-id suffix, dropping a leading "Chapter N".
-
-    The numbered-index prefix (``-01-``, ``-02-``, ...) already encodes the
-    chapter's position, so repeating "chapter-1-" in the slug would just be
-    noise; the title's actual subject (e.g. "Greetings") is more useful.
-    """
-    from horizon.services.importer import slugify
-
-    remainder = _CHAPTER_PREFIX_RE.sub("", title).strip()
-    return slugify(remainder or title)
-
-
-def _guess_ext(url: str) -> str:
-    suffix = Path(urlparse(url).path).suffix.split("?")[0]
-    return suffix if suffix and len(suffix) <= 5 else ".jpg"
-
-
-def _download_images(urls: list[str], dest_dir: Path, prefix: str) -> dict[str, str]:
-    """Best-effort download of step images so the guide renders fully offline.
-
-    A failed image is just dropped (with a warning) rather than left as a
-    remote URL — a guide that hot-links an image would silently break once
-    the node goes offline, the one situation horizon must never be in.
-    """
-    if not urls:
-        return {}
-    import httpx
-
-    dest_dir.mkdir(parents=True, exist_ok=True)
-    image_map: dict[str, str] = {}
-    with httpx.Client(
-        timeout=20, follow_redirects=True, headers={"User-Agent": _IMPORT_USER_AGENT}
-    ) as client:
-        for i, url in enumerate(urls, start=1):
-            filename = f"{prefix}-{i}{_guess_ext(url)}"
-            try:
-                response = client.get(url)
-                response.raise_for_status()
-            except Exception as exc:  # noqa: BLE001 - one bad image shouldn't abort the import
-                print(f"  warning: could not download image {url}: {exc}", file=sys.stderr)
-                continue
-            (dest_dir / filename).write_bytes(response.content)
-            image_map[url] = f"images/{filename}"
-    return image_map
-
-
 def _maybe_reseed(args: argparse.Namespace, *, guides_now: str) -> None:
     if not args.reseed:
         print(
@@ -180,58 +113,31 @@ def _maybe_reseed(args: argparse.Namespace, *, guides_now: str) -> None:
 
 def cmd_import_wikihow(args: argparse.Namespace) -> int:
     """Fetch a WikiHow-shaped how-to page and save it as a guide."""
-    from horizon.services import importer
+    from horizon.services import import_content
 
     try:
-        html = _fetch_text(args.url)
-    except Exception as exc:  # noqa: BLE001 - report rather than crash
-        print(f"Error fetching {args.url}: {exc}", file=sys.stderr)
-        return 1
-
-    article = importer.parse_html_article(html)
-    if not article.title and not article.sections:
-        print(
-            "Could not find an article title or any numbered steps on that page "
-            "— it may not be a how-to article, or its markup is unusual.",
-            file=sys.stderr,
+        result = import_content.import_wikihow(
+            args.url,
+            category=args.category,
+            difficulty=args.difficulty,
+            estimated_time=args.estimated_time,
+            guide_id=args.id,
+            dest_dir=_guides_dest(args),
+            download_images_flag=not args.no_images,
+            force=args.force,
         )
+    except import_content.ContentImportError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
         return 1
 
-    guide_id = args.id or importer.slugify(article.title or args.url)
-    dest = _guides_dest(args)
-    dest.mkdir(parents=True, exist_ok=True)
-    out_path = dest / f"{guide_id}.md"
-    if out_path.exists() and not args.force:
-        print(
-            f"Guide {guide_id!r} already exists at {out_path}. "
-            "Pass --id for a different id or --force to overwrite.",
-            file=sys.stderr,
-        )
-        return 1
-
-    image_map: dict[str, str] = {}
-    if not args.no_images:
-        sources = importer.collect_image_sources(article)
-        image_map = _download_images(sources, dest / "images", guide_id)
-
-    content = importer.render_wikihow_guide(
-        article,
-        guide_id=guide_id,
-        source=args.url,
-        category=args.category,
-        difficulty=args.difficulty,
-        estimated_time=args.estimated_time,
-        image_map=image_map,
-    )
-    out_path.write_text(content, encoding="utf-8")
-    print(f"Wrote {out_path} (id: {guide_id}, category: {args.category}).")
-    _maybe_reseed(args, guides_now=guide_id)
+    print(f"Wrote {result['path']} (id: {result['guide_id']}, category: {args.category}).")
+    _maybe_reseed(args, guides_now=result["guide_id"])
     return 0
 
 
 def cmd_import_book(args: argparse.Namespace) -> int:
     """Split a local text/Markdown book into one guide per chapter."""
-    from horizon.services import importer
+    from horizon.services import import_content
 
     path = Path(args.path)
     if not path.is_file():
@@ -239,48 +145,36 @@ def cmd_import_book(args: argparse.Namespace) -> int:
         return 2
 
     text = path.read_text(encoding="utf-8", errors="replace")
-    chapters = importer.split_book_into_chapters(text)
-    if not chapters:
-        print("No content found to import.", file=sys.stderr)
-        return 1
-
-    prefix = args.id_prefix or importer.slugify(path.stem)
     dest = _guides_dest(args)
-    dest.mkdir(parents=True, exist_ok=True)
-
-    written: list[str] = []
-    for i, chapter in enumerate(chapters, start=1):
-        if len(chapters) == 1:
-            guide_id = prefix
-        else:
-            suffix = _chapter_slug_suffix(chapter.title)
-            guide_id = f"{prefix}-{i:02d}-{suffix}" if suffix else f"{prefix}-{i:02d}"
-
-        out_path = dest / f"{guide_id}.md"
-        if out_path.exists() and not args.force:
-            print(
-                f"  skipping {guide_id!r}: already exists at {out_path} (use --force to overwrite)",
-                file=sys.stderr,
-            )
-            continue
-
-        content = importer.render_book_guide(
-            chapter,
-            guide_id=guide_id,
-            source=str(path),
+    try:
+        result = import_content.import_book(
+            text,
+            source_name=str(path),
             category=args.category,
             difficulty=args.difficulty,
             estimated_time=args.estimated_time,
+            id_prefix=args.id_prefix,
+            dest_dir=dest,
+            force=args.force,
         )
-        out_path.write_text(content, encoding="utf-8")
-        written.append(guide_id)
+    except import_content.ContentImportError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
 
-    if not written:
+    for guide_id in result["skipped"]:
+        print(
+            f"  skipping {guide_id!r}: already exists at {dest / (guide_id + '.md')} "
+            "(use --force to overwrite)",
+            file=sys.stderr,
+        )
+
+    written_ids = [w["guide_id"] for w in result["written"]]
+    if not written_ids:
         print("No guides were written.", file=sys.stderr)
         return 1
 
-    print(f"Wrote {len(written)} guide(s) to {dest}: {', '.join(written)}")
-    _maybe_reseed(args, guides_now=", ".join(written))
+    print(f"Wrote {len(written_ids)} guide(s) to {dest}: {', '.join(written_ids)}")
+    _maybe_reseed(args, guides_now=", ".join(written_ids))
     return 0
 
 

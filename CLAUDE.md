@@ -123,13 +123,19 @@ These are horizon's integration surface; preserve backward compatibility:
   synonyms; see `services.markdown._CALLOUT_LABELS`). `Do now` is the most urgent,
   for immediate life-safety actions.
 - **Importing external content:** `horizon-content import wikihow <url>` /
-  `import book <path>` (see `services/importer.py`) convert a how-to page or a
-  local book into guide Markdown and write it under `<content_dir>/guides` — never
-  into the repo's bundled `content/`, since imported text (WikiHow is
-  CC BY-NC-SA; a book may be copyrighted) must never get committed into the
-  AGPL-licensed seed bundle. Keep the conversion logic in `importer.py` pure
-  (no network) and isolate fetching in `scripts/content.py`, mirroring the
-  content-packs split.
+  `import book <path>` on the CLI, or the **Import content** wizard under
+  `/admin/import` in the web UI, convert a how-to page or a book into guide
+  Markdown and write it under `<content_dir>/guides` — never into the repo's
+  bundled `content/`, since imported text (WikiHow is CC BY-NC-SA; a book may be
+  copyrighted) must never get committed into the AGPL-licensed seed bundle.
+  The conversion logic in `services/importer.py` stays pure (no network); the
+  one seam that fetches a URL, downloads step images, or writes guide files is
+  `services/import_content.py`, called by both the CLI (`scripts/content.py`)
+  and the admin web route (`web/admin.py`) so they share the same code instead
+  of duplicating it — mirroring the pure/impure split in `services/packs.py`.
+  The web wizard writes synchronously (unlike the packs wizard's background
+  job) since a page-plus-images import is quick, then re-seeds and re-indexes
+  immediately so the new guide is live without a restart.
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,

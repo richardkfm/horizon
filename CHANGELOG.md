@@ -22,6 +22,20 @@ Updating this changelog and the README is part of every user-facing change
   the env var) still works exactly as before and takes precedence.
 
 ### Added
+- **Two new guides:** *Restore worn-out land and rebuild soil*
+  (`food-soil-and-land-restoration`) covering cover crops, swales, windbreaks,
+  and other low-tech land-regeneration techniques, and *Set up fair,
+  accountable governance for a group* (`cooperation-democratic-governance`)
+  covering rotating/recallable roles, power-splitting, and federation for
+  groups that outgrow whole-group consensus. The land-restoration guide is now
+  the first step in the "Grow and store your own food" plan.
+- **"Import content" wizard in the admin web UI** (`/admin/import`), so an
+  operator can turn a WikiHow-shaped how-to page or an uploaded book file
+  (.txt/.md) into guide(s) without a terminal — previously only available via
+  the `horizon-content import wikihow`/`import book` CLI. Both now share the
+  same fetch/write logic (`services/import_content.py`); the web wizard
+  re-seeds and rebuilds the search index immediately after writing, so the new
+  guide is live with no restart.
 - **10 more ASCII diagrams across guides** (cordage twisting, square lashing,
   timber-frame cabin cross-section, battery series/parallel wiring, a wind
   turbine on its guyed mast, splinting, a succession garden bed layout,
