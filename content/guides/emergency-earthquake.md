@@ -19,6 +19,24 @@ you are.
 > until the shaking stops. **Do not run outside during the shaking** — that's when
 > falling debris hurts people.
 
+```ascii
+        ________________________
+       |      sturdy table       |
+       |__________________________|
+        |     |            |     |
+        |     |  ( you )   |     |
+        |     |  crouched  |     |
+        |     |  head down |     |
+        |_____|____________|_____|
+                    ^
+             holding a table leg
+
+   DROP to hands and knees, COVER under the table,
+   HOLD ON to a leg until the shaking stops
+```
+
+*Fig. 1: Drop, Cover, Hold On — the safest position during shaking is low, under sturdy cover, gripping a leg of it*
+
 ## During the shaking
 
 - **Indoors:** Drop, Cover, Hold On. Stay away from windows, mirrors, and tall

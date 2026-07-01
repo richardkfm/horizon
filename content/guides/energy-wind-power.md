@@ -42,6 +42,23 @@ tower and battery beat a turbine that never keeps up.
    aside in high wind) or another way to shed excess power.
 3. **Tower:** the biggest, most dangerous part. Use a guyed mast on a solid
    anchor; plan how to raise and lower it safely for maintenance.
+
+```ascii
+                 \   |   /       rotor faces the wind
+                  \  |  /
+                ----(*)----   <- tail vane keeps it aimed
+                     |
+                     |          tower (guyed mast)
+            \        |        /
+             \       |       /
+              \      |      /     guy wires anchor the mast
+               \     |     /      to solid ground
+   ____________\_____|_____/____________
+       anchor        |          anchor
+                    anchor
+```
+
+*Fig. 1: a small wind turbine on a guyed mast — the tail vane keeps the rotor into the wind, guy wires hold the tower against storm loads*
 4. **Brake/disconnect:** fit a way to stop the rotor (short the generator, or a
    mechanical brake) for storms and servicing.
 

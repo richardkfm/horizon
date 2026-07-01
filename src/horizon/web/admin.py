@@ -43,6 +43,7 @@ templates.env.filters["filesize"] = packs_service.human_size
 templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
+templates.env.globals["version"] = __version__
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

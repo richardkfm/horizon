@@ -38,6 +38,24 @@ This is the core technique:
 3. Repeat with what is now the top strand: twist away, fold over toward you.
 4. Keep alternating. The opposing twists lock together into cord.
 
+```ascii
+   fibres folded at a loop:        twist A away, fold it over B:
+
+        ,-----,                      A           B
+       (       )                      \         /
+      A |     | B                      \       /
+                                         \     /
+                                          \   /
+                                           \ /
+                                            X     <- strands cross and lock
+                                           / \
+                                          B   A
+
+   repeat, alternating which strand goes over — cord grows toward you
+```
+
+*Fig. 1: reverse-wrap twisting — each strand is twisted away then folded over the other, and the opposing twists lock together*
+
 ## Make it longer and thicker
 
 - **Splice in new fibre** before a strand runs out: lay new fibres alongside the

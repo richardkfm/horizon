@@ -28,6 +28,21 @@ and keep pressing.**
 3. **Do not keep peeking.** Lifting the cloth to look restarts the bleeding. If
    blood soaks through, add more cloth on top and keep pressing — don't remove the
    first layer.
+
+```ascii
+        hand, firm and steady
+                 ||
+                 ||
+                 vv
+        ___________________
+       |///////////////////|   <- clean cloth or gauze
+       |________wound_______|
+
+   press hard, straight down, without lifting to look;
+   soaked through? add more cloth on top and keep pressing
+```
+
+*Fig. 1: direct pressure — press firmly straight down on the wound through clean cloth, and keep pressing*
 4. **Lay the person down** and raise the wounded part above the heart if no bone
    looks broken.
 

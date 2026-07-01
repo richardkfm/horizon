@@ -37,6 +37,21 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
 4. **Roof:** set a ridge beam and rafters, or use simple triangular trusses.
    Pitch it enough to shed rain and snow, with an **overhang** past the walls.
 
+```ascii
+                    ___________________
+                   /                   \      roof, pitched, with overhang
+                  /_____________________\
+                  |  |  |  |  |  |  |  |
+                  |  |  |  |  |  |  |  |      wall studs between top/bottom plates
+                  |__|__|__|__|__|__|__|
+                  =======================     floor deck on joists
+                    |        |        |
+                  [pier]   [pier]   [pier]     raised off the ground, level
+    ground   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+*Fig. 1: timber-frame cabin cross-section — foundation piers keep wood off the soil, a level floor carries the wall frame, and the roof oversails the walls*
+
 ## Close it in
 
 - **Roof covering first** so you can work dry: boards plus a waterproof layer
