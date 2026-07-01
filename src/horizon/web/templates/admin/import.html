@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Import content — horizon{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h1>Import content</h1>
+  <a href="/admin" class="btn">Back to dashboard</a>
+</div>
+
+<p class="empty">
+  Turn a single external how-to page or a book file into guide(s) on this node.
+  This is online-during-import, offline-after, like content packs: fetch or
+  upload once while you have internet, and the result is a normal guide that
+  works fully offline from then on.
+</p>
+
+{% if result %}
+<div class="repair-result {{ 'is-ok' if result.ok else 'is-warn' }}" role="status">
+  <strong>{{ result.title }}</strong>
+  <p>{{ result.message }}</p>
+</div>
+{% endif %}
+
+<section class="admin-section">
+  <h2>Import a how-to page</h2>
+  <p class="field-hint">
+    Fetches a WikiHow-shaped page (an intro plus numbered steps) and saves it as
+    a guide. Step images are downloaded too, so the guide works offline.
+  </p>
+  <form method="post" action="/admin/import/wikihow" class="token-form">
+    <label for="wikihow-url">Page URL</label>
+    <input type="url" id="wikihow-url" name="url" required
+           placeholder="https://www.wikihow.com/..." />
+
+    <label for="wikihow-category">Category</label>
+    <select id="wikihow-category" name="category" required>
+      {% for c in categories %}
+      <option value="{{ c }}">{{ c }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="wikihow-difficulty">Difficulty (1–5)</label>
+    <input type="number" id="wikihow-difficulty" name="difficulty" min="1" max="5" value="2" />
+
+    <label for="wikihow-id">Guide id (optional)</label>
+    <input type="text" id="wikihow-id" name="guide_id" placeholder="default: slug of the title" />
+
+    <label>
+      <input type="checkbox" name="force" value="true" />
+      Overwrite if a guide with this id already exists
+    </label>
+
+    <button type="submit" class="btn btn-primary">Import page</button>
+  </form>
+  <p class="field-hint">
+    WikiHow content is CC BY-NC-SA; check the source's licence before sharing or
+    redistributing an imported guide further.
+  </p>
+</section>
+
+<section class="admin-section">
+  <h2>Import a book</h2>
+  <p class="field-hint">
+    Splits a plain-text or Markdown book into one guide per detected chapter
+    (Markdown headings, or "Chapter N" / "Part N" lines).
+  </p>
+  <form method="post" action="/admin/import/book" enctype="multipart/form-data" class="token-form">
+    <label for="book-file">Book file (.txt or .md)</label>
+    <input type="file" id="book-file" name="file" accept=".txt,.md,text/plain,text/markdown" required />
+
+    <label for="book-category">Category</label>
+    <select id="book-category" name="category">
+      {% for c in categories %}
+      <option value="{{ c }}"{% if c == "culture" %} selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="book-difficulty">Difficulty (1–5)</label>
+    <input type="number" id="book-difficulty" name="difficulty" min="1" max="5" value="1" />
+
+    <label for="book-id-prefix">Guide id prefix (optional)</label>
+    <input type="text" id="book-id-prefix" name="id_prefix" placeholder="default: slug of the file name" />
+
+    <label>
+      <input type="checkbox" name="force" value="true" />
+      Overwrite chapters that already exist
+    </label>
+
+    <button type="submit" class="btn btn-primary">Import book</button>
+  </form>
+  <p class="field-hint">
+    A book may be copyrighted — check that you have the right to import and
+    share it before uploading.
+  </p>
+</section>
+{% endblock %}

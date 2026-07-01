@@ -304,7 +304,10 @@ anything you've hand-edited, then re-indexes for the assistant.
 
 `horizon-content import` turns outside material into a guide in the same
 format, written under `<content_dir>/guides` (never the repo's bundled
-`content/`, so third-party text never gets committed):
+`content/`, so third-party text never gets committed). The same conversion is
+also available with no terminal, as a web wizard under **Admin → Import
+content**: paste a page URL or upload a book file, pick a category, and it
+writes the guide and re-seeds/re-indexes immediately.
 
 ```bash
 # A WikiHow-shaped how-to page: title, intro, numbered steps, step images.

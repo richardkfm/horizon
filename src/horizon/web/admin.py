@@ -21,7 +21,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form, Request
+from fastapi import APIRouter, Depends, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, func, select
@@ -533,6 +533,120 @@ def _pack_row_fragment(request: Request, pack_id: str) -> HTMLResponse:
     if row is None:
         return HTMLResponse("", status_code=404)
     return templates.TemplateResponse(request, "admin/_pack_row.html", {"pack": row})
+
+
+# --- Import content (WikiHow page / local book -> guide) --------------------
+#
+# Unlike content packs (large, pre-built downloads), this converts a single
+# external source into a guide on the spot. It is small and synchronous — a
+# how-to page plus a handful of step images, or a book file already on the
+# operator's machine — so it runs inline in the request instead of the packs
+# wizard's background-job/poll pattern. After writing, it re-seeds the database
+# and rebuilds the search index (mirroring the "Re-seed" health repair) so the
+# new guide is live immediately, no restart required.
+
+
+def _reseed_after_import() -> str:
+    from horizon.services.diagnostics import run_repair
+
+    return run_repair("reseed")["message"]
+
+
+@router.get("/admin/import", response_class=HTMLResponse)
+def import_page(request: Request):
+    """Import wizard: turn a WikiHow-shaped page or a local book into guide(s)."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    return templates.TemplateResponse(
+        request,
+        "admin/import.html",
+        {"categories": [c.value for c in Category], "result": None},
+    )
+
+
+@router.post("/admin/import/wikihow", response_class=HTMLResponse)
+def import_wikihow_submit(
+    request: Request,
+    url: Annotated[str, Form()],
+    category: Annotated[str, Form()],
+    difficulty: Annotated[int, Form()] = 2,
+    guide_id: Annotated[str, Form()] = "",
+    force: Annotated[bool, Form()] = False,
+):
+    """Fetch a how-to page and write it as a guide, then re-seed and re-index."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    from horizon.services import import_content
+
+    try:
+        outcome = import_content.import_wikihow(
+            url,
+            category=category,
+            difficulty=difficulty,
+            guide_id=guide_id or None,
+            force=force,
+        )
+        message = f"Wrote guide '{outcome['guide_id']}'. {_reseed_after_import()}"
+        result = {"ok": True, "title": "Imported", "message": message}
+    except import_content.ContentImportError as exc:
+        result = {"ok": False, "title": "Import failed", "message": str(exc)}
+
+    return templates.TemplateResponse(
+        request,
+        "admin/import.html",
+        {"categories": [c.value for c in Category], "result": result},
+    )
+
+
+@router.post("/admin/import/book", response_class=HTMLResponse)
+async def import_book_submit(
+    request: Request,
+    file: Annotated[UploadFile, File()],
+    category: Annotated[str, Form()] = "culture",
+    difficulty: Annotated[int, Form()] = 1,
+    id_prefix: Annotated[str, Form()] = "",
+    force: Annotated[bool, Form()] = False,
+):
+    """Split an uploaded text/Markdown book into chapter guides, then re-seed."""
+    if (redirect := _redirect_if_unauthed(request)) is not None:
+        return redirect
+    from horizon.services import import_content
+
+    data = await file.read()
+    try:
+        text = data.decode("utf-8", errors="replace")
+        outcome = import_content.import_book(
+            text,
+            source_name=file.filename or "book.txt",
+            category=category,
+            difficulty=difficulty,
+            id_prefix=id_prefix or None,
+            force=force,
+        )
+        written, skipped = outcome["written"], outcome["skipped"]
+        if not written:
+            message = (
+                "No guides were written — every chapter id already existed "
+                f"({', '.join(skipped)}). Turn on overwrite to replace them."
+                if skipped
+                else "No guides were written."
+            )
+            result = {"ok": False, "title": "Import failed", "message": message}
+        else:
+            guide_ids = ", ".join(w["guide_id"] for w in written)
+            message = f"Wrote {len(written)} guide(s): {guide_ids}."
+            if skipped:
+                message += f" Skipped (already existed): {', '.join(skipped)}."
+            message += f" {_reseed_after_import()}"
+            result = {"ok": True, "title": "Imported", "message": message}
+    except import_content.ContentImportError as exc:
+        result = {"ok": False, "title": "Import failed", "message": str(exc)}
+
+    return templates.TemplateResponse(
+        request,
+        "admin/import.html",
+        {"categories": [c.value for c in Category], "result": result},
+    )
 
 
 # --- Optional integrations status ------------------------------------------

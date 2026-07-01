@@ -725,7 +725,7 @@ a:hover { color: var(--accent-strong); }
 .admin-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); }
 .admin-section { margin-top: var(--space-5); }
 .token-form { display: flex; flex-direction: column; gap: var(--space-2); max-width: 22rem; }
-.token-form input {
+.token-form input:not([type="checkbox"]), .token-form select {
   font: inherit;
   padding: 0.5rem 0.65rem;
   border: 1px solid var(--border-strong);
@@ -733,6 +733,7 @@ a:hover { color: var(--accent-strong); }
   background: var(--surface);
   color: var(--fg);
 }
+.token-form label input[type="checkbox"] { width: auto; margin-right: 0.4em; }
 .stat-row { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-5); padding: 0; }
 .admin-table { border-collapse: collapse; width: 100%; max-width: 36rem; }
 .admin-table th, .admin-table td {

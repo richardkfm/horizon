@@ -22,6 +22,13 @@ Updating this changelog and the README is part of every user-facing change
   the env var) still works exactly as before and takes precedence.
 
 ### Added
+- **"Import content" wizard in the admin web UI** (`/admin/import`), so an
+  operator can turn a WikiHow-shaped how-to page or an uploaded book file
+  (.txt/.md) into guide(s) without a terminal — previously only available via
+  the `horizon-content import wikihow`/`import book` CLI. Both now share the
+  same fetch/write logic (`services/import_content.py`); the web wizard
+  re-seeds and rebuilds the search index immediately after writing, so the new
+  guide is live with no restart.
 - **10 more ASCII diagrams across guides** (cordage twisting, square lashing,
   timber-frame cabin cross-section, battery series/parallel wiring, a wind
   turbine on its guyed mast, splinting, a succession garden bed layout,
