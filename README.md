@@ -6,7 +6,7 @@
 
 **An offline-first autonomy node for basic human skills.**
 
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
@@ -497,4 +497,6 @@ Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 
 ## License
 
-[AGPL-3.0-or-later](LICENSE).
+[PolyForm Noncommercial 1.0.0](LICENSE) — free for noncommercial use (personal,
+educational, charitable, research, and government use); commercial use is not
+permitted without a separate agreement with the copyright holder.

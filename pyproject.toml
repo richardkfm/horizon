@@ -4,7 +4,7 @@ version = "0.6.0"
 description = "Offline-first autonomy & rebuilding node: skill-tree journeys, visual guides, and a local AI assistant."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "AGPL-3.0-or-later" }
+license = { text = "PolyForm-Noncommercial-1.0.0" }
 authors = [{ name = "horizon contributors" }]
 
 dependencies = [
