@@ -127,7 +127,8 @@ These are horizon's integration surface; preserve backward compatibility:
   `/admin/import` in the web UI, convert a how-to page or a book into guide
   Markdown and write it under `<content_dir>/guides` — never into the repo's
   bundled `content/`, since imported text (WikiHow is CC BY-NC-SA; a book may be
-  copyrighted) must never get committed into the AGPL-licensed seed bundle.
+  copyrighted) must never get committed into the PolyForm Noncommercial-licensed
+  seed bundle.
   The conversion logic in `services/importer.py` stays pure (no network); the
   one seam that fetches a URL, downloads step images, or writes guide files is
   `services/import_content.py`, called by both the CLI (`scripts/content.py`)

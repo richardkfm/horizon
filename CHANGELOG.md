@@ -14,6 +14,13 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Changed
+- **License changed from AGPL-3.0-or-later to PolyForm Noncommercial
+  1.0.0.** horizon is now source-available rather than open source: the code
+  remains free to use, modify, and self-host for any noncommercial purpose
+  (personal, educational, charitable, research, and government use), but
+  commercial use requires a separate agreement with the copyright holder.
+  Updated `LICENSE`, `pyproject.toml`, the README badge/license section, and
+  the site footer accordingly.
 - **The admin area is now on by default.** Previously a blank `admin.token`
   disabled it entirely; now, when neither `admin.token` nor
   `HORIZON_ADMIN_TOKEN` is set, horizon generates a random token on first run,
