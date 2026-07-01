@@ -13,7 +13,38 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **10 more ASCII diagrams across guides** (cordage twisting, square lashing,
+  timber-frame cabin cross-section, battery series/parallel wiring, a wind
+  turbine on its guyed mast, splinting, a succession garden bed layout,
+  earthquake Drop-Cover-Hold-On, an earth-wall cross-section, direct pressure
+  for bleeding, and fire-hardening a digging stick) — the same
+  `` ```ascii `` + caption convention already used elsewhere.
+
+### Changed
+- **Landing page heading no longer repeats "horizon".** The header already
+  shows the wordmark, so the intro `<h1>` now reads "Guides for everyday
+  autonomy" instead of duplicating the brand name directly beneath it.
+- **Footer spacing fixed.** `.footer-links` (GitHub / Operator login) had no
+  layout rules at all, so the two links ran together with no gap and wrapped
+  awkwardly on narrow screens; the footer row also had no extra padding
+  separating it from the page above. Added a flex-wrap gap for the links and
+  more breathing room around the footer row.
+- **Landing page CTA spacing.** The "Describe your goal" button sat right
+  under its question with almost no gap when wrapped to its own line; added
+  margin above the button and below the whole `.cta` paragraph.
+- **`<h2>` section headings now have top margin.** They previously had none,
+  so a second section heading straight after another block (e.g. "Step-by-step
+  plans that fit" right under the "Guides to read" list on `/recommend`) had
+  no visual separation at all. `h2` now carries the same top spacing used
+  elsewhere for section breaks.
+
 ### Fixed
+- **Admin dashboard/library/etc. pages showed a blank version in the
+  footer** ("AGPL-3.0 · v" with nothing after it) because `web/admin.py` builds
+  its own `Jinja2Templates` instance and never registered the `version`
+  Jinja global that `web/routes.py` sets on its own instance. Registered it on
+  the admin templates too.
 - **Upgraded installs (e.g. a long-lived Docker volume) now pick up new
   seed content automatically instead of staying stuck at whatever was there
   the first time they were seeded.** Previously, seeding only ever ran once —

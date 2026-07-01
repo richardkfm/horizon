@@ -69,6 +69,18 @@ A blade or stone head becomes far more useful fixed to a handle ("hafting"):
 - **Fire-harden** wooden points by charring lightly near (not in) the coals and
   rubbing smooth; it stiffens the wood.
 
+```ascii
+        ,======================>   shaft, straight hardwood
+                              \
+                               \___
+                                   \_    point, carved then charred
+        embers                       \   near (not in) the coals
+   ()  ()  ()  ()  ()  ()  ()  ()  ()
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+*Fig. 1: fire-hardening a point — hold it near the embers' heat, not in the flame, then rub the charred surface smooth*
+
 ## Look after them
 
 Keep edges sharp and handles tight, oil metal against rust, and store tools dry. A

@@ -25,6 +25,19 @@ ready, rather than a single big glut.
 - **Build the soil:** dig in compost, rotted manure, or leaf mould. Healthy soil
   is the whole game; feed it every season.
 
+```ascii
+   path |   bed A   |   bed B   |   bed C   | path
+        |  quick    |  staple   | climbers  |
+        |  crops    |  crops    | on a      |
+        | (salad,   | (potato,  | trellis   |
+        |  radish)  |  onion)   | (beans)   |
+        |___________|___________|___________|
+
+   rotate families between beds each year:  A -> B -> C -> A
+```
+
+*Fig. 1: narrow beds reached from a path, mixing quick, staple, and climbing crops, rotated between beds each year*
+
 ## What to grow
 
 Mix fast and slow, and crops that store:

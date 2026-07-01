@@ -46,6 +46,25 @@ Work from your daily energy use (see *Size an energy system*):
 - Match series/parallel wiring to the voltage and capacity you need, keeping cells
   balanced.
 
+```ascii
+   Series — adds voltage, same capacity:
+
+   [+ Batt 1 -]---[+ Batt 2 -]---[+ Batt 3 -]
+       +                                  -
+       |__________________________________|
+                to system (higher voltage)
+
+   Parallel — adds capacity, same voltage:
+
+    +----[+ Batt 1 -]----+
+    |                     |
+    +----[+ Batt 2 -]----+----> to system (higher capacity)
+    |                     |
+    +----[+ Batt 3 -]----+
+```
+
+*Fig. 1: series wiring stacks voltage; parallel wiring stacks capacity — don't mix the two patterns on the same bank*
+
 ## Charge and care
 
 - Use a **charge controller** suited to your source (MPPT gets more from solar;

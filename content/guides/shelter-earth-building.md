@@ -44,6 +44,21 @@ strength):
 
 1. **Foundation first:** a raised footing of stone, rubble, or gravel-filled bags
    keeps ground moisture out of the earth above.
+
+```ascii
+              ___________________
+             /                   \      roof, wide overhang ("good hat")
+            /_____________________\
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   earth or lime plaster sheds rain
+       |                           |
+       |   earth wall (cob/adobe/  |
+       |   earthbag), thick        |
+       |___________________________|
+       #############################   raised stone/rubble foundation
+                                        ("good boots")
+```
+
+*Fig. 1: earth wall section — a wide roof overhang and a raised stone footing keep the earth above dry*
 2. **Build up in layers**, letting cob/rammed work firm before adding much more
    height so walls don't slump.
 3. **Set door and window frames** as you build, tying them into the wall.
