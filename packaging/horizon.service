@@ -22,7 +22,8 @@ User=horizon
 Group=horizon
 WorkingDirectory=/opt/horizon
 Environment=HORIZON_CONFIG=/opt/horizon/config.yaml
-# Admin token can be injected here instead of config.yaml:
+# The admin area auto-generates a token on first run (saved under the data
+# directory) if none is set. Set your own here instead of config.yaml:
 # Environment=HORIZON_ADMIN_TOKEN=change-me
 ExecStart=/opt/horizon/.venv/bin/uvicorn horizon.main:app --host 0.0.0.0 --port 8080
 Restart=on-failure

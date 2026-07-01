@@ -12,8 +12,8 @@
   </form>
   {% else %}
   <p class="empty">
-    The admin area is disabled. Set <code>admin.token</code> in
-    <code>config.yaml</code> (or the <code>HORIZON_ADMIN_TOKEN</code> environment
+    The admin area is disabled. Set <code>web.enabled</code> to <code>true</code> in
+    <code>config.yaml</code> (or the <code>HORIZON_WEB_ENABLED</code> environment
     variable) and restart to enable it.
   </p>
   {% endif %}

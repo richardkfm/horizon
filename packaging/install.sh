@@ -88,5 +88,6 @@ else
 fi
 
 echo "==> Done. horizon is installed."
-echo "    Set an admin token in config.yaml (admin.token) or HORIZON_ADMIN_TOKEN to"
-echo "    enable the admin area, then open http://<host-ip>:8080"
+echo "    The admin area is on by default: if you don't set admin.token in"
+echo "    config.yaml (or HORIZON_ADMIN_TOKEN), a random token is generated on"
+echo "    first run and saved to <data_dir>/admin_token. Open http://<host-ip>:8080"
