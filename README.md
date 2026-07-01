@@ -121,10 +121,30 @@ step needed. After changing it, apply with `docker compose up -d --force-recreat
 See `config.example.yaml` for every option, fully annotated.
 
 The admin area is on by default: if you don't set `admin.token` (or
-`HORIZON_ADMIN_TOKEN`), horizon generates a random token on first run, saves it
-to `<data_dir>/admin_token` (e.g. the `horizon-data` volume), and logs it once
-at startup (`docker compose logs app | grep admin`). Set your own token instead
-if you'd rather choose it.
+`HORIZON_ADMIN_TOKEN`), horizon generates a random token on first run and saves
+it to `<data_dir>/admin_token` (e.g. the `horizon-data` volume). Log in at
+`/admin/login` with that token.
+
+```bash
+# Find the auto-generated token:
+docker compose exec horizon cat /data/admin_token
+# or check the startup logs:
+docker compose logs app | grep -i admin
+
+# Bare-metal/systemd install (data_dir defaults to /var/lib/horizon):
+sudo cat /var/lib/horizon/admin_token
+```
+
+To set your own token instead, add it to `config.yaml`:
+
+```yaml
+admin:
+  token: "your-strong-token-here"
+```
+
+then apply with `docker compose up -d --force-recreate` (or set the
+`HORIZON_ADMIN_TOKEN` environment variable, which takes precedence over both
+`config.yaml` and the auto-generated token).
 
 This default install is small and stays fully offline — **no model runtime is
 pulled**. The "Ask a question" assistant falls back to local guide search until
