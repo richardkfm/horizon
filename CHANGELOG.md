@@ -13,6 +13,14 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Changed
+- **The admin area is now on by default.** Previously a blank `admin.token`
+  disabled it entirely; now, when neither `admin.token` nor
+  `HORIZON_ADMIN_TOKEN` is set, horizon generates a random token on first run,
+  persists it to `<data_dir>/admin_token`, and logs it once at startup so an
+  operator can log in without editing `config.yaml`. Setting `admin.token` (or
+  the env var) still works exactly as before and takes precedence.
+
 ### Added
 - **10 more ASCII diagrams across guides** (cordage twisting, square lashing,
   timber-frame cabin cross-section, battery series/parallel wiring, a wind

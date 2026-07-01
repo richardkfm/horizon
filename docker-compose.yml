@@ -30,10 +30,11 @@ services:
       - "8080:8080"
     volumes:
       - horizon-data:/data
-      # config.yaml is tracked in the repo with safe defaults (admin disabled,
-      # no model runtime required), so this mount always has a source — edit
-      # config.yaml directly and `docker compose up -d --force-recreate` to
-      # apply changes (e.g. setting admin.token).
+      # config.yaml is tracked in the repo with safe defaults (no model runtime
+      # required; the admin area auto-generates its own token if you don't set
+      # one), so this mount always has a source — edit config.yaml directly and
+      # `docker compose up -d --force-recreate` to apply changes (e.g. setting
+      # admin.token to your own value).
       - ./config.yaml:/app/config.yaml:ro
     # No depends_on: horizon boots and serves without any model runtime, and
     # connects to the configured llm.endpoint lazily over HTTP when present.

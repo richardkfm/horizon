@@ -79,8 +79,10 @@ power:
 content_packs:
   dir: /data/packs            # optional offline Wikipedia / medical ZIM / maps
 
-# Token-gated admin area (a read-only content dashboard).
-# Leave `token` blank to keep the admin area disabled. Set a strong value to
-# enable it, or override at runtime with the HORIZON_ADMIN_TOKEN env var.
+# Token-gated admin area (a read-only content dashboard). On by default: leave
+# `token` blank and horizon generates a random token on first run, saved to
+# `<data_dir>/admin_token` and logged once at startup — read it from there (or
+# the admin health event feed) to log in. Set a value here, or the
+# HORIZON_ADMIN_TOKEN env var, to use your own token instead.
 admin:
   token: ""

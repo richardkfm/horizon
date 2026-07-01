@@ -324,7 +324,8 @@ def _doctor_checks() -> list[dict]:
         }
     )
 
-    # Admin web area (token-gated; blank token disables it).
+    # Admin web area (token-gated; on by default via an auto-generated token
+    # when admin.token / HORIZON_ADMIN_TOKEN aren't set).
     rows.append(
         {
             "name": "Admin web area",
@@ -566,6 +567,8 @@ def _redact(value: Any, key: str = "") -> Any:
 
 def cmd_config(args: argparse.Namespace) -> int:
     """Print the effective configuration, with secrets redacted."""
+    from horizon.web.admin import admin_enabled
+
     data = _redact(settings.model_dump())
     # Reflect the live env overrides so the operator sees the *effective* state,
     # not just what config.yaml says.
@@ -573,7 +576,7 @@ def cmd_config(args: argparse.Namespace) -> int:
         "web_enabled": web_enabled(),
         "low_power": low_power_enabled(),
         "assistant_enabled": assistant_enabled(),
-        "admin_enabled": bool(os.environ.get("HORIZON_ADMIN_TOKEN") or settings.admin.token),
+        "admin_enabled": admin_enabled(),
         "config_path": os.environ.get("HORIZON_CONFIG", "config.yaml"),
     }
 

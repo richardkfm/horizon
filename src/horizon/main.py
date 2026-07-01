@@ -33,6 +33,10 @@ async def lifespan(app: FastAPI):
     from horizon.services.eventlog import install as install_event_log
 
     install_event_log()
+    if web_enabled():
+        from horizon.web.admin import ensure_token_ready
+
+        ensure_token_ready()
     init_db()
     # Seeding and indexing are implemented in later steps; keep startup resilient
     # so the app boots even before that logic exists.

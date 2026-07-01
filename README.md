@@ -115,11 +115,16 @@ docker compose up -d
 Then open **http://&lt;host-ip&gt;:8080** from any device on the local network.
 On first run horizon seeds its bundled content and builds the search index.
 
-`config.yaml` ships in the repo with safe defaults (the admin area is disabled
-until you set a token) and is bind-mounted into the container by
-`docker-compose.yml`, so editing it always takes effect — no copy step needed.
-After changing it, apply with `docker compose up -d --force-recreate`. See
-`config.example.yaml` for every option, fully annotated.
+`config.yaml` ships in the repo with safe defaults and is bind-mounted into the
+container by `docker-compose.yml`, so editing it always takes effect — no copy
+step needed. After changing it, apply with `docker compose up -d --force-recreate`.
+See `config.example.yaml` for every option, fully annotated.
+
+The admin area is on by default: if you don't set `admin.token` (or
+`HORIZON_ADMIN_TOKEN`), horizon generates a random token on first run, saves it
+to `<data_dir>/admin_token` (e.g. the `horizon-data` volume), and logs it once
+at startup (`docker compose logs app | grep admin`). Set your own token instead
+if you'd rather choose it.
 
 This default install is small and stays fully offline — **no model runtime is
 pulled**. The "Ask a question" assistant falls back to local guide search until

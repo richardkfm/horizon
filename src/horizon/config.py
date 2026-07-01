@@ -104,11 +104,14 @@ class ContentPacksConfig(BaseModel):
 
 
 class AdminConfig(BaseModel):
-    """Token-gated admin area. Blank token (the default) disables the area.
+    """Token-gated admin area. On by default.
 
     The effective token also honours the ``HORIZON_ADMIN_TOKEN`` environment
     variable at request time, so operators can enable admin without editing
-    ``config.yaml``.
+    ``config.yaml``. When both this and the env var are blank, horizon
+    auto-generates a random token on first run and persists it under
+    ``data_dir`` (see ``horizon.web.admin``) so the area is usable out of the
+    box without shipping a shared secret in the repo.
     """
 
     token: str = ""
