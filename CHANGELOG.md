@@ -13,6 +13,31 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-07-01
+
+### Added
+- **Accessibility pass.** A "Skip to content" link (first tab stop, jumps
+  keyboard users past the header to `<main>`); labelled `<nav>` landmarks
+  (main navigation, admin navigation, category/topic filters) so screen
+  readers can tell them apart; and an on-device **text size / high-contrast**
+  display setting — a small panel off a new header button, independent of
+  theme and of low-power mode, remembered locally (`localStorage`, no
+  account). Text size scales the whole rem-based UI (Normal / A+ / A++);
+  high contrast flattens muted greys and soft accent fills to full-strength
+  ink and hard borders on top of whichever theme is active.
+- **A tablet breakpoint.** A dedicated `641–1024px` media query keeps
+  touch-sized (~44px) tap targets on tablets, not just phones, alongside the
+  existing phone breakpoint.
+
+### Changed
+- **Design-system consistency audit.** Several flex rows that assumed a
+  single line (the guide print/PDF actions, the admin dashboard header and
+  nav, the header icon row) now wrap instead of overflowing the page once
+  the new text-size setting scales the UI up — caught by re-running the
+  phone/tablet/desktop overflow check from `CLAUDE.md` at every text-size and
+  contrast combination, in both themes, across the public site and the admin
+  panel.
+
 ## [0.5.0] — 2026-07-01
 
 ### Added
@@ -403,7 +428,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/richardkfm/horizon/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/richardkfm/horizon/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/richardkfm/horizon/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/richardkfm/horizon/compare/v0.2.0...v0.3.0

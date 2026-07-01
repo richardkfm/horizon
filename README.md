@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.5.0](https://img.shields.io/badge/status-v0.5.0-blue.svg)](#roadmap--changelog)
+[![Status: v0.6.0](https://img.shields.io/badge/status-v0.6.0-blue.svg)](#roadmap--changelog)
 
 </div>
 
@@ -30,11 +30,13 @@ much practical know-how we've quietly outsourced to the internet. horizon puts
 those basic human skills back within reach: living well off-grid, sustainably
 and without coercion.
 
-> **Status:** v0.5.0. The v0.1 scaffold (data model, APIs, content layout) is
+> **Status:** v0.6.0. The v0.1 scaffold (data model, APIs, content layout) is
 > complete, with a design system, light/dark theming, an expanded content
-> library, printable checklists, and a UX layer for non-technical neighbours
-> now on top of it (see [Roadmap & changelog](#roadmap--changelog) and
-> [ROADMAP.md](ROADMAP.md)).
+> library, printable checklists, a UX layer for non-technical neighbours, and —
+> new in v0.6 — the design system applied consistently across every page
+> (admin included) plus an accessibility pass (skip link, a text-size/
+> high-contrast setting, a tablet breakpoint) now on top of it (see
+> [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
 
 **Contents:** [Features](#features) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
 
@@ -80,8 +82,14 @@ and without coercion.
   and plain-language answers by default.
 - **Comfortable to look at, day or night.** A calm "paper & ink" design with
   light and dark themes (remembered on-device, defaulting to your system
-  setting). All styling is vendored — no external fonts or CDNs — and print and
+  setting), applied consistently across every page including the admin panel.
+  All styling is vendored — no external fonts or CDNs — and print and
   low-power/e-ink modes keep their high-contrast palettes.
+- **Accessible by default.** A "Skip to content" link for keyboard users,
+  labelled landmarks, a visible focus ring everywhere, a tablet breakpoint
+  alongside the phone one, and an on-device **text size / high-contrast**
+  setting (independent of low-power mode) — all remembered locally, no
+  account required.
 - **Built-in values.** Sustainability, non-authoritarian cooperation, fairness,
   and anti-exploitation are baked into the assistant via md skills.
 - **Maintainable from the browser.** A token-gated admin panel browses the whole
@@ -444,13 +452,15 @@ verified responsive layout) now sits on top of it.
 The design pass (a cohesive "paper & ink" system with **dark/light theming**),
 a deeper "what to pick" content library, the admin tools to keep a node
 healthy — a **check & repair** diagnostics feed with one-click repairs and
-re-seeding from the panel (v0.4) — and printable **checklists**, guide
-**figures**/**ASCII diagrams**, more medical and safety guides, and an
+re-seeding from the panel (v0.4) — printable **checklists**, guide
+**figures**/**ASCII diagrams**, more medical and safety guides, an
 `horizon-content import` command for turning outside material into local
-guides (v0.5) — have all shipped. The path from here stays lean and open (no
-accounts, no profiles, no tracking): a consistent design and accessibility
-pass, and packaging for a tagged release — see **[ROADMAP.md](ROADMAP.md)**
-for the plan towards v0.6.
+guides (v0.5), and — new in v0.6 — the design system applied consistently
+across every page (admin included) plus an accessibility pass (a skip link,
+labelled landmarks, a tablet breakpoint, and an on-device text-size/
+high-contrast setting) have all shipped. The path from here stays lean and
+open (no accounts, no profiles, no tracking) — see
+**[ROADMAP.md](ROADMAP.md)** for what's next.
 
 Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 

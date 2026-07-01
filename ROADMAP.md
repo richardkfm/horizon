@@ -1,31 +1,64 @@
-# horizon roadmap — towards v0.6
+# horizon roadmap
 
 This roadmap builds on the experience horizon offers **today**: a browsable
 library of visual guides (with print/PDF) you open straight to, a few curated
 step-by-step plans that thread guides together in order, a goal-based
-recommender, and an offline local assistant — now with plain-language
-navigation, a self-describing assistant, guide search, a phone-friendly
-responsive layout, decision guides that help you *choose*, a richer guide format
-(comparison tables and callouts), an admin library that shows the whole node at
-a glance, a **check & repair** panel that lets an operator diagnose, repair,
-and re-seed a node entirely from the browser (v0.4), and — new in v0.5 —
-printable checklists, guide figures/ASCII diagrams, more medical and safety
-guides, and an `horizon-content import` command for turning outside material
-into local guides.
+recommender, and an offline local assistant — with plain-language
+navigation, a self-describing assistant, guide search, decision guides that
+help you *choose*, a richer guide format (comparison tables and callouts), an
+admin library that shows the whole node at a glance, a **check & repair**
+panel that lets an operator diagnose, repair, and re-seed a node entirely from
+the browser (v0.4), printable checklists, guide figures/ASCII diagrams, more
+medical and safety guides, an `horizon-content import` command for turning
+outside material into local guides (v0.5), and — as of v0.6 — the design
+system applied consistently everywhere plus an accessibility & responsive
+pass (v0.6). horizon is now a cohesive, comfortable, maintainable node ready
+to hand to a neighbour.
 
-The focus from here is **lean and simple**: make horizon look and feel great,
-deepen the content so it actually helps you *choose*, and give the admin the few
-tools they need to keep a node healthy. No user accounts, no profiles, no
-tracking — horizon stays an open, offline library anyone can walk up to.
+The focus stays **lean and simple**: deepen the content so it actually helps
+you *choose*, and give the admin the few tools they need to keep a node
+healthy. No user accounts, no profiles, no tracking — horizon stays an open,
+offline library anyone can walk up to.
 
 Everything here holds horizon's non-negotiables: offline-first, no cloud at
 runtime, runnable on weak hardware, values live in content, and the core stays
 pure and testable.
 
-Milestones are vertical and shippable: each one is useful on its own, and v0.6
-is a polished, well-maintained node a neighbourhood can rely on.
+Milestones are vertical and shippable: each one is useful on its own. What
+comes after v0.6 isn't decided yet — see the principles below and expect this
+file to grow a new milestone as real neighbourhood deployments surface the
+next gap.
 
 ---
+
+## Where we are — v0.6.0 (shipped)
+
+- **The design system applied consistently everywhere.** The admin panel
+  (dashboard, check & repair, library, content packs, integrations) already
+  shared the "paper & ink" tokens and dark/light theming; this release audits
+  every page and fixes the handful of layout rules that assumed one line and
+  would overflow under a wider setting (see below), rather than adding a new
+  visual language.
+- **An accessibility & responsive pass.** A "Skip to content" link (first tab
+  stop, jumps to `<main>`); labelled navigation landmarks so screen readers can
+  tell the main nav, the admin nav, and topic filters apart; a dedicated
+  **tablet breakpoint** (641–1024px) that keeps touch-sized tap targets on
+  tablets, not just phones; and an on-device **text size / high-contrast**
+  setting — independent of theme and of low-power mode, remembered locally,
+  reachable from a small panel next to the theme toggle. Verified with
+  Playwright at phone/tablet/desktop widths, in both themes, at every
+  text-size and contrast combination, with zero horizontal overflow — which
+  caught real bugs: several flex rows (guide print/PDF actions, the admin
+  dashboard header and nav, the header icon row) only fit on one line at
+  normal text size and needed to wrap once the new setting scales the UI up.
+- **Documentation and packaging refreshed** for this tagged release (version
+  bump, README status badge, changelog).
+
+The gap we'll close next: this pass was a structural/automated review (focus
+order, ARIA landmarks, labels, contrast, zero-overflow at every text-size
+combination) plus a manual keyboard walkthrough — it has not yet been tested
+with real assistive technology (NVDA, JAWS, VoiceOver). That's the next thing
+to verify before calling the accessibility work done.
 
 ## Where we are — v0.5.0 (shipped)
 
@@ -127,21 +160,6 @@ across every page and the admin panel, and there's no dedicated accessibility &
 responsive pass (keyboard/screen-reader review, a tablet breakpoint, a
 larger-text/high-contrast option) — the work that turns a maintainable node into
 a release a neighbourhood can rely on.
-
----
-
-## v0.6 — Polish & release
-
-Pull it together into a release a neighbourhood can rely on.
-
-- The design system applied consistently across every page and the admin panel,
-  dark/light included.
-- An accessibility & responsive pass (keyboard/screen-reader review, tablet
-  breakpoint, larger-text/high-contrast option alongside the low-power palette).
-- Documentation and packaging refreshed for a tagged release.
-
-**v0.6 done when:** horizon is cohesive end to end, comfortable on any device and
-in any light, maintainable from the panel, and ready to hand to a neighbour.
 
 ---
 

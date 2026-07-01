@@ -122,6 +122,28 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* Text size — an accessibility setting (base.html), not a theme. Everything
+   else is sized in rem, so scaling the root font-size scales the whole UI. */
+:root[data-text-size="lg"] { font-size: 113%; }
+:root[data-text-size="xl"] { font-size: 128%; }
+
+/* High contrast — an accessibility setting layered on top of either theme
+   (unlike low-power, which is a fixed, forced e-ink palette). Flattens the
+   soft accent fills and muted greys so every reader sees fg-strength text
+   and hard borders, while keeping the chosen light/dark surface colours. */
+:root[data-contrast="high"] {
+  --muted: var(--fg);
+  --muted-2: var(--fg);
+  --border: var(--border-strong);
+  --accent-soft: transparent;
+  --warn-soft: transparent;
+  --danger-soft: transparent;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-lift: none;
+}
+:root[data-contrast="high"] :focus-visible { outline-width: 3px; }
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -154,6 +176,23 @@ a:hover { color: var(--accent-strong); }
   outline-offset: 2px;
   border-radius: 3px;
 }
+
+/* Skip link — hidden until keyboard-focused, then jumps straight past the
+   header to <main>. First focusable element in the document. */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: var(--space-3);
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: var(--space-3); }
 
 /* Header & footer --------------------------------------------------------- */
 
@@ -225,7 +264,7 @@ a:hover { color: var(--accent-strong); }
 .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 
 .site-header nav { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; margin-left: auto; }
 .site-header nav a {
@@ -262,6 +301,52 @@ a:hover { color: var(--accent-strong); }
   :root:not([data-theme]) .theme-toggle .icon-sun { display: block; }
   :root:not([data-theme]) .theme-toggle .icon-moon { display: none; }
 }
+
+/* Display settings: text size + high contrast, a small dropdown off a single
+   header button so it doesn't crowd the header on phone width. */
+.a11y-menu { position: relative; }
+.a11y-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+}
+.a11y-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.a11y-toggle svg { width: 1.15rem; height: 1.15rem; }
+.a11y-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 20;
+  min-width: 12rem;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-lift);
+}
+.a11y-panel-label { margin: 0 0 var(--space-2); font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.a11y-textsize { display: flex; gap: var(--space-2); margin-bottom: var(--space-3); }
+.a11y-textsize button {
+  font: inherit;
+  min-width: 2.4rem;
+  min-height: 2.2rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+}
+.a11y-textsize button:hover { border-color: var(--accent); color: var(--accent); }
+.a11y-textsize button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.a11y-contrast-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 400; white-space: nowrap; }
 
 .content { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--space-5); }
 
@@ -473,7 +558,7 @@ a:hover { color: var(--accent-strong); }
 
 /* Guide viewer ------------------------------------------------------------ */
 
-.guide-actions { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.guide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-4); }
 .guide-meta { margin: 0 0 var(--space-4); }
 .guide-tracks {
   margin: 0 0 var(--space-5);
@@ -635,7 +720,7 @@ a:hover { color: var(--accent-strong); }
 
 /* Admin ------------------------------------------------------------------- */
 
-.admin-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.admin-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); }
 .admin-section { margin-top: var(--space-5); }
 .token-form { display: flex; flex-direction: column; gap: var(--space-2); max-width: 22rem; }
 .token-form input {
@@ -676,7 +761,7 @@ a:hover { color: var(--accent-strong); }
   border: 1px solid var(--danger);
 }
 
-.admin-nav { display: flex; gap: var(--space-4); margin-top: var(--space-2); }
+.admin-nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
 .admin-nav a { color: var(--accent); font-weight: 600; text-decoration: none; }
 .admin-nav a:hover { text-decoration: underline; }
 
@@ -699,7 +784,7 @@ a:hover { color: var(--accent-strong); }
   box-shadow: var(--shadow-sm);
   padding: var(--space-4);
 }
-.integration-head { display: flex; align-items: center; gap: var(--space-2); }
+.integration-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .integration-dot {
   width: 0.65rem; height: 0.65rem; border-radius: 50%;
   background: var(--muted-2); flex: none;
@@ -935,7 +1020,11 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
 
 @media (max-width: 640px) {
   /* Header collapses to a single compact row; the nav drops into a menu behind
-     the hamburger so it no longer eats half the screen. */
+     the hamburger so it no longer eats half the screen. Also let the icon row
+     wrap onto its own line rather than overflow — needed once larger text
+     sizes (the accessibility text-size setting) widen the brand and buttons
+     past what a 375px row can hold. */
+  .site-header-inner { flex-wrap: wrap; }
   .site-header { flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
   .nav-toggle { display: inline-flex; }
   .header-actions { order: 1; margin-left: auto; }
@@ -971,5 +1060,17 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
   .btn { padding: 0.65rem 1.1rem; }
   .recommend-form input,
   .search-form input[type="search"] { padding: 0.65rem 0.7rem; }
+  .search-clear { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* Tablet screens ----------------------------------------------------------
+   Wider than a phone, so the nav still fits inline without the hamburger,
+   but a tablet is touch-first too — keep the same comfortable ~44px tap
+   targets as the phone breakpoint instead of the tight, mouse-sized default. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .site-header nav a,
+  .footer-admin { display: inline-flex; align-items: center; min-height: 44px; }
+  .filter-chip { padding: 0.5rem 1rem; }
+  .link-list a { display: inline-block; padding: 0.3rem 0; min-height: 44px; }
   .search-clear { min-height: 44px; display: inline-flex; align-items: center; }
 }
