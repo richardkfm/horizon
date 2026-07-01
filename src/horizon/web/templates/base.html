@@ -22,6 +22,20 @@
     })();
   </script>
   {% endif %}
+  <!-- Text size and high-contrast are accessibility settings, not power-saving
+       ones, so they apply even in low-power mode. Set before paint like the
+       theme, to avoid a flash of the wrong size/contrast. -->
+  <script>
+    (function () {
+      try {
+        var size = localStorage.getItem("horizon-text-size");
+        if (size) document.documentElement.setAttribute("data-text-size", size);
+        if (localStorage.getItem("horizon-contrast") === "high") {
+          document.documentElement.setAttribute("data-contrast", "high");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="{{ static_url('app.css') }}" />
   <link rel="stylesheet" href="{{ static_url('print.css') }}" media="print" />
   <!-- Vendored locally so the UI works fully offline. htmx drives the assistant
@@ -30,6 +44,7 @@
   {% if not low_power_enabled() %}<script src="{{ static_url('alpine.min.js') }}" defer></script>{% endif %}
 </head>
 <body{% if low_power_enabled() %} class="low-power"{% endif %}>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   {% if low_power_enabled() %}
   <div class="low-power-banner no-print" role="status">
     Low-power mode — the AI model and vector search are paused to save energy.
@@ -62,7 +77,7 @@
       </svg>
       <span class="brand-text">horizon</span>
     </a>
-    <nav id="site-nav" class="site-nav">
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <a href="/">Home</a>
       <a href="/recommend">Where to start</a>
       <a href="/journeys">Step-by-step plans</a>
@@ -84,10 +99,32 @@
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
       {% endif %}
+      <div class="a11y-menu no-print">
+        <button type="button" class="a11y-toggle" id="a11y-toggle"
+                aria-haspopup="true" aria-expanded="false" aria-controls="a11y-panel"
+                aria-label="Display settings: text size and contrast"
+                title="Display settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 19l4.5-12h1L16 19M7.5 14.5h5"/>
+          </svg>
+        </button>
+        <div id="a11y-panel" class="a11y-panel" hidden>
+          <p class="a11y-panel-label" id="text-size-label">Text size</p>
+          <div class="a11y-textsize" role="group" aria-labelledby="text-size-label">
+            <button type="button" data-text-size="">A</button>
+            <button type="button" data-text-size="lg">A+</button>
+            <button type="button" data-text-size="xl">A++</button>
+          </div>
+          <label class="a11y-contrast-toggle checkbox">
+            <input type="checkbox" id="contrast-toggle" />
+            High contrast
+          </label>
+        </div>
+      </div>
     </div>
    </div>
   </header>
-  <main class="content">
+  <main class="content" id="main-content">
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
@@ -136,5 +173,61 @@
     })();
   </script>
   {% endif %}
+  <script>
+    // Display settings: text size + high contrast. Plain JS, unconditional, so
+    // it works in low-power mode too — these are accessibility needs, not
+    // power-saving ones.
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById("a11y-toggle");
+      var panel = document.getElementById("a11y-panel");
+      var contrastBox = document.getElementById("contrast-toggle");
+      if (!toggle || !panel) return;
+
+      function closePanel() {
+        panel.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      toggle.addEventListener("click", function () {
+        var open = panel.hidden;
+        panel.hidden = !open;
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      document.addEventListener("click", function (e) {
+        if (!panel.hidden && !panel.contains(e.target) && !toggle.contains(e.target)) closePanel();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !panel.hidden) { closePanel(); toggle.focus(); }
+      });
+
+      var sizeButtons = panel.querySelectorAll("[data-text-size]");
+      function markSize(size) {
+        sizeButtons.forEach(function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-text-size") === size ? "true" : "false");
+        });
+      }
+      markSize(root.getAttribute("data-text-size") || "");
+      sizeButtons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var size = b.getAttribute("data-text-size");
+          if (size) { root.setAttribute("data-text-size", size); } else { root.removeAttribute("data-text-size"); }
+          markSize(size);
+          try { localStorage.setItem("horizon-text-size", size); } catch (e) {}
+        });
+      });
+
+      if (contrastBox) {
+        contrastBox.checked = root.getAttribute("data-contrast") === "high";
+        contrastBox.addEventListener("change", function () {
+          if (contrastBox.checked) {
+            root.setAttribute("data-contrast", "high");
+          } else {
+            root.removeAttribute("data-contrast");
+          }
+          try { localStorage.setItem("horizon-contrast", contrastBox.checked ? "high" : "normal"); } catch (e) {}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
