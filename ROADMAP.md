@@ -1,4 +1,4 @@
-# horizon roadmap — towards v0.5
+# horizon roadmap — towards v0.6
 
 This roadmap builds on the experience horizon offers **today**: a browsable
 library of visual guides (with print/PDF) you open straight to, a few curated
@@ -7,8 +7,11 @@ recommender, and an offline local assistant — now with plain-language
 navigation, a self-describing assistant, guide search, a phone-friendly
 responsive layout, decision guides that help you *choose*, a richer guide format
 (comparison tables and callouts), an admin library that shows the whole node at
-a glance, and — new in v0.4 — a **check & repair** panel that lets an operator
-diagnose, repair, and re-seed a node entirely from the browser.
+a glance, a **check & repair** panel that lets an operator diagnose, repair,
+and re-seed a node entirely from the browser (v0.4), and — new in v0.5 —
+printable checklists, guide figures/ASCII diagrams, more medical and safety
+guides, and an `horizon-content import` command for turning outside material
+into local guides.
 
 The focus from here is **lean and simple**: make horizon look and feel great,
 deepen the content so it actually helps you *choose*, and give the admin the few
@@ -19,24 +22,32 @@ Everything here holds horizon's non-negotiables: offline-first, no cloud at
 runtime, runnable on weak hardware, values live in content, and the core stays
 pure and testable.
 
-Milestones are vertical and shippable: each one is useful on its own, and v0.5
+Milestones are vertical and shippable: each one is useful on its own, and v0.6
 is a polished, well-maintained node a neighbourhood can rely on.
 
 ---
 
-## Where we are — Unreleased (since v0.4.0)
+## Where we are — v0.5.0 (shipped)
 
 - **Printable checklists.** A new standalone content type at `/checklists`:
   tick-able, print/e-ink-friendly lists (go-bag, water/food stores, first-aid kit,
   tools, and a mutual-aid "goods to share and barter" list), auto-discovered from
   `content/checklists/` and saved on-device only.
-- **Guide figures.** A pure-Markdown figure convention — a lone-image paragraph
-  becomes a captioned `<figure>` — with monochrome SVG line art that stays crisp
-  in print and e-ink; guide images are now served from the content directory.
+- **Guide figures and ASCII diagrams.** A pure-Markdown figure convention — a
+  lone-image paragraph becomes a captioned `<figure>` — with monochrome SVG line
+  art that stays crisp in print and e-ink; guide images are now served from the
+  content directory. A fenced ` ```ascii ` block plus an italic caption gets the
+  same treatment with no image file needed, illustrating ten previously-bare
+  guides.
 - **More how-to content.** Quick medical-help guides (bleeding, burns, choking/CPR,
   cold and heat injuries, fractures), a "put out a fire safely" guide, and a "make
   your own hand tools" guide, plus a `health-safety` answer-style skill and a new
-  `Do now` callout for immediate life-safety actions.
+  `Do now` callout for immediate life-safety actions. A new crafts step-by-step
+  plan threads cordage, tool-making, sharpening/repair, and mending together.
+- **Importing outside content (`horizon-content import`).** Headless subcommands
+  convert a WikiHow how-to page or a local book into regular, offline guides
+  written into the operator's content directory (never the git-tracked seed
+  bundle), with a source/licence note appended automatically.
 
 ## Where we are — v0.4.0 (shipped)
 
@@ -119,7 +130,7 @@ a release a neighbourhood can rely on.
 
 ---
 
-## v0.5 — Polish & release
+## v0.6 — Polish & release
 
 Pull it together into a release a neighbourhood can rely on.
 
@@ -129,7 +140,7 @@ Pull it together into a release a neighbourhood can rely on.
   breakpoint, larger-text/high-contrast option alongside the low-power palette).
 - Documentation and packaging refreshed for a tagged release.
 
-**v0.5 done when:** horizon is cohesive end to end, comfortable on any device and
+**v0.6 done when:** horizon is cohesive end to end, comfortable on any device and
 in any light, maintainable from the panel, and ready to hand to a neighbour.
 
 ---

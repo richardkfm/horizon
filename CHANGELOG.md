@@ -13,6 +13,8 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-07-01
+
 ### Added
 - **Import external content as guides (`horizon-content import`).** Two new
   headless subcommands turn outside material into regular guides:
@@ -401,7 +403,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/richardkfm/horizon/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/richardkfm/horizon/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/richardkfm/horizon/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/richardkfm/horizon/compare/v0.1.0...v0.2.0

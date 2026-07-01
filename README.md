@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.4.0](https://img.shields.io/badge/status-v0.4.0-blue.svg)](#roadmap--changelog)
+[![Status: v0.5.0](https://img.shields.io/badge/status-v0.5.0-blue.svg)](#roadmap--changelog)
 
 </div>
 
@@ -30,10 +30,11 @@ much practical know-how we've quietly outsourced to the internet. horizon puts
 those basic human skills back within reach: living well off-grid, sustainably
 and without coercion.
 
-> **Status:** v0.4.0. The v0.1 scaffold (data model, APIs, content layout) is
+> **Status:** v0.5.0. The v0.1 scaffold (data model, APIs, content layout) is
 > complete, with a design system, light/dark theming, an expanded content
-> library, and a UX layer for non-technical neighbours now on top of it (see
-> [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
+> library, printable checklists, and a UX layer for non-technical neighbours
+> now on top of it (see [Roadmap & changelog](#roadmap--changelog) and
+> [ROADMAP.md](ROADMAP.md)).
 
 **Contents:** [Features](#features) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
 
@@ -441,12 +442,15 @@ guides-first browsing with curated step-by-step plans, guide search, and a
 verified responsive layout) now sits on top of it.
 
 The design pass (a cohesive "paper & ink" system with **dark/light theming**),
-a deeper "what to pick" content library, and the admin tools to keep a node
+a deeper "what to pick" content library, the admin tools to keep a node
 healthy — a **check & repair** diagnostics feed with one-click repairs and
-re-seeding from the panel (v0.4) — have all shipped. The path from here stays
-lean and open (no accounts, no profiles, no tracking): a consistent design and
-accessibility pass, and packaging for a tagged release — see
-**[ROADMAP.md](ROADMAP.md)** for the plan towards v0.5.
+re-seeding from the panel (v0.4) — and printable **checklists**, guide
+**figures**/**ASCII diagrams**, more medical and safety guides, and an
+`horizon-content import` command for turning outside material into local
+guides (v0.5) — have all shipped. The path from here stays lean and open (no
+accounts, no profiles, no tracking): a consistent design and accessibility
+pass, and packaging for a tagged release — see **[ROADMAP.md](ROADMAP.md)**
+for the plan towards v0.6.
 
 Notable changes are recorded in **[CHANGELOG.md](CHANGELOG.md)**.
 
