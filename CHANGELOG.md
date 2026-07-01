@@ -25,9 +25,11 @@ Updating this changelog and the README is part of every user-facing change
   copied in if missing. Startup now syncs on every boot: new guides,
   checklists, and plans are added; a plan's guide order is refreshed from
   `journeys.yaml`; and each bundled file is individually brought up to date
-  with the shipped version *if the operator hasn't touched it since horizon
-  last wrote it* (tracked via a small per-file hash manifest in content_dir) —
-  a file an operator has hand-edited is always left alone. A plan that
+  with the shipped version *unless the operator has edited it since horizon
+  last wrote it* (tracked via a small per-file hash manifest in content_dir,
+  so a file with no tracking history — the common case on the very first sync
+  after upgrading to this fix — is refreshed in the same pass rather than
+  needing a second restart). A plan that
   resolves to fewer than two guides is dropped rather than kept as a
   single-guide dead end, and `/journeys`, `/api/journeys`, and `/api/recommend`
   now also filter thin plans defensively as a backstop, so a stale database can
