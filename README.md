@@ -270,7 +270,10 @@ first run):
 - **md skills** — `content/md_skills/<id>.md`: values, answer style, and domain
   checklists that steer the assistant. These are indexed alongside guides.
 
-Restart horizon to re-seed and re-index.
+Restart horizon to load the change: every startup syncs the database and
+content directory with what's on disk (adds anything new, refreshes a plan's
+guide order, drops any plan left with fewer than two guides) without touching
+anything you've hand-edited, then re-indexes for the assistant.
 
 ### Importing external content (WikiHow, books)
 

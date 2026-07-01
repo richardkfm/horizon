@@ -116,6 +116,30 @@ def test_missing_guide_image_is_flagged(tmp_path):
                 session.commit()
 
 
+def test_thin_journey_is_flagged_as_orphaned():
+    _ensure_seeded()
+    with Session(engine) as session:
+        guide = session.exec(select(Guide)).first()
+        session.add(Journey(id="thin-plan", title="Thin plan", category=guide.category))
+        session.add(JourneyGuideLink(journey_id="thin-plan", guide_id=guide.id, position=0))
+        session.commit()
+    try:
+        report = diagnostics.run_checks()
+        orphans = _check(report, "orphans")
+        assert orphans["status"] == "warn"
+        assert any("thin-plan" in d for d in orphans["details"])
+    finally:
+        with Session(engine) as session:
+            for link in session.exec(
+                select(JourneyGuideLink).where(JourneyGuideLink.journey_id == "thin-plan")
+            ).all():
+                session.delete(link)
+            journey = session.get(Journey, "thin-plan")
+            if journey:
+                session.delete(journey)
+            session.commit()
+
+
 def test_reseed_repair_restores_deleted_content():
     _ensure_seeded()
     with Session(engine) as session:

@@ -1,9 +1,14 @@
-"""Seed the database from repo content on first run.
+"""Sync bundled content into the database and content directory on startup.
 
-On startup, if the journeys table is empty, horizon copies the bundled
-``content/`` directory into ``settings.content_dir`` and loads
-``journeys.yaml`` plus guide metadata into SQLite. This keeps horizon useful
-out of the box while letting operators add their own content later.
+On every startup, horizon brings ``settings.content_dir`` and the metadata
+database up to date with the bundled ``content/`` directory: new guides,
+checklists, and step-by-step plans are added, and a shipped plan's guide
+order is refreshed to match ``journeys.yaml``. Nothing an operator has added
+or hand-edited is ever removed or overwritten — see ``_sync_bundled_path``.
+This keeps horizon useful out of the box on first run *and* keeps an
+upgraded, already-provisioned install (e.g. a long-lived Docker volume) from
+being stuck showing whatever content happened to exist the first time it was
+seeded.
 
 The seed is pure metadata work: it touches only SQLite and the local content
 directory, with no network or LLM involvement, so the app is useful before any
@@ -12,9 +17,10 @@ of the AI machinery exists.
 
 from __future__ import annotations
 
+import hashlib
+import json
 import logging
 import os
-import shutil
 from pathlib import Path
 
 import yaml
@@ -32,49 +38,154 @@ from horizon.models import (
 
 logger = logging.getLogger("horizon")
 
+# Records the hash of each bundled file at the point it was last written into
+# content_dir, so later runs can tell "bundle changed, operator didn't touch
+# it -> safe to refresh" apart from "operator edited this -> leave it alone".
+_MANIFEST_NAME = ".bundle_manifest.json"
+
 
 def seed_if_empty() -> None:
-    """Load bundled journeys/guides into the database if it is empty.
+    """Sync bundled content into the database, adding or refreshing as needed.
 
-    Idempotent: if any journeys already exist the call returns immediately, so
-    it is safe to run on every startup.
+    Safe to call on every startup. Guides and checklists are added if new and
+    have their metadata (title, category, summary, ...) refreshed to match
+    whatever is currently on disk — including any operator edits, since we
+    always read the live file, never a cached copy. Existing content is never
+    deleted here.
+
+    Step-by-step plans are rebuilt from ``journeys.yaml`` every run: shipped,
+    curated content rather than operator data, so a plan's guide order always
+    matches the file, and a plan that resolves to fewer than two guides (a
+    missing guide file, or a leftover from before plans required at least two)
+    is dropped rather than shown as a single-guide dead end.
     """
+    content_dir = _ensure_content_dir()
+    guides = _load_guides(content_dir / "guides")
+    checklists = _load_checklists(content_dir / "checklists")
+    journeys, guide_links = _load_journeys(content_dir / "journeys.yaml")
+
     with Session(engine) as session:
-        if session.exec(select(Journey)).first() is not None:
-            return
-
-        content_dir = _ensure_content_dir()
-        guides = _load_guides(content_dir / "guides")
-        checklists = _load_checklists(content_dir / "checklists")
-        journeys, guide_links = _load_journeys(content_dir / "journeys.yaml")
-
-        # Insert nodes first so the edge table's foreign keys resolve.
-        session.add_all(guides)
-        session.add_all(checklists)
-        session.add_all(journeys)
+        n_new_guides = _upsert_guides(session, guides)
+        n_new_checklists = _upsert_checklists(session, checklists)
         session.commit()
 
-        # Only link guides that actually exist on disk; skip dangling refs.
-        guide_ids = {g.id for g in guides}
-        journey_ids = {j.id for j in journeys}
-        for link in guide_links:
-            if link.guide_id in guide_ids and link.journey_id in journey_ids:
-                session.add(link)
-            else:
-                logger.warning(
-                    "Skipping guide link %s -> %s: missing node",
-                    link.journey_id,
-                    link.guide_id,
-                )
+        guide_ids = set(session.exec(select(Guide.id)).all())
+        added, updated, dropped = _sync_journeys(session, journeys, guide_links, guide_ids)
         session.commit()
 
-        logger.info(
-            "Seeded %d journeys, %d guides, and %d checklists into %s",
-            len(journeys),
-            len(guides),
-            len(checklists),
-            settings.database,
-        )
+    logger.info(
+        "Synced content into %s: %d guide(s) (%d new), %d checklist(s) (%d new), "
+        "%d plan(s) added, %d updated, %d dropped (fewer than 2 guides)",
+        settings.database,
+        len(guides),
+        n_new_guides,
+        len(checklists),
+        n_new_checklists,
+        added,
+        updated,
+        dropped,
+    )
+
+
+def _upsert_guides(session: Session, guides: list[Guide]) -> int:
+    """Add new guides and refresh existing ones' metadata. Returns count added."""
+    added = 0
+    for guide in guides:
+        existing = session.get(Guide, guide.id)
+        if existing is None:
+            session.add(guide)
+            added += 1
+        else:
+            existing.title = guide.title
+            existing.category = guide.category
+            existing.summary = guide.summary
+            existing.difficulty = guide.difficulty
+            existing.estimated_time = guide.estimated_time
+            existing.path = guide.path
+    return added
+
+
+def _upsert_checklists(session: Session, checklists: list[Checklist]) -> int:
+    """Add new checklists and refresh existing ones' metadata. Returns count added."""
+    added = 0
+    for checklist in checklists:
+        existing = session.get(Checklist, checklist.id)
+        if existing is None:
+            session.add(checklist)
+            added += 1
+        else:
+            existing.title = checklist.title
+            existing.category = checklist.category
+            existing.summary = checklist.summary
+            existing.path = checklist.path
+    return added
+
+
+def _sync_journeys(
+    session: Session,
+    journeys: list[Journey],
+    guide_links: list[JourneyGuideLink],
+    guide_ids: set[str],
+) -> tuple[int, int, int]:
+    """Upsert plans from ``journeys.yaml`` and refresh their guide order.
+
+    Only links whose guide actually exists are counted; a plan resolving to
+    fewer than two guides is removed (or never inserted) rather than kept as a
+    single-guide dead end (CLAUDE.md: plans are a curated multi-guide layer, a
+    single guide never needs one). Returns ``(added, updated, dropped)`` counts.
+    """
+    links_by_journey: dict[str, list[JourneyGuideLink]] = {}
+    for link in guide_links:
+        if link.guide_id in guide_ids:
+            links_by_journey.setdefault(link.journey_id, []).append(link)
+        else:
+            logger.warning(
+                "Skipping guide link %s -> %s: guide not found", link.journey_id, link.guide_id
+            )
+
+    added = updated = dropped = 0
+    for journey in journeys:
+        links = links_by_journey.get(journey.id, [])
+
+        if len(links) < 2:
+            dropped += 1
+            logger.warning(
+                "Skipping plan %s: only %d guide(s) resolve (a plan needs at least 2)",
+                journey.id,
+                len(links),
+            )
+            # Delete the link rows before the parent: deleting a loaded Journey
+            # with its guide links still attached makes SQLAlchemy also try to
+            # clear the (already-deleted) association rows itself, which just
+            # emits a harmless-but-noisy "0 rows matched" warning.
+            for link in session.exec(
+                select(JourneyGuideLink).where(JourneyGuideLink.journey_id == journey.id)
+            ).all():
+                session.delete(link)
+            existing = session.get(Journey, journey.id)
+            if existing is not None:
+                session.delete(existing)
+            continue
+
+        existing = session.get(Journey, journey.id)
+        if existing is None:
+            session.add(journey)
+            added += 1
+        else:
+            existing.title = journey.title
+            existing.description = journey.description
+            existing.category = journey.category
+            existing.difficulty = journey.difficulty
+            existing.estimated_time = journey.estimated_time
+            updated += 1
+
+        for link in session.exec(
+            select(JourneyGuideLink).where(JourneyGuideLink.journey_id == journey.id)
+        ).all():
+            session.delete(link)
+        session.add_all(links)
+
+    return added, updated, dropped
 
 
 def reseed() -> dict:
@@ -109,8 +220,8 @@ def reseed() -> dict:
             session.delete(journey)
         session.commit()
 
-    # seed_if_empty is now a no-op-free path: the tables are empty, so it reloads
-    # from the content directory (copying bundled content if it is missing).
+    # The tables are now empty, so the sync below re-adds everything from the
+    # content directory (copying bundled content in if it is missing).
     seed_if_empty()
 
     with Session(engine) as session:
@@ -132,46 +243,112 @@ def reseed() -> dict:
 
 
 def _ensure_content_dir() -> Path:
-    """Return the live content directory, copying bundled content on first run.
+    """Return the live content directory, syncing it up from the bundle.
 
-    horizon ships seed content inside the repo. On first boot we copy it into
-    ``settings.content_dir`` so operators have a writable copy to edit and add
-    to.
-
-    If that directory already exists (an upgrade of an existing install), we
-    still need later releases' shipped content to reach it: ``journeys.yaml``
-    is curated, shipped content rather than operator data, so it is always
-    refreshed from the bundle; guide/checklist/skill files are only added if
-    missing, so any operator edits or additions are preserved. Without this, a
-    content_dir created before a journeys.yaml or checklists update would
-    silently keep stale data forever, since seeding only runs once.
+    horizon ships seed content inside the repo. On first boot this copies it
+    into ``settings.content_dir`` so operators have a writable copy to edit and
+    add to. On every later boot (an upgrade of an existing install), each
+    bundled file under ``journeys.yaml``, ``guides/``, ``checklists/``, and
+    ``md_skills/`` is synced individually via :func:`_sync_bundled_path`: a
+    missing file is added, and a file that is unchanged since horizon last
+    wrote it is refreshed to the new bundled version — but a file an operator
+    has edited is left alone. Without this, a content_dir created before a
+    later release's checklist, plan, or guide update would silently keep
+    stale content forever, since seeding used to run only once.
     """
     target = Path(settings.content_dir)
     bundled = _bundled_content_dir()
     target.mkdir(parents=True, exist_ok=True)
 
-    if not (target / "journeys.yaml").is_file():
-        # copytree with dirs_exist_ok so a partially-populated target is tolerated.
-        shutil.copytree(bundled, target, dirs_exist_ok=True)
-        logger.info("Copied bundled content from %s to %s", bundled, target)
-        return target
+    manifest_path = target / _MANIFEST_NAME
+    manifest = _load_manifest(manifest_path)
 
-    shutil.copy2(bundled / "journeys.yaml", target / "journeys.yaml")
+    _sync_bundled_path(
+        bundled / "journeys.yaml", target / "journeys.yaml", "journeys.yaml", manifest
+    )
     for sub in ("guides", "checklists", "md_skills"):
-        src_dir = bundled / sub
-        if not src_dir.is_dir():
-            continue
-        dst_dir = target / sub
-        dst_dir.mkdir(exist_ok=True)
-        for item in src_dir.iterdir():
-            dst_item = dst_dir / item.name
-            if dst_item.exists():
-                continue
-            if item.is_dir():
-                shutil.copytree(item, dst_item)
-            else:
-                shutil.copy2(item, dst_item)
+        _sync_bundled_tree(bundled / sub, target / sub, sub, manifest)
+
+    _save_manifest(manifest_path, manifest)
     return target
+
+
+def _hash_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def _load_manifest(path: Path) -> dict[str, str]:
+    """Load the record of each bundled file's hash as of its last sync.
+
+    Tolerant of a missing or corrupt manifest (e.g. an install that predates
+    this tracking, or a hand-edited file) — treated as "no history", so every
+    file is handled as first-seen rather than crashing startup.
+    """
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _save_manifest(path: Path, manifest: dict[str, str]) -> None:
+    path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _sync_bundled_tree(
+    bundled_dir: Path, target_dir: Path, rel_prefix: str, manifest: dict[str, str]
+) -> None:
+    """Sync every file under a bundled subdirectory (e.g. ``guides/``), recursively."""
+    if not bundled_dir.is_dir():
+        return
+    for bundled_file in sorted(bundled_dir.rglob("*")):
+        if not bundled_file.is_file():
+            continue
+        rel = f"{rel_prefix}/{bundled_file.relative_to(bundled_dir).as_posix()}"
+        target_file = target_dir / bundled_file.relative_to(bundled_dir)
+        _sync_bundled_path(bundled_file, target_file, rel, manifest)
+
+
+def _sync_bundled_path(
+    bundled_file: Path, target_file: Path, rel: str, manifest: dict[str, str]
+) -> None:
+    """Bring one file in content_dir up to date with its bundled version.
+
+    - Missing target: always copied in.
+    - Existing target whose hash still matches what we last wrote (``manifest``)
+      but the bundle has since changed: refreshed, since the operator hasn't
+      touched it — this is what lets a later release's content improvements
+      (e.g. an added diagram) reach an already-provisioned install.
+    - Existing target with no manifest record: left alone, but its current hash
+      is recorded as the new baseline (unknown provenance — could be an
+      operator's own file — so we don't guess).
+    - Existing target whose hash no longer matches the manifest: the operator
+      edited it since the last sync, so it is left alone entirely.
+    """
+    bundled_bytes = bundled_file.read_bytes()
+    bundled_hash = _hash_bytes(bundled_bytes)
+
+    if not target_file.is_file():
+        target_file.parent.mkdir(parents=True, exist_ok=True)
+        target_file.write_bytes(bundled_bytes)
+        manifest[rel] = bundled_hash
+        return
+
+    recorded = manifest.get(rel)
+    if recorded == bundled_hash:
+        return  # Already in sync; nothing changed upstream.
+
+    target_hash = _hash_bytes(target_file.read_bytes())
+    if recorded is None:
+        manifest[rel] = target_hash
+        return
+    if target_hash == recorded:
+        target_file.write_bytes(bundled_bytes)
+        manifest[rel] = bundled_hash
+    # else: target_hash differs from the last-synced hash -> operator edit,
+    # leave the file and the manifest record as they are.
 
 
 def _bundled_content_dir() -> Path:

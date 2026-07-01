@@ -25,6 +25,7 @@ from sqlmodel import Session, select
 from horizon.config import low_power_enabled, settings
 from horizon.db import engine
 from horizon.models import (
+    Checklist,
     Guide,
     Journey,
     JourneyGuideLink,
@@ -57,6 +58,7 @@ def _check_database(session: Session) -> dict:
     try:
         n_journeys = len(session.exec(select(Journey)).all())
         n_guides = len(session.exec(select(Guide)).all())
+        n_checklists = len(session.exec(select(Checklist)).all())
     except Exception as exc:  # noqa: BLE001 - report rather than crash
         return _check("database", "Database", FAIL, f"Unreadable: {exc}")
     if n_journeys == 0:
@@ -70,7 +72,7 @@ def _check_database(session: Session) -> dict:
         "database",
         "Database",
         OK,
-        f"{n_journeys} journeys and {n_guides} guides.",
+        f"{n_journeys} journeys, {n_guides} guides, and {n_checklists} checklists.",
     )
 
 
@@ -148,17 +150,21 @@ def _check_guide_images(session: Session) -> dict:
 def _check_orphans(session: Session) -> dict:
     """Content that is present but unreachable, or broken.
 
-    Two kinds: tracks with no guides (a plan with no steps), and guide Markdown
-    files on disk with no database row (an extra file that was never seeded).
-    A guide that belongs to no track is *not* orphaned — it is browsed and read
-    directly from the library (/guides/{id}).
+    Two kinds: tracks with fewer than two guides (not a real multi-step plan —
+    see CLAUDE.md: a single guide never needs a plan wrapped around it), and
+    guide Markdown files on disk with no database row (an extra file that was
+    never seeded). A guide that belongs to no track is *not* orphaned — it is
+    browsed and read directly from the library (/guides/{id}).
     """
     items: list[str] = []
 
-    journeys_with_guides = set(session.exec(select(JourneyGuideLink.journey_id)).all())
+    guide_counts: dict[str, int] = {}
+    for jid in session.exec(select(JourneyGuideLink.journey_id)).all():
+        guide_counts[jid] = guide_counts.get(jid, 0) + 1
     for j in session.exec(select(Journey)).all():
-        if j.id not in journeys_with_guides:
-            items.append(f"journey with no guides: {j.id}")
+        n = guide_counts.get(j.id, 0)
+        if n < 2:
+            items.append(f"plan with fewer than 2 guides ({n}): {j.id}")
 
     # Guide files on disk that were never loaded into the database.
     db_paths = {g.path for g in session.exec(select(Guide)).all()}
