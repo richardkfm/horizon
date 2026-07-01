@@ -18,6 +18,7 @@ from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
+from horizon import __version__
 from horizon.api.ai import AnswerRequest
 from horizon.api.ai import answer as ai_answer
 from horizon.api.guides import _read_body
@@ -38,6 +39,7 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
+templates.env.globals["version"] = __version__
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
