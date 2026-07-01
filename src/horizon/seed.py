@@ -317,13 +317,18 @@ def _sync_bundled_path(
     """Bring one file in content_dir up to date with its bundled version.
 
     - Missing target: always copied in.
+    - Existing target with no manifest record (an install that pre-dates this
+      tracking, the overwhelmingly common case): refreshed to the bundled
+      version in this same pass — an *install* that pre-dates tracking is not
+      the same thing as a *file* an operator has hand-edited, and treating it
+      as "unknown, leave it and just record a baseline" used to mean a later
+      release's content fixes (e.g. an added diagram) needed two restarts to
+      actually reach an already-provisioned install: the first only recorded
+      the pre-existing content as the baseline, the second then saw it as
+      "unchanged since last sync" and finally applied the update.
     - Existing target whose hash still matches what we last wrote (``manifest``)
       but the bundle has since changed: refreshed, since the operator hasn't
-      touched it — this is what lets a later release's content improvements
-      (e.g. an added diagram) reach an already-provisioned install.
-    - Existing target with no manifest record: left alone, but its current hash
-      is recorded as the new baseline (unknown provenance — could be an
-      operator's own file — so we don't guess).
+      touched it since our last sync.
     - Existing target whose hash no longer matches the manifest: the operator
       edited it since the last sync, so it is left alone entirely.
     """
@@ -341,14 +346,11 @@ def _sync_bundled_path(
         return  # Already in sync; nothing changed upstream.
 
     target_hash = _hash_bytes(target_file.read_bytes())
-    if recorded is None:
-        manifest[rel] = target_hash
-        return
-    if target_hash == recorded:
-        target_file.write_bytes(bundled_bytes)
-        manifest[rel] = bundled_hash
-    # else: target_hash differs from the last-synced hash -> operator edit,
-    # leave the file and the manifest record as they are.
+    if recorded is not None and target_hash != recorded:
+        return  # Operator edited it since the last sync; leave it alone.
+
+    target_file.write_bytes(bundled_bytes)
+    manifest[rel] = bundled_hash
 
 
 def _bundled_content_dir() -> Path:

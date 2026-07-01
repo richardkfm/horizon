@@ -19,6 +19,7 @@ from sqlmodel import Session, SQLModel, create_engine, select
 from horizon.config import settings
 from horizon.models import Category, Checklist, Guide, Journey, JourneyGuideLink
 from horizon.seed import (
+    _hash_bytes,
     _load_manifest,
     _sync_bundled_path,
     _sync_bundled_tree,
@@ -70,9 +71,13 @@ def test_sync_bundled_path_preserves_operator_edit(tmp_path):
     assert target.read_text(encoding="utf-8") == "operator's own edit"
 
 
-def test_sync_bundled_path_unknown_provenance_is_left_alone(tmp_path):
-    """A target file with no manifest history (e.g. pre-dates this tracking)
-    is never guessed at — it is left as-is and just becomes the new baseline.
+def test_sync_bundled_path_unknown_provenance_is_refreshed_in_one_pass(tmp_path):
+    """A target file with no manifest history (an install that pre-dates this
+    tracking — the common real-world upgrade case) is refreshed immediately,
+    not just baselined. A two-pass "record now, apply next restart" design was
+    tried and reverted: it meant a content fix shipped in a later release
+    (e.g. an added diagram on an already-existing guide) needed two restarts
+    to actually reach an already-provisioned install.
     """
     bundled = tmp_path / "bundled.md"
     bundled.write_text("v2", encoding="utf-8")
@@ -82,8 +87,8 @@ def test_sync_bundled_path_unknown_provenance_is_left_alone(tmp_path):
 
     _sync_bundled_path(bundled, target, "f", manifest)
 
-    assert target.read_text(encoding="utf-8") == "whatever was there before"
-    assert manifest["f"] is not None  # baseline recorded for next time
+    assert target.read_text(encoding="utf-8") == "v2"
+    assert manifest["f"] == _hash_bytes(b"v2")
 
 
 def test_sync_bundled_tree_handles_nested_dirs(tmp_path):
