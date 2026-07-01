@@ -131,6 +131,38 @@ def test_journey_detail_404():
     assert resp.status_code == 404
 
 
+def test_thin_journey_is_hidden_from_journeys_page():
+    """A journey with fewer than 2 guides never appears in the overview or its
+    own detail page (CLAUDE.md: plans are a curated multi-guide layer).
+    """
+    from sqlmodel import Session, select
+
+    from horizon.db import engine
+    from horizon.models import Guide, Journey, JourneyGuideLink
+
+    with Session(engine) as session:
+        guide_id = session.exec(select(Guide.id)).first()
+        session.add(Journey(id="thin-plan", title="Thin plan for a test", category=Category.water))
+        session.add(JourneyGuideLink(journey_id="thin-plan", guide_id=guide_id, position=0))
+        session.commit()
+    try:
+        with TestClient(app) as client:
+            listing = client.get("/journeys")
+            assert "Thin plan for a test" not in listing.text
+            detail = client.get("/journeys/thin-plan")
+            assert detail.status_code == 404
+    finally:
+        with Session(engine) as session:
+            for link in session.exec(
+                select(JourneyGuideLink).where(JourneyGuideLink.journey_id == "thin-plan")
+            ).all():
+                session.delete(link)
+            journey = session.get(Journey, "thin-plan")
+            if journey:
+                session.delete(journey)
+            session.commit()
+
+
 def test_guide_page_renders_markdown():
     with TestClient(app) as client:
         resp = client.get("/guides/water-slow-sand-filter")

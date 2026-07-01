@@ -82,7 +82,10 @@ def journeys_page(
     """List the curated step-by-step plans (tracks), optionally by category.
 
     Each track previews its ordered guides so a visitor sees the path at a
-    glance and can jump straight to any guide.
+    glance and can jump straight to any guide. A track needs at least two
+    linked guides to be a real plan (CLAUDE.md: a single guide never needs one
+    wrapped around it) — seeding already enforces this, but it is filtered out
+    here too as a defensive backstop.
     """
     if category is not None and category not in set(Category):
         raise HTTPException(status_code=400, detail=f"Unknown category: {category}")
@@ -94,8 +97,11 @@ def journeys_page(
 
     tracks = []
     for journey in session.exec(statement).all():
+        guides = [_guide_summary(g) for g in ordered_guides(session, journey.id)]
+        if len(guides) < 2:
+            continue
         data = _journey_summary(journey)
-        data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey.id)]
+        data["guides"] = guides
         tracks.append(data)
 
     # Only show category filters that actually have a track, so the chips never
@@ -124,8 +130,12 @@ def journey_detail_page(
     if journey is None:
         raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
 
+    guides = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
+    if len(guides) < 2:
+        raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
+
     data = _journey_summary(journey)
-    data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
+    data["guides"] = guides
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
 

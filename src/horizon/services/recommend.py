@@ -14,7 +14,7 @@ import re
 from sqlmodel import Session, select
 
 from horizon.db import engine
-from horizon.models import Guide, Journey
+from horizon.models import Guide, Journey, JourneyGuideLink
 
 # Common words that carry no topical signal. Verbs like "build"/"grow"/"provide"
 # are intentionally kept — they overlap with journey titles.
@@ -159,7 +159,14 @@ def recommend_journeys(
         return {"journeys": [], "guides": []}
 
     with Session(engine) as session:
-        journeys = session.exec(select(Journey)).all()
+        # A journey needs at least two linked guides to be a real step-by-step
+        # plan (see CLAUDE.md); filter out any that predate that rule.
+        guide_counts: dict[str, int] = {}
+        for jid in session.exec(select(JourneyGuideLink.journey_id)).all():
+            guide_counts[jid] = guide_counts.get(jid, 0) + 1
+        journeys = [
+            j for j in session.exec(select(Journey)).all() if guide_counts.get(j.id, 0) >= 2
+        ]
         guides = session.exec(select(Guide)).all()
 
         # Rank guides directly — they are the thing a visitor opens and reads.

@@ -49,12 +49,26 @@ def ordered_guides(session: Session, journey_id: str) -> list[Guide]:
     return list(rows)
 
 
+def _guide_counts(session: Session) -> dict[str, int]:
+    """Number of linked guides per journey id."""
+    counts: dict[str, int] = {}
+    for jid in session.exec(select(JourneyGuideLink.journey_id)).all():
+        counts[jid] = counts.get(jid, 0) + 1
+    return counts
+
+
 @router.get("")
 def list_journeys(
     session: SessionDep,
     category: str | None = None,
 ) -> list[dict]:
-    """Return journeys with basic metadata, optionally filtered by category."""
+    """Return journeys with basic metadata, optionally filtered by category.
+
+    A journey needs at least two linked guides to be a real step-by-step plan
+    (CLAUDE.md: a single guide never needs one) — seeding already enforces
+    this, but the list is filtered here too as a defensive backstop against
+    any journey that predates that rule.
+    """
     statement = select(Journey)
     if category is not None:
         if category not in set(Category):
@@ -62,7 +76,8 @@ def list_journeys(
         statement = statement.where(Journey.category == Category(category))
     statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
     journeys = session.exec(statement).all()
-    return [_journey_summary(j) for j in journeys]
+    counts = _guide_counts(session)
+    return [_journey_summary(j) for j in journeys if counts.get(j.id, 0) >= 2]
 
 
 @router.get("/{journey_id}")
@@ -74,13 +89,18 @@ def get_journey(
 
     ``prerequisites`` is retained as an always-empty list for backward
     compatibility with the documented response shape; tracks no longer use a
-    prerequisite graph (the guide order is the path).
+    prerequisite graph (the guide order is the path). A journey with fewer
+    than two guides is reported not found — see ``list_journeys``.
     """
     journey = session.get(Journey, journey_id)
     if journey is None:
         raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
 
+    guides = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
+    if len(guides) < 2:
+        raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
+
     data = _journey_summary(journey)
     data["prerequisites"] = []
-    data["guides"] = [_guide_summary(g) for g in ordered_guides(session, journey_id)]
+    data["guides"] = guides
     return data

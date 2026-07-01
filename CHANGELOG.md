@@ -13,6 +13,27 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Fixed
+- **Upgraded installs (e.g. a long-lived Docker volume) now pick up new
+  seed content automatically instead of staying stuck at whatever was there
+  the first time they were seeded.** Previously, seeding only ever ran once —
+  a node that had already been seeded before checklists existed kept 0
+  checklists forever, a step-by-step plan that used to be single-guide
+  (before plans required at least two) stayed a single-guide dead end, and a
+  later release's improvements to an existing guide (e.g. an added ASCII
+  diagram) never reached content_dir, because guide/checklist files were only
+  copied in if missing. Startup now syncs on every boot: new guides,
+  checklists, and plans are added; a plan's guide order is refreshed from
+  `journeys.yaml`; and each bundled file is individually brought up to date
+  with the shipped version *if the operator hasn't touched it since horizon
+  last wrote it* (tracked via a small per-file hash manifest in content_dir) —
+  a file an operator has hand-edited is always left alone. A plan that
+  resolves to fewer than two guides is dropped rather than kept as a
+  single-guide dead end, and `/journeys`, `/api/journeys`, and `/api/recommend`
+  now also filter thin plans defensively as a backstop, so a stale database can
+  never surface one even before its next sync. `services.diagnostics` reports
+  the checklist count and flags any plan with fewer than two guides.
+
 ## [0.6.0] — 2026-07-01
 
 ### Added

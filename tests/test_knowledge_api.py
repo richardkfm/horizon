@@ -71,6 +71,38 @@ def test_get_journey_404():
         assert resp.status_code == 404
 
 
+def test_thin_journey_is_hidden_from_list_and_detail():
+    """A journey with fewer than 2 guides is never surfaced (CLAUDE.md: plans
+    are a curated multi-guide layer, a single guide never needs one).
+    """
+    from sqlmodel import Session, select
+
+    from horizon.db import engine
+    from horizon.models import Guide, Journey, JourneyGuideLink
+
+    with Session(engine) as session:
+        guide_id = session.exec(select(Guide.id)).first()
+        session.add(Journey(id="thin-plan", title="Thin plan", category=Category.water))
+        session.add(JourneyGuideLink(journey_id="thin-plan", guide_id=guide_id, position=0))
+        session.commit()
+    try:
+        with TestClient(app) as client:
+            ids = {j["id"] for j in client.get("/api/journeys").json()}
+            assert "thin-plan" not in ids
+            resp = client.get("/api/journeys/thin-plan")
+            assert resp.status_code == 404
+    finally:
+        with Session(engine) as session:
+            for link in session.exec(
+                select(JourneyGuideLink).where(JourneyGuideLink.journey_id == "thin-plan")
+            ).all():
+                session.delete(link)
+            journey = session.get(Journey, "thin-plan")
+            if journey:
+                session.delete(journey)
+            session.commit()
+
+
 def test_get_guide_metadata_and_source():
     with TestClient(app) as client:
         resp = client.get("/api/guides/water-slow-sand-filter", params={"format": "markdown"})
