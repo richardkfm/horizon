@@ -142,6 +142,8 @@ def import_book(
     id_prefix: str | None = None,
     dest_dir: Path | None = None,
     force: bool = False,
+    license_name: str | None = None,
+    license_url: str = "",
 ) -> dict:
     """Split book text into one guide per chapter.
 
@@ -150,6 +152,10 @@ def import_book(
     ``force`` was off) — callers should check it rather than rely on an
     exception, since ``skipped`` still needs reporting in that case. Only
     raises :class:`ContentImportError` when no chapters could be found at all.
+
+    ``license_name``/``license_url`` default to unknown (a generic "check the
+    licence" caution) since a book's licence varies per title; pass the
+    verified licence when bundling one into the repo's own seed content.
     """
     chapters = importer.split_book_into_chapters(text)
     if not chapters:
@@ -180,6 +186,8 @@ def import_book(
             category=category,
             difficulty=difficulty,
             estimated_time=estimated_time,
+            license_name=license_name,
+            license_url=license_url,
         )
         out_path.write_text(content, encoding="utf-8")
         written.append({"guide_id": resolved_id, "path": out_path})

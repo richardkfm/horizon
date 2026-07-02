@@ -29,6 +29,19 @@ Updating this changelog and the README is part of every user-facing change
   the env var) still works exactly as before and takes precedence.
 
 ### Added
+- **Proper per-guide licence attribution for imported content, now that
+  horizon's own licence is noncommercial-only.** `horizon-content import
+  wikihow` now attributes WikiHow's own CC BY-NC-SA 3.0 licence by default
+  (`services/importer.py`'s `render_wikihow_guide`/`_source_note`) instead of
+  a generic "check the licence" caution — the resulting guide is marked as
+  licensed under those original terms, distinct from the rest of the
+  repository's own licence, satisfying CC BY-NC-SA's ShareAlike clause. This
+  makes it possible to bundle imported WikiHow content into the repo's own
+  seed content (`--dest content/guides`) where that wasn't safe before.
+  `horizon-content import book` gained matching `--license-name`/
+  `--license-url` flags for books with a verified compatible licence (public
+  domain, CC-BY, etc.); see `CLAUDE.md` for the policy on when bundling
+  imported content into `content/` is appropriate.
 - **Two new guides:** *Restore worn-out land and rebuild soil*
   (`food-soil-and-land-restoration`) covering cover crops, swales, windbreaks,
   and other low-tech land-regeneration techniques, and *Set up fair,

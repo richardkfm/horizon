@@ -247,3 +247,28 @@ def test_import_book_skips_existing_without_force(env, tmp_path, capsys):
     rc = _run(["import", "book", str(book), "--id-prefix", "x"])
     assert rc == 1
     assert "skipping" in capsys.readouterr().err
+
+
+def test_import_book_with_verified_license(env, tmp_path):
+    """--license-name replaces the generic caution with a proper attribution."""
+    book = tmp_path / "valley-customs.txt"
+    book.write_text(BOOK_TEXT, encoding="utf-8")
+
+    rc = _run(
+        [
+            "import",
+            "book",
+            str(book),
+            "--id-prefix",
+            "culture-valley-customs",
+            "--license-name",
+            "Public Domain",
+            "--license-url",
+            "https://www.gutenberg.org/",
+        ]
+    )
+    assert rc == 0
+
+    guides_dir = env / "content" / "guides"
+    text = (guides_dir / "culture-valley-customs-01-greetings.md").read_text(encoding="utf-8")
+    assert "licensed under [Public Domain](https://www.gutenberg.org/)" in text

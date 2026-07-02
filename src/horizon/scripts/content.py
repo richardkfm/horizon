@@ -156,6 +156,8 @@ def cmd_import_book(args: argparse.Namespace) -> int:
             id_prefix=args.id_prefix,
             dest_dir=dest,
             force=args.force,
+            license_name=args.license_name,
+            license_url=args.license_url,
         )
     except import_content.ContentImportError as exc:
         print(f"Error: {exc}", file=sys.stderr)
@@ -261,6 +263,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_book.add_argument(
         "--dest", help="Directory to write guides into (default: <content_dir>/guides)."
     )
+    p_book.add_argument(
+        "--license-name",
+        help="The book's verified licence (e.g. 'Public Domain', 'CC BY-SA 4.0'). "
+        "Only set this once you've confirmed it — it replaces the default generic "
+        "'check the licence' caution with a proper attribution, which is required "
+        "before bundling a book into the repo's own seed content with --dest content/guides.",
+    )
+    p_book.add_argument("--license-url", default="", help="A link for --license-name (optional).")
     p_book.add_argument(
         "--force", action="store_true", help="Overwrite existing guides with the same id."
     )
