@@ -96,6 +96,15 @@ Updating this changelog and the README is part of every user-facing change
   need. These are raw `.osm.pbf` OpenStreetMap extracts rather than
   pre-rendered tiles, since horizon has no built-in map viewer yet and no
   no-account pre-tiled basemap provider split by continent could be found.
+- **`packs.yaml` was never kept in sync on already-provisioned installs**, so
+  the URL fix above wouldn't reach any node that had already started once.
+  `_ensure_content_dir()` (`seed.py`) used to `shutil.copytree` the whole
+  bundled `content/` dir on first run, including `packs.yaml`; a later
+  refactor to per-file syncing (so upgrades pick up new/changed guides,
+  checklists, and plans) carried over `journeys.yaml` but dropped
+  `packs.yaml` from the synced list, silently freezing an operator's pack
+  catalog at whatever it was on first boot. `packs.yaml` is now synced the
+  same way as `journeys.yaml`.
 - **Admin dashboard/library/etc. pages showed a blank version in the
   footer** ("AGPL-3.0 · v" with nothing after it) because `web/admin.py` builds
   its own `Jinja2Templates` instance and never registered the `version`

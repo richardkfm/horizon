@@ -19,6 +19,7 @@ from sqlmodel import Session, SQLModel, create_engine, select
 from horizon.config import settings
 from horizon.models import Category, Checklist, Guide, Journey, JourneyGuideLink
 from horizon.seed import (
+    _ensure_content_dir,
     _hash_bytes,
     _load_manifest,
     _sync_bundled_path,
@@ -105,6 +106,35 @@ def test_sync_bundled_tree_handles_nested_dirs(tmp_path):
     assert (target_dir / "images" / "pic.svg").read_text(encoding="utf-8") == "<svg/>"
     assert "guides/a.md" in manifest
     assert "guides/images/pic.svg" in manifest
+
+
+def test_ensure_content_dir_refreshes_stale_packs_yaml(tmp_path, monkeypatch):
+    """packs.yaml must be kept in sync like journeys.yaml.
+
+    Regression test: an earlier refactor (replacing a first-run
+    ``shutil.copytree`` of the whole bundled ``content/`` dir with per-file
+    syncing) synced ``journeys.yaml``, ``guides/``, ``checklists/``, and
+    ``md_skills/`` but dropped ``packs.yaml`` from the list. A content_dir
+    provisioned before that refactor kept an ever-stale packs catalog forever
+    — e.g. broken content-pack download URLs stayed broken across upgrades
+    even after the bundled catalog was fixed.
+    """
+    content_dir = tmp_path / "content"
+    content_dir.mkdir()
+    (content_dir / "packs.yaml").write_text("packs:\n  - id: old\n", encoding="utf-8")
+    monkeypatch.setattr(settings, "content_dir", str(content_dir))
+
+    bundled = tmp_path / "bundled"
+    (bundled / "guides").mkdir(parents=True)
+    (bundled / "checklists").mkdir()
+    (bundled / "md_skills").mkdir()
+    (bundled / "journeys.yaml").write_text("journeys: []\n", encoding="utf-8")
+    (bundled / "packs.yaml").write_text("packs:\n  - id: new\n", encoding="utf-8")
+    monkeypatch.setenv("HORIZON_BUNDLED_CONTENT", str(bundled))
+
+    _ensure_content_dir()
+
+    assert (content_dir / "packs.yaml").read_text(encoding="utf-8") == "packs:\n  - id: new\n"
 
 
 def test_load_manifest_tolerates_missing_or_corrupt(tmp_path):
