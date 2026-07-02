@@ -112,10 +112,11 @@ same raw, in a CLI, or on the web):
 
 ![A horizon guide page showing a captioned ASCII diagram of a slow sand filter cross-section](docs/screenshots/guide-ascii-diagram.png)
 
-The admin **Import content** wizard, which turns a WikiHow-shaped page or a
-book file into a local guide:
+The admin **Content packs** page, where an operator downloads larger optional
+offline resources (Wikipedia, medical reference, maps) while online, for fully
+offline use afterwards:
 
-![The horizon admin Import content page, with forms for importing a how-to page and a book](docs/screenshots/admin-import-content.png)
+![The horizon admin Content packs page, listing downloadable offline packs with size and status](docs/screenshots/admin-content-packs.png)
 
 ## Quickstart (Docker, recommended)
 
