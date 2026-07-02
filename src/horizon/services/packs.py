@@ -165,6 +165,23 @@ def installed_packs() -> list[dict]:
     return manifests
 
 
+def pack_file_path(pack_id: str) -> Path | None:
+    """Absolute path to an installed pack's payload file, or ``None`` if not
+    installed. Resolves the manifest's ``"file"`` key against the pack's dir.
+    """
+    manifest = read_manifest(pack_id)
+    if manifest is None or "file" not in manifest:
+        return None
+    return _pack_dir(pack_id) / manifest["file"]
+
+
+def has_installed_zim_pack() -> bool:
+    """True if at least one installed pack is a ZIM (i.e. the reference-library
+    reader has something to show). Used to conditionally show that nav item.
+    """
+    return any(m.get("format") == "zim" for m in installed_packs())
+
+
 def pack_status() -> list[dict]:
     """Merge the catalog with on-disk state for display.
 

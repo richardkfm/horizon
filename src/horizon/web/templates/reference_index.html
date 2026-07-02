@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Reference library — horizon{% endblock %}
+{% block content %}
+<section class="guides-intro">
+  <h1>Reference library</h1>
+  <p class="tagline">
+    Full offline reference collections — an encyclopedia, a medical handbook —
+    stored locally and searchable without a network connection.
+  </p>
+</section>
+
+{% if packs %}
+<ul class="link-list">
+  {% for pack in packs %}
+  <li>
+    <a href="/reference/{{ pack.id }}">{{ pack.title }}</a>
+    {% if pack.description %}<span class="guide-summary">{{ pack.description }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">
+  No reference packs installed yet. Ask your operator to install one from the
+  content packs admin page.
+</p>
+{% endif %}
+{% endblock %}

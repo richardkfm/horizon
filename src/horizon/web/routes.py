@@ -26,6 +26,7 @@ from horizon.api.journeys import _guide_summary, _journey_summary, ordered_guide
 from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import Category, Checklist, Guide, Journey, JourneyGuideLink
+from horizon.services import packs as packs_service
 from horizon.services.markdown import render_markdown
 from horizon.services.recommend import recommend_journeys
 from horizon.web.assets import static_url
@@ -40,6 +41,10 @@ templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
 templates.env.globals["version"] = __version__
+# Only show the "Reference library" nav item once an operator has actually
+# downloaded a ZIM pack -- a per-request on-disk check, cheap enough given
+# horizon's low request volume; no caching layer added for this.
+templates.env.globals["reference_library_enabled"] = packs_service.has_installed_zim_pack
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

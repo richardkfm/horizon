@@ -82,6 +82,7 @@
       <a href="/recommend">Where to start</a>
       <a href="/journeys">Step-by-step plans</a>
       <a href="/guides">How-to guides</a>
+      {% if reference_library_enabled() %}<a href="/reference">Reference library</a>{% endif %}
       <a href="/checklists">Checklists</a>
       {% if assistant_enabled() %}<a href="/assistant">Ask a question</a>{% endif %}
     </nav>
