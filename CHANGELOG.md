@@ -82,6 +82,20 @@ Updating this changelog and the README is part of every user-facing change
   elsewhere for section breaks.
 
 ### Fixed
+- **Content pack downloads were all broken.** `content/packs.yaml` pointed at
+  stale URLs: Kiwix now embeds a build date in ZIM filenames and deletes older
+  dates (`wikipedia_en_100_mini.zim` / `wikem_en_all_maxi.zim` both 404'd), and
+  the maps pack's `data.maptiler.com` URL is gone now that MapTiler requires an
+  account/API key for downloads. Repointed the Wikipedia and WikEM packs at
+  their current dated Kiwix filenames (documented the date-rot caveat in
+  `packs.yaml` for next time), and replaced the single broken world-map pack
+  with per-continent OpenStreetMap extracts from Geofabrik (`maps-europe`,
+  `maps-africa`, `maps-asia`, `maps-north-america`, `maps-south-america`,
+  `maps-central-america`, `maps-australia-oceania`, `maps-antarctica`) — a
+  free, no-account source, so an operator only downloads the region(s) they
+  need. These are raw `.osm.pbf` OpenStreetMap extracts rather than
+  pre-rendered tiles, since horizon has no built-in map viewer yet and no
+  no-account pre-tiled basemap provider split by continent could be found.
 - **Admin dashboard/library/etc. pages showed a blank version in the
   footer** ("AGPL-3.0 · v" with nothing after it) because `web/admin.py` builds
   its own `Jinja2Templates` instance and never registered the `version`
