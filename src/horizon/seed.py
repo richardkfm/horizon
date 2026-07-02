@@ -248,8 +248,9 @@ def _ensure_content_dir() -> Path:
     horizon ships seed content inside the repo. On first boot this copies it
     into ``settings.content_dir`` so operators have a writable copy to edit and
     add to. On every later boot (an upgrade of an existing install), each
-    bundled file under ``journeys.yaml``, ``guides/``, ``checklists/``, and
-    ``md_skills/`` is synced individually via :func:`_sync_bundled_path`: a
+    bundled file under ``journeys.yaml``, ``packs.yaml``, ``guides/``,
+    ``checklists/``, and ``md_skills/`` is synced individually via
+    :func:`_sync_bundled_path`: a
     missing file is added, and a file that is unchanged since horizon last
     wrote it is refreshed to the new bundled version — but a file an operator
     has edited is left alone. Without this, a content_dir created before a
@@ -266,6 +267,8 @@ def _ensure_content_dir() -> Path:
     _sync_bundled_path(
         bundled / "journeys.yaml", target / "journeys.yaml", "journeys.yaml", manifest
     )
+    if (bundled / "packs.yaml").is_file():
+        _sync_bundled_path(bundled / "packs.yaml", target / "packs.yaml", "packs.yaml", manifest)
     for sub in ("guides", "checklists", "md_skills"):
         _sync_bundled_tree(bundled / sub, target / sub, sub, manifest)
 
