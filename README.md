@@ -38,7 +38,7 @@ and without coercion.
 > high-contrast setting, a tablet breakpoint) now on top of it (see
 > [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
 
-**Contents:** [Features](#features) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
+**Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
 
 ## Features
 
@@ -104,6 +104,18 @@ and without coercion.
   recommendations, and assistant answers and handles operator upkeep
   (status, health checks, reindex, seed, content packs) — so a headless node can
   run with the web UI switched off (`web.enabled: false`).
+
+## Screenshots
+
+A guide with an ASCII diagram figure (no image file needed — it renders the
+same raw, in a CLI, or on the web):
+
+![A horizon guide page showing a captioned ASCII diagram of a slow sand filter cross-section](docs/screenshots/guide-ascii-diagram.png)
+
+The admin **Import content** wizard, which turns a WikiHow-shaped page or a
+book file into a local guide:
+
+![The horizon admin Import content page, with forms for importing a how-to page and a book](docs/screenshots/admin-import-content.png)
 
 ## Quickstart (Docker, recommended)
 
