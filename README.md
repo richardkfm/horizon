@@ -66,6 +66,9 @@ and without coercion.
   share — written in plain Markdown task lists, auto-discovered from
   `content/checklists/`, and print/e-ink friendly. Ticks are saved on the device
   only (no account, server, or telemetry).
+- **Reference library.** Download an offline Wikipedia or WikEM snapshot
+  (**Content packs**) and read it right in the browser — full-text search plus
+  an article view, no external Kiwix viewer needed.
 - **Decision guides ("which to pick").** Guides that help you *choose*, not only
   *do* — which water treatment for your source, how big a solar + battery system
   for your loads, which crops for your season, which shelter for your situation —
@@ -482,6 +485,12 @@ horizon-content remove wikipedia-en-mini
 The same operations are also available under `horizon-admin packs …` and as a
 web wizard under **Admin → Content packs**, which downloads in the background and
 shows live progress.
+
+Once a Wikipedia/WikEM-style ZIM pack is installed, read it right in the
+browser at **Reference library** (linked from the main nav once a pack is
+installed) — full-text search plus an article view, no external Kiwix viewer
+needed. Maps packs (`.osm.pbf` raw OpenStreetMap extracts) don't have an
+in-browser viewer yet; see the note in `content/packs.yaml`.
 
 ## Roadmap & changelog
 

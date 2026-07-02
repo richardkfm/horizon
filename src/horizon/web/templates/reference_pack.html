@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{{ info.title }} — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/reference">← Reference library</a></p>
+
+<section class="guides-intro">
+  <h1>{{ info.title }}</h1>
+  {% if info.description %}<p class="tagline">{{ info.description }}</p>{% endif %}
+  <p class="journey-meta">{{ "{:,}".format(info.article_count) }} articles</p>
+</section>
+
+<form method="get" action="/reference/{{ pack_id }}" class="search-form no-print" role="search">
+  <label class="visually-hidden" for="reference-search">Search {{ info.title }}</label>
+  <input type="search" id="reference-search" name="q" value="{{ query }}"
+         placeholder="Search {{ info.title }}…" />
+  <button type="submit" class="btn">Search</button>
+  {% if query %}<a class="search-clear" href="/reference/{{ pack_id }}">Clear</a>{% endif %}
+  <a class="btn" href="/reference/{{ pack_id }}/random">Random article</a>
+</form>
+
+{% if query %}
+  {% if hits %}
+  <ul class="link-list">
+    {% for hit in hits %}
+    <li><a href="/reference/{{ pack_id }}/{{ hit.path }}">{{ hit.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No articles match “{{ query }}”. Try a different word.</p>
+  {% endif %}
+{% else %}
+<p class="empty">Search above, or try a <a href="/reference/{{ pack_id }}/random">random article</a>.</p>
+{% endif %}
+{% endblock %}

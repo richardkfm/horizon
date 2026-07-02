@@ -13,6 +13,20 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **Reference library: an in-browser reader for downloaded ZIM content packs**
+  (offline Wikipedia, WikEM). Previously a downloaded pack was a dead end —
+  there was no way to actually read it short of pointing an external Kiwix
+  viewer at the file. `/reference` now lists installed ZIM packs; each has a
+  landing page with full-text search (using the ZIM's own built-in index) and
+  a "Random article" link, and articles render inline with in-article links
+  and images rewritten to stay under `/reference/<pack_id>/...` — no
+  client-side JS, and `<script>` tags from third-party content are always
+  stripped server-side (`services/zim_reader.py`). A "Reference library" nav
+  item appears only once at least one ZIM pack is installed. Adds `libzim` as
+  a new dependency (small prebuilt wheels, including aarch64/Raspberry Pi, no
+  system library required).
+
 ### Changed
 - **License changed from AGPL-3.0-or-later to PolyForm Noncommercial
   1.0.0.** horizon is now source-available rather than open source: the code

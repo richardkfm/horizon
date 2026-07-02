@@ -73,6 +73,7 @@ app = FastAPI(title="horizon", version=__version__, lifespan=lifespan)
 # probe below are always mounted so integrations and probes never depend on it.
 if web_enabled():
     from horizon.web import admin as admin_routes
+    from horizon.web import reference as reference_routes
     from horizon.web import routes as web_routes
 
     # Static assets (CSS + vendored JS).
@@ -92,6 +93,7 @@ if web_enabled():
     # Server-rendered pages.
     app.include_router(web_routes.router)
     app.include_router(admin_routes.router)
+    app.include_router(reference_routes.router)
 else:
     logger.info(
         "Web UI disabled (web.enabled is off): serving the JSON API only. "

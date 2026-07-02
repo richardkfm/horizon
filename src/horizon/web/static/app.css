@@ -684,6 +684,38 @@ a:hover { color: var(--accent-strong); }
   white-space: pre;
 }
 
+/* Reference library (ZIM reader) — downloaded Wikipedia/WikEM content packs
+   rendered inline. This is third-party HTML we don't control the markup of
+   (Wikipedia infoboxes, wide tables), so styling here is deliberately
+   defensive rather than matching .guide's typography exactly:
+   - overflow rules are load-bearing (CLAUDE.md: zero horizontal page
+     overflow at phone width) since real articles ship wide tables;
+   - dark/low-power theme support is best-effort only. A ZIM article's own
+     <style> content assumes a light background and isn't reflowed here --
+     fully sandboxing/retheming arbitrary third-party CSS is out of scope;
+     the surrounding chrome (nav, breadcrumb, search) still follows horizon's
+     theme; the article body itself may look slightly out of place in dark/
+     low-power mode -- accepted as a known limitation, not fixed here. */
+.zim-article {
+  background: var(--surface);
+  color: var(--fg);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+.zim-article img,
+.zim-article video {
+  max-width: 100%;
+  height: auto;
+}
+.zim-article table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Checklists — task-list items rendered as real checkboxes. Drop the bullet,
    give each row a comfortable touch target, and a clear box. */
 .guide .task-list { list-style: none; padding-left: 0; }

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ article_title }} — {{ pack_title }} — horizon{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/reference/{{ pack_id }}">← {{ pack_title }}</a></p>
+
+<form method="get" action="/reference/{{ pack_id }}" class="search-form no-print" role="search">
+  <label class="visually-hidden" for="reference-article-search">Search {{ pack_title }}</label>
+  <input type="search" id="reference-article-search" name="q"
+         placeholder="Search {{ pack_title }}…" />
+  <button type="submit" class="btn">Search</button>
+  <a class="btn" href="/reference/{{ pack_id }}/random">Random article</a>
+</form>
+
+<article class="zim-article">
+  {{ body_html | safe }}
+</article>
+{% endblock %}
