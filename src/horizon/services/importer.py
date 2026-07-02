@@ -66,13 +66,41 @@ def _front_matter(
     return yaml.safe_dump(data, sort_keys=False, allow_unicode=True).strip()
 
 
-def _source_note(source: str, imported_on: date | None) -> str:
-    """An attribution + licence-reminder callout (renders as a "Note" card)."""
+def _source_note(
+    source: str,
+    imported_on: date | None,
+    *,
+    license_name: str | None = None,
+    license_url: str = "",
+) -> str:
+    """An attribution callout (renders as a "Note" card).
+
+    When ``license_name`` is given, this renders a proper attribution notice
+    (source, licence name + link, and a same-licence marker) suitable for a
+    share-alike licence like WikiHow's CC BY-NC-SA — the imported guide is
+    licensed under those original terms, distinct from the rest of this
+    repository's own licence, exactly as CC BY-NC-SA's ShareAlike clause
+    requires. Without one, this falls back to a generic caution, since a book
+    or other source's licence varies and isn't known here.
+    """
     day = (imported_on or date.today()).isoformat()
+    if license_name:
+        link = f"[{license_name}]({license_url})" if license_url else license_name
+        return (
+            f"> **Note:** Adapted from {source} on {day}, licensed under {link}. "
+            f"This guide is itself licensed under {license_name} (not this "
+            "repository's own licence) — keep that notice attached if you copy, "
+            "adapt, or redistribute it further."
+        )
     return (
         f"> **Note:** Imported from {source} on {day}. Check that source's "
         "licence before sharing or redistributing this content further."
     )
+
+
+# WikiHow's standard content licence (shown in every article's footer).
+WIKIHOW_LICENSE_NAME = "CC BY-NC-SA 3.0"
+WIKIHOW_LICENSE_URL = "https://creativecommons.org/licenses/by-nc-sa/3.0/"
 
 
 # --- WikiHow / how-to article import ------------------------------------------
@@ -292,8 +320,15 @@ def render_wikihow_guide(
     estimated_time: str = "",
     image_map: dict[str, str] | None = None,
     imported_on: date | None = None,
+    license_name: str | None = WIKIHOW_LICENSE_NAME,
+    license_url: str = WIKIHOW_LICENSE_URL,
 ) -> str:
-    """Render a parsed how-to article as guide Markdown (front matter + body)."""
+    """Render a parsed how-to article as guide Markdown (front matter + body).
+
+    Defaults to WikiHow's own CC BY-NC-SA 3.0 licence for attribution; pass
+    ``license_name=None`` for a generic "how-to page" source whose licence
+    isn't known to be the same.
+    """
     image_map = image_map or {}
     title = article.title or guide_id.replace("-", " ").title()
     summary = article.intro[0] if article.intro else f"Imported from {source}."
@@ -319,7 +354,9 @@ def render_wikihow_guide(
                 body_lines.append(f"   ![{caption}]({local})")
             body_lines.append("")
 
-    body_lines.append(_source_note(source, imported_on))
+    body_lines.append(
+        _source_note(source, imported_on, license_name=license_name, license_url=license_url)
+    )
     body = "\n".join(body_lines).strip() + "\n"
 
     front = _front_matter(
@@ -430,15 +467,26 @@ def render_book_guide(
     difficulty: int = 1,
     estimated_time: str = "",
     imported_on: date | None = None,
+    license_name: str | None = None,
+    license_url: str = "",
 ) -> str:
-    """Render one book chapter as guide Markdown (front matter + body)."""
+    """Render one book chapter as guide Markdown (front matter + body).
+
+    Unlike WikiHow, a book's licence varies per title and isn't known here, so
+    ``license_name`` defaults to ``None`` (a generic "check the licence"
+    caution). Pass the book's actual licence (e.g. public domain, a specific
+    Creative Commons variant) when it has been verified, so the guide carries
+    a proper attribution instead.
+    """
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", chapter.body) if p.strip()]
     word_count = sum(len(p.split()) for p in paragraphs)
     summary_source = paragraphs[0] if paragraphs else chapter.title
     summary = _collapse_ws(summary_source)[:240]
 
     body_lines = [f"# {chapter.title}", "", *[p for para in paragraphs for p in (para, "")]]
-    body_lines.append(_source_note(source, imported_on))
+    body_lines.append(
+        _source_note(source, imported_on, license_name=license_name, license_url=license_url)
+    )
     body = "\n".join(body_lines).strip() + "\n"
 
     front = _front_matter(

@@ -125,18 +125,35 @@ These are horizon's integration surface; preserve backward compatibility:
 - **Importing external content:** `horizon-content import wikihow <url>` /
   `import book <path>` on the CLI, or the **Import content** wizard under
   `/admin/import` in the web UI, convert a how-to page or a book into guide
-  Markdown and write it under `<content_dir>/guides` — never into the repo's
-  bundled `content/`, since imported text (WikiHow is CC BY-NC-SA; a book may be
-  copyrighted) must never get committed into the PolyForm Noncommercial-licensed
-  seed bundle.
-  The conversion logic in `services/importer.py` stays pure (no network); the
-  one seam that fetches a URL, downloads step images, or writes guide files is
-  `services/import_content.py`, called by both the CLI (`scripts/content.py`)
-  and the admin web route (`web/admin.py`) so they share the same code instead
-  of duplicating it — mirroring the pure/impure split in `services/packs.py`.
-  The web wizard writes synchronously (unlike the packs wizard's background
-  job) since a page-plus-images import is quick, then re-seeds and re-indexes
-  immediately so the new guide is live without a restart.
+  Markdown. By default this writes under `<content_dir>/guides` — an
+  *operator's* own runtime content, not the repo — because a book's licence is
+  unknown and varies per source (it may be copyrighted; verify before
+  importing at all). The conversion logic in `services/importer.py` stays pure
+  (no network); the one seam that fetches a URL, downloads step images, or
+  writes guide files is `services/import_content.py`, called by both the CLI
+  (`scripts/content.py`) and the admin web route (`web/admin.py`) so they
+  share the same code instead of duplicating it — mirroring the pure/impure
+  split in `services/packs.py`. The web wizard writes synchronously (unlike
+  the packs wizard's background job) since a page-plus-images import is quick,
+  then re-seeds and re-indexes immediately so the new guide is live without a
+  restart.
+  - **Bundling imported content into the repo's own seed content** (pass
+    `--dest content/guides` on the CLI): only do this for sources whose
+    licence is actually compatible — public domain, or a permissive/share-alike
+    Creative Commons licence. Since horizon's own licence
+    (PolyForm Noncommercial 1.0.0) is itself noncommercial-only, WikiHow's
+    CC BY-NC-SA is now usable this way too: `render_wikihow_guide` defaults to
+    attributing WikiHow's CC BY-NC-SA 3.0 licence (`WIKIHOW_LICENSE_NAME`/
+    `WIKIHOW_LICENSE_URL` in `services/importer.py`), producing a "Note" callout
+    that marks that specific guide as licensed under CC BY-NC-SA — separate
+    from, and not superseded by, the rest of the repository's own licence, as
+    ShareAlike requires. Keep that per-guide notice intact; don't strip it to
+    make a guide look like a plain in-house one. A book's licence varies per
+    title — confirm public domain/CC status before pointing `--dest` at the
+    repo, and pass a matching `license_name`/`license_url` into
+    `render_book_guide` if bundling one (mirroring the wikihow path) rather
+    than relying on the generic "check the licence" note, which is only meant
+    for content staying in an operator's own, non-bundled `content_dir`.
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,

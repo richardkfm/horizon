@@ -112,7 +112,9 @@ def test_render_wikihow_guide_front_matter_and_body():
     # The second step's image has no entry in image_map, so it is dropped
     # rather than left as a remote (offline-breaking) URL.
     assert "example.test" not in body
-    assert "> **Note:** Imported from https://www.wikihow.com/Make-a-Friendship-Bracelet" in body
+    assert "> **Note:** Adapted from https://www.wikihow.com/Make-a-Friendship-Bracelet" in body
+    assert "CC BY-NC-SA 3.0" in body
+    assert "creativecommons.org/licenses/by-nc-sa/3.0" in body
 
 
 def test_render_wikihow_guide_renders_figure_and_callout():
@@ -132,6 +134,24 @@ def test_render_wikihow_guide_defaults_estimated_time_from_word_count():
     article = importer.parse_html_article("<h1>T</h1><p>short.</p>")
     md = importer.render_wikihow_guide(article, guide_id="t", source="https://example.test/t")
     assert "estimated_time: ~1 min read" in md
+
+
+def test_render_wikihow_guide_defaults_to_wikihow_license():
+    """WikiHow's own CC BY-NC-SA licence is attributed by default, unprompted."""
+    article = importer.parse_html_article("<h1>T</h1><p>short.</p>")
+    md = importer.render_wikihow_guide(article, guide_id="t", source="https://www.wikihow.com/T")
+    assert "licensed under [CC BY-NC-SA 3.0]" in md
+    assert "This guide is itself licensed under CC BY-NC-SA 3.0" in md
+
+
+def test_render_wikihow_guide_license_name_none_falls_back_to_generic_note():
+    """A non-WikiHow how-to source of unknown licence gets the cautious generic note."""
+    article = importer.parse_html_article("<h1>T</h1><p>short.</p>")
+    md = importer.render_wikihow_guide(
+        article, guide_id="t", source="https://example.test/t", license_name=None
+    )
+    assert "> **Note:** Imported from https://example.test/t" in md
+    assert "CC BY-NC-SA" not in md
 
 
 # --- book splitting ------------------------------------------------------------
@@ -186,3 +206,18 @@ def test_render_book_guide_front_matter_and_summary():
     assert "# Chapter 1: Greetings" in md
     assert "A visitor who hurries is suspect." in md
     assert "> **Note:** Imported from valley-customs.txt" in md
+
+
+def test_render_book_guide_with_verified_license():
+    """A book with a confirmed licence gets a proper attribution, not the caution."""
+    chapter = importer.ParsedChapter(title="Ch 1", body="Body text.")
+    md = importer.render_book_guide(
+        chapter,
+        guide_id="x",
+        source="folklore.txt",
+        license_name="Public Domain",
+        license_url="https://www.gutenberg.org/",
+    )
+    assert "> **Note:** Adapted from folklore.txt" in md
+    assert "licensed under [Public Domain](https://www.gutenberg.org/)" in md
+    assert "This guide is itself licensed under Public Domain" in md
