@@ -14,21 +14,28 @@
 #   title        human-readable name
 #   description  one line on what the pack is and why you might want it
 #   category     reference | medical | maps (free-form grouping label)
-#   format       file format hint (zim, mbtiles, ...)
+#   format       file format hint (zim, osm.pbf, ...)
 #   url          download URL (used only while online during setup)
 #   size_bytes   approximate download size, for display and disk planning
 #   sha256       optional integrity checksum; verified after download if set
+#
+# Kiwix (https://download.kiwix.org) publishes ZIM filenames with an embedded
+# build date (e.g. wikipedia_en_top_mini_2026-06.zim) and removes older dates
+# as new ones are published, so a pinned filename here *will* eventually 404
+# again. Undated aliases (e.g. wikipedia_en_top_mini.zim) do not exist. If a
+# Kiwix pack starts failing, browse https://download.kiwix.org/zim/<dir>/ for
+# the current dated filename and update the url below.
 
 packs:
   - id: wikipedia-en-mini
-    title: Wikipedia (English, mini)
+    title: Wikipedia (English, top articles)
     description: >-
-      A compact offline snapshot of English Wikipedia (top articles, no images).
-      Good first pack for weak hardware and small disks.
+      A compact offline snapshot of English Wikipedia (top ~50k articles, no
+      images). Good first pack for weak hardware and small disks.
     category: reference
     format: zim
-    url: https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini.zim
-    size_bytes: 350000000
+    url: https://download.kiwix.org/zim/wikipedia/wikipedia_en_top_mini_2026-06.zim
+    size_bytes: 331421691
     sha256: ""
 
   - id: medical-wikem
@@ -38,17 +45,99 @@ packs:
       and acute care when no clinician or network is available.
     category: medical
     format: zim
-    url: https://download.kiwix.org/zim/other/wikem_en_all_maxi.zim
-    size_bytes: 600000000
+    url: https://download.kiwix.org/zim/other/wikem_en_all_maxi_2026-04.zim
+    size_bytes: 48676248
     sha256: ""
 
-  - id: maps-world-low
-    title: World map (low zoom)
+  # Maps: raw per-continent OpenStreetMap extracts from Geofabrik
+  # (https://download.geofabrik.de), a long-standing free, unauthenticated
+  # mirror updated daily. These are *not* pre-rendered tiles — horizon has no
+  # built-in map viewer yet — so each is raw .osm.pbf source data an operator
+  # can render locally (e.g. with Planetiler) into a basemap of their choice.
+  # A pre-tiled offline basemap (e.g. as .mbtiles) would need an account/API
+  # key with every provider we found (MapTiler, etc.), which conflicts with
+  # horizon staying usable with no external accounts.
+  - id: maps-africa
+    title: Africa map data (OpenStreetMap extract)
     description: >-
-      Low-zoom offline world basemap (vector tiles) for orientation and regional
-      planning without a network connection.
+      Raw OpenStreetMap data for Africa, for building a local offline basemap.
     category: maps
-    format: mbtiles
-    url: https://data.maptiler.com/downloads/planet/osm-planet-low.mbtiles
-    size_bytes: 1200000000
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa-latest.osm.pbf
+    size_bytes: 7874551430
+    sha256: ""
+
+  - id: maps-asia
+    title: Asia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Asia, for building a local offline basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia-latest.osm.pbf
+    size_bytes: 16019426992
+    sha256: ""
+
+  - id: maps-australia-oceania
+    title: Australia & Oceania map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Australia and Oceania, for building a local
+      offline basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/australia-oceania-latest.osm.pbf
+    size_bytes: 1543646162
+    sha256: ""
+
+  - id: maps-central-america
+    title: Central America map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Central America and the Caribbean, for
+      building a local offline basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/central-america-latest.osm.pbf
+    size_bytes: 776580387
+    sha256: ""
+
+  - id: maps-europe
+    title: Europe map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Europe, for building a local offline basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe-latest.osm.pbf
+    size_bytes: 34574312786
+    sha256: ""
+
+  - id: maps-north-america
+    title: North America map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for North America, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/north-america-latest.osm.pbf
+    size_bytes: 19149173747
+    sha256: ""
+
+  - id: maps-south-america
+    title: South America map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for South America, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/south-america-latest.osm.pbf
+    size_bytes: 4044707421
+    sha256: ""
+
+  - id: maps-antarctica
+    title: Antarctica map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Antarctica, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/antarctica-latest.osm.pbf
+    size_bytes: 33085282
     sha256: ""
