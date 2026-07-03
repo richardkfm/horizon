@@ -11,12 +11,14 @@
 </section>
 
 {% if checklists %}
-<ul class="link-list">
+<ul class="card-grid">
   {% for checklist in checklists %}
   <li>
-    <a href="/checklists/{{ checklist.id }}">{{ checklist.title }}</a>
-    {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
-    {% if checklist.summary %}<span class="guide-summary">{{ checklist.summary }}</span>{% endif %}
+    <a href="/checklists/{{ checklist.id }}">
+      {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+      <span class="card-title">{{ checklist.title }}</span>
+      {% if checklist.summary %}<span class="guide-summary">{{ checklist.summary }}</span>{% endif %}
+    </a>
   </li>
   {% endfor %}
 </ul>

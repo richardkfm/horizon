@@ -92,6 +92,29 @@ def test_style_tags_kept():
     assert "<style>" in out
 
 
+def test_full_document_reduced_to_body_content():
+    """A complete HTML document keeps only its <body> content, so the pack's
+    own skin stylesheets (head <link> tags) never leak onto horizon's page."""
+    doc = (
+        "<!DOCTYPE html><html><head><title>T</title>"
+        '<link href="_mw_/skin.css" rel="stylesheet">'
+        '</head><body class="mediawiki"><h1>Title</h1><p>text</p></body></html>'
+    )
+    out = zim_reader.rewrite_article_html(doc, pack_id="demo", entry_path="Home")
+    assert "<h1>Title</h1><p>text</p>" in out
+    assert "<link" not in out
+    assert "<head" not in out
+    assert "<html" not in out
+    assert "<body" not in out
+
+
+def test_fragment_without_body_passes_through():
+    out = zim_reader.rewrite_article_html(
+        "<h2>Section</h2><p>fragment</p>", pack_id="demo", entry_path="Home"
+    )
+    assert "<h2>Section</h2><p>fragment</p>" in out
+
+
 # --- Archive reading (fixture_zim from conftest.py) --------------------------
 
 

@@ -138,6 +138,7 @@ _TAG_ATTR_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 _SCRIPT_RE = re.compile(r"<script\b.*?</script\s*>", re.IGNORECASE | re.DOTALL)
+_BODY_RE = re.compile(r"<body\b[^>]*>(?P<inner>.*)</body\s*>", re.IGNORECASE | re.DOTALL)
 
 
 def _is_in_zim_link(value: str) -> bool:
@@ -173,7 +174,21 @@ def rewrite_article_html(html_text: str, *, pack_id: str, entry_path: str) -> st
     """Rewrite in-article links/assets to horizon's ``/reference/<pack_id>/...``
     URLs and strip ``<script>`` tags (horizon never executes third-party JS from
     downloaded content). Pure str -> str; safe to unit-test without a ZIM file.
+
+    ZIM entries are usually *complete* HTML documents. Embedding one whole into
+    the article template used to nest ``<html>/<head>/<body>`` inside horizon's
+    page, and browsers hoist the head's ``<link rel="stylesheet">`` tags — so a
+    pack's own MediaWiki skin CSS (rules on bare ``body``, ``h1``, ``a``, ...)
+    restyled all of horizon's chrome and broke the dark theme. Keep only the
+    ``<body>`` content: the article renders under horizon's own ``.zim-article``
+    styling instead of the pack's site-wide skin. Inline ``<style>`` blocks in
+    the body (e.g. MediaWiki TemplateStyles) are kept — they target the
+    article's own classes, not the page. A fragment without ``<body>`` passes
+    through whole.
     """
+    body = _BODY_RE.search(html_text)
+    if body:
+        html_text = body.group("inner")
     html_text = _SCRIPT_RE.sub("", html_text)
 
     def _replace(m: re.Match[str]) -> str:
