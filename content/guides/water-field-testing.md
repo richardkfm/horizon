@@ -70,3 +70,11 @@ observation plus a few cheap tests tell you most of what you need to decide
 ```
 
 *Fig. 1: deciding how to treat a water source*
+
+## Where to go next
+
+- Latrines and livestock upstream are a leading cause of the contamination
+  this guide warns about — see manage waste and hygiene without plumbing to
+  keep your own site from becoming that risk for someone downstream.
+- Once you've judged a source, see which water treatment should you use to
+  pick the right method.

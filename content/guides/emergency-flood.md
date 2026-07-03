@@ -60,3 +60,8 @@ simple — **get to high ground, and never walk or drive into floodwater.**
   until checked.
 - **Clean and dry out** promptly to fight mould, and protect against the disease
   that follows floods through poor sanitation.
+
+## Where to go next
+
+- If toilets and normal waste disposal are out of action, see manage waste
+  and hygiene without plumbing.

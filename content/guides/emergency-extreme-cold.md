@@ -53,3 +53,8 @@ while avoiding the hidden risks of improvised heating.
 Older people, babies, and the unwell lose heat fastest and may not feel the cold —
 check on them and on neighbours often, and bring people together where it's
 warmest.
+
+## Where to go next
+
+- If the cold strikes while you're on the road, see survive being stranded in
+  a vehicle.

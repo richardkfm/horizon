@@ -71,3 +71,10 @@ hands-on training — take a first-aid course when you can.
 - Keep the kit stocked, dry, and where everyone can find it.
 - Note allergies and medicines for each household member.
 - Learn CPR and the recovery position in person before you need them.
+
+## Where to go next
+
+- If more than one person is hurt at the same time, this priority order
+  isn't enough on its own — see triage multiple casualties at once.
+- Shock and fear afterward are as real as the injury: see support someone
+  through shock, trauma, or grief.

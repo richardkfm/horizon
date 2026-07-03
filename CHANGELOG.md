@@ -14,6 +14,27 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Eight new guides covering camping and disaster-response gaps, threaded
+  into two step-by-step plans.** For camping/fieldcraft (survival category):
+  "Choose and set up a safe campsite" (`survival-campsite-setup`, site
+  selection, camp layout, wildlife-safe food storage), "Manage waste and
+  hygiene without plumbing" (`survival-sanitation-hygiene`, latrines,
+  greywater, handwashing), and "Signal for rescue if lost or stranded"
+  (`survival-signaling-for-rescue`, ground signals, fire/smoke, mirror
+  flashes). For health: "Treat bites, stings, and wildlife encounters"
+  (`health-bites-stings-wildlife`), "Triage multiple casualties at once"
+  (`health-mass-casualty-triage`), "Keep essential medical care going without
+  power" (`health-power-dependent-care`, insulin/oxygen/dialysis/mobility
+  during a blackout), and "Support someone through shock, trauma, or grief"
+  (`health-psychological-first-aid`). And for emergencies: "Survive being
+  stranded in a vehicle" (`emergency-vehicle-stranded`). The three new
+  survival guides are added to the existing "Core wilderness survival
+  skills" plan (before fire/water and after foraging/trapping respectively),
+  and a new "Respond when several people are hurt at once" plan threads
+  first-aid basics through triage, bleeding/fracture treatment, and
+  psychological first aid. All eight are cross-linked from related existing
+  guides (water field-testing, foraging, navigation, blackout, extreme cold,
+  flood, first-aid basics).
 - **Two new food guides closing gaps in plant identification and land
   management:** "Diagnose crop problems — deficiency, disease, pest, or
   invasive" (`food-diagnose-plant-problems`) teaches reading the pattern of a

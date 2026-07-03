@@ -59,3 +59,8 @@ in circles. None of this needs a compass — just the sky and some care.
 - Water flows downhill; following a stream downstream often leads to people.
 - Note unmistakable features (a ridge, a river) as a "handrail" you can always
   return to.
+
+## Where to go next
+
+- If you decide to stay put rather than move, make yourself easy to find:
+  see signal for rescue if lost or stranded.

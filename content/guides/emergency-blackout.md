@@ -50,3 +50,9 @@ who cope are the ones who prepared a little in advance and stay calm.
 - **Keep medicines** that need cooling as cold as you can, and ask a pharmacist or
   clinic about alternatives if it drags on.
 - **Follow official instructions** from local authorities on the radio.
+
+## Where to go next
+
+- If anyone in the household depends on refrigerated medication or a powered
+  medical device, plan that in advance: see keep essential medical care going
+  without power.
