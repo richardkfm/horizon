@@ -33,7 +33,8 @@ journeys:
     description: >
       Plan a first growing season and make it last: rebuild worn-out ground,
       pick crops that suit your site, establish a vegetable garden, grow
-      calorie-dense staples, and save seed so you can grow again next year.
+      calorie-dense staples, troubleshoot problems as they come up, and save
+      seed so you can grow again next year.
     category: food
     difficulty: 3
     estimated_time: "A growing season"
@@ -41,6 +42,7 @@ journeys:
       - food-soil-and-land-restoration
       - food-choosing-crops
       - food-vegetable-garden
+      - food-diagnose-plant-problems
       - food-staple-crops-500m2
       - food-seed-saving
 
