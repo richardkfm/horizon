@@ -93,19 +93,41 @@ journeys:
   - id: wilderness-survival-basics
     title: Core wilderness survival skills
     description: >
-      The hands-on basics for being out in the field: make fire, find and carry
-      water, find your way without a compass, tie essential knots, and find food
-      by foraging and simple trapping or fishing.
+      The hands-on basics for being out in the field: choose and set up a safe
+      camp, make fire, find and carry water, manage waste and hygiene, find
+      your way without a compass, tie essential knots, find food by foraging
+      and simple trapping or fishing, and signal for rescue if it comes to
+      that.
     category: survival
     difficulty: 3
     estimated_time: "Ongoing practice"
     guides:
+      - survival-campsite-setup
       - survival-fire
       - survival-find-water
+      - survival-sanitation-hygiene
       - survival-navigation
       - survival-knots
       - survival-foraging
       - survival-trapping-fishing
+      - survival-signaling-for-rescue
+
+  - id: respond-to-mass-casualty-emergency
+    title: Respond when several people are hurt at once
+    description: >
+      Go from single-patient first aid to coping when more than one person is
+      hurt at the same time: learn the calm priority order, extend it into a
+      fast sorting method for multiple casualties, treat the most urgent
+      injuries, and support people through the shock afterward.
+    category: health
+    difficulty: 3
+    estimated_time: "A few hours to learn, then ongoing practice"
+    guides:
+      - health-first-aid-basics
+      - health-mass-casualty-triage
+      - health-bleeding-control
+      - health-fractures-and-sprains
+      - health-psychological-first-aid
 
   - id: share-culture-together
     title: Bring people together with culture
