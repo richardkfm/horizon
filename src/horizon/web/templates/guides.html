@@ -28,12 +28,14 @@
 </nav>
 
 {% if guides %}
-<ul class="link-list">
+<ul class="card-grid">
   {% for guide in guides %}
   <li>
-    <a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
-    <span class="category-badge">{{ guide.category }}</span>
-    {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+    <a href="/guides/{{ guide.id }}">
+      <span class="category-badge">{{ guide.category }}</span>
+      <span class="card-title">{{ guide.title }}</span>
+      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+    </a>
   </li>
   {% endfor %}
 </ul>

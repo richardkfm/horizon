@@ -211,6 +211,10 @@ a:hover { color: var(--accent-strong); }
   margin: 0 auto;
   padding: var(--space-3) var(--space-5);
 }
+/* The header bar may run a little wider than the reading column: with seven
+   nav items the row otherwise wraps at laptop width and strands the last
+   link on its own line. */
+.site-header-inner { max-width: 72rem; }
 
 .site-footer {
   border-top: 1px solid var(--border);
@@ -268,12 +272,23 @@ a:hover { color: var(--accent-strong); }
 
 .header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 
-.site-header nav { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; margin-left: auto; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-left: auto; }
 .site-header nav a {
   color: var(--fg);
   text-decoration: none;
-  padding: 0.35rem 0.7rem;
+  /* Slightly condensed so the whole nav fits on one line at laptop width
+     instead of stranding the last item on a second row. Falls back to a
+     graceful wrap when it still can't fit (extra nav items, large text). */
+  font-size: 0.95rem;
+  white-space: nowrap;
+  padding: 0.4rem 0.55rem;
   border-radius: var(--radius-pill);
+}
+/* On wide screens the brand itself is the way home, like everywhere on the
+   web — an explicit Home item only earns its width in the collapsed phone
+   menu, where the brand sits far from the open menu list. */
+@media (min-width: 641px) {
+  .site-header nav .nav-home { display: none; }
 }
 .site-header nav a:hover { background: var(--accent-soft); color: var(--accent-strong); }
 
@@ -510,6 +525,41 @@ a:hover { color: var(--accent-strong); }
 .journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
 .journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
+/* Card grid — guides & checklists indexes. The same card idiom as journey
+   cards, but denser: a responsive multi-column grid replaces the old one
+   long single-column list, so a big library scans in a screen or two on a
+   laptop while still stacking cleanly on a phone. */
+.card-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--space-3);
+}
+.card-grid a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card-grid a:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+.card-grid .category-badge { align-self: flex-start; }
+.card-title { font-weight: 600; line-height: 1.35; }
+.card-grid .guide-summary { margin-top: 0; }
+
 /* Tracks: curated, ordered "step-by-step plans" over the guides. ----------- */
 .track-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
 .track-card {
@@ -690,20 +740,33 @@ a:hover { color: var(--accent-strong); }
    defensive rather than matching .guide's typography exactly:
    - overflow rules are load-bearing (CLAUDE.md: zero horizontal page
      overflow at phone width) since real articles ship wide tables;
-   - dark/low-power theme support is best-effort only. A ZIM article's own
-     <style> content assumes a light background and isn't reflowed here --
-     fully sandboxing/retheming arbitrary third-party CSS is out of scope;
-     the surrounding chrome (nav, breadcrumb, search) still follows horizon's
-     theme; the article body itself may look slightly out of place in dark/
-     low-power mode -- accepted as a known limitation, not fixed here. */
+   - services/zim_reader.rewrite_article_html keeps only the article's <body>
+     content, so a pack's own site-wide skin CSS never loads — the article
+     inherits horizon's theme (including dark and low-power) and the rules
+     below give the bare MediaWiki markup a native look. Inline <style>
+     blocks from the article body (TemplateStyles) may still assume a light
+     background for their own elements — accepted, they only touch the
+     article's own classes. */
 .zim-article {
   background: var(--surface);
   color: var(--fg);
-  border-radius: var(--radius-sm);
-  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
   line-height: 1.7;
   overflow-wrap: break-word;
 }
+.zim-article h1 { font-size: 1.9rem; margin-top: 0; }
+/* Wiki-style section rules keep long articles scannable. */
+.zim-article h2 {
+  margin-top: var(--space-5);
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid var(--border);
+}
+.zim-article ul,
+.zim-article ol { padding-left: 1.4rem; }
+.zim-article li { margin: 0.15rem 0; }
 .zim-article img,
 .zim-article video {
   max-width: 100%;
@@ -714,6 +777,18 @@ a:hover { color: var(--accent-strong); }
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+}
+.zim-article th,
+.zim-article td { border: 1px solid var(--border); padding: 0.35rem 0.6rem; text-align: left; }
+.zim-article th { background: var(--surface-sunken); }
+/* Per-article licence/source note shipped inside the ZIM content. */
+.zim-article .zim-footer {
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 /* Checklists — task-list items rendered as real checkboxes. Drop the bullet,
@@ -871,10 +946,7 @@ a:hover { color: var(--accent-strong); }
 .repair-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
 .repair-actions form { margin: 0; }
 .repair-working { color: var(--muted); font-size: 0.9rem; }
-/* htmx shows the indicator only while a repair request is in flight. */
-.htmx-indicator { display: none; }
-.htmx-request .htmx-indicator,
-.htmx-request.htmx-indicator { display: inline; }
+/* (The shared .htmx-indicator rules further down cover the repair buttons.) */
 
 .health-items { margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; color: var(--muted); }
 .health-items li { margin: 0.15rem 0; }
@@ -1029,7 +1101,8 @@ body.low-power {
   --shadow-lift: none;
 }
 body.low-power .category-card a:hover,
-body.low-power .journey-card a:hover { background: none; transform: none; }
+body.low-power .journey-card a:hover,
+body.low-power .card-grid a:hover { background: none; transform: none; }
 body.low-power .filter-chip.is-active { background: #000; }
 body.low-power .guide blockquote { background: none; }
 /* Callouts keep a high-contrast border + bold label in the e-ink palette so
@@ -1049,7 +1122,8 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
   .category-card a:hover,
-  .journey-card a:hover { transform: none; }
+  .journey-card a:hover,
+  .card-grid a:hover { transform: none; }
 }
 
 /* Narrow screens ---------------------------------------------------------- */
@@ -1083,6 +1157,15 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
   .tagline { font-size: 1.05rem; }
   .filter-bar { gap: var(--space-2); }
   .journey-chain { font-size: 0.9rem; }
+  /* Home topic tiles go two-up and compact: thirteen full-width tiles made
+     the front page a very long scroll on a phone. Two per row halves it and
+     each tile still stays a comfortably large tap target. */
+  .category-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .category-card a { padding: var(--space-4) var(--space-2); }
+  .category-icon { width: 2.6rem; height: 2.6rem; margin-bottom: var(--space-2); }
+  .category-icon svg { width: 1.4rem; height: 1.4rem; }
+  .category-name { font-size: 0.95rem; }
+  .category-example { font-size: 0.8rem; }
   /* Keep the topic icon + title on one row; the count drops below if tight. */
   .track-head { flex-wrap: wrap; }
   .track-count { order: 3; }

@@ -28,6 +28,19 @@ Updating this changelog and the README is part of every user-facing change
   system library required).
 
 ### Changed
+- **Guides and Checklists indexes are now responsive card grids.** The old
+  single-column link list made ~90 guides a very long, hard-to-scan page on a
+  laptop; each entry is now a tappable card (category badge, title, summary)
+  in a multi-column grid that stacks back to one column on phones.
+- **The home page's topic tiles go two-per-row on phones** with compact
+  padding — thirteen full-width tiles previously made the front page a very
+  long scroll on a small screen.
+- **The header navigation fits on one line at laptop width.** Nav links are
+  slightly condensed, the header bar may run a little wider than the reading
+  column, and the explicit "Home" item only shows in the collapsed phone
+  menu — on wide screens the brand itself is the way home. Previously the
+  last nav item ("Ask a question") wrapped onto its own second row.
+
 - **License changed from AGPL-3.0-or-later to PolyForm Noncommercial
   1.0.0.** horizon is now source-available rather than open source: the code
   remains free to use, modify, and self-host for any noncommercial purpose
@@ -96,6 +109,15 @@ Updating this changelog and the README is part of every user-facing change
   elsewhere for section breaks.
 
 ### Fixed
+- **Reference library articles no longer leak their pack's own CSS onto the
+  whole page.** A ZIM entry is usually a complete HTML document; embedding it
+  whole nested `<html>/<head>/<body>` inside horizon's page, and the browser
+  hoisted the head's `<link rel="stylesheet">` tags, so a pack's MediaWiki
+  skin restyled horizon's entire chrome and broke the dark theme on article
+  pages. `rewrite_article_html` now keeps only the `<body>` content, and
+  `.zim-article` gained native typography (wiki-style section rules, bordered
+  tables, a muted per-article licence footer) — reference articles now follow
+  horizon's light/dark/low-power themes correctly.
 - **Content pack downloads were all broken.** `content/packs.yaml` pointed at
   stale URLs: Kiwix now embeds a build date in ZIM filenames and deletes older
   dates (`wikipedia_en_100_mini.zim` / `wikem_en_all_maxi.zim` both 404'd), and
