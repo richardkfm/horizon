@@ -57,3 +57,9 @@ workers are most at risk:
 3. **Give sips of water** if they're conscious and able to swallow.
 4. If they're confused, vomiting, or collapse, treat it as **heatstroke** — cool
    aggressively and get emergency help immediately.
+
+## Where to go next
+
+- If you have no car to drive to a cooler place, see **get through
+  emergencies with no car to fall back on** for scouting a walkable cool
+  space and checking on isolated neighbours before the heat hits.

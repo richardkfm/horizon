@@ -56,3 +56,6 @@ who cope are the ones who prepared a little in advance and stay calm.
 - If anyone in the household depends on refrigerated medication or a powered
   medical device, plan that in advance: see keep essential medical care going
   without power.
+- If you have no car to fall back on, see **get through emergencies with no
+  car to fall back on** for evacuating on foot and storing supplies in a
+  small footprint.

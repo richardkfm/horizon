@@ -14,6 +14,13 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **New guide for car-free households facing emergencies**
+  (`emergency-no-car-household`): evacuating on foot when transit may fail,
+  storing supplies in a small apartment footprint instead of a car trunk or
+  garage, and the specific risks of a heatwave or blackout with no vehicle to
+  drive to a cooling centre — including checking on isolated neighbours.
+  Cross-linked from "survive extreme heat without power" and "prepare for and
+  live through a long blackout".
 - **Eight new guides covering camping and disaster-response gaps, threaded
   into two step-by-step plans.** For camping/fieldcraft (survival category):
   "Choose and set up a safe campsite" (`survival-campsite-setup`, site
