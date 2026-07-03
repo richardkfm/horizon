@@ -74,3 +74,5 @@ Plant with the weather, not the calendar. The rule that travels everywhere:
 - Grow the staples: follow the staple-crops guide for soil prep and spacing.
 - Keep what you grow: read seed saving so next year's crop costs nothing.
 - Plan year-round eating with the vegetable-garden guide.
+- If something looks wrong once it's growing, the plant-problem diagnosis
+  guide tells deficiency, disease, pest, and invasive spreaders apart.

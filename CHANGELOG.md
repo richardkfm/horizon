@@ -14,6 +14,16 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Two new food guides closing gaps in plant identification and land
+  management:** "Diagnose crop problems — deficiency, disease, pest, or
+  invasive" (`food-diagnose-plant-problems`) teaches reading the pattern of a
+  struggling plant to tell nutrient deficiency, disease, pest damage, and
+  invasive spreaders apart; "Reforest and restore woodland"
+  (`food-reforestation`) covers assisted natural regeneration vs. planting,
+  mixed native species selection, and long-term woodland management at a
+  scale beyond a single windbreak hedge. Both are cross-linked from the
+  existing crop-choosing and soil/land-restoration guides, and the
+  diagnosis guide is added to the "Grow and store your own food" plan.
 - **Reference library: an in-browser reader for downloaded ZIM content packs**
   (offline Wikipedia, WikEM). Previously a downloaded pack was a dead end —
   there was no way to actually read it short of pointing an external Kiwix

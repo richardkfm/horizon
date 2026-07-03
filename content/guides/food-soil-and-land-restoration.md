@@ -107,3 +107,10 @@ instead of carrying topsoil away*
 Rebuilding land is gradual — expect visible change over a few seasons, not
 overnight. Each season's cover crop and mulch layer leaves the ground a
 little better than it found it.
+
+## Where to go next
+
+- Once the ground holds water and cover, follow the crop-choosing guide to
+  decide what to plant into it.
+- To bring back trees at the scale of a woodland rather than a single hedge
+  line, see reforest and restore woodland.
