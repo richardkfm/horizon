@@ -27,7 +27,9 @@ replaces the other emergency guides; it fills in the parts that change when
 - **Walk at least two routes out**, in different directions, from where you
   live. A flooded underpass, a closed bridge, or a shut train station can
   block the "obvious" way out — you want a second option already in your
-  legs, not on a map you're reading for the first time mid-emergency.
+  legs, not on a map you're reading for the first time mid-emergency. See
+  **use offline maps and GPS with no signal** for getting those routes onto
+  your phone (and a paper backup) before you need them.
 - **Know your transit's failure mode.** Does the metro flood in heavy rain?
   Do trains stop running above a certain temperature? Does the bus network
   shut down in a blackout? If transit is likely to fail *during* the kind of

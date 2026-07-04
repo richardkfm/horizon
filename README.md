@@ -490,7 +490,13 @@ Once a Wikipedia/WikEM-style ZIM pack is installed, read it right in the
 browser at **Reference library** (linked from the main nav once a pack is
 installed) — full-text search plus an article view, no external Kiwix viewer
 needed. Maps packs (`.osm.pbf` raw OpenStreetMap extracts) don't have an
-in-browser viewer yet; see the note in `content/packs.yaml`.
+in-browser viewer yet; see the note in `content/packs.yaml`. Map packs come in
+two sizes: for Africa, Asia, Europe, and North America there's a pack per
+country (e.g. Germany at 4.5 GB) as well as the whole continent (e.g. all of
+Europe at 31+ GB) — pick the country unless you actually need every country
+on the continent. The other four continents are small enough to ship as a
+single file. Either way, this is raw source data, not a ready-to-view
+basemap.
 
 ## Roadmap & changelog
 

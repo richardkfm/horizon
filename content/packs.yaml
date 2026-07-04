@@ -49,7 +49,7 @@ packs:
     size_bytes: 48676248
     sha256: ""
 
-  # Maps: raw per-continent OpenStreetMap extracts from Geofabrik
+  # Maps: raw OpenStreetMap extracts from Geofabrik
   # (https://download.geofabrik.de), a long-standing free, unauthenticated
   # mirror updated daily. These are *not* pre-rendered tiles — horizon has no
   # built-in map viewer yet — so each is raw .osm.pbf source data an operator
@@ -57,20 +57,1066 @@ packs:
   # A pre-tiled offline basemap (e.g. as .mbtiles) would need an account/API
   # key with every provider we found (MapTiler, etc.), which conflicts with
   # horizon staying usable with no external accounts.
-  - id: maps-africa
-    title: Africa map data (OpenStreetMap extract)
+  #
+  # A whole continent is raw source data for an entire landmass — tens of GB
+  # for the four biggest (Africa, Asia, Europe, North America) — when almost
+  # every operator only needs their own country. Those four continents are
+  # broken out below into one pack per country/territory (still straight from
+  # Geofabrik, one level down its own hierarchy: <continent>/<country>-latest
+  # .osm.pbf), which is dramatically smaller — e.g. Germany (4.5 GB) vs. all
+  # of Europe (31+ GB), or Luxembourg (well under 100 MB). The whole-continent
+  # pack for each is kept too, clearly marked, for anyone who really does want
+  # every country in one download. The other four continents (Antarctica,
+  # Australia & Oceania, Central America, South America) are already under
+  # 5 GB as a single file and are left as continent-only.
+  #
+  # Want a smaller area still (a state/province, or a city), or a country not
+  # listed here? Geofabrik publishes finer sub-regions for many countries
+  # (browse https://download.geofabrik.de/ to find yours) — add an entry to
+  # your own copy of this file at <content_dir>/packs.yaml with its url and
+  # size_bytes; no code change is needed.
+
+  - id: maps-africa-algeria
+    title: Algeria map data (OpenStreetMap extract)
     description: >-
-      Raw OpenStreetMap data for Africa, for building a local offline basemap.
+      Raw OpenStreetMap data for Algeria, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/algeria-latest.osm.pbf
+    size_bytes: 298192448
+    sha256: ""
+
+  - id: maps-africa-angola
+    title: Angola map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Angola, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/angola-latest.osm.pbf
+    size_bytes: 84810621
+    sha256: ""
+
+  - id: maps-africa-benin
+    title: Benin map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Benin, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/benin-latest.osm.pbf
+    size_bytes: 47758248
+    sha256: ""
+
+  - id: maps-africa-botswana
+    title: Botswana map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Botswana, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/botswana-latest.osm.pbf
+    size_bytes: 87851098
+    sha256: ""
+
+  - id: maps-africa-burkina-faso
+    title: Burkina Faso map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Burkina Faso, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/burkina-faso-latest.osm.pbf
+    size_bytes: 84393352
+    sha256: ""
+
+  - id: maps-africa-burundi
+    title: Burundi map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Burundi, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/burundi-latest.osm.pbf
+    size_bytes: 46188868
+    sha256: ""
+
+  - id: maps-africa-cameroon
+    title: Cameroon map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Cameroon, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/cameroon-latest.osm.pbf
+    size_bytes: 222877158
+    sha256: ""
+
+  - id: maps-africa-canary-islands
+    title: Canary Islands map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Canary Islands, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/canary-islands-latest.osm.pbf
+    size_bytes: 59351413
+    sha256: ""
+
+  - id: maps-africa-cape-verde
+    title: Cape Verde map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Cape Verde, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/cape-verde-latest.osm.pbf
+    size_bytes: 11674264
+    sha256: ""
+
+  - id: maps-africa-central-african-republic
+    title: Central African Republic map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Central African Republic, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/central-african-republic-latest.osm.pbf
+    size_bytes: 99353412
+    sha256: ""
+
+  - id: maps-africa-chad
+    title: Chad map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Chad, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/chad-latest.osm.pbf
+    size_bytes: 134410229
+    sha256: ""
+
+  - id: maps-africa-comores
+    title: Comoros map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Comoros, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/comores-latest.osm.pbf
+    size_bytes: 3974668
+    sha256: ""
+
+  - id: maps-africa-congo-brazzaville
+    title: Congo (Brazzaville) map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Congo (Brazzaville), for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/congo-brazzaville-latest.osm.pbf
+    size_bytes: 32231666
+    sha256: ""
+
+  - id: maps-africa-congo-democratic-republic
+    title: Congo (Democratic Republic) map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Congo (Democratic Republic), for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/congo-democratic-republic-latest.osm.pbf
+    size_bytes: 412521511
+    sha256: ""
+
+  - id: maps-africa-djibouti
+    title: Djibouti map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Djibouti, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/djibouti-latest.osm.pbf
+    size_bytes: 7000519
+    sha256: ""
+
+  - id: maps-africa-egypt
+    title: Egypt map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Egypt, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/egypt-latest.osm.pbf
+    size_bytes: 177386323
+    sha256: ""
+
+  - id: maps-africa-equatorial-guinea
+    title: Equatorial Guinea map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Equatorial Guinea, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/equatorial-guinea-latest.osm.pbf
+    size_bytes: 6520643
+    sha256: ""
+
+  - id: maps-africa-eritrea
+    title: Eritrea map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Eritrea, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/eritrea-latest.osm.pbf
+    size_bytes: 30903599
+    sha256: ""
+
+  - id: maps-africa-ethiopia
+    title: Ethiopia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Ethiopia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/ethiopia-latest.osm.pbf
+    size_bytes: 139133301
+    sha256: ""
+
+  - id: maps-africa-gabon
+    title: Gabon map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Gabon, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/gabon-latest.osm.pbf
+    size_bytes: 25302457
+    sha256: ""
+
+  - id: maps-africa-ghana
+    title: Ghana map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Ghana, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/ghana-latest.osm.pbf
+    size_bytes: 112555727
+    sha256: ""
+
+  - id: maps-africa-guinea-bissau
+    title: Guinea-Bissau map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Guinea-Bissau, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/guinea-bissau-latest.osm.pbf
+    size_bytes: 11134201
+    sha256: ""
+
+  - id: maps-africa-guinea
+    title: Guinea map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Guinea, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/guinea-latest.osm.pbf
+    size_bytes: 116734315
+    sha256: ""
+
+  - id: maps-africa-ivory-coast
+    title: Ivory Coast map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Ivory Coast, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/ivory-coast-latest.osm.pbf
+    size_bytes: 89916916
+    sha256: ""
+
+  - id: maps-africa-kenya
+    title: Kenya map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Kenya, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/kenya-latest.osm.pbf
+    size_bytes: 348030946
+    sha256: ""
+
+  - id: maps-africa-lesotho
+    title: Lesotho map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Lesotho, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/lesotho-latest.osm.pbf
+    size_bytes: 126216821
+    sha256: ""
+
+  - id: maps-africa-liberia
+    title: Liberia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Liberia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/liberia-latest.osm.pbf
+    size_bytes: 37206758
+    sha256: ""
+
+  - id: maps-africa-libya
+    title: Libya map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Libya, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/libya-latest.osm.pbf
+    size_bytes: 76237333
+    sha256: ""
+
+  - id: maps-africa-madagascar
+    title: Madagascar map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Madagascar, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/madagascar-latest.osm.pbf
+    size_bytes: 385775166
+    sha256: ""
+
+  - id: maps-africa-malawi
+    title: Malawi map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Malawi, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/malawi-latest.osm.pbf
+    size_bytes: 154241287
+    sha256: ""
+
+  - id: maps-africa-mali
+    title: Mali map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mali, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/mali-latest.osm.pbf
+    size_bytes: 172320776
+    sha256: ""
+
+  - id: maps-africa-mauritania
+    title: Mauritania map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mauritania, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/mauritania-latest.osm.pbf
+    size_bytes: 30284120
+    sha256: ""
+
+  - id: maps-africa-mauritius
+    title: Mauritius map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mauritius, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/mauritius-latest.osm.pbf
+    size_bytes: 9479135
+    sha256: ""
+
+  - id: maps-africa-morocco
+    title: Morocco map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Morocco, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/morocco-latest.osm.pbf
+    size_bytes: 242754507
+    sha256: ""
+
+  - id: maps-africa-mozambique
+    title: Mozambique map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mozambique, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/mozambique-latest.osm.pbf
+    size_bytes: 254324966
+    sha256: ""
+
+  - id: maps-africa-namibia
+    title: Namibia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Namibia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/namibia-latest.osm.pbf
+    size_bytes: 54050705
+    sha256: ""
+
+  - id: maps-africa-niger
+    title: Niger map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Niger, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/niger-latest.osm.pbf
+    size_bytes: 75225112
+    sha256: ""
+
+  - id: maps-africa-nigeria
+    title: Nigeria map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Nigeria, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/nigeria-latest.osm.pbf
+    size_bytes: 710932776
+    sha256: ""
+
+  - id: maps-africa-rwanda
+    title: Rwanda map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Rwanda, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/rwanda-latest.osm.pbf
+    size_bytes: 65605313
+    sha256: ""
+
+  - id: maps-africa-saint-helena-ascension-and-tristan-da-cunha
+    title: Saint Helena, Ascension and Tristan da Cunha map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Saint Helena, Ascension and Tristan da Cunha, for building a local offline
+      basemap. Part of Africa — much smaller than the whole-continent
+      pack below if this is the only area you need.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/saint-helena-ascension-and-tristan-da-cunha-latest.osm.pbf
+    size_bytes: 868529
+    sha256: ""
+
+  - id: maps-africa-sao-tome-and-principe
+    title: Sao Tome and Principe map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Sao Tome and Principe, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/sao-tome-and-principe-latest.osm.pbf
+    size_bytes: 1255876
+    sha256: ""
+
+  - id: maps-africa-senegal-and-gambia
+    title: Senegal and Gambia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Senegal and Gambia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/senegal-and-gambia-latest.osm.pbf
+    size_bytes: 104975060
+    sha256: ""
+
+  - id: maps-africa-seychelles
+    title: Seychelles map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Seychelles, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/seychelles-latest.osm.pbf
+    size_bytes: 2754939
+    sha256: ""
+
+  - id: maps-africa-sierra-leone
+    title: Sierra Leone map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Sierra Leone, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/sierra-leone-latest.osm.pbf
+    size_bytes: 42787219
+    sha256: ""
+
+  - id: maps-africa-somalia
+    title: Somalia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Somalia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/somalia-latest.osm.pbf
+    size_bytes: 164273380
+    sha256: ""
+
+  - id: maps-africa-south-africa
+    title: South Africa map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for South Africa, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/south-africa-latest.osm.pbf
+    size_bytes: 415044749
+    sha256: ""
+
+  - id: maps-africa-south-sudan
+    title: South Sudan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for South Sudan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/south-sudan-latest.osm.pbf
+    size_bytes: 137619493
+    sha256: ""
+
+  - id: maps-africa-sudan
+    title: Sudan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Sudan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/sudan-latest.osm.pbf
+    size_bytes: 202451927
+    sha256: ""
+
+  - id: maps-africa-swaziland
+    title: Eswatini (Swaziland) map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Eswatini (Swaziland), for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/swaziland-latest.osm.pbf
+    size_bytes: 30556599
+    sha256: ""
+
+  - id: maps-africa-tanzania
+    title: Tanzania map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Tanzania, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/tanzania-latest.osm.pbf
+    size_bytes: 704272232
+    sha256: ""
+
+  - id: maps-africa-togo
+    title: Togo map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Togo, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/togo-latest.osm.pbf
+    size_bytes: 62073688
+    sha256: ""
+
+  - id: maps-africa-tunisia
+    title: Tunisia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Tunisia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/tunisia-latest.osm.pbf
+    size_bytes: 83821674
+    sha256: ""
+
+  - id: maps-africa-uganda
+    title: Uganda map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Uganda, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/uganda-latest.osm.pbf
+    size_bytes: 369787592
+    sha256: ""
+
+  - id: maps-africa-zambia
+    title: Zambia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Zambia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/zambia-latest.osm.pbf
+    size_bytes: 251550747
+    sha256: ""
+
+  - id: maps-africa-zimbabwe
+    title: Zimbabwe map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Zimbabwe, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/africa/zimbabwe-latest.osm.pbf
+    size_bytes: 178813668
+    sha256: ""
+  - id: maps-africa
+    title: Africa map data (OpenStreetMap extract) — whole continent, very large
+    description: >-
+      Raw OpenStreetMap data for the whole of Africa, for building a local
+      offline basemap. 7.3 GB — most operators want a single country from
+      the list above instead.
     category: maps
     format: osm.pbf
     url: https://download.geofabrik.de/africa-latest.osm.pbf
     size_bytes: 7874551430
     sha256: ""
 
-  - id: maps-asia
-    title: Asia map data (OpenStreetMap extract)
+  - id: maps-asia-afghanistan
+    title: Afghanistan map data (OpenStreetMap extract)
     description: >-
-      Raw OpenStreetMap data for Asia, for building a local offline basemap.
+      Raw OpenStreetMap data for Afghanistan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/afghanistan-latest.osm.pbf
+    size_bytes: 112192774
+    sha256: ""
+
+  - id: maps-asia-armenia
+    title: Armenia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Armenia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/armenia-latest.osm.pbf
+    size_bytes: 52680350
+    sha256: ""
+
+  - id: maps-asia-azerbaijan
+    title: Azerbaijan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Azerbaijan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
+    size_bytes: 45407541
+    sha256: ""
+
+  - id: maps-asia-bangladesh
+    title: Bangladesh map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Bangladesh, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/bangladesh-latest.osm.pbf
+    size_bytes: 347493592
+    sha256: ""
+
+  - id: maps-asia-bhutan
+    title: Bhutan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Bhutan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/bhutan-latest.osm.pbf
+    size_bytes: 23555058
+    sha256: ""
+
+  - id: maps-asia-cambodia
+    title: Cambodia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Cambodia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/cambodia-latest.osm.pbf
+    size_bytes: 40052829
+    sha256: ""
+
+  - id: maps-asia-china
+    title: China map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for China, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/china-latest.osm.pbf
+    size_bytes: 1553062394
+    sha256: ""
+
+  - id: maps-asia-east-timor
+    title: East Timor map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for East Timor, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/east-timor-latest.osm.pbf
+    size_bytes: 17755956
+    sha256: ""
+
+  - id: maps-asia-gcc-states
+    title: GCC States map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for GCC States, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/gcc-states-latest.osm.pbf
+    size_bytes: 251281555
+    sha256: ""
+
+  - id: maps-asia-india
+    title: India map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for India, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/india-latest.osm.pbf
+    size_bytes: 1689429729
+    sha256: ""
+
+  - id: maps-asia-indonesia
+    title: Indonesia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Indonesia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/indonesia-latest.osm.pbf
+    size_bytes: 1726578430
+    sha256: ""
+
+  - id: maps-asia-iran
+    title: Iran map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Iran, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/iran-latest.osm.pbf
+    size_bytes: 227807106
+    sha256: ""
+
+  - id: maps-asia-iraq
+    title: Iraq map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Iraq, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/iraq-latest.osm.pbf
+    size_bytes: 89614043
+    sha256: ""
+
+  - id: maps-asia-israel-and-palestine
+    title: Israel and Palestine map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Israel and Palestine, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/israel-and-palestine-latest.osm.pbf
+    size_bytes: 120752957
+    sha256: ""
+
+  - id: maps-asia-japan
+    title: Japan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Japan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/japan-latest.osm.pbf
+    size_bytes: 2459132043
+    sha256: ""
+
+  - id: maps-asia-jordan
+    title: Jordan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Jordan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/jordan-latest.osm.pbf
+    size_bytes: 30995850
+    sha256: ""
+
+  - id: maps-asia-kazakhstan
+    title: Kazakhstan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Kazakhstan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/kazakhstan-latest.osm.pbf
+    size_bytes: 218575214
+    sha256: ""
+
+  - id: maps-asia-kyrgyzstan
+    title: Kyrgyzstan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Kyrgyzstan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/kyrgyzstan-latest.osm.pbf
+    size_bytes: 51922114
+    sha256: ""
+
+  - id: maps-asia-laos
+    title: Laos map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Laos, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/laos-latest.osm.pbf
+    size_bytes: 53083848
+    sha256: ""
+
+  - id: maps-asia-lebanon
+    title: Lebanon map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Lebanon, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/lebanon-latest.osm.pbf
+    size_bytes: 52238387
+    sha256: ""
+
+  - id: maps-asia-malaysia-singapore-brunei
+    title: Malaysia, Singapore, and Brunei map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Malaysia, Singapore, and Brunei, for building a local offline
+      basemap. Part of Asia — much smaller than the whole-continent
+      pack below if this is the only area you need.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/malaysia-singapore-brunei-latest.osm.pbf
+    size_bytes: 247214170
+    sha256: ""
+
+  - id: maps-asia-maldives
+    title: Maldives map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Maldives, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/maldives-latest.osm.pbf
+    size_bytes: 3569047
+    sha256: ""
+
+  - id: maps-asia-mongolia
+    title: Mongolia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mongolia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/mongolia-latest.osm.pbf
+    size_bytes: 61631644
+    sha256: ""
+
+  - id: maps-asia-myanmar
+    title: Myanmar (Burma) map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Myanmar (Burma), for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/myanmar-latest.osm.pbf
+    size_bytes: 273292334
+    sha256: ""
+
+  - id: maps-asia-nepal
+    title: Nepal map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Nepal, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/nepal-latest.osm.pbf
+    size_bytes: 410865980
+    sha256: ""
+
+  - id: maps-asia-north-korea
+    title: North Korea map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for North Korea, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/north-korea-latest.osm.pbf
+    size_bytes: 90670487
+    sha256: ""
+
+  - id: maps-asia-pakistan
+    title: Pakistan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Pakistan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/pakistan-latest.osm.pbf
+    size_bytes: 153418324
+    sha256: ""
+
+  - id: maps-asia-philippines
+    title: Philippines map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Philippines, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/philippines-latest.osm.pbf
+    size_bytes: 599447307
+    sha256: ""
+
+  - id: maps-asia-south-korea
+    title: South Korea map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for South Korea, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/south-korea-latest.osm.pbf
+    size_bytes: 282085553
+    sha256: ""
+
+  - id: maps-asia-sri-lanka
+    title: Sri Lanka map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Sri Lanka, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/sri-lanka-latest.osm.pbf
+    size_bytes: 143284254
+    sha256: ""
+
+  - id: maps-asia-syria
+    title: Syria map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Syria, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/syria-latest.osm.pbf
+    size_bytes: 81099913
+    sha256: ""
+
+  - id: maps-asia-taiwan
+    title: Taiwan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Taiwan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/taiwan-latest.osm.pbf
+    size_bytes: 324586519
+    sha256: ""
+
+  - id: maps-asia-tajikistan
+    title: Tajikistan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Tajikistan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/tajikistan-latest.osm.pbf
+    size_bytes: 47881944
+    sha256: ""
+
+  - id: maps-asia-thailand
+    title: Thailand map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Thailand, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/thailand-latest.osm.pbf
+    size_bytes: 324533589
+    sha256: ""
+
+  - id: maps-asia-turkmenistan
+    title: Turkmenistan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Turkmenistan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/turkmenistan-latest.osm.pbf
+    size_bytes: 24474810
+    sha256: ""
+
+  - id: maps-asia-uzbekistan
+    title: Uzbekistan map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Uzbekistan, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/uzbekistan-latest.osm.pbf
+    size_bytes: 119212118
+    sha256: ""
+
+  - id: maps-asia-vietnam
+    title: Vietnam map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Vietnam, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/vietnam-latest.osm.pbf
+    size_bytes: 325207959
+    sha256: ""
+
+  - id: maps-asia-yemen
+    title: Yemen map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Yemen, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/asia/yemen-latest.osm.pbf
+    size_bytes: 42932262
+    sha256: ""
+  - id: maps-asia
+    title: Asia map data (OpenStreetMap extract) — whole continent, very large
+    description: >-
+      Raw OpenStreetMap data for the whole of Asia, for building a local
+      offline basemap. 15+ GB — most operators want a single country from
+      the list above instead.
     category: maps
     format: osm.pbf
     url: https://download.geofabrik.de/asia-latest.osm.pbf
@@ -99,21 +1145,616 @@ packs:
     size_bytes: 776580387
     sha256: ""
 
-  - id: maps-europe
-    title: Europe map data (OpenStreetMap extract)
+  - id: maps-europe-albania
+    title: Albania map data (OpenStreetMap extract)
     description: >-
-      Raw OpenStreetMap data for Europe, for building a local offline basemap.
+      Raw OpenStreetMap data for Albania, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/albania-latest.osm.pbf
+    size_bytes: 53651615
+    sha256: ""
+
+  - id: maps-europe-andorra
+    title: Andorra map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Andorra, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+    size_bytes: 3415322
+    sha256: ""
+
+  - id: maps-europe-austria
+    title: Austria map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Austria, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/austria-latest.osm.pbf
+    size_bytes: 803147844
+    sha256: ""
+
+  - id: maps-europe-azores
+    title: Azores map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Azores, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/azores-latest.osm.pbf
+    size_bytes: 17509573
+    sha256: ""
+
+  - id: maps-europe-belarus
+    title: Belarus map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Belarus, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/belarus-latest.osm.pbf
+    size_bytes: 345276437
+    sha256: ""
+
+  - id: maps-europe-belgium
+    title: Belgium map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Belgium, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/belgium-latest.osm.pbf
+    size_bytes: 688865173
+    sha256: ""
+
+  - id: maps-europe-bosnia-herzegovina
+    title: Bosnia-Herzegovina map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Bosnia-Herzegovina, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/bosnia-herzegovina-latest.osm.pbf
+    size_bytes: 158744008
+    sha256: ""
+
+  - id: maps-europe-bulgaria
+    title: Bulgaria map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Bulgaria, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/bulgaria-latest.osm.pbf
+    size_bytes: 168796690
+    sha256: ""
+
+  - id: maps-europe-croatia
+    title: Croatia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Croatia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/croatia-latest.osm.pbf
+    size_bytes: 197057357
+    sha256: ""
+
+  - id: maps-europe-cyprus
+    title: Cyprus map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Cyprus, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/cyprus-latest.osm.pbf
+    size_bytes: 36682111
+    sha256: ""
+
+  - id: maps-europe-czech-republic
+    title: Czech Republic map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Czech Republic, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
+    size_bytes: 938293151
+    sha256: ""
+
+  - id: maps-europe-denmark
+    title: Denmark map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Denmark, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/denmark-latest.osm.pbf
+    size_bytes: 490477304
+    sha256: ""
+
+  - id: maps-europe-estonia
+    title: Estonia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Estonia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/estonia-latest.osm.pbf
+    size_bytes: 121405619
+    sha256: ""
+
+  - id: maps-europe-faroe-islands
+    title: Faroe Islands map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Faroe Islands, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/faroe-islands-latest.osm.pbf
+    size_bytes: 7715782
+    sha256: ""
+
+  - id: maps-europe-finland
+    title: Finland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Finland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/finland-latest.osm.pbf
+    size_bytes: 726936427
+    sha256: ""
+
+  - id: maps-europe-france
+    title: France map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for France, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/france-latest.osm.pbf
+    size_bytes: 5036012995
+    sha256: ""
+
+  - id: maps-europe-georgia
+    title: Georgia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Georgia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/georgia-latest.osm.pbf
+    size_bytes: 99909860
+    sha256: ""
+
+  - id: maps-europe-germany
+    title: Germany map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Germany, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/germany-latest.osm.pbf
+    size_bytes: 4792254621
+    sha256: ""
+
+  - id: maps-europe-great-britain
+    title: Great Britain map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Great Britain, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/great-britain-latest.osm.pbf
+    size_bytes: 2142287485
+    sha256: ""
+
+  - id: maps-europe-greece
+    title: Greece map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Greece, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/greece-latest.osm.pbf
+    size_bytes: 338030511
+    sha256: ""
+
+  - id: maps-europe-guernsey-jersey
+    title: Guernsey and Jersey map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Guernsey and Jersey, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/guernsey-jersey-latest.osm.pbf
+    size_bytes: 3877623
+    sha256: ""
+
+  - id: maps-europe-hungary
+    title: Hungary map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Hungary, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/hungary-latest.osm.pbf
+    size_bytes: 319239975
+    sha256: ""
+
+  - id: maps-europe-iceland
+    title: Iceland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Iceland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/iceland-latest.osm.pbf
+    size_bytes: 64352944
+    sha256: ""
+
+  - id: maps-europe-ireland-and-northern-ireland
+    title: Ireland and Northern Ireland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Ireland and Northern Ireland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/ireland-and-northern-ireland-latest.osm.pbf
+    size_bytes: 405806526
+    sha256: ""
+
+  - id: maps-europe-isle-of-man
+    title: Isle of Man map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Isle of Man, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/isle-of-man-latest.osm.pbf
+    size_bytes: 5986455
+    sha256: ""
+
+  - id: maps-europe-italy
+    title: Italy map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Italy, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/italy-latest.osm.pbf
+    size_bytes: 2206778040
+    sha256: ""
+
+  - id: maps-europe-kosovo
+    title: Kosovo map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Kosovo, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/kosovo-latest.osm.pbf
+    size_bytes: 30530099
+    sha256: ""
+
+  - id: maps-europe-latvia
+    title: Latvia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Latvia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/latvia-latest.osm.pbf
+    size_bytes: 138697053
+    sha256: ""
+
+  - id: maps-europe-liechtenstein
+    title: Liechtenstein map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Liechtenstein, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
+    size_bytes: 3385362
+    sha256: ""
+
+  - id: maps-europe-lithuania
+    title: Lithuania map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Lithuania, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/lithuania-latest.osm.pbf
+    size_bytes: 221323184
+    sha256: ""
+
+  - id: maps-europe-luxembourg
+    title: Luxembourg map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Luxembourg, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf
+    size_bytes: 47044206
+    sha256: ""
+
+  - id: maps-europe-macedonia
+    title: North Macedonia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for North Macedonia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/macedonia-latest.osm.pbf
+    size_bytes: 29384088
+    sha256: ""
+
+  - id: maps-europe-malta
+    title: Malta map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Malta, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/malta-latest.osm.pbf
+    size_bytes: 8805031
+    sha256: ""
+
+  - id: maps-europe-moldova
+    title: Moldova map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Moldova, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/moldova-latest.osm.pbf
+    size_bytes: 99999697
+    sha256: ""
+
+  - id: maps-europe-monaco
+    title: Monaco map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Monaco, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/monaco-latest.osm.pbf
+    size_bytes: 685048
+    sha256: ""
+
+  - id: maps-europe-montenegro
+    title: Montenegro map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Montenegro, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/montenegro-latest.osm.pbf
+    size_bytes: 33629814
+    sha256: ""
+
+  - id: maps-europe-netherlands
+    title: Netherlands map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Netherlands, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/netherlands-latest.osm.pbf
+    size_bytes: 1390144041
+    sha256: ""
+
+  - id: maps-europe-norway
+    title: Norway map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Norway, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/norway-latest.osm.pbf
+    size_bytes: 1370420231
+    sha256: ""
+
+  - id: maps-europe-poland
+    title: Poland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Poland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/poland-latest.osm.pbf
+    size_bytes: 2070897009
+    sha256: ""
+
+  - id: maps-europe-portugal
+    title: Portugal map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Portugal, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/portugal-latest.osm.pbf
+    size_bytes: 416744817
+    sha256: ""
+
+  - id: maps-europe-romania
+    title: Romania map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Romania, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/romania-latest.osm.pbf
+    size_bytes: 323263485
+    sha256: ""
+
+  - id: maps-europe-serbia
+    title: Serbia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Serbia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/serbia-latest.osm.pbf
+    size_bytes: 237004170
+    sha256: ""
+
+  - id: maps-europe-slovakia
+    title: Slovakia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Slovakia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/slovakia-latest.osm.pbf
+    size_bytes: 339827813
+    sha256: ""
+
+  - id: maps-europe-slovenia
+    title: Slovenia map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Slovenia, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/slovenia-latest.osm.pbf
+    size_bytes: 309614585
+    sha256: ""
+
+  - id: maps-europe-spain
+    title: Spain map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Spain, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/spain-latest.osm.pbf
+    size_bytes: 1458719940
+    sha256: ""
+
+  - id: maps-europe-sweden
+    title: Sweden map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Sweden, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/sweden-latest.osm.pbf
+    size_bytes: 808226149
+    sha256: ""
+
+  - id: maps-europe-switzerland
+    title: Switzerland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Switzerland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/switzerland-latest.osm.pbf
+    size_bytes: 537831828
+    sha256: ""
+
+  - id: maps-europe-turkey
+    title: Turkey map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Turkey, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+    size_bytes: 637077476
+    sha256: ""
+
+  - id: maps-europe-ukraine
+    title: Ukraine map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Ukraine, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/ukraine-latest.osm.pbf
+    size_bytes: 867409166
+    sha256: ""
+
+  - id: maps-europe-united-kingdom
+    title: United Kingdom map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for United Kingdom, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/europe/united-kingdom-latest.osm.pbf
+    size_bytes: 2223122100
+    sha256: ""
+  - id: maps-europe
+    title: Europe map data (OpenStreetMap extract) — whole continent, very large
+    description: >-
+      Raw OpenStreetMap data for the whole of Europe, for building a local
+      offline basemap. 31+ GB — most operators want a single country from
+      the list above instead.
     category: maps
     format: osm.pbf
     url: https://download.geofabrik.de/europe-latest.osm.pbf
     size_bytes: 34574312786
     sha256: ""
 
-  - id: maps-north-america
-    title: North America map data (OpenStreetMap extract)
+  - id: maps-na-canada
+    title: Canada map data (OpenStreetMap extract)
     description: >-
-      Raw OpenStreetMap data for North America, for building a local offline
+      Raw OpenStreetMap data for Canada, for building a local offline
       basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/north-america/canada-latest.osm.pbf
+    size_bytes: 6399498087
+    sha256: ""
+
+  - id: maps-na-greenland
+    title: Greenland map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Greenland, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/north-america/greenland-latest.osm.pbf
+    size_bytes: 25598474
+    sha256: ""
+
+  - id: maps-na-mexico
+    title: Mexico map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for Mexico, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/north-america/mexico-latest.osm.pbf
+    size_bytes: 628686642
+    sha256: ""
+
+  - id: maps-na-us
+    title: United States of America map data (OpenStreetMap extract)
+    description: >-
+      Raw OpenStreetMap data for United States of America, for building a local offline
+      basemap.
+    category: maps
+    format: osm.pbf
+    url: https://download.geofabrik.de/north-america/us-latest.osm.pbf
+    size_bytes: 12000258484
+    sha256: ""
+  - id: maps-north-america
+    title: North America map data (OpenStreetMap extract) — whole continent, very large
+    description: >-
+      Raw OpenStreetMap data for the whole of North America, for building a
+      local offline basemap. 17+ GB — most operators want a single country
+      from the list above instead.
     category: maps
     format: osm.pbf
     url: https://download.geofabrik.de/north-america-latest.osm.pbf

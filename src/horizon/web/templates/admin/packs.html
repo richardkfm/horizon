@@ -14,8 +14,14 @@
 </p>
 
 {% if packs %}
+{% if packs | length > 12 %}
+<div class="search-form no-print">
+  <label class="visually-hidden" for="pack-filter">Filter packs</label>
+  <input type="search" id="pack-filter" placeholder="Filter packs — e.g. a country or &quot;wikipedia&quot;" autocomplete="off">
+</div>
+{% endif %}
 <div class="table-scroll">
-<table class="admin-table packs-table">
+<table class="admin-table packs-table" id="packs-table">
   <thead>
     <tr><th>Pack</th><th>Size</th><th>Status</th><th></th></tr>
   </thead>
@@ -34,4 +40,20 @@
   Looking to add a single how-to page or a book instead of one of these large
   packs? See <a href="/admin/import">Import content</a>.
 </p>
+
+<script>
+  // Plain JS so filtering works in every mode, including low-power where
+  // Alpine is skipped (same approach as the checklist tick-state script).
+  (function () {
+    var input = document.getElementById("pack-filter");
+    var table = document.getElementById("packs-table");
+    if (!input || !table) return;
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      Array.prototype.forEach.call(table.querySelectorAll("tbody tr[data-search]"), function (row) {
+        row.style.display = !q || row.getAttribute("data-search").indexOf(q) !== -1 ? "" : "none";
+      });
+    });
+  })();
+</script>
 {% endblock %}
