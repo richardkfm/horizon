@@ -62,5 +62,8 @@ in circles. None of this needs a compass — just the sky and some care.
 
 ## Where to go next
 
+- If you do have a map and compass, see **navigate with a map and compass**
+  for bearings and finding your position — this guide is for when you have
+  neither.
 - If you decide to stay put rather than move, make yourself easy to find:
   see signal for rescue if lost or stranded.

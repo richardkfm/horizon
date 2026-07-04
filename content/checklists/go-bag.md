@@ -33,6 +33,7 @@ light enough to carry and check it twice a year.
 - [ ] Wind-up or battery radio
 - [ ] Power bank and charging cables
 - [ ] Whistle to signal for help
+- [ ] Printed local map and a compass (a phone can run out of battery)
 
 ## Health and hygiene
 

@@ -14,6 +14,17 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Two new survival guides covering map and GPS use**, filling a gap where
+  the only existing navigation guide was explicitly "without a compass or
+  map": *Navigate with a map and compass* (`survival-map-and-compass`
+  — orienting a map, taking and following a bearing, finding your position by
+  resection) and *Use offline maps and GPS with no signal*
+  (`survival-offline-maps-and-gps` — a phone's GPS receiver works from
+  satellites alone with no signal, but only if the map area was downloaded
+  beforehand; also covers printing a paper backup). Cross-linked with the
+  existing "find direction without a compass" and "get through emergencies
+  with no car" guides. The go-bag checklist gained a "printed local map and a
+  compass" item to match.
 - **New guide for car-free households facing emergencies**
   (`emergency-no-car-household`): evacuating on foot when transit may fail,
   storing supplies in a small apartment footprint instead of a car trunk or
@@ -66,6 +77,21 @@ Updating this changelog and the README is part of every user-facing change
   system library required).
 
 ### Changed
+- **Map content packs now offer a per-country option, not just whole
+  continents.** The previous fix for broken map-pack URLs replaced a single
+  ~1.1 GB pre-tiled world pack with 8 raw `.osm.pbf` continent extracts from
+  Geofabrik — which fixed the dead links but made the *smallest* map download
+  jump to several GB, and the four biggest (Africa, Asia, Europe, North
+  America) run 7-34 GB each, since no free, no-account, pre-tiled provider
+  exists to replace the old one. Those four continents now also list one pack
+  per country/territory (still Geofabrik, one directory level down its own
+  hierarchy — e.g. Germany at 4.5 GB instead of all of Europe's 31+ GB, or
+  Luxembourg under 50 MB), verified live against Geofabrik's current file
+  sizes. The whole-continent packs are kept, retitled to flag their size, for
+  anyone who wants full continental coverage. `content/packs.yaml` documents
+  how to add any other Geofabrik sub-region (state/city-level) to an
+  operator's own copy of the catalog. Since the maps category is now ~155 entries, the
+  admin **Content packs** page gained a client-side filter box.
 - **Guides and Checklists indexes are now responsive card grids.** The old
   single-column link list made ~90 guides a very long, hard-to-scan page on a
   laptop; each entry is now a tappable card (category badge, title, summary)

@@ -3,6 +3,7 @@
 {% set job = pack.job %}
 {% set active = job and job.phase in ("queued", "downloading", "verifying") %}
 <tr id="pack-row-{{ pack.id }}"
+    data-search="{{ (pack.title ~ ' ' ~ pack.id) | lower }}"
     {% if active %}hx-get="/admin/packs/{{ pack.id }}/row"
     hx-trigger="load delay:1500ms" hx-swap="outerHTML"{% endif %}>
   <td>
