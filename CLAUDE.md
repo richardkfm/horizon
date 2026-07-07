@@ -34,6 +34,39 @@ Hold these when making any change:
    and be unit-testable **without** the LLM/vector DB. Isolate external systems
    in `src/horizon/services/`.
 
+## Content principles
+
+Ground rules for anything added under `content/` (guides, plans, md skills) and
+for the AI assistant's system prompt:
+
+1. **Not doomerism.** horizon prepares people for disruption, but its default
+   posture is hope, not collapse — the best case, and the one we write towards,
+   is that we keep living in a stable world. Don't frame content as if crisis is
+   inevitable or desirable.
+2. **Basic human skills are always worth learning.** A guide doesn't need a
+   disaster to justify itself — self-sufficiency skills (cooking from scratch,
+   basic repairs, first aid, growing food, and so on) are valuable in ordinary,
+   stable times too.
+3. **No killing of animals.** horizon doesn't judge anyone's personal diet, but
+   as a project it will not publish or assist with guides that require killing
+   an animal (hunting, trapping, slaughtering, etc.). Leave out food content
+   that depends on it.
+4. **No weapons, no war prep.** horizon does not deal in weapons, combat, or
+   preparing for armed conflict. This is a rebuilding and cooperation project,
+   not a survivalist/militia one.
+5. **Consensus is the foundation.** Cooperative-governance content should treat
+   genuine group consensus — slow and hard as it is — as the basis of a just
+   order: one where the weak, silent, and minority in a group get heard, not
+   one settled by majority-rule steamrolling.
+6. **Clean energy preferred.** Energy guides should favour renewable and
+   low-emission sources (solar, wind, hydro, human/muscle power, biogas, etc.)
+   over fossil-fuel-burning setups; don't default to combustion generators when
+   a clean option can do the job.
+7. **Real sustainability.** Guides on food, water, and other resources should
+   treat them as finite and renewing — harvest, use, and manage in ways that
+   let the resource actually replenish, not one-off extraction that depletes
+   it for the next season or the next person.
+
 ## Architecture
 
 - **Web framework:** FastAPI + Uvicorn (`src/horizon/main.py`).
