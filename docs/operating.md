@@ -89,7 +89,51 @@ extra: `docker compose build --build-arg INSTALL_EXTRAS=ai` (or
 ## Command line (`horizon-admin`)
 
 For a node with no browser, `horizon-admin` is a full operator **and** reader
-interface — everything runs offline (only `packs download` touches the network):
+interface — everything runs offline (only `packs download` touches the network).
+
+### Getting the command to run
+
+`horizon-admin` is not a script in the repo — it's installed by `pip` as part
+of the `horizon` package, so where you run it depends on how you run horizon
+itself:
+
+- **Docker (the [Quickstart](../README.md#quickstart-docker-recommended)
+  path).** The CLI lives *inside* the container, not on the host. Prefix every
+  command with `docker compose exec`:
+
+  ```bash
+  docker compose exec horizon horizon-admin status
+  ```
+
+  (`horizon` here is the service name from `docker-compose.yml`, not the
+  command — this is why `horizon-admin status` typed directly on the VPS host
+  fails with "command not found": it was never installed there.)
+
+- **Bare-metal** (see [Bare-metal run](../README.md#bare-metal-run)). The
+  command only exists inside the virtualenv you installed horizon into, and
+  only while that virtualenv is *active* in your current shell:
+
+  ```bash
+  cd horizon                       # the repo directory
+  source .venv/bin/activate        # do this again every new SSH session
+  horizon-admin status
+  ```
+
+  If you get "command not found" here, run `which horizon-admin` — empty
+  output means either the venv isn't activated (run the `source` line above)
+  or the package was never installed (`pip install -e .` from the repo root).
+  As a fallback that skips PATH entirely, run it as a module from inside the
+  activated venv: `python -m horizon.scripts.admin status`.
+
+- **systemd install** (`sudo ./packaging/install.sh`). The service's own
+  virtualenv lives under `/opt/horizon`, not your login shell, so call the
+  binary by full path (no activation needed):
+
+  ```bash
+  sudo /opt/horizon/venv/bin/horizon-admin status
+  ```
+
+### Commands
 
 ```bash
 horizon-admin status                 # runtime + content overview (with logo)
