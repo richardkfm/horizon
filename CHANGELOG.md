@@ -13,6 +13,8 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.7.0] — 2026-07-09
+
 ### Added
 - **"Read further" footer on guides and checklists.** A guide that's a step
   in a plan now ends with a "Next in `<plan>`" link straight to the following
