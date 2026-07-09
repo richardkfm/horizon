@@ -21,10 +21,17 @@ body {
   --accent-soft: transparent;
   --border: #000;
   --border-strong: #000;
+  --sun: #000;
+  --sun-soft: transparent;
+  --leaf: #000;
+  --leaf-soft: transparent;
   --shadow-sm: none;
   --shadow: none;
   --shadow-lift: none;
 }
+
+/* Landing hero prints as a plain ink-on-paper scene, no gradient wash. */
+.hero { background: none; }
 
 /* Drop card lift/tints so printed pages stay clean. */
 * { box-shadow: none !important; }
