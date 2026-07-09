@@ -14,6 +14,19 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **A solarpunk landing hero with a hand-drawn ASCII scene.** The front page
+  opens with a two-layer ASCII vignette — a cottage with solar-panel roof, a
+  garden, and a wind turbine in leaf-green ink, with the sun, turbine rotor,
+  and two birds gently animating in amber on top. The animation is plain JS
+  with no new dependencies, is skipped entirely in low-power mode and for
+  `prefers-reduced-motion` readers (who get the complete still scene), and
+  the scene is described to screen readers via a `role="img"` label.
+- **Solarpunk accent tokens** (`--sun`, `--leaf` + soft tints) in both themes:
+  a sunrise gradient hairline across the top of every page, a sun-to-leaf
+  flourish under the landing section heading, a warm sun-glow/leaf-tint wash
+  and asymmetric "leaf" corners on the hero card, and a leaf-green hover on
+  the topic tiles. All decorative colour flattens to plain ink in low-power,
+  high-contrast, and print modes.
 - **Two new survival guides covering map and GPS use**, filling a gap where
   the only existing navigation guide was explicitly "without a compass or
   map": *Navigate with a map and compass* (`survival-map-and-compass`

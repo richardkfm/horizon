@@ -84,10 +84,14 @@ and without coercion.
   open straight to the how-to, guide search, a phone-friendly responsive layout,
   and plain-language answers by default.
 - **Comfortable to look at, day or night.** A calm "paper & ink" design with
-  light and dark themes (remembered on-device, defaulting to your system
-  setting), applied consistently across every page including the admin panel.
-  All styling is vendored — no external fonts or CDNs — and print and
-  low-power/e-ink modes keep their high-contrast palettes.
+  a solarpunk streak — sun-amber and leaf-green accents, a sunrise hairline
+  atop every page, and a gently animated ASCII sunrise scene (cottage, garden,
+  wind turbine) on the front page — in light and dark themes (remembered
+  on-device, defaulting to your system setting), applied consistently across
+  every page including the admin panel. All styling is vendored — no external
+  fonts or CDNs — and print and low-power/e-ink modes keep their
+  high-contrast palettes (the animation stays still for reduced-motion
+  readers and is skipped in low-power mode).
 - **Accessible by default.** A "Skip to content" link for keyboard users,
   labelled landmarks, a visible focus ring everywhere, a tablet breakpoint
   alongside the phone one, and an on-device **text size / high-contrast**

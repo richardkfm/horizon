@@ -2,25 +2,53 @@
 {% from "partials/_icons.html" import category_icon %}
 {% block title %}horizon · guides for water, food, energy, shelter, and health{% endblock %}
 {% block content %}
-<section class="intro">
-  <h1>Guides for everyday autonomy</h1>
-  <p class="tagline">
-    A local, offline-first library of step-by-step guides for water, food,
-    energy, shelter, health, and cooperation, plus a local AI assistant to
-    help you find what you need.
-  </p>
-  <p class="cta">
-    Not sure where to start?
-    <a class="btn btn-primary" href="/recommend">Describe your goal →</a>
-  </p>
-  <p class="cta-secondary">
-    Getting ready for hard times? See the
-    <a href="/checklists">checklists</a> of what to gather, pack, and keep ready.
-  </p>
+<section class="hero">
+  <div class="intro">
+    <p class="hero-kicker">Offline-first · low-power · community-run</p>
+    <h1>Guides for everyday autonomy</h1>
+    <p class="tagline">
+      A local, offline-first library of step-by-step guides for water, food,
+      energy, shelter, health, and cooperation, plus a local AI assistant to
+      help you find what you need.
+    </p>
+    <p class="cta">
+      Not sure where to start?
+      <a class="btn btn-primary" href="/recommend">Describe your goal →</a>
+    </p>
+    <p class="cta-secondary">
+      Getting ready for hard times? See the
+      <a href="/checklists">checklists</a> of what to gather, pack, and keep ready.
+    </p>
+  </div>
+  {# A little solarpunk morning in ASCII: two stacked <pre> layers on the same
+     monospace grid. The "ground" layer is the still landscape (leaf ink); the
+     "sky" layer holds the sun, turbine rotor, and birds (amber ink) and is the
+     only thing the animation redraws. Both layers are aria-hidden — the
+     wrapper's role="img" label describes the scene for screen readers. #}
+  <div class="hero-art" role="img"
+       aria-label="A sun shines over a cottage with solar panels on the roof, a garden with sprouting plants and a sunflower, and a small wind turbine. Two birds fly across the sky.">
+    <div class="hero-art-frame">
+      {# The first newline after <pre> is stripped by the HTML parser, so the
+         three empty sky rows need four literal newlines here. #}
+      <pre class="hero-art-ground" aria-hidden="true">
+
+
+
+                                   |
+              _/]_/]_/]_           |
+             |          |   (@)    |
+   \|/       |  __   __ |    |     |
+    |   ,,,  | |__| |__||   \|/    |
+__________________________________/_\_______</pre>
+      <pre class="hero-art-sky" id="hero-art-sky" aria-hidden="true">    \  |  /         v
+  --  (o)  --             v       \ /
+    /  |  \                        o</pre>
+    </div>
+  </div>
 </section>
 
 <section class="categories">
-  <h2>Where do you want to start?</h2>
+  <h2 class="section-flourish">Where do you want to start?</h2>
   <ul class="category-grid">
     {% for category in categories %}
     <li class="category-card">
@@ -33,4 +61,46 @@
     {% endfor %}
   </ul>
 </section>
+
+{% if not low_power_enabled() %}
+{# Animation frames for the sky layer, kept as plain text in a <template> so
+   the art stays readable here and needs no string escaping in JS. Frame 0
+   matches the markup above, so no-JS (and reduced-motion) readers still get
+   the complete still scene. The sun's rays breathe, the turbine rotor turns,
+   and the birds flap their way toward the turbine and drift back. #}
+<template id="hero-frames">
+  <pre>    \  |  /         v
+  --  (o)  --             v       \ /
+    /  |  \                        o</pre>
+  <pre>       '             -
+   -  (o)  -               -       |
+       ,                          -o-</pre>
+  <pre>    \  |  /           v
+  --  (o)  --               v     \ /
+    /  |  \                        o</pre>
+  <pre>       '             -
+   -  (o)  -               -       |
+       ,                          -o-</pre>
+</template>
+<script>
+  // Gentle frame-flip for the hero scene. Plain JS, only loaded outside
+  // low-power mode, and skipped entirely for reduced-motion readers.
+  (function () {
+    var sky = document.getElementById("hero-art-sky");
+    var tpl = document.getElementById("hero-frames");
+    if (!sky || !tpl || !("content" in tpl)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var frames = Array.prototype.map.call(
+      tpl.content.querySelectorAll("pre"),
+      function (p) { return p.textContent; }
+    );
+    if (frames.length < 2) return;
+    var i = 0;
+    setInterval(function () {
+      i = (i + 1) % frames.length;
+      sky.textContent = frames[i];
+    }, 900);
+  })();
+</script>
+{% endif %}
 {% endblock %}
