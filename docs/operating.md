@@ -1,4 +1,4 @@
-# Operating a horizon node
+# Operating a horizon node (admin, CLI, local LLM, content packs)
 
 Configuration, the `horizon-admin` CLI, and content packs — everything an
 operator needs after the [Quickstart](../README.md#quickstart-docker-recommended).
@@ -86,7 +86,10 @@ retrieves with keyword search. To bake in vector search, build with the `ai`
 extra: `docker compose build --build-arg INSTALL_EXTRAS=ai` (or
 `docker build --build-arg INSTALL_EXTRAS=ai .`). Bare-metal: `pip install -e .[ai]`.
 
-## Command line (`horizon-admin`)
+
+<img width="1407" height="940" alt="horizon_cli" src="https://github.com/user-attachments/assets/76170963-6e16-4ad6-b3e1-cac17665fe9c" />
+
+## CLI Command line interface  (`horizon-admin`)
 
 For a node with no browser, `horizon-admin` is a full operator **and** reader
 interface — everything runs offline (only `packs download` touches the network).
