@@ -13,6 +13,41 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **Three new `cooperation` guides** — resolve conflict between people fairly,
+  share resources and manage a group's commons, and build trust and
+  agreements with neighbouring groups — filling out horizon's thinnest guide
+  category (previously 2 guides) and giving it its first step-by-step plan,
+  "Set up cooperative governance from scratch".
+- **A `cooperation-consensus` md skill**, encoding the "consensus is the
+  foundation" content principle for the assistant, matching the per-category
+  skill pattern used by `emergencies`/`health`/`survival`/etc.
+- **Two new `water` guides** — harvest and store rainwater, and find, dig, or
+  protect a well or spring — closing a sourcing gap in a category that
+  previously only covered testing, treating, and filtering. Threaded into the
+  existing "Provide safe drinking water for a group" plan ahead of testing
+  and treatment.
+- **A new `crafts` guide**, spin fibre and weave simple cloth, covering
+  fibre preparation, drop-spindle spinning, and basic weaving — distinct from
+  the existing cordage guide's coarser rope-making technique. Threaded into
+  the "Make and maintain your own tools" plan.
+- **A new step-by-step plan for `emergencies`**, "Prepare for and get through
+  a long blackout", threading blackout, extreme heat, extreme cold, fire
+  safety, and no-car-household guides — the category's largest guide count
+  (15) previously had zero curated plans.
+
+### Fixed
+- The `cooperation` category had no dedicated icon in the shared
+  `category_icon` macro and silently fell back to the generic icon; it now
+  has its own.
+
+### Removed
+- **Retired the `survival-trapping-fishing` guide** ("Catch fish and small
+  game for food"). It taught snares, deadfalls, and killing/gutting catch for
+  food, which conflicts with CLAUDE.md's "no killing of animals" content
+  principle. Removed its reference from the "Core wilderness survival
+  skills" plan and an incidental mention in the cordage guide.
+
 ## [0.7.0] — 2026-07-09
 
 ### Added
