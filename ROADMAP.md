@@ -10,10 +10,12 @@ admin library that shows the whole node at a glance, a **check & repair**
 panel that lets an operator diagnose, repair, and re-seed a node entirely from
 the browser (v0.4), printable checklists, guide figures/ASCII diagrams, more
 medical and safety guides, an `horizon-content import` command for turning
-outside material into local guides (v0.5), and — as of v0.6 — the design
-system applied consistently everywhere plus an accessibility & responsive
-pass (v0.6). horizon is now a cohesive, comfortable, maintainable node ready
-to hand to a neighbour.
+outside material into local guides (v0.5), the design system applied
+consistently everywhere plus an accessibility & responsive pass (v0.6), and —
+as of v0.7 — an in-browser **reference library** for downloaded offline
+content packs, a solarpunk landing hero, and a broad content expansion across
+survival, health, food, and emergencies. horizon is now a cohesive,
+comfortable, maintainable node ready to hand to a neighbour.
 
 The focus stays **lean and simple**: deepen the content so it actually helps
 you *choose*, and give the admin the few tools they need to keep a node
@@ -25,11 +27,44 @@ runtime, runnable on weak hardware, values live in content, and the core stays
 pure and testable.
 
 Milestones are vertical and shippable: each one is useful on its own. What
-comes after v0.6 isn't decided yet — see the principles below and expect this
+comes after v0.7 isn't decided yet — see the principles below and expect this
 file to grow a new milestone as real neighbourhood deployments surface the
 next gap.
 
 ---
+
+## Where we are — v0.7.0 (shipped)
+
+- **A reference library for downloaded ZIM content packs.** Previously a
+  downloaded pack (offline Wikipedia, WikEM) was a dead end with no way to
+  actually read it short of an external Kiwix viewer. `/reference` now lists
+  installed packs, each with full-text search and a "Random article" link,
+  and renders articles inline — no client-side JS, third-party `<script>`
+  tags always stripped server-side.
+- **A solarpunk landing hero.** A hand-drawn, gently animated ASCII scene
+  (cottage, solar roof, garden, wind turbine) opens the front page, paired
+  with new "sun" and "leaf" accent tokens used sparingly across both themes;
+  everything flattens to plain ink in low-power, high-contrast, and print
+  modes, and the animation is skipped for `prefers-reduced-motion` readers.
+- **A broad content expansion** — around twenty new guides across survival
+  (map/compass and GPS navigation, campsite setup, sanitation, signaling for
+  rescue), health (bites/stings, mass-casualty triage, power-dependent
+  medical care, psychological first aid), food (plant-problem diagnosis,
+  reforestation), and emergencies (car-free households, vehicle stranding) —
+  threaded into two new step-by-step plans and cross-linked from existing
+  guides. Guides and checklists also gained a "Read further" footer (next
+  guide in a plan, plus a few more on the same topic) so a reader doesn't
+  have to detour back through the plan page.
+- **Smaller UX fixes**: guides/checklists indexes are now responsive card
+  grids instead of a long link list, the home page's topic tiles go
+  two-per-row on phones, and the header nav fits on one line at laptop width.
+- **Documentation and packaging refreshed** for this tagged release (version
+  bump, README status badge, changelog).
+
+The gap we'll close next: the reference library has no built-in map viewer
+yet, so the maps content packs are still raw `.osm.pbf` extracts rather than
+something you can browse in the UI — that's the natural next step once a
+lightweight offline map renderer is chosen.
 
 ## Where we are — v0.6.0 (shipped)
 
