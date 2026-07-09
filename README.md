@@ -47,6 +47,9 @@ and without coercion.
   **step-by-step plans** string several guides together in the order you'd work
   through them (e.g. *test water → choose treatment → build a slow sand
   filter*); guides outside a plan are still fully browsable from the library.
+  Every guide ends with a **"read further" footer**: the next guide in its
+  plan (if it's part of one) plus a few more guides on the same topic;
+  checklists get the same "more on this topic" list.
 - **Thirteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture (music, dance, games), essential
   language, crafts & repair, emergencies (natural disasters — floods,

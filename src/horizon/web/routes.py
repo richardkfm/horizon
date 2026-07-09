@@ -229,12 +229,40 @@ def guide_page(
     body_html = render_markdown(_read_body(guide))
 
     # Curated tracks this guide is part of, so a reader can pick up the wider
-    # step-by-step plan it belongs to.
-    track_ids = session.exec(
-        select(JourneyGuideLink.journey_id).where(JourneyGuideLink.guide_id == guide_id)
+    # step-by-step plan it belongs to, plus whichever guide comes right after
+    # this one in each track's order (if any) so a reader mid-plan doesn't
+    # have to detour back through the plan page to keep going.
+    links = session.exec(
+        select(JourneyGuideLink).where(JourneyGuideLink.guide_id == guide_id)
     ).all()
-    in_tracks = [
-        _journey_summary(j) for jid in track_ids if (j := session.get(Journey, jid)) is not None
+    in_tracks: list[dict] = []
+    next_steps: list[dict] = []
+    for link in links:
+        journey = session.get(Journey, link.journey_id)
+        if journey is None:
+            continue
+        in_tracks.append(_journey_summary(journey))
+        next_link = session.exec(
+            select(JourneyGuideLink)
+            .where(JourneyGuideLink.journey_id == link.journey_id)
+            .where(JourneyGuideLink.position == link.position + 1)
+        ).first()
+        next_guide = session.get(Guide, next_link.guide_id) if next_link else None
+        if next_guide is not None:
+            next_steps.append({"track_title": journey.title, "guide": _guide_summary(next_guide)})
+
+    # A few more guides on the same topic, so every guide page — not only
+    # those threaded into a plan — ends with somewhere to read next. Skips
+    # whatever's already offered above as a "next step".
+    featured_ids = {step["guide"]["id"] for step in next_steps} | {guide_id}
+    related_guides = [
+        _guide_summary(g)
+        for g in session.exec(
+            select(Guide)
+            .where(Guide.category == guide.category, Guide.id.not_in(featured_ids))
+            .order_by(Guide.id)
+            .limit(3)
+        ).all()
     ]
 
     return templates.TemplateResponse(
@@ -244,6 +272,8 @@ def guide_page(
             "guide": _guide_summary(guide),
             "body_html": body_html,
             "in_tracks": in_tracks,
+            "next_steps": next_steps,
+            "related_guides": related_guides,
         },
     )
 
@@ -293,12 +323,27 @@ def checklist_page(
 
     body_html = render_markdown(_read_checklist_body(checklist))
 
+    # Checklists stand alone (no plan links), so "read further" here means a
+    # few guides on the same topic rather than a next step in an order.
+    related_guides: list[dict] = []
+    if checklist.category is not None:
+        related_guides = [
+            _guide_summary(g)
+            for g in session.exec(
+                select(Guide)
+                .where(Guide.category == checklist.category)
+                .order_by(Guide.id)
+                .limit(3)
+            ).all()
+        ]
+
     return templates.TemplateResponse(
         request,
         "checklist.html",
         {
             "checklist": _checklist_summary(checklist),
             "body_html": body_html,
+            "related_guides": related_guides,
         },
     )
 

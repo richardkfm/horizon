@@ -13,6 +13,24 @@
   {{ body_html | safe }}
 </article>
 
+{% if related_guides %}
+<aside class="read-further no-print" aria-label="Read further">
+  <div class="read-further-more">
+    <h2>More on {{ checklist.category }}</h2>
+    <ul class="card-grid">
+      {% for g in related_guides %}
+      <li>
+        <a href="/guides/{{ g.id }}">
+          <span class="card-title">{{ g.title }}</span>
+          {% if g.summary %}<span class="guide-summary">{{ g.summary }}</span>{% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</aside>
+{% endif %}
+
 <script>
   // Persist ticked items on this device only (no account, no server, no
   // telemetry). Plain JS so it works in every mode, including low-power where
