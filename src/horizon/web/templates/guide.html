@@ -28,4 +28,34 @@
 <article class="guide">
   {{ body_html | safe }}
 </article>
+
+{% if next_steps or related_guides %}
+<aside class="read-further no-print" aria-label="Read further">
+  {% if next_steps %}
+  <div class="next-steps">
+    {% for step in next_steps %}
+    <p class="next-step">
+      <span class="next-step-label">Next in {{ step.track_title }}</span>
+      <a href="/guides/{{ step.guide.id }}">{{ step.guide.title }} →</a>
+    </p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if related_guides %}
+  <div class="read-further-more">
+    <h2>More on {{ guide.category }}</h2>
+    <ul class="card-grid">
+      {% for g in related_guides %}
+      <li>
+        <a href="/guides/{{ g.id }}">
+          <span class="card-title">{{ g.title }}</span>
+          {% if g.summary %}<span class="guide-summary">{{ g.summary }}</span>{% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</aside>
+{% endif %}
 {% endblock %}

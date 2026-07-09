@@ -822,6 +822,36 @@ a:hover { color: var(--accent-strong); }
   white-space: pre;
 }
 
+/* Read further — footer nav on a guide/checklist: the next step in an ordered
+   plan (if any) plus a few more guides on the same topic, so a reader always
+   has somewhere to go without forcing every guide into a plan. The next-step
+   callout takes the leaf accent (growth, continuation); "more on X" reuses
+   the existing card-grid look unchanged. */
+.read-further { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--border); }
+.read-further h2 { margin-top: 0; }
+.next-steps { margin-bottom: var(--space-5); }
+.next-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--leaf);
+  border-radius: var(--radius-sm);
+  background: var(--leaf-soft);
+}
+.next-step-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--leaf);
+}
+.next-step a { font-weight: 600; text-decoration: none; }
+.next-step a:hover { text-decoration: underline; }
+
 /* Reference library (ZIM reader) — downloaded Wikipedia/WikEM content packs
    rendered inline. This is third-party HTML we don't control the markup of
    (Wikipedia infoboxes, wide tables), so styling here is deliberately
@@ -1057,8 +1087,11 @@ a:hover { color: var(--accent-strong); }
 
 /* Recommend / scenario page --------------------------------------------- */
 
+/* A block, not a run-in sentence: the question sits on its own line so the
+   button reads as a clear, separate call-to-action beneath it rather than a
+   cramped inline link stitched onto the end of a paragraph. */
 .cta { font-size: 1.05rem; margin-bottom: var(--space-4); }
-.cta .btn { margin-top: var(--space-2); }
+.cta-question { margin: 0 0 var(--space-2); }
 .cta a:not(.btn) { color: var(--accent); font-weight: 600; }
 
 .recommend-form,

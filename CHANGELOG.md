@@ -14,6 +14,14 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **"Read further" footer on guides and checklists.** A guide that's a step
+  in a plan now ends with a "Next in `<plan>`" link straight to the following
+  guide (in the leaf-accent style introduced with the solarpunk hero), so a
+  reader partway through a step-by-step plan doesn't have to detour back
+  through the plan page to continue. Every guide — in a plan or not — also
+  gets a small "More on `<category>`" list of a few other guides on the same
+  topic; checklists get the same "more on" list keyed off their own category,
+  since checklists stay standalone and have no plan to link onward to.
 - **A solarpunk landing hero with a hand-drawn ASCII scene.** The front page
   opens with a two-layer ASCII vignette — a cottage with solar-panel roof, a
   garden, and a wind turbine in leaf-green ink, with the sun, turbine rotor,
