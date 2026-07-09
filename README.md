@@ -39,7 +39,8 @@ and without coercion.
 > [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
 
 
-<img width="1146" height="1048" alt="horizon" src="https://github.com/user-attachments/assets/1abd6b33-1fe5-49de-a2fd-bac0277eba77" />
+<img width="800" height="752" alt="horizon-full" src="https://github.com/user-attachments/assets/f9cc8906-a041-479b-88a8-86ef27c5febd" />
+
 
 **Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
 
