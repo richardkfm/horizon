@@ -38,6 +38,8 @@ and without coercion.
 > high-contrast setting, a tablet breakpoint) now on top of it (see
 > [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md)).
 
+<img width="1146" height="1048" alt="horizon_animation_hd" src="https://github.com/user-attachments/assets/35a3b421-7ef4-4113-bcd5-26e44ea00916" />
+
 **Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Adding content](#adding-guides-journeys--md-skills) · [API](#api-reference) · [Integrations](#optional-integrations) · [Configuration](#configuration) · [CLI](#command-line-horizon-admin) · [Content packs](#content-packs) · [Roadmap & changelog](#roadmap--changelog)
 
 ## Features
