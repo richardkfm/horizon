@@ -1087,8 +1087,11 @@ a:hover { color: var(--accent-strong); }
 
 /* Recommend / scenario page --------------------------------------------- */
 
+/* A block, not a run-in sentence: the question sits on its own line so the
+   button reads as a clear, separate call-to-action beneath it rather than a
+   cramped inline link stitched onto the end of a paragraph. */
 .cta { font-size: 1.05rem; margin-bottom: var(--space-4); }
-.cta .btn { margin-top: var(--space-2); }
+.cta-question { margin: 0 0 var(--space-2); }
 .cta a:not(.btn) { color: var(--accent); font-weight: 600; }
 
 .recommend-form,
