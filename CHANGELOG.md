@@ -98,6 +98,16 @@ Updating this changelog and the README is part of every user-facing change
   system library required).
 
 ### Changed
+- **Slimmed the README and split its reference material into `docs/`.** The
+  README had grown to cover the full API, content authoring, configuration, the
+  CLI, and content packs inline. Those sections now live in dedicated files —
+  [`docs/api.md`](docs/api.md) (HTTP API reference + optional integrations),
+  [`docs/authoring-content.md`](docs/authoring-content.md) (guides, checklists,
+  plans, md skills, importing), and [`docs/operating.md`](docs/operating.md)
+  (configuration, local model runtime, `horizon-admin`, content packs) — leaving
+  the README an overview (features, quickstart, bare-metal, a brief config
+  summary) that links out to them. No documented behaviour or API changed; this
+  is a docs reorganisation only.
 - **Map content packs now offer a per-country option, not just whole
   continents.** The previous fix for broken map-pack URLs replaced a single
   ~1.1 GB pre-tiled world pack with 8 raw `.osm.pbf` continent extracts from
