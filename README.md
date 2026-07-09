@@ -139,7 +139,9 @@ Edit `config.yaml` directly (tracked in the repo with safe defaults; see
 `content_packs.dir`. `web.enabled` (default `true`) toggles the web UI; turn it
 off for a headless JSON-API + CLI node.
 
-Full detail — the admin token, the optional local model runtime, environment
+<img width="1407" height="940" alt="horizon_cli" src="https://github.com/user-attachments/assets/0e9b5e49-8453-4564-8e7c-a1d06eb9e20a" />
+
+Full detail — the admin token, how to run CLI, the optional local model runtime, environment
 overrides — is in **[docs/operating.md](docs/operating.md)**.
 
 ## Documentation
