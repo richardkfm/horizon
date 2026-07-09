@@ -98,6 +98,15 @@ Updating this changelog and the README is part of every user-facing change
   system library required).
 
 ### Changed
+- **`docs/operating.md` explains where to actually run `horizon-admin`.** The
+  CLI section jumped straight into usage examples, silently assuming the
+  reader already had `horizon-admin` on `PATH` — a real report was someone
+  `cd`'d into the repo on a VPS and typing `horizon-admin` got "command not
+  found", because it's a `pip`-installed console script, not a file in the
+  repo. Added a "Getting the command to run" subsection covering all three
+  install paths: `docker compose exec horizon horizon-admin …` for the
+  Quickstart Docker path, activating `.venv` for a bare-metal install, and the
+  full binary path under `/opt/horizon/venv/` for the systemd installer.
 - **Slimmed the README and split its reference material into `docs/`.** The
   README had grown to cover the full API, content authoring, configuration, the
   CLI, and content packs inline. Those sections now live in dedicated files —
