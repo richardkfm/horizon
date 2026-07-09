@@ -20,8 +20,9 @@ Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
 library of **visual step-by-step guides**, a few curated **step-by-step plans**,
 and a **local AI assistant** across water, food, energy, shelter, health,
 cooperative governance, survival basics, culture, essential language, crafts &
-repair, emergencies, plant-based cooking, and practical calculations — all
-working **fully offline** after setup, with no cloud dependency at runtime.
+repair, emergencies, plant-based cooking, practical calculations, and local
+technology — all working **fully offline** after setup, with no cloud
+dependency at runtime.
 
 horizon is about everyday autonomy and relearning basic human skills. Most of us
 are one dead Wi-Fi signal away from being stuck — a single camping trip is enough
@@ -50,10 +51,10 @@ sustainably and without coercion.
   browse and read; a small set of plans string several guides together in the
   order you'd work through them (e.g. *test water → choose treatment → build a
   slow sand filter*). Every guide ends with a "read further" footer.
-- **Thirteen skill categories.** Water, food, energy, shelter, health,
+- **Fourteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture, essential language, crafts & repair,
-  emergencies, plant-based cooking, and practical calculations — each with
-  built-in guides, no download required.
+  emergencies, plant-based cooking, practical calculations, and local
+  technology — each with built-in guides, no download required.
 - **Visual guides + print mode.** Markdown guides with figures, ASCII diagrams,
   comparison tables, and callouts (`Pick this if` / `Avoid if` / `Do now` …),
   rendered to HTML for the web and to a high-contrast **A4 PDF** for printing.

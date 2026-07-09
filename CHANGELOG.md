@@ -14,6 +14,15 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **A new `technology` category** (horizon's fourteenth) covering local
+  radio, networking, and computing — a gap no existing category fit
+  cleanly, and one that's deeply on-brand for a self-hosted, offline-first
+  project. Ships with four guides (set up two-way radio for your community,
+  build a local network without the internet, turn an old PC into a local
+  server, maintain and repair computers), a `technology-safety` md skill
+  (keeping radio/network content community-coordination framed rather than
+  tactical, and legally aware), a dedicated category icon, and a
+  step-by-step plan, "Set up local tech infrastructure".
 - **Three new `cooperation` guides** — resolve conflict between people fairly,
   share resources and manage a group's commons, and build trust and
   agreements with neighbouring groups — filling out horizon's thinnest guide

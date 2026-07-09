@@ -212,3 +212,19 @@ journeys:
       - emergency-extreme-cold
       - emergency-extinguish-fire
       - emergency-no-car-household
+
+  - id: set-up-local-tech-infrastructure
+    title: Set up local tech infrastructure
+    description: >
+      Build a neighbourhood's own information infrastructure from what's
+      already lying around: get a machine working again, give it a real job
+      as a local server, build the network it lives on, and add two-way radio
+      as a voice channel alongside it.
+    category: technology
+    difficulty: 3
+    estimated_time: "A few weekends"
+    guides:
+      - technology-computer-maintenance
+      - technology-repurpose-old-pc
+      - technology-local-network
+      - technology-two-way-radio
