@@ -217,14 +217,17 @@ journeys:
     title: Set up local tech infrastructure
     description: >
       Build a neighbourhood's own information infrastructure from what's
-      already lying around: get a machine working again, give it a real job
-      as a local server, build the network it lives on, and add two-way radio
-      as a voice channel alongside it.
+      already lying around: learn to repair small electronics and computers,
+      give an old machine a real job as a local server, build the network it
+      lives on, go deeper into a resilient mesh, and add two-way radio as a
+      voice channel alongside it.
     category: technology
     difficulty: 3
     estimated_time: "A few weekends"
     guides:
+      - technology-electronics-repair
       - technology-computer-maintenance
       - technology-repurpose-old-pc
       - technology-local-network
+      - technology-mesh-network
       - technology-two-way-radio

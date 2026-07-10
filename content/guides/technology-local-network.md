@@ -60,20 +60,14 @@ A router doesn't need an internet uplink to create a working local network:
 *Fig. 1: a small Wi-Fi mesh — each access point covers one building, linked
 to the next so devices anywhere in range reach the same local server*
 
-## Set up a long-range LoRa mesh
+## Reach further with LoRa
 
-For distances plain Wi-Fi can't reach:
-
-1. **Get a handful of LoRa mesh devices** — small, low-power radios designed
-   to relay short text messages node to node.
-2. **Place nodes to cover gaps**, not just distance — a node partway between
-   two distant points often does more for coverage than one more powerful
-   node.
-3. **Set expectations:** LoRa mesh carries short text and location pings
-   well, not files or voice — pair it with Wi-Fi for anything bandwidth-
-   heavy.
-4. **Power each node** from a small solar or battery setup (see the energy
-   guides) since nodes need to run continuously to relay for others.
+For distances plain Wi-Fi can't reach, small low-power LoRa radios relay
+short text messages node to node, well past normal Wi-Fi range — though
+only for text and location pings, not files or voice. Getting real
+resilience out of this (nodes that reroute around a failure, not just a
+longer chain) takes more than one afternoon's setup — see build a resilient
+mesh network for the full approach.
 
 ## Keep it fair and simple
 
@@ -87,6 +81,8 @@ For distances plain Wi-Fi can't reach:
 
 - Give the network something worth reaching: see turn an old PC into a
   local server.
+- Want it to keep working even if a node fails? See build a resilient mesh
+  network.
 - Pair it with voice: see set up two-way radio for your community.
 - Power nodes and access points reliably: see set up a small low-tech solar
   system.

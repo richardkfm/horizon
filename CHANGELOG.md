@@ -14,6 +14,13 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Two more `technology` guides**: repair small electronics and solder
+  (the general multimeter/soldering skill behind most technology repairs),
+  and build a resilient mesh network (going beyond the local-network
+  guide's overview into genuine multi-hop, self-healing mesh — Bluetooth
+  mesh messaging on phones already owned, LoRa nodes placed for redundant
+  paths, and open mesh routing firmware for Wi-Fi). The "Set up local tech
+  infrastructure" plan now threads all six `technology` guides together.
 - **A new `technology` category** (horizon's fourteenth) covering local
   radio, networking, and computing — a gap no existing category fit
   cleanly, and one that's deeply on-brand for a self-hosted, offline-first
