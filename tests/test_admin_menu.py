@@ -79,6 +79,17 @@ def test_menu_subcommand_quits_cleanly(monkeypatch, seeded, capsys):
     assert "main menu" in capsys.readouterr().out
 
 
+def test_menu_shows_the_logo_banner(monkeypatch, seeded, capsys):
+    # The ASCII banner is drawn as part of the main-menu screen itself (not
+    # printed once and left behind), so it should reappear each time the
+    # operator lands back on the main menu, in both curses and plain mode.
+    _feed(monkeypatch, "q")
+    assert cli.main(["menu"]) == 0
+    out = capsys.readouterr().out
+    assert "offline-first autonomy & rebuilding node" in out
+    assert "the horizon" in out
+
+
 def test_menu_runs_status_action_and_returns(monkeypatch, seeded, capsys):
     # Choose "Status" (option 6), then Enter to dismiss the pause, then quit.
     status_index = [label for label, _h in menu._MAIN_MENU].index(

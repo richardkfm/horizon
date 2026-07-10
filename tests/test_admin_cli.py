@@ -38,6 +38,24 @@ def test_banner_includes_wordmark_and_version():
     assert cli.__version__ in banner
 
 
+def test_banner_wordmark_glyph_columns_are_aligned():
+    # The block-letter wordmark is figlet-style ASCII art: the glyph columns in
+    # each row must line up with the rows above/below it, or "HORIZON" reads as
+    # a garbled mess instead of letters (this broke once before -- the rows had
+    # drifted to different lengths). Verify each row's underscores/pipes/slashes
+    # fall in the same columns as a known-correct reference render.
+    lines = cli._LOGO.splitlines()
+    glyph_lines = [ln for ln in lines if set(ln) <= set(" _|\\/<>()") and ln.strip()]
+    reference = [
+        "   _   _  ___  ____  ___ ________  _   _",
+        "  | | | |/ _ \\|  _ \\|_ _|__  / _ \\| \\ | |",
+        "  | |_| | | | | |_) || |  / / | | |  \\| |",
+        "  |  _  | |_| |  _ < | | / /| |_| | |\\  |",
+        "  |_| |_|\\___/|_| \\_\\___/____\\___/|_| \\_|",
+    ]
+    assert glyph_lines == reference
+
+
 def test_status_human_output(seeded, capsys):
     assert cli.main(["status", "--no-logo"]) == 0
     out = capsys.readouterr().out

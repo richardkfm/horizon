@@ -29,8 +29,13 @@ _Handler = Callable[[], None]
 # --- selection widget ---------------------------------------------------
 
 
-def _select(title: str, options: list[str], subtitle: str = "") -> int | None:
-    """Show a menu and return the chosen index, or ``None`` on cancel."""
+def _select(title: str, options: list[str], subtitle: str = "", banner: str = "") -> int | None:
+    """Show a menu and return the chosen index, or ``None`` on cancel.
+
+    ``banner`` (the ASCII logo) is only ever passed for the top-level main
+    menu -- submenus stay banner-free so the option list gets the vertical
+    space on a small terminal.
+    """
     if not options:
         return None
     if sys.stdout.isatty() and sys.stdin.isatty():
@@ -40,13 +45,15 @@ def _select(title: str, options: list[str], subtitle: str = "") -> int | None:
             pass
         else:
             try:
-                return curses.wrapper(_select_curses, title, options, subtitle)
+                return curses.wrapper(_select_curses, title, options, subtitle, banner)
             except curses.error:
                 pass  # terminal too small / unsupported -- fall back to plain
-    return _select_plain(title, options, subtitle)
+    return _select_plain(title, options, subtitle, banner)
 
 
-def _select_curses(stdscr, title: str, options: list[str], subtitle: str) -> int | None:
+def _select_curses(
+    stdscr, title: str, options: list[str], subtitle: str, banner: str
+) -> int | None:
     import curses
 
     curses.curs_set(0)
@@ -54,10 +61,20 @@ def _select_curses(stdscr, title: str, options: list[str], subtitle: str) -> int
     idx = 0
     top = 0
     footer = "Up/Down or j/k: move   Enter: select   q: back"
+    banner_lines = banner.splitlines() if banner else []
     while True:
         stdscr.erase()
         h, w = stdscr.getmaxyx()
         row = 0
+        # Only draw the logo if it (plus the title, options, and footer) actually
+        # fits -- a small terminal (or SSH session resized narrow) drops it rather
+        # than clipping the menu the operator actually needs.
+        needed = len(banner_lines) + len(options) + 5
+        if banner_lines and h >= needed:
+            for line in banner_lines:
+                stdscr.addstr(row, 0, line[: max(w - 1, 0)], curses.A_DIM)
+                row += 1
+            row += 1
         stdscr.addstr(row, 0, title[: max(w - 1, 0)], curses.A_BOLD)
         row += 1
         if subtitle:
@@ -89,7 +106,11 @@ def _select_curses(stdscr, title: str, options: list[str], subtitle: str) -> int
             continue
 
 
-def _select_plain(title: str, options: list[str], subtitle: str = "") -> int | None:
+def _select_plain(
+    title: str, options: list[str], subtitle: str = "", banner: str = ""
+) -> int | None:
+    if banner:
+        print(banner)
     print()
     print(title)
     if subtitle:
@@ -339,10 +360,10 @@ _MAIN_MENU: list[tuple[str, _Handler]] = [
 
 def run_menu() -> int:
     """Run the interactive main menu until the operator quits. Always exits 0."""
-    print(admin._banner())
+    banner = admin._banner().strip("\n")
     options = [label for label, _handler in _MAIN_MENU] + ["Quit"]
     while True:
-        idx = _select("horizon-admin -- main menu", options)
+        idx = _select("horizon-admin -- main menu", options, banner=banner)
         if idx is None or options[idx] == "Quit":
             return 0
         _MAIN_MENU[idx][1]()
