@@ -1,7 +1,7 @@
 # Operating a horizon node (admin, CLI, local LLM, content packs)
 
 Configuration, the `horizon-admin` CLI, and content packs — everything an
-operator needs after the [Quickstart](../README.md#quickstart-docker-recommended).
+operator needs after the [Quickstart](../README.md#quickstart).
 
 ## Configuration
 
@@ -106,7 +106,7 @@ back. It falls back to a plain numbered prompt on a non-interactive terminal
 of the `horizon` package, so where you run it depends on how you run horizon
 itself:
 
-- **Docker (the [Quickstart](../README.md#quickstart-docker-recommended)
+- **Docker (the [Docker](../README.md#docker-recommended)
   path).** The CLI lives *inside* the container, not on the host. Prefix every
   command with `docker compose exec`:
 
@@ -118,7 +118,7 @@ itself:
   command — this is why `horizon-admin status` typed directly on the VPS host
   fails with "command not found": it was never installed there.)
 
-- **Bare-metal** (see [Bare-metal run](../README.md#bare-metal-run)). The
+- **Bare-metal** (see [Bare-metal](../README.md#bare-metal)). The
   command only exists inside the virtualenv you installed horizon into, and
   only while that virtualenv is *active* in your current shell:
 
