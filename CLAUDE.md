@@ -134,11 +134,18 @@ These are horizon's integration surface; preserve backward compatibility:
   images under `content/guides/images/`. Auto-discovered by scanning the dir — a
   new file seeds and indexes itself, no plan required. A guide stands on its own —
   it does not need a plan to be browsable or useful.
-- **Figure:** write a paragraph containing *only* an image and `services.markdown`
-  wraps it in a captioned `<figure>` (alt text = caption). Prefer monochrome
-  **SVG** line art so it stays legible on screen, paper, and e-ink; the stylesheet
-  sits figures on a light card for contrast in any theme. Images are served at
-  `/guides/images` (mounted in `main.py`).
+- **Diagram:** prefer an **ASCII diagram** over an image — a fenced ` ```ascii `
+  code block followed by an `*italic caption*` line renders as the same captioned
+  `<figure>` card, but needs no image file, costs nothing on constrained
+  hardware, and reads correctly as-is with no rendering at all (raw Markdown, a
+  CLI, `cat`). This is the default; see any of the ~35 guides under
+  `content/guides/` that already use it (e.g. `crafts-cordage.md`,
+  `survival-knots.md`) for the style. Only reach for an actual image (paragraph
+  containing *only* an image; `services.markdown` wraps it in a captioned
+  `<figure>`, alt text = caption) when a diagram genuinely needs a photo or line
+  art too detailed for monospace text — prefer monochrome **SVG** line art so it
+  stays legible on screen, paper, and e-ink, put it under
+  `content/guides/images/` (served at `/guides/images`, mounted in `main.py`).
 - **Checklist:** `content/checklists/<id>.md` with front matter (`id`, `title`,
   `summary`, optional `category`); body is a Markdown task list (`- [ ] item`)
   rendered as tick-able checkboxes. Auto-discovered like guides; standalone (no

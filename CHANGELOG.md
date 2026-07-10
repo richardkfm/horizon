@@ -14,11 +14,31 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Fixed
+- **`crafts-make-tools` still carried the pre-ASCII-convention test image.**
+  The "make your own hand tools" guide was the original demo of the SVG figure
+  convention; when the ASCII diagram convention shipped afterwards and was
+  rolled out to ten other guides, this guide — the one that started it — was
+  never converted, leaving a leftover `hafted-tool.svg`. Replaced it with an
+  ASCII diagram matching the guide's existing one, and removed the now-unused
+  SVG file. `CLAUDE.md` and `docs/authoring-content.md` previously didn't say
+  ASCII is the default over an image; both now do, so this shouldn't happen
+  again.
+- **`horizon-admin guide` didn't render ASCII diagrams cleanly.** The CLI's
+  Markdown-to-terminal-text pass left ` ```ascii ` fence markers and the
+  literal `*caption*` asterisks in the output, so diagrams read as raw
+  Markdown noise instead of the plain-text art they're meant to be.
+  `_markdown_to_text` now strips the fence and unwraps the caption.
 - **Uneven home-page category tiles.** The `technology`, `emergencies`, and
   `cooking` tile blurbs wrapped to one line more than every other category,
   making those cards visibly taller and breaking the grid's row alignment.
   Shortened all three (`CATEGORY_EXAMPLES` in `web/routes.py`) so every
   category tile wraps to the same two lines.
+- **"More on `<category>`" read-further heading looked like guide content.**
+  It reused the same h2 styling as in-guide section headings, sat with almost
+  no gap above it, and gave a reader no visual cue that everything below was
+  extra reading rather than more of the guide. It's now a small muted
+  eyebrow-style label (`.read-further-more h2` in `app.css`) with more
+  breathing room above it.
 
 ### Added
 - **New `mobility` category**, with three guides — keep a bicycle running

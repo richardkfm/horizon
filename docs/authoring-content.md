@@ -41,19 +41,13 @@ blockquote.
 
 ### Figures
 
-For a **figure**, write a paragraph that is *only* an image; horizon wraps it in
-a captioned `<figure>` using the alt text as the caption. Prefer simple
-monochrome **SVG** line art so it stays crisp in print/e-ink:
-
-```markdown
-![Fig. 1: a stone blade lashed to a wooden handle](images/hafted-tool.svg)
-```
-
-For a simple line diagram with no image file, use an **ASCII diagram**: a
-fenced ` ```ascii ` code block followed by an `*italic caption*` line gets the
-same captioned `<figure>` card. It still reads correctly with no rendering at
-all — raw Markdown, a CLI, `cat` — so it's a good default before reaching for
-an SVG:
+Prefer an **ASCII diagram**: a fenced ` ```ascii ` code block followed by an
+`*italic caption*` line renders as a captioned `<figure>` card. No image file to
+draw, ship, or keep in sync — it reads correctly as-is with no rendering at all
+(raw Markdown, a CLI, `cat`), and it costs nothing on constrained hardware. This
+is the default for guide diagrams; the ten line-art diagrams already in
+`content/guides/` (cordage twisting, square lashing, fire-hardening, and so on)
+all use it:
 
 ````markdown
 ```ascii
@@ -64,6 +58,16 @@ an SVG:
 
 *Fig. 1: a labelled box*
 ````
+
+For a figure that genuinely needs a real image (a photo, or line art too
+detailed for monospace text), write a paragraph that is *only* an image; horizon
+wraps it in a captioned `<figure>` using the alt text as the caption. Put the
+file under `content/guides/images/` and prefer simple monochrome **SVG** line
+art so it stays crisp in print/e-ink:
+
+```markdown
+![Fig. 1: a labelled diagram](images/example-diagram.svg)
+```
 
 ## Checklists
 

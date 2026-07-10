@@ -792,11 +792,40 @@ def _markdown_to_text(body: str) -> str:
     """Lightly format Markdown for a terminal: headings stand out, body intact.
 
     Conservative on purpose — lists, tables, and code blocks are passed through
-    untouched so nothing is mangled; only ATX headings get visual emphasis.
+    untouched so nothing is mangled; only ATX headings get visual emphasis. The
+    one other special case is a ` ```ascii ` diagram fence (see
+    ``services.markdown._wrap_ascii_diagrams``): the fence markers are dropped
+    (the art is the point, not the code-block noise around it) and a trailing
+    ``*caption*`` line is unwrapped, so the diagrams that already read fine in
+    raw Markdown stand out clearly in the CLI too.
     """
     out: list[str] = []
-    for line in body.splitlines():
+    lines = body.splitlines()
+    i = 0
+    n = len(lines)
+    while i < n:
+        line = lines[i]
         stripped = line.lstrip()
+        if stripped.strip().lower() == "```ascii":
+            i += 1
+            diagram: list[str] = []
+            while i < n and lines[i].strip() != "```":
+                diagram.append(lines[i])
+                i += 1
+            i += 1  # skip the closing fence
+            out += ["", *diagram]
+            j = i
+            while j < n and not lines[j].strip():
+                j += 1
+            caption_line = lines[j].strip() if j < n else ""
+            if (
+                len(caption_line) > 1
+                and caption_line.startswith("*")
+                and caption_line.endswith("*")
+            ):
+                out += ["", f"  ({caption_line.strip('*').strip()})"]
+                i = j + 1
+            continue
         if stripped.startswith("# "):
             title = stripped[2:].strip()
             out += ["", title.upper(), "=" * max(len(title), 8)]
@@ -807,6 +836,7 @@ def _markdown_to_text(body: str) -> str:
             out += ["", f">> {stripped[4:].strip()}"]
         else:
             out.append(line)
+        i += 1
     return "\n".join(out).strip("\n")
 
 

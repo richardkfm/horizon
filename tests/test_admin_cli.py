@@ -109,3 +109,26 @@ def test_seed_force_reseeds_populated_db(seeded, capsys):
     assert cli.main(["seed", "--force"]) == 0
     out = capsys.readouterr().out
     assert "Re-seeded" in out
+
+
+def test_guide_renders_ascii_diagrams_without_fence_noise(seeded, capsys):
+    # The ASCII diagram convention (CLAUDE.md) exists precisely so guides read
+    # correctly in a CLI with no rendering at all; `horizon-admin guide` should
+    # show the art, not the ```ascii fence markers or literal caption asterisks.
+    assert cli.main(["guide", "crafts-make-tools"]) == 0
+    out = capsys.readouterr().out
+    assert "```ascii" not in out
+    assert "```" not in out
+    assert "stone blade, ground to an edge" in out
+    assert "(Fig. 1: hafting a stone blade" in out
+    assert "(Fig. 2: fire-hardening a point" in out
+
+
+def test_markdown_to_text_unwraps_ascii_fence_and_caption():
+    body = "before\n\n```ascii\n+---+\n| A |\n+---+\n```\n\n*Fig. 1: a box*\n\nafter\n"
+    out = cli._markdown_to_text(body)
+    assert "```" not in out
+    assert "+---+" in out
+    assert "| A |" in out
+    assert "(Fig. 1: a box)" in out
+    assert "before" in out and "after" in out
