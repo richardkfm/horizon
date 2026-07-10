@@ -5,6 +5,8 @@ rarely has a browser pointed at the box. The token-gated admin web area
 (**Admin → …**) is the graphical surface; this command is its headless
 equivalent — the things you reach for over SSH:
 
+* ``menu``     — interactive arrow-key menu covering every command below; also
+  what runs when ``horizon-admin`` is invoked with no subcommand at all;
 * ``status``   — runtime + content overview (what the dashboard shows);
 * ``doctor``   — health checks of every optional integration (the integrations
   page), with a non-zero exit when something the operator asked for is broken;
@@ -956,6 +958,13 @@ def cmd_ask(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_menu(args: argparse.Namespace) -> int:
+    """Launch the interactive arrow-key menu."""
+    from horizon.scripts.menu import run_menu
+
+    return run_menu()
+
+
 # --- Parser -----------------------------------------------------------------
 
 
@@ -969,7 +978,12 @@ def build_parser() -> argparse.ArgumentParser:
         action="version",
         version=f"horizon-admin {__version__}",
     )
-    sub = parser.add_subparsers(dest="command", required=True)
+    # Not required: no subcommand at all falls through to the interactive menu
+    # (see main()) so a first-time operator can just run `horizon-admin`.
+    sub = parser.add_subparsers(dest="command", required=False)
+
+    p_menu = sub.add_parser("menu", help="Interactive arrow-key menu (also the default).")
+    p_menu.set_defaults(func=cmd_menu)
 
     p_status = sub.add_parser("status", help="Runtime + content overview.")
     p_status.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
@@ -1062,6 +1076,8 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.command is None:
+        return cmd_menu(args)
     return args.func(args)
 
 
