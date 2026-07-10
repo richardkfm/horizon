@@ -13,6 +13,13 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Fixed
+- **Uneven home-page category tiles.** The `technology`, `emergencies`, and
+  `cooking` tile blurbs wrapped to one line more than every other category,
+  making those cards visibly taller and breaking the grid's row alignment.
+  Shortened all three (`CATEGORY_EXAMPLES` in `web/routes.py`) so every
+  category tile wraps to the same two lines.
+
 ### Added
 - **Two more `technology` guides**: repair small electronics and solder
   (the general multimeter/soldering skill behind most technology repairs),
