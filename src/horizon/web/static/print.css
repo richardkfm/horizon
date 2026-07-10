@@ -52,6 +52,9 @@ nav,
 
 .content { max-width: none; margin: 0; padding: 0; }
 
+/* An interactive map can't print; show the plain-text stand-in instead. */
+.print-only { display: block !important; }
+
 h1, h2, h3 { page-break-after: avoid; }
 img, figure, table { page-break-inside: avoid; max-width: 100%; }
 /* Undo the on-screen horizontal-scroll table so printed tables lay out fully. */

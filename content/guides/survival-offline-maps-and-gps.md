@@ -30,10 +30,9 @@ this while you still have signal, and both keep working after you lose it.
   a meeting point, a hospital, and a safe space — searching for an address
   later needs a connection even if the map itself is downloaded.
 - **Check this horizon node for map data.** If whoever runs this node has
-  installed offline map data packs (**Admin → Content packs**), that's raw
-  map data for your country or region already sitting on this machine,
-  useful for building a local map even with no other source of internet —
-  ask them what's available and how to get it onto your device.
+  installed and rendered an offline map pack (**Admin → Content packs**),
+  you can browse it right in the browser under **Maps** — no other source of
+  internet needed. Ask them what's available.
 
 ## After signal is gone
 

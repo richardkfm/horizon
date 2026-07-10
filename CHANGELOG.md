@@ -13,6 +13,25 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **A built-in map viewer (`/maps`), closing the "download a map, find no
+  viewer" dead end.** A `maps-*` content pack downloads raw OpenStreetMap
+  `.osm.pbf` source data — useful, but not something a browser can render,
+  and rendering it into tiles is a CPU/RAM-heavy batch job that doesn't fit
+  weak/Pi-class hardware. Rather than render on the node, horizon reads an
+  `.mbtiles` file (vector tiles) that the operator renders **once, off the
+  node**, with [Planetiler](https://github.com/onthegomap/planetiler) — a
+  single self-contained jar, no PostGIS/Mapnik install — and drops into the
+  installed pack's own directory (`docs/operating.md` has the exact
+  command). `.mbtiles` is just SQLite, so serving it (`services/mbtiles.py`)
+  is a raw blob read; the map itself renders client-side with the newly
+  vendored MapLibre GL JS, using a deliberately minimal style (roads, water,
+  buildings, land cover — no text labels yet, so no glyph/sprite server is
+  needed). The **Maps** nav item and an **Admin → Content packs** "View map"
+  link only appear once a pack actually has a rendered basemap; until then
+  the pack row explains the one-time rendering step instead of just sitting
+  there installed and inert.
+
 ### Changed
 - **Visual refresh — the solarpunk hero scene, glowing ASCII diagrams, and a
   wider browsing shell.** Three UI-only changes (no HTTP API or content-format

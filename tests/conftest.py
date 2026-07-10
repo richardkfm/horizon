@@ -92,3 +92,40 @@ def fixture_zim(tmp_path_factory) -> Path:
         creator.add_metadata("Description", "A tiny test pack")
         creator.add_metadata("Language", "eng")
     return zim_path
+
+
+@pytest.fixture(scope="session")
+def fixture_mbtiles(tmp_path_factory) -> Path:
+    """Build a tiny synthetic MBTiles file: a metadata table plus one gzipped
+    tile at z=0/x=0/y=0 (stored TMS-style, so tile_row 0 too at z=0) -- enough
+    to exercise pack_info/get_tile without a real multi-hundred-megabyte
+    rendered tileset.
+    """
+    import gzip
+    import sqlite3
+
+    path = tmp_path_factory.mktemp("mbtiles") / "fixture.mbtiles"
+    conn = sqlite3.connect(path)
+    conn.execute("CREATE TABLE metadata (name TEXT, value TEXT)")
+    conn.execute(
+        "CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, "
+        "tile_row INTEGER, tile_data BLOB)"
+    )
+    conn.executemany(
+        "INSERT INTO metadata (name, value) VALUES (?, ?)",
+        [
+            ("name", "Fixture Map"),
+            ("format", "pbf"),
+            ("bounds", "-1.0,-1.0,1.0,1.0"),
+            ("center", "0.0,0.0,1"),
+            ("minzoom", "0"),
+            ("maxzoom", "0"),
+        ],
+    )
+    conn.execute(
+        "INSERT INTO tiles (zoom_level, tile_column, tile_row, tile_data) VALUES (0, 0, 0, ?)",
+        (gzip.compress(b"not-really-a-vector-tile"),),
+    )
+    conn.commit()
+    conn.close()
+    return path

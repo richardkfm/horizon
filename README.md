@@ -63,6 +63,10 @@ sustainably and without coercion.
 - **Reference library.** Download an offline Wikipedia or WikEM snapshot
   (**content packs**) and read it right in the browser — full-text search plus an
   article view, no external Kiwix viewer needed.
+- **Map viewer.** Download raw OpenStreetMap data for your country (also a
+  **content pack**), render it once, off the node, into an `.mbtiles` basemap,
+  and pan/zoom it right in the browser — no rendering on weak hardware, no
+  external map service.
 - **Decision guides + "find your starting point".** Guides that help you *choose*,
   not only *do*; describe a goal in plain words and horizon recommends guides and
   plans to begin with, matched locally.

@@ -50,6 +50,7 @@ templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
 templates.env.globals["version"] = __version__
 templates.env.globals["reference_library_enabled"] = packs_service.has_installed_zim_pack
+templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pack
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
@@ -478,12 +479,25 @@ def health_repair(request: Request, action: Annotated[str, Form()] = ""):
 # --- Content packs wizard ---------------------------------------------------
 
 
+def _with_map_status(row: dict) -> dict:
+    """Attach ``map_rendered`` to a maps-category row: whether a ``.mbtiles``
+    companion has been dropped into the pack's directory (see
+    ``services.packs.pack_mbtiles_path``). ``None`` for non-maps packs, where
+    the field doesn't apply.
+    """
+    if row.get("category") == "maps" and row.get("installed"):
+        row["map_rendered"] = packs_service.pack_mbtiles_path(row["id"]) is not None
+    else:
+        row["map_rendered"] = None
+    return row
+
+
 def _pack_row(pack_id: str) -> dict | None:
     """Build the display row for one pack: catalog/disk state plus any live job."""
     for row in packs_service.pack_status():
         if row["id"] == pack_id:
             row["job"] = packs_service.download_manager.status(pack_id)
-            return row
+            return _with_map_status(row)
     return None
 
 
@@ -495,6 +509,7 @@ def packs_page(request: Request):
     rows = packs_service.pack_status()
     for row in rows:
         row["job"] = packs_service.download_manager.status(row["id"])
+        _with_map_status(row)
     return templates.TemplateResponse(
         request,
         "admin/packs.html",

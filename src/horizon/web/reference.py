@@ -36,6 +36,7 @@ templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
 templates.env.globals["version"] = __version__
 templates.env.globals["reference_library_enabled"] = packs_service.has_installed_zim_pack
+templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pack
 
 
 def _installed_zim_packs() -> list[dict]:

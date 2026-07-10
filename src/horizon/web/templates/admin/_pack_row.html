@@ -10,6 +10,15 @@
     <strong>{{ pack.title }}</strong>
     <span class="pack-id">{{ pack.id }}</span>
     <span class="pack-desc">{{ pack.description }}</span>
+    {% if pack.map_rendered == false %}
+    <span class="pack-desc">
+      Raw OpenStreetMap source data, not a viewable map yet — render it once
+      with <a href="https://github.com/onthegomap/planetiler" target="_blank" rel="noopener">Planetiler</a>
+      and drop the resulting <code>.mbtiles</code> file into this pack's folder
+      under <code>{{ packs_dir }}</code> to view it under
+      <a href="/maps">Maps</a>.
+    </span>
+    {% endif %}
   </td>
   <td>{{ (pack.installed_size or pack.size_bytes) | filesize }}</td>
   <td>
@@ -21,6 +30,10 @@
       {% endif %}
     {% elif job and job.phase == "error" %}
       <span class="pack-state pack-error">failed: {{ job.error }}</span>
+    {% elif pack.map_rendered %}
+      <span class="pack-state pack-ok">map ready</span>
+    {% elif pack.map_rendered == false %}
+      <span class="pack-state">installed · raw data only</span>
     {% elif pack.installed %}
       <span class="pack-state pack-ok">installed</span>
     {% else %}
@@ -31,6 +44,7 @@
     {% if active %}
       <span class="htmx-indicator">…</span>
     {% elif pack.installed %}
+      {% if pack.map_rendered %}<a class="btn" href="/maps/{{ pack.id }}">View map</a>{% endif %}
       <button class="btn" hx-post="/admin/packs/{{ pack.id }}/remove"
               hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML">Remove</button>
     {% elif pack.url %}
