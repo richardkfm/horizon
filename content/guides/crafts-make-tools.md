@@ -42,7 +42,17 @@ Most work needs only a few tool types:
 
 A blade or stone head becomes far more useful fixed to a handle ("hafting"):
 
-![A stone blade lashed to a wooden handle with cord, with the lashing wrapped tightly around the split end](images/hafted-tool.svg)
+```ascii
+                                    ,--,   stone blade, ground to an edge
+                                   /    \
+        ,======================><       the split end opens to seat the blade
+       /                          \  /
+  handle, straight seasoned        xx
+  hardwood, no cracks               xx    <- lashing, wrapped tight and
+                                           finished with a locking hitch
+```
+
+*Fig. 1: hafting a stone blade — seat it in the handle's split end, then lash it tight with cord*
 
 1. **Choose seasoned hardwood** for handles — straight-grained, no cracks. Green
    wood will shrink and loosen.
@@ -79,7 +89,7 @@ A blade or stone head becomes far more useful fixed to a handle ("hafting"):
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
-*Fig. 1: fire-hardening a point — hold it near the embers' heat, not in the flame, then rub the charred surface smooth*
+*Fig. 2: fire-hardening a point — hold it near the embers' heat, not in the flame, then rub the charred surface smooth*
 
 ## Look after them
 

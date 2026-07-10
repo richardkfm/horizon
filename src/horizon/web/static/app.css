@@ -826,10 +826,20 @@ a:hover { color: var(--accent-strong); }
    plan (if any) plus a few more guides on the same topic, so a reader always
    has somewhere to go without forcing every guide into a plan. The next-step
    callout takes the leaf accent (growth, continuation); "more on X" reuses
-   the existing card-grid look unchanged. */
+   the existing card-grid look unchanged. Its heading deliberately does *not*
+   look like a `.guide` content h2 — it's an eyebrow label (like
+   `.next-step-label`), so a reader can tell at a glance that everything below
+   the top border is "more to read", not more of this guide. */
 .read-further { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--border); }
-.read-further h2 { margin-top: 0; }
 .next-steps { margin-bottom: var(--space-5); }
+.read-further-more h2 {
+  margin: var(--space-5) 0 var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
 .next-step {
   display: flex;
   flex-wrap: wrap;

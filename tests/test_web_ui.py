@@ -257,21 +257,16 @@ def test_checklist_page_404():
     assert resp.status_code == 404
 
 
-def test_guide_renders_figure_with_caption():
-    # The make-your-own-tools guide demonstrates the figure convention.
+def test_guide_renders_ascii_figure_with_caption():
+    # The make-your-own-tools guide demonstrates the ASCII diagram convention
+    # (two diagrams: hafting a blade, and fire-hardening a point).
     with TestClient(app) as client:
         resp = client.get("/guides/crafts-make-tools")
     assert resp.status_code == 200
-    assert "<figure" in resp.text and "guide-figure" in resp.text
+    assert resp.text.count('<figure class="guide-figure guide-ascii">') == 2
     assert "<figcaption>" in resp.text
-    assert "images/hafted-tool.svg" in resp.text
-
-
-def test_guide_image_is_served():
-    with TestClient(app) as client:
-        resp = client.get("/guides/images/hafted-tool.svg")
-    assert resp.status_code == 200
-    assert "svg" in resp.headers["content-type"]
+    assert "hafting a stone blade" in resp.text
+    assert "fire-hardening a point" in resp.text
 
 
 def test_new_medical_and_fire_guides_are_seeded():
