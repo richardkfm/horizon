@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "partials/_icons.html" import category_icon %}
 {% block title %}horizon · guides for water, food, energy, shelter, and health{% endblock %}
+{% block content_class %} content-wide{% endblock %}
 {% block content %}
 <section class="hero">
   <div class="intro">
@@ -26,23 +27,32 @@
      only thing the animation redraws. Both layers are aria-hidden — the
      wrapper's role="img" label describes the scene for screen readers. #}
   <div class="hero-art" role="img"
-       aria-label="A sun shines over a cottage with solar panels on the roof, a garden with sprouting plants and a sunflower, and a small wind turbine. Two birds fly across the sky.">
+       aria-label="A morning sun shines over a cottage with solar panels on the roof, a sunflower and garden beds, a young sapling, and a small wind turbine. Two birds and a butterfly cross the sky.">
     <div class="hero-art-frame">
       {# The first newline after <pre> is stripped by the HTML parser, so the
-         three empty sky rows need four literal newlines here. #}
+         three empty sky rows need four literal newlines here. The scene is
+         composed on a strict 60-column grid — the sky layer's glyphs only ever
+         sit over blank ground cells, so the two layers never collide. #}
       <pre class="hero-art-ground" aria-hidden="true">
 
 
 
-                                   |
-              _/]_/]_/]_           |
-             |          |   (@)    |
-   \|/       |  __   __ |    |     |
-    |   ,,,  | |__| |__||   \|/    |
-__________________________________/_\_______</pre>
-      <pre class="hero-art-sky" id="hero-art-sky" aria-hidden="true">    \  |  /         v
-  --  (o)  --             v       \ /
-    /  |  \                        o</pre>
+                                                    |
+            _/=/__/=/__/=/_                         |
+           /               \                        |
+          /_________________\                       |
+          |    __     ___    |        |             |
+          |   |__|   |   |   |       \|/            |
+  \|/     |   |__|   | . |   |        |             |
+   |      |__________|   |___|  ,,,   |   ,,, ,,    |
+___________________________________________________/_\______</pre>
+      <pre class="hero-art-sky" id="hero-art-sky" aria-hidden="true">     \ | /                         v
+   --( o )--               v                       \ /
+     / | \                                          o
+
+
+                                           }{
+                                     (@)</pre>
     </div>
   </div>
 </section>
@@ -67,20 +77,37 @@ __________________________________/_\_______</pre>
    the art stays readable here and needs no string escaping in JS. Frame 0
    matches the markup above, so no-JS (and reduced-motion) readers still get
    the complete still scene. The sun's rays breathe, the turbine rotor turns,
-   and the birds flap their way toward the turbine and drift back. #}
+   the birds drift across the sky, and a butterfly flits by the sunflower —
+   whose amber head stays put in every frame. #}
 <template id="hero-frames">
-  <pre>    \  |  /         v
-  --  (o)  --             v       \ /
-    /  |  \                        o</pre>
-  <pre>       '             -
-   -  (o)  -               -       |
-       ,                          -o-</pre>
-  <pre>    \  |  /           v
-  --  (o)  --               v     \ /
-    /  |  \                        o</pre>
-  <pre>       '             -
-   -  (o)  -               -       |
-       ,                          -o-</pre>
+  <pre>     \ | /                         v
+   --( o )--               v                       \ /
+     / | \                                          o
+
+
+                                           }{
+                                     (@)</pre>
+  <pre>     ' | '                           ~
+    -( o )-                  ~                      |
+     , | ,                                         -o-
+
+                                           )(
+
+                                     (@)</pre>
+  <pre>     \ | /                             v
+   --( o )--                   v                   \ /
+     / | \                                          o
+
+
+                                            }{
+                                     (@)</pre>
+  <pre>     ' | '                           ~
+    -( o )-                  ~                      |
+     , | ,                                         -o-
+
+                                            )(
+
+                                     (@)</pre>
 </template>
 <script>
   // Gentle frame-flip for the hero scene. Plain JS, only loaded outside

@@ -13,6 +13,30 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Changed
+- **Visual refresh — the solarpunk hero scene, glowing ASCII diagrams, and a
+  wider browsing shell.** Three UI-only changes (no HTTP API or content-format
+  impact):
+  - The landing page's ASCII scene is now a full 60-column solarpunk morning —
+    a cottage with a solar-panel roof, a sunflower, garden beds, a sapling, and
+    a wind turbine, with a breathing sun, drifting birds, a spinning rotor, and
+    a butterfly in the animated sky layer (still two stacked `<pre>` layers on
+    one monospace grid; still plain text, still animated only outside
+    low-power/reduced-motion, with the complete still scene as frame 0). In
+    the dark theme the scene glows softly, like a village at dusk.
+  - ASCII diagrams in guides (` ```ascii ` figures) now have a proper drawing
+    surface instead of a fixed white card that glared in dark mode: an
+    engineer's graph-paper notebook in the light theme (faint leaf-green grid
+    drawn with CSS gradients, warm paper, soft ink) and an amber terminal at
+    dusk in the dark theme (deep surface, glowing amber ink, faint scanlines).
+    Driven entirely by new `--diagram-*` theme tokens, so high-contrast,
+    low-power/e-ink, and print all still flatten diagrams to plain ink on
+    paper, and captions now read as a small monospace figure label.
+  - Browsing pages (home, guides, step-by-step plans, checklists) use a wider
+    content shell that matches the header's width, so the hero and card grids
+    fill a desktop screen instead of leaving dead gutters; reading pages keep
+    the narrower measure that suits running text.
+
 ### Added
 - **`horizon-admin menu`: an arrow-key-navigable interactive menu.** Running
   `horizon-admin` with no subcommand (or `horizon-admin menu` explicitly) now

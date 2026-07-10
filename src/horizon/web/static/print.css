@@ -25,6 +25,12 @@ body {
   --sun-soft: transparent;
   --leaf: #000;
   --leaf-soft: transparent;
+  --diagram-bg: #fff;
+  --diagram-ink: #000;
+  --diagram-border: #000;
+  --diagram-pattern: none;
+  --diagram-glow: none;
+  --diagram-depth: none;
   --shadow-sm: none;
   --shadow: none;
   --shadow-lift: none;

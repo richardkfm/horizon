@@ -43,6 +43,20 @@
   --leaf: #4f7d43;
   --leaf-soft: rgba(95, 141, 78, 0.12);
 
+  /* ASCII diagram surface. Light theme: an engineer's field notebook — warm
+     graph paper with a faint leaf-green grid (drawn with repeating gradients,
+     no image assets) and soft dark ink. The dark theme swaps the whole set for
+     an amber terminal glow; high-contrast, low-power, and print flatten it
+     back to plain ink on paper. Never used for body copy. */
+  --diagram-bg: #fbf7ec;
+  --diagram-ink: #3f4433;
+  --diagram-border: #ddd3bd;
+  --diagram-pattern:
+    repeating-linear-gradient(0deg, rgba(79, 125, 67, 0.13) 0 1px, transparent 1px 1.15rem),
+    repeating-linear-gradient(90deg, rgba(79, 125, 67, 0.13) 0 1px, transparent 1px 1.15rem);
+  --diagram-glow: none;
+  --diagram-depth: inset 0 1px 3px rgba(31, 28, 24, 0.05);
+
   /* Type: system serif for display, system sans for everything else — both
      resolve to fonts already on the device, so the UI stays fully offline. */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -102,6 +116,16 @@
   --leaf: #8fbf7f;
   --leaf-soft: rgba(143, 191, 127, 0.1);
 
+  /* ASCII diagrams become a lowtech amber terminal at dusk: deep warm surface,
+     glowing amber ink, faint scanlines. */
+  --diagram-bg: #131009;
+  --diagram-ink: #eac57e;
+  --diagram-border: #43391f;
+  --diagram-pattern:
+    repeating-linear-gradient(0deg, rgba(234, 197, 126, 0.055) 0 1px, transparent 1px 3px);
+  --diagram-glow: 0 0 8px rgba(234, 197, 126, 0.32);
+  --diagram-depth: inset 0 0 3rem rgba(0, 0, 0, 0.5);
+
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -129,6 +153,13 @@
     --sun-soft: rgba(224, 178, 92, 0.1);
     --leaf: #8fbf7f;
     --leaf-soft: rgba(143, 191, 127, 0.1);
+    --diagram-bg: #131009;
+    --diagram-ink: #eac57e;
+    --diagram-border: #43391f;
+    --diagram-pattern:
+      repeating-linear-gradient(0deg, rgba(234, 197, 126, 0.055) 0 1px, transparent 1px 3px);
+    --diagram-glow: 0 0 8px rgba(234, 197, 126, 0.32);
+    --diagram-depth: inset 0 0 3rem rgba(0, 0, 0, 0.5);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow: 0 2px 12px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.35);
     --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -159,6 +190,12 @@ html { -webkit-text-size-adjust: 100%; }
   --sun-soft: transparent;
   --leaf: var(--fg);
   --leaf-soft: transparent;
+  --diagram-bg: var(--surface);
+  --diagram-ink: var(--fg);
+  --diagram-border: var(--border-strong);
+  --diagram-pattern: none;
+  --diagram-glow: none;
+  --diagram-depth: none;
   --shadow-sm: none;
   --shadow: none;
   --shadow-lift: none;
@@ -397,6 +434,10 @@ a:hover { color: var(--accent-strong); }
 .a11y-contrast-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 400; white-space: nowrap; }
 
 .content { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--space-5); }
+/* Wide shell for browsing pages (home, guide/plan/checklist grids): matches the
+   header's width so the hero and card grids fill the screen instead of leaving
+   dead gutters at desktop width. Reading pages keep the narrower measure. */
+.content-wide { max-width: 72rem; }
 
 /* Intro / hero ------------------------------------------------------------ */
 
@@ -434,17 +475,44 @@ a:hover { color: var(--accent-strong); }
   color: var(--leaf);
 }
 .hero-art { display: flex; justify-content: center; min-width: 0; }
-.hero-art-frame { position: relative; max-width: 100%; overflow: hidden; }
+.hero-art-frame {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  /* A soft dawn glow rising behind the sun's corner of the scene. */
+  background: radial-gradient(48% 44% at 15% 16%, var(--sun-soft), transparent 72%);
+}
 .hero-art-frame pre {
   margin: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  /* 44 columns must fit a phone: scale with the viewport, cap for desktop. */
-  font-size: clamp(0.5rem, 2.9vw, 0.85rem);
-  line-height: 1.3;
+  /* 60 columns must fit a phone: scale with the viewport, cap for desktop. */
+  font-size: clamp(0.44rem, 2.2vw, 0.82rem);
+  line-height: 1.25;
   white-space: pre;
 }
 .hero-art-ground { color: var(--leaf); }
-.hero-art-sky { position: absolute; top: 0; left: 0; color: var(--sun); }
+/* Absolute offsets are relative to the frame's padding box, so the sky layer
+   needs the same inset as the ground's padding to stay on the same grid. */
+.hero-art-sky { position: absolute; top: var(--space-3); left: var(--space-3); color: var(--sun); }
+/* At dusk (dark theme) the scene glows softly — amber sun and rotor, moonlit
+   leaf ink — like a village at nightfall. Decorative only, so it stays out of
+   high-contrast mode (which zeroes --sun-soft and flattens the palette). */
+:root[data-theme="dark"]:not([data-contrast="high"]) .hero-art-ground {
+  text-shadow: 0 0 7px rgba(143, 191, 127, 0.3);
+}
+:root[data-theme="dark"]:not([data-contrast="high"]) .hero-art-sky {
+  text-shadow: 0 0 9px rgba(224, 178, 92, 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not([data-contrast="high"]) .hero-art-ground {
+    text-shadow: 0 0 7px rgba(143, 191, 127, 0.3);
+  }
+  :root:not([data-theme]):not([data-contrast="high"]) .hero-art-sky {
+    text-shadow: 0 0 9px rgba(224, 178, 92, 0.45);
+  }
+}
 
 /* Section-heading flourish: a short sun-to-leaf underline swash. */
 .section-flourish::after {
@@ -793,20 +861,24 @@ a:hover { color: var(--accent-strong); }
 }
 
 /* ASCII diagrams — a captioned ```ascii fence wrapped by services.markdown.
-   Same card treatment as an image figure, but the "art" is the monospace text
-   itself: a light, bordered box keeps it legible while leaving line spacing
-   and characters untouched so the diagram still lines up. Scrolls sideways
-   on narrow screens instead of overflowing the page (CLAUDE.md: zero
-   horizontal page overflow). */
+   The monospace art IS the figure, so it gets a drawing surface of its own,
+   driven by the --diagram-* tokens: an engineer's graph-paper notebook in the
+   light theme, a glowing amber terminal at dusk in the dark theme. Line
+   spacing and characters stay untouched so the diagram still lines up, and
+   high-contrast / low-power / print all flatten the tokens back to plain ink
+   on paper. Scrolls sideways on narrow screens instead of overflowing the
+   page (CLAUDE.md: zero horizontal page overflow). */
 .guide figure.guide-ascii pre {
   margin: 0;
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  background: #fff;
-  padding: var(--space-4);
-  border: 1px solid var(--border);
+  background-color: var(--diagram-bg);
+  background-image: var(--diagram-pattern);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--diagram-border);
   border-radius: var(--radius-sm);
+  box-shadow: var(--diagram-depth);
   text-align: left;
 }
 .guide figure.guide-ascii code {
@@ -818,8 +890,16 @@ a:hover { color: var(--accent-strong); }
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85rem;
   line-height: 1.35;
-  color: #111;
+  color: var(--diagram-ink);
+  text-shadow: var(--diagram-glow);
   white-space: pre;
+}
+/* The caption reads like a pencilled label on the drawing's margin. */
+.guide figure.guide-ascii figcaption {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
 }
 
 /* Read further — footer nav on a guide/checklist: the next step in an ordered
@@ -1231,6 +1311,12 @@ body.low-power {
   --sun-soft: transparent;
   --leaf: #000000;
   --leaf-soft: transparent;
+  --diagram-bg: #ffffff;
+  --diagram-ink: #000000;
+  --diagram-border: #000000;
+  --diagram-pattern: none;
+  --diagram-glow: none;
+  --diagram-depth: none;
   --shadow-sm: none;
   --shadow: none;
   --shadow-lift: none;

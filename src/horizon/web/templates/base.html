@@ -125,7 +125,10 @@
     </div>
    </div>
   </header>
-  <main class="content" id="main-content">
+  {# Browsing pages (home, index grids) opt into the wide shell via
+     content_class so they fill the same width as the header; reading pages
+     keep the narrower measure that suits running text. #}
+  <main class="content{% block content_class %}{% endblock %}" id="main-content">
     {% block content %}{% endblock %}
   </main>
   <footer class="site-footer">
