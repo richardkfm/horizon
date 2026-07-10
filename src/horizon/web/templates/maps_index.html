@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Maps — horizon{% endblock %}
+{% block content %}
+<section class="guides-intro">
+  <h1>Maps</h1>
+  <p class="tagline">
+    Offline basemaps rendered from downloaded map data — pan and zoom with no
+    network connection needed.
+  </p>
+</section>
+
+{% if packs %}
+<ul class="link-list">
+  {% for pack in packs %}
+  <li>
+    <a href="/maps/{{ pack.id }}">{{ pack.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">
+  No maps ready to view yet. A downloaded map pack is raw source data until
+  someone renders it into a basemap and adds it here — ask whoever runs this
+  horizon node.
+</p>
+{% endif %}
+{% endblock %}

@@ -51,12 +51,20 @@ packs:
 
   # Maps: raw OpenStreetMap extracts from Geofabrik
   # (https://download.geofabrik.de), a long-standing free, unauthenticated
-  # mirror updated daily. These are *not* pre-rendered tiles — horizon has no
-  # built-in map viewer yet — so each is raw .osm.pbf source data an operator
-  # can render locally (e.g. with Planetiler) into a basemap of their choice.
-  # A pre-tiled offline basemap (e.g. as .mbtiles) would need an account/API
-  # key with every provider we found (MapTiler, etc.), which conflicts with
-  # horizon staying usable with no external accounts.
+  # mirror updated daily. These are *not* pre-rendered tiles: rendering a
+  # country extract into a basemap is a CPU/RAM-heavy batch job that doesn't
+  # fit weak/Pi-class hardware, so horizon never renders on the node itself.
+  # A pre-tiled offline basemap (e.g. as .mbtiles) would also need an
+  # account/API key with every hosted provider we found (MapTiler, etc.),
+  # which conflicts with horizon staying usable with no external accounts.
+  #
+  # Instead, render the downloaded .osm.pbf once, off the node (a laptop is
+  # fine), with Planetiler <https://github.com/onthegomap/planetiler> -- a
+  # single self-contained jar, no PostGIS/Mapnik install -- and drop the
+  # resulting .mbtiles file into this pack's own directory under
+  # <content_packs.dir>/<pack id>/ (see docs/operating.md). horizon's built-in
+  # map viewer (/maps) then picks it up automatically: the .mbtiles file is
+  # just SQLite, so serving it is a raw blob read, no rendering on the Pi.
   #
   # A whole continent is raw source data for an entire landmass — tens of GB
   # for the four biggest (Africa, Asia, Europe, North America) — when almost

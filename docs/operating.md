@@ -196,10 +196,38 @@ shows live progress.
 Once a Wikipedia/WikEM-style ZIM pack is installed, read it right in the
 browser at **Reference library** (linked from the main nav once a pack is
 installed) — full-text search plus an article view, no external Kiwix viewer
-needed. Maps packs (`.osm.pbf` raw OpenStreetMap extracts) don't have an
-in-browser viewer yet; see the note in `content/packs.yaml`. Map packs come in
-two sizes: for Africa, Asia, Europe, and North America there's a pack per
-country (e.g. Germany at 4.5 GB) as well as the whole continent (e.g. all of
-Europe at 31+ GB) — pick the country unless you actually need every country
-on the continent. The other four continents are small enough to ship as a
-single file. Either way, this is raw source data, not a ready-to-view basemap.
+needed. Map packs come in two sizes: for Africa, Asia, Europe, and North
+America there's a pack per country (e.g. Germany at 4.5 GB) as well as the
+whole continent (e.g. all of Europe at 31+ GB) — pick the country unless you
+actually need every country on the continent. The other four continents are
+small enough to ship as a single file.
+
+### Rendering a map pack for the in-browser viewer
+
+A maps pack downloads raw OpenStreetMap `.osm.pbf` source data, not a
+ready-to-view basemap — rendering it into tiles is a CPU/RAM-heavy batch job
+that doesn't fit weak/Pi-class hardware, so horizon never does that
+rendering on the node itself. Instead, render it **once, on any other
+machine** (a laptop is plenty) with
+[Planetiler](https://github.com/onthegomap/planetiler), a single
+self-contained jar with no PostGIS/Mapnik install:
+
+```bash
+# Downloads/uses the Planetiler jar; --osm_path points at the pack you
+# already downloaded via horizon, so this step needs no further download.
+java -jar planetiler.jar --download=false \
+  --osm_path=/path/to/germany-latest.osm.pbf \
+  --output=germany.mbtiles
+```
+
+Then copy the resulting `.mbtiles` file into that pack's own directory on the
+horizon node, alongside the `.osm.pbf` it came from:
+
+```bash
+cp germany.mbtiles <content_packs.dir>/maps-europe-germany/
+```
+
+horizon's built-in map viewer (**Maps** in the main nav, or **View map** from
+**Admin → Content packs**) picks it up automatically on the next page load —
+no restart needed, since the `.mbtiles` file is just SQLite and is read
+directly, with no rendering step on the node.

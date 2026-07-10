@@ -635,6 +635,21 @@ a:hover { color: var(--accent-strong); }
 .empty { color: var(--muted); }
 .form-error { color: var(--danger); font-weight: 600; }
 
+/* Map viewer ---------------------------------------------------------------- */
+
+.print-only { display: none; }
+
+.map-viewer {
+  height: 70vh;
+  min-height: 22rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+}
+
+/* MapLibre injects its own canvas/controls; keep them inside our rounded frame. */
+.map-viewer .maplibregl-map { border-radius: var(--radius); }
+
 /* Journeys list ----------------------------------------------------------- */
 
 .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0 var(--space-5); }

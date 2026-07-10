@@ -182,6 +182,34 @@ def has_installed_zim_pack() -> bool:
     return any(m.get("format") == "zim" for m in installed_packs())
 
 
+def pack_mbtiles_path(pack_id: str) -> Path | None:
+    """Absolute path to a maps pack's dropped-in ``.mbtiles`` file, or ``None``.
+
+    A ``maps-*`` pack downloads raw ``.osm.pbf`` source data (see the comment
+    block in ``content/packs.yaml``); to actually view it, an operator renders
+    it once, off the node, with Planetiler and copies the resulting
+    ``.mbtiles`` file into this pack's own directory alongside the ``.pbf``
+    (see ``docs/operating.md``). The exact filename doesn't matter -- this
+    looks for the first ``*.mbtiles`` file in the pack's directory.
+    """
+    directory = _pack_dir(pack_id)
+    if not directory.is_dir():
+        return None
+    matches = sorted(directory.glob("*.mbtiles"))
+    return matches[0] if matches else None
+
+
+def has_installed_map_pack() -> bool:
+    """True if at least one installed maps pack has a rendered ``.mbtiles``
+    companion (i.e. the map viewer has something to show). Used to
+    conditionally show that nav item.
+    """
+    return any(
+        m.get("category") == "maps" and pack_mbtiles_path(m["id"]) is not None
+        for m in installed_packs()
+    )
+
+
 def pack_status() -> list[dict]:
     """Merge the catalog with on-disk state for display.
 

@@ -45,6 +45,9 @@ templates.env.globals["version"] = __version__
 # downloaded a ZIM pack -- a per-request on-disk check, cheap enough given
 # horizon's low request volume; no caching layer added for this.
 templates.env.globals["reference_library_enabled"] = packs_service.has_installed_zim_pack
+# Same idea for "Maps" -- only shown once a maps pack has a rendered .mbtiles
+# companion dropped in (see services.packs.has_installed_map_pack).
+templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pack
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — horizon{% endblock %}
+{% block content_class %} content-wide{% endblock %}
+{% block content %}
+<p class="breadcrumb no-print"><a href="/maps">← Maps</a></p>
+
+<section class="guides-intro">
+  <h1>{{ title }}</h1>
+  <p class="tagline">
+    A local, offline basemap rendered from OpenStreetMap data — drag to pan,
+    scroll or pinch to zoom. No network connection is used.
+  </p>
+</section>
+
+<link rel="stylesheet" href="{{ static_url('maplibre-gl.min.css') }}" />
+
+<div
+  id="map-viewer"
+  class="map-viewer no-print"
+  aria-label="Interactive offline map of {{ title }}"
+  data-tiles-path="/maps/{{ pack_id }}/tiles/{z}/{x}/{y}.pbf"
+  {% if info.bounds %}data-bounds="{{ info.bounds | join(',') }}"{% endif %}
+  {% if info.center %}data-center="{{ info.center | join(',') }}"{% endif %}
+></div>
+
+<p class="print-only">
+  {{ title }} is an interactive map and can't be printed — open this page in a
+  browser to pan and zoom it.
+</p>
+
+<script src="{{ static_url('maplibre-gl.min.js') }}" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById("map-viewer");
+    if (!el || typeof maplibregl === "undefined") return;
+
+    var tilesUrl = window.location.origin + el.getAttribute("data-tiles-path");
+    var boundsAttr = el.getAttribute("data-bounds");
+    var centerAttr = el.getAttribute("data-center");
+    var center = centerAttr ? centerAttr.split(",").map(Number) : [0, 0, 1];
+
+    // A deliberately minimal basemap: fills and lines only, no text/icon
+    // layers, so no glyph or sprite server is needed to show something useful.
+    var style = {
+      version: 8,
+      sources: {
+        basemap: { type: "vector", tiles: [tilesUrl], minzoom: 0, maxzoom: 14 }
+      },
+      layers: [
+        { id: "background", type: "background", paint: { "background-color": "#eef2ea" } },
+        { id: "landcover", type: "fill", source: "basemap", "source-layer": "landcover",
+          paint: { "fill-color": "#dfe7d6", "fill-opacity": 0.6 } },
+        { id: "landuse", type: "fill", source: "basemap", "source-layer": "landuse",
+          paint: { "fill-color": "#e4ded0", "fill-opacity": 0.5 } },
+        { id: "park", type: "fill", source: "basemap", "source-layer": "park",
+          paint: { "fill-color": "#cfe0bf", "fill-opacity": 0.6 } },
+        { id: "water", type: "fill", source: "basemap", "source-layer": "water",
+          paint: { "fill-color": "#a9cbe0" } },
+        { id: "waterway", type: "line", source: "basemap", "source-layer": "waterway",
+          paint: { "line-color": "#a9cbe0", "line-width": 1 } },
+        { id: "building", type: "fill", source: "basemap", "source-layer": "building",
+          paint: { "fill-color": "#d8d2c4" } },
+        { id: "transportation", type: "line", source: "basemap", "source-layer": "transportation",
+          paint: {
+            "line-color": "#b7ab95",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 5, 0.5, 14, 2.5]
+          } },
+        { id: "boundary", type: "line", source: "basemap", "source-layer": "boundary",
+          paint: { "line-color": "#9a8f7c", "line-width": 1, "line-dasharray": [2, 2] } }
+      ]
+    };
+
+    var map = new maplibregl.Map({
+      container: "map-viewer",
+      style: style,
+      center: [center[0], center[1]],
+      zoom: center[2] || 1
+    });
+    map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+    if (boundsAttr) {
+      var b = boundsAttr.split(",").map(Number);
+      map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 20, animate: false });
+    }
+  });
+</script>
+{% endblock %}
