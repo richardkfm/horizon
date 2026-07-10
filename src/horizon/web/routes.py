@@ -63,10 +63,10 @@ CATEGORY_EXAMPLES = {
     "culture": "Music, dance, and games with no gear",
     "language": "Learn and teach essential words",
     "crafts": "Make rope, mend clothes, and fix tools",
-    "emergencies": "Stay safe in blackouts, disasters, and conflict",
-    "cooking": "Cook and bake simple plant-based meals",
+    "emergencies": "Stay safe in disasters and conflict",
+    "cooking": "Cook and bake plant-based meals",
     "calculations": "Size a system, a room, or a load",
-    "technology": "Set up local radio, networks, and computers",
+    "technology": "Set up local radio and networks",
 }
 
 
