@@ -37,6 +37,14 @@ Updating this changelog and the README is part of every user-facing change
     fill a desktop screen instead of leaving dead gutters; reading pages keep
     the narrower measure that suits running text.
 
+### Fixed
+- **`docker compose build` tagged the image `horizon:0.5.0` regardless of the
+  actual release.** `docker-compose.yml`'s `image:` pin had drifted two
+  releases behind `pyproject.toml`'s version (last bumped for the v0.5.0
+  release, never updated since), so `docker compose up` printed a stale
+  version in its build output even on current `main`. Bumped the pin to
+  `horizon:0.7.0` to match.
+
 ### Added
 - **`horizon-admin menu`: an arrow-key-navigable interactive menu.** Running
   `horizon-admin` with no subcommand (or `horizon-admin menu` explicitly) now
