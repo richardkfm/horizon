@@ -10,9 +10,8 @@ estimated_time: "An afternoon"
 # Make rope and cordage from plant fibre
 
 Cord and rope are among the most useful things you can make: they tie shelters,
-haul loads, make snares and fishing lines, repair tools, and bind almost
-anything. With the reverse-wrap method you can turn plant fibre into surprisingly
-strong cordage by hand.
+haul loads, repair tools, and bind almost anything. With the reverse-wrap
+method you can turn plant fibre into surprisingly strong cordage by hand.
 
 > **Strength comes from the twist.** Loose fibres are weak; twisted and
 > counter-twisted, the same fibres grip each other and become rope.

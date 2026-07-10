@@ -17,13 +17,16 @@ journeys:
   - id: safe-drinking-water
     title: Provide safe drinking water for a group
     description: >
-      Go from an unknown water source to safe, stored drinking water for a small
-      group: judge the source, choose the right treatment, then build and run a
-      slow sand filter.
+      Go from no reliable source to safe, stored drinking water for a small
+      group: harvest rain or find and protect a well or spring, judge what
+      you've got, choose the right treatment, then build and run a slow sand
+      filter.
     category: water
     difficulty: 3
     estimated_time: "A few days"
     guides:
+      - water-rainwater-harvesting
+      - water-wells-and-springs
       - water-field-testing
       - water-choosing-treatment
       - water-slow-sand-filter
@@ -95,9 +98,8 @@ journeys:
     description: >
       The hands-on basics for being out in the field: choose and set up a safe
       camp, make fire, find and carry water, manage waste and hygiene, find
-      your way without a compass, tie essential knots, find food by foraging
-      and simple trapping or fishing, and signal for rescue if it comes to
-      that.
+      your way without a compass, tie essential knots, find food by foraging,
+      and signal for rescue if it comes to that.
     category: survival
     difficulty: 3
     estimated_time: "Ongoing practice"
@@ -109,7 +111,6 @@ journeys:
       - survival-navigation
       - survival-knots
       - survival-foraging
-      - survival-trapping-fishing
       - survival-signaling-for-rescue
 
   - id: respond-to-mass-casualty-emergency
@@ -149,14 +150,15 @@ journeys:
     title: Make and maintain your own tools
     description: >
       Build basic self-sufficiency in craft: twist plant fibre into strong
-      cordage, make simple cutting and digging tools from wood, stone, and
-      salvage, then keep those tools sharp and safe, and carry the same
-      hand-repair mindset into mending and making cloth.
+      cordage, spin and weave fibre into simple cloth, make simple cutting
+      and digging tools from wood, stone, and salvage, keep those tools
+      sharp and safe, and mend clothes and textiles to make them last.
     category: crafts
     difficulty: 2
     estimated_time: "A few afternoons"
     guides:
       - crafts-cordage
+      - crafts-fiber-and-textiles
       - crafts-make-tools
       - crafts-tool-repair
       - crafts-mending-textiles
@@ -175,3 +177,54 @@ journeys:
       - calc-materials-quantities
       - calc-structural-loads
       - calc-energy-sizing
+
+  - id: cooperative-governance-from-scratch
+    title: Set up cooperative governance from scratch
+    description: >
+      Build a group's ability to act together and stay fair over time: learn to
+      make one good decision together, put lasting accountable structure around
+      it, resolve disputes as they come up, share resources without resentment,
+      and extend that same trust to neighbouring groups.
+    category: cooperation
+    difficulty: 2
+    estimated_time: "A few afternoons to set up, then ongoing"
+    guides:
+      - cooperation-group-decisions
+      - cooperation-democratic-governance
+      - cooperation-resolving-conflict
+      - cooperation-sharing-resources
+      - cooperation-external-relations
+
+  - id: prepare-for-a-long-blackout
+    title: Prepare for and get through a long blackout
+    description: >
+      Losing power is the common thread behind many emergencies: prepare for and
+      live through a long blackout, keep safe from extreme heat and extreme cold
+      once the grid is down, avoid the fire risk that comes with makeshift
+      heating and lighting, and get by without a car if you don't have one to
+      fall back on.
+    category: emergencies
+    difficulty: 3
+    estimated_time: "A few hours to prepare, then ongoing"
+    guides:
+      - emergency-blackout
+      - emergency-extreme-heat
+      - emergency-extreme-cold
+      - emergency-extinguish-fire
+      - emergency-no-car-household
+
+  - id: set-up-local-tech-infrastructure
+    title: Set up local tech infrastructure
+    description: >
+      Build a neighbourhood's own information infrastructure from what's
+      already lying around: get a machine working again, give it a real job
+      as a local server, build the network it lives on, and add two-way radio
+      as a voice channel alongside it.
+    category: technology
+    difficulty: 3
+    estimated_time: "A few weekends"
+    guides:
+      - technology-computer-maintenance
+      - technology-repurpose-old-pc
+      - technology-local-network
+      - technology-two-way-radio

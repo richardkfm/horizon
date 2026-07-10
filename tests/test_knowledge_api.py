@@ -58,6 +58,8 @@ def test_get_track_detail_returns_ordered_guides():
     # Guides are returned in their stored order, and carry their own context.
     guide_ids = [g["id"] for g in journey["guides"]]
     assert guide_ids == [
+        "water-rainwater-harvesting",
+        "water-wells-and-springs",
         "water-field-testing",
         "water-choosing-treatment",
         "water-slow-sand-filter",

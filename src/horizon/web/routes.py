@@ -66,6 +66,7 @@ CATEGORY_EXAMPLES = {
     "emergencies": "Stay safe in blackouts, disasters, and conflict",
     "cooking": "Cook and bake simple plant-based meals",
     "calculations": "Size a system, a room, or a load",
+    "technology": "Set up local radio, networks, and computers",
 }
 
 
