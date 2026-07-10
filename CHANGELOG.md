@@ -22,9 +22,24 @@ Updating this changelog and the README is part of every user-facing change
   an operator doesn't need to already know the subcommand names. Built on the
   standard library's `curses` (no new dependency); falls back to a plain
   numbered `input()` prompt on a non-interactive terminal or where `curses`
-  isn't available. New module: `horizon.scripts.menu`.
+  isn't available. New module: `horizon.scripts.menu`. The main-menu screen
+  now also draws the `horizon-admin` ASCII banner (logo) as part of itself —
+  in both the `curses` picker and the plain fallback — rather than printing it
+  once before handing off to `curses`, where it could be wiped by the
+  alternate-screen switch. On a terminal too short to fit the banner and the
+  full option list, the banner is dropped so the menu itself never clips.
 
 ### Fixed
+- **`horizon-admin`'s ASCII "HORIZON" wordmark rendered as a garbled mess on
+  some terminals** (reported on Windows Terminal/PowerShell). The block-letter
+  glyph rows in `admin._LOGO` had drifted to inconsistent widths (42/43/44/42/42
+  characters) so the underscores/pipes/slashes that form each letter didn't
+  actually line up in the same columns from row to row — on a strict monospace
+  font this read as merely off, but on fonts/terminal themes with any glow,
+  bloom, or ligature rendering it collapsed into noise. Replaced it with a
+  verified, column-aligned render of the same wordmark (every glyph row is the
+  same width) and added a regression test
+  (`test_banner_wordmark_glyph_columns_are_aligned`).
 - **`crafts-make-tools` still carried the pre-ASCII-convention test image.**
   The "make your own hand tools" guide was the original demo of the SVG figure
   convention; when the ASCII diagram convention shipped afterwards and was
