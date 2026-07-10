@@ -14,6 +14,17 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **A `curl`-based installer (`scripts/get-horizon.sh`) for boxes without
+  `git` or Docker.** User feedback: some operators hit a wall installing
+  horizon because their box has neither a `git` client nor Docker (and no
+  GitHub account to set either up). The script does exactly one thing —
+  download and extract a source tarball over HTTPS — and needs no root and
+  runs nothing else on its own, so `curl ... | bash` carries the same trust
+  as `git clone` would; the actual install step (`packaging/install.sh`,
+  unchanged) is still a separate command you run and can read first. The
+  original `git clone` + Docker/bare-metal paths are untouched; this is an
+  additional option, documented alongside them in the
+  [Bare-metal run](README.md#bare-metal-run) section.
 - **A built-in map viewer (`/maps`), closing the "download a map, find no
   viewer" dead end.** A `maps-*` content pack downloads raw OpenStreetMap
   `.osm.pbf` source data — useful, but not something a browser can render,
