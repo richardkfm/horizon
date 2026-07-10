@@ -127,6 +127,33 @@ and every config option are covered in **[docs/operating.md](docs/operating.md)*
 
 ## Bare-metal run
 
+Get the source first. If you have `git`:
+
+```bash
+git clone https://github.com/richardkfm/horizon && cd horizon
+```
+
+No `git`, no Docker, no GitHub account on this box? Fetch a source tarball
+with `curl` instead. The installer script only downloads and extracts — it
+needs no root and runs nothing else automatically, so it carries the same
+trust as `git clone` would:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh | bash
+cd horizon
+```
+
+Prefer not to pipe curl into bash at all? Download it, read it, then run it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh -o get-horizon.sh
+less get-horizon.sh   # read it before running anything
+bash get-horizon.sh
+cd horizon
+```
+
+Either way you end up with a local checkout, and the rest is identical:
+
 ```bash
 # System deps for PDF/print mode (Debian/Ubuntu example):
 sudo apt install libpango-1.0-0 libpangocairo-1.0-0 libcairo2 \
