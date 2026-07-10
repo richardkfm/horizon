@@ -13,6 +13,17 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **`horizon-admin menu`: an arrow-key-navigable interactive menu.** Running
+  `horizon-admin` with no subcommand (or `horizon-admin menu` explicitly) now
+  opens a menu covering every existing subcommand — browse plans/guides,
+  recommend, ask the assistant, manage content packs, status/doctor/check,
+  seed/reindex, config — driven with the arrow keys or `j`/`k` and `Enter`, so
+  an operator doesn't need to already know the subcommand names. Built on the
+  standard library's `curses` (no new dependency); falls back to a plain
+  numbered `input()` prompt on a non-interactive terminal or where `curses`
+  isn't available. New module: `horizon.scripts.menu`.
+
 ### Fixed
 - **`crafts-make-tools` still carried the pre-ASCII-convention test image.**
   The "make your own hand tools" guide was the original demo of the SVG figure

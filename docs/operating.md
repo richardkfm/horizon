@@ -94,6 +94,12 @@ extra: `docker compose build --build-arg INSTALL_EXTRAS=ai` (or
 For a node with no browser, `horizon-admin` is a full operator **and** reader
 interface — everything runs offline (only `packs download` touches the network).
 
+Don't want to memorize subcommands? Run `horizon-admin` with no arguments (or
+`horizon-admin menu`) for an arrow-key-navigable menu covering everything
+below — move with the arrow keys or `j`/`k`, `Enter` to select, `q` to go
+back. It falls back to a plain numbered prompt on a non-interactive terminal
+(e.g. piped output).
+
 ### Getting the command to run
 
 `horizon-admin` is not a script in the repo — it's installed by `pip` as part
@@ -139,6 +145,8 @@ itself:
 ### Commands
 
 ```bash
+horizon-admin menu                   # arrow-key menu covering every command below
+
 horizon-admin status                 # runtime + content overview (with logo)
 horizon-admin doctor                 # health-check every optional integration
 horizon-admin check                  # content-health diagnostics (links, files, index)
