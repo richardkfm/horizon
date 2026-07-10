@@ -78,6 +78,8 @@ server possible in the first place.
 
 ## Where to go next
 
+- For the general repair skill behind these fixes (multimeter testing,
+  soldering a wire or connector), see repair small electronics and solder.
 - Give a repaired machine a real job: see turn an old PC into a local
   server.
 - Keep it powered without mains electricity: see set up a small low-tech
