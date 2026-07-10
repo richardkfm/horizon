@@ -43,7 +43,7 @@ sustainably and without coercion.
 <img width="800" height="752" alt="horizon-full" src="https://github.com/user-attachments/assets/f9cc8906-a041-479b-88a8-86ef27c5febd" />
 
 
-**Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Configuration](#configuration) · [Documentation](#documentation) · [Roadmap & changelog](#roadmap--changelog)
+**Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart) · [Docker](#docker-recommended) · [Bare-metal](#bare-metal) · [Configuration](#configuration) · [Documentation](#documentation) · [Roadmap & changelog](#roadmap--changelog)
 
 ## Features
 
@@ -106,10 +106,35 @@ online, for fully offline use afterwards:
 
 ![The horizon admin Content packs page in light mode, listing downloadable offline packs with size and status](docs/screenshots/admin-content-packs.png)
 
-## Quickstart (Docker, recommended)
+## Quickstart
+
+### No git, no Docker? Use the curl installer
 
 ```bash
-git clone https://github.com/richardkfm/horizon && cd horizon
+curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh | bash
+cd horizon
+```
+
+The script only downloads and extracts a source tarball over HTTPS — no root,
+no GitHub account, and it runs nothing else automatically, so it carries the
+same trust as `git clone` would. Prefer not to pipe curl into bash at all?
+Download it, read it, then run it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh -o get-horizon.sh
+less get-horizon.sh   # read it before running anything
+bash get-horizon.sh
+cd horizon
+```
+
+Either way you now have a local `horizon/` checkout — continue with **Docker**
+or **bare-metal** below (skip their `git clone` step, you already have the
+source).
+
+### Docker (recommended)
+
+```bash
+git clone https://github.com/richardkfm/horizon && cd horizon   # or the curl installer above
 docker compose up -d
 ```
 
@@ -125,34 +150,11 @@ pulled**. The "Ask a question" assistant falls back to local guide search until
 you give it a model. Enabling the optional local AI, finding the admin token,
 and every config option are covered in **[docs/operating.md](docs/operating.md)**.
 
-## Bare-metal run
-
-Get the source first. If you have `git`:
+### Bare-metal
 
 ```bash
-git clone https://github.com/richardkfm/horizon && cd horizon
+git clone https://github.com/richardkfm/horizon && cd horizon   # or the curl installer above
 ```
-
-No `git`, no Docker, no GitHub account on this box? Fetch a source tarball
-with `curl` instead. The installer script only downloads and extracts — it
-needs no root and runs nothing else automatically, so it carries the same
-trust as `git clone` would:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh | bash
-cd horizon
-```
-
-Prefer not to pipe curl into bash at all? Download it, read it, then run it:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/richardkfm/horizon/main/scripts/get-horizon.sh -o get-horizon.sh
-less get-horizon.sh   # read it before running anything
-bash get-horizon.sh
-cd horizon
-```
-
-Either way you end up with a local checkout, and the rest is identical:
 
 ```bash
 # System deps for PDF/print mode (Debian/Ubuntu example):

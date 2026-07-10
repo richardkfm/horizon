@@ -22,9 +22,10 @@ Updating this changelog and the README is part of every user-facing change
   runs nothing else on its own, so `curl ... | bash` carries the same trust
   as `git clone` would; the actual install step (`packaging/install.sh`,
   unchanged) is still a separate command you run and can read first. The
-  original `git clone` + Docker/bare-metal paths are untouched; this is an
-  additional option, documented alongside them in the
-  [Bare-metal run](README.md#bare-metal-run) section.
+  original `git clone` + Docker/bare-metal paths are untouched, just
+  reordered: the README's [Quickstart](README.md#quickstart) now leads with
+  the curl installer, followed by [Docker](README.md#docker-recommended) and
+  [bare-metal](README.md#bare-metal).
 - **A built-in map viewer (`/maps`), closing the "download a map, find no
   viewer" dead end.** A `maps-*` content pack downloads raw OpenStreetMap
   `.osm.pbf` source data — useful, but not something a browser can render,
