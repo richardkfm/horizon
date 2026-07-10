@@ -34,6 +34,7 @@ class Category(StrEnum):
     cooking = "cooking"
     calculations = "calculations"
     technology = "technology"
+    mobility = "mobility"
 
 
 class JourneyGuideLink(SQLModel, table=True):
