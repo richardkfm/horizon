@@ -43,7 +43,7 @@ sustainably and without coercion.
 <img width="800" height="752" alt="horizon-full" src="https://github.com/user-attachments/assets/f9cc8906-a041-479b-88a8-86ef27c5febd" />
 
 
-**Contents:** [Features](#features) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Configuration](#configuration) · [Documentation](#documentation) · [Roadmap & changelog](#roadmap--changelog)
+**Contents:** [Features](#features) · [Screenshots](#screenshots) · [Quickstart](#quickstart-docker-recommended) · [Bare-metal](#bare-metal-run) · [Configuration](#configuration) · [Documentation](#documentation) · [Roadmap & changelog](#roadmap--changelog)
 
 ## Features
 
@@ -86,6 +86,21 @@ sustainably and without coercion.
 - **Simple, stable APIs + full CLI.** Other projects can link to plans/guides via
   the read-only [Knowledge API](docs/api.md); `horizon-admin` drives a headless
   node with the web UI switched off.
+
+## Screenshots
+
+A guide with a captioned ASCII diagram — the dark theme's glowing amber
+"terminal" treatment (the light theme renders it as a graph-paper notebook
+instead; no image file needed either way — it renders the same raw, in a CLI,
+or on the web):
+
+![A horizon guide page in dark mode, showing the reverse-wrap cordage technique with a captioned amber ASCII diagram](docs/screenshots/guide-ascii-diagram.png)
+
+The admin **Content packs** page, where an operator downloads optional
+offline resources (Wikipedia/WikEM snapshots, per-country map data) while
+online, for fully offline use afterwards:
+
+![The horizon admin Content packs page in light mode, listing downloadable offline packs with size and status](docs/screenshots/admin-content-packs.png)
 
 ## Quickstart (Docker, recommended)
 
