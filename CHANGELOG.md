@@ -21,6 +21,13 @@ Updating this changelog and the README is part of every user-facing change
   category tile wraps to the same two lines.
 
 ### Added
+- **New `mobility` category**, with three guides — keep a bicycle running
+  with basic maintenance and repairs, move heavy loads without a car
+  (wheelbarrows, handcarts, bike trailers, and load technique), and build a
+  cargo bike trailer (a buildable relative of the bakfiets that hitches to
+  any bike) — threaded together in a new "Get around and haul loads without a
+  car" step-by-step plan. Adds a new `Category` enum value, home-page tile,
+  and nav icon.
 - **Two more `technology` guides**: repair small electronics and solder
   (the general multimeter/soldering skill behind most technology repairs),
   and build a resilient mesh network (going beyond the local-network

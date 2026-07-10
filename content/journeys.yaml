@@ -231,3 +231,18 @@ journeys:
       - technology-local-network
       - technology-mesh-network
       - technology-two-way-radio
+
+  - id: sustainable-mobility-basics
+    title: Get around and haul loads without a car
+    description: >
+      Build human-powered mobility from the ground up: keep a bicycle
+      reliable, learn to move heavy loads like water and firewood without a
+      car, then build a cargo trailer that turns your bike into a serious
+      load-hauling tool.
+    category: mobility
+    difficulty: 2
+    estimated_time: "A weekend to build, then ongoing"
+    guides:
+      - mobility-bike-maintenance
+      - mobility-heavy-loads
+      - mobility-cargo-trailer

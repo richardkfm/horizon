@@ -67,6 +67,7 @@ CATEGORY_EXAMPLES = {
     "cooking": "Cook and bake plant-based meals",
     "calculations": "Size a system, a room, or a load",
     "technology": "Set up local radio and networks",
+    "mobility": "Fix bikes and haul loads without a car",
 }
 
 
