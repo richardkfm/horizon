@@ -1,9 +1,9 @@
 <div align="center">
-
-# horizon
-
+  
 <img width="480" alt="horizon" src="https://github.com/user-attachments/assets/f61ff046-3a4b-4fec-a99c-004e312b9034" />
 
+
+# horizon
 **An offline-first autonomy node for basic human skills.**
 
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-blue.svg)](LICENSE)
