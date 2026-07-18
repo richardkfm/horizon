@@ -246,3 +246,22 @@ journeys:
       - mobility-bike-maintenance
       - mobility-heavy-loads
       - mobility-cargo-trailer
+
+  - id: language-and-communication
+    title: Understand and be understood, in any language
+    description: >
+      Build communication from first contact up: get through to someone with
+      no shared language, grow a core of shared phrases, put numbers and
+      measures to work in trade, include deaf neighbours with signs and
+      pictograms everyone can read, teach reading and writing, and keep a
+      local language alive for the next generation.
+    category: language
+    difficulty: 2
+    estimated_time: "Ongoing practice"
+    guides:
+      - language-across-barriers
+      - language-core-phrases
+      - language-numbers-and-measures
+      - language-signs-and-pictograms
+      - language-teach-literacy
+      - language-preserve-a-language
