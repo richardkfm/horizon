@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Maps — horizon{% endblock %}
+{% block content_class %} content-wide{% endblock %}
 {% block content %}
 <section class="guides-intro">
   <h1>Maps</h1>
@@ -10,10 +11,13 @@
 </section>
 
 {% if packs %}
-<ul class="link-list">
+<ul class="card-grid">
   {% for pack in packs %}
   <li>
-    <a href="/maps/{{ pack.id }}">{{ pack.title }}</a>
+    <a href="/maps/{{ pack.id }}">
+      <span class="card-title">{{ pack.title }}</span>
+      {% if pack.description %}<span class="guide-summary">{{ pack.description }}</span>{% endif %}
+    </a>
   </li>
   {% endfor %}
 </ul>

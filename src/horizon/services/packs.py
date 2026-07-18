@@ -224,6 +224,7 @@ def pack_status() -> list[dict]:
         manifest = read_manifest(spec.id)
         row = spec.model_dump()
         row["installed"] = manifest is not None
+        row["in_catalog"] = True
         if manifest is not None:
             row["installed_size"] = manifest.get("size_bytes")
             row["installed_at"] = manifest.get("installed_at")
@@ -242,6 +243,7 @@ def pack_status() -> list[dict]:
                 "size_bytes": manifest.get("size_bytes"),
                 "sha256": manifest.get("sha256", ""),
                 "installed": True,
+                "in_catalog": False,
                 "installed_size": manifest.get("size_bytes"),
                 "installed_at": manifest.get("installed_at"),
             }

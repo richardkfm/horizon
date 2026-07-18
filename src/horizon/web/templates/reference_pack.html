@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ info.title }} — horizon{% endblock %}
+{% block content_class %} content-wide{% endblock %}
 {% block content %}
 <p class="breadcrumb no-print"><a href="/reference">← Reference library</a></p>
 
@@ -20,9 +21,13 @@
 
 {% if query %}
   {% if hits %}
-  <ul class="link-list">
+  <ul class="card-grid">
     {% for hit in hits %}
-    <li><a href="/reference/{{ pack_id }}/{{ hit.path }}">{{ hit.title }}</a></li>
+    <li>
+      <a href="/reference/{{ pack_id }}/{{ hit.path }}">
+        <span class="card-title">{{ hit.title }}</span>
+      </a>
+    </li>
     {% endfor %}
   </ul>
   {% else %}
