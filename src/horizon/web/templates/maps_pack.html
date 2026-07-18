@@ -17,6 +17,7 @@
 <div
   id="map-viewer"
   class="map-viewer no-print"
+  role="region"
   aria-label="Interactive offline map of {{ title }}"
   data-tiles-path="/maps/{{ pack_id }}/tiles/{z}/{x}/{y}.pbf"
   {% if info.bounds %}data-bounds="{{ info.bounds | join(',') }}"{% endif %}

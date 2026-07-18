@@ -45,6 +45,16 @@ Updating this changelog and the README is part of every user-facing change
   there installed and inert.
 
 ### Changed
+- **Small interaction-feedback and accessibility fixes from the UX backlog
+  (`docs/BACKLOG.md` P1).** The admin pack rows' Remove/Download buttons now
+  disable themselves while the request is in flight (`hx-disabled-elt`) —
+  the one htmx surface without a visible pending state; a reference pack's
+  search results now start with a visible match-count heading and label the
+  results grid for screen readers; and the offline map viewer's container
+  gained `role="region"`, turning its existing `aria-label` into a real
+  landmark. An audit confirmed the remaining suspected gaps (missing empty
+  states on checklists/recommend/assistant) were already covered, and the
+  backlog now records that.
 - **Reference library and Maps index pages now use the same responsive card
   grid as guides/journeys/checklists.** The two newest features were still
   plain link lists (the pre-v0.7 pattern): `/reference` and `/maps` pack
