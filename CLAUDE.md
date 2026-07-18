@@ -197,7 +197,7 @@ These are horizon's integration surface; preserve backward compatibility:
 
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,
-`cooking`, `calculations`, `technology` (see `models.Category`). Adding a category is a small code change (the `Category`
+`cooking`, `calculations`, `technology`, `mobility` (see `models.Category`). Adding a category is a small code change (the `Category`
 enum, plus a `CATEGORY_EXAMPLES` line in `web/routes.py` and an SVG icon in
 `web/templates/partials/_icons.html`); routes, API, seeding, and the admin
 dashboard auto-discover it. A category needs guides seeded in the same
