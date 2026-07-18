@@ -111,9 +111,12 @@ Editorial decisions already made (don't relitigate):
 
 ### mobility
 
-- [ ] *Move people and goods with a working animal* — harnessing, care,
+- [x] *Move people and goods with a working animal* — harnessing, care,
   load limits; non-lethal working use only, never food.
-- [ ] *Move by water: rafts and small boats* for communities near water.
+  *(`mobility-working-animals`, with an explicit partners-never-food Note.)*
+- [x] *Move by water: rafts and small boats* for communities near water.
+  *(`mobility-water-transport`: rafts, small boats, rope ferries, and a
+  prominent cold-water/overloading Risk callout.)*
 
 ### calculations
 
