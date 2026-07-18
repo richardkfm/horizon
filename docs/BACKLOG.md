@@ -65,13 +65,14 @@ restated so nobody re-derives them):
   classes is not verification. *(Done alongside the P0 work: Playwright at
   375×812 and 1280×800 with fixture packs, zero overflow, screenshots
   eyeballed; cards are full-width padded tap targets.)*
-- [ ] **"Part of a plan" breadcrumb on guide pages.** A reader landing on a
-  guide from search/recommend can't see it belongs to a step-by-step plan;
-  surface a small "part of *Off-grid power*" link on the guide detail page.
-- [ ] **Keep low-power-critical widgets on plain JS.** The nav/theme/a11y
-  toggles in `base.html` are deliberately plain JS (not Alpine) so they
-  work in low-power mode. Hold that line for new widgets, and leave a
-  comment saying so where it applies, so nobody "helpfully" converts them.
+- [x] **"Part of a plan" breadcrumb on guide pages.** *(Audited: stale —
+  `guide.html` already renders a "Part of this plan:" box above the
+  article (`.guide-tracks`, fed by `in_tracks` in the route) plus "Next
+  in {plan}" links in the Read-further footer. Nothing to add.)*
+- [x] **Keep low-power-critical widgets on plain JS.** *(Audited: stale —
+  `base.html` already carries "Plain JS so it works in low-power mode"
+  comments on every such script (theme boot, nav toggle, a11y panel).
+  The convention holds; nothing to add.)*
 
 ---
 
@@ -93,14 +94,20 @@ Editorial decisions already made (don't relitigate):
 
 ### language (highest priority — thinnest, no journey, no checklist)
 
-- [ ] *Learn essential numbers, measurements, and quantities* — practical
+- [x] *Learn essential numbers, measurements, and quantities* — practical
   vocabulary distinct from the existing phrases guide.
-- [ ] *Communicate without a shared language: sign, gesture, and
+  *(`language-numbers-and-measures`)*
+- [x] *Communicate without a shared language: sign, gesture, and
   pictograms* — includes basic sign/deaf-inclusive communication.
-- [ ] *Document and preserve a local or minority language* — pairs with
+  *(`language-signs-and-pictograms`, angled toward deaf inclusion, group
+  hand signals, and posted pictograms so it doesn't duplicate
+  `language-across-barriers`.)*
+- [x] *Document and preserve a local or minority language* — pairs with
   culture's storytelling/preservation guide.
-- [ ] Once the category reaches ~5–6 guides, add a
+  *(`language-preserve-a-language`)*
+- [x] Once the category reaches ~5–6 guides, add a
   `language-and-communication` journey (the one category without one).
+  *(Added at 6 guides, threading all of them in order.)*
 
 ### mobility
 

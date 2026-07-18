@@ -14,6 +14,20 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Three new language guides and the first language step-by-step plan.**
+  The thinnest category (3 guides, and the only one with no plan) grows to
+  six: *Learn numbers, measurements, and quantities* (counting, trade, and
+  body-based measuring across a language barrier), *Communicate with signs,
+  gestures, and pictograms* (deaf and hard-of-hearing inclusion, agreed
+  group hand signals, and posted no-words-needed pictograms), and *Document
+  and preserve a local language* (recording, word-cards, and keeping a
+  minority language in daily use, with the speakers owning the record). A
+  new `language-and-communication` plan threads all six language guides
+  from first contact through preservation. From the content backlog
+  (`docs/BACKLOG.md`); two remaining P2 UX items there were audited and
+  found already shipped ("part of a plan" box on guide pages, plain-JS
+  comments in `base.html`), so the backlog's design/UX section is now done
+  except the human assistive-technology pass.
 - **A `curl`-based installer (`scripts/get-horizon.sh`) for boxes without
   `git` or Docker.** User feedback: some operators hit a wall installing
   horizon because their box has neither a `git` client nor Docker (and no
