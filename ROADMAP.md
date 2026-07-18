@@ -29,7 +29,8 @@ pure and testable.
 Milestones are vertical and shippable: each one is useful on its own. What
 comes after v0.7 isn't decided yet — see the principles below and expect this
 file to grow a new milestone as real neighbourhood deployments surface the
-next gap.
+next gap. A granular working list of candidate items (design/UX polish and
+missing guide topics) lives in [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ---
 
