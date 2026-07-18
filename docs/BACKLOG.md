@@ -35,20 +35,23 @@ restated so nobody re-derives them):
 
 ### P1 — interaction feedback & accessibility
 
-- [ ] **Consistent htmx loading states.** Only `assistant.html` and the
-  admin partials (`admin/_health_body.html`, `admin/_pack_row.html`) use
-  `hx-indicator`/`hx-disabled-elt` today. Audit every other htmx
-  interaction (guide search first) and give each a visible pending state —
-  on weak hardware a slow request with no feedback reads as broken.
-- [ ] **Explicit empty states everywhere.** `.empty` treatment exists in
-  `guides.html` and `journey_detail.html` (and minimal copy in
-  reference/maps); add a friendly "nothing here yet" state to
-  `checklists.html`, `recommend.html`, and the assistant's
-  `partials/_answer.html` instead of default blankness.
-- [ ] **Extend page-level ARIA to reference & maps.** `base.html` provides
-  the shell landmarks, but the newest pages (`reference_*.html`,
-  `maps_*.html`) carry no `aria-*` of their own. Apply the established
-  pattern: labelled landmarks, `aria-live` on regions htmx swaps.
+- [x] **Consistent htmx loading states.** *(Audited: the app has exactly
+  three htmx surfaces — the assistant form (`hx-indicator`), the admin
+  repair forms (`hx-disabled-elt`), and the admin pack rows. Guide search
+  is a plain GET form, not htmx. The one real gap was the pack rows'
+  Remove/Download buttons, which now disable themselves while the request
+  is in flight.)*
+- [x] **Explicit empty states everywhere.** *(Audited: this was stale —
+  `checklists.html` ("No checklists yet"), `recommend.html` (the
+  no-match suggestions box), and `partials/_answer.html` ("No local
+  guides matched this question") all already have explicit empty states,
+  as do guides, journeys, reference, and maps. Nothing to add.)*
+- [x] **Extend page-level ARIA to reference & maps.** *(The pack search
+  form already had `role="search"` + hidden labels. Added: a visible
+  results-count heading and `aria-label` on the search-results grid in
+  `reference_pack.html`, and `role="region"` on the map viewer so its
+  existing `aria-label` actually creates a landmark. The pages are
+  full-page-load, not htmx swaps, so no `aria-live` is needed.)*
 - [ ] **One real assistive-technology pass.** The v0.6 accessibility work
   was structural/automated plus a keyboard walkthrough; ROADMAP.md itself
   flags that NVDA/JAWS/VoiceOver testing hasn't happened. Walk the core

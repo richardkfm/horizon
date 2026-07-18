@@ -21,7 +21,10 @@
 
 {% if query %}
   {% if hits %}
-  <ul class="card-grid">
+  <h2 class="results-heading">
+    {{ hits | length }} matching article{{ "s" if hits | length != 1 }}
+  </h2>
+  <ul class="card-grid" aria-label="Search results">
     {% for hit in hits %}
     <li>
       <a href="/reference/{{ pack_id }}/{{ hit.path }}">

@@ -46,10 +46,12 @@
     {% elif pack.installed %}
       {% if pack.map_rendered %}<a class="btn" href="/maps/{{ pack.id }}">View map</a>{% endif %}
       <button class="btn" hx-post="/admin/packs/{{ pack.id }}/remove"
-              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML">Remove</button>
+              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML"
+              hx-disabled-elt="this">Remove</button>
     {% elif pack.url %}
       <button class="btn" hx-post="/admin/packs/{{ pack.id }}/download"
-              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML">Download</button>
+              hx-target="#pack-row-{{ pack.id }}" hx-swap="outerHTML"
+              hx-disabled-elt="this">Download</button>
     {% endif %}
   </td>
 </tr>
