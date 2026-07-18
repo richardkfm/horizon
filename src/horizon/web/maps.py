@@ -71,7 +71,17 @@ def maps_index(request: Request) -> HTMLResponse:
             info = mbtiles.pack_info(path)
         except mbtiles.MBTilesUnavailableError:
             continue
-        rows.append({"id": row["id"], "title": row["title"], "map_name": info.name})
+        # The catalog description is visitor-facing copy; the fallback
+        # description on uncataloged packs is an operator note, so skip it.
+        description = row.get("description", "") if row.get("in_catalog") else ""
+        rows.append(
+            {
+                "id": row["id"],
+                "title": row["title"],
+                "description": description,
+                "map_name": info.name,
+            }
+        )
 
     return templates.TemplateResponse(request, "maps_index.html", {"packs": rows})
 

@@ -45,6 +45,17 @@ Updating this changelog and the README is part of every user-facing change
   there installed and inert.
 
 ### Changed
+- **Reference library and Maps index pages now use the same responsive card
+  grid as guides/journeys/checklists.** The two newest features were still
+  plain link lists (the pre-v0.7 pattern): `/reference` and `/maps` pack
+  listings and the in-pack article search results on `/reference/{pack}` now
+  render as `.card-grid` cards, and all three pages use the wider browsing
+  shell. Map pack cards also show the pack's catalog description; an
+  installed pack missing from the catalog shows no description on the public
+  page instead of leaking the operator-facing "not in the current catalog"
+  note (`pack_status()` rows gained an `in_catalog` flag for this — additive,
+  no HTTP API impact). Verified at phone (375×812) and laptop widths with
+  zero horizontal overflow.
 - **Visual refresh — the solarpunk hero scene, glowing ASCII diagrams, and a
   wider browsing shell.** Three UI-only changes (no HTTP API or content-format
   impact):

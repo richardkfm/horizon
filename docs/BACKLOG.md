@@ -24,12 +24,12 @@ restated so nobody re-derives them):
 
 ### P0 — parity gaps (newest features visibly behind the rest)
 
-- [ ] **Bring the reference library up to the card treatment.**
+- [x] **Bring the reference library up to the card treatment.**
   `reference_index.html` and `reference_pack.html` still render plain
   `<ul class="link-list">` while guides/journeys/checklists moved to the
   responsive `.card-grid` in v0.7. Reuse the existing card markup/classes
   from `guides.html` / `checklists.html` — no new CSS system.
-- [ ] **Same pass for the maps index.** `maps_index.html` lists packs as a
+- [x] **Same pass for the maps index.** `maps_index.html` lists packs as a
   bare link list; the viewer itself (`maps_pack.html`) shipped, but its
   front door didn't get the v0.7 "card grids instead of link lists" fix.
 
@@ -57,9 +57,11 @@ restated so nobody re-derives them):
 
 ### P2 — polish, once P0/P1 land
 
-- [ ] **Verify the retrofitted grids on a phone.** Touch-target size and
+- [x] **Verify the retrofitted grids on a phone.** Touch-target size and
   overflow at 375×812 on the new reference/maps card grids — matching CSS
-  classes is not verification.
+  classes is not verification. *(Done alongside the P0 work: Playwright at
+  375×812 and 1280×800 with fixture packs, zero overflow, screenshots
+  eyeballed; cards are full-width padded tap targets.)*
 - [ ] **"Part of a plan" breadcrumb on guide pages.** A reader landing on a
   guide from search/recommend can't see it belongs to a step-by-step plan;
   surface a small "part of *Off-grid power*" link on the guide detail page.
