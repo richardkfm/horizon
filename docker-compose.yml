@@ -24,7 +24,7 @@
 services:
   horizon:
     build: .
-    image: horizon:0.7.0
+    image: horizon:0.8.0
     restart: unless-stopped
     ports:
       - "8080:8080"
