@@ -14,6 +14,17 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Three new calculations guides.** *Track a household or group's stores
+  and supplies* (a paper stock book with running totals, minimum levels,
+  and the use-rate and days-remaining divisions), *Calculate water flow,
+  use, and storage* (the bucket test, a per-person/animal/garden daily
+  budget, storage-days and rain-catchment arithmetic, and a
+  conserve-before-develop closing consistent with real sustainability),
+  and *Work out a fair trade or barter value* (materials-plus-time
+  costing, a staple-unit yardstick with a posted trade board, carrying
+  small IOUs, and an explicit note that scarcity and urgency are reasons
+  to help, not leverage — values stay in content). Completes the
+  calculations section of the content backlog (`docs/BACKLOG.md`).
 - **Two new mobility guides.** *Move people and goods with a working animal*
   — choosing between donkey/mule/horse/ox, balanced pack loading and padded
   harness fit, daily care, and patient handling, framed explicitly as
