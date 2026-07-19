@@ -111,18 +111,27 @@ Editorial decisions already made (don't relitigate):
 
 ### mobility
 
-- [ ] *Move people and goods with a working animal* — harnessing, care,
+- [x] *Move people and goods with a working animal* — harnessing, care,
   load limits; non-lethal working use only, never food.
-- [ ] *Move by water: rafts and small boats* for communities near water.
+  *(`mobility-working-animals`, with an explicit partners-never-food Note.)*
+- [x] *Move by water: rafts and small boats* for communities near water.
+  *(`mobility-water-transport`: rafts, small boats, rope ferries, and a
+  prominent cold-water/overloading Risk callout.)*
 
 ### calculations
 
-- [ ] *Track a household or co-op's stores and inventory* — simple
+- [x] *Track a household or co-op's stores and inventory* — simple
   bookkeeping; pairs with the `share-and-barter` checklist.
-- [ ] *Calculate water flow, consumption, and storage needs* — water is a
+  *(`calc-inventory-tracking`: stock book, minimum levels, use-rate and
+  days-remaining divisions, FIFO, shared-store habits.)*
+- [x] *Calculate water flow, consumption, and storage needs* — water is a
   headline category with no rate math anywhere.
-- [ ] *Work out a fair trade or barter value* — bridges calculations and
+  *(`calc-water-budget`: bucket test, per-person/animal/garden budget,
+  storage sizing and rain-catchment yield, conserve-before-develop.)*
+- [x] *Work out a fair trade or barter value* — bridges calculations and
   cooperation's resource-sharing content.
+  *(`calc-fair-trade-value`: materials+time costing, a staple-unit
+  yardstick and posted trade board, IOUs, anti-leverage values note.)*
 
 ### cooking
 

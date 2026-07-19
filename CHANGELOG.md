@@ -14,6 +14,28 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Three new calculations guides.** *Track a household or group's stores
+  and supplies* (a paper stock book with running totals, minimum levels,
+  and the use-rate and days-remaining divisions), *Calculate water flow,
+  use, and storage* (the bucket test, a per-person/animal/garden daily
+  budget, storage-days and rain-catchment arithmetic, and a
+  conserve-before-develop closing consistent with real sustainability),
+  and *Work out a fair trade or barter value* (materials-plus-time
+  costing, a staple-unit yardstick with a posted trade board, carrying
+  small IOUs, and an explicit note that scarcity and urgency are reasons
+  to help, not leverage — values stay in content). Completes the
+  calculations section of the content backlog (`docs/BACKLOG.md`).
+- **Two new mobility guides.** *Move people and goods with a working animal*
+  — choosing between donkey/mule/horse/ox, balanced pack loading and padded
+  harness fit, daily care, and patient handling, framed explicitly as
+  animals-as-partners (carrying, pulling, riding — never food) with sharing
+  one animal across households as the closing suggestion. *Move people and
+  goods by water* — barrel rafts on still water first, flat-bottomed cargo
+  boats, rope ferries for a regular crossing, and reading the water, led by
+  a prominent Risk callout on cold water and overloading. Both use ASCII
+  figures and cross-link the existing heavy-loads, knots, repair, and
+  commons guides. From the content backlog (`docs/BACKLOG.md`), whose
+  mobility section is now complete.
 - **Three new language guides and the first language step-by-step plan.**
   The thinnest category (3 guides, and the only one with no plan) grows to
   six: *Learn numbers, measurements, and quantities* (counting, trade, and
