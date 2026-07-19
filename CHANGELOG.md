@@ -14,6 +14,16 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Added
+- **Three new cooking guides.** *Cook with a solar oven* (a scrap-built box
+  cooker — catch/trap/hold, what suits slow solar heat, and pairing with a
+  haybox; the clean-energy stove, cross-linked from the solar guides),
+  *Cook with foraged and wild food* (sustainable harvesting rules and the
+  wash/blanch/leach/cook pipeline with nettles, acorns, and rosehips as
+  worked examples; identification stays with the survival foraging guide),
+  and *Ferment beyond pickles: vinegar and lacto-ferments* (the 2% brine
+  method for any vegetable, scrap-fruit vinegar with a reusable mother, and
+  a rescue-or-reject troubleshooting section) — deepening the thinnest
+  remaining category from 4 to 7 guides.
 - **Three new calculations guides.** *Track a household or group's stores
   and supplies* (a paper stock book with running totals, minimum levels,
   and the use-rate and days-remaining divisions), *Calculate water flow,
