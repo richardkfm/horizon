@@ -11,11 +11,14 @@ panel that lets an operator diagnose, repair, and re-seed a node entirely from
 the browser (v0.4), printable checklists, guide figures/ASCII diagrams, more
 medical and safety guides, an `horizon-content import` command for turning
 outside material into local guides (v0.5), the design system applied
-consistently everywhere plus an accessibility & responsive pass (v0.6), and —
-as of v0.7 — an in-browser **reference library** for downloaded offline
-content packs, a solarpunk landing hero, and a broad content expansion across
-survival, health, food, and emergencies. horizon is now a cohesive,
-comfortable, maintainable node ready to hand to a neighbour.
+consistently everywhere plus an accessibility & responsive pass (v0.6), an
+in-browser **reference library** for downloaded offline content packs, a
+solarpunk landing hero, and a broad content expansion across survival, health,
+food, and emergencies (v0.7), and — as of v0.8 — a built-in **map viewer** for
+rendered offline map packs, a `curl`-based installer for boxes without
+`git`/Docker, and new guides across cooking, calculations, mobility, and
+language. horizon is now a cohesive, comfortable, maintainable node ready to
+hand to a neighbour.
 
 The focus stays **lean and simple**: deepen the content so it actually helps
 you *choose*, and give the admin the few tools they need to keep a node
@@ -27,12 +30,47 @@ runtime, runnable on weak hardware, values live in content, and the core stays
 pure and testable.
 
 Milestones are vertical and shippable: each one is useful on its own. What
-comes after v0.7 isn't decided yet — see the principles below and expect this
+comes after v0.8 isn't decided yet — see the principles below and expect this
 file to grow a new milestone as real neighbourhood deployments surface the
 next gap. A granular working list of candidate items (design/UX polish and
 missing guide topics) lives in [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ---
+
+## Where we are — v0.8.0 (shipped)
+
+- **A built-in map viewer (`/maps`).** Downloading a `maps-*` content pack
+  used to be a dead end — raw OpenStreetMap `.osm.pbf` source data with no
+  in-node way to view it, and rendering tiles is too heavy a batch job for
+  weak/Pi-class hardware. horizon instead reads an `.mbtiles` file the
+  operator renders once, off the node, with Planetiler, and serves it with
+  the newly vendored MapLibre GL JS (roads, water, buildings, land cover — no
+  text labels yet). The **Maps** nav item and the admin "View map" link only
+  appear once a pack has an actual rendered basemap.
+- **A `curl`-based installer** (`scripts/get-horizon.sh`) for boxes with
+  neither `git` nor Docker — downloads and extracts a source tarball over
+  HTTPS, no root, nothing else runs on its own. The README's Quickstart now
+  leads with it, ahead of the Docker and bare-metal paths.
+- **Around a dozen new guides**, closing out the content backlog's cooking,
+  calculations, mobility, and language sections: solar-oven cooking, foraged
+  food, fermenting beyond pickles; stock-keeping, water-budget, and
+  fair-trade-value calculations; working-animal and water transport; and a
+  new `language-and-communication` step-by-step plan threading six language
+  guides from first contact through preservation.
+- **Small interaction, accessibility, and layout fixes** from the UX backlog:
+  htmx pending states on admin pack buttons, a labelled search-results heading
+  on the reference library, a map-viewer landmark region, the reference
+  library and maps index pages moved onto the same responsive card grid as
+  guides/journeys/checklists, and the `docker-compose.yml` image tag fixed
+  after drifting two releases behind `pyproject.toml`.
+- **A visual refresh**: a fuller solarpunk landing scene, a proper drawing
+  surface for ASCII diagrams in both themes, and a wider browsing shell for
+  home/guides/plans/checklists — no HTTP API or content-format impact.
+
+The gap we'll close next: the map viewer has no text labels yet (no
+glyph/sprite server), so places and streets aren't named on the rendered map —
+that's the natural next step once a lightweight offline label/glyph pipeline
+is chosen.
 
 ## Where we are — v0.7.0 (shipped)
 

@@ -13,6 +13,8 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.8.0] — 2026-07-19
+
 ### Added
 - **Three new cooking guides.** *Cook with a solar oven* (a scrap-built box
   cooker — catch/trap/hold, what suits slow solar heat, and pairing with a

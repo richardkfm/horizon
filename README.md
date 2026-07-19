@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.7.0](https://img.shields.io/badge/status-v0.7.0-blue.svg)](#roadmap--changelog)
+[![Status: v0.8.0](https://img.shields.io/badge/status-v0.8.0-blue.svg)](#roadmap--changelog)
 
 </div>
 
@@ -30,13 +30,14 @@ to show how much practical know-how we've quietly outsourced to the internet.
 horizon puts those basic human skills back within reach: living well off-grid,
 sustainably and without coercion.
 
-> **Status:** v0.7.0. The v0.1 scaffold (data model, APIs, content layout) is
+> **Status:** v0.8.0. The v0.1 scaffold (data model, APIs, content layout) is
 > complete, with a design system, light/dark theming, an expanded content
 > library, printable checklists, a UX layer for non-technical neighbours, an
-> accessibility pass (v0.6), and — new in v0.7 — an in-browser **reference
-> library** for downloaded offline-Wikipedia/WikEM content packs, a solarpunk
-> landing hero, and around twenty new guides (camping, disaster response,
-> navigation, plant diagnosis) threaded into new step-by-step plans. See
+> accessibility pass (v0.6), an in-browser reference library and a broad
+> content expansion (v0.7), and — new in v0.8 — a built-in **map viewer**, a
+> `curl`-based installer for boxes without `git`/Docker, and around a dozen new
+> guides (cooking, calculations, mobility, language) threaded into new
+> step-by-step plans. See
 > [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md).
 
 
@@ -212,11 +213,12 @@ system with dark/light theming, a deeper "what to pick" content library, admin
 **check & repair** diagnostics with one-click repairs (v0.4), printable
 **checklists**, guide **figures**/**ASCII diagrams**, an `horizon-content import`
 command (v0.5), the design system applied across every page plus an
-accessibility pass (v0.6), and — new in v0.7 — an in-browser **reference
-library** for downloaded ZIM content packs, a solarpunk landing hero, and a
-broad content expansion across survival, health, food, and emergencies. The
-path from here stays lean and open (no accounts, no profiles, no tracking) —
-see **[ROADMAP.md](ROADMAP.md)** for what's next and
+accessibility pass (v0.6), an in-browser **reference library** for downloaded
+ZIM content packs and a solarpunk landing hero (v0.7), and — new in v0.8 — a
+built-in **map viewer** for rendered offline map packs, a `curl`-based
+installer, and a round of new guides across cooking, calculations, mobility,
+and language. The path from here stays lean and open (no accounts, no
+profiles, no tracking) — see **[ROADMAP.md](ROADMAP.md)** for what's next and
 **[CHANGELOG.md](CHANGELOG.md)** for notable changes.
 
 ## License
