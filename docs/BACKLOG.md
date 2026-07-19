@@ -135,12 +135,19 @@ Editorial decisions already made (don't relitigate):
 
 ### cooking
 
-- [ ] *Cook with a solar oven* — no solar cooking guide exists anywhere;
+- [x] *Cook with a solar oven* — no solar cooking guide exists anywhere;
   strongest clean-energy fit. Cross-link from energy.
-- [ ] *Cook with foraged and wild food* — pairs with survival's wild-food
+  *(`cooking-solar-oven`: scrap box-cooker build + usage; the build lives
+  here, settling the open energy-section question below.)*
+- [x] *Cook with foraged and wild food* — pairs with survival's wild-food
   identification guide.
-- [ ] *Ferment beyond pickles: vinegar and lacto-ferments* — deepens the
+  *(`cooking-foraged-food`: post-identification only — sustainable-harvest
+  rules, wash/blanch/leach/cook pipeline, nettles/acorns/hips; defers all
+  ID to `survival-foraging`.)*
+- [x] *Ferment beyond pickles: vinegar and lacto-ferments* — deepens the
   existing drying/fermenting/pickling guide.
+  *(`cooking-ferments`: 2% brine method for any vegetable, scrap vinegar +
+  mother, rescue-or-reject troubleshooting.)*
 
 ### water
 
@@ -155,8 +162,10 @@ Editorial decisions already made (don't relitigate):
   renewable, directly displaces combustion generators.
 - [ ] *Use human and pedal power* — treadle tools, bike generators; the
   cheap low-tech complement to solar/wind.
-- [ ] Solar-oven build detail can live here if the cooking guide above
+- [x] Solar-oven build detail can live here if the cooking guide above
   stays usage-focused — decide when writing, don't duplicate.
+  *(Decided: the build is simple enough to live inside `cooking-solar-oven`;
+  no separate energy guide, energy guides cross-linked from there.)*
 
 ### food
 
