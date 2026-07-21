@@ -13,6 +13,15 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Changed
+- **Heading font.** `h1`/`h2`/`h3` now use a `Charter, "Bitstream Charter",
+  Constantia, "Noto Serif", "Liberation Serif", serif` stack instead of
+  `"Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
+  "Times New Roman", serif` — still an offline, system-font-only serif per
+  platform, but skips the generic Georgia/Times New Roman fallback for a
+  more distinctive, book-quality reading serif (Charter on macOS/iOS,
+  Constantia on Windows, Noto Serif on most Linux desktops).
+
 ## [0.8.0] — 2026-07-19
 
 ### Added

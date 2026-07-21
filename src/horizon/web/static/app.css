@@ -58,10 +58,15 @@
   --diagram-depth: inset 0 1px 3px rgba(31, 28, 24, 0.05);
 
   /* Type: system serif for display, system sans for everything else — both
-     resolve to fonts already on the device, so the UI stays fully offline. */
+     resolve to fonts already on the device, so the UI stays fully offline.
+     Headings deliberately skip the generic Georgia/Times New Roman fallback
+     chain (too "default browser") in favour of each platform's own
+     book-quality text serif — Charter on macOS/iOS, Constantia on Windows,
+     Noto Serif on most Linux desktops — for a calmer, more distinctive
+     printed-guide feel without reaching for anything stylised. */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
-    "Times New Roman", serif;
+  --font-serif: Charter, "Bitstream Charter", Constantia, "Noto Serif",
+    "Liberation Serif", serif;
   /* Soft, rounded stack for the wordmark, echoing the horizon logo. Resolves to
      fonts already on the device, so the brand stays fully offline. */
   --font-rounded: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN",
