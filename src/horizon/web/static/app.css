@@ -57,16 +57,17 @@
   --diagram-glow: none;
   --diagram-depth: inset 0 1px 3px rgba(31, 28, 24, 0.05);
 
-  /* Type: system serif for display, system sans for everything else — both
-     resolve to fonts already on the device, so the UI stays fully offline.
-     Headings deliberately skip the generic Georgia/Times New Roman fallback
-     chain (too "default browser") in favour of each platform's own
-     book-quality text serif — Charter on macOS/iOS, Constantia on Windows,
-     Noto Serif on most Linux desktops — for a calmer, more distinctive
-     printed-guide feel without reaching for anything stylised. */
+  /* Type: system sans for body copy, a separate system sans for headings —
+     both resolve to fonts already on the device, so the UI stays fully
+     offline. Headings deliberately avoid --font-sans's system-ui/Segoe/Roboto
+     stack (too close to the generic "OS chrome" look) in favour of each
+     platform's older humanist/grotesque workhorse — Optima or Lucida Grande
+     on macOS/iOS, Franklin Gothic Medium or Trebuchet MS on Windows, Noto
+     Sans on most Linux desktops — plain and sturdy rather than geometric or
+     trendy. */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: Charter, "Bitstream Charter", Constantia, "Noto Serif",
-    "Liberation Serif", serif;
+  --font-heading: Optima, "Lucida Grande", "Franklin Gothic Medium",
+    "Trebuchet MS", "Noto Sans", sans-serif;
   /* Soft, rounded stack for the wordmark, echoing the horizon logo. Resolves to
      fonts already on the device, so the brand stays fully offline. */
   --font-rounded: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN",
@@ -220,7 +221,7 @@ body {
 /* Typography -------------------------------------------------------------- */
 
 h1, h2, h3 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;

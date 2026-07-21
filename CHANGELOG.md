@@ -14,13 +14,15 @@ Updating this changelog and the README is part of every user-facing change
 ## [Unreleased]
 
 ### Changed
-- **Heading font.** `h1`/`h2`/`h3` now use a `Charter, "Bitstream Charter",
-  Constantia, "Noto Serif", "Liberation Serif", serif` stack instead of
-  `"Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
-  "Times New Roman", serif` — still an offline, system-font-only serif per
-  platform, but skips the generic Georgia/Times New Roman fallback for a
-  more distinctive, book-quality reading serif (Charter on macOS/iOS,
-  Constantia on Windows, Noto Serif on most Linux desktops).
+- **Heading font.** `h1`/`h2`/`h3` moved off the old
+  `"Iowan Old Style"/Palatino/Georgia/Times New Roman` serif stack to a new
+  `--font-heading` token: `Optima, "Lucida Grande", "Franklin Gothic Medium",
+  "Trebuchet MS", "Noto Sans", sans-serif`. Kept separate from body copy's
+  `--font-sans` (`system-ui`/Segoe/Roboto) so headings don't just read as
+  default OS chrome — each platform's own older humanist/grotesque sans
+  (Optima or Lucida Grande on macOS/iOS, Franklin Gothic Medium or Trebuchet
+  MS on Windows, Noto Sans on most Linux desktops) instead of anything
+  geometric or trendy. Still 100% system fonts, no new downloads.
 
 ## [0.8.0] — 2026-07-19
 
