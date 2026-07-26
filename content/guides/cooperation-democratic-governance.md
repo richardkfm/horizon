@@ -91,3 +91,6 @@ change.
   group-decisions guide.
 - Culture and shared activity keep a group's trust strong between formal
   decisions: see the share-culture-together guides.
+- If a faction or individual is trying to steer the group's purpose or
+  values rather than just its offices, see resist a faction trying to
+  capture the group.

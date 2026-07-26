@@ -27,5 +27,12 @@ cold, air raids, armed conflict, pandemics, or other disasters).
 - [ ] **Centre mutual aid.** Checking on neighbours and pooling resources is a core
       survival measure and reflects horizon's cooperative, anti-exploitation
       values.
-- [ ] **Cite local guides** (water, health, shelter, low-tech solar) for the
-      practical skills an emergency depends on.
+- [ ] **Community security is coordination, not confrontation.** When the
+      threat is a hostile person or group rather than a natural or
+      infrastructure emergency, frame the response as communication,
+      lighting, presence, and mutual aid — never as an armed patrol,
+      militia, or vigilante action. horizon does not deal in weapons or
+      defence framing.
+- [ ] **Cite local guides** (water, health, shelter, low-tech solar, and
+      coordinating community security) for the practical skills an
+      emergency depends on.

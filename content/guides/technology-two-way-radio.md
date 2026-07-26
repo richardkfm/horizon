@@ -79,3 +79,5 @@ raise the antenna before buying a more powerful radio*
   through a long blackout.
 - Agree who's reachable and when as part of your group's own coordination:
   see share resources and manage a group's commons.
+- Radio is one part of a community-security communication network: see
+  coordinate community security against outside threats.

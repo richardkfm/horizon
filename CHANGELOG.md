@@ -13,6 +13,28 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+### Added
+- **Three new guides on coercion, ideological capture, and outside
+  hostility, plus a step-by-step plan threading them together.** *Protect
+  someone from coercion or threats inside the group* (cooperation) fills a
+  gap the conflict-resolution guide named but never filled — boundary-setting
+  and safety planning for a member using intimidation, coercion, or force,
+  distinct from ordinary two-sided mediation. *Resist a faction trying to
+  capture the group* (cooperation) covers recognising and countering
+  ideological capture of a group from within through transparency and fair
+  process, explicitly rejecting purges, surveillance, or any move toward
+  weapons/armed patrols. *Coordinate community security against outside
+  threats* (emergencies) covers non-violent, non-weapon, non-vigilante
+  coordination — communication networks, presence, de-escalation — against a
+  hostile outside individual or group, including hate-motivated targeting;
+  distinct in scope from the existing armed-conflict/war guide. A new
+  *Guard your group against coercion and outside hostility* plan threads all
+  three into a person-to-group-to-community progression. The
+  `cooperation-consensus` and `emergency-safety` md skills were extended with
+  matching guidance (coercion is a safety issue not a dispute, guard against
+  ideological capture, and frame community security as coordination, never
+  confrontation).
+
 ### Changed
 - **Heading font.** `h1`/`h2`/`h3` moved off the old
   `"Iowan Old Style"/Palatino/Georgia/Times New Roman` serif stack to a new

@@ -78,3 +78,6 @@ ordinary times — not improvised under pressure.
   group.
 - For the ongoing system a shared resource needs day to day, see share
   resources and manage a group's commons.
+- If the threat comes from a hostile outside individual or group rather
+  than a neighbour you're building trust with, see coordinate community
+  security against outside threats.

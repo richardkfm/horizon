@@ -61,3 +61,11 @@ seeking it.
   what carries communities through conflict.
 - **Seek out humanitarian help** — aid agencies, medics, and registration points —
   for shelter, supplies, and reuniting with separated family.
+
+## Where to go next
+
+- For everyday interpersonal or small-scale security threats (a hostile
+  individual, harassment, hate-motivated targeting) rather than armed
+  conflict, see coordinate community security against outside threats.
+- For support after a frightening or violent event, see support someone
+  through shock, trauma, or grief.
