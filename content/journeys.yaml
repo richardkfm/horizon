@@ -265,3 +265,20 @@ journeys:
       - language-signs-and-pictograms
       - language-teach-literacy
       - language-preserve-a-language
+
+  - id: community-safety-from-coercion-and-hostility
+    title: Guard your group against coercion and outside hostility
+    description: >
+      Build a group's ability to protect its own people and its own purpose,
+      then extend that same protective posture outward: recognise and
+      respond to coercion or threats from someone inside the group,
+      recognise and resist a faction trying to capture the group's
+      direction, and coordinate non-violent community security against a
+      hostile outside individual or group.
+    category: cooperation
+    difficulty: 3
+    estimated_time: "A few afternoons to set up, then ongoing"
+    guides:
+      - cooperation-boundary-safety
+      - cooperation-resisting-capture
+      - emergency-community-security

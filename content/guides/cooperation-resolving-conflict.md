@@ -65,8 +65,10 @@ group stronger than before.
   single dispute — bring it to the group's governance process (recall,
   role change) rather than mediating the same conflict again and again.
 - **A safety concern** (threats, coercion, exploitation) is not a mediation
-  case — protect the person at risk first; this is what recall and boundary-
-  setting in the governance guide are for.
+  case — protect the person at risk first; see protect someone from coercion
+  or threats inside the group. Recall or a role change (see set up fair,
+  accountable governance for a group) may follow, but safety comes before
+  any process.
 - **No obligation to reconcile.** Repair does not mean the people involved
   must keep working closely together — sometimes the fair outcome is
   separating their roles, not forcing continued closeness.
@@ -77,3 +79,6 @@ group stronger than before.
   fair group decisions.
 - For conflict that keeps recurring around one role or person, see set up
   fair, accountable governance for a group.
+- If what's happening is coercion, intimidation, or a threat rather than a
+  dispute between equals, see protect someone from coercion or threats
+  inside the group.

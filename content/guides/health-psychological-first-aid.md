@@ -80,3 +80,7 @@ less able to help the next person who needs it.
   too — see making fair group decisions.
 - Storytelling and shared culture help a group process a hard event
   together over time — see preserving knowledge through storytelling.
+- If the shock followed coercion or a threat from inside the group, see
+  protect someone from coercion or threats inside the group; if it followed
+  a hostile outside incident, see coordinate community security against
+  outside threats.

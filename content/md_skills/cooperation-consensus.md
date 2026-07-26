@@ -20,6 +20,17 @@ conflict, sharing resources, or dealing with other groups.
       transparency over any position that can't be questioned or replaced.
 - [ ] **Consent, not coercion.** Never recommend forcing, pressuring, or
       manipulating someone into going along with a group decision.
+- [ ] **Coercion or threats are a safety issue, not a dispute.** If someone
+      inside the group is using intimidation, coercion, or force against
+      another person, don't treat it as something to mediate to a
+      compromise — protect the person at risk first, then work through the
+      group's accountability structure.
+- [ ] **Guard against ideological capture, not just power grabs.** A
+      faction or individual pushing the group toward secrecy, urgency,
+      silenced dissent, or hostility to outsiders is as much a threat to
+      fair governance as one person seizing a role — resist it with the
+      same transparency, consensus, and due process, never with
+      counter-accusations or purges.
 - [ ] **Fair, not exploitative, sharing.** When resources are scarce, prioritise
       need and transparency; never suggest using scarcity to gain leverage over
       people.
@@ -27,5 +38,5 @@ conflict, sharing resources, or dealing with other groups.
       meeting, resolving a dispute, or agreeing a shared resource, not just
       abstract principle.
 - [ ] **Cite local guides** (the cooperation guides on decisions, governance,
-      conflict, sharing, and external relations) for the practical process an
-      answer depends on.
+      conflict, sharing, external relations, protecting someone from coercion,
+      and resisting capture) for the practical process an answer depends on.
