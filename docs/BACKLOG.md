@@ -1,7 +1,8 @@
 # Backlog — design/UX polish & missing guides
 
-A prioritized working list for what comes after v0.7: first the design/UX
-rough edges still standing, then the guide topics the library is missing.
+A prioritized working list for what comes after the last shipped release
+(v0.8): first the design/UX rough edges still standing, then the guide topics
+the library is missing.
 [ROADMAP.md](../ROADMAP.md) stays the high-level milestone story; this file
 holds the granular items to pick from.
 
@@ -78,9 +79,10 @@ restated so nobody re-derives them):
 
 ## Part 2 — Missing guides
 
-Current shape of the library: 94 guides across 15 categories. Thinnest:
-language (3), mobility (3), calculations (4), cooking (4). No journey or
-checklist covers `language` yet.
+Current shape of the library: 108 guides across 15 categories, all of them
+covered by a step-by-step plan. Thinnest now: water, energy, shelter, culture,
+crafts, and mobility (5 guides each). Eight categories still have no checklist
+(see *Checklists to add* below).
 
 Editorial decisions already made (don't relitigate):
 
@@ -92,7 +94,7 @@ Editorial decisions already made (don't relitigate):
 - As ever: nothing that requires killing an animal, no weapons/war prep,
   clean energy over combustion wherever a clean option can do the job.
 
-### language (highest priority — thinnest, no journey, no checklist)
+### language (done in v0.8 — was the thinnest category, and had no plan)
 
 - [x] *Learn essential numbers, measurements, and quantities* — practical
   vocabulary distinct from the existing phrases guide.

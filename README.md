@@ -88,6 +88,8 @@ sustainably and without coercion.
 - **Maintainable from the browser.** A token-gated admin panel browses the whole
   library and a **Check & repair** page diagnoses the node in plain language,
   offers one-click repairs, and shows a recent-events feed — no SSH or restart.
+  An **Import content** wizard turns a WikiHow how-to page or a book file into a
+  local guide, and content packs download in the background with live progress.
 - **Simple, stable APIs + full CLI.** Other projects can link to plans/guides via
   the read-only [Knowledge API](docs/api.md); `horizon-admin` drives a headless
   node with the web UI switched off.

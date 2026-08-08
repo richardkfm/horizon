@@ -13,16 +13,24 @@ running.
 
 | Method & path | Purpose |
 | --- | --- |
-| `GET /api/journeys` | List the curated step-by-step plans; `?category=` to filter. |
+| `GET /api/journeys` | List the curated step-by-step plans; `?category=` to filter (unknown category → 400). |
 | `GET /api/journeys/{id}` | Full plan: its guides **in order** (`prerequisites` is always `[]`). |
 | `GET /api/guides/{id}` | Guide metadata + rendered HTML (`?format=markdown` for source). |
 | `POST /api/recommend` | Suggest guides (and the plans that fit) for a goal + context. |
 
-`POST /api/recommend` example:
+A plan needs at least two guides to be a plan, so single-guide entries are
+never listed and return 404 on detail — guides are the primary unit and stand
+on their own.
+
+`POST /api/recommend` example (`goal` is required; `people`, `climate`, and
+`resources` are optional):
 
 ```json
 { "goal": "community_garden", "people": 10, "climate": "temperate" }
 ```
+
+The response is `{ "journeys": [...], "guides": [...] }`, matched locally with
+no LLM involved.
 
 ## AI API
 
@@ -31,14 +39,20 @@ running.
 | `POST /api/ai/answer` | Locally-retrieved, cited answer to a question. |
 
 ```json
-// request
-{ "question": "How do I make river water safe to drink?", "context": {} }
+// request — `context` and `no_jargon` are optional
+{ "question": "How do I make river water safe to drink?", "context": {}, "no_jargon": true }
 // response
 { "answer": "...", "citations": ["water-slow-sand-filter", "checklist-water-safety"] }
 ```
 
-`citations` are guide/journey ids — the assistant always cites the local
-content it drew on.
+`citations` are the ids of the local content the assistant drew on (guides,
+plans, or md skills) — it always cites its sources. `no_jargon` overrides the
+`ai.no_jargon_default` config setting for a single request; omit it to use the
+node's default (plain language).
+
+The endpoint is offline-first and never errors because a model is missing: with
+no model runtime reachable, retrieval falls back to keyword search and the
+answer degrades to a cited pointer at the most relevant local guides.
 
 ## Optional integrations
 

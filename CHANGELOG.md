@@ -45,6 +45,36 @@ Updating this changelog and the README is part of every user-facing change
   (Optima or Lucida Grande on macOS/iOS, Franklin Gothic Medium or Trebuchet
   MS on Windows, Noto Sans on most Linux desktops) instead of anything
   geometric or trendy. Still 100% system fonts, no new downloads.
+- **README** now mentions the admin **Import content** wizard (WikiHow page or
+  book file → local guide) and the background content-pack downloads alongside
+  the library browser and Check & repair page.
+- **`docs/api.md` now documents the whole request surface it always had**: the
+  optional `no_jargon` field on `POST /api/ai/answer` (a per-request override of
+  `ai.no_jargon_default`), the fact that `/api/journeys` omits — and 404s on —
+  plans with fewer than two guides, the `/api/recommend` response shape, and the
+  400 on an unknown `?category=`. No endpoint, field, or default changed; this
+  is documentation catching up with the implementation.
+
+### Fixed
+- **Changelog compare links.** `[Unreleased]` still compared against `v0.6.0`,
+  so two shipped releases' worth of changes read as unreleased, and `[0.7.0]`
+  and `[0.8.0]` had no link definitions at all — their headings rendered as
+  literal `[0.7.0]`/`[0.8.0]`. Both versions were bumped and documented but
+  never tagged on GitHub (`v0.6.0` is still the newest tag), so their links
+  point at the release commits until the tags are pushed; `CLAUDE.md` now
+  records tagging as part of cutting a release.
+- **Admin-token recipe in `docs/operating.md`.** `docker compose logs app`
+  named a service that doesn't exist (`horizon` is the compose service), so it
+  failed with "no such service" for anyone hunting the auto-generated token —
+  the same trail as the earlier "set admin.token, still can't log in" report.
+- **Stale references in the agent/contributor docs.** `CLAUDE.md`'s
+  architecture notes and directory map predated checklists, content packs, the
+  reference library, the map viewer, and the content importer, and still listed
+  `docker compose up` as starting Ollama (it needs `--profile ai`) and the next
+  milestone as v0.5; `docs/authoring-content.md` claimed "ten line-art
+  diagrams" (about half the guides now use them); `docs/BACKLOG.md` still
+  described a 94-guide library whose thinnest category was `language` with no
+  plan. No HTTP API or content-format change.
 
 ## [0.8.0] — 2026-07-19
 
@@ -965,7 +995,12 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
   e-ink-friendly stylesheet.
 - Packaging: Docker/compose, systemd installer, and a `Makefile`.
 
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.6.0...HEAD
+<!-- v0.7.0 and v0.8.0 were released in this file and in pyproject.toml but never
+     tagged on GitHub (v0.6.0 is the newest tag), so those two links point at the
+     release commits. Switch them to the tag form once the tags are pushed. -->
+[Unreleased]: https://github.com/richardkfm/horizon/compare/c13b45f...HEAD
+[0.8.0]: https://github.com/richardkfm/horizon/compare/91be65b...c13b45f
+[0.7.0]: https://github.com/richardkfm/horizon/compare/v0.6.0...91be65b
 [0.6.0]: https://github.com/richardkfm/horizon/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/richardkfm/horizon/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/richardkfm/horizon/compare/v0.3.0...v0.4.0
