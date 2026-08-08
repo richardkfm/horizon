@@ -73,34 +73,49 @@ for the AI assistant's system prompt:
 - **UI:** server-rendered Jinja2 + HTMX + Alpine.js (vendored locally, no build
   step), with a print/low-power friendly stylesheet (`web/static/print.css`).
 - **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — guides,
-  plans (`Journey`), and the ordered guide-link edges between them.
-- **Content:** Markdown guides + md skills on disk under `content/` (seeded into
-  `settings.content_dir` on first run).
-- **Vector index:** embedded Chroma over guides + md skills (`services/rag.py`).
+  checklists, plans (`Journey`), and the ordered guide-link edges between them.
+- **Content:** Markdown guides + checklists + md skills on disk under `content/`
+  (seeded into `settings.content_dir` on first run).
+- **Vector index:** embedded Chroma over guides + md skills (`services/rag.py`),
+  an optional `ai` extra — without it retrieval falls back to keyword search.
 - **LLM:** Ollama by default (generation + embeddings), or a llama.cpp
   OpenAI-compatible endpoint (`services/llm.py`).
 - **PDF/print:** WeasyPrint (`services/pdf.py`).
-- **Startup lifespan** (`main.py`): `init_db()` → `seed_if_empty()` →
-  `reindex_content()`. Steps not yet implemented are skipped gracefully.
+- **Content packs:** optional large offline downloads catalogued in
+  `content/packs.yaml` (`services/packs.py`), read in-browser by the reference
+  library (ZIM, `services/zim_reader.py` + `web/reference.py`) and the map
+  viewer (`.mbtiles`, `services/mbtiles.py` + `web/maps.py`).
+- **Startup lifespan** (`main.py`): install the event log → `init_db()` →
+  `seed_if_empty()` → `reindex_content()` (skipped under low power). Steps not
+  yet implemented are skipped gracefully.
 
 ## Directory map
 
 ```
 content/            seed content shipped in the repo
   guides/           Markdown guides (+ images/)
+  checklists/       printable, tick-able Markdown task lists
   md_skills/        values, answer-style, domain checklists
   journeys.yaml     seed step-by-step plans (ordered guide lists)
+  packs.yaml        catalog of optional offline content packs
+docs/               public docs: api, authoring-content, operating, BACKLOG
+packaging/          install.sh + horizon.service (systemd install)
+scripts/            get-horizon.sh (curl source installer, no git/Docker)
 src/horizon/
   main.py           FastAPI app: routers, static, lifespan
   config.py         typed settings loaded from config.yaml
-  db.py, models.py  SQLModel engine + Journey/Guide models
-  seed.py           load bundled content into SQLite
+  db.py, models.py  SQLModel engine + Guide/Checklist/Journey models
+  seed.py           load bundled content into SQLite (and sync it on restart)
   api/              Knowledge API (journeys, guides, recommend) + AI API
-  services/         markdown, pdf, rag, llm, recommend, ethics (external deps)
-  web/              routes.py + templates/ + static/
-  scripts/          horizon-content CLI (content packs)
+  services/         markdown, pdf, rag, llm, recommend, ethics, packs,
+                    importer/import_content, diagnostics, eventlog,
+                    zim_reader, mbtiles (external deps live here)
+  web/              routes.py, admin.py, reference.py, maps.py, assets.py
+                    + templates/ + static/
+  scripts/          horizon-admin + horizon-content CLIs (+ menu.py)
 tests/              pytest
-config.example.yaml docker-compose.yml  Dockerfile  pyproject.toml
+config.yaml  config.example.yaml  docker-compose.yml  Dockerfile  Makefile
+pyproject.toml
 ```
 
 ## Dev commands
@@ -113,7 +128,8 @@ uvicorn horizon.main:app --reload    # run locally
 pytest                               # tests
 ruff check . && ruff format .        # lint / format
 docker compose config                # validate compose
-docker compose up                    # full stack (app + ollama)
+docker compose up                    # horizon alone (offline, no model runtime)
+docker compose --profile ai up       # opt in to the bundled Ollama container
 ```
 
 ## API contract (keep stable)
@@ -123,7 +139,8 @@ These are horizon's integration surface; preserve backward compatibility:
 - `GET /api/journeys`, `GET /api/journeys/{id}`
 - `GET /api/guides/{id}`
 - `POST /api/recommend` — `{goal, people?, climate?, resources?}`
-- `POST /api/ai/answer` — `{question, context?}` → `{answer, citations[]}`
+- `POST /api/ai/answer` — `{question, context?, no_jargon?}` →
+  `{answer, citations[]}` (`no_jargon` overrides `ai.no_jargon_default`)
 
 `citations` are guide/journey ids. Always cite local content in AI answers.
 
@@ -138,13 +155,13 @@ These are horizon's integration surface; preserve backward compatibility:
   code block followed by an `*italic caption*` line renders as the same captioned
   `<figure>` card, but needs no image file, costs nothing on constrained
   hardware, and reads correctly as-is with no rendering at all (raw Markdown, a
-  CLI, `cat`). This is the default; see any of the ~35 guides under
-  `content/guides/` that already use it (e.g. `crafts-cordage.md`,
-  `survival-knots.md`) for the style. Only reach for an actual image (paragraph
-  containing *only* an image; `services.markdown` wraps it in a captioned
-  `<figure>`, alt text = caption) when a diagram genuinely needs a photo or line
-  art too detailed for monospace text — prefer monochrome **SVG** line art so it
-  stays legible on screen, paper, and e-ink, put it under
+  CLI, `cat`). This is the default; roughly half the guides under
+  `content/guides/` already use it (e.g. `crafts-cordage.md`,
+  `survival-knots.md`) — copy the style from one of those. Only reach for an
+  actual image (paragraph containing *only* an image; `services.markdown` wraps
+  it in a captioned `<figure>`, alt text = caption) when a diagram genuinely
+  needs a photo or line art too detailed for monospace text — prefer monochrome
+  **SVG** line art so it stays legible on screen, paper, and e-ink, put it under
   `content/guides/images/` (served at `/guides/images`, mounted in `main.py`).
 - **Checklist:** `content/checklists/<id>.md` with front matter (`id`, `title`,
   `summary`, optional `category`); body is a Markdown task list (`- [ ] item`)
@@ -277,10 +294,25 @@ Update docs **as part of every user-facing change**, in the same change set:
   release bump, also update the status badge and the "Status:" line to match
   `pyproject.toml`'s `version`** — this has drifted before (stuck at v0.2.0
   through the v0.3 and v0.4 releases).
-- **`ROADMAP.md`** — keep the path towards the next milestone (currently v0.5)
-  honest; move shipped items into "Where we are" and the changelog.
+- **`ROADMAP.md`** — keep the path towards the next milestone honest (v0.8 is
+  the last one shipped; what comes after it is deliberately undecided); move
+  shipped items into "Where we are" and the changelog.
+- **`docs/`** — the public docs drift just as easily as the README:
+  [`api.md`](docs/api.md) for any endpoint/field change,
+  [`authoring-content.md`](docs/authoring-content.md) for a content-format or
+  import change, [`operating.md`](docs/operating.md) for config, CLI, packs, and
+  deployment, and [`BACKLOG.md`](docs/BACKLOG.md) whenever you finish (or
+  invalidate) an item there. Avoid baking exact counts ("ten diagrams", "94
+  guides") into prose — they go stale within a release; prefer a shape
+  ("roughly half", "the thinnest categories") or refresh the number in the same
+  change set.
 - When you establish a new standard or learn a durable lesson, write it into this
   file so the next agent inherits it.
+- **Tag every release.** `CHANGELOG.md`'s compare links assume a `vX.Y.Z` git
+  tag exists for each released version. v0.7.0 and v0.8.0 were bumped and
+  documented but never tagged or released on GitHub, so their changelog links
+  have to point at the release commits instead. When you cut a release, push
+  the tag too and switch that version's link back to the tag form.
 - **`config.yaml` is tracked in the repo** (safe, all-disabled defaults) and
   `docker-compose.yml` bind-mounts it **unconditionally**. This used to be
   gitignored with the mount commented out by default, which meant the

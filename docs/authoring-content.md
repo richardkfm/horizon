@@ -45,9 +45,8 @@ Prefer an **ASCII diagram**: a fenced ` ```ascii ` code block followed by an
 `*italic caption*` line renders as a captioned `<figure>` card. No image file to
 draw, ship, or keep in sync — it reads correctly as-is with no rendering at all
 (raw Markdown, a CLI, `cat`), and it costs nothing on constrained hardware. This
-is the default for guide diagrams; the ten line-art diagrams already in
-`content/guides/` (cordage twisting, square lashing, fire-hardening, and so on)
-all use it:
+is the default for guide diagrams — roughly half the guides in `content/guides/`
+already use it (cordage twisting, square lashing, fire-hardening, and so on):
 
 ````markdown
 ```ascii

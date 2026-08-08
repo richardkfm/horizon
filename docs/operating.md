@@ -34,8 +34,8 @@ it to `<data_dir>/admin_token` (e.g. the `horizon-data` volume). Log in at
 ```bash
 # Find the auto-generated token (Docker):
 docker compose exec horizon cat /data/admin_token
-# or check the startup logs:
-docker compose logs app | grep -i admin
+# or check the startup logs (`horizon` is the compose service name):
+docker compose logs horizon | grep -i admin
 
 # Bare-metal/systemd install (data_dir defaults to /var/lib/horizon):
 sudo cat /var/lib/horizon/admin_token
