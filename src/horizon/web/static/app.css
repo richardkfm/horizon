@@ -787,17 +787,43 @@ a:hover { color: var(--accent-strong); }
 
 /* Guide viewer ------------------------------------------------------------ */
 
-.guide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-4); }
-.guide-meta { margin: 0 0 var(--space-4); }
-.guide-tracks {
-  margin: 0 0 var(--space-5);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius-sm);
-  background: var(--accent-soft);
+/* One quiet line: metadata (badge/difficulty/time) on one side, the print/PDF
+   actions on the other — replaces a former row of bordered .btn boxes that
+   sat above the article before a reader had reached the title. */
+.guide-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-5);
 }
-.guide-tracks > p { margin: 0 0 var(--space-2); font-weight: 600; }
+.guide-meta { margin: 0; }
+.guide-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: 0; }
+/* Text-weight action, not a boxed button — same idiom as .breadcrumb a /
+   .footer-admin, so Print/Download PDF read as quiet utility links. */
+.guide-action {
+  display: inline-block;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.guide-action:hover { color: var(--accent); text-decoration: underline; }
+.guide-tracks { margin: 0 0 var(--space-5); }
+.guide-tracks-label {
+  margin: 0 0 var(--space-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+}
 .guide-tracks .link-list li { padding: var(--space-2) 0; border-bottom: none; }
 .guide { line-height: 1.7; }
 .guide img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
@@ -819,40 +845,29 @@ a:hover { color: var(--accent-strong); }
 }
 
 /* Callouts — labelled blockquotes used in "which should I pick?" guides
-   (rendered by services.markdown). Each keeps the blockquote base look but
-   takes its own accent so a reader can scan for "pick / avoid / spec" at a
-   glance. The opening bold label is the cue, so these stay meaningful even
-   where the colour is stripped (print, e-ink). */
+   (rendered by services.markdown). The opening bold label is the cue, so
+   these stay meaningful even where colour is stripped (print, e-ink) — and
+   that print/e-ink treatment (a rule + label, no fill) is deliberately the
+   *default* here too for every kind except the safety-critical three below.
+   A guide can stack several callouts in a row; giving every kind the same
+   tinted-box weight made a "Tip" read as loud as a "Risk", so only
+   avoid/risk/now keep a filled background — everything else is a quiet
+   ruled note. */
 .guide .callout { border-left-width: 4px; }
 .guide .callout strong:first-child { display: inline; }
-.guide .callout-pick {
-  border-left-color: var(--accent);
-  background: var(--accent-soft);
-}
+.guide .callout-pick { border-left-color: var(--accent); background: none; }
 .guide .callout-avoid {
   border-left-color: var(--danger);
   background: var(--danger-soft);
 }
-.guide .callout-spec {
-  border-left-color: var(--muted-2);
-  background: var(--surface-sunken);
-}
-.guide .callout-decision {
-  border-left-color: var(--accent-strong);
-  background: var(--accent-soft);
-}
+.guide .callout-spec { border-left-color: var(--muted-2); background: none; }
+.guide .callout-decision { border-left-color: var(--accent-strong); background: none; }
 .guide .callout-risk {
   border-left-color: var(--danger);
   background: var(--danger-soft);
 }
-.guide .callout-tip {
-  border-left-color: var(--accent);
-  background: var(--accent-soft);
-}
-.guide .callout-note {
-  border-left-color: var(--border-strong);
-  background: var(--surface-sunken);
-}
+.guide .callout-tip { border-left-color: var(--accent); background: none; }
+.guide .callout-note { border-left-color: var(--border-strong); background: none; }
 /* "Do now" — immediate, life-safety action. The most urgent callout: a heavier
    rule and a stronger fill so it reads as "act on this first" at a glance. */
 .guide .callout-now {
@@ -947,11 +962,6 @@ a:hover { color: var(--accent-strong); }
   align-items: baseline;
   gap: 0.5rem;
   margin: 0 0 var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--leaf);
-  border-radius: var(--radius-sm);
-  background: var(--leaf-soft);
 }
 .next-step-label {
   font-size: 0.8rem;
@@ -1420,7 +1430,9 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
 
   /* Comfortable thumb-sized tap targets on touch screens. ~44px tall. */
   .site-header nav a,
-  .footer-admin { display: inline-flex; align-items: center; min-height: 44px; }
+  .footer-admin,
+  .guide-action,
+  .next-step a { display: inline-flex; align-items: center; min-height: 44px; }
   .filter-chip { padding: 0.55rem 1rem; }
   .link-list a { display: inline-block; padding: 0.25rem 0; min-height: 44px; }
   .btn { padding: 0.65rem 1.1rem; }

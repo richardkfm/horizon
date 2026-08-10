@@ -3,10 +3,14 @@
 {% block content %}
 <p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
 
-<div class="guide-actions no-print">
-  {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
-  <button type="button" class="btn" onclick="window.print()">Print</button>
-  <button type="button" class="btn" id="checklist-clear">Clear ticks</button>
+<div class="guide-meta-row no-print">
+  <p class="journey-meta guide-meta">
+    {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+  </p>
+  <p class="guide-actions">
+    <button type="button" class="guide-action" onclick="window.print()">Print</button>
+    <button type="button" class="guide-action" id="checklist-clear">Clear ticks</button>
+  </p>
 </div>
 
 <article class="guide checklist" data-checklist="{{ checklist.id }}">

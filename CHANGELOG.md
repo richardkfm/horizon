@@ -36,6 +36,25 @@ Updating this changelog and the README is part of every user-facing change
   confrontation).
 
 ### Changed
+- **Calmer guide/checklist layout, especially on mobile.** The badge + Print +
+  Download PDF row above every guide's title was three bordered boxes before a
+  reader reached any content; it's now a single quiet line, with Print/Download
+  as plain text-weight links (new `.guide-action` class) instead of `.btn`
+  boxes, merged with the difficulty/time meta line into `.guide-meta-row`.
+  Callouts (`Pick this if` / `Avoid if` / `Spec` / `Decide` / `Risk` / `Do now`
+  / `Tip` / `Note`) previously all got the same bordered, tinted-box treatment
+  regardless of stakes, so a guide stacking several (e.g.
+  `water-choosing-treatment`'s five) read as five equally loud warnings; only the
+  safety-critical three (`callout-avoid`, `callout-risk`, `callout-now`) keep
+  a filled background now, the other five are a quiet ruled note — the same
+  border-only treatment print and low-power mode already used, just applied
+  on screen too. `.guide-tracks` ("Part of this plan") and the "Next in
+  {plan}" box in the Read-further footer both lost their card chrome
+  (border/background/padding) in favour of a plain eyebrow-label line, so two
+  fewer bordered panels compete with the guide's own content; the "More on
+  {category}" card grid at the bottom is unchanged. Pure template/CSS change —
+  no callout class names, `services/markdown.py`, or guide content changed, so
+  print/PDF output and the callout system's meaning are unaffected.
 - **Heading font.** `h1`/`h2`/`h3` moved off the old
   `"Iowan Old Style"/Palatino/Georgia/Times New Roman` serif stack to a new
   `--font-heading` token: `Optima, "Lucida Grande", "Franklin Gothic Medium",
