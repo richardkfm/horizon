@@ -285,6 +285,16 @@ environment ships Chromium at `/opt/pw-browsers` with Playwright preconfigured
 
 Update docs **as part of every user-facing change**, in the same change set:
 
+- **Bump the version, and cut a release, on every merged PR.** Every PR
+  merged to main bumps `pyproject.toml`'s `version` (patch segment —
+  `0.8.0` → `0.8.1`) and turns that PR's `## [Unreleased]` entries into a
+  new `## [X.Y.Z] - <date>` CHANGELOG heading, leaving a fresh empty
+  `[Unreleased]` above it, in the same change set — entries no longer sit
+  under `[Unreleased]` accumulating across multiple PRs. Update the README
+  status badge/"Status:" line to match every time (see below). Minor/major
+  bumps stay a separate, deliberate decision reserved for milestone-sized
+  batches of change, same as the project's 8 releases to date; patch bumps
+  are the automatic, per-PR default introduced by this rule.
 - **`CHANGELOG.md`** — add entries under `## [Unreleased]` using Keep a Changelog
   sections (Added / Changed / Fixed). Call out anything that affects the
   documented HTTP API contract (e.g. a changed default), even when the response
@@ -311,8 +321,10 @@ Update docs **as part of every user-facing change**, in the same change set:
 - **Tag every release.** `CHANGELOG.md`'s compare links assume a `vX.Y.Z` git
   tag exists for each released version. v0.7.0 and v0.8.0 were bumped and
   documented but never tagged or released on GitHub, so their changelog links
-  have to point at the release commits instead. When you cut a release, push
-  the tag too and switch that version's link back to the tag form.
+  have to point at the release commits instead. When you cut a release —
+  including the now-routine per-PR patch bump above, not just minor/major
+  ones — push the tag too and switch that version's link back to the tag
+  form.
 - **`config.yaml` is tracked in the repo** (safe, all-disabled defaults) and
   `docker-compose.yml` bind-mounts it **unconditionally**. This used to be
   gitignored with the mount commented out by default, which meant the
