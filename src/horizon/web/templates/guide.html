@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ guide.title }} — horizon{% endblock %}
 {% block content %}
+<div class="reading-column">
 <p class="breadcrumb no-print"><a href="/guides">← All guides</a></p>
 
 <div class="guide-meta-row no-print">
@@ -59,4 +60,5 @@
   {% endif %}
 </aside>
 {% endif %}
+</div>
 {% endblock %}

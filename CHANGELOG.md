@@ -55,6 +55,22 @@ Updating this changelog and the README is part of every user-facing change
   {category}" card grid at the bottom is unchanged. Pure template/CSS change —
   no callout class names, `services/markdown.py`, or guide content changed, so
   print/PDF output and the callout system's meaning are unaffected.
+- **Reading pages now left-align under the header instead of floating in a
+  narrower, independently-centered column.** `.content` (the default shell
+  used by `guide.html`, `checklist.html`, `recommend.html`,
+  `journey_detail.html`, `reference_article.html`, and `assistant.html`) was
+  64rem centered while `.content-wide` (browsing/grid pages, and the header
+  itself) was 72rem centered — two different-width boxes both centered on the
+  same page produce different left AND right insets, so every "reading" page
+  sat about 64px further in from the logo than every "browsing" page did, on
+  wide screens. `.content` is now 72rem everywhere, matching the header, so
+  every page's left edge lines up under the logo; a new `.reading-column`
+  class (61rem, left-anchored rather than centered) keeps guide and checklist
+  body text at the same comfortable line length as before instead of
+  stretching to 72rem. `recommend.html`/`journey_detail.html`/
+  `reference_article.html`/`assistant.html` needed no template change — their
+  form/list/article content was already self-capped narrower than 72rem, so
+  widening the shell only moved their left edge into alignment.
 - **Heading font.** `h1`/`h2`/`h3` moved off the old
   `"Iowan Old Style"/Palatino/Georgia/Times New Roman` serif stack to a new
   `--font-heading` token: `Optima, "Lucida Grande", "Franklin Gothic Medium",
