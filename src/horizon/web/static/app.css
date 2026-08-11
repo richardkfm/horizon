@@ -439,11 +439,20 @@ a:hover { color: var(--accent-strong); }
 .a11y-textsize button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .a11y-contrast-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 400; white-space: nowrap; }
 
-.content { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--space-5); }
-/* Wide shell for browsing pages (home, guide/plan/checklist grids): matches the
-   header's width so the hero and card grids fill the screen instead of leaving
-   dead gutters at desktop width. Reading pages keep the narrower measure. */
+/* Every page's outer shell matches the header's width (72rem), so a page's
+   left edge always lines up under the logo — no page floats in a narrower,
+   independently-centered box with its own mismatched gutters. Reading pages
+   (guide/checklist articles) still want a narrower text measure than 72rem;
+   they get it from `.reading-column` below instead of from a narrower shell,
+   so the *column* stays comfortable to read while its left edge still lines
+   up with everything else. */
+.content { max-width: 72rem; margin: 0 auto; padding: var(--space-6) var(--space-5); }
 .content-wide { max-width: 72rem; }
+/* Comfortable running-text measure (~equivalent to the old 64rem shell minus
+   its own padding), left-anchored rather than centered so guide/checklist
+   pages start flush under the header instead of sitting in a narrower,
+   independently-centered box. */
+.reading-column { max-width: 61rem; }
 
 /* Intro / hero ------------------------------------------------------------ */
 

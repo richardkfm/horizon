@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ checklist.title }} — horizon{% endblock %}
 {% block content %}
+<div class="reading-column">
 <p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
 
 <div class="guide-meta-row no-print">
@@ -34,6 +35,7 @@
   </div>
 </aside>
 {% endif %}
+</div>
 
 <script>
   // Persist ticked items on this device only (no account, no server, no
