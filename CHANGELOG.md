@@ -13,7 +13,33 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.8.1] — 2026-09-19
+
 ### Added
+- **Five new guides, a step-by-step plan, and a printable checklist for an
+  internet or phone outage** — the situation horizon is most likely to be
+  read in, and the one the library covered only sideways: the technology
+  guides explained how to *build* a local network, but nothing told a
+  household what to do on the day the connection dropped. *Cope when the
+  internet and phone networks go down* (emergencies) is the new front door —
+  working out how far an outage reaches, what still works (GPS, broadcast
+  radio, SMS, a corded landline, cash, anything downloaded), the first hour,
+  and checking on neighbours whose medical or care alarms dial out over the
+  network. *Get trustworthy news when the internet is down* (emergencies)
+  covers receivers, writing frequencies down in advance, and a who/when/how
+  test before repeating anything. *Keep the information you depend on
+  offline* (technology) covers the paper/device/node layers, the two-factor
+  and password-vault lockout trap, and a twice-yearly airplane-mode drill.
+  *Keep a neighbourhood informed without the internet* (cooperation) is the
+  consent-based notice board and door-to-door relay, with inclusion and
+  privacy rules. *Keep paying and trading when cards stop working*
+  (cooperation) covers a small-note cash float, written two-copy tabs, and
+  ordinary prices — no gouging, no signing anything away for groceries. A
+  new *Get through an internet or phone outage* plan threads all five plus
+  the existing two-way radio guide, and an `internet-outage-kit` checklist
+  makes the preparation tickable. Framed throughout for the common case of
+  hours to days, with the mesh/local-network/radio guides picked up only if
+  it runs longer.
 - **Three new guides on coercion, ideological capture, and outside
   hostility, plus a step-by-step plan threading them together.** *Protect
   someone from coercion or threats inside the group* (cooperation) fills a
@@ -1032,8 +1058,10 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
 
 <!-- v0.7.0 and v0.8.0 were released in this file and in pyproject.toml but never
      tagged on GitHub (v0.6.0 is the newest tag), so those two links point at the
-     release commits. Switch them to the tag form once the tags are pushed. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/c13b45f...HEAD
+     release commits. Switch them to the tag form once the tags are pushed.
+     v0.8.1's links assume its tag is pushed when the release lands on main. -->
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/richardkfm/horizon/compare/c13b45f...v0.8.1
 [0.8.0]: https://github.com/richardkfm/horizon/compare/91be65b...c13b45f
 [0.7.0]: https://github.com/richardkfm/horizon/compare/v0.6.0...91be65b
 [0.6.0]: https://github.com/richardkfm/horizon/compare/v0.5.0...v0.6.0

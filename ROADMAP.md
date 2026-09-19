@@ -17,8 +17,9 @@ solarpunk landing hero, and a broad content expansion across survival, health,
 food, and emergencies (v0.7), and — as of v0.8 — a built-in **map viewer** for
 rendered offline map packs, a `curl`-based installer for boxes without
 `git`/Docker, and new guides across cooking, calculations, mobility, and
-language. horizon is now a cohesive, comfortable, maintainable node ready to
-hand to a neighbour.
+language — and, as of v0.8.1, a set of guides for getting through an internet
+or phone outage. horizon is now a cohesive, comfortable, maintainable node
+ready to hand to a neighbour.
 
 The focus stays **lean and simple**: deepen the content so it actually helps
 you *choose*, and give the admin the few tools they need to keep a node
@@ -36,6 +37,25 @@ next gap. A granular working list of candidate items (design/UX polish and
 missing guide topics) lives in [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ---
+
+## Where we are — v0.8.1 (shipped)
+
+- **Coverage for the outage horizon is most likely to be read in.** The
+  library could tell you how to *build* a local network or a mesh, but not
+  what to do on the day the connection drops. Five new guides close that:
+  working out how far an outage reaches and what still works
+  (`emergency-internet-outage`), getting reliable news off a radio without
+  amplifying rumour (`emergency-news-without-internet`), saving the
+  contacts, documents and login recovery codes you would otherwise fetch
+  online (`technology-offline-knowledge-archive`), running a consent-based
+  neighbourhood notice board and door relay (`cooperation-message-relay`),
+  and keeping payment and trade honest when card terminals die
+  (`cooperation-paying-without-networks`). A
+  `get-through-a-connection-outage` plan threads them with the existing
+  two-way-radio guide, and an `internet-outage-kit` checklist makes the
+  preparation tickable. Written for the common case — hours to days, then
+  service returns — with the mesh and radio guides picked up only if it
+  runs longer.
 
 ## Where we are — v0.8.0 (shipped)
 
