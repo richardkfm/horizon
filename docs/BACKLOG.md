@@ -79,10 +79,11 @@ restated so nobody re-derives them):
 
 ## Part 2 — Missing guides
 
-Current shape of the library: 108 guides across 15 categories, all of them
+Current shape of the library: 113 guides across 15 categories, all of them
 covered by a step-by-step plan. Thinnest now: water, energy, shelter, culture,
-crafts, and mobility (5 guides each). Eight categories still have no checklist
-(see *Checklists to add* below).
+crafts, and mobility (5 guides each). Eight categories still have no
+checklist (see *Checklists to add* below — the v0.8.1 outage checklist landed
+in emergencies, which already had two).
 
 Editorial decisions already made (don't relitigate):
 
@@ -192,6 +193,33 @@ Editorial decisions already made (don't relitigate):
 - [ ] *Basic pottery* and *woodworking joinery* (likely two guides).
 - [ ] *Natural-fibre textile crafts* — felting/weaving/knitting with plant
   fibre and wool from kept animals; no hide or leather work.
+
+### connection outages (done in v0.8.1)
+
+The case an offline node is most likely to be opened in, and the one the
+library only covered sideways — the technology guides built local networks,
+but nothing addressed the day itself. Written for hours-to-days outages, the
+common shape; anything longer hands off to the mesh/radio/local-network
+guides rather than duplicating them.
+
+- [x] *Cope when the internet and phone networks go down* (emergencies) —
+  scope of the outage, what still works, the first hour, who to check on.
+  *(`emergency-internet-outage`.)*
+- [x] *Get trustworthy news when the internet is down* (emergencies) —
+  receivers, a written frequency list, and a who/when/how test before
+  repeating anything. *(`emergency-news-without-internet`.)*
+- [x] *Keep the information you depend on offline* (technology) — paper,
+  device, and node layers; the two-factor/password-vault lockout trap; a
+  twice-yearly airplane-mode drill.
+  *(`technology-offline-knowledge-archive`.)*
+- [x] *Keep a neighbourhood informed without the internet* (cooperation) —
+  notice board, door relay, inclusion and privacy rules.
+  *(`cooperation-message-relay`.)*
+- [x] *Keep paying and trading when cards stop working* (cooperation) —
+  cash float, two-copy tabs, ordinary prices, nobody signing anything away.
+  *(`cooperation-paying-without-networks`.)*
+- [x] A `get-through-a-connection-outage` plan threading all five plus the
+  existing two-way radio guide, and an `internet-outage-kit` checklist.
 
 ### cooperation
 

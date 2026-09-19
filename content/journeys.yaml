@@ -282,3 +282,23 @@ journeys:
       - cooperation-boundary-safety
       - cooperation-resisting-capture
       - emergency-community-security
+
+  - id: get-through-a-connection-outage
+    title: Get through an internet or phone outage
+    description: >
+      Prepare for the everyday case where the connection drops for hours or
+      days and then comes back: save the information you would otherwise
+      have to fetch, work out how far an outage reaches and what still
+      works, pick up reliable news on a radio, keep a street informed with
+      a notice board and a door-to-door relay, and keep paying for things
+      once card terminals stop.
+    category: emergencies
+    difficulty: 2
+    estimated_time: "An afternoon to prepare"
+    guides:
+      - technology-offline-knowledge-archive
+      - emergency-internet-outage
+      - emergency-news-without-internet
+      - cooperation-message-relay
+      - cooperation-paying-without-networks
+      - technology-two-way-radio
