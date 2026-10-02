@@ -706,19 +706,22 @@ a:hover { color: var(--accent-strong); }
    the topic in large type. The tab sticks *up* out of the card, so the card's
    container (`.has-tab`, `.journey-card`, `.track-card`, `.category-card`)
    reserves `--tab-h` of headroom above it. */
-:root { --tab-h: 1.45rem; }
+/* Small on purpose: a real index tab is a sliver, not a banner. The blank
+   tile tab is lower still (it carries no text), so the tile reserves only
+   its own, shorter `--tab-h`. */
+:root { --tab-h: 1.25rem; }
 .card-tab {
   position: absolute;
-  left: 0.85rem;
+  left: 0.8rem;
   bottom: calc(100% - 1px);
   z-index: 1;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
-  max-width: calc(100% - 1.7rem);
+  max-width: calc(100% - 1.6rem);
   height: calc(var(--tab-h) + 1px);
-  padding: 0 0.7rem;
-  font-size: 0.72rem;
+  padding: 0 0.55rem;
+  font-size: 0.66rem;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -730,11 +733,13 @@ a:hover { color: var(--accent-strong); }
   background: color-mix(in srgb, var(--cat, var(--accent)) 12%, var(--surface));
   border: 1px solid color-mix(in srgb, var(--cat, var(--accent)) 45%, var(--border));
   border-bottom: 0;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-radius: 0.35rem 0.35rem 0 0;
 }
+.category-card { --tab-h: 0.5rem; }
 .card-tab-blank {
-  width: 2.6rem;
+  width: 1.6rem;
   padding: 0;
+  border-radius: 0.25rem 0.25rem 0 0;
   background: color-mix(in srgb, var(--cat, var(--accent)) 55%, var(--surface));
 }
 .card-grid li,

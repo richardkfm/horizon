@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.9.1](https://img.shields.io/badge/status-v0.9.1-blue.svg)](#roadmap--changelog)
+[![Status: v0.9.2](https://img.shields.io/badge/status-v0.9.2-blue.svg)](#roadmap--changelog)
 
 </div>
 
@@ -30,7 +30,7 @@ to show how much practical know-how we've quietly outsourced to the internet.
 horizon puts those basic human skills back within reach: living well off-grid,
 sustainably and without coercion.
 
-> **Status:** v0.9.1. The v0.1 scaffold (data model, APIs, content layout) is
+> **Status:** v0.9.2. The v0.1 scaffold (data model, APIs, content layout) is
 > complete, with a design system, light/dark theming, an expanded content
 > library, printable checklists, a UX layer for non-technical neighbours, an
 > accessibility pass (v0.6), an in-browser reference library and a broad

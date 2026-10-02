@@ -13,6 +13,17 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.2] — 2026-10-02
+
+### Changed
+
+- **Card tabs are smaller.** The index-card tab introduced in v0.9.1 was too
+  big — on the home tiles the blank tab read as a coloured banner rather than
+  a tab. Labelled tabs are now a little lower and tighter (`--tab-h` 1.25rem,
+  smaller type and padding), and the blank tile tab is a short sliver (0.5rem
+  tall, 1.6rem wide) with the tile reserving only that much headroom. Pure
+  CSS change in `app.css`.
+
 ## [0.9.1] — 2026-10-02
 
 ### Changed
@@ -1332,9 +1343,10 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
 <!-- v0.7.0 and v0.8.0 were released in this file and in pyproject.toml but never
      tagged on GitHub (v0.6.0 is the newest tag), so those two links point at the
      release commits. Switch them to the tag form once the tags are pushed.
-     v0.8.1's, v0.9.0's and v0.9.1's links assume their tags are pushed
-     when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.1...HEAD
+     v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
+     pushed when each release lands on main. -->
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.2...HEAD
+[0.9.2]: https://github.com/richardkfm/horizon/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/richardkfm/horizon/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/richardkfm/horizon/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/richardkfm/horizon/compare/c13b45f...v0.8.1
