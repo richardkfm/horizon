@@ -34,41 +34,63 @@ STATIC_DIR = Path(__file__).parent / "web" / "static"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initialise DB, seed content, and build the index on startup."""
+    """Initialise DB, seed content, and build the index on startup.
+
+    Each step is isolated: a failure in one (a corrupt content file, an
+    unwritable index directory, ...) is logged and boot continues, so the node
+    always comes up and serves whatever it can. The vector index is built in a
+    background thread so pages are served immediately.
+    """
+
+    from collections.abc import Callable
+
+    def step(name: str, fn: Callable[[], object]) -> None:
+        try:
+            fn()
+        except NotImplementedError:
+            logger.info("Startup step %r not yet implemented; skipping.", name)
+        except Exception:  # noqa: BLE001 - never let one step stop the node booting
+            logger.exception("Startup step %r failed; continuing to boot.", name)
+
     # Capture recent log events in memory first, so the admin health feed shows
     # the seed/index lifespan steps and any later repairs.
-    from horizon.services.eventlog import install as install_event_log
+    def install_events() -> None:
+        from horizon.services.eventlog import install as install_event_log
 
-    install_event_log()
-    if web_enabled():
-        from horizon.web.admin import ensure_token_ready
+        install_event_log()
 
-        ensure_token_ready()
-    init_db()
-    # Seeding and indexing are implemented in later steps; keep startup resilient
-    # so the app boots even before that logic exists.
-    try:
+    def admin_token() -> None:
+        if web_enabled():
+            from horizon.web.admin import ensure_token_ready
+
+            ensure_token_ready()
+
+    def seed() -> None:
         from horizon.seed import seed_if_empty
 
         seed_if_empty()
-    except NotImplementedError:
-        logger.info("Content seeding not yet implemented; skipping.")
-    from horizon.config import low_power_enabled
 
-    if low_power_enabled():
-        # Building embeddings for the whole corpus is the heaviest startup cost;
-        # in low-power mode we skip it and let retrieval use the keyword fallback.
-        logger.info(
-            "Low-power mode: skipping vector index build; AI retrieval uses "
-            "keyword search and the assistant answers from local content."
-        )
-    else:
-        try:
-            from horizon.services.rag import reindex_content
+    def index() -> None:
+        from horizon.config import low_power_enabled
 
-            reindex_content()
-        except NotImplementedError:
-            logger.info("Vector indexing not yet implemented; skipping.")
+        if low_power_enabled():
+            # Building embeddings for the whole corpus is the heaviest startup
+            # cost; in low-power mode we skip it and let retrieval use the
+            # keyword fallback.
+            logger.info(
+                "Low-power mode: skipping vector index build; AI retrieval uses "
+                "keyword search and the assistant answers from local content."
+            )
+            return
+        from horizon.services.rag import start_background_reindex
+
+        start_background_reindex()
+
+    step("event log", install_events)
+    step("admin token", admin_token)
+    step("database", init_db)
+    step("content seed", seed)
+    step("search index", index)
     yield
 
 

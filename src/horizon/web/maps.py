@@ -93,7 +93,10 @@ def map_viewer(request: Request, pack_id: str) -> HTMLResponse:
 
     row = next((r for r in _installed_map_packs() if r["id"] == pack_id), None)
     path = _mbtiles_path_or_404(pack_id)
-    info = mbtiles.pack_info(path)
+    try:
+        info = mbtiles.pack_info(path)
+    except mbtiles.MBTilesUnavailableError as exc:
+        raise HTTPException(status_code=404, detail="Map unavailable") from exc
 
     return templates.TemplateResponse(
         request,
@@ -111,8 +114,13 @@ def map_tile(pack_id: str, z: int, x: int, y: int) -> Response:
     """Serve one vector tile straight out of the pack's ``.mbtiles`` (SQLite)."""
     from horizon.services import mbtiles
 
+    if not mbtiles.valid_tile_coords(z, x, y):
+        raise HTTPException(status_code=404, detail="No such tile")
     path = _mbtiles_path_or_404(pack_id)
-    data = mbtiles.get_tile(path, z, x, y)
+    try:
+        data = mbtiles.get_tile(path, z, x, y)
+    except mbtiles.MBTilesUnavailableError as exc:
+        raise HTTPException(status_code=404, detail="Map tiles unavailable") from exc
     if data is None:
         # A missing tile within the rendered bounds is normal (open ocean, a
         # zoom level beyond what was rendered) -- 204 lets MapLibre skip it

@@ -39,9 +39,12 @@ import json
 import logging
 import os
 import sys
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from horizon import __version__
+
+if TYPE_CHECKING:
+    from horizon.services.plaintext import TitleResolver
 from horizon.config import (
     assistant_enabled,
     low_power_enabled,
@@ -395,7 +398,7 @@ def cmd_reindex(args: argparse.Namespace) -> int:
     from horizon.services.rag import reindex_content
 
     print("Rebuilding the vector index from local content...")
-    reindex_content()
+    reindex_content(force=True)
     print(
         "Done. If the embedding model was unavailable the index was skipped and "
         "the assistant will use offline keyword search until you reindex with the "
@@ -419,7 +422,14 @@ def cmd_seed(args: argparse.Namespace) -> int:
         # panel's "Re-seed content" repair.
         from horizon.seed import reseed
 
-        summary = reseed()
+        try:
+            summary = reseed()
+        except Exception as exc:  # noqa: BLE001 - report; the reseed was rolled back
+            print(
+                f"Re-seed failed and was rolled back; the previous content is unchanged: {exc}",
+                file=sys.stderr,
+            )
+            return 1
         print(
             f"Re-seeded the database from content on disk: "
             f"{summary['after']['journeys']} journeys, {summary['after']['guides']} guides."
@@ -543,8 +553,11 @@ def cmd_packs_download(args: argparse.Namespace) -> int:
 
 def cmd_packs_remove(args: argparse.Namespace) -> int:
     """Remove an installed content pack."""
-    from horizon.services.packs import remove_pack
+    from horizon.services.packs import is_valid_pack_id, remove_pack
 
+    if not is_valid_pack_id(args.name):
+        print(f"Invalid pack id: {args.name!r}.", file=sys.stderr)
+        return 2
     if remove_pack(args.name):
         print(f"Removed {args.name}.")
         return 0
@@ -790,7 +803,36 @@ def cmd_guides(args: argparse.Namespace) -> int:
     return 0
 
 
-def _markdown_to_text(body: str) -> str:
+def _db_title_resolver() -> TitleResolver:
+    """A ``(kind, id) -> title`` lookup over the metadata DB, loaded lazily.
+
+    One query per kind, only for kinds a guide actually links to, so printing a
+    guide with no wiki links costs nothing extra.
+    """
+    from sqlmodel import Session, select
+
+    from horizon.db import engine
+    from horizon.models import Checklist, Guide, Journey
+
+    models = {"guide": Guide, "plan": Journey, "checklist": Checklist}
+    cache: dict[str, dict[str, str]] = {}
+
+    def resolve(kind: str, target: str) -> str | None:
+        model = models.get(kind)
+        if model is None:
+            return None
+        if kind not in cache:
+            try:
+                with Session(engine) as session:
+                    cache[kind] = dict(session.exec(select(model.id, model.title)).all())
+            except Exception:  # noqa: BLE001 - no DB yet: fall back to ids
+                cache[kind] = {}
+        return cache[kind].get(target)
+
+    return resolve
+
+
+def _markdown_to_text(body: str, resolve_title: TitleResolver | None = None) -> str:
     """Lightly format Markdown for a terminal: headings stand out, body intact.
 
     Conservative on purpose — lists, tables, and code blocks are passed through
@@ -800,7 +842,14 @@ def _markdown_to_text(body: str) -> str:
     (the art is the point, not the code-block noise around it) and a trailing
     ``*caption*`` line is unwrapped, so the diagrams that already read fine in
     raw Markdown stand out clearly in the CLI too.
+
+    Wiki links (``[[guide-id]]``, ``[[guide-id|text]]``, ``[[plan:id]]``,
+    ``[[checklist:id]]``) print as their words: the custom text, else the
+    target's title via ``resolve_title(kind, id)``, else the id.
     """
+    from horizon.services.plaintext import wiki_links_to_text
+
+    body = wiki_links_to_text(body, resolve_title)
     out: list[str] = []
     lines = body.splitlines()
     i = 0
@@ -865,11 +914,9 @@ def cmd_guide(args: argparse.Namespace) -> int:
         return 1
 
     # Strip the YAML front matter; the metadata is shown in the header instead.
-    text = path.read_text(encoding="utf-8")
-    if text.startswith("---"):
-        parts = text.split("---", 2)
-        if len(parts) == 3:
-            text = parts[2].lstrip("\n")
+    from horizon.services.frontmatter import strip_front_matter
+
+    text = strip_front_matter(path.read_text(encoding="utf-8"))
 
     if args.raw:
         print(text)
@@ -878,7 +925,7 @@ def cmd_guide(args: argparse.Namespace) -> int:
     print(_heading(title))
     print(f"  category: {category} · id: {args.id}")
     print()
-    print(_markdown_to_text(text))
+    print(_markdown_to_text(text, _db_title_resolver()))
     return 0
 
 

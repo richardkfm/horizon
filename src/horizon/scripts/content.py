@@ -24,6 +24,7 @@ from horizon.services.packs import (
     download_pack,
     get_spec,
     human_size,
+    is_valid_pack_id,
     pack_status,
     read_manifest,
     remove_pack,
@@ -75,6 +76,9 @@ def cmd_download(args: argparse.Namespace) -> int:
 
 def cmd_remove(args: argparse.Namespace) -> int:
     """Remove an installed content pack."""
+    if not is_valid_pack_id(args.name):
+        print(f"Invalid pack id: {args.name!r}.", file=sys.stderr)
+        return 2
     if remove_pack(args.name):
         print(f"Removed {args.name}.")
         return 0

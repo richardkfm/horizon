@@ -15,6 +15,9 @@ router never touches the network or triggers a download.
 
 from __future__ import annotations
 
+import base64
+import hashlib
+import re
 from pathlib import Path
 from typing import Annotated
 
@@ -37,6 +40,44 @@ templates.env.globals["static_url"] = static_url
 templates.env.globals["version"] = __version__
 templates.env.globals["reference_library_enabled"] = packs_service.has_installed_zim_pack
 templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pack
+
+
+# Raw (non-article) entries are served as inert resources: never sniffed into
+# something executable, and -- if navigated to directly, e.g. an SVG -- unable to
+# run script or load anything but same-origin images.
+_RAW_ENTRY_CSP = "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; sandbox"
+
+_INLINE_SCRIPT_RE = re.compile(
+    r"<script(?P<attrs>[^>]*)>(?P<body>.*?)</script\s*>", re.IGNORECASE | re.DOTALL
+)
+
+
+def _article_csp(page_html: str) -> str:
+    """A Content-Security-Policy for a rendered reference article page.
+
+    The article body has already been sanitised (no scripts, no handlers), so
+    every inline ``<script>`` left in the page is horizon's own chrome from
+    ``base.html`` (theme/text-size setup). Those are allowed by hash; any other
+    inline script, and every script from anywhere but this node, is refused, as
+    are plugins, frames, ``<base>`` hijacking, and remote images/fonts/media.
+    ``'unsafe-eval'`` is only there for the vendored Alpine.js, which evaluates
+    its own ``x-*`` attributes -- attributes the sanitiser never lets through
+    from article markup.
+    """
+    hashes = []
+    for match in _INLINE_SCRIPT_RE.finditer(page_html):
+        if "src=" in match.group("attrs").lower():
+            continue
+        digest = hashlib.sha256(match.group("body").encode("utf-8")).digest()
+        hashes.append(f"'sha256-{base64.b64encode(digest).decode('ascii')}'")
+    script_src = " ".join(["'self'", "'unsafe-eval'", *sorted(set(hashes))])
+    return (
+        "default-src 'self'; "
+        f"script-src {script_src}; "
+        "object-src 'none'; frame-src 'none'; child-src 'none'; base-uri 'none'; "
+        "form-action 'self'; img-src 'self' data:; media-src 'self'; "
+        "font-src 'self' data:; style-src 'self' 'unsafe-inline'; connect-src 'self'"
+    )
 
 
 def _installed_zim_packs() -> list[dict]:
@@ -121,15 +162,24 @@ def pack_article(request: Request, pack_id: str, entry_path: str) -> Response:
     if entry is None:
         raise HTTPException(status_code=404, detail=f"Not found in {pack_id}: {entry_path}")
 
-    if not entry.mimetype.startswith("text/html"):
-        return Response(content=entry.content, media_type=entry.mimetype)
+    mimetype = zim_reader.safe_mimetype(entry.mimetype)
+    if mimetype != "text/html":
+        headers = {
+            "X-Content-Type-Options": "nosniff",
+            "Content-Security-Policy": _RAW_ENTRY_CSP,
+        }
+        if zim_reader.is_active_mimetype(mimetype):
+            # SVG/XHTML/XML can carry script: still usable as an <img> source,
+            # but opened directly it is sandboxed by the CSP above.
+            headers["Cross-Origin-Resource-Policy"] = "same-origin"
+        return Response(content=entry.content, media_type=mimetype, headers=headers)
 
     body_html = zim_reader.rewrite_article_html(
         entry.content.decode("utf-8", errors="replace"),
         pack_id=pack_id,
         entry_path=entry.path,
     )
-    return templates.TemplateResponse(
+    response = templates.TemplateResponse(
         request,
         "reference_article.html",
         {
@@ -139,3 +189,8 @@ def pack_article(request: Request, pack_id: str, entry_path: str) -> Response:
             "body_html": body_html,
         },
     )
+    response.headers["Content-Security-Policy"] = _article_csp(
+        bytes(response.body).decode("utf-8", errors="replace")
+    )
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    return response

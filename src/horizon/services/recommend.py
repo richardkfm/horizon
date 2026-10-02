@@ -80,6 +80,70 @@ _STOPWORDS = {
     "things",
     "way",
     "ways",
+    # Question framing and filler: "how do I keep my family safe", "what
+    # should we know about ...". They match guide prose everywhere ("safe" is
+    # in a large share of summaries) and only pad results with weak hits.
+    "safe",
+    "safely",
+    "safety",
+    "keep",
+    "know",
+    "learn",
+    "should",
+    "would",
+    "could",
+    "what",
+    "when",
+    "where",
+    "which",
+    "who",
+    "why",
+    "me",
+    "you",
+    "your",
+    "us",
+    "they",
+    "them",
+    "their",
+    "are",
+    "was",
+    "were",
+    "have",
+    "has",
+    "had",
+    "will",
+    "from",
+    "into",
+    "if",
+    "so",
+    "but",
+    "not",
+    "no",
+    "just",
+    "like",
+    "really",
+    "also",
+    "more",
+    "most",
+    "best",
+    "better",
+    "try",
+    "trying",
+    "find",
+    "out",
+    "all",
+    "lot",
+    "lots",
+    "much",
+    "many",
+    "something",
+    "anything",
+    "everything",
+    "please",
+    "tips",
+    "idea",
+    "ideas",
+    "able",
 }
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
@@ -90,6 +154,10 @@ _TITLE_WEIGHT = 2
 _TEXT_WEIGHT = 1
 
 _TOP_N = 5
+
+# Keep only results scoring at least this share of the best match, so a strong
+# hit isn't padded out to _TOP_N with items that merely share one common word.
+_RELATIVE_CUTOFF = 0.4
 
 
 def _tokenize(text: str) -> set[str]:
@@ -109,6 +177,17 @@ def _score(query: set[str], *, title: str, text: str, category: str) -> int:
     score += _TITLE_WEIGHT * len(query & _tokenize(title))
     score += _TEXT_WEIGHT * len(query & _tokenize(text))
     return score
+
+
+def _top(scored: list[tuple[object, int]]) -> list:
+    """Best ``_TOP_N`` items scoring >= ``_RELATIVE_CUTOFF`` of the top score.
+
+    ``scored`` must already be sorted best-first.
+    """
+    if not scored:
+        return []
+    floor = scored[0][1] * _RELATIVE_CUTOFF
+    return [item for item, score in scored[:_TOP_N] if score >= floor]
 
 
 def _journey_summary(journey: Journey) -> dict:
@@ -184,7 +263,7 @@ def recommend_journeys(
             > 0
         ]
         scored_guides.sort(key=lambda pair: (-pair[1], pair[0].difficulty, pair[0].id))
-        top_guides = [g for g, _ in scored_guides[:_TOP_N]]
+        top_guides = _top(scored_guides)
 
         # Surface curated tracks that match, as multi-step paths to follow.
         scored_journeys = [
@@ -201,7 +280,7 @@ def recommend_journeys(
             > 0
         ]
         scored_journeys.sort(key=lambda pair: (-pair[1], pair[0].difficulty, pair[0].id))
-        top_journeys = [j for j, _ in scored_journeys[:_TOP_N]]
+        top_journeys = _top(scored_journeys)
 
         return {
             "journeys": [_journey_summary(j) for j in top_journeys],

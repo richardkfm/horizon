@@ -70,25 +70,54 @@ def _floats(raw: str | None, count: int) -> tuple[float, ...] | None:
         return None
 
 
+def _int(raw: str | None, default: int) -> int:
+    try:
+        return int(float(raw)) if raw not in (None, "") else default
+    except (TypeError, ValueError, OverflowError):
+        return default
+
+
 def pack_info(path: Path) -> MBTilesInfo:
     """Return the tileset's name, zoom range, and bounds/center for display."""
     conn = _connect(path)
     try:
-        meta = _metadata(conn)
+        try:
+            meta = _metadata(conn)
+        except sqlite3.Error as exc:
+            raise MBTilesUnavailableError(f"Could not read metadata from {path}") from exc
         return MBTilesInfo(
             name=meta.get("name", path.stem),
             format=meta.get("format", "pbf"),
             bounds=_floats(meta.get("bounds"), 4),
             center=_floats(meta.get("center"), 3),
-            minzoom=int(meta.get("minzoom", 0)),
-            maxzoom=int(meta.get("maxzoom", 14)),
+            minzoom=_int(meta.get("minzoom"), 0),
+            maxzoom=_int(meta.get("maxzoom"), 14),
         )
     finally:
         conn.close()
 
 
+# Deepest zoom any real tileset uses (OSM tops out around 22); also keeps 2**z
+# small enough for SQLite's 64-bit integers.
+MAX_ZOOM = 24
+
+
+def valid_tile_coords(z: int, x: int, y: int) -> bool:
+    """True when ``z/x/y`` names a real slippy-map tile (0 <= x, y < 2**z)."""
+    if not 0 <= z <= MAX_ZOOM:
+        return False
+    limit = 1 << z
+    return 0 <= x < limit and 0 <= y < limit
+
+
 def get_tile(path: Path, z: int, x: int, y: int) -> bytes | None:
-    """Return raw tile bytes at XYZ (slippy-map) coordinates, or ``None`` if absent."""
+    """Return raw tile bytes at XYZ (slippy-map) coordinates, or ``None`` if absent.
+
+    Out-of-range coordinates (a negative index, a column past ``2**z``, a zoom
+    beyond :data:`MAX_ZOOM`) return ``None`` without touching the database.
+    """
+    if not valid_tile_coords(z, x, y):
+        return None
     conn = _connect(path)
     try:
         tms_y = (2**z - 1) - y
@@ -96,7 +125,9 @@ def get_tile(path: Path, z: int, x: int, y: int) -> bytes | None:
             "SELECT tile_data FROM tiles WHERE zoom_level = ? AND tile_column = ? AND tile_row = ?",
             (z, x, tms_y),
         ).fetchone()
-        return bytes(row[0]) if row else None
+        return bytes(row[0]) if row and row[0] is not None else None
+    except sqlite3.Error as exc:
+        raise MBTilesUnavailableError(f"Could not read tile from {path}: {exc}") from exc
     finally:
         conn.close()
 
