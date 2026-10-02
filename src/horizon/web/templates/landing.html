@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/_icons.html" import category_icon %}
+{% from "partials/_ui.html" import topic_tab %}
 {% block title %}horizon · guides for water, food, energy, shelter, and health{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
@@ -63,6 +64,7 @@ ___________________________________________________/_\______</pre>
     {% for category in categories %}
     <li class="category-card" data-cat="{{ category.name }}">
       <a href="/guides?category={{ category.name | urlencode }}">
+        {{ topic_tab(category.name, label=false) }}
         <span class="category-icon" aria-hidden="true">{{ category_icon(category.name) }}</span>
         <span class="category-name">{{ category.name }}</span>
         {% if category.example %}<span class="category-example">{{ category.example }}</span>{% endif %}

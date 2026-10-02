@@ -70,9 +70,9 @@ restated so nobody re-derives them):
   375×812 and 1280×800 with fixture packs, zero overflow, screenshots
   eyeballed; cards are full-width padded tap targets.)*
 - [x] **"Part of a plan" breadcrumb on guide pages.** *(Audited: stale —
-  `guide.html` already renders a "Part of this plan:" box above the
-  article (`.guide-tracks`, fed by `in_tracks` in the route) plus "Next
-  in {plan}" links in the Read-further footer. Nothing to add.)*
+  `guide.html` already renders a "Part of the plan" line in the header
+  (fed by `in_tracks` in the route) plus "Next in {plan}" links in the
+  Read-further footer. Nothing to add.)*
 - [x] **Keep low-power-critical widgets on plain JS.** *(Audited: stale —
   `base.html` already carries "Plain JS so it works in low-power mode"
   comments on every such script (theme boot, nav toggle, a11y panel).

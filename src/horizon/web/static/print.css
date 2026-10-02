@@ -51,8 +51,10 @@ body {
   --shadow-lift: none;
 }
 
-/* Topic hues collapse to ink. */
+/* Topic hues collapse to ink; card tabs become plain outlined tabs. */
 [data-cat] { --cat: #000 !important; }
+.card-tab { background: #fff; color: #000; border-color: #000; }
+.card-tab-blank { background: #000; }
 
 /* The guide header's notebook band becomes plain space above the title. */
 .guide-head { border: none; padding: 0; background: none; }

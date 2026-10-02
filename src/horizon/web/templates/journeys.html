@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/_icons.html" import category_icon %}
-{% from "partials/_ui.html" import difficulty %}
+{% from "partials/_ui.html" import difficulty, topic_tab %}
 {% block title %}Step-by-step plans — horizon{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
@@ -27,10 +27,10 @@
 <ul class="track-list">
   {% for track in tracks %}
   <li class="track-card" data-cat="{{ track.category }}">
+    {{ topic_tab(track.category) }}
     <header class="track-card-head">
       <span class="track-icon" aria-hidden="true">{{ category_icon(track.category) }}</span>
       <div class="track-titles">
-        <span class="category-badge" data-cat="{{ track.category }}">{{ track.category }}</span>
         <h2><a href="/journeys/{{ track.id }}">{{ track.title }}</a></h2>
       </div>
     </header>

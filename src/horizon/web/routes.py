@@ -327,20 +327,9 @@ def guide_page(
         if next_guide is not None:
             next_steps.append({"track_title": journey.title, "guide": _guide_summary(next_guide)})
 
-    # A few more guides on the same topic, so every guide page — not only
-    # those threaded into a plan — ends with somewhere to read next. Skips
-    # whatever's already offered above as a "next step".
-    featured_ids = {step["guide"]["id"] for step in next_steps} | {guide_id}
-    related_guides = [
-        _guide_summary(g)
-        for g in session.exec(
-            select(Guide)
-            .where(Guide.category == guide.category, Guide.id.not_in(featured_ids))
-            .order_by(Guide.id)
-            .limit(3)
-        ).all()
-    ]
-
+    # No "more on this topic" cards here on purpose: guide pages already
+    # carry several callouts, and three extra cards at the bottom crowded
+    # them. The topic listing is one click away in the breadcrumb.
     return templates.TemplateResponse(
         request,
         "guide.html",
@@ -350,7 +339,6 @@ def guide_page(
             "body_html": body_html,
             "in_tracks": in_tracks,
             "next_steps": next_steps,
-            "related_guides": related_guides,
         },
     )
 
@@ -401,20 +389,6 @@ def checklist_page(
     heading, body = split_title(_read_checklist_body(checklist))
     body_html = render_markdown(body, _link_resolver(session))
 
-    # Checklists stand alone (no plan links), so "read further" here means a
-    # few guides on the same topic rather than a next step in an order.
-    related_guides: list[dict] = []
-    if checklist.category is not None:
-        related_guides = [
-            _guide_summary(g)
-            for g in session.exec(
-                select(Guide)
-                .where(Guide.category == checklist.category)
-                .order_by(Guide.id)
-                .limit(3)
-            ).all()
-        ]
-
     return templates.TemplateResponse(
         request,
         "checklist.html",
@@ -422,7 +396,6 @@ def checklist_page(
             "checklist": _checklist_summary(checklist),
             "heading": heading or checklist.title,
             "body_html": body_html,
-            "related_guides": related_guides,
         },
     )
 

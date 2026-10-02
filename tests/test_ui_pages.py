@@ -115,6 +115,36 @@ def test_guide_page_has_single_h1_and_difficulty_stamp():
     assert "[■□□□□]" in resp.text
 
 
+def test_guide_and_checklist_pages_have_no_related_cards_footer():
+    """The "More on {topic}" card grid was removed on purpose (CLAUDE.md,
+    UX standard 9): a guide ends with at most the "Next in {plan}" line."""
+    with TestClient(app) as client:
+        in_plan = client.get("/guides/survival-knots")
+        checklist = client.get("/checklists/first-aid-kit")
+    assert "More on " not in in_plan.text
+    assert "read-further-more" not in in_plan.text
+    assert in_plan.text.count('class="card-tab"') == 0
+    assert "Next in Core wilderness survival skills" in in_plan.text
+    assert "read-further" not in checklist.text
+    assert "More on " not in checklist.text
+
+
+def test_cards_carry_an_index_tab_not_a_coloured_bar():
+    with TestClient(app) as client:
+        home = client.get("/")
+        plans = client.get("/journeys")
+        checklists = client.get("/checklists")
+        shelf = client.get("/guides")
+        css = client.get("/static/app.css")
+    assert home.text.count('class="card-tab card-tab-blank"') == len(CATEGORY_ORDER)
+    assert '<span class="card-tab" data-cat="water">water</span>' in plans.text
+    assert '<li class="has-tab" data-cat=' in checklists.text
+    # Inside a topic shelf the heading names the topic, so no tab (and no
+    # headroom class) on those cards.
+    assert "card-tab" not in shelf.text
+    assert "border-top: 3px solid var(--cat)" not in css.text
+
+
 def test_guides_overview_groups_by_category_in_enum_order():
     with TestClient(app) as client:
         resp = client.get("/guides")

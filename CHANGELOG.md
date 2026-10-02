@@ -13,6 +13,33 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.1] — 2026-10-02
+
+### Changed
+
+- **Cards carry an index-card tab instead of a coloured top bar.** Every
+  card — the home topic tiles, guide and checklist cards, plan cards — used
+  to signal its topic with a 3px coloured `border-top`, the same device as
+  countless template sites. The topic hue now lives in a small file-card tab
+  on the card's top edge (`.card-tab` in `app.css`, `topic_tab` macro in
+  `partials/_ui.html`): named after the topic on cards, a blank coloured tab
+  on the home tiles (which name the topic in large type already). It
+  replaces the pill badge *inside* cards; the badge stays on reading pages
+  (guide/checklist/plan headers) where there is no card. Print, low-power
+  and high-contrast flatten the tab to a plain outlined (or solid ink) tab.
+  Pure template/CSS change; the per-topic `--cat` hues are unchanged.
+
+### Removed
+
+- **"More on {topic}" card grid at the foot of guides and checklists.**
+  Guide pages already carry several callouts; a row of three extra cards at
+  the bottom crowded them. A guide now ends with its own "Where to go next"
+  list and, when it sits inside a plan, the single quiet "Next in {plan}"
+  line — nothing else. Checklist pages end with the list itself. The route
+  no longer queries for related guides (`related_guides` is gone from the
+  `guide.html` / `checklist.html` template contexts). The topic listing is
+  one click away in the breadcrumb.
+
 ## [0.9.0] — 2026-10-02
 
 A milestone release in four strands: a round of new guides that fills the
@@ -1305,9 +1332,10 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
 <!-- v0.7.0 and v0.8.0 were released in this file and in pyproject.toml but never
      tagged on GitHub (v0.6.0 is the newest tag), so those two links point at the
      release commits. Switch them to the tag form once the tags are pushed.
-     v0.8.1's and v0.9.0's links assume their tags are pushed when each
-     release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.0...HEAD
+     v0.8.1's, v0.9.0's and v0.9.1's links assume their tags are pushed
+     when each release lands on main. -->
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/richardkfm/horizon/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/richardkfm/horizon/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/richardkfm/horizon/compare/c13b45f...v0.8.1
 [0.8.0]: https://github.com/richardkfm/horizon/compare/91be65b...c13b45f
