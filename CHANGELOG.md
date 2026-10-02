@@ -13,6 +13,251 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.0] — 2026-10-02
+
+A milestone release in four strands: a round of new guides that fills the
+library's most-felt gaps (health at home, water reuse, care, the home itself),
+a safety and accuracy review of the existing guides, a frontend pass that makes
+pages smaller, faster and easier to read, and a hardening pass so a bad file,
+a hostile import, or a flaky model can't take the node down.
+
+**HTTP API contract notes** (no endpoint, field, or response shape changed;
+details in the sections below): `/api/*` errors are still JSON, but non-API
+paths now get HTML error pages; the `/api/ai/answer` fallback *answer text*
+changed; `GET /api/guides/{id}` Markdown may now contain `[[...]]` wiki links;
+`POST /api/recommend` can return fewer results; and responses over 1 KB are
+gzip-compressed when the client accepts it.
+
+### Added
+- **Eighteen new guides where the library was thinnest.** Water: *greywater
+  reuse* (`water-greywater-reuse`) and *water saving and fair rationing*
+  (`water-conserve-and-ration`), the ordinary-times version of what only the
+  drought guide touched. Health: *wound aftercare*, *diarrhoea and oral
+  rehydration* (with the WHO home recipe), *household medicines*, *mental
+  health and grief over weeks*, *emergency childbirth and newborn care*, and
+  *teeth and toothache*. Care and cooperation: *caring for older and disabled
+  neighbours*, and *running a good meeting* (consent, and the difference
+  between standing aside and blocking). Food and cooking: *composting*,
+  *root-cellar storage*, and *food safety without a fridge*. Energy: *pedal
+  power* and *everyday batteries*. Plus *dry and composting toilets*, *home
+  weatherproofing* (with fire safety built in), and *children's play and
+  learning*. Each one is useful in ordinary times, not only in a crisis.
+- **Nine new printable checklists** — `household-medicines`,
+  `home-fire-safety`, `infant-child-emergency-kit`,
+  `accessibility-emergency-plan`, `bike-repair-kit`, `shelter-weatherproofing`,
+  `radio-and-mesh-setup`, `survival-day-pack`, and `seed-saving-calendar` —
+  so shelter, survival, technology, and mobility each get their first
+  tickable list, and health, emergencies, and food get more.
+- **Five new step-by-step plans:** *Cook well off the grid*
+  (`cook-well-off-the-grid`), *Find your way and get found*
+  (`find-your-way-and-get-found`), *Run a fair shared store*
+  (`run-a-fair-shared-store`), *Use and reuse water well*
+  (`use-and-reuse-water`), and *Care for health at home*
+  (`care-for-health-at-home`) — each threading guides that already formed a
+  real "do this, then this" path.
+- **Guides link to each other.** A new wiki-link syntax — `[[guide-id]]`,
+  `[[guide-id|custom text]]`, `[[plan:id]]`, `[[checklist:id]]` — renders as
+  a link titled with the target's real title, or as plain text if the id is
+  unknown (never a broken link). Several hundred cross-links now replace the
+  old prose "see …" references, which pointed nowhere, and every guide ends
+  with a "Where to go next" section. Plan descriptions can cross-link too.
+  `tests/test_ui_wikilinks.py` fails the build on any link to a missing
+  target. The `horizon-admin guide` terminal view and the assistant's
+  retrieved text show wiki links as the target's title, not the raw syntax.
+- **Eight new ASCII diagrams** in existing guides — ground-to-air signals,
+  a debris hut, a tyre patch, a sharpening angle, a solar thermosiphon, a
+  tippy-tap, CPR hand position, and the recovery position — on top of the
+  diagrams the new guides ship with.
+- **An `energy-safety` md skill** so the assistant carries battery, wiring,
+  and carbon-monoxide cautions into energy answers.
+- **Friendly error pages.** A missing page or a bad link (404, 400, 422, and
+  the 5xx errors the app raises) now shows a plain-language page with a search box and links back into
+  the library, instead of a bare JSON `{"detail": ...}`. **API contract:**
+  `/api/*`, `/healthz`, `/docs`, and htmx fragment requests keep their JSON
+  error bodies exactly as before; only browser page requests get HTML.
+- **A visual identity.** Each topic has its own signature colour (used on
+  tiles, cards, and guide headers, and collapsed to plain ink in print),
+  difficulty shows as a small `[■■■□□]` stamp with the words kept for screen
+  readers, a plan's guides sit along a "sunrise trail", and the guide header
+  sits on a graph-paper band matching the ASCII diagrams.
+- **`/guides` grouped by topic**, in the same water-first order as the home
+  tiles, with the easiest guides first and a "Show all N" link per topic — a
+  short shelf per category instead of one very long scroll on a phone.
+- **"Start with step 1"** button at the top of every plan.
+- **A print colophon** ("horizon · printed guide · keep with your kit") at
+  the foot of each printed sheet, with the guide's title as a running header
+  wherever the browser supports print page margins.
+- **`/favicon.ico`**, so browsers and tools that ask for it stop logging 404s.
+- **gzip compression** for HTML, CSS, and JS responses over 1 KB (already
+  encoded responses such as gzipped map tiles pass through untouched), and
+  **year-long immutable caching** for versioned static files (`?v=` URLs);
+  unversioned files, such as guide images, get a ten-minute lifetime so edits
+  still show up. **API contract:** JSON responses are compressed too when the
+  client sends `Accept-Encoding: gzip`; standard HTTP clients decompress
+  transparently.
+
+### Changed
+- **Pages are much lighter.** htmx now loads only on the pages that use it
+  (the assistant and the admin health and packs pages), and Alpine.js is gone
+  (see *Removed*). A first visit to the home page went from about 179 KB over
+  6 requests to about 26 KB over 4.
+- **Guide PDFs** now include the guide's images, a running title header, a
+  colophon footer ("horizon · <title> · printed <date>") with page numbers,
+  and are cached in memory (keyed on the guide file's modification time), so
+  printing the same guide twice on a Pi doesn't re-render it.
+- **The search index builds in the background, and only when needed.**
+  Startup used to re-embed every chunk on every boot (around 426 embedding
+  calls). The build now runs in a background thread so pages are served
+  immediately, is skipped when a stored fingerprint shows the content and the
+  embedding model are unchanged, and returns straight away when the optional
+  `chromadb` extra isn't installed. `horizon-admin reindex` and the admin
+  **Rebuild search index** repair always force a full rebuild.
+- **Recommendations are fewer and better.** "Where to start" now ignores
+  question filler ("how do I keep my family safe", "what should we know
+  about …") and drops any guide or plan scoring under 40% of the best match,
+  so one strong hit isn't padded out with items that only share a common
+  word. **API contract:** `POST /api/recommend` may return fewer than five
+  items per list; the response shape is unchanged.
+- **The assistant's model-off fallback reads better.** The answer lists
+  matching guides by title only (the ids were already returned in
+  `citations`) and says "step-by-step plans" instead of "journeys". **API
+  contract:** the `answer` text of `POST /api/ai/answer` changed in the
+  fallback case (no more `[guide-id]` tags after each title); `citations`
+  is unchanged and still holds guide ids only. On the web page, the guides
+  an answer lists become links in place and aren't repeated under
+  *Sources*.
+- **`GET /api/guides/{id}` Markdown may contain `[[...]]` wiki links.**
+  **API contract:** consumers that read `markdown` should treat `[[id]]` /
+  `[[id|text]]` / `[[plan:id]]` / `[[checklist:id]]` as cross-references. In
+  the `format=html` rendering they become `<a class="xref">` links to the
+  conventional URL (`/guides/<id>`, `/journeys/<id>`, `/checklists/<id>`),
+  labelled with the custom text or the id.
+- **Content aligned with horizon's principles.** Tool-making guides no longer
+  use rawhide, sinew, or bone; the drought guidance rehomes livestock rather
+  than culling it; the cooperation guides use consent rather than voting as
+  the default; the cooking md skill is now *plant-forward and
+  vegetarian-friendly* (eggs, dairy, and honey are fine; nothing that needs
+  an animal killed); and `values.md` states the content principles outright.
+  Around 70 callouts were rewritten to use a recognised label so they render
+  as callouts.
+- **Five existing plans reordered, trimmed, or extended** so each reads as a
+  real progression: *Plan and build a shelter* (cabin before insulation),
+  *Prepare for and get through a long blackout* (adds keeping medical care
+  going without power, and puts household preparation first), *Make and
+  maintain your own tools* (drops textile mending, which isn't a tool),
+  *Guard your group against coercion and outside hostility* (now starts from
+  accountable roles and builds outward to neighbouring groups), and *Bring
+  people together with culture* (ordered from first evening to lasting
+  habit).
+- **Plain, hopeful wording on the public pages.** "Where to start" is used
+  consistently, the low-power banner, hero line, and empty states are in
+  plain language and less doomer ("Want to be more self-reliant?"), and the
+  assistant's model-off notice is amber rather than red.
+- **Assistant form:** a double-submit guard and a "Thinking…" indicator; an
+  empty question now asks you to type one instead of saying no guides
+  matched.
+- **Easier to read and tap on phones.** The guide header is much tighter
+  (the title starts about 136px from the top instead of about 330px), ASCII
+  diagrams shrink to fit and show a fade hint when they still scroll, the
+  packs and admin tables stack as cards, header and footer links get 44px
+  touch targets, and "Do now" callouts get a solid stamp so they stand out.
+- **Navigation marks the current section** with `aria-current`, and the
+  footer shows **Dashboard** instead of the admin sign-in link when you're
+  signed in.
+- **Callout labels** accept a trailing full stop as well as a colon
+  (`**Note.**` and `**Note:**`), and `Principle` is a synonym for `Note`.
+
+### Fixed
+- **Safety and factual errors in the guides.** Removed the discredited
+  "universal edibility test" from foraging. Triage now follows START, fixing
+  a contradiction about casualties who aren't breathing. The slow sand filter
+  outlet now rises above the sand so the biological layer never dries out,
+  with flow rate, ripening, and cleaning added. The wells guide replaces the
+  candle air test (which can ignite methane) with ventilation, a gas
+  detector, a harness, and a "no rescuer goes down" rule. Distillation is no
+  longer said to remove volatile chemicals. Bleach dosing now covers 5–6% and
+  8.25% bleach, the chlorine-smell check, and bleach shelf life, alongside
+  clear SODIS rules. Drinking water is about 4 L per person per day,
+  everywhere. Solar panel sizing (÷ sun-hours ÷ 0.7) is consistent — the old
+  rule undersized panels about sixfold. Earth building gains an earthquake
+  warning. Pickles, jam, oils, and canning gain botulism and acidity rules,
+  and homemade vinegar is for fridge pickles only. Power-dependent care gains
+  carbon-monoxide, insulin-freezing, and oxygen-fire warnings. First aid adds
+  infant and child choking and CPR, AED use, and thrusts for pregnant people;
+  drops elevation from bleeding control; and adds a tourniquet and face
+  shield to the kit. Also: suicide-risk first steps, smoke alarms and an
+  escape plan, safe times for a fridge and freezer without power, the
+  kidney-bean hard-boil rule, Legionella and the relief valve for solar water
+  heating, no charging lithium batteries below 0 °C, FRS/PMR446 antenna rules,
+  a consistent latrine distance from water, and — in the guide on protecting
+  someone from coercion — a clear safeguarding exception: when a child, or an
+  adult who can't protect themselves, is at risk, the adults around them must
+  act and involve the right services.
+- **A `---` inside a title or summary no longer breaks a guide's metadata.**
+  Front matter was split on the first `---` *anywhere* in the file; a new
+  line-anchored parser (`services/frontmatter.py`) is now shared by seeding,
+  search, the admin views, and the CLI. A book import whose chapter summary
+  was a bare `---` could previously empty the database and stop the next boot.
+- **One bad content file no longer stops boot or breaks pages.** A malformed
+  guide, checklist, `journeys.yaml`, or pack manifest is skipped and logged
+  (and a guide that fails to parse keeps its previous row rather than
+  vanishing); `difficulty` is clamped to 1–5. Each startup step is isolated,
+  so a failure in one is logged and the node still comes up.
+- **Re-seeding is transactional.** A failed re-seed (from the CLI or the admin
+  repair) rolls back and leaves the previous content in place.
+- **Deleted guides and checklists, and plans removed from `journeys.yaml`,
+  now disappear** on the next sync instead of lingering in the database.
+- **A corrupt bundle manifest no longer overwrites operator edits.** If the
+  record of which bundled files horizon wrote can't be read, any file that
+  differs from the bundled copy is treated as an operator edit and left
+  alone; the manifest is now written atomically so this can't happen from a
+  crash mid-write.
+- **A malformed model response falls back to local content** instead of a
+  500, for both answers and embeddings.
+- **Low-power mode never calls the embedding model**, not even to embed a
+  search query; retrieval uses keyword search.
+- **A failed pack download cleans up its `.part` file** rather than leaving a
+  half-written multi-gigabyte file behind.
+- **Book import no longer blocks the server** for other visitors while it
+  reads, writes, and re-seeds.
+- **Text contrast** of secondary text (`--muted-2`) is raised to at least
+  4.8:1 on light surfaces and 5.5:1 on dark ones.
+- **Checklists:** the item text is clickable, every box is labelled with its
+  item for screen readers, and the tick target is larger.
+- **The admin guide preview** showed two `<h1>` headings.
+- **Search and category filter links** are URL-encoded.
+- **`horizon.__version__`** now comes from the installed package metadata; it
+  was stuck at 0.8.0.
+
+### Removed
+- **Alpine.js** (46 KB, loaded on every page and no longer used) and unused
+  CSS.
+
+### Security
+- **Raw HTML in Markdown is escaped** (`html: False`), closing a stored-XSS
+  path through guide files, imports, and model answers. Guides can no longer
+  rely on inline HTML.
+- **The importer escapes `&`, `<`, and `>`** in imported text, so escaped
+  source text can't turn back into a live tag.
+- **Pack ids are validated** (a lowercase slug, never a path or `..`):
+  `/admin/packs/%2E%2E/remove` could previously delete the directory above
+  the packs directory — by default, the whole data directory.
+- **The PDF renderer no longer fetches remote URLs or embeds arbitrary local
+  files.** A custom URL fetcher serves only files under the guides and static
+  directories, plus inline `data:` URLs.
+- **Reference-library (ZIM) articles are allowlist-sanitised** and served
+  with a Content-Security-Policy and `X-Content-Type-Options: nosniff`;
+  non-HTML entries are served with a sandboxing CSP.
+- **Map tile coordinates are bounded** (zoom 0–24, x/y within the zoom
+  level's grid) before they reach SQLite.
+- **Admin sessions expire on the server after 12 hours**, not just in the
+  browser, so a copied cookie can't be replayed forever. Existing sessions
+  must sign in again after upgrading. A non-ASCII token no longer causes a
+  500 at login.
+- **The web import wizard validates its input:** guide ids are slugified,
+  category and difficulty are checked, and output can't escape the
+  destination directory.
+
 ## [0.8.1] — 2026-09-19
 
 ### Added
@@ -1059,8 +1304,10 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
 <!-- v0.7.0 and v0.8.0 were released in this file and in pyproject.toml but never
      tagged on GitHub (v0.6.0 is the newest tag), so those two links point at the
      release commits. Switch them to the tag form once the tags are pushed.
-     v0.8.1's links assume its tag is pushed when the release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.8.1...HEAD
+     v0.8.1's and v0.9.0's links assume their tags are pushed when each
+     release lands on main. -->
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/richardkfm/horizon/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/richardkfm/horizon/compare/c13b45f...v0.8.1
 [0.8.0]: https://github.com/richardkfm/horizon/compare/91be65b...c13b45f
 [0.7.0]: https://github.com/richardkfm/horizon/compare/v0.6.0...91be65b

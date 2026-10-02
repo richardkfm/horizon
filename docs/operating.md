@@ -19,6 +19,55 @@ and `content_packs.dir`.
 `web.enabled` (default `true`) controls the server-rendered web UI; turn it off
 to run a headless node with only the JSON API and the `horizon-admin` CLI.
 
+### What happens at startup
+
+Each startup step — the event log, the admin token, the database, the content
+sync, the search index — runs on its own: if one fails, the error is logged
+(and shown on **Admin → Check & repair**) and the node still comes up and
+serves what it can. A content file horizon can't read is skipped with a
+warning instead of stopping the sync, and a failed re-seed rolls back to the
+previous content.
+
+The content sync copies new bundled files into the content directory but
+never overwrites a file you've edited. horizon remembers which bundled files it
+wrote in a small manifest (`.bundle_manifest.json`, written atomically); if
+that manifest is ever unreadable, any file that differs from the bundled copy
+is treated as yours and left alone.
+
+The assistant's **search index** (only with the optional `ai` extra) is built
+in a background thread, so pages are served immediately. It is only rebuilt
+when the content or the embedding model changed since the last successful
+build — horizon stores a fingerprint next to the index — so a routine reboot
+costs no embedding calls. `horizon-admin reindex` and the admin **Rebuild
+search index** repair always force a full rebuild.
+
+### Low-power mode
+
+`power.low_power: true` (or `HORIZON_LOW_POWER=1`) is for solar/battery
+nodes: the index isn't built at startup, the assistant answers from local
+guides without generating text, and retrieval uses keyword search — the
+embedding model is never called, not even to embed a question.
+
+### Network and caching
+
+Responses over 1 KB are gzip-compressed (level 5, cheap on a Pi; already
+compressed responses such as map tiles pass through). Static files requested
+with a version token (`/static/app.css?v=…`, as every page links them) are
+sent with a year-long `immutable` cache header, so returning visitors don't
+re-download them; other static files and guide images are cached for ten
+minutes so edits show up quickly.
+
+### Printing and PDFs
+
+**Download PDF** on a guide renders a high-contrast A4 PDF with the guide's
+images, its title as a running header, and a colophon footer ("horizon ·
+<title> · printed <date>") with page numbers. Rendering is the slow part on
+weak hardware, so the last 16 PDFs are cached in memory (keyed on the guide
+file's modification time, so an edit produces a fresh one). The PDF renderer
+never touches the network and only reads files under the guides and static
+directories — a remote image URL or a link to any other local file in a guide
+is refused, not fetched.
+
 A few settings also honour environment overrides, so a script can flip them
 without editing `config.yaml`: `HORIZON_LOW_POWER`, `HORIZON_ASSISTANT_ENABLED`,
 and `HORIZON_ADMIN_TOKEN` are read at request time; `HORIZON_WEB_ENABLED` is
@@ -30,6 +79,11 @@ The admin area is on by default. If you don't set `admin.token` (or
 `HORIZON_ADMIN_TOKEN`), horizon generates a random token on first run and saves
 it to `<data_dir>/admin_token` (e.g. the `horizon-data` volume). Log in at
 `/admin/login` with that token.
+
+A login lasts **12 hours**: the browser drops the cookie after that, and the
+server independently rejects any cookie signed more than 12 hours ago. The
+raw token is never stored in the cookie. (Upgrading from v0.8.x signs everyone
+out once, because the cookie format changed — just log in again.)
 
 ```bash
 # Find the auto-generated token (Docker):
@@ -152,7 +206,7 @@ horizon-admin doctor                 # health-check every optional integration
 horizon-admin check                  # content-health diagnostics (links, files, index)
 horizon-admin seed                   # load bundled content into an empty db
 horizon-admin seed --force           # re-seed a populated db from content on disk
-horizon-admin reindex                # rebuild the vector index after edits
+horizon-admin reindex                # force a full rebuild of the vector index
 horizon-admin config                 # effective settings (admin token redacted)
 
 horizon-admin journeys               # browse the curated step-by-step plans
@@ -191,12 +245,26 @@ horizon-content remove wikipedia-en-mini
 
 The same operations are also available under `horizon-admin packs …` and as a
 web wizard under **Admin → Content packs**, which downloads in the background and
-shows live progress.
+shows live progress. A download that fails or is interrupted deletes its
+partial `.part` file rather than leaving it to fill the disk.
+
+**Pack ids** (in `packs.yaml` and on the command line) must be a lowercase
+slug: letters, digits, `.`, `_`, and `-`, starting with a letter or digit, at
+most 128 characters, and never containing `..`. Each id names a directory
+under `content_packs.dir`, so horizon refuses anything that could resolve
+outside it — a catalog entry with an unsafe id is skipped with a warning, and
+a pack directory whose `manifest.json` is unreadable or doesn't match its id
+is ignored rather than breaking the packs page.
 
 Once a Wikipedia/WikEM-style ZIM pack is installed, read it right in the
 browser at **Reference library** (linked from the main nav once a pack is
 installed) — full-text search plus an article view, no external Kiwix viewer
-needed. Map packs come in two sizes: for Africa, Asia, Europe, and North
+needed. Reference articles are cleaned against an allowlist of safe HTML
+before display and served with a strict Content-Security-Policy (no scripts
+but horizon's own, no frames, plugins, or remote resources) and
+`X-Content-Type-Options: nosniff`; non-article entries inside a ZIM (images,
+SVGs and the like) are served with a sandboxing policy so they can't run
+script if opened directly. Map packs come in two sizes: for Africa, Asia, Europe, and North
 America there's a pack per country (e.g. Germany at 4.5 GB) as well as the
 whole continent (e.g. all of Europe at 31+ GB) — pick the country unless you
 actually need every country on the continent. The other four continents are
