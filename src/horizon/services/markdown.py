@@ -411,14 +411,13 @@ def _parser() -> MarkdownIt:
 def strip_front_matter(text: str) -> str:
     """Drop a leading ``---`` YAML front-matter block, returning the body.
 
-    Mirrors the split in ``seed._split_front_matter`` but keeps this service free
-    of any database/seed import so it stays pure and unit-testable.
+    Delegates to the shared, line-anchored parser in ``services.frontmatter``
+    (pure: ``re`` + ``yaml`` only), so a ``---`` inside a title or summary can't
+    cut the block short here either.
     """
-    if text.startswith("---"):
-        parts = text.split("---", 2)
-        if len(parts) == 3:
-            return parts[2].lstrip("\n")
-    return text
+    from horizon.services.frontmatter import strip_front_matter as _strip
+
+    return _strip(text)
 
 
 def split_title(text: str) -> tuple[str | None, str]:

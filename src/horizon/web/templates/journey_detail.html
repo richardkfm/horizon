@@ -11,8 +11,8 @@
     <p class="journey-meta guide-meta">
       <span class="category-badge" data-cat="{{ journey.category }}">{{ journey.category }}</span>
       {{ difficulty(journey.difficulty) }}
-      {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
-      <span>· {{ journey.guides|length }} steps</span>
+      {% if journey.estimated_time %}<span>{{ journey.estimated_time }}</span>{% endif %}
+      <span>{{ journey.guides|length }} steps</span>
     </p>
   </header>
   {% if journey.description %}<p class="tagline">{{ journey.description_html | safe }}</p>{% endif %}

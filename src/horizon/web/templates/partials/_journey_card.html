@@ -10,7 +10,7 @@
     {% if journey.description %}<p>{{ (journey.description_html or journey.description) | striptags }}</p>{% endif %}
     <p class="journey-meta">
       {{ difficulty(journey.difficulty) }}
-      {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
+      {% if journey.estimated_time %}<span>{{ journey.estimated_time }}</span>{% endif %}
     </p>
   </a>
 </li>

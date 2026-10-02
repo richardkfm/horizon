@@ -60,9 +60,7 @@ def _article_csp(page_html: str) -> str:
     ``base.html`` (theme/text-size setup). Those are allowed by hash; any other
     inline script, and every script from anywhere but this node, is refused, as
     are plugins, frames, ``<base>`` hijacking, and remote images/fonts/media.
-    ``'unsafe-eval'`` is only there for the vendored Alpine.js, which evaluates
-    its own ``x-*`` attributes -- attributes the sanitiser never lets through
-    from article markup.
+    No ``'unsafe-eval'``: nothing on a reference page evaluates strings.
     """
     hashes = []
     for match in _INLINE_SCRIPT_RE.finditer(page_html):
@@ -70,7 +68,7 @@ def _article_csp(page_html: str) -> str:
             continue
         digest = hashlib.sha256(match.group("body").encode("utf-8")).digest()
         hashes.append(f"'sha256-{base64.b64encode(digest).decode('ascii')}'")
-    script_src = " ".join(["'self'", "'unsafe-eval'", *sorted(set(hashes))])
+    script_src = " ".join(["'self'", *sorted(set(hashes))])
     return (
         "default-src 'self'; "
         f"script-src {script_src}; "

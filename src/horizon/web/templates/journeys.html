@@ -37,8 +37,8 @@
     {% if track.description %}<p class="track-desc">{{ track.description_html | safe }}</p>{% endif %}
     <p class="journey-meta">
       {{ difficulty(track.difficulty) }}
-      {% if track.estimated_time %}<span>· {{ track.estimated_time }}</span>{% endif %}
-      <span>· {{ track.guides|length }} guide{{ "" if track.guides|length == 1 else "s" }}</span>
+      {% if track.estimated_time %}<span>{{ track.estimated_time }}</span>{% endif %}
+      <span>{{ track.guides|length }} guide{{ "" if track.guides|length == 1 else "s" }}</span>
     </p>
     {% if track.guides %}
     <ol class="track-steps">

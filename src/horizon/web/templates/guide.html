@@ -13,7 +13,7 @@
   <p class="journey-meta guide-meta">
     <span class="category-badge" data-cat="{{ guide.category }}">{{ guide.category }}</span>
     {{ difficulty(guide.difficulty) }}
-    {% if guide.estimated_time %}<span class="meta-time">· {{ guide.estimated_time }}</span>{% endif %}
+    {% if guide.estimated_time %}<span class="meta-time">{{ guide.estimated_time }}</span>{% endif %}
   </p>
   {% if in_tracks %}
   <p class="guide-plans no-print">Part of the plan{{ "s" if in_tracks|length > 1 }}

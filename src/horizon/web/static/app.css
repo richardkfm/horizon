@@ -666,7 +666,7 @@ a:hover { color: var(--accent-strong); }
 
 /* Difficulty as a small monospace stamp, [■■■□□]; the words live in a
    visually-hidden span for screen readers (partials/_ui.html). */
-.difficulty { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: -0.04em; white-space: nowrap; }
+.difficulty { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.08em; white-space: nowrap; }
 
 /* A signature hue per topic, from the same sun/leaf/horizon family: a 3px
    top rule on tiles and cards plus the badge tint. Low-power, high contrast,
@@ -790,7 +790,7 @@ a:hover { color: var(--accent-strong); }
 }
 .journey-card h2 { font-size: 1.2rem; margin: 0.5rem 0 0.3rem; }
 .journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
-.journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
 
 /* Card grid — guides & checklists indexes. The same card idiom as journey
    cards, but denser: a responsive multi-column grid replaces the old one

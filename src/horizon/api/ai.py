@@ -133,12 +133,9 @@ def _read_skill_body(path: Path) -> str | None:
     """Return an md skill's body (front matter stripped), or ``None`` if absent."""
     if not path.is_file():
         return None
-    text = path.read_text(encoding="utf-8")
-    if text.startswith("---"):
-        segments = text.split("---", 2)
-        if len(segments) == 3:
-            return segments[2].lstrip("\n")
-    return text
+    from horizon.services.frontmatter import strip_front_matter
+
+    return strip_front_matter(path.read_text(encoding="utf-8"))
 
 
 def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:

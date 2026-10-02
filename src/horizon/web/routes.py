@@ -274,7 +274,12 @@ def guide_pdf(guide_id: str, session: SessionDep) -> Response:
         guide=_guide_summary(guide),
         body_html=render_markdown(_read_body(guide), _link_resolver(session)),
     )
-    pdf_bytes = render_pdf(document)
+    md_path = Path(settings.content_dir) / "guides" / guide.path
+    pdf_bytes = render_pdf(
+        document,
+        title=guide.title,
+        cache_key=f"{guide.id}:{md_path.stat().st_mtime_ns}",
+    )
 
     return Response(
         content=pdf_bytes,
