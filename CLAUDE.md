@@ -111,7 +111,8 @@ content/            seed content shipped in the repo
   md_skills/        values, answer-style, domain checklists
   journeys.yaml     seed step-by-step plans (ordered guide lists)
   packs.yaml        catalog of optional offline content packs
-docs/               public docs: api, authoring-content, operating, BACKLOG
+docs/               public docs: install, features, api, authoring-content,
+                    operating, BACKLOG
 packaging/          install.sh + horizon.service (systemd install)
 scripts/            get-horizon.sh (curl source installer, no git/Docker)
 src/horizon/
@@ -363,8 +364,13 @@ Update docs **as part of every user-facing change**, in the same change set:
   sections (Added / Changed / Fixed). Call out anything that affects the
   documented HTTP API contract (e.g. a changed default), even when the response
   shape is unchanged.
-- **`README.md`** — keep Features, Configuration, and the Roadmap/changelog
-  pointers current; fix in-page anchors if a heading changes. **On every
+- **`README.md`** — a short, phone-readable front page: pitch, six one-line
+  features, a three-line quickstart, and links out. Keep it that way — put
+  detail in `docs/` (full feature list in [`features.md`](docs/features.md),
+  every install path in [`install.md`](docs/install.md)) and link to it, never
+  grow the README back into a manual or a version-history recap. Keep its
+  "What you get" bullets and doc links current; fix in-page anchors if a
+  heading changes. **On every
   release bump, also update the status badge and the "Status:" line to match
   `pyproject.toml`'s `version`** — this has drifted before (stuck at v0.2.0
   through the v0.3 and v0.4 releases).
@@ -375,7 +381,8 @@ Update docs **as part of every user-facing change**, in the same change set:
   [`api.md`](docs/api.md) for any endpoint/field change,
   [`authoring-content.md`](docs/authoring-content.md) for a content-format or
   import change, [`operating.md`](docs/operating.md) for config, CLI, packs, and
-  deployment, and [`BACKLOG.md`](docs/BACKLOG.md) whenever you finish (or
+  deployment, [`install.md`](docs/install.md) for install paths,
+  [`features.md`](docs/features.md) for any user-facing feature, and [`BACKLOG.md`](docs/BACKLOG.md) whenever you finish (or
   invalidate) an item there. Avoid baking exact counts ("ten diagrams", "94
   guides") into prose — they go stale within a release; prefer a shape
   ("roughly half", "the thinnest categories") or refresh the number in the same
