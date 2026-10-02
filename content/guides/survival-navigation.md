@@ -12,7 +12,7 @@ estimated_time: "A few hours"
 Knowing which way is which lets you reach help, return to camp, and avoid walking
 in circles. None of this needs a compass — just the sky and some care.
 
-> **Before you move:** Tell someone your plan, or leave a marker. If you are
+> **Tip:** **Before you move.** Tell someone your plan, or leave a marker. If you are
 > lost and have shelter, water, and people may search for you, often the safest
 > choice is to **stay put** and signal.
 
@@ -62,8 +62,8 @@ in circles. None of this needs a compass — just the sky and some care.
 
 ## Where to go next
 
-- If you do have a map and compass, see **navigate with a map and compass**
+- If you do have a map and compass, see [[survival-map-and-compass|navigate with a map and compass]]
   for bearings and finding your position — this guide is for when you have
   neither.
 - If you decide to stay put rather than move, make yourself easy to find:
-  see signal for rescue if lost or stranded.
+  see [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].

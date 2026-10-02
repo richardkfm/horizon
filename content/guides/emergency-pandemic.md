@@ -13,7 +13,7 @@ In an epidemic or pandemic, simple, consistent habits protect you and slow the
 spread far more than panic does. The basics — distance, hygiene, clean air, and
 careful care of the sick — work against most infectious diseases.
 
-> **Follow trusted health guidance.** Outbreaks differ in how they spread and what
+> **Note:** **Follow trusted health guidance.** Outbreaks differ in how they spread and what
 > stops them. Get instructions from credible health authorities and adapt these
 > general principles to the specific illness.
 
@@ -35,7 +35,8 @@ careful care of the sick — work against most infectious diseases.
 - **Avoid touching your face** with unwashed hands.
 - **Clean shared surfaces** (handles, taps, phones) regularly.
 - **Keep clean water and sanitation going** — many outbreaks spread through water
-  and poor hygiene (see the water guides).
+  and poor hygiene (see [[water-choosing-treatment|choosing a water treatment]] and
+  [[survival-sanitation-hygiene|waste and hygiene without plumbing]]).
 
 ## Prepare your household
 
@@ -64,3 +65,9 @@ careful care of the sick — work against most infectious diseases.
 Check on neighbours who live alone or are at high risk, share accurate
 information, and resist rumours and stigma — caring for each other, calmly and
 fairly, is what gets a community through an outbreak.
+
+## Where to go next
+
+- [[survival-sanitation-hygiene]]
+- [[health-psychological-first-aid]]
+- [[checklist:home-emergency-prep]]

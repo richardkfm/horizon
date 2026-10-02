@@ -68,6 +68,6 @@ choice when night is falling and it is already cold.
 
 ## Where to go next
 
-- Right now: follow the emergency quick-shelter guide.
-- For the long term: read earth building or the timber-frame cabin guide.
-- Either way: insulation basics make any shelter far more livable.
+- Right now: [[shelter-emergency-quick]].
+- For the long term: [[shelter-earth-building]] or [[shelter-timber-cabin]].
+- Either way: [[shelter-insulation-basics|insulation basics]] make any shelter far more livable.

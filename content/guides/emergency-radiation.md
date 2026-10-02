@@ -14,7 +14,7 @@ the protective actions are clear and effective, and ordinary buildings give real
 protection. The three words to remember are **Get inside, stay inside, stay
 tuned.**
 
-> **Follow the authorities above all.** Officials know the specific release, the
+> **Do now:** **Follow the authorities above all.** Officials know the specific release, the
 > wind, and the danger zone, and will say whether to **shelter** or **evacuate**,
 > and whether to take **iodine**. This guide prepares you to act on their
 > instructions — it does not replace them.
@@ -71,5 +71,11 @@ Radiation exposure drops with:
 
 Sheltering is often safest at first. **Evacuate only on official instruction or if
 staying is clearly more dangerous** — then go quickly, by the route given, keeping
-the household together (see *Keep your household safe during armed conflict* for
-go-bag and evacuation basics).
+the household together (see [[checklist:go-bag]] for what to pack, and
+[[emergency-no-car-household]] if you'd be leaving on foot).
+
+## Where to go next
+
+- [[checklist:go-bag]]
+- [[emergency-news-without-internet]]
+- [[checklist:home-emergency-prep]]

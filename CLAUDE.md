@@ -50,7 +50,10 @@ for the AI assistant's system prompt:
 3. **No killing of animals.** horizon doesn't judge anyone's personal diet, but
    as a project it will not publish or assist with guides that require killing
    an animal (hunting, trapping, slaughtering, etc.). Leave out food content
-   that depends on it.
+   that depends on it, and don't use animal parts (rawhide, sinew, bone) in
+   craft guides. Cooking content is plant-forward and vegetarian-friendly:
+   eggs, dairy, and honey are fine (see `content/md_skills/cooking-plant-based.md`),
+   and keeping animals for them is in scope on a strictly non-lethal basis.
 4. **No weapons, no war prep.** horizon does not deal in weapons, combat, or
    preparing for armed conflict. This is a rebuilding and cooperation project,
    not a survivalist/militia one.
@@ -70,8 +73,12 @@ for the AI assistant's system prompt:
 ## Architecture
 
 - **Web framework:** FastAPI + Uvicorn (`src/horizon/main.py`).
-- **UI:** server-rendered Jinja2 + HTMX + Alpine.js (vendored locally, no build
-  step), with a print/low-power friendly stylesheet (`web/static/print.css`).
+- **UI:** server-rendered Jinja2 + HTMX (vendored locally, and loaded only on
+  the pages that use it — the assistant and the admin health/packs pages — via
+  each template's `{% block scripts %}`), no Alpine and no other JS framework,
+  no build step, with a print/low-power friendly stylesheet
+  (`web/static/print.css`). Small page behaviours (theme, nav toggle, checklist
+  ticks) are plain inline JS so they work in low-power mode.
 - **Metadata store:** SQLite via SQLModel (`db.py`, `models.py`) — guides,
   checklists, plans (`Journey`), and the ordered guide-link edges between them.
 - **Content:** Markdown guides + checklists + md skills on disk under `content/`
@@ -85,9 +92,15 @@ for the AI assistant's system prompt:
   `content/packs.yaml` (`services/packs.py`), read in-browser by the reference
   library (ZIM, `services/zim_reader.py` + `web/reference.py`) and the map
   viewer (`.mbtiles`, `services/mbtiles.py` + `web/maps.py`).
-- **Startup lifespan** (`main.py`): install the event log → `init_db()` →
-  `seed_if_empty()` → `reindex_content()` (skipped under low power). Steps not
-  yet implemented are skipped gracefully.
+- **Startup lifespan** (`main.py`): install the event log → admin token →
+  `init_db()` → `seed_if_empty()` → `start_background_reindex()` (skipped under
+  low power). Each step is isolated: a `NotImplementedError` is skipped and any
+  other exception is logged, and boot continues. The search index builds in a
+  daemon thread, and only when a fingerprint of the content + embedding model
+  has changed; `horizon-admin reindex` and the admin repair pass `force=True`.
+- **Responses:** `GZipMiddleware` (≥ 1 KB) on everything; `web/assets.py`'s
+  `CachedStaticFiles` gives versioned (`?v=`) static URLs a year-long immutable
+  `Cache-Control` and everything else ten minutes.
 
 ## Directory map
 
@@ -107,7 +120,8 @@ src/horizon/
   db.py, models.py  SQLModel engine + Guide/Checklist/Journey models
   seed.py           load bundled content into SQLite (and sync it on restart)
   api/              Knowledge API (journeys, guides, recommend) + AI API
-  services/         markdown, pdf, rag, llm, recommend, ethics, packs,
+  services/         markdown, frontmatter, plaintext, pdf, rag, llm,
+                    recommend, ethics, packs,
                     importer/import_content, diagnostics, eventlog,
                     zim_reader, mbtiles (external deps live here)
   web/              routes.py, admin.py, reference.py, maps.py, assets.py
@@ -163,6 +177,9 @@ These are horizon's integration surface; preserve backward compatibility:
   needs a photo or line art too detailed for monospace text — prefer monochrome
   **SVG** line art so it stays legible on screen, paper, and e-ink, put it under
   `content/guides/images/` (served at `/guides/images`, mounted in `main.py`).
+  Keep diagrams to about 60 columns where you can: wider ones still work, but
+  on a phone they shrink and then scroll sideways inside their card behind a
+  fade hint.
 - **Checklist:** `content/checklists/<id>.md` with front matter (`id`, `title`,
   `summary`, optional `category`); body is a Markdown task list (`- [ ] item`)
   rendered as tick-able checkboxes. Auto-discovered like guides; standalone (no
@@ -178,7 +195,24 @@ These are horizon's integration surface; preserve backward compatibility:
 - **Callouts:** start a blockquote with a recognised bold label — `Pick this if` /
   `Avoid if` / `Spec` / `Decision` / `Risk` / `Do now` / `Tip` / `Note` (with
   synonyms; see `services.markdown._CALLOUT_LABELS`). `Do now` is the most urgent,
-  for immediate life-safety actions.
+  for immediate life-safety actions. The label may end in a colon or a full
+  stop (`**Note:**` / `**Note.**`); write the colon form — it's canonical.
+  `Principle` is a synonym for `Note`. An unrecognised label renders as a
+  plain blockquote, so check new callouts actually render as callouts.
+- **Cross-references (wiki links):** `[[guide-id]]`, `[[guide-id|custom text]]`,
+  `[[plan:id]]`, `[[checklist:id]]` (in guides, checklists, and plan
+  descriptions). They render as a link titled with the target's real title
+  (or the custom text); an unknown id renders as plain text, never a broken
+  link, and `tests/test_ui_wikilinks.py` fails on any target that doesn't
+  exist. Inside a Markdown table use the pipe-less form (a `|` would split the
+  cell). Always cross-reference another guide this way — never prose
+  "see the … guide" with no link. Plain-text consumers (the `horizon-admin
+  guide` view, the assistant's retrieved chunks) show the title instead, via
+  `services/plaintext.py`.
+- **No raw HTML.** The Markdown renderer runs with `html: False`, so any raw
+  HTML in a guide (including an imported one or a model answer) is escaped
+  and shown as text. Content can't rely on inline HTML — use Markdown, a
+  callout, or an ASCII diagram instead.
 - **Importing external content:** `horizon-content import wikihow <url>` /
   `import book <path>` on the CLI, or the **Import content** wizard under
   `/admin/import` in the web UI, convert a how-to page or a book into guide
@@ -229,6 +263,23 @@ fails on an empty category. Restart to re-seed and re-index.
   the step that fills them in; startup tolerates these.
 - Don't add runtime cloud calls. Don't import sibling projects. Don't move value
   judgements out of `content/md_skills/`.
+- **Parse front matter only through `services/frontmatter.py`.** Its parser is
+  line-anchored: the block ends at the next line that is exactly `---`. The
+  old `text.split("---", 2)` cut the block at the first `---` *anywhere* — a
+  title like `Part One --- Beginnings` broke metadata, and a book import whose
+  summary was a bare `---` emptied the database and stopped the next boot.
+  Don't reintroduce ad-hoc splitting anywhere (seed, rag, admin, CLI all share
+  this one parser; `coerce_difficulty` clamps `difficulty` to 1–5).
+- **Seeding never blocks boot.** Re-seeding runs in one transaction (a failure
+  rolls back to the previous content); a malformed guide, checklist,
+  `journeys.yaml`, or pack manifest is skipped and logged, and a guide that
+  fails to parse keeps its previous row instead of vanishing. Keep new content
+  loaders to that standard: log and skip, never raise out of startup.
+- **Errors: HTML for pages, JSON for the API.** The exception handlers in
+  `main.py` render `error.html` (with the real status code) for browser page
+  requests, but `/api/*`, `/healthz`, `/docs`, `/redoc`, `/openapi.json`, htmx
+  (`HX-Request`) requests, and a node with `web.enabled: false` keep FastAPI's
+  JSON `{"detail": ...}` bodies — that's part of the stable API contract.
 - **Guides are the primary unit; plans are an optional curated layer.** Never
   wrap a single guide in its own plan ("journey") just to give it a node — that
   was the old design and it bought an interstitial click and empty prerequisite
@@ -304,7 +355,7 @@ Update docs **as part of every user-facing change**, in the same change set:
   release bump, also update the status badge and the "Status:" line to match
   `pyproject.toml`'s `version`** — this has drifted before (stuck at v0.2.0
   through the v0.3 and v0.4 releases).
-- **`ROADMAP.md`** — keep the path towards the next milestone honest (v0.8 is
+- **`ROADMAP.md`** — keep the path towards the next milestone honest (v0.9 is
   the last one shipped; what comes after it is deliberately undecided); move
   shipped items into "Where we are" and the changelog.
 - **`docs/`** — the public docs drift just as easily as the README:

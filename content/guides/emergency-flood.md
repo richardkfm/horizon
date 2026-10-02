@@ -13,7 +13,7 @@ Floods are the most common natural disaster, and most flood deaths come from one
 avoidable thing: people entering moving water. The rule that saves lives is
 simple — **get to high ground, and never walk or drive into floodwater.**
 
-> **Turn around, don't drown.** Just 15 cm (6 in) of moving water can knock you
+> **Do now:** **Turn around, don't drown.** Just 15 cm (6 in) of moving water can knock you
 > off your feet, and 30 cm (1 ft) can float a car. You cannot tell depth, current,
 > or what's under the surface. Never enter it on foot or by vehicle.
 
@@ -54,7 +54,7 @@ simple — **get to high ground, and never walk or drive into floodwater.**
 - **Wait for the all-clear** before returning; floodwater recedes but hazards
   stay.
 - **Assume water is contaminated** — don't drink from flooded sources until tested
-  and treated (boil if unsure; see the water guides).
+  and treated (boil if unsure; see [[water-choosing-treatment|choosing a water treatment]]).
 - **Watch for hazards:** weakened structures, hidden holes, snakes/animals,
   downed power lines, and gas leaks. Don't switch on power in a flooded building
   until checked.
@@ -63,5 +63,4 @@ simple — **get to high ground, and never walk or drive into floodwater.**
 
 ## Where to go next
 
-- If toilets and normal waste disposal are out of action, see manage waste
-  and hygiene without plumbing.
+- If toilets and normal waste disposal are out of action, see [[survival-sanitation-hygiene|manage waste and hygiene without plumbing]].

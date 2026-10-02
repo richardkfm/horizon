@@ -13,9 +13,9 @@ Wild food can extend your supplies, but a single wrong plant or mushroom can kil
 Treat foraging as a skill you build slowly, plant by plant, with certainty — not
 guesswork.
 
-> **The one rule that matters most:** If you are not 100% sure what it is, do not
-> eat it. Hunger over a few days is survivable; poisoning may not be. Never rely
-> on "it looks edible".
+> **Risk:** The one rule that matters most: if you are not 100% sure what it
+> is, do not eat it. Hunger over a few days is survivable; poisoning may not be.
+> Never rely on "it looks edible".
 
 ## Learn a few plants completely
 
@@ -37,23 +37,25 @@ Skip anything with:
 - **Mushrooms** — leave them unless an expert has confirmed the exact species;
   many lethal ones look ordinary.
 
-## The Universal Edibility Test (last resort only)
+## No "taste test" shortcut
 
-Use only in a true emergency, on one plant part at a time, when no known food is
-available. It takes about a day:
+You may have heard of a "universal edibility test" — rubbing a plant on your
+skin, then your lips, then eating a little and waiting. **Don't use it.** Some
+of the deadliest plants and fungi (poison hemlock, water hemlock, death cap)
+taste mild and give no early warning; by the time symptoms show, the damage is
+done.
 
-1. Smell for strong or acrid odours; skip if present.
-2. Rub a piece on your inner wrist or elbow; wait 15 minutes for burning,
-   itching, or a rash.
-3. Touch it to your lip, then tongue, then hold a small piece in your mouth — wait
-   between each step for any reaction.
-4. Chew and hold a small amount without swallowing; wait. If it burns or tastes
-   very bitter, spit it out.
-5. Swallow a small amount and wait several hours, eating nothing else. If no
-   illness follows, a slightly larger amount is likely safe.
+What to do instead:
 
-Test only one part (leaf, stem, root) — a plant can be safe in one part and toxic
-in another.
+- **Remember hunger is survivable.** A healthy adult can go weeks without food
+  as long as they have water and stay warm. Going hungry for a few days is
+  uncomfortable, not dangerous; a wrong plant can be.
+- **Only eat what you can identify with certainty** from several features at
+  once — leaves, stem, flowers, smell, habitat, and season — not from one
+  feature that "looks right".
+- **Learn a few local plants well**, ideally walking with an experienced local
+  forager, and check each against a regional field guide.
+- **When in doubt, leave it out.**
 
 ## After eating
 
@@ -62,7 +64,5 @@ keep them hydrated, and seek medical help if you can.
 
 ## Where to go next
 
-- For bites and stings from the animals you'll meet while foraging, see treat
-  bites, stings, and wildlife encounters.
-- To avoid attracting animals to camp with food scent, see choosing and
-  setting up a campsite.
+- For bites and stings from the animals you'll meet while foraging, see [[health-bites-stings-wildlife|treat bites, stings, and wildlife encounters]].
+- To avoid attracting animals to camp with food scent, see [[survival-campsite-setup|choosing and setting up a campsite]].

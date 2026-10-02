@@ -22,14 +22,15 @@ reach any other node, and keeps working even when one node drops out.
 ## What makes a network actually a mesh
 
 ```ascii
-   hub-and-spoke (one failure breaks it):     true mesh (routes around failure):
+  hub-and-spoke              true mesh
+  (one failure breaks it)    (routes around failure)
 
-        [ hub ]                                  [ A ]---[ B ]
-       /   |   \                                   \  X  /
-    [A]  [B]  [C]                                   [ C ]---[ D ]
+        [ hub ]               [ A ]---[ B ]
+       /   |   \                \  X  /
+    [A]  [B]  [C]              [ C ]---[ D ]
 
-   if the hub fails, everyone loses contact       if any one link or node fails,
-                                                   traffic reroutes through another
+  hub fails: everyone        any one link or node fails:
+  loses contact              traffic takes another path
 ```
 
 *Fig. 1: hub-and-spoke networks (including most consumer "Wi-Fi mesh"
@@ -75,12 +76,12 @@ For distance beyond what Bluetooth or Wi-Fi can cover:
 - **Add nodes gradually** and check the network still reroutes correctly
   when you temporarily power one down — a mesh you haven't tested for
   failure isn't confirmed to be one.
-- **Power each node** from a small solar or battery setup (see the energy
-  guides) since a mesh only stays resilient if its nodes stay powered.
+- **Power each node** from a small solar or battery setup (see
+  [[energy-low-tech-solar|the low-tech solar guide]]) since a mesh only stays resilient if its nodes stay powered.
 
 ## Make Wi-Fi self-healing too
 
-A step up from the simple access-point mesh in the local-network guide:
+A step up from the simple access-point mesh in [[technology-local-network|the local-network guide]]:
 
 - **Use open mesh routing firmware** on repurposed routers instead of a
   single vendor's proprietary mesh system — this lets any router relay for
@@ -93,8 +94,6 @@ A step up from the simple access-point mesh in the local-network guide:
 
 ## Where to go next
 
-- Get the basics working first if you haven't: see build a local network
-  without the internet.
-- Power nodes reliably: see set up a small low-tech solar system.
-- Add voice alongside the mesh: see set up two-way radio for your
-  community.
+- Get the basics working first if you haven't: see [[technology-local-network|build a local network without the internet]].
+- Power nodes reliably: see [[energy-low-tech-solar|set up a small low-tech solar system]].
+- Add voice alongside the mesh: see [[technology-two-way-radio|set up two-way radio for your community]].

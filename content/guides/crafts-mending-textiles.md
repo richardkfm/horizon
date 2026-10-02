@@ -13,7 +13,7 @@ When new clothing is hard to get, mending is wealth: a few simple stitches keep
 garments, blankets, and bags in service for years. These skills need only a
 needle, thread, and patience.
 
-> **Mend early.** A small tear caught now takes one minute; left alone it becomes
+> **Tip:** **Mend early.** A small tear caught now takes one minute; left alone it becomes
 > a big hole and a ruined garment. Check clothes regularly.
 
 ## Your basic kit
@@ -48,3 +48,9 @@ needle, thread, and patience.
 - Wash gently and dry out of harsh sun where you can.
 - Keep cloth dry and away from rodents and damp; store folded and aired.
 - Pass on the skill — teach children to thread a needle and fix a seam.
+
+## Where to go next
+
+- [[crafts-fiber-and-textiles]]
+- [[crafts-cordage]]
+- [[crafts-tool-repair]]

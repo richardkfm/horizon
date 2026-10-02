@@ -14,7 +14,7 @@ plant once, then harvest for years or decades with modest care. They need
 patience — most take a few seasons to bear well — so the best time to plant was
 years ago, and the next best time is now.
 
-> **Plant for your place.** Choose types and varieties suited to your climate,
+> **Tip:** **Plant for your place.** Choose types and varieties suited to your climate,
 > soil, and space. Local knowledge and local plants beat exotic ones that
 > struggle.
 
@@ -51,3 +51,9 @@ years ago, and the next best time is now.
 
 Pick when ripe, and preserve gluts by drying, fermenting, or storing in a cool
 place. Take cuttings or grow from suckers to spread your favourites for free.
+
+## Where to go next
+
+- [[food-reforestation]]
+- [[cooking-preserving]]
+- [[food-seed-saving]]

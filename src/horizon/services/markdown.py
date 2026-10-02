@@ -43,23 +43,46 @@ Three more guide conventions are handled here, all pure-Markdown and graceful:
   card treatment; the ``<figcaption>`` is only added when an italic caption
   paragraph follows it.
 * **Checklists.** GFM task-list items (``- [ ] item`` / ``- [x] item``) become
-  real ``<input type="checkbox">`` boxes inside a ``task-list``. The check state
-  is purely client-side (localStorage); with no styling/JS it still reads as a
-  plain checklist and prints as empty squares.
+  real ``<input type="checkbox">`` boxes inside a ``task-list``, each wrapped
+  with its text in a ``<label>`` so the whole row is clickable and the box has
+  an accessible name. The check state is purely client-side (localStorage);
+  with no styling/JS it still reads as a plain checklist and prints as empty
+  squares.
+* **Cross-references.** ``[[guide-id]]``, ``[[guide-id|custom text]]``,
+  ``[[plan:journey-id]]`` and ``[[checklist:checklist-id]]`` link to another
+  guide, step-by-step plan, or checklist. Titles are looked up at render time
+  through an optional *resolver* callable the caller passes in (the web routes
+  pass one backed by the database), so this module stays pure. An id the
+  resolver doesn't know renders as plain text — never a broken link. Inside
+  code spans and fenced blocks the syntax is left alone.
+
+Raw HTML in Markdown is *not* passed through (``html: False``): it is escaped
+and shown as text, so a guide — including an imported one — can never inject
+markup or script into the page.
 """
 
 from __future__ import annotations
 
+import logging
 import re
+from collections.abc import Callable
 from functools import lru_cache
 from html import escape
 
 from markdown_it import MarkdownIt
+from markdown_it.rules_inline import StateInline
 from markdown_it.token import Token
 
+logger = logging.getLogger("horizon")
+
+# A cross-reference resolver: ``(kind, id) -> (href, title)`` or ``None`` when
+# the id is unknown. ``kind`` is ``"guide"``, ``"plan"`` or ``"checklist"``.
+LinkResolver = Callable[[str, str], "tuple[str, str] | None"]
+
 # Recognised callout labels → kind (the CSS modifier). Matched case-insensitively
-# against the bold label that opens a blockquote, with any trailing colon
-# stripped. Synonyms map to the same kind so guide authors can write naturally.
+# against the bold label that opens a blockquote, with any trailing colon or
+# full stop stripped (``**Note:**`` and ``**Note.**`` both work). Synonyms map
+# to the same kind so guide authors can write naturally.
 _CALLOUT_LABELS: dict[str, str] = {
     "pick this if": "pick",
     "choose this if": "pick",
@@ -81,6 +104,7 @@ _CALLOUT_LABELS: dict[str, str] = {
     "right now": "now",
     "tip": "tip",
     "note": "note",
+    "principle": "note",
 }
 
 
@@ -103,7 +127,7 @@ _TASK_MARKER = re.compile(r"\[([ xX])\]\s+")
 
 def _callout_kind(label: str) -> str | None:
     """Map a blockquote's opening bold label to a callout kind, if recognised."""
-    return _CALLOUT_LABELS.get(label.strip().rstrip(":").strip().lower())
+    return _CALLOUT_LABELS.get(label.strip().rstrip(":.").strip().lower())
 
 
 def _tag_callouts(state) -> None:  # noqa: ANN001 - markdown-it core rule state
@@ -238,8 +262,15 @@ def _wrap_ascii_diagrams(state) -> None:  # noqa: ANN001 - markdown-it core rule
                     if text:
                         caption = text
                         consumed = 4
+            # The widest line, in characters, lets the stylesheet scale the
+            # font on phones and show a "scroll" hint only when the drawing
+            # is still wider than its box (see app.css, .guide-ascii).
+            cols = max((len(line) for line in (token.content or "").splitlines()), default=0)
             open_tok = Token("html_block", "", 0)
-            open_tok.content = '<figure class="guide-figure guide-ascii">\n'
+            open_tok.content = (
+                f'<figure class="guide-figure guide-ascii" data-cols="{cols}" '
+                f'style="--cols:{cols}">\n'
+            )
             out.append(open_tok)
             out.append(token)
             if caption:
@@ -259,10 +290,12 @@ def _wrap_ascii_diagrams(state) -> None:  # noqa: ANN001 - markdown-it core rule
 def _render_task_lists(state) -> None:  # noqa: ANN001 - markdown-it core rule state
     """Core rule: turn ``- [ ]``/``- [x]`` list items into real checkboxes.
 
-    Each matching item gets a leading ``<input type="checkbox">`` (checked for
-    ``[x]``), its ``list_item`` is tagged ``task-item``, and the enclosing list is
-    tagged ``task-list`` so the stylesheet can drop the bullet. The checkbox is
-    not disabled: the checklist pages persist its state locally (localStorage).
+    Each matching item's text is wrapped in ``<label class="task-label">`` with a
+    leading ``<input type="checkbox">`` (checked for ``[x]``), so tapping the
+    text ticks the box and the box takes the text as its accessible name. Its
+    ``list_item`` is tagged ``task-item``, and the enclosing list is tagged
+    ``task-list`` so the stylesheet can drop the bullet. The checkbox is not
+    disabled: the checklist pages persist its state locally (localStorage).
     """
     tokens: list[Token] = state.tokens
     list_stack: list[Token] = []
@@ -288,8 +321,13 @@ def _render_task_lists(state) -> None:  # noqa: ANN001 - markdown-it core rule s
             child.content = child.content[match.end() :]
             box = Token("html_inline", "", 0)
             attr = " checked" if checked else ""
-            box.content = f'<input type="checkbox" class="task-check"{attr}> '
+            box.content = (
+                f'<label class="task-label"><input type="checkbox" class="task-check"{attr}> '
+            )
+            close = Token("html_inline", "", 0)
+            close.content = "</label>"
             token.children.insert(0, box)
+            token.children.append(close)
             item = tokens[i - 2]
             item.attrSet("class", _add_class(item.attrGet("class"), "task-item"))
             if list_stack:
@@ -297,10 +335,72 @@ def _render_task_lists(state) -> None:  # noqa: ANN001 - markdown-it core rule s
                 lst.attrSet("class", _add_class(lst.attrGet("class"), "task-list"))
 
 
+# ``[[target]]`` / ``[[kind:target]]`` / ``[[target|label]]``. Ids are the
+# slug-style ids used for guides, plans, and checklists.
+_WIKILINK = re.compile(
+    r"\[\[(?:(guide|plan|journey|checklist):)?([A-Za-z0-9][A-Za-z0-9_-]*)"
+    r"(?:\|([^\]\n|]+))?\]\]"
+)
+
+# Default URL for each kind, used when no resolver is supplied (e.g. a plain
+# preview): the link still points where it should, labelled with the id.
+_DEFAULT_HREFS = {
+    "guide": "/guides/{}",
+    "plan": "/journeys/{}",
+    "checklist": "/checklists/{}",
+}
+
+
+def _wikilink_rule(state: StateInline, silent: bool) -> bool:
+    """Inline rule: parse a ``[[...]]`` cross-reference into a ``wikilink`` token.
+
+    Runs before the regular link rule. Code spans are consumed earlier by the
+    backticks rule and fenced blocks never reach inline parsing, so ``[[`` in
+    code is left untouched.
+    """
+    if not state.src.startswith("[[", state.pos):
+        return False
+    match = _WIKILINK.match(state.src, state.pos)
+    if match is None or match.end() > state.posMax:
+        return False
+    if not silent:
+        kind = match.group(1) or "guide"
+        token = state.push("wikilink", "", 0)
+        token.meta = {
+            "kind": "plan" if kind == "journey" else kind,
+            "id": match.group(2),
+            "label": (match.group(3) or "").strip() or None,
+        }
+    state.pos = match.end()
+    return True
+
+
+def _render_wikilink(self, tokens, idx, options, env) -> str:  # noqa: ANN001 - renderer API
+    """Render a ``wikilink`` token: a link if the target resolves, else plain text."""
+    meta = tokens[idx].meta
+    kind, target, label = meta["kind"], meta["id"], meta["label"]
+    resolver: LinkResolver | None = (env or {}).get("resolve_link")
+    if resolver is None:
+        href, title = _DEFAULT_HREFS[kind].format(target), target
+    else:
+        resolved = resolver(kind, target)
+        if resolved is None:
+            logger.debug("Unresolved cross-reference [[%s:%s]]; rendering as text.", kind, target)
+            return escape(label or target)
+        href, title = resolved
+    return f'<a class="xref" href="{escape(href)}">{escape(label or title)}</a>'
+
+
 @lru_cache(maxsize=1)
 def _parser() -> MarkdownIt:
-    """Return a shared CommonMark parser with GFM tables and horizon rules."""
-    md = MarkdownIt("commonmark").enable("table")
+    """Return a shared CommonMark parser with GFM tables and horizon rules.
+
+    ``html: False`` escapes any raw HTML in the source instead of passing it
+    through; horizon's own rules emit their markup as tokens, unaffected.
+    """
+    md = MarkdownIt("commonmark", {"html": False}).enable("table")
+    md.inline.ruler.before("link", "horizon_wikilink", _wikilink_rule)
+    md.add_render_rule("wikilink", _render_wikilink)
     md.core.ruler.push("horizon_callouts", _tag_callouts)
     md.core.ruler.push("horizon_figures", _wrap_figures)
     md.core.ruler.push("horizon_ascii_diagrams", _wrap_ascii_diagrams)
@@ -311,16 +411,40 @@ def _parser() -> MarkdownIt:
 def strip_front_matter(text: str) -> str:
     """Drop a leading ``---`` YAML front-matter block, returning the body.
 
-    Mirrors the split in ``seed._split_front_matter`` but keeps this service free
-    of any database/seed import so it stays pure and unit-testable.
+    Delegates to the shared, line-anchored parser in ``services.frontmatter``
+    (pure: ``re`` + ``yaml`` only), so a ``---`` inside a title or summary can't
+    cut the block short here either.
     """
-    if text.startswith("---"):
-        parts = text.split("---", 2)
-        if len(parts) == 3:
-            return parts[2].lstrip("\n")
-    return text
+    from horizon.services.frontmatter import strip_front_matter as _strip
+
+    return _strip(text)
 
 
-def render_markdown(text: str) -> str:
-    """Render Markdown to an HTML fragment, ignoring any front matter."""
-    return _parser().render(strip_front_matter(text))
+def split_title(text: str) -> tuple[str | None, str]:
+    """Split a leading ``# Heading`` line off a guide body.
+
+    Returns ``(heading text, remaining Markdown)`` — or ``(None, text)`` when the
+    body doesn't open with a level-1 ATX heading. Lets a page render the title
+    in its own header (above the meta line) without a duplicate ``<h1>``.
+    """
+    body = strip_front_matter(text)
+    stripped = body.lstrip("\n")
+    first, _, rest = stripped.partition("\n")
+    if first.startswith("# ") and first[2:].strip():
+        return first[2:].strip().rstrip("#").strip(), rest.lstrip("\n")
+    return None, text
+
+
+def render_markdown(text: str, resolve_link: LinkResolver | None = None) -> str:
+    """Render Markdown to an HTML fragment, ignoring any front matter.
+
+    ``resolve_link`` resolves ``[[...]]`` cross-references to ``(href, title)``;
+    without one they link to the conventional URL, labelled with the id.
+    """
+    env = {"resolve_link": resolve_link}
+    return _parser().render(strip_front_matter(text), env)
+
+
+def render_inline(text: str, resolve_link: LinkResolver | None = None) -> str:
+    """Render one line of Markdown (no ``<p>`` wrapper), e.g. a plan description."""
+    return _parser().renderInline(text or "", {"resolve_link": resolve_link})

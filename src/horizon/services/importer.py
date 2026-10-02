@@ -40,6 +40,38 @@ def slugify(text: str) -> str:
     return slug or "guide"
 
 
+def escape_markdown_html(text: str) -> str:
+    """Neutralise raw HTML in text bound for a guide's Markdown body.
+
+    The HTML parser decodes entities (``&lt;img onerror=...&gt;`` becomes the
+    literal text ``<img onerror=...>``), so writing that text straight into
+    Markdown would turn escaped source text back into a live tag. Escaping
+    ``&``, ``<`` and ``>`` keeps it as the literal text the source showed, on
+    any renderer, and also stops a line starting with ``>`` from turning into a
+    blockquote/callout.
+    """
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def _one_line(text: str) -> str:
+    """Collapse a title/summary to a single line of plain text."""
+    return re.sub(r"\s+", " ", text).strip()
+
+
+# A paragraph with no letters or digits (a ``---``/``***`` rule, a row of
+# asterisks, ...) makes a useless summary and, as a bare ``---``, used to break
+# front-matter parsing. Summaries skip those.
+_HAS_WORD_RE = re.compile(r"\w")
+
+
+def _summary_from(paragraphs: list[str], fallback: str) -> str:
+    for para in paragraphs:
+        text = _one_line(para)
+        if _HAS_WORD_RE.search(text) and not re.fullmatch(r"[-*_=~#\s]+", text):
+            return text
+    return _one_line(fallback)
+
+
 def reading_time(word_count: int, *, words_per_minute: int = 200) -> str:
     """A rough "N min read" estimate, never below one minute."""
     minutes = max(1, round(word_count / words_per_minute))
@@ -57,13 +89,15 @@ def _front_matter(
 ) -> str:
     data = {
         "id": guide_id,
-        "title": title,
+        "title": _one_line(title),
         "category": category,
-        "summary": summary,
+        "summary": _one_line(summary),
         "difficulty": difficulty,
-        "estimated_time": estimated_time,
+        "estimated_time": _one_line(estimated_time),
     }
-    return yaml.safe_dump(data, sort_keys=False, allow_unicode=True).strip()
+    # safe_dump quotes anything YAML-significant (``---``, ``: ``, a leading
+    # ``#``...); an unbounded width keeps every value on its own single line.
+    return yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=float("inf")).strip()
 
 
 def _source_note(
@@ -84,7 +118,9 @@ def _source_note(
     or other source's licence varies and isn't known here.
     """
     day = (imported_on or date.today()).isoformat()
+    source = escape_markdown_html(source)
     if license_name:
+        license_name = escape_markdown_html(license_name)
         link = f"[{license_name}]({license_url})" if license_url else license_name
         return (
             f"> **Note:** Adapted from {source} on {day}, licensed under {link}. "
@@ -330,26 +366,27 @@ def render_wikihow_guide(
     isn't known to be the same.
     """
     image_map = image_map or {}
-    title = article.title or guide_id.replace("-", " ").title()
-    summary = article.intro[0] if article.intro else f"Imported from {source}."
+    title = _one_line(article.title) or guide_id.replace("-", " ").title()
+    summary = _summary_from(article.intro, f"Imported from {source}.")
 
-    body_lines = [f"# {title}", ""]
-    body_lines.extend(p for para in article.intro for p in (para, ""))
+    body_lines = [f"# {escape_markdown_html(title)}", ""]
+    body_lines.extend(p for para in article.intro for p in (escape_markdown_html(para), ""))
 
     word_count = sum(len(p.split()) for p in article.intro)
 
     for section in article.sections:
         if section.heading:
-            body_lines.append(f"## {section.heading}")
+            body_lines.append(f"## {escape_markdown_html(section.heading)}")
             body_lines.append("")
         for i, step in enumerate(section.steps, start=1):
-            body_lines.append(f"{i}. {step.text}")
+            body_lines.append(f"{i}. {escape_markdown_html(step.text)}")
             word_count += len(step.text.split())
             for src, alt in step.images:
                 local = image_map.get(src)
                 if not local:
                     continue
-                caption = _collapse_ws(alt) or f"Step {i}"
+                caption = escape_markdown_html(_collapse_ws(alt)) or f"Step {i}"
+                caption = caption.replace("[", "(").replace("]", ")")
                 body_lines.append("")
                 body_lines.append(f"   ![{caption}]({local})")
             body_lines.append("")
@@ -480,10 +517,14 @@ def render_book_guide(
     """
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", chapter.body) if p.strip()]
     word_count = sum(len(p.split()) for p in paragraphs)
-    summary_source = paragraphs[0] if paragraphs else chapter.title
-    summary = _collapse_ws(summary_source)[:240]
+    title = _one_line(chapter.title) or guide_id
+    summary = _summary_from(paragraphs, title)[:240].rstrip()
 
-    body_lines = [f"# {chapter.title}", "", *[p for para in paragraphs for p in (para, "")]]
+    body_lines = [
+        f"# {escape_markdown_html(title)}",
+        "",
+        *[p for para in paragraphs for p in (escape_markdown_html(para), "")],
+    ]
     body_lines.append(
         _source_note(source, imported_on, license_name=license_name, license_url=license_url)
     )
@@ -491,7 +532,7 @@ def render_book_guide(
 
     front = _front_matter(
         guide_id=guide_id,
-        title=chapter.title,
+        title=title,
         category=category,
         summary=summary,
         difficulty=difficulty,

@@ -43,7 +43,7 @@ A router doesn't need an internet uplink to create a working local network:
    but leave its internet ("WAN") port unconnected.
 2. **Give the network a clear name** your neighbours will recognise, and a
    shared password everyone in the group knows.
-3. **Connect a local server** (see turn an old PC into a local server) to
+3. **Connect a local server** (see [[technology-repurpose-old-pc|turn an old PC into a local server]]) to
    the router by cable for the most reliable link, so anyone on the Wi-Fi
    can reach it by typing its address.
 4. **Extend coverage** by adding more access points in mesh mode, or by
@@ -66,8 +66,7 @@ For distances plain Wi-Fi can't reach, small low-power LoRa radios relay
 short text messages node to node, well past normal Wi-Fi range — though
 only for text and location pings, not files or voice. Getting real
 resilience out of this (nodes that reroute around a failure, not just a
-longer chain) takes more than one afternoon's setup — see build a resilient
-mesh network for the full approach.
+longer chain) takes more than one afternoon's setup — see [[technology-mesh-network|build a resilient mesh network]] for the full approach.
 
 ## Keep it fair and simple
 
@@ -79,10 +78,7 @@ mesh network for the full approach.
 
 ## Where to go next
 
-- Give the network something worth reaching: see turn an old PC into a
-  local server.
-- Want it to keep working even if a node fails? See build a resilient mesh
-  network.
-- Pair it with voice: see set up two-way radio for your community.
-- Power nodes and access points reliably: see set up a small low-tech solar
-  system.
+- Give the network something worth reaching: see [[technology-repurpose-old-pc|turn an old PC into a local server]].
+- Want it to keep working even if a node fails? See [[technology-mesh-network|build a resilient mesh network]].
+- Pair it with voice: see [[technology-two-way-radio|set up two-way radio for your community]].
+- Power nodes and access points reliably: see [[energy-low-tech-solar|set up a small low-tech solar system]].

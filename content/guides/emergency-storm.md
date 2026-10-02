@@ -14,7 +14,7 @@ several dangers at once: high wind, flying debris, lightning, and often flooding
 Warnings usually give you some time, so use it: secure your surroundings and know
 where you'll shelter.
 
-> **Know the difference: watch vs warning.** A *watch* means conditions are
+> **Note:** **Know the difference: watch vs warning.** A *watch* means conditions are
 > possible — prepare. A *warning* means it's happening or imminent — **act now**
 > and take shelter. Don't wait to see the storm.
 
@@ -57,7 +57,7 @@ where you'll shelter.
 
 - **In town:** the danger is **flying glass and debris, downed power lines, and
   blocked drains/flash flooding** — stay away from windows and never touch downed
-  lines. Expect power cuts (see *Prepare for and live through a long blackout*).
+  lines. Expect power cuts (see [[emergency-blackout|prepare for and live through a long blackout]]).
 - **Out of town:** you're more **exposed and more likely to be cut off** by fallen
   trees and flooded roads — shelter away from large trees, secure or move
   livestock, and keep several days of supplies.
@@ -65,6 +65,12 @@ where you'll shelter.
 ## After the storm
 
 Watch for **downed power lines** (treat all as live), gas leaks, weakened trees
-and structures, and **floodwater** (see *Stay safe in a flood*). Help neighbours,
+and structures, and **floodwater** (see [[emergency-flood|stay safe in a flood]]). Help neighbours,
 especially anyone alone or vulnerable, and wait for the all-clear before
 travelling.
+
+## Where to go next
+
+- [[emergency-flood]]
+- [[emergency-blackout]]
+- [[checklist:home-emergency-prep]]

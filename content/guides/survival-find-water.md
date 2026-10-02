@@ -11,9 +11,9 @@ estimated_time: "A few hours"
 
 You can last only a few days without water, so finding it is a first priority.
 Finding it is not the same as making it safe: collect first, then **always test
-and treat before drinking** (see the water guides).
+and treat before drinking** (see [[water-choosing-treatment|choosing a water treatment]]).
 
-> **Important:** Clear-looking water can still carry germs or chemicals. Treat
+> **Risk:** Clear-looking water can still carry germs or chemicals. Treat
 > all field water unless you are certain it is safe.
 
 ## Where to look
@@ -49,3 +49,9 @@ is small but steady.
 
 Strain out grit through cloth, then **test and treat** — boiling for one minute
 is the most reliable method when in doubt.
+
+## Where to go next
+
+- [[water-choosing-treatment]]
+- [[water-field-testing]]
+- [[survival-campsite-setup]]

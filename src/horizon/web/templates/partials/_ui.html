@@ -1,0 +1,21 @@
+{# Small shared UI pieces for the public pages. #}
+
+{# Difficulty as a monospace stamp, [■■■□□]. The squares are decorative; the
+   visually-hidden text is what a screen reader announces, and the title gives
+   sighted mouse users the same words on hover. #}
+{% macro difficulty(n) -%}
+{%- set n = (n or 1) | int -%}
+<span class="difficulty" title="Difficulty {{ n }} of 5"><span class="visually-hidden">Difficulty {{ n }} of 5</span><span aria-hidden="true">[{{ "■" * n }}{{ "□" * (5 - n) }}]</span></span>
+{%- endmacro %}
+
+{# One guide card for the browse grids. ``badge`` is off inside a category
+   shelf, where the heading already names the topic. #}
+{% macro guide_card(guide, badge=true) -%}
+<li data-cat="{{ guide.category }}">
+  <a href="/guides/{{ guide.id }}">
+    {% if badge %}<span class="category-badge" data-cat="{{ guide.category }}">{{ guide.category }}</span>{% endif %}
+    <span class="card-title">{{ guide.title }}</span>
+    {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+  </a>
+</li>
+{%- endmacro %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Find your starting point — horizon{% endblock %}
+{% block title %}Where to start — horizon{% endblock %}
 {% block content %}
 <section class="recommend-intro">
-  <h1>Find your starting point</h1>
+  <h1>Where to start</h1>
   <p class="tagline">
-    Describe what you want to achieve and your situation. horizon suggests
-    guides to read and step-by-step plans to follow — all matched locally, no
+    Say what you'd like to do, in your own words. horizon suggests guides to
+    read and step-by-step plans to follow — all matched on this device, no
     internet needed.
   </p>
 </section>
@@ -13,7 +13,7 @@
 <form method="get" action="/recommend" class="recommend-form">
   <label for="goal">What do you want to do?</label>
   <input type="text" id="goal" name="goal" value="{{ form.goal }}"
-         placeholder="e.g. provide safe drinking water for our group" autofocus />
+         placeholder="e.g. provide safe drinking water for our group" />
   <p class="field-hint">
     For example:
     <a href="/recommend?goal=make+river+water+safe+to+drink">make river water safe to drink</a>,

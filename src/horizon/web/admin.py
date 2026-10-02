@@ -17,6 +17,7 @@ import hmac
 import logging
 import os
 import secrets
+import time
 from collections import Counter
 from pathlib import Path
 from typing import Annotated
@@ -55,7 +56,13 @@ templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pa
 SessionDep = Annotated[Session, Depends(get_session)]
 
 COOKIE_NAME = "horizon_admin"
-_COOKIE_MESSAGE = b"horizon-admin-v1"
+_COOKIE_MESSAGE = b"horizon-admin-v2"
+# How long a login lasts. The browser drops the cookie after this, and the
+# server independently rejects any cookie whose signed issue time is older, so
+# a copied cookie can't be replayed forever.
+_COOKIE_MAX_AGE = 60 * 60 * 12
+# Tolerate small clock differences for a cookie "issued in the future".
+_CLOCK_SKEW = 300
 
 
 _TOKEN_FILE_NAME = "admin_token"
@@ -119,18 +126,53 @@ def ensure_token_ready() -> None:
     _effective_token()
 
 
-def _expected_cookie() -> str:
-    """HMAC of the effective token — the value stored in the auth cookie."""
+def _cookie_signature(issued_at: int) -> str:
     token = _effective_token().encode("utf-8")
-    return hmac.new(token, _COOKIE_MESSAGE, hashlib.sha256).hexdigest()
+    message = _COOKIE_MESSAGE + b"|" + str(issued_at).encode("ascii")
+    return hmac.new(token, message, hashlib.sha256).hexdigest()
+
+
+def _expected_cookie(issued_at: int | None = None) -> str:
+    """The auth cookie value: ``<issued-at>.<HMAC(token, issued-at)>``.
+
+    The raw token is never stored in the cookie; the signed issue time lets the
+    server expire a login on its own clock, independent of the browser.
+    """
+    issued = int(time.time()) if issued_at is None else issued_at
+    return f"{issued}.{_cookie_signature(issued)}"
+
+
+def _cookie_valid(presented: str, *, now: float | None = None) -> bool:
+    issued_raw, sep, signature = presented.partition(".")
+    if not sep or not issued_raw.isdigit() or len(issued_raw) > 12:
+        return False
+    issued_at = int(issued_raw)
+    current = time.time() if now is None else now
+    if issued_at > current + _CLOCK_SKEW or current - issued_at > _COOKIE_MAX_AGE:
+        return False
+    return hmac.compare_digest(
+        signature.encode("utf-8", errors="replace"),
+        _cookie_signature(issued_at).encode("ascii"),
+    )
 
 
 def is_authed(request: Request) -> bool:
-    """True when the request carries a valid admin cookie."""
+    """True when the request carries a valid, unexpired admin cookie."""
     if not admin_enabled():
         return False
-    presented = request.cookies.get(COOKIE_NAME, "")
-    return hmac.compare_digest(presented, _expected_cookie())
+    return _cookie_valid(request.cookies.get(COOKIE_NAME, ""))
+
+
+def _token_matches(submitted: str) -> bool:
+    """Constant-time token check that is safe for non-ASCII input.
+
+    ``hmac.compare_digest`` raises ``TypeError`` for ``str`` arguments holding
+    non-ASCII characters, so compare the UTF-8 bytes instead.
+    """
+    return hmac.compare_digest(
+        submitted.encode("utf-8", errors="replace"),
+        _effective_token().encode("utf-8", errors="replace"),
+    )
 
 
 def _redirect_if_unauthed(request: Request) -> RedirectResponse | None:
@@ -161,7 +203,7 @@ def login_submit(request: Request, token: Annotated[str, Form()] = ""):
             status_code=403,
         )
 
-    if not hmac.compare_digest(token, _effective_token()):
+    if not _token_matches(token):
         return templates.TemplateResponse(
             request,
             "admin/login.html",
@@ -175,7 +217,7 @@ def login_submit(request: Request, token: Annotated[str, Form()] = ""):
         _expected_cookie(),
         httponly=True,
         samesite="strict",
-        max_age=60 * 60 * 12,
+        max_age=_COOKIE_MAX_AGE,
     )
     return response
 
@@ -248,19 +290,23 @@ def _skill_files() -> list[dict]:
     so we read them directly from the content directory. Keyed by file *stem*
     (a stable slug) for the preview route, since ids may repeat the filename.
     """
-    from horizon.seed import _split_front_matter
+    from horizon.services.frontmatter import split_front_matter
 
     skills_dir = Path(settings.content_dir) / "md_skills"
     skills: list[dict] = []
     if not skills_dir.is_dir():
         return skills
     for md_path in sorted(skills_dir.glob("*.md")):
-        meta, body = _split_front_matter(md_path.read_text(encoding="utf-8"))
+        try:
+            meta, body = split_front_matter(md_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError) as exc:
+            logger.warning("Skipping md skill %s: %s", md_path.name, exc)
+            continue
         skills.append(
             {
                 "slug": md_path.stem,
-                "id": meta.get("id") or md_path.stem,
-                "title": meta.get("title") or md_path.stem,
+                "id": str(meta.get("id") or md_path.stem),
+                "title": str(meta.get("title") or md_path.stem),
                 "thin": len(body.strip()) < 200,
             }
         )
@@ -368,13 +414,17 @@ def library_skill(slug: str, request: Request):
         return redirect
     from horizon.services.markdown import render_markdown
 
-    md_path = Path(settings.content_dir) / "md_skills" / f"{slug}.md"
-    if not md_path.is_file():
+    skills_dir = Path(settings.content_dir) / "md_skills"
+    md_path = skills_dir / f"{slug}.md"
+    if not md_path.is_file() or md_path.resolve().parent != skills_dir.resolve():
         return HTMLResponse("Skill not found", status_code=404)
-    text = md_path.read_text(encoding="utf-8")
-    from horizon.seed import _split_front_matter
+    try:
+        text = md_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return HTMLResponse("Skill could not be read", status_code=404)
+    from horizon.services.frontmatter import split_front_matter
 
-    meta, _ = _split_front_matter(text)
+    meta, _ = split_front_matter(text)
     return templates.TemplateResponse(
         request,
         "admin/library_item.html",
@@ -540,11 +590,16 @@ def packs_remove(pack_id: str, request: Request):
     """Remove an installed pack and return its refreshed row fragment."""
     if (redirect := _redirect_if_unauthed(request)) is not None:
         return redirect
+    if not packs_service.is_valid_pack_id(pack_id):
+        # Never build a filesystem path from an unvalidated id (e.g. "..").
+        return HTMLResponse("Unknown pack", status_code=404)
     packs_service.remove_pack(pack_id)
     return _pack_row_fragment(request, pack_id)
 
 
 def _pack_row_fragment(request: Request, pack_id: str) -> HTMLResponse:
+    if not packs_service.is_valid_pack_id(pack_id):
+        return HTMLResponse("", status_code=404)
     row = _pack_row(pack_id)
     if row is None:
         return HTMLResponse("", status_code=404)
@@ -585,11 +640,16 @@ def import_wikihow_submit(
     request: Request,
     url: Annotated[str, Form()],
     category: Annotated[str, Form()],
-    difficulty: Annotated[int, Form()] = 2,
+    difficulty: Annotated[str, Form()] = "2",
     guide_id: Annotated[str, Form()] = "",
     force: Annotated[bool, Form()] = False,
 ):
-    """Fetch a how-to page and write it as a guide, then re-seed and re-index."""
+    """Fetch a how-to page and write it as a guide, then re-seed and re-index.
+
+    Inputs are validated by the shared import service (the CLI uses the same
+    checks): an unknown category is shown as a form error, difficulty is
+    clamped to 1-5, and the guide id is slugified so it can't name a path.
+    """
     if (redirect := _redirect_if_unauthed(request)) is not None:
         return redirect
     from horizon.services import import_content
@@ -615,20 +675,25 @@ def import_wikihow_submit(
 
 
 @router.post("/admin/import/book", response_class=HTMLResponse)
-async def import_book_submit(
+def import_book_submit(
     request: Request,
     file: Annotated[UploadFile, File()],
     category: Annotated[str, Form()] = "culture",
-    difficulty: Annotated[int, Form()] = 1,
+    difficulty: Annotated[str, Form()] = "1",
     id_prefix: Annotated[str, Form()] = "",
     force: Annotated[bool, Form()] = False,
 ):
-    """Split an uploaded text/Markdown book into chapter guides, then re-seed."""
+    """Split an uploaded text/Markdown book into chapter guides, then re-seed.
+
+    A plain (sync) route on purpose: the upload read, file writes, re-seed and
+    re-index are all blocking work, so FastAPI runs it in its threadpool rather
+    than stalling the event loop for every other visitor.
+    """
     if (redirect := _redirect_if_unauthed(request)) is not None:
         return redirect
     from horizon.services import import_content
 
-    data = await file.read()
+    data = file.file.read()
     try:
         text = data.decode("utf-8", errors="replace")
         outcome = import_content.import_book(

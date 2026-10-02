@@ -2,17 +2,19 @@
 {% block title %}{{ checklist.title }} — horizon{% endblock %}
 {% block content %}
 <div class="reading-column">
-<p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
-
-<div class="guide-meta-row no-print">
+<header class="guide-head"{% if checklist.category %} data-cat="{{ checklist.category }}"{% endif %}>
+  <p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
+  <h1>{{ heading }}</h1>
+  {% if checklist.category %}
   <p class="journey-meta guide-meta">
-    {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+    <span class="category-badge" data-cat="{{ checklist.category }}">{{ checklist.category }}</span>
   </p>
-  <p class="guide-actions">
-    <button type="button" class="guide-action" onclick="window.print()">Print</button>
-    <button type="button" class="guide-action" id="checklist-clear">Clear ticks</button>
+  {% endif %}
+  <p class="guide-actions no-print">
+    <button type="button" class="btn btn-small" onclick="window.print()">Print</button>
+    <button type="button" class="btn btn-small" id="checklist-clear">Clear ticks</button>
   </p>
-</div>
+</header>
 
 <article class="guide checklist" data-checklist="{{ checklist.id }}">
   {{ body_html | safe }}
@@ -24,7 +26,7 @@
     <h2>More on {{ checklist.category }}</h2>
     <ul class="card-grid">
       {% for g in related_guides %}
-      <li>
+      <li data-cat="{{ g.category }}">
         <a href="/guides/{{ g.id }}">
           <span class="card-title">{{ g.title }}</span>
           {% if g.summary %}<span class="guide-summary">{{ g.summary }}</span>{% endif %}
@@ -39,9 +41,9 @@
 
 <script>
   // Persist ticked items on this device only (no account, no server, no
-  // telemetry). Plain JS so it works in every mode, including low-power where
-  // Alpine is skipped. Items are keyed by their order in the list, so editing the
-  // checklist text is safe; reordering simply re-keys them.
+  // telemetry). Plain JS so it works in every mode, including low-power.
+  // Items are keyed by their order in the list, so editing the checklist text
+  // is safe; reordering simply re-keys them.
   (function () {
     var root = document.querySelector("[data-checklist]");
     if (!root) return;

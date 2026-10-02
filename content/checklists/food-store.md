@@ -43,5 +43,6 @@ grow it. Favour calorie-dense, low-fuel foods.
 
 ## For longer term
 
-- [ ] Seeds for a garden (see seed-saving and crop guides)
+- [ ] Seeds for a garden (see [[food-seed-saving|seed saving]] and
+      [[food-choosing-crops|choosing crops]])
 - [ ] A way to preserve a harvest (drying, fermenting, pickling)

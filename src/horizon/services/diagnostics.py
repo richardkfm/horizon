@@ -30,7 +30,7 @@ from horizon.models import (
     Journey,
     JourneyGuideLink,
 )
-from horizon.seed import _split_front_matter
+from horizon.services.frontmatter import split_front_matter
 
 logger = logging.getLogger("horizon")
 
@@ -200,8 +200,11 @@ def _check_duplicates() -> dict:
             continue
         seen: dict[str, str] = {}
         for md_path in sorted(directory.glob("*.md")):
-            meta, _ = _split_front_matter(md_path.read_text(encoding="utf-8"))
-            content_id = meta.get("id") or md_path.stem
+            try:
+                meta, _ = split_front_matter(md_path.read_text(encoding="utf-8"))
+            except (OSError, UnicodeDecodeError):
+                continue
+            content_id = str(meta.get("id") or md_path.stem)
             if content_id in seen:
                 items.append(
                     f"duplicate {label} id {content_id!r}: {seen[content_id]} and {md_path.name}"
@@ -370,7 +373,9 @@ def _repair_reindex() -> dict:
         }
     from horizon.services.rag import index_stats, reindex_content
 
-    reindex_content()
+    # An explicit rebuild always rebuilds, even if the content looks unchanged
+    # (the operator may be repairing a damaged index).
+    reindex_content(force=True)
     stats = index_stats()
     indexed = stats["indexed_chunks"]
     if stats["index_built"] and indexed:
@@ -387,7 +392,15 @@ def _repair_reindex() -> dict:
 def _repair_reseed() -> dict:
     from horizon.seed import reseed
 
-    summary = reseed()
+    try:
+        summary = reseed()
+    except Exception as exc:  # noqa: BLE001 - report to the operator, don't 500
+        return {
+            "ok": False,
+            "title": "Re-seed content",
+            "message": "Re-seed failed and was rolled back, so the previous content is "
+            f"still in place: {exc}",
+        }
     before, after = summary["before"], summary["after"]
     parts = [
         f"journeys {before['journeys']} → {after['journeys']}",

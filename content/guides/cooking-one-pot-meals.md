@@ -14,7 +14,7 @@ With a handful of plant staples and a simple method, you can make nourishing,
 filling vegan meals almost anywhere. All recipes here are **plant-based** — no
 animal products.
 
-> **Cook food and fuel together.** Every meal is also a chance to save fuel: a
+> **Tip:** **Cook food and fuel together.** Every meal is also a chance to save fuel: a
 > tight-fitting lid, a windbreak, and finishing in a hay box (see below) can
 > roughly halve the firewood a pot uses.
 
@@ -33,22 +33,24 @@ Most good one-pot meals follow the same pattern:
 
 ## Plant staples to keep
 
-- **Proteins:** dried beans, lentils, split peas, chickpeas (see *Cook and
-  balance plant proteins*).
+- **Proteins:** dried beans, lentils, split peas, chickpeas (see [[cooking-plant-protein|cook and balance plant proteins]]).
 - **Energy:** grains, potatoes, root vegetables, a little oil.
 - **Flavour:** onion, garlic, salt, dried herbs and spices, something sour.
 
 ## Save fuel with a hay box
 
-After a pot reaches a hard boil, you can finish many dishes **off the fire**:
+After a pot reaches a hard boil, you can finish many dishes **off the fire**
+(dried beans need at least 10 minutes of hard boiling first — see below):
 nestle the closed pot into a well-insulated box (hay, wool, blankets) and the
 retained heat slowly cooks beans, grains, and stews over a few hours. Huge fuel
 savings, and nothing burns.
 
 ## Eat safely
 
-- **Cook beans thoroughly** — many are mildly toxic raw or undercooked; boil hard
-  first, then simmer until soft.
+- **Cook beans thoroughly** — many are toxic raw or undercooked. Soak them, then
+  **boil hard for at least 10 minutes** (essential for red kidney beans) before
+  simmering or moving the pot to a hay box; low-temperature cooking alone makes
+  kidney beans more toxic, not less.
 - **Eat cooked food promptly** or keep it cool; reheat leftovers to a good
   steaming heat.
 - **Keep tools and hands clean**, and store dry staples sealed against pests and
@@ -58,3 +60,9 @@ savings, and nothing burns.
 
 Stretch a pot with more grain or potato; enrich it with nuts, seeds, or a spoon
 of nut paste; and vary spices to keep simple staples interesting day to day.
+
+## Where to go next
+
+- [[cooking-plant-protein]]
+- [[cooking-solar-oven]]
+- [[cooking-bread-baking]]

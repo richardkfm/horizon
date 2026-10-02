@@ -13,7 +13,7 @@ When people from different places come together, a few shared phrases prevent
 misunderstanding, defuse fear, and let strangers cooperate and trade. You don't
 need fluency — a small, well-chosen core goes a long way.
 
-> **Respect opens doors.** Learning even a greeting and "thank you" in someone
+> **Tip:** **Respect opens doors.** Learning even a greeting and "thank you" in someone
 > else's language signals goodwill and is often returned in kind.
 
 ## Choose the core that matters most
@@ -34,8 +34,8 @@ Aim for roughly 30-50 phrases first, grouped by what they do:
 1. **Group by topic, not alphabet** — the brain holds related words together.
 2. **Link sound to a picture or action** — say "water" while pointing at water.
 3. **Use them immediately and often** in real situations; use beats memorising.
-4. **Make a small phrase card** or list you can carry and review (links to
-   teaching literacy).
+4. **Make a small phrase card** or list you can carry and review (see
+   [[language-teach-literacy|teaching literacy]]).
 
 ## Teach them to others
 
@@ -43,6 +43,12 @@ Aim for roughly 30-50 phrases first, grouped by what they do:
 - Say the phrase, have learners repeat it, then use it in a quick role-play
   (greeting, asking for water, trading).
 - Pair each phrase with a gesture so it still works when memory or pronunciation
-  fails (links to communicating across barriers).
+  fails (see [[language-across-barriers|communicating across barriers]]).
 - Practise in mixed pairs so people teach each other their languages — everyone
   becomes both learner and teacher.
+
+## Where to go next
+
+- [[language-across-barriers]]
+- [[language-numbers-and-measures]]
+- [[language-teach-literacy]]

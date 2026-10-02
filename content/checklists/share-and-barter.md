@@ -14,7 +14,7 @@ you need, without exploiting anyone's hardship.
 
 > **Note:** This is about cooperation, not profiteering. Trade fairly, give where you
 > can, and never use scarcity to take advantage of people in need — that's a core
-> horizon value. See the *make fair group decisions* guide.
+> horizon value. See [[cooperation-group-decisions|the make fair group decisions guide]].
 
 ## Small, useful, hard to make
 
@@ -44,7 +44,7 @@ you need, without exploiting anyone's hardship.
 - [ ] First aid and care
 - [ ] Repairing tools, clothes, and bikes
 - [ ] Growing, cooking, and preserving food
-- [ ] Reading, writing, and translation (see the language guides)
+- [ ] Reading, writing, and translation (see [[plan:language-and-communication|the language plan]])
 
 ## How to share and trade well
 

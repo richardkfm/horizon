@@ -13,7 +13,7 @@ Singing together costs nothing, needs no equipment, and does what little else
 can: it steadies a frightened group, makes hard work lighter, and turns strangers
 into a community. Anyone can lead it — you do not need a "good voice".
 
-> **Everyone belongs in the song.** Pitch it so the shy and the tone-deaf can
+> **Tip:** **Everyone belongs in the song.** Pitch it so the shy and the tone-deaf can
 > join. The point is togetherness, not performance.
 
 ## Choose songs that teach themselves
@@ -41,7 +41,12 @@ The easiest group songs need no sheets and no rehearsal:
 ## Build a shared repertoire
 
 - Collect songs the group already knows — work songs, lullabies, local tunes.
-- Write down or memorise the words so they aren't lost (see the storytelling
-  guide).
+- Write down or memorise the words so they aren't lost (see [[culture-storytelling|the storytelling guide]]).
 - Make new songs for new moments: a planting song, a song that names the people
   who keep the water clean. Songs carry memory.
+
+## Where to go next
+
+- [[culture-simple-instruments]]
+- [[culture-circle-dances]]
+- [[culture-storytelling]]

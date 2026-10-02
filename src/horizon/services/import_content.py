@@ -15,7 +15,9 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from horizon.config import settings
+from horizon.models import Category
 from horizon.services import importer
+from horizon.services.frontmatter import coerce_difficulty
 
 logger = logging.getLogger("horizon")
 
@@ -24,6 +26,48 @@ _USER_AGENT = "horizon-content-importer/1 (offline self-hosted import tool)"
 
 class ContentImportError(RuntimeError):
     """An import failed in a way that is safe to show the operator directly."""
+
+
+# --- Input validation (shared by the CLI and the admin web wizard) -----------
+
+
+def validate_category(category: str) -> str:
+    """Return ``category`` if it is one of horizon's fixed categories.
+
+    Raises :class:`ContentImportError` with a plain-language message otherwise,
+    so the web wizard can show it as a form error instead of writing a guide
+    that the seeder will then silently skip.
+    """
+    value = (category or "").strip().lower()
+    valid = [c.value for c in Category]
+    if value not in valid:
+        raise ContentImportError(
+            f"Unknown category {category!r}. Choose one of: {', '.join(valid)}."
+        )
+    return value
+
+
+def clamp_difficulty(difficulty: object, *, default: int = 2) -> int:
+    """Difficulty as an int in 1-5 (non-numeric input falls back to ``default``)."""
+    return coerce_difficulty(difficulty, default=default)
+
+
+def safe_id(raw: str | None, *, fallback: str) -> str:
+    """Slugify an operator-supplied guide id / id prefix.
+
+    Ids become file names, so anything path-like (``../../x``, ``a/b``) is
+    reduced to a plain ``[a-z0-9-]`` slug before it gets near the filesystem.
+    """
+    candidate = (raw or "").strip()
+    return importer.slugify(candidate) if candidate else importer.slugify(fallback)
+
+
+def _output_path(dest: Path, guide_id: str) -> Path:
+    """``<dest>/<guide_id>.md``, asserting it cannot land outside ``dest``."""
+    out_path = dest / f"{guide_id}.md"
+    if out_path.resolve().parent != dest.resolve():
+        raise ContentImportError(f"Refusing to write {guide_id!r} outside {dest}.")
+    return out_path
 
 
 def default_guides_dir() -> Path:
@@ -47,8 +91,8 @@ def fetch_text(url: str) -> str:
 
 
 def _guess_ext(url: str) -> str:
-    suffix = Path(urlparse(url).path).suffix.split("?")[0]
-    return suffix if suffix and len(suffix) <= 5 else ".jpg"
+    suffix = Path(urlparse(url).path).suffix.split("?")[0].lower()
+    return suffix if suffix and len(suffix) <= 5 and suffix[1:].isalnum() else ".jpg"
 
 
 def download_images(urls: list[str], dest_dir: Path, prefix: str) -> dict[str, str]:
@@ -68,7 +112,7 @@ def download_images(urls: list[str], dest_dir: Path, prefix: str) -> dict[str, s
         timeout=20, follow_redirects=True, headers={"User-Agent": _USER_AGENT}
     ) as client:
         for i, url in enumerate(urls, start=1):
-            filename = f"{prefix}-{i}{_guess_ext(url)}"
+            filename = f"{importer.slugify(prefix)}-{i}{_guess_ext(url)}"
             try:
                 response = client.get(url)
                 response.raise_for_status()
@@ -94,8 +138,11 @@ def import_wikihow(
     """Fetch a WikiHow-shaped how-to page and write it as a guide.
 
     Returns ``{"guide_id": ..., "path": ...}``. Raises :class:`ContentImportError`
-    on any recoverable failure (fetch, parse, or an existing guide id).
+    on any recoverable failure (bad category, fetch, parse, or an existing
+    guide id). ``guide_id`` is slugified and ``difficulty`` clamped to 1-5.
     """
+    category = validate_category(category)
+    difficulty = clamp_difficulty(difficulty, default=2)
     html = fetch_text(url)
     article = importer.parse_html_article(html)
     if not article.title and not article.sections:
@@ -104,10 +151,10 @@ def import_wikihow(
             "— it may not be a how-to article, or its markup is unusual."
         )
 
-    resolved_id = guide_id or importer.slugify(article.title or url)
+    resolved_id = safe_id(guide_id, fallback=article.title or url)
     dest = dest_dir or default_guides_dir()
     dest.mkdir(parents=True, exist_ok=True)
-    out_path = dest / f"{resolved_id}.md"
+    out_path = _output_path(dest, resolved_id)
     if out_path.exists() and not force:
         raise ContentImportError(
             f"Guide '{resolved_id}' already exists at {out_path}. "
@@ -157,11 +204,13 @@ def import_book(
     licence" caution) since a book's licence varies per title; pass the
     verified licence when bundling one into the repo's own seed content.
     """
+    category = validate_category(category)
+    difficulty = clamp_difficulty(difficulty, default=1)
     chapters = importer.split_book_into_chapters(text)
     if not chapters:
         raise ContentImportError("No content found to import.")
 
-    prefix = id_prefix or importer.slugify(Path(source_name).stem)
+    prefix = safe_id(id_prefix, fallback=Path(source_name).stem)
     dest = dest_dir or default_guides_dir()
     dest.mkdir(parents=True, exist_ok=True)
 
@@ -174,7 +223,7 @@ def import_book(
             suffix = importer.chapter_slug_suffix(chapter.title)
             resolved_id = f"{prefix}-{i:02d}-{suffix}" if suffix else f"{prefix}-{i:02d}"
 
-        out_path = dest / f"{resolved_id}.md"
+        out_path = _output_path(dest, resolved_id)
         if out_path.exists() and not force:
             skipped.append(resolved_id)
             continue

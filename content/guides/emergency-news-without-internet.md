@@ -97,16 +97,16 @@ at each step — until it comes back to you as "they're saying".
 
 One person with a radio can serve a whole street. Note the time, the station,
 and the substance on a card and put it where people already walk past — see
-*keep a neighbourhood informed without the internet* for the notice board and
+[[cooperation-message-relay|keep a neighbourhood informed without the internet]] for the notice board and
 the relay that carries it. Knocking on the doors of anyone who can't get to
 the board takes ten minutes and is the most useful thing you can do with an
 afternoon of no connection.
 
 ## Where to go next
 
-- **Cope when the internet and phone networks go down** is the wider
+- [[emergency-internet-outage]] is the wider
   first-response guide this one supports.
-- **Set up two-way radio for your community** covers the other direction:
+- [[technology-two-way-radio]] covers the other direction:
   *sending* as well as receiving, once neighbours need to coordinate.
-- **Resist a faction trying to capture the group** goes deeper on what to do
+- [[cooperation-resisting-capture]] goes deeper on what to do
   when someone is using bad information deliberately rather than carelessly.

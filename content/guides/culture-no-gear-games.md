@@ -13,7 +13,7 @@ Games do real work: they exercise bodies, sharpen minds, ease tension, and help 
 group of strangers become a community. The best ones for hard times need no
 equipment, no reading, and no shared language — just people.
 
-> **Play to include, not to eliminate.** Games where losers sit out leave the
+> **Tip:** **Play to include, not to eliminate.** Games where losers sit out leave the
 > people who most need connection on the sidelines. Prefer games where everyone
 > keeps playing.
 
@@ -26,8 +26,8 @@ equipment, no reading, and no shared language — just people.
 - **Pass the rhythm:** a clap or movement is passed around the circle; add layers
   as the group gets confident.
 - **Hide and seek / sardines:** simple, loved by children, and needs only space.
-- **Storytelling chain:** each person adds one sentence to a shared story (links
-  to the storytelling guide).
+- **Storytelling chain:** each person adds one sentence to a shared story (see
+  [[culture-storytelling|the storytelling guide]]).
 - **Guessing and memory games:** "I packed my bag and brought…", each adding an
   item and repeating the list.
 
@@ -45,3 +45,9 @@ equipment, no reading, and no shared language — just people.
 
 Shared play builds trust and cooperation that carry over into work and
 decision-making. A community that plays together handles hardship better.
+
+## Where to go next
+
+- [[culture-storytelling]]
+- [[culture-group-songs]]
+- [[language-across-barriers]]

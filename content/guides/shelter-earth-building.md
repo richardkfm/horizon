@@ -13,7 +13,7 @@ Earth is the oldest and most widespread building material on Earth: cheap or
 free, local, fireproof, and excellent at evening out temperature. With the right
 soil and good detailing, earth walls last generations.
 
-> **Keep earth dry.** Earth's one weakness is standing water. The old builders'
+> **Tip:** Keep earth dry. Earth's one weakness is standing water. The old builders'
 > rule is "a good hat and good boots": a wide roof overhang above and a solid,
 > raised stone or rubble foundation below.
 
@@ -40,6 +40,16 @@ strength):
 - **Rammed earth:** damp soil compacted in hard layers inside temporary
   formwork. Very durable but needs more equipment.
 
+> **Risk:** Unreinforced adobe and cob walls are heavy and brittle, and they
+> have killed many people in earthquakes. If you live anywhere earthquakes
+> happen, don't build plain earth walls: tie the top of every wall together
+> with a continuous **ring beam (bond beam)** of timber or reinforced
+> concrete, **reinforce the walls** (geomesh, bamboo or timber, following
+> local practice), keep to a **single storey**, and keep doors and windows
+> **small and well away from the corners**. Follow your area's seismic
+> building guidance, or build alongside an experienced local builder who
+> knows it.
+
 ## Build the wall
 
 1. **Foundation first:** a raised footing of stone, rubble, or gravel-filled bags
@@ -59,6 +69,7 @@ strength):
 ```
 
 *Fig. 1: earth wall section — a wide roof overhang and a raised stone footing keep the earth above dry*
+
 2. **Build up in layers**, letting cob/rammed work firm before adding much more
    height so walls don't slump.
 3. **Set door and window frames** as you build, tying them into the wall.
@@ -72,3 +83,9 @@ strength):
   repairable, lime is tougher against rain.
 - **Maintain yearly:** patch cracks and re-coat plaster — easy with earth, and
   part of how these buildings last so long.
+
+## Where to go next
+
+- [[shelter-choosing]]
+- [[shelter-insulation-basics]]
+- [[calc-materials-quantities]]

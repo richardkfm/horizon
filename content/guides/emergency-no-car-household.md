@@ -28,7 +28,7 @@ replaces the other emergency guides; it fills in the parts that change when
   live. A flooded underpass, a closed bridge, or a shut train station can
   block the "obvious" way out — you want a second option already in your
   legs, not on a map you're reading for the first time mid-emergency. See
-  **use offline maps and GPS with no signal** for getting those routes onto
+  [[survival-offline-maps-and-gps|use offline maps and GPS with no signal]] for getting those routes onto
   your phone (and a paper backup) before you need them.
 - **Know your transit's failure mode.** Does the metro flood in heavy rain?
   Do trains stop running above a certain temperature? Does the bus network
@@ -49,14 +49,15 @@ replaces the other emergency guides; it fills in the parts that change when
 Generic advice to keep a week of water and food per person assumes a garage
 or a full pantry. In a smaller home, the same reserve has to go vertical and
 compact instead: stacked bottles under a bed, a shelf bracket above a door
-frame, jars on top of cupboards. See the water and food guides for how much
+frame, jars on top of cupboards. See [[checklist:water-store|the water-store]] and
+[[checklist:food-store|food-store]] checklists for how much
 to store and how to keep it safe over time — the volumes don't shrink just
 because the space did, so plan the storage first and fit the quantity to it,
 not the other way round.
 
 ## Heatwaves without air conditioning or a car
 
-See **survive extreme heat without power** for the core techniques — shading,
+See [[emergency-extreme-heat|survive extreme heat without power]] for the core techniques — shading,
 night ventilation, wetting the skin, spotting heatstroke. Two things change
 when you also have no car:
 
@@ -75,18 +76,16 @@ when you also have no car:
 The same isolation applies to people around you, especially older neighbours
 on upper floors with no car and no one nearby. A simple check-in agreement —
 a knock or a call, twice a day during a heatwave or blackout — costs almost
-nothing and catches trouble early; see **prepare for and live through a long
-blackout** for the same habit in that context. Use the group-decision
-guides in the cooperation category to set this up as a standing block or
+nothing and catches trouble early; see [[emergency-blackout|prepare for and live through a long blackout]] for the same habit in that context. Use
+[[cooperation-group-decisions|make fair group decisions]] to set this up as a standing block or
 building arrangement rather than something improvised each time.
 
 ## Where to go next
 
-- **Survive extreme heat without power** and **prepare for and live through a
-  long blackout** cover the core techniques this guide builds on.
+- [[emergency-extreme-heat]] and [[emergency-blackout|prepare for and live through a long blackout]] cover the core techniques this guide builds on.
 - If anyone nearby depends on refrigerated medication or a powered medical
-  device, see **keep essential medical care going without power**.
+  device, see [[health-power-dependent-care|keep essential medical care going without power]].
 - If you *are* travelling by vehicle when disaster strikes, the situation —
-  and the advice — flips: see **survive being stranded in a vehicle**.
-- For organising neighbours into a standing mutual-aid arrangement, see the
-  cooperation guides on group decisions and democratic governance.
+  and the advice — flips: see [[emergency-vehicle-stranded|survive being stranded in a vehicle]].
+- For organising neighbours into a standing mutual-aid arrangement, see
+  [[cooperation-group-decisions]] and [[cooperation-democratic-governance]].

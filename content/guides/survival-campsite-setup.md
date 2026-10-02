@@ -89,14 +89,10 @@ zones, all well clear of the water source and of each other*
   takes years to recover.
 - **Pack out everything you packed in**, including food scraps — burying
   rubbish just teaches animals to dig.
-- **Bury or manage human waste properly** rather than leaving it — see the
-  sanitation guide.
+- **Bury or manage human waste properly** rather than leaving it — see [[survival-sanitation-hygiene|the sanitation guide]].
 
 ## Where to go next
 
-- Set up water and fire once the site is chosen: see finding water in the
-  field and making fire without matches.
-- For managing waste and hygiene once camp is running, see manage waste and
-  hygiene without plumbing.
-- If something goes wrong and you need to be found, see signal for rescue if
-  lost or stranded.
+- Set up water and fire once the site is chosen: see [[survival-find-water|finding water in the field]] and [[survival-fire|making fire without matches]].
+- For managing waste and hygiene once camp is running, see [[survival-sanitation-hygiene|manage waste and hygiene without plumbing]].
+- If something goes wrong and you need to be found, see [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].

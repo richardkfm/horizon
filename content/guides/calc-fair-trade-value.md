@@ -14,11 +14,11 @@ of apples, both sides want the same thing: to walk away feeling the swap was
 fair. Fairness isn't a vibe — it's arithmetic anyone can do, agreed out
 loud. A little costing keeps good trades from souring good relationships.
 
-> **Note.** Fair trade is a cooperation value as much as a calculation:
+> **Note:** Fair trade is a cooperation value as much as a calculation:
 > horizon's line is that scarcity and urgency are reasons to help, not
 > leverage to price against. The maths below tells you what something
 > *costs*; what your group *charges* a neighbour in trouble is a values
-> decision (links to sharing resources and managing a group's commons).
+> decision (see [[cooperation-sharing-resources|sharing resources and managing a group's commons]]).
 
 ## Cost anything in two parts
 
@@ -72,8 +72,7 @@ Most real swaps don't balance exactly. Three fair endings:
 - **Top up** with something small until both sides agree it's level.
 - **Carry the difference:** a notebook of small IOUs ("owes 1 unit") that
   the pair or the group's stock book tracks — half of neighbourly trade is
-  running credit, and writing it down keeps it friendly (links to tracking
-  a household or group's stores).
+  running credit, and writing it down keeps it friendly (see [[calc-inventory-tracking|tracking a household or group's stores]]).
 - **Round in the other side's favour** and say so. In repeated trades
   between neighbours, alternating generosity is worth more than exactness.
 
@@ -85,4 +84,11 @@ Most real swaps don't balance exactly. Three fair endings:
   price, it's leverage — help now, settle later on ordinary terms.
 - **Are the same few people always slightly ahead?** Look at the yardstick
   and the board — quiet drift in one direction is how resentment starts
-  (links to making fair group decisions).
+  (see [[cooperation-group-decisions|making fair group decisions]]).
+
+## Where to go next
+
+- [[calc-inventory-tracking]]
+- [[cooperation-sharing-resources]]
+- [[cooperation-paying-without-networks]]
+- [[checklist:share-and-barter]]

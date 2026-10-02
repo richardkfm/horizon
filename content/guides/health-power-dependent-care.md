@@ -25,10 +25,18 @@ planned for this specific risk before it happened, not during it.
   temperature — many common ones last weeks unrefrigerated but are damaged
   by heat, so plan cooling for a hot climate specifically. Keep an insulated
   cool box and pre-frozen ice packs ready.
+- **Insulin must never freeze** — frozen insulin is ruined, even after it
+  thaws. Keep it cool but never directly against an ice pack: wrap it in a
+  cloth or put it in its own box inside the cool box. Most insulin keeps
+  about a month at ordinary room temperature (not in heat) once out of the
+  fridge, but this varies by type — check the leaflet for yours.
 - **Powered devices** (CPAP, oxygen concentrator, feeding pump, dialysis
   machine, powered wheelchair): know each device's battery runtime, and have
-  a charged spare battery, power bank, or small generator plan sized to run
-  the most critical one (see sizing a solar and battery system).
+  a charged spare battery or power bank sized to run the most critical one —
+  ideally kept topped up by a small solar panel, so it keeps going for days
+  (see [[energy-sizing-solar-battery|sizing a solar and battery system]]).
+  A fuel generator is a last resort only, and only with the carbon monoxide
+  precautions below.
 - **Mobility and access needs**: keep a manual backup where one exists (a
   manual wheelchair alongside a powered one, a plan for stairs if a lift
   fails), since power loss often removes access, not just comfort.
@@ -38,6 +46,20 @@ planned for this specific risk before it happened, not during it.
 - **Keep a written list** of every medication, dose, and device, somewhere
   every household member can find it — not only the person who usually
   manages it.
+- **Fit a battery-powered carbon monoxide alarm** if you'll use any
+  generator, gas or fuel heater, or stove during an outage.
+
+> **Risk:** Carbon monoxide from generators and engines kills people every
+> blackout — you can't see or smell it. **Never run a generator or vehicle
+> indoors, in a garage (even with the door open), or near windows, doors or
+> vents.** Keep it at least 6 m (20 ft) from the house with the exhaust
+> pointing away, and never charge a device from an idling car in a closed
+> space. Headache, dizziness or nausea in several people at once means get
+> everyone into fresh air and call for help.
+
+> **Risk:** Medical oxygen makes fire spread fast. **No flames, smoking or
+> candles anywhere near oxygen** — use battery lights instead, and keep
+> cylinders and concentrators well away from stoves and heaters.
 
 ## When the power goes out
 
@@ -45,12 +67,15 @@ planned for this specific risk before it happened, not during it.
    split a small battery or generator across several needs at once.
 2. **Keep medication cool without repeated fridge opening** — pack it into
    the insulated box with ice packs in one go, and keep the box shaded and
-   wrapped (see surviving extreme heat for more cooling methods).
+   wrapped (see [[emergency-extreme-heat|surviving extreme heat]] for more
+   cooling methods). Wrap insulin so it never touches the ice packs.
 3. **Contact a pharmacist or clinic proactively** if the outage looks likely
    to run long — ask about short-term alternatives or substitutions before
    supplies run out, not after.
 4. **Conserve device battery** — reduce settings to essential use only, and
-   charge from a power bank or vehicle where possible.
+   charge from a power bank (topped up by solar if you can). Charging from a
+   vehicle only works outdoors, with the car in the open and never in a
+   garage.
 
 > **Do now:** Signs of a medical crisis tied to interrupted treatment — for
 > example confusion, breathing difficulty without oxygen, or the signs of
@@ -68,9 +93,7 @@ planned for this specific risk before it happened, not during it.
 
 ## Where to go next
 
-- For the wider blackout preparation and safety plan, see prepare for and
-  live through a long blackout.
-- To size backup power for a critical device, see sizing a solar and battery
-  system and storing and managing your power.
-- For general first-aid priorities, see handling common first-aid
-  situations.
+- [[emergency-blackout]]
+- [[energy-sizing-solar-battery]]
+- [[energy-battery-storage]]
+- [[health-first-aid-basics]]

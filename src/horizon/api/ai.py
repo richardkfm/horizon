@@ -133,12 +133,9 @@ def _read_skill_body(path: Path) -> str | None:
     """Return an md skill's body (front matter stripped), or ``None`` if absent."""
     if not path.is_file():
         return None
-    text = path.read_text(encoding="utf-8")
-    if text.startswith("---"):
-        segments = text.split("---", 2)
-        if len(segments) == 3:
-            return segments[2].lstrip("\n")
-    return text
+    from horizon.services.frontmatter import strip_front_matter
+
+    return strip_front_matter(path.read_text(encoding="utf-8"))
 
 
 def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
@@ -152,7 +149,7 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
         no_guide_lead = (
             "horizon is in low-power mode to save energy, so the local AI model "
             "is paused. I couldn't find a local guide matching your question — "
-            "try browsing the journeys, or rephrase your question."
+            "try browsing the step-by-step plans, or ask in different words."
         )
         guide_lead = (
             "horizon is in low-power mode to save energy, so the local AI model "
@@ -162,8 +159,8 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
     else:
         no_guide_lead = (
             "The local AI model isn't running right now, and I couldn't find a "
-            "local guide matching your question. Try browsing the journeys, or "
-            "rephrase your question."
+            "local guide matching your question. Try browsing the step-by-step "
+            "plans, or ask in different words."
         )
         guide_lead = (
             "The local AI model isn't running right now, so I can't write a full "
@@ -179,7 +176,8 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
         if guide["source_id"] in seen:
             continue
         seen.add(guide["source_id"])
-        lines.append(f"- {guide['title']} [{guide['source_id']}]")
+        # Titles only: the ids are machine data, returned in ``citations``.
+        lines.append(f"- {guide['title']}")
     listing = "\n".join(lines)
     return f"{guide_lead}\n\n{listing}\n\nOpen them for complete step-by-step instructions."
 

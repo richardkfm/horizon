@@ -14,7 +14,7 @@ wind — and the smoke can harm people for miles around. The two things that sav
 lives are **preparing your surroundings** in advance and **leaving early** when
 fire threatens.
 
-> **When in doubt, get out — early.** Don't wait to see flames. Late evacuation,
+> **Do now:** **When in doubt, get out — early.** Don't wait to see flames. Late evacuation,
 > on roads choked with smoke and traffic, is when people die. If officials say go,
 > go immediately; if you feel unsafe, leave even before they do.
 
@@ -69,3 +69,9 @@ people with heart or lung conditions:
 
 Return only when cleared. Watch for **hotspots, smouldering ground, and falling
 trees**, weakened structures, and ongoing **poor air quality**.
+
+## Where to go next
+
+- [[checklist:go-bag]]
+- [[emergency-extinguish-fire]]
+- [[health-burns]]

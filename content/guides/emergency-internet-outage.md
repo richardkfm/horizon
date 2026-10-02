@@ -28,22 +28,27 @@ Most of what you decide depends on whether this is your flat or your region.
 Work down the chain until something answers.
 
 ```ascii
-   you           your home        your street      your provider   everywhere
- [ phone ] -wifi-> [ router ] -line-> [ cabinet ] -> [ ISP ] -> [ wider net ]
-     |                 |                  |             |             |
- mobile data       lights red        neighbours     provider      radio says
- still works?      or all dark       also down?     at fault?     it's regional
-     |                 |                  |             |             |
-  -> your home      -> your kit        -> a local     -> nothing    -> settle in
-     line only         only               fault          to fix        calmly
+  [ phone ]    mobile data still works?
+      |        -> only your home line is down
+      v
+  [ router ]   lights red, or all dark?
+      |        -> your kit or your power
+      v
+  [ street ]   neighbours down too?
+      |        -> a local fault
+      v
+  [ provider ] provider says it's at fault?
+      |        -> nothing for you to fix
+      v
+  [ wider net] radio says it's regional?
+               -> settle in calmly
 ```
 
 *Fig. 1: work outward from your own kit — each step you rule out tells you how long to expect it to last and who can fix it*
 
 - **Turn mobile data on and off wifi.** If pages load, only your home line is
   down. If neither works, the problem is bigger than your house.
-- **Look at the router.** All lights dark means a power problem (see *prepare
-  for and live through a long blackout*). A red or missing internet light
+- **Look at the router.** All lights dark means a power problem (see [[emergency-blackout|prepare for and live through a long blackout]]). A red or missing internet light
   means the line, not your device.
 - **Power-cycle once.** Unplug the router for 30 seconds, plug it back in,
   and give it a full two minutes to come back. Do this *once*. Repeatedly
@@ -53,8 +58,7 @@ Work down the chain until something answers.
   means a street or area fault. This is also the moment you find out who on
   the street has a radio, a landline, or a car with a working aerial.
 - **Check the radio.** A battery or car radio tells you within minutes
-  whether this is regional news or just your building. See *get trustworthy
-  news when the internet is down*.
+  whether this is regional news or just your building. See [[emergency-news-without-internet|get trustworthy news when the internet is down]].
 
 ## What still works
 
@@ -100,15 +104,14 @@ few. Knock on doors, especially if it runs past a few hours.
   to check in person, on a schedule, until it is back.
 - **People living alone, older neighbours, and anyone unwell.** Their usual
   daily contact may be the phone you have just lost.
-- **Anyone who depends on a powered medical device** — see *keep essential
-  medical care going without power* if the electricity is out too.
+- **Anyone who depends on a powered medical device** — see [[health-power-dependent-care|keep essential medical care going without power]] if the electricity is out too.
 - **Households whose door entry, heating, or lights run through an app.**
   Find out where the manual override is before dark.
 
 ## Things that quietly stop working
 
 Expect these, so they don't surprise you mid-errand: card terminals and
-ATMs (see *keep paying and trading when cards stop working*), fuel pumps,
+ATMs (see [[cooperation-paying-without-networks|keep paying and trading when cards stop working]]), fuel pumps,
 public transport ticketing and departure screens, smart locks and video
 doorbells, cloud thermostats, streaming and smart TVs, work and school
 systems, and any "two-factor" login that texts you a code. Your downloaded
@@ -119,20 +122,20 @@ music, your offline maps, your books, and this horizon node all carry on.
 Short outages are the common case, but if this one stretches on, the rest of
 the library takes over:
 
-- *Get trustworthy news when the internet is down* — receiving reliable
+- [[emergency-news-without-internet]] — receiving reliable
   information and not amplifying rumours.
-- *Keep a neighbourhood informed without the internet* — a notice board and
+- [[cooperation-message-relay]] — a notice board and
   a relay that works with no technology at all.
-- *Set up two-way radio for your community* — coordinating beyond shouting
+- [[technology-two-way-radio]] — coordinating beyond shouting
   distance.
-- *Build a local network without the internet* — if you want messaging and
+- [[technology-local-network]] — if you want messaging and
   shared files back within the neighbourhood itself.
 
 ## Where to go next
 
-- **Keep the information you depend on offline** is the half-hour of
+- [[technology-offline-knowledge-archive]] is the half-hour of
   preparation that makes every outage after this one a non-event.
-- **Use offline maps and GPS with no signal** covers getting around while the
+- [[survival-offline-maps-and-gps]] covers getting around while the
   maps app has nothing to fetch.
-- **Prepare for and live through a long blackout** is the companion case:
+- [[emergency-blackout]] is the companion case:
   outages often arrive together, since the network needs power too.

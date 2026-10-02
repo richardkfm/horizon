@@ -25,6 +25,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import re
 import shutil
 import threading
 import time
@@ -48,6 +49,20 @@ _CHUNK = 1 << 20  # 1 MiB
 
 # Progress callbacks receive (downloaded_bytes, total_bytes_or_None, phase).
 ProgressCb = Callable[[int, "int | None", str], None]
+
+# A pack id names a directory under the packs dir, so it must be a plain slug:
+# no path separators, no "..", nothing that could resolve outside packs_dir.
+_PACK_ID_RE = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
+
+
+def is_valid_pack_id(pack_id: object) -> bool:
+    """True for a safe pack id (lowercase slug; never a path or ``..``)."""
+    return (
+        isinstance(pack_id, str)
+        and len(pack_id) <= 128
+        and _PACK_ID_RE.fullmatch(pack_id) is not None
+        and ".." not in pack_id
+    )
 
 
 class PackSpec(BaseModel):
@@ -90,13 +105,23 @@ def load_catalog() -> list[PackSpec]:
     if path is None:
         logger.warning("No content-pack catalog (packs.yaml) found.")
         return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except (OSError, UnicodeDecodeError, yaml.YAMLError) as exc:
+        logger.warning("Could not read the content-pack catalog %s: %s", path, exc)
+        return []
     specs: list[PackSpec] = []
-    for entry in data.get("packs", []):
+    entries = data.get("packs", []) if isinstance(data, dict) else []
+    for entry in entries if isinstance(entries, list) else []:
         try:
-            specs.append(PackSpec.model_validate(entry))
+            spec = PackSpec.model_validate(entry)
         except Exception as exc:  # noqa: BLE001 - skip a malformed entry, keep the rest
             logger.warning("Skipping malformed pack entry %r: %s", entry, exc)
+            continue
+        if not is_valid_pack_id(spec.id):
+            logger.warning("Skipping pack entry with an unsafe id %r", spec.id)
+            continue
+        specs.append(spec)
     return specs
 
 
@@ -128,8 +153,27 @@ def packs_dir() -> Path:
     return Path(settings.content_packs.dir)
 
 
+def _is_within(path: Path, root: Path) -> bool:
+    """True when ``path`` resolves to ``root`` itself or somewhere beneath it."""
+    try:
+        return path.resolve().is_relative_to(root.resolve())
+    except (OSError, RuntimeError, ValueError):
+        return False
+
+
 def _pack_dir(pack_id: str) -> Path:
-    return packs_dir() / pack_id
+    """The directory for ``pack_id``, guaranteed to sit strictly inside packs_dir.
+
+    Raises :class:`PackError` for an unsafe id (``..``, a path, ...) or one that
+    resolves outside the packs directory (e.g. through a symlink).
+    """
+    if not is_valid_pack_id(pack_id):
+        raise PackError(f"Invalid pack id: {pack_id!r}")
+    root = packs_dir()
+    directory = root / pack_id
+    if not _is_within(directory, root) or directory.resolve() == root.resolve():
+        raise PackError(f"Pack id {pack_id!r} resolves outside the packs directory.")
+    return directory
 
 
 def _manifest_path(pack_id: str) -> Path:
@@ -138,19 +182,38 @@ def _manifest_path(pack_id: str) -> Path:
 
 def is_installed(pack_id: str) -> bool:
     """True when ``pack_id`` has a complete manifest on disk."""
-    return _manifest_path(pack_id).is_file()
+    return read_manifest(pack_id) is not None
 
 
 def read_manifest(pack_id: str) -> dict | None:
-    """Return the installed pack's manifest, or ``None`` if not installed."""
-    path = _manifest_path(pack_id)
+    """Return the installed pack's manifest, or ``None`` if not installed.
+
+    Also ``None`` (with a warning) for an unsafe id or a manifest that isn't a
+    JSON object carrying this pack's string ``id`` — one damaged pack directory
+    must never take down every page that lists packs.
+    """
+    try:
+        path = _manifest_path(pack_id)
+    except PackError:
+        return None
     if not path.is_file():
         return None
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         logger.warning("Could not read manifest for %s: %s", pack_id, exc)
         return None
+    if not isinstance(data, dict):
+        logger.warning("Ignoring manifest for %s: not a JSON object", pack_id)
+        return None
+    if data.get("id") != pack_id:
+        logger.warning(
+            "Ignoring manifest for %s: its id %r does not match the pack directory",
+            pack_id,
+            data.get("id"),
+        )
+        return None
+    return data
 
 
 def installed_packs() -> list[dict]:
@@ -159,20 +222,33 @@ def installed_packs() -> list[dict]:
     if not root.is_dir():
         return []
     manifests: list[dict] = []
-    for child in sorted(root.iterdir()):
-        if child.is_dir() and (manifest := read_manifest(child.name)) is not None:
+    try:
+        children = sorted(root.iterdir())
+    except OSError as exc:
+        logger.warning("Could not list the packs directory %s: %s", root, exc)
+        return []
+    for child in children:
+        if not is_valid_pack_id(child.name) or not child.is_dir():
+            continue
+        if (manifest := read_manifest(child.name)) is not None:
             manifests.append(manifest)
     return manifests
 
 
 def pack_file_path(pack_id: str) -> Path | None:
     """Absolute path to an installed pack's payload file, or ``None`` if not
-    installed. Resolves the manifest's ``"file"`` key against the pack's dir.
+    installed. Resolves the manifest's ``"file"`` key against the pack's dir,
+    refusing any value that would point outside it.
     """
     manifest = read_manifest(pack_id)
-    if manifest is None or "file" not in manifest:
+    if manifest is None or not isinstance(manifest.get("file"), str) or not manifest["file"]:
         return None
-    return _pack_dir(pack_id) / manifest["file"]
+    directory = _pack_dir(pack_id)
+    path = directory / manifest["file"]
+    if not _is_within(path, directory):
+        logger.warning("Ignoring pack %s: its manifest file %r escapes the pack dir", pack_id, path)
+        return None
+    return path
 
 
 def has_installed_zim_pack() -> bool:
@@ -192,10 +268,13 @@ def pack_mbtiles_path(pack_id: str) -> Path | None:
     (see ``docs/operating.md``). The exact filename doesn't matter -- this
     looks for the first ``*.mbtiles`` file in the pack's directory.
     """
-    directory = _pack_dir(pack_id)
+    try:
+        directory = _pack_dir(pack_id)
+    except PackError:
+        return None
     if not directory.is_dir():
         return None
-    matches = sorted(directory.glob("*.mbtiles"))
+    matches = [m for m in sorted(directory.glob("*.mbtiles")) if _is_within(m, directory)]
     return matches[0] if matches else None
 
 
@@ -205,7 +284,7 @@ def has_installed_map_pack() -> bool:
     conditionally show that nav item.
     """
     return any(
-        m.get("category") == "maps" and pack_mbtiles_path(m["id"]) is not None
+        m.get("category") == "maps" and pack_mbtiles_path(str(m["id"])) is not None
         for m in installed_packs()
     )
 
@@ -232,6 +311,7 @@ def pack_status() -> list[dict]:
     for manifest in installed_packs():
         if manifest["id"] in seen:
             continue
+        # read_manifest guarantees a dict whose "id" is this pack's (valid) id.
         rows.append(
             {
                 "id": manifest["id"],
@@ -282,13 +362,18 @@ def install_from_file(spec: PackSpec, source: Path, *, move: bool = True) -> dic
     source = Path(source)
     if not source.is_file():
         raise PackError(f"Source file does not exist: {source}")
+    dest_dir = _pack_dir(spec.id)
     if not verify_file(source, spec.sha256):
+        if move and source.name.endswith(".part"):
+            # A failed download's partial file is useless; don't let it eat disk.
+            source.unlink(missing_ok=True)
         raise PackError(f"Checksum mismatch for pack {spec.id!r}; refusing to install.")
 
-    dest_dir = _pack_dir(spec.id)
     dest_dir.mkdir(parents=True, exist_ok=True)
     filename = _filename_for(spec)
     dest_file = dest_dir / filename
+    if not _is_within(dest_file, dest_dir) or dest_file.resolve() == dest_dir.resolve():
+        raise PackError(f"Pack {spec.id!r} has an unsafe filename: {filename!r}")
 
     if move:
         # os.replace is atomic within a filesystem; fall back to copy across devices.
@@ -316,9 +401,18 @@ def install_from_file(spec: PackSpec, source: Path, *, move: bool = True) -> dic
 
 
 def remove_pack(pack_id: str) -> bool:
-    """Delete an installed pack's directory. Returns True if anything was removed."""
-    directory = _pack_dir(pack_id)
-    if not directory.is_dir():
+    """Delete an installed pack's directory. Returns True if anything was removed.
+
+    Refuses (returns False) for an unsafe id or anything that isn't a real
+    directory strictly inside the packs directory, so a crafted id like ``..``
+    can never delete the packs directory itself or anything above it.
+    """
+    try:
+        directory = _pack_dir(pack_id)
+    except PackError as exc:
+        logger.warning("Refusing to remove pack: %s", exc)
+        return False
+    if directory.is_symlink() or not directory.is_dir():
         return False
     shutil.rmtree(directory)
     logger.info("Removed content pack %s", pack_id)
@@ -345,6 +439,8 @@ def download_pack(pack_id: str, *, progress_cb: ProgressCb | None = None) -> dic
     dest_dir = _pack_dir(spec.id)
     dest_dir.mkdir(parents=True, exist_ok=True)
     part = dest_dir / f"{_filename_for(spec)}.part"
+    if not _is_within(part, dest_dir):
+        raise PackError(f"Pack {pack_id!r} has an unsafe download filename.")
 
     import httpx
 
@@ -370,9 +466,20 @@ def download_pack(pack_id: str, *, progress_cb: ProgressCb | None = None) -> dic
     except httpx.HTTPError as exc:
         part.unlink(missing_ok=True)
         raise PackError(f"Download failed for {pack_id!r}: {exc}") from exc
+    except BaseException as exc:
+        # Anything else (a full disk, a permission error, an interrupted
+        # thread): never leave a half-written multi-GB .part behind.
+        part.unlink(missing_ok=True)
+        if isinstance(exc, OSError):
+            raise PackError(f"Download failed for {pack_id!r}: {exc}") from exc
+        raise
 
-    report(part.stat().st_size, part.stat().st_size, "verifying")
-    manifest = install_from_file(spec, part, move=True)
+    try:
+        report(part.stat().st_size, part.stat().st_size, "verifying")
+        manifest = install_from_file(spec, part, move=True)
+    except BaseException:
+        part.unlink(missing_ok=True)
+        raise
     report(manifest["size_bytes"], manifest["size_bytes"], "done")
     return manifest
 

@@ -49,7 +49,7 @@ weather is bad, with a pen on a string.
 
 - **Confirmed, offered, needed.** Keeping facts in their own column stops the
   board turning into a rumour wall. Each confirmed item carries who said it
-  and when — see *get trustworthy news when the internet is down*.
+  and when — see [[emergency-news-without-internet|get trustworthy news when the internet is down]].
 - **Every note is timestamped and signed** with a name and door number. An
   unsigned note can't be checked or corrected.
 - **Say when the board is next updated.** People come back if they know when
@@ -94,13 +94,11 @@ that works, and the one that has always worked.
   writing, with the time on it, and have it initialled at the far end so
   everyone knows it arrived.
 - **Scheduled radio check-ins** beat continuous listening: agree a time and a
-  channel, keep it short, and let everyone switch off between. See *set up
-  two-way radio for your community*.
+  channel, keep it short, and let everyone switch off between. See [[technology-two-way-radio|set up two-way radio for your community]].
 - **Pass files by hand.** A USB stick walked down the road moves more than
   any radio link — documents, photographs of a notice, a copy of this
   horizon node's guides.
-- **Local network, if you want messaging back.** *Build a local network
-  without the internet* and *build a resilient mesh network* cover getting
+- **Local network, if you want messaging back.** [[technology-local-network]] and [[technology-mesh-network|build a resilient mesh network]] cover getting
   neighbours typing to each other again with no uplink at all. That is a
   weekend's work, so for a short outage start with the board.
 
@@ -110,10 +108,9 @@ that works, and the one that has always worked.
   anyone housebound, unwell, without a carer that week.
 - **Deaf, blind, and partially sighted neighbours**: big print, a written
   copy handed over for those who don't want to be read to, and a knock that
-  waits. See *communicate with signs, gestures, and pictograms*.
+  waits. See [[language-signs-and-pictograms|communicate with signs, gestures, and pictograms]].
 - **Neighbours whose first language isn't yours**: a second copy of the key
-  notices in the languages of your street — see *communicate across a
-  language barrier*.
+  notices in the languages of your street — see [[language-across-barriers|communicate across a language barrier]].
 - **Children and teenagers** make excellent runners and are usually delighted
   to be asked, within sight of home and in daylight.
 
@@ -127,9 +124,9 @@ working relay instead of from nothing.
 
 ## Where to go next
 
-- **Cope when the internet and phone networks go down** is the household-level
+- [[emergency-internet-outage]] is the household-level
   companion to this street-level one.
-- **Make fair group decisions** covers what to do when the board
+- [[cooperation-group-decisions]] covers what to do when the board
   turns up something the street has to actually decide.
-- **Share resources and manage a group's commons** picks up the offers and needs
+- [[cooperation-sharing-resources]] picks up the offers and needs
   columns once they become more than a one-off.

@@ -4,6 +4,7 @@ title: Splint fractures and sprains
 category: health
 summary: Steady a broken bone or sprain, improvise a splint, and avoid making the injury worse.
 difficulty: 2
+estimated_time: "20 minutes to read, then practise"
 ---
 
 # Splint fractures and sprains
@@ -28,7 +29,7 @@ Ice, Compression, Elevation).
 1. **Keep the person still** and calm; don't move them more than necessary.
 2. **Support the injured part** in the position you find it — don't force it
    straight or "pop" a joint back.
-3. **Stop any bleeding** first with direct pressure (see the bleeding guide), and
+3. **Stop any bleeding** first with direct pressure (see [[health-bleeding-control|the bleeding guide]]), and
    cover open wounds.
 
 ## Improvise a splint
@@ -42,14 +43,14 @@ A splint stops a broken bone moving while you get help.
 3. **Immobilise the joints** above and below the injury.
 
 ```ascii
-   rigid, padded support alongside the limb:
+  rigid, padded support alongside the limb:
 
-     [==========================]   <- splint (stick, board, rolled mat)
-         ||                ||
-     ====##================##====   <- limb, tied above and below the break
-         ^^                ^^
-       tie here          tie here
-        (never directly over the break)
+  [======================]  <- splint (stick,
+      ||            ||         board, rolled mat)
+  ====##============##====  <- limb, tied above
+      ^^            ^^         and below the break
+   tie here      tie here
+   (never directly over the break)
 ```
 
 *Fig. 1: a splint ties above and below the injury, never over the break itself, to hold it still without adding pressure*
@@ -70,3 +71,9 @@ A splint stops a broken bone moving while you get help.
 
 A painful injury can cause shock (pale, cold, clammy, faint). Keep the person warm,
 lying down, and reassured while you arrange care.
+
+## Where to go next
+
+- [[health-first-aid-basics]]
+- [[health-bleeding-control]]
+- [[checklist:first-aid-kit]]

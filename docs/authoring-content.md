@@ -23,6 +23,45 @@ estimated_time: "1 day"
 Put images in `content/guides/images/` (served at `/guides/images`). Bodies are
 CommonMark with GFM tables.
 
+Front matter ends at the next line that is exactly `---`, so a `---` inside a
+title or summary is fine. `difficulty` should be a whole number from 1 to 5;
+anything outside that range is clamped (`9` becomes `5`), and a non-number
+falls back to a default. `category` must be one of the fixed categories.
+
+**Raw HTML is not rendered.** Any HTML tags in a guide (`<b>`, `<br>`,
+`<details>`, …) are escaped and shown as text — this keeps imported guides
+from injecting markup or script. Use Markdown, a callout, or an ASCII diagram
+instead.
+
+### Linking to other guides, plans, and checklists
+
+Cross-reference other content with a wiki-style link — never a prose "see
+the … guide" with nothing to click:
+
+```markdown
+Test it first ([[water-field-testing]]), then pick a method
+([[water-choosing-treatment|choose how to treat it]]). The whole path is in
+[[plan:use-and-reuse-water]], and there's a printable list at
+[[checklist:water-store]].
+```
+
+| You write | It shows |
+| --- | --- |
+| `[[guide-id]]` | a link titled with the guide's title |
+| `[[guide-id\|custom text]]` | a link reading *custom text* |
+| `[[plan:journey-id]]` | a link to that step-by-step plan, titled |
+| `[[checklist:checklist-id]]` | a link to that checklist, titled |
+
+Links work in guides, checklists, and plan descriptions in `journeys.yaml`.
+An id that doesn't exist renders as plain text rather than a broken link, and
+`tests/test_ui_wikilinks.py` fails on any such target, so a rename can't
+silently strand links. Inside a Markdown table, use the pipe-less form
+(`[[guide-id]]`): a `|` would split the table cell. Link syntax inside code
+spans and fenced blocks is left alone. In plain-text views (the
+`horizon-admin guide` terminal reader, the assistant's retrieved text) a link
+shows as its words: the custom text, else the target's title. End every guide
+with a short `## Where to go next` section of such links.
+
 ### Callouts
 
 To draw attention to a choice, start a blockquote with a recognised **bold
@@ -36,8 +75,11 @@ label** and horizon renders it as a callout:
 ```
 
 Labels map to `pick` / `avoid` / `spec` / `decision` / `risk` / `do now` /
-`tip` / `note` (with synonyms); an unrecognised label stays an ordinary
-blockquote.
+`tip` / `note` (with synonyms — `Principle`, for example, is a `note`); an
+unrecognised label stays an ordinary blockquote. The label is matched without
+regard to case and may end in a colon or a full stop (`**Note:**` and
+`**Note.**` both work); write the colon form, which is the house style. Keep
+`Do now` for immediate life-safety actions.
 
 ### Figures
 
@@ -67,6 +109,10 @@ art so it stays crisp in print/e-ink:
 ```markdown
 ![Fig. 1: a labelled diagram](images/example-diagram.svg)
 ```
+
+Keep ASCII diagrams to about **60 columns** where you can. Wider ones still
+work, but on a phone they shrink to fit and then scroll sideways inside their
+card behind a fade hint, which is harder to read.
 
 ## Checklists
 
@@ -103,8 +149,17 @@ steer the assistant. These are indexed alongside guides.
 
 Restart horizon to load the change: every startup syncs the database and
 content directory with what's on disk (adds anything new, refreshes a plan's
-guide order, drops any plan left with fewer than two guides) without touching
-anything you've hand-edited, then re-indexes for the assistant.
+guide order, drops any plan left with fewer than two guides, and removes
+guides, checklists, and plans whose file or entry is gone) without touching
+anything you've hand-edited, then rebuilds the assistant's search index in the
+background if the content changed.
+
+A file horizon can't read — broken YAML front matter, an unknown category, a
+duplicate id, a malformed `journeys.yaml` entry — is **skipped with a warning
+in the log** (also visible on the admin **Check & repair** page's event
+feed), never a failed boot. If a guide that was already loaded becomes
+unreadable, its previous version stays listed until you fix it. Re-seeding is
+all-or-nothing: if it fails part-way, the previous content is kept.
 
 ## Importing external content (WikiHow, books)
 
@@ -113,7 +168,12 @@ format, written under `<content_dir>/guides` (never the repo's bundled
 `content/`, so third-party text never gets committed). The same conversion is
 also available with no terminal, as a web wizard under **Admin → Import
 content**: paste a page URL or upload a book file, pick a category, and it
-writes the guide and re-seeds/re-indexes immediately.
+writes the guide and re-seeds/re-indexes immediately. The wizard and the CLI
+share the same checks: the category must be one of the fixed categories
+(an unknown one is shown as a form error), difficulty is clamped to 1–5, and
+the guide id (or book id prefix) is turned into a plain lowercase slug, so it
+can't name a path outside the guides directory. Imported text has `&`, `<`,
+and `>` escaped, so it always shows exactly as the source did.
 
 ```bash
 # A WikiHow-shaped how-to page: title, intro, numbered steps, step images.

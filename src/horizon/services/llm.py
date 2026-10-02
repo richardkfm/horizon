@@ -25,7 +25,25 @@ _NO_JARGON_NOTE = (
 
 
 class LLMUnavailable(RuntimeError):
-    """The local model runtime is unreachable or returned an error response."""
+    """The local model runtime is unreachable or returned an unusable response."""
+
+
+# A runtime that answers 200 with something other than the JSON we expect (a
+# proxy error page, a different API version, a truncated body) surfaces as one
+# of these while decoding; treat it exactly like an unreachable runtime.
+_BAD_RESPONSE_ERRORS = (ValueError, KeyError, IndexError, TypeError, AttributeError)
+
+
+def _check_vectors(vectors: object, expected: int) -> list[list[float]]:
+    """Validate an embedding response: ``expected`` non-empty numeric vectors."""
+    if not isinstance(vectors, list) or len(vectors) != expected:
+        raise ValueError(f"expected {expected} embedding(s), got {type(vectors).__name__}")
+    for vec in vectors:
+        if not isinstance(vec, list) or not vec:
+            raise ValueError("embedding is not a non-empty list")
+        if not all(isinstance(x, int | float) and not isinstance(x, bool) for x in vec):
+            raise ValueError("embedding holds non-numeric values")
+    return vectors
 
 
 def generate(system: str, prompt: str, *, no_jargon: bool = False) -> str:
@@ -40,8 +58,10 @@ def generate(system: str, prompt: str, *, no_jargon: bool = False) -> str:
         if settings.llm.provider == "openai-compatible":
             return _generate_openai(system, prompt)
         return _generate_ollama(system, prompt)
-    except httpx.HTTPError as exc:
+    except (httpx.HTTPError, httpx.InvalidURL) as exc:
         raise LLMUnavailable(f"LLM generation failed: {exc}") from exc
+    except _BAD_RESPONSE_ERRORS as exc:
+        raise LLMUnavailable(f"LLM returned an unexpected response: {exc!r}") from exc
 
 
 def embed(texts: list[str]) -> list[list[float]]:
@@ -50,10 +70,14 @@ def embed(texts: list[str]) -> list[list[float]]:
         return []
     try:
         if settings.llm.provider == "openai-compatible":
-            return _embed_openai(texts)
-        return _embed_ollama(texts)
-    except httpx.HTTPError as exc:
+            vectors = _embed_openai(texts)
+        else:
+            vectors = _embed_ollama(texts)
+        return _check_vectors(vectors, len(texts))
+    except (httpx.HTTPError, httpx.InvalidURL) as exc:
         raise LLMUnavailable(f"Embedding request failed: {exc}") from exc
+    except _BAD_RESPONSE_ERRORS as exc:
+        raise LLMUnavailable(f"Embedding model returned an unexpected response: {exc!r}") from exc
 
 
 def available() -> bool:
@@ -69,7 +93,7 @@ def available() -> bool:
         with _client(httpx.Timeout(5.0, connect=3.0)) as client:
             resp = client.get(f"{_endpoint()}{path}")
             return resp.status_code < 500
-    except httpx.HTTPError:
+    except Exception:  # noqa: BLE001 - e.g. httpx.HTTPError, or a malformed endpoint URL
         return False
 
 
@@ -95,7 +119,10 @@ def _generate_ollama(system: str, prompt: str) -> str:
     with _client(_GENERATE_TIMEOUT) as client:
         resp = client.post(f"{_endpoint()}/api/generate", json=payload)
         resp.raise_for_status()
-        return (resp.json().get("response") or "").strip()
+        text = resp.json()["response"]
+        if not isinstance(text, str):
+            raise TypeError("'response' is not a string")
+        return text.strip()
 
 
 def _embed_ollama(texts: list[str]) -> list[list[float]]:
@@ -126,7 +153,10 @@ def _generate_openai(system: str, prompt: str) -> str:
     with _client(_GENERATE_TIMEOUT) as client:
         resp = client.post(f"{_endpoint()}/v1/chat/completions", json=payload)
         resp.raise_for_status()
-        return (resp.json()["choices"][0]["message"]["content"] or "").strip()
+        text = resp.json()["choices"][0]["message"]["content"] or ""
+        if not isinstance(text, str):
+            raise TypeError("message content is not a string")
+        return text.strip()
 
 
 def _embed_openai(texts: list[str]) -> list[list[float]]:

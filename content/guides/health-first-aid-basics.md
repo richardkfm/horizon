@@ -28,19 +28,22 @@ hands-on training — take a first-aid course when you can.
 - Oral rehydration salts and any personal medicines (with a written list)
 
 ```ascii
-   1 SAFE?  -- make the scene safe for yourself first
-      |
-      v
-   2 RESPONSIVE & BREATHING normally? -- no --> start CPR, call for help
-      | yes
-      v
-   3 SERIOUS BLEEDING? -- yes --> firm, direct pressure; add layers,
-      | no                       don't peek
-      v
-   4 SIGNS OF SHOCK? -- yes --> lay them down, keep warm & reassured
-      | no
-      v
-   5 lesser injuries -- treat once every life-threat above is handled
+  1 SAFE? -- make the scene safe for yourself first
+     |
+     v
+  2 RESPONSIVE & BREATHING normally?
+     | yes          no --> call for help, start CPR
+     v
+  3 SERIOUS BLEEDING?
+     | no           yes --> firm, direct pressure;
+     |                      add layers, don't peek
+     v
+  4 SIGNS OF SHOCK?
+     | no           yes --> lay them down, keep
+     |                      warm and reassured
+     v
+  5 lesser injuries -- treat once every
+    life-threat above is handled
 ```
 
 *Fig. 1: a calm order of priorities — work through it top to bottom*
@@ -75,6 +78,5 @@ hands-on training — take a first-aid course when you can.
 ## Where to go next
 
 - If more than one person is hurt at the same time, this priority order
-  isn't enough on its own — see triage multiple casualties at once.
-- Shock and fear afterward are as real as the injury: see support someone
-  through shock, trauma, or grief.
+  isn't enough on its own — see [[health-mass-casualty-triage|triage multiple casualties at once]].
+- Shock and fear afterward are as real as the injury: see [[health-psychological-first-aid|support someone through shock, trauma, or grief]].

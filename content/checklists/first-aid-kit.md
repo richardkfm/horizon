@@ -12,8 +12,11 @@ professional help arrives. Keep one at home and a smaller one in your go-bag, ch
 it twice a year, and replace anything used or out of date.
 
 > **Warning:** A kit is only half of it — learn to use it. The health first-aid
-> guides cover bleeding, burns, choking and CPR, cold and heat injuries, and
-> fractures. A hands-on first-aid course is worth far more than extra supplies.
+> guides cover [[health-bleeding-control|bleeding]], [[health-burns|burns]],
+> [[health-choking-and-cpr|choking and CPR]], [[health-cold-injuries|cold]] and
+> [[health-heat-illness|heat]] injuries, and
+> [[health-fractures-and-sprains|fractures]]. A hands-on first-aid course is
+> worth far more than extra supplies.
 
 ## Dressings and bandages
 
@@ -23,10 +26,12 @@ it twice a year, and replace anything used or out of date.
 - [ ] Adhesive tape
 - [ ] Wound-closure strips
 - [ ] Burn dressing or cling film for burns
+- [ ] Tourniquet — a commercial windlass type — plus training in how to use it
 
 ## Tools
 
 - [ ] Disposable gloves (several pairs)
+- [ ] CPR face shield or pocket mask
 - [ ] Scissors and tweezers
 - [ ] Safety pins
 - [ ] Thermometer

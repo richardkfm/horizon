@@ -18,8 +18,12 @@ food, and emergencies (v0.7), and — as of v0.8 — a built-in **map viewer** f
 rendered offline map packs, a `curl`-based installer for boxes without
 `git`/Docker, and new guides across cooking, calculations, mobility, and
 language — and, as of v0.8.1, a set of guides for getting through an internet
-or phone outage. horizon is now a cohesive, comfortable, maintainable node
-ready to hand to a neighbour.
+or phone outage. As of v0.9, the library also covers health and care at home,
+water reuse, and the home itself; the existing guides have had a safety and
+accuracy review; guides link to one another; pages are lighter, faster, and
+easier to read on a phone; and the node shrugs off a bad content file, a
+hostile import, or a flaky model instead of falling over. horizon is now a
+cohesive, comfortable, maintainable node ready to hand to a neighbour.
 
 The focus stays **lean and simple**: deepen the content so it actually helps
 you *choose*, and give the admin the few tools they need to keep a node
@@ -31,12 +35,45 @@ runtime, runnable on weak hardware, values live in content, and the core stays
 pure and testable.
 
 Milestones are vertical and shippable: each one is useful on its own. What
-comes after v0.8 isn't decided yet — see the principles below and expect this
+comes after v0.9 isn't decided yet — see the principles below and expect this
 file to grow a new milestone as real neighbourhood deployments surface the
 next gap. A granular working list of candidate items (design/UX polish and
 missing guide topics) lives in [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ---
+
+## Where we are — v0.9.0 (shipped)
+
+- **The gaps people actually hit, filled.** New guides for health and care at
+  home (wound aftercare, rehydration, household medicines, grief over weeks,
+  emergency childbirth, teeth, caring for older and disabled neighbours),
+  greywater reuse and fair water rationing, dry toilets, composting and
+  root-cellar storage, food safety without a fridge, pedal power and everyday
+  batteries, weatherproofing an existing home, children's play and learning,
+  and running a good meeting by consent — with matching checklists, new
+  step-by-step plans, and an `energy-safety` md skill. Every guide now ends
+  with a "Where to go next" section.
+- **A safety and accuracy review of the existing guides** — the discredited
+  edibility test gone, triage aligned with START, the slow sand filter and
+  well-entry advice corrected, consistent water and solar-sizing numbers,
+  botulism rules for preserving, and child/infant first aid added, among
+  others — and content brought in line with the principles (no animal parts
+  in tool-making, consent before voting, a plant-forward, vegetarian-friendly
+  cooking skill).
+- **Guides link to each other** with a `[[guide-id]]` syntax that renders the
+  target's real title and never leaves a dead link; a test fails the build on
+  any broken target.
+- **Lighter, clearer pages.** gzip and long-lived static caching, htmx only
+  where it's used and Alpine.js removed, friendly HTML error pages, `/guides`
+  grouped by topic, a "Start with step 1" button on plans, a signature colour
+  per topic, a tighter guide header on phones, and accessibility fixes
+  (contrast, labelled checklist boxes, touch targets, `aria-current`).
+- **Hardened.** A shared line-anchored front-matter parser, transactional
+  re-seeding, bad content files skipped and logged rather than blocking boot,
+  a search index that builds in the background only when content changed,
+  escaped raw HTML in Markdown, pack-id path-traversal protection, a PDF
+  renderer that never touches the network, sanitised and CSP-protected
+  reference articles, and admin sessions that expire on the server.
 
 ## Where we are — v0.8.1 (shipped)
 

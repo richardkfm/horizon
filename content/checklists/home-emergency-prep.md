@@ -21,12 +21,11 @@ Check it twice a year alongside the go-bag.
 - [ ] Wind-up or battery radio for emergency broadcasts
 - [ ] Power bank, charged, with charging cables
 - [ ] Candles and matches kept well away from anything flammable
-- [ ] A plan for what stays off during a long blackout (see *prepare for and
-      live through a long blackout*)
+- [ ] A plan for what stays off during a long blackout (see [[emergency-blackout|prepare for and live through a long blackout]])
 
 ## Water and food at home
 
-- [ ] Stored drinking water (see the water-store checklist)
+- [ ] Stored drinking water (see [[checklist:water-store|the water-store checklist]])
 - [ ] A few days of food that needs no cooking or refrigeration
 - [ ] Manual can opener
 
@@ -41,7 +40,7 @@ Check it twice a year alongside the go-bag.
 
 ## First aid and medicine
 
-- [ ] First-aid kit, fully stocked (see the first-aid-kit checklist)
+- [ ] First-aid kit, fully stocked (see [[checklist:first-aid-kit|the first-aid-kit checklist]])
 - [ ] A few days' supply of regular medicines for everyone in the household
 - [ ] A printed copy of basic first-aid steps (bleeding, burns, choking,
       fractures) in case phones are down

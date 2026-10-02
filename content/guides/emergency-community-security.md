@@ -12,11 +12,10 @@ estimated_time: "A weekend to organise, then ongoing"
 This is about an outside individual or small group threatening a
 neighbourhood or community with force at everyday scale — harassment,
 hate-motivated targeting, or opportunistic violence — not armed conflict or
-war. If fighting has reached where you live, see keep your household safe
-during armed conflict instead; this guide is for the more common, smaller,
+war. If fighting has reached where you live, see [[emergency-conflict-safety|keep your household safe during armed conflict]] instead; this guide is for the more common, smaller,
 and often ongoing situation of a hostile actor rather than a conflict zone.
 
-> **This is protective, not vigilante.** No weapons, no armed patrols, no
+> **Note:** **This is protective, not vigilante.** No weapons, no armed patrols, no
 > confronting the threat yourself. The aim is to notice early, coordinate,
 > de-escalate, and disengage — not to fight anyone.
 
@@ -32,8 +31,7 @@ and often ongoing situation of a hostile actor rather than a conflict zone.
 - **Set up a phone tree or group chat** so information about a concern
   reaches everyone quickly, not just whoever happened to see it.
 - **Consider two-way radio or a local mesh network** for when phone
-  networks are down or unreliable — see set up two-way radio for your
-  community and build a local network without the internet. Keep this to
+  networks are down or unreliable — see [[technology-two-way-radio|set up two-way radio for your community]] and [[technology-local-network|build a local network without the internet]]. Keep this to
   the same everyday, plain-language coordination those guides describe;
   this is neighbours staying in touch, not tactical communications.
 - **Agree a known point of contact** and a simple way to raise a concern, so
@@ -88,25 +86,20 @@ people repeatedly.
 
 - **Report threats and hate incidents** to police or a relevant civil-rights
   hotline where you trust them to act on it.
-- **Lean on ties with neighbouring groups** (see build trust and agreements
-  with neighbouring groups) — a threat to one household is often a shared
+- **Lean on ties with neighbouring groups** (see [[cooperation-external-relations|build trust and agreements with neighbouring groups]]) — a threat to one household is often a shared
   concern, and a wider network notices more and responds faster than one
   household alone.
 
 ## Support afterward
 
-A frightening incident leaves more than physical harm behind. See support
-someone through shock, trauma, or grief for how to help someone, or
+A frightening incident leaves more than physical harm behind. See [[health-psychological-first-aid|support someone through shock, trauma, or grief]] for how to help someone, or
 yourself, through the aftermath.
 
 ## Where to go next
 
-- For armed conflict or war reaching where you live, see keep your
-  household safe during armed conflict.
-- For the communication tools this guide builds on, see set up two-way
-  radio for your community and build a local network without the internet.
-- For ties with other households or groups this depends on, see build
-  trust and agreements with neighbouring groups.
+- For armed conflict or war reaching where you live, see [[emergency-conflict-safety|keep your household safe during armed conflict]].
+- For the communication tools this guide builds on, see [[technology-two-way-radio|set up two-way radio for your community]] and [[technology-local-network|build a local network without the internet]].
+- For ties with other households or groups this depends on, see [[cooperation-external-relations|build trust and agreements with neighbouring groups]].
 - If the threat is coming from inside your own group rather than outside
-  it, see protect someone from coercion or threats inside the group.
-- For aftercare, see support someone through shock, trauma, or grief.
+  it, see [[cooperation-boundary-safety|protect someone from coercion or threats inside the group]].
+- For aftercare, see [[health-psychological-first-aid|support someone through shock, trauma, or grief]].

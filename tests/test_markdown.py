@@ -92,14 +92,14 @@ def test_figcaption_is_escaped():
 
 def test_ascii_fence_with_italic_caption_becomes_figure():
     html = render_markdown("```ascii\n+---+\n| A |\n+---+\n```\n\n*Fig. 1: a box*\n")
-    assert '<figure class="guide-figure guide-ascii">' in html
+    assert '<figure class="guide-figure guide-ascii" ' in html
     assert '<pre><code class="language-ascii">+---+' in html
     assert "<figcaption>Fig. 1: a box</figcaption>" in html
 
 
 def test_ascii_fence_without_caption_still_gets_figure_card_but_no_figcaption():
     html = render_markdown("```ascii\n+---+\n```\n")
-    assert '<figure class="guide-figure guide-ascii">' in html
+    assert '<figure class="guide-figure guide-ascii" ' in html
     assert "<figcaption>" not in html
     assert '<pre><code class="language-ascii">+---+' in html
 
@@ -132,8 +132,16 @@ def test_task_list_renders_checkboxes():
     assert 'class="task-list"' in html
     # Exactly one class, not duplicated per item.
     assert html.count("task-list") == 1
-    assert '<li class="task-item"><input type="checkbox" class="task-check"> water' in html
-    assert '<li class="task-item"><input type="checkbox" class="task-check" checked> torch' in html
+    # Each item's text is wrapped in a <label> with its box, so the text is
+    # clickable and the checkbox has an accessible name.
+    assert (
+        '<li class="task-item"><label class="task-label">'
+        '<input type="checkbox" class="task-check"> water</label>'
+    ) in html
+    assert (
+        '<li class="task-item"><label class="task-label">'
+        '<input type="checkbox" class="task-check" checked> torch</label>'
+    ) in html
 
 
 def test_task_marker_accepts_upper_x():

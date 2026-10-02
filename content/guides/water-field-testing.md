@@ -42,7 +42,7 @@ observation plus a few cheap tests tell you most of what you need to decide
 
 ## Deciding what to do
 
-1. **Visibly dirty →** settle and filter first (see the slow sand filter guide).
+1. **Visibly dirty →** settle and filter first (see [[water-slow-sand-filter|the slow sand filter guide]]).
 2. **Possible pathogens →** disinfect: boil for one minute (longer at altitude),
    or use chlorine or solar (SODIS) disinfection.
 3. **Chemical smell, colour, or known industrial source →** find another source;
@@ -50,23 +50,26 @@ observation plus a few cheap tests tell you most of what you need to decide
 4. **Unsure →** treat as unsafe, boil, and retest when you can.
 
 ```ascii
-   look, smell, and think about the source
-     |
-     +-- visibly dirty -----------------> settle + filter, then disinfect
-     |
-     +-- chemical/fuel smell, colour, --> find another source (treatment
-     |   or known industrial upstream      won't make this one safe)
-     |
-     +-- not sure ----------------------> treat as unsafe: boil
-     |
-     +-- clear, no warning signs -------> run simple field tests
-                                                 |
-                                                 v
-                                          positive for pathogens
-                                          (e.g. H2S test darkens)?
-                                                 |
-                                                 v
-                                          disinfect: boil / chlorine / SODIS
+  look, smell, think about the source
+    |
+    +-- visibly dirty ------> settle + filter,
+    |                         then disinfect
+    |
+    +-- fuel/chemical smell,-> find another source
+    |   colour, or industry    (treatment won't make
+    |   upstream               this one safe)
+    |
+    +-- not sure -----------> treat as unsafe: boil
+    |
+    +-- clear, no warning --> run simple field tests
+        signs                        |
+                                     v
+                          positive for pathogens
+                          (e.g. H2S test darkens)?
+                                     |
+                                     v
+                          disinfect: boil /
+                          chlorine / SODIS
 ```
 
 *Fig. 1: deciding how to treat a water source*
@@ -74,7 +77,7 @@ observation plus a few cheap tests tell you most of what you need to decide
 ## Where to go next
 
 - Latrines and livestock upstream are a leading cause of the contamination
-  this guide warns about — see manage waste and hygiene without plumbing to
+  this guide warns about — see [[survival-sanitation-hygiene|manage waste and hygiene without plumbing]] to
   keep your own site from becoming that risk for someone downstream.
-- Once you've judged a source, see which water treatment should you use to
+- Once you've judged a source, see [[water-choosing-treatment|which water treatment should you use]] to
   pick the right method.

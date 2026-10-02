@@ -13,7 +13,7 @@ A mixed vegetable garden turns a small patch of ground into a steady supply of
 fresh food. The goal is variety and *succession* — always having something coming
 ready, rather than a single big glut.
 
-> **Start small and succeed.** A well-tended small bed feeds you better than a
+> **Tip:** **Start small and succeed.** A well-tended small bed feeds you better than a
 > large one you can't keep up with. Expand as your skill and compost grow.
 
 ## Plan the plot
@@ -66,5 +66,11 @@ Mix fast and slow, and crops that store:
 
 ## Keep it going
 
-Save seed from your best plants (see the seed-saving guide), keep a compost heap,
+Save seed from your best plants (see [[food-seed-saving|the seed-saving guide]]), keep a compost heap,
 and note what did well each season so next year is easier.
+
+## Where to go next
+
+- [[food-diagnose-plant-problems]]
+- [[food-seed-saving]]
+- [[cooking-preserving]]

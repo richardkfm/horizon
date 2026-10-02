@@ -59,8 +59,7 @@ remedy.
 
 - **Wash the wound thoroughly** with soap and running water for several
   minutes — this alone cuts infection and disease risk substantially.
-- **Control any bleeding** with direct pressure (see stopping severe
-  bleeding).
+- **Control any bleeding** with direct pressure (see [[health-bleeding-control|stopping severe bleeding]]).
 - **Treat any bite from a wild or unknown animal as a possible rabies risk**
   and seek medical care — rabies is close to always fatal once symptoms
   start, but is preventable with prompt treatment.
@@ -68,7 +67,7 @@ remedy.
 ## Avoid the encounter in the first place
 
 - **Store food well away from where you sleep** and never in a tent — see
-  choosing and setting up a campsite.
+  [[survival-campsite-setup|choosing and setting up a campsite]].
 - **Make noise while moving through thick brush** so animals have time to
   move away before you're close.
 - **Never approach, corner, or feed wildlife** — an animal that isn't afraid
@@ -78,9 +77,6 @@ remedy.
 
 ## Where to go next
 
-- For stopping serious bleeding from any wound, see stopping severe
-  bleeding.
-- For the wider first-aid priority order, see handling common first-aid
-  situations.
-- For avoiding poisonous plants and unsafe foraging, see identify safe wild
-  food and avoid poisoning.
+- For stopping serious bleeding from any wound, see [[health-bleeding-control|stopping severe bleeding]].
+- For the wider first-aid priority order, see [[health-first-aid-basics|handling common first-aid situations]].
+- For avoiding poisonous plants and unsafe foraging, see [[survival-foraging|identify safe wild food and avoid poisoning]].

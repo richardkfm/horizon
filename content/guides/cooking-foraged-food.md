@@ -15,10 +15,9 @@ up where identification ends: you're holding a plant you are *certain* about,
 and the question is how to make it worth eating — because most wild food needs
 a cook's help to shine.
 
-> **Risk.** Identification comes first and is its own discipline — never
+> **Risk:** Identification comes first and is its own discipline — never
 > cook anything you can't name with total confidence, and learn the deadly
-> lookalikes before the recipes (links to identifying safe wild food and
-> avoiding poisoning). When in doubt, leave it out: no meal is worth the
+> lookalikes before the recipes (see [[survival-foraging|identifying safe wild food and avoiding poisoning]]). When in doubt, leave it out: no meal is worth the
 > gamble. Skip wild mushrooms entirely unless someone locally expert
 > teaches you specific species in person.
 
@@ -58,9 +57,8 @@ bitter and tannic need leaching; then cook as you would any vegetable.*
 3. **Leach** the genuinely bitter or tannic: repeated soaks or boils in
    fresh water until a nibble tastes mild. This is the acorn trick below.
 4. **Cook** as normal: wild greens into one-pot stews, fritters, and pies
-   (links to cooking simple one-pot plant-based meals); roots roasted or
-   boiled; fruit into compotes or dried for winter (links to preserving
-   food by drying, fermenting, and pickling).
+   (see [[cooking-one-pot-meals|cooking simple one-pot plant-based meals]]); roots roasted or
+   boiled; fruit into compotes or dried for winter (see [[cooking-preserving|preserving food by drying, fermenting, and pickling]]).
 
 ## Three worked examples
 
@@ -78,7 +76,7 @@ bitter and tannic need leaching; then cook as you would any vegetable.*
   (halved, itchy seeds strained out) into a syrup that carries vitamin C
   through winter.
 
-> **Tip.** A new-to-you plant, even a safe one, earns a small first
+> **Tip:** A new-to-you plant, even a safe one, earns a small first
 > serving — any food can disagree with someone, and wild ones are strong.
 > Introduce one new species at a time so you know what caused what.
 
@@ -95,3 +93,9 @@ garden and the budget in perfectly stable times.
   personal harvest map that improves every year.
 - **Dry or preserve gluts** the same day you pick them — wild harvests come
   in bursts, and an afternoon's drying turns a burst into a shelf.
+
+## Where to go next
+
+- [[survival-foraging]]
+- [[cooking-one-pot-meals]]
+- [[cooking-preserving]]

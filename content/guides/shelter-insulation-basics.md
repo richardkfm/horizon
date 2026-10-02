@@ -19,15 +19,16 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
 > Keep insulation clear of stove pipes and flues to avoid fire.
 
 ```ascii
-                /\
-               /  \
-              / 2  \           priority order:
-             /------\          1  draughts — doors, windows, floor gaps
-            |   3    |            (fix first, biggest win for the effort)
-            |  [==]  |         2  roof / ceiling (warm air rises)
-          1 |        | 1       3  windows (cover at night)
-            |        |         4  walls & floor (bigger job, still
-            |___4____|            worth it over a long cold season)
+        /\
+       /  \         priority order:
+      / 2  \        1 draughts: doors, windows,
+     /------\         floor gaps (biggest win
+    |   3    |        for the effort)
+    |  [==]  |      2 roof / ceiling (warm air
+  1 |        | 1      rises)
+    |        |      3 windows (cover at night)
+    |___4____|      4 walls and floor (bigger
+                      job, still worth it)
 ```
 
 *Fig. 1: where heat escapes a simple shelter, tackled in priority order*
@@ -43,7 +44,8 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
 ## Materials
 
 - Draught-excluder strip, offcuts of cloth, or rolled rags for gaps
-- Bulky dry insulation: wool, straw, sheep's wool, rockwool, or rigid foam
+- Bulky dry insulation: sheep's wool, straw, hemp or wood fibre, rockwool, or
+  rigid foam
 - A vapour-side covering (sheeting/board) to keep insulation dry
 - Heavy curtains, blankets, or bubble-wrap film for windows
 - A rug or layered cardboard/foam for a cold floor
@@ -60,3 +62,9 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
    — wet insulation barely works and rots.
 5. **Shrink the heated space:** curtain off one room to warm rather than the whole
    shelter.
+
+## Where to go next
+
+- [[emergency-extreme-cold]]
+- [[shelter-timber-cabin]]
+- [[energy-solar-water-heating]]

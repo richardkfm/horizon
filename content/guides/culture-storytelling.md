@@ -13,7 +13,7 @@ For most of human history, everything important was carried in spoken stories,
 songs, and sayings — not in writing. When paper and screens fail, storytelling is
 how a community keeps its skills, its history, and its sense of who it is.
 
-> **Stories carry values, not just facts.** How you tell of a fair leader or a
+> **Note:** **Stories carry values, not just facts.** How you tell of a fair leader or a
 > wasted harvest teaches the next generation what the community honours. Tell
 > them with care.
 
@@ -47,3 +47,9 @@ The mind remembers stories far better than lists. Use these old tools:
    embellished, especially for survival facts.
 4. **Write it down too** where you can — but don't rely on a single fragile copy.
    Spoken and written together is safest.
+
+## Where to go next
+
+- [[language-preserve-a-language]]
+- [[culture-group-songs]]
+- [[language-teach-literacy]]

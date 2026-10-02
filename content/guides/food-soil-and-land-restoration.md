@@ -15,7 +15,7 @@ more life in the soil, more cover on its surface, and better-held water. None
 of this needs machinery — it needs time, patience, and a few repeatable
 techniques.
 
-> **Principle:** Never leave soil bare. Bare ground loses water to
+> **Note:** Never leave soil bare. Bare ground loses water to
 > evaporation, erodes in rain and wind, and starves the soil life that
 > everything else depends on. Cover it with a living plant, a mulch, or both.
 
@@ -101,8 +101,7 @@ instead of carrying topsoil away*
    rain or dry spell.
 3. **Plant a windbreak/hedge line** along the most exposed edge.
 4. **Start a compost heap** from whatever waste you already have.
-5. Only once cover and water are holding, **plant your goal crops** (see the
-   crop-choosing guide) into the improving ground.
+5. Only once cover and water are holding, **plant your goal crops** (see [[food-choosing-crops|the crop-choosing guide]]) into the improving ground.
 
 Rebuilding land is gradual — expect visible change over a few seasons, not
 overnight. Each season's cover crop and mulch layer leaves the ground a
@@ -110,7 +109,7 @@ little better than it found it.
 
 ## Where to go next
 
-- Once the ground holds water and cover, follow the crop-choosing guide to
+- Once the ground holds water and cover, follow [[food-choosing-crops|the crop-choosing guide]] to
   decide what to plant into it.
 - To bring back trees at the scale of a woodland rather than a single hedge
-  line, see reforest and restore woodland.
+  line, see [[food-reforestation|reforest and restore woodland]].

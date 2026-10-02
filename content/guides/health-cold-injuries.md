@@ -4,6 +4,7 @@ title: Treat hypothermia and frostbite
 category: health
 summary: Spot and treat dangerous cooling of the body and freezing of the skin, and warm safely.
 difficulty: 2
+estimated_time: "20 minutes to read"
 ---
 
 # Treat hypothermia and frostbite
@@ -50,4 +51,10 @@ ears, nose, or cheeks. As it thaws it becomes red, painful, and may blister.
 
 Confusion or drowsiness sets in, shivering stops in a cold person, the skin stays
 hard/white after re-warming, or large areas are affected. Keep the person warm,
-dry, and still while you arrange care. See also the *survive extreme cold* guide.
+dry, and still while you arrange care. See also the [[emergency-extreme-cold|survive extreme cold]] guide.
+
+## Where to go next
+
+- [[emergency-extreme-cold]]
+- [[health-first-aid-basics]]
+- [[emergency-vehicle-stranded]]

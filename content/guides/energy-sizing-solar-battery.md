@@ -70,10 +70,12 @@ The panel has to replace a full day's use during your **worst-case sun hours**
 
 > **Risk:** Oversizing the panel without fusing and a matched charge controller
 > is dangerous, not just wasteful. Always fuse close to the battery and never
-> charge lithium without a BMS. The wiring details are in the solar setup guide.
+> charge lithium without a BMS. The wiring details are in
+> [[energy-low-tech-solar|the solar setup guide]].
 
 ## Where to go next
 
-- Build it: follow the low-tech solar setup guide for wiring and safety.
-- Cross-check your numbers with the energy-sizing calculation guide.
+- Build it: [[energy-low-tech-solar]] for wiring and safety.
+- Cross-check your numbers: [[calc-energy-sizing]].
+- Store it: [[energy-battery-storage]].
 - Measure real use after a week and adjust — estimates are always optimistic.

@@ -1,31 +1,29 @@
 {% extends "base.html" %}
+{% from "partials/_ui.html" import difficulty %}
 {% block title %}{{ guide.title }} — horizon{% endblock %}
 {% block content %}
 <div class="reading-column">
-<p class="breadcrumb no-print"><a href="/guides">← All guides</a></p>
-
-<div class="guide-meta-row no-print">
+{# Compact header, title first: breadcrumb, the title on its field-notebook
+   band, one meta line, the plan(s) it belongs to as one quiet line, then
+   Print/PDF as small buttons. #}
+<header class="guide-head" data-cat="{{ guide.category }}">
+  <p class="breadcrumb no-print"><a href="/guides">← How-to guides</a>
+    <span aria-hidden="true">/</span> <a href="/guides?category={{ guide.category | urlencode }}" class="breadcrumb-cat">{{ guide.category }}</a></p>
+  <h1>{{ heading }}</h1>
   <p class="journey-meta guide-meta">
-    <span class="category-badge">{{ guide.category }}</span>
-    <span title="Difficulty 1–5">Difficulty {{ guide.difficulty }}/5</span>
-    {% if guide.estimated_time %}<span>· {{ guide.estimated_time }}</span>{% endif %}
+    <span class="category-badge" data-cat="{{ guide.category }}">{{ guide.category }}</span>
+    {{ difficulty(guide.difficulty) }}
+    {% if guide.estimated_time %}<span class="meta-time">{{ guide.estimated_time }}</span>{% endif %}
   </p>
-  <p class="guide-actions">
-    <button type="button" class="guide-action" onclick="window.print()">Print</button>
-    <a class="guide-action" href="/guides/{{ guide.id }}.pdf">Download PDF</a>
+  {% if in_tracks %}
+  <p class="guide-plans no-print">Part of the plan{{ "s" if in_tracks|length > 1 }}
+    {% for track in in_tracks %}<a href="/journeys/{{ track.id }}">{{ track.title }}</a>{{ ", " if not loop.last }}{% endfor %}</p>
+  {% endif %}
+  <p class="guide-actions no-print">
+    <button type="button" class="btn btn-small" onclick="window.print()">Print</button>
+    <a class="btn btn-small" href="/guides/{{ guide.id }}.pdf">Download PDF</a>
   </p>
-</div>
-
-{% if in_tracks %}
-<aside class="guide-tracks no-print" aria-label="Step-by-step plans this guide is part of">
-  <p class="guide-tracks-label">Part of {{ "this plan" if in_tracks|length == 1 else "these plans" }}</p>
-  <ul class="link-list">
-    {% for track in in_tracks %}
-    <li><a href="/journeys/{{ track.id }}">{{ track.title }}</a></li>
-    {% endfor %}
-  </ul>
-</aside>
-{% endif %}
+</header>
 
 <article class="guide">
   {{ body_html | safe }}
@@ -48,7 +46,7 @@
     <h2>More on {{ guide.category }}</h2>
     <ul class="card-grid">
       {% for g in related_guides %}
-      <li>
+      <li data-cat="{{ g.category }}">
         <a href="/guides/{{ g.id }}">
           <span class="card-title">{{ g.title }}</span>
           {% if g.summary %}<span class="guide-summary">{{ g.summary }}</span>{% endif %}

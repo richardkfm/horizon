@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.8.1](https://img.shields.io/badge/status-v0.8.1-blue.svg)](#roadmap--changelog)
+[![Status: v0.9.0](https://img.shields.io/badge/status-v0.9.0-blue.svg)](#roadmap--changelog)
 
 </div>
 
@@ -20,7 +20,7 @@ Raspberry Pi, mini-PC, or LXC/VM). It gives a household or neighbourhood a
 library of **visual step-by-step guides**, a few curated **step-by-step plans**,
 and a **local AI assistant** across water, food, energy, shelter, health,
 cooperative governance, survival basics, culture, essential language, crafts &
-repair, emergencies, plant-based cooking, practical calculations, local
+repair, emergencies, plant-forward cooking, practical calculations, local
 technology, and sustainable mobility — all working **fully offline** after
 setup, with no cloud dependency at runtime.
 
@@ -30,14 +30,17 @@ to show how much practical know-how we've quietly outsourced to the internet.
 horizon puts those basic human skills back within reach: living well off-grid,
 sustainably and without coercion.
 
-> **Status:** v0.8.1. The v0.1 scaffold (data model, APIs, content layout) is
+> **Status:** v0.9.0. The v0.1 scaffold (data model, APIs, content layout) is
 > complete, with a design system, light/dark theming, an expanded content
 > library, printable checklists, a UX layer for non-technical neighbours, an
 > accessibility pass (v0.6), an in-browser reference library and a broad
 > content expansion (v0.7), a built-in **map viewer** and a `curl`-based
-> installer for boxes without `git`/Docker (v0.8), and — new in v0.8.1 — a
-> set of guides for getting through an **internet or phone outage**, the
-> situation an offline node is most likely to be read in. See
+> installer for boxes without `git`/Docker (v0.8), guides for getting through
+> an internet or phone outage (v0.8.1), and — new in v0.9.0 — new guides for
+> **health and care at home, water reuse, and the home itself**, a safety
+> review of the existing guides, guides **linked to each other**, lighter and
+> faster pages with a clearer look, friendly error pages, and a hardening
+> pass so one bad file or hostile import can't take a node down. See
 > [Roadmap & changelog](#roadmap--changelog) and [ROADMAP.md](ROADMAP.md).
 
 
@@ -51,14 +54,24 @@ sustainably and without coercion.
 - **Guides first, with curated "step-by-step plans".** Guides are the unit you
   browse and read; a small set of plans string several guides together in the
   order you'd work through them (e.g. *test water → choose treatment → build a
-  slow sand filter*). Every guide ends with a "read further" footer.
+  slow sand filter*). Every guide ends with a "Where to go next" section and
+  a "read further" footer.
+- **Guides that link to each other.** Guides cross-reference one another,
+  plans, and checklists with simple `[[guide-id]]` links that always show the
+  target's real title — and a link to something that isn't there reads as
+  plain text, never a dead end.
 - **Fifteen skill categories.** Water, food, energy, shelter, health,
   cooperation, survival basics, culture, essential language, crafts & repair,
   emergencies, plant-based cooking, practical calculations, local technology,
-  and sustainable mobility — each with built-in guides, no download required.
+  and sustainable mobility — each with built-in guides, no download required,
+  including health and care at home (wounds, rehydration, medicines, grief,
+  childbirth, teeth, caring for older and disabled neighbours), saving and
+  reusing water, composting and root-cellar storage, pedal power, and
+  weatherproofing an existing home.
 - **Visual guides + print mode.** Markdown guides with figures, ASCII diagrams,
   comparison tables, and callouts (`Pick this if` / `Avoid if` / `Do now` …),
-  rendered to HTML for the web and to a high-contrast **A4 PDF** for printing.
+  rendered to HTML for the web and to a high-contrast **A4 PDF** for printing
+  (with the guide's images, a running title, and a colophon).
 - **Printable checklists.** Tick-able lists (go-bag, water/food stores, first-aid
   kit…) auto-discovered from `content/checklists/`; ticks saved on-device only.
 - **Reference library.** Download an offline Wikipedia or WikEM snapshot
@@ -78,11 +91,21 @@ sustainably and without coercion.
   a phone-friendly responsive layout, and plain-language answers by default.
 - **Comfortable to look at, day or night.** A calm "paper & ink" design with a
   solarpunk streak in light and dark themes, applied consistently across every
-  page (admin included). All styling is vendored — no external fonts or CDNs —
-  and print/low-power/e-ink modes keep their high-contrast palettes.
+  page (admin included): each topic has its own colour, difficulty reads as a
+  small `[■■■□□]` stamp, and a plan's guides sit along a "sunrise trail". All
+  styling is vendored — no external fonts or CDNs — and print/low-power/e-ink
+  modes keep their high-contrast palettes.
+- **Light and fast, even on a Pi over weak Wi-Fi.** Pages are gzip-compressed,
+  static files are cached by the browser, there is no front-end framework, and
+  the vendored script libraries (htmx for the assistant and admin, MapLibre for
+  the map viewer) load only on the pages that use them.
+- **Friendly when something goes wrong.** A missing page or a bad link shows a
+  plain-language page with a search box and a way back into the library.
 - **Accessible by default.** A "Skip to content" link, labelled landmarks, a
-  visible focus ring, a tablet breakpoint, and an on-device text-size/high-contrast
-  setting — all remembered locally, no account required.
+  visible focus ring, readable text contrast, labelled checklist boxes you can
+  tick by tapping their text, ~44px touch targets on phones, a tablet
+  breakpoint, and an on-device text-size/high-contrast setting — all remembered
+  locally, no account required.
 - **Built-in values.** Sustainability, non-authoritarian cooperation, fairness,
   and anti-exploitation are baked into the assistant via md skills.
 - **Maintainable from the browser.** A token-gated admin panel browses the whole
@@ -90,6 +113,11 @@ sustainably and without coercion.
   offers one-click repairs, and shows a recent-events feed — no SSH or restart.
   An **Import content** wizard turns a WikiHow how-to page or a book file into a
   local guide, and content packs download in the background with live progress.
+- **Hard to break.** One malformed content file is skipped and logged rather
+  than stopping the node; re-seeding is all-or-nothing; the search index
+  rebuilds in the background only when content changed; and guide Markdown,
+  imports, PDFs, reference articles, and pack names are all handled so they
+  can't inject script, reach the network, or touch files they shouldn't.
 - **Simple, stable APIs + full CLI.** Other projects can link to plans/guides via
   the read-only [Knowledge API](docs/api.md); `horizon-admin` drives a headless
   node with the web UI switched off.
@@ -218,9 +246,13 @@ command (v0.5), the design system applied across every page plus an
 accessibility pass (v0.6), an in-browser **reference library** for downloaded
 ZIM content packs and a solarpunk landing hero (v0.7), a built-in **map
 viewer** for rendered offline map packs, a `curl`-based installer, and a round
-of new guides across cooking, calculations, mobility, and language (v0.8), and
-— new in v0.8.1 — guides, a plan, and a checklist for getting through an
-**internet or phone outage**. The path from here stays lean and open (no accounts, no
+of new guides across cooking, calculations, mobility, and language (v0.8),
+guides, a plan, and a checklist for getting through an **internet or phone
+outage** (v0.8.1), and — new in v0.9.0 — guides for health and care at home,
+water reuse, and the home itself, a safety review of the existing guides,
+**wiki-linked** guides, lighter pages with a clearer visual identity, friendly
+error pages, and a hardening pass across seeding, imports, packs, PDFs, and the
+reference library. The path from here stays lean and open (no accounts, no
 profiles, no tracking) — see **[ROADMAP.md](ROADMAP.md)** for what's next and
 **[CHANGELOG.md](CHANGELOG.md)** for notable changes.
 

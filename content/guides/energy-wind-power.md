@@ -13,7 +13,7 @@ Where the wind blows steadily, a small turbine complements solar well — it oft
 produces most in winter and at night, when panels make least. It is more
 mechanically involved than solar, so plan for the moving parts and the safety.
 
-> **Wind is fickle and forceful.** Power rises with the *cube* of wind speed, so a
+> **Risk:** **Wind is fickle and forceful.** Power rises with the *cube* of wind speed, so a
 > good site matters enormously — and a storm can destroy an unprotected turbine.
 > Build in a way to slow or stop it in high wind.
 
@@ -29,8 +29,7 @@ mechanically involved than solar, so plan for the moving parts and the safety.
 
 ## Size it to your needs
 
-Work out your daily energy use and expected wind first (see *Size an energy
-system*). Match the turbine and battery bank to that, with margin — an oversized
+Work out your daily energy use and expected wind first (see [[calc-energy-sizing|size an energy system]]). Match the turbine and battery bank to that, with margin — an oversized
 tower and battery beat a turbine that never keeps up.
 
 ## Build and raise it
@@ -59,6 +58,7 @@ tower and battery beat a turbine that never keeps up.
 ```
 
 *Fig. 1: a small wind turbine on a guyed mast — the tail vane keeps the rotor into the wind, guy wires hold the tower against storm loads*
+
 4. **Brake/disconnect:** fit a way to stop the rotor (short the generator, or a
    mechanical brake) for storms and servicing.
 
@@ -68,7 +68,7 @@ tower and battery beat a turbine that never keeps up.
   turbine even with the battery full — a "dump load" sheds extra power so the
   turbine never free-spins to destruction).
 - Wire into the **battery bank** with correctly rated cable, fusing, and a
-  disconnect (see *Store and manage your power*).
+  disconnect (see [[energy-battery-storage|store and manage your power]]).
 - **Earth/ground the tower** against lightning.
 
 ## Maintain it
@@ -76,3 +76,9 @@ tower and battery beat a turbine that never keeps up.
 Inspect blades, bolts, bearings, and guy wires regularly; vibration and noise
 mean trouble. Keep people clear of a spinning rotor, and always brake and secure
 it before climbing or working on the tower.
+
+## Where to go next
+
+- [[energy-battery-storage]]
+- [[calc-energy-sizing]]
+- [[energy-low-tech-solar]]

@@ -76,10 +76,9 @@ def test_low_power_banner_and_body_class_render(low_power):
     assert resp.status_code == 200
     assert 'class="low-power"' in resp.text
     assert "low-power-banner" in resp.text
-    # The non-essential Alpine bundle is not loaded in low-power mode.
+    # No JS library on an ordinary page (Alpine is gone; htmx is per-page).
     assert "alpine.min.js" not in resp.text
-    # htmx still drives the assistant form.
-    assert "htmx.min.js" in resp.text
+    assert "htmx.min.js" not in resp.text
 
 
 def test_normal_mode_has_no_banner(monkeypatch):
@@ -87,7 +86,6 @@ def test_normal_mode_has_no_banner(monkeypatch):
     with TestClient(app) as client:
         resp = client.get("/")
     assert "low-power-banner" not in resp.text
-    assert "alpine.min.js" in resp.text
 
 
 def test_assistant_page_shows_low_power_note(low_power):
@@ -95,3 +93,5 @@ def test_assistant_page_shows_low_power_note(low_power):
         resp = client.get("/assistant")
     assert resp.status_code == 200
     assert "Low-power mode is on" in resp.text
+    # htmx still drives the assistant form.
+    assert "htmx.min.js" in resp.text

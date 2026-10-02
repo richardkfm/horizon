@@ -4,6 +4,7 @@ title: Treat heat exhaustion and heat stroke
 category: health
 summary: Cool an overheated person fast and recognise when heat illness becomes life-threatening.
 difficulty: 2
+estimated_time: "15 minutes to read"
 ---
 
 # Treat heat exhaustion and heat stroke
@@ -41,11 +42,15 @@ be dry (sweating has stopped), rapid pulse, seizures, or collapse.
    water; fan hard; place wet cloths or ice packs at the neck, armpits, and groin.
    Immersion in cool water is very effective if you can do it safely.
 3. **Keep cooling until they improve** or help arrives, and monitor breathing.
-4. If unresponsive and not breathing normally, start CPR (see the choking/CPR
-   guide).
+4. If unresponsive and not breathing normally, start CPR (see [[health-choking-and-cpr|the choking/CPR guide]]).
 
 ## Prevent it
 
 Drink before you're thirsty, rest in shade during the hottest hours, and check on
-children, older people, and anyone working or ill. See also the *survive extreme
-heat* guide.
+children, older people, and anyone working or ill. See also the [[emergency-extreme-heat|survive extreme heat]] guide.
+
+## Where to go next
+
+- [[emergency-extreme-heat]]
+- [[health-first-aid-basics]]
+- [[health-choking-and-cpr]]

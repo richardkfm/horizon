@@ -12,8 +12,7 @@ materials lets you repair, build, and adapt. Favour hand tools that need no powe
 and keep a stock of the fixings and materials that jobs always seem to need.
 
 > **Tip:** Hand tools that work without electricity are worth their space. Keep them
-> sharp and dry — see the *sharpen and repair hand tools* and *make your own hand
-> tools* guides.
+> sharp and dry — see the [[crafts-tool-repair|sharpen and repair hand tools]] and [[crafts-make-tools|make your own hand tools]] guides.
 
 ## Cutting and shaping
 

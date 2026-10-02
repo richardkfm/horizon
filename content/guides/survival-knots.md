@@ -60,3 +60,9 @@ practise until you can tie them in the dark.
 - Practise with cord before you need it; muscle memory matters under stress.
 - Keep rope dry and coiled; inspect for fraying before trusting it with weight.
 - Never put a knotted rope under load near anyone who could be hurt if it fails.
+
+## Where to go next
+
+- [[crafts-cordage]]
+- [[mobility-heavy-loads]]
+- [[shelter-emergency-quick]]

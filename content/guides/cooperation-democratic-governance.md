@@ -9,12 +9,13 @@ estimated_time: "An afternoon to set up, then ongoing"
 
 # Set up fair, accountable governance for a group
 
-Making one good decision together (see the group-decisions guide) is
+Making one good decision together (see
+[[cooperation-group-decisions|make fair group decisions]]) is
 different from building a structure that stays fair over months and years.
 Governance is that structure: who holds what power, for how long, and what
 stops it from concentrating in one place.
 
-> **Principle:** No role should be permanent, unaccountable, or unremovable.
+> **Note:** No role should be permanent, unaccountable, or unremovable.
 > The moment a position stops being answerable to the people it affects, the
 > group has stopped self-governing — whatever it calls itself.
 
@@ -43,9 +44,10 @@ change.
   known process, not an unwritten assumption that it "shouldn't be needed".
 
 ```ascii
-        proposes ----> reviews ----> approves ----> records
-        (member)        (rotating    (whole         (rotating
-                         panel)       group vote)     secretary)
+  proposes --> reviews --> approves --> records
+  (member)     (rotating    (whole-      (rotating
+                panel)       group        secretary)
+                             consent)
 
    no single seat controls more than one stage of the chain
 ```
@@ -57,9 +59,15 @@ change.
 
 | Group size | A workable model | Why |
 | --- | --- | --- |
-| Under ~15 | Whole-group consent (see group-decisions guide) | Everyone can be heard directly |
-| ~15-50 | Small rotating councils per area (food, water, safety…), reporting back to the whole group | Keeps detail work moving without every decision needing everyone |
-| 50+ or several sites | Federate: each local group governs itself and sends a rotating, recallable delegate to a shared council for only the decisions that cross groups | Keeps power local; the shared council can't outgrow its mandate |
+| Under ~15 | Whole-group consent (see [[cooperation-group-decisions]]) | Everyone can be heard directly |
+| ~15-50 | Small rotating councils per area (food, water, safety…) that decide by consent and report back; anything big comes back to whole-group consent | Keeps detail work moving without every decision needing everyone |
+| 50+ or several sites | Federate: each local group governs itself by consent and sends a rotating, recallable delegate to a shared council for only the decisions that cross groups | Keeps power local; the shared council can't outgrow its mandate |
+
+Whatever the size, consent stays the foundation: the aim is that the quiet,
+the weak, and the minority are actually heard, not outvoted. If a group
+agrees a fallback for when consent truly can't be reached (for example a
+large supermajority after a second meeting), it should agree that fallback
+**in advance, by consent** — and use it rarely.
 
 > **Pick this if:** your group is growing past whole-group meetings — federate
 > before you centralise. A shared council of delegates from self-governing
@@ -87,10 +95,9 @@ change.
 
 ## Where to go next
 
-- Run the actual meetings and choices this structure supports: see the
-  group-decisions guide.
+- Run the actual meetings and choices this structure supports:
+  [[cooperation-group-decisions]].
 - Culture and shared activity keep a group's trust strong between formal
-  decisions: see the share-culture-together guides.
+  decisions: [[plan:share-culture-together]].
 - If a faction or individual is trying to steer the group's purpose or
-  values rather than just its offices, see resist a faction trying to
-  capture the group.
+  values rather than just its offices: [[cooperation-resisting-capture]].

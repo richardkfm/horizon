@@ -13,7 +13,7 @@ Fire lets you boil water safe to drink, cook food, stay warm, dry clothes, and
 signal for help. The skill is mostly preparation: a fire that "won't light" is
 almost always one that was rushed.
 
-> **Safety first:** Clear a circle of bare earth, keep water or soil within
+> **Risk:** Clear a circle of bare earth, keep water or soil within
 > reach, never leave a fire unattended, and don't light one in high wind or near
 > dry brush. Put it out cold — stir the ashes, douse, and feel for heat.
 
@@ -75,3 +75,9 @@ Leave gaps so air can flow — fire needs fuel, heat, *and* air.
 - Feed the new flame the smallest kindling first, then steadily larger pieces.
 - Keep a dry reserve of tinder and kindling under cover for the next light.
 - To carry fire, bank it: cover hot coals with ash so they smoulder for hours.
+
+## Where to go next
+
+- [[survival-campsite-setup]]
+- [[emergency-extinguish-fire]]
+- [[cooking-one-pot-meals]]

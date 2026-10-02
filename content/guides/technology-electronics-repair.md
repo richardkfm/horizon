@@ -92,13 +92,11 @@ then touch solder to the joint itself, never to the iron's tip directly*
 - **Keep a small parts box** — salvaged pieces solve future repairs faster
   than sourcing something new each time.
 - Repairing and reusing keeps working material out of landfill — see
-  maintain and repair computers for the same principle applied to a whole
+  [[technology-computer-maintenance|maintain and repair computers]] for the same principle applied to a whole
   machine.
 
 ## Where to go next
 
-- Apply this to a specific machine: see maintain and repair computers.
-- Fix antenna and connector issues on a radio setup: see set up two-way
-  radio for your community.
-- Give repaired hardware a real job: see turn an old PC into a local
-  server.
+- Apply this to a specific machine: see [[technology-computer-maintenance|maintain and repair computers]].
+- Fix antenna and connector issues on a radio setup: see [[technology-two-way-radio|set up two-way radio for your community]].
+- Give repaired hardware a real job: see [[technology-repurpose-old-pc|turn an old PC into a local server]].

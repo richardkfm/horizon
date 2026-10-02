@@ -13,7 +13,7 @@ Protein is the part of a plant-based diet that needs a little thought —
 especially when food is limited. The good news: beans, lentils, grains, nuts, and
 seeds together provide everything you need, and they store well and grow widely.
 
-> **Variety does the work.** No single plant food has to be "complete". Eating a
+> **Note:** **Variety does the work.** No single plant food has to be "complete". Eating a
 > range of plants across the day gives the full set of building blocks your body
 > needs.
 
@@ -42,7 +42,14 @@ Classic pairings that work everywhere:
 1. **Soak** dried beans and chickpeas (hours or overnight); it speeds cooking and
    eases digestion. Lentils and split peas usually need no soak.
 2. **Boil hard first**, then simmer until fully soft — undercooked beans are hard
-   to digest and some are mildly toxic raw.
+   to digest and some are toxic raw.
+
+> **Risk:** **Red kidney beans** (and to a lesser degree other dried beans)
+> contain a natural toxin that causes severe vomiting. Soak them, throw away
+> the soaking water, then **boil them hard — a full rolling boil — for at
+> least 10 minutes** before any slow cooker, solar oven, or hay box. Cooking
+> them only at a low temperature without that hard boil makes them *more*
+> toxic, not less.
 3. **Salt and acid at the end** — adding them early can keep beans tough.
 4. **Sprouting** beans, lentils, and seeds boosts nutrition and lets you grow
    fresh food indoors with no soil.
@@ -54,3 +61,9 @@ legumes, seeds, wholegrains — eat with something sour/vitamin-C rich to absorb
 iron better), calcium (greens, sesame, fortified foods), and **vitamin B12**,
 which plants don't reliably provide — keep a source (fortified food or a
 supplement) where you can. Get fats from nuts, seeds, and a little oil.
+
+## Where to go next
+
+- [[cooking-one-pot-meals]]
+- [[food-staple-crops-500m2]]
+- [[cooking-ferments]]

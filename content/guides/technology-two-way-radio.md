@@ -38,6 +38,12 @@ times too, not just emergencies.
 
 ## Set up a usable antenna
 
+> **Note:** This section is for **CB and licensed amateur (ham) radio
+> only.** Licence-free FRS (US) and PMR446 (Europe) handhelds must be used
+> with their original, fixed antenna — fitting an external or roof antenna
+> to them is not allowed. With those, get range by standing somewhere high
+> and open instead.
+
 - **Height matters most.** An antenna a few metres higher clears obstacles
   and roughly doubles useful range — a roof or mast mount beats a handheld's
   built-in antenna every time.
@@ -73,11 +79,9 @@ raise the antenna before buying a more powerful radio*
 
 ## Where to go next
 
-- Pair radio with a wired option for your home base: see build a local
-  network without the internet.
-- Radio is one part of getting through a blackout — see prepare for and get
-  through a long blackout.
+- Pair radio with a wired option for your home base: see [[technology-local-network|build a local network without the internet]].
+- Radio is one part of getting through a blackout — see [[emergency-blackout|prepare for and get through a long blackout]].
 - Agree who's reachable and when as part of your group's own coordination:
-  see share resources and manage a group's commons.
+  see [[cooperation-sharing-resources|share resources and manage a group's commons]].
 - Radio is one part of a community-security communication network: see
-  coordinate community security against outside threats.
+  [[emergency-community-security|coordinate community security against outside threats]].

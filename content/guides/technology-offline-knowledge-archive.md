@@ -52,8 +52,7 @@ Half an hour with a pen beats any amount of software here.
   heart any more, and a dead phone takes the whole address book with it.
 - **Your household's plan**: where to meet if you're separated, who checks on
   whom, when to expect each other back.
-- **Radio frequencies** for local and national news (see *get trustworthy
-  news when the internet is down*).
+- **Radio frequencies** for local and national news (see [[emergency-news-without-internet|get trustworthy news when the internet is down]]).
 - **Account and policy numbers**, your medicines and doses, allergies, and
   any condition a stranger treating you would need to know.
 - Keep it in a sealed bag with the go-bag, and put a second copy somewhere
@@ -62,7 +61,7 @@ Half an hour with a pen beats any amount of software here.
 ## Then the device layer
 
 - **Download your maps** for home, work, and anywhere you would travel — see
-  *use offline maps and GPS with no signal*.
+  [[survival-offline-maps-and-gps|use offline maps and GPS with no signal]].
 - **Save documents for offline use**, don't just bookmark them. In most cloud
   storage apps there is a "make available offline", "pin", or download
   option. A file you can only *see* in a list is not on your phone.
@@ -94,9 +93,9 @@ involved at all.
   (**Admin → Content packs**), there may also be an offline encyclopaedia
   under **Reference** and offline maps under **Maps** — worth asking them
   what's on it *before* you need it.
-- **Turn an old PC into a local server** covers building one from a laptop
+- [[technology-repurpose-old-pc]] covers building one from a laptop
   that is too slow for anything else.
-- **Build a local network without the internet** is how the rest of the
+- [[technology-local-network]] is how the rest of the
   household or street reaches it.
 
 ## Keep it honest with one drill
@@ -115,8 +114,8 @@ alarms and the radio batteries:
 
 ## Where to go next
 
-- **Cope when the internet and phone networks go down** is the guide this
+- [[emergency-internet-outage]] is the guide this
   preparation pays off in.
-- **Use offline maps and GPS with no signal** goes into detail on the maps
+- [[survival-offline-maps-and-gps]] goes into detail on the maps
   layer specifically.
-- **Turn an old PC into a local server** builds the shared node.
+- [[technology-repurpose-old-pc]] builds the shared node.

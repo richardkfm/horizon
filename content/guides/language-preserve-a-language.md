@@ -15,7 +15,7 @@ community's language fades, that knowledge and part of the community's
 identity fade with it. Preserving a language is ordinary, patient work —
 lists, recordings, stories, and above all *use* — and any group can do it.
 
-> **Note.** A language belongs to its speakers. Document *with* them, at
+> **Note:** A language belongs to its speakers. Document *with* them, at
 > their pace, and let them decide what is shared, what is taught, and what
 > stays private — some songs, names, or stories may not be for outsiders.
 > Ask before recording, and the record belongs to them.
@@ -34,8 +34,8 @@ lists, recordings, stories, and above all *use* — and any group can do it.
 ## Build the word hoard
 
 - **Begin with the words daily life needs:** food, tools, plants, animals,
-  weather, kinship, greetings, numbers (links to learning core phrases and
-  to numbers and measurements).
+  weather, kinship, greetings, numbers (see [[language-core-phrases|learning core phrases]] and
+  [[language-numbers-and-measures|numbers and measurements]]).
 - **Make picture word-cards** — drawing on one side, the word written on the
   other, in a spelling the speakers agree on. Perfect spelling matters less
   than *consistent* spelling.
@@ -63,7 +63,7 @@ the back — a dictionary a whole group can build a card at a time.*
 Words alone don't keep a language alive — sentences, stories, and songs do.
 
 - **Write down or record stories, songs, sayings, and jokes** as they are
-  told (links to preserving knowledge through storytelling).
+  told (see [[culture-storytelling|preserving knowledge through storytelling]]).
 - **Note how sentences are built** — how questions, past events, and requests
   sound — by collecting real examples rather than inventing rules.
 - **Copy everything once.** Keep the cards and notebooks in two places, and
@@ -77,12 +77,18 @@ speakers.
 - **Use it daily somewhere:** greetings at meals, names for tools and places,
   counting at the market stall.
 - **Teach little and often** — a word of the week beats a rare lesson
-  (links to teaching basic reading and writing).
+  (see [[language-teach-literacy|teaching basic reading and writing]]).
 - **Pair learners with speakers** for real tasks — cooking, mending,
   gardening — so the language rides on doing, the way it was learned first.
 - **Name new things together.** A language that can name solar panels and
   water filters is alive; borrowing and inventing words is how healthy
   languages have always grown.
 
-> **Tip.** Celebrate small wins publicly — a child greeting an elder in the
+> **Tip:** Celebrate small wins publicly — a child greeting an elder in the
 > old language is worth more to its future than a shelf of notebooks.
+
+## Where to go next
+
+- [[culture-storytelling]]
+- [[language-teach-literacy]]
+- [[culture-group-songs]]

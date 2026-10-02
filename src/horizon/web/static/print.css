@@ -3,7 +3,22 @@
 @page {
   size: A4;
   margin: 1.8cm;
+  /* Colophon on every sheet, and the guide's title as a running header
+     (string-set is honoured by the PDF renderer; browsers that don't support
+     it simply leave the header empty). */
+  @top-center {
+    content: string(guide-title);
+    font-size: 8pt;
+    color: #444;
+  }
+  @bottom-center {
+    content: "horizon · printed guide · keep with your kit";
+    font-size: 8pt;
+    color: #444;
+  }
 }
+.guide-head h1,
+article.guide > h1:first-child { string-set: guide-title content(); }
 
 body {
   background: #fff;
@@ -36,6 +51,15 @@ body {
   --shadow-lift: none;
 }
 
+/* Topic hues collapse to ink. */
+[data-cat] { --cat: #000 !important; }
+
+/* The guide header's notebook band becomes plain space above the title. */
+.guide-head { border: none; padding: 0; background: none; }
+
+/* Plan trail: a plain ruled line (backgrounds may not print). */
+.trail::before { width: 0; background: none; border-left: 2px solid #000; }
+
 /* Landing hero prints as a plain ink-on-paper scene, no gradient wash. */
 .hero { background: none; }
 
@@ -63,6 +87,10 @@ img, figure, table { page-break-inside: avoid; max-width: 100%; }
 /* Callouts flatten to a solid black rule + bold label on paper; the label
    alone carries "pick / avoid / spec / do now", so no colour is needed. */
 .guide .callout { background: none !important; border-left: 3px solid #000 !important; }
+/* "Do now" keeps its weight on paper: a thicker rule and an outlined stamp
+   (a filled one would vanish when backgrounds aren't printed). */
+.guide .callout-now { border-left-width: 6px !important; }
+.guide .callout-now strong:first-child { background: none; color: #000; border: 1.5px solid #000; }
 
 /* Figures: light frame becomes a thin black border around the line drawing. */
 .guide figure.guide-figure img { background: #fff; border: 1px solid #000; }
@@ -73,14 +101,18 @@ img, figure, table { page-break-inside: avoid; max-width: 100%; }
 .guide figure.guide-ascii pre {
   overflow: visible;
   border: 1px solid #000;
+  background: #fff;
   page-break-inside: avoid;
 }
+.guide figure.guide-ascii::before { display: none; }
+.guide figure.guide-ascii code { font-size: 8.5pt; }
 .guide figure.guide-ascii code { color: #000; }
 
 /* Checklists print as clear, hand-tickable empty squares — no bullet, a crisp
    box per item — so a printed list works like a paper checklist. */
 .guide .task-list { list-style: none; padding-left: 0; }
-.guide .task-list .task-item { display: flex; align-items: flex-start; gap: 0.4rem; }
+.guide .task-list .task-item,
+.guide .task-label { display: flex; align-items: flex-start; gap: 0.4rem; min-height: 0; padding: 0; }
 .guide .task-check {
   -webkit-appearance: none;
   appearance: none;

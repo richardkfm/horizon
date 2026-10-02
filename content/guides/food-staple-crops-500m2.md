@@ -53,3 +53,9 @@ few reliable staples suited to your climate.
 
 *Fig. 1: one way to lay out a 500 m² plot — a block of wind-pollinated maize,
 mixed beds for the rest, a staging area for compost, and a row left to seed*
+
+## Where to go next
+
+- [[food-choosing-crops]]
+- [[food-seed-saving]]
+- [[cooking-plant-protein]]

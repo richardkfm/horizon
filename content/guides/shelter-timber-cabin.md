@@ -13,7 +13,7 @@ A small timber cabin is a sound, dry, longer-term home you can build with hand
 tools and local wood. The principle is simple: a strong frame of posts and beams,
 clad and roofed to keep weather out, raised off the ground to stay dry.
 
-> **Dry wood lasts; wet wood rots.** Keep the structure off the ground, give the
+> **Tip:** **Dry wood lasts; wet wood rots.** Keep the structure off the ground, give the
 > roof a good overhang, and let air move around the timber. Most cabin failures
 > are water failures.
 
@@ -38,16 +38,16 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
    Pitch it enough to shed rain and snow, with an **overhang** past the walls.
 
 ```ascii
-                    ___________________
-                   /                   \      roof, pitched, with overhang
-                  /_____________________\
-                  |  |  |  |  |  |  |  |
-                  |  |  |  |  |  |  |  |      wall studs between top/bottom plates
-                  |__|__|__|__|__|__|__|
-                  =======================     floor deck on joists
-                    |        |        |
-                  [pier]   [pier]   [pier]     raised off the ground, level
-    ground   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      ___________________
+     /                   \    roof, pitched,
+    /_____________________\   with overhang
+    |  |  |  |  |  |  |  |
+    |  |  |  |  |  |  |  |    wall studs between
+    |__|__|__|__|__|__|__|    top/bottom plates
+    =======================   floor deck on joists
+      |        |        |
+    [pier]   [pier]   [pier]  raised, level
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ground
 ```
 
 *Fig. 1: timber-frame cabin cross-section — foundation piers keep wood off the soil, a level floor carries the wall frame, and the roof oversails the walls*
@@ -58,8 +58,7 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
   (shingles, metal, thatch, or salvaged sheeting), overlapped top-down.
 - **Clad the walls** with overlapping boards (shed water downward), or infill the
   frame with earth/straw for insulation.
-- **Insulate** walls, floor, and roof against heat loss (see the insulation
-  guide), and seal gaps against draughts.
+- **Insulate** walls, floor, and roof against heat loss (see [[shelter-insulation-basics|the insulation guide]]), and seal gaps against draughts.
 - **Fit a door and windows**, framed square and weather-sealed.
 
 ## Make it livable and last
@@ -68,3 +67,9 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
   this; bad flues cause fires and poisoning.
 - **Ventilate** to prevent damp and condensation.
 - **Inspect yearly** for leaks, rot, and pests, and treat or replace wood early.
+
+## Where to go next
+
+- [[shelter-insulation-basics]]
+- [[calc-structural-loads]]
+- [[crafts-tool-repair]]

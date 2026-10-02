@@ -11,8 +11,7 @@ estimated_time: "Several days to learn, then ongoing practice"
 
 Making cloth is worth doing alone, disaster or not — it's one of the oldest
 useful skills there is. This guide covers *fine* fibre work: spinning thread
-for cloth. For *thick* cord and rope for tying and hauling, see make rope and
-cordage from plant fibre — the reverse-wrap method there is a different,
+for cloth. For *thick* cord and rope for tying and hauling, see [[crafts-cordage|make rope and cordage from plant fibre]] — the reverse-wrap method there is a different,
 coarser technique from the spinning covered here.
 
 > **Tip:** Start with wool if you can get it — it's more forgiving to spin
@@ -85,7 +84,5 @@ A simple frame loom is enough to start:
 
 ## Where to go next
 
-- For strong cord and rope rather than fine cloth, see make rope and
-  cordage from plant fibre.
-- Once you have cloth, keep it in service for years — see mend clothes and
-  make basic textiles.
+- For strong cord and rope rather than fine cloth, see [[crafts-cordage|make rope and cordage from plant fibre]].
+- Once you have cloth, keep it in service for years — see [[crafts-mending-textiles|mend clothes and make basic textiles]].

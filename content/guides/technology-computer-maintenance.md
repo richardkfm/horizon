@@ -74,13 +74,11 @@ server possible in the first place.
   one, since data can sometimes still be recovered.
 - **Salvage before you discard:** working RAM, storage, or a good screen
   from a machine that's otherwise dead can keep another one running — see
-  turn an old PC into a local server for one good use of salvaged parts.
+  [[technology-repurpose-old-pc|turn an old PC into a local server]] for one good use of salvaged parts.
 
 ## Where to go next
 
 - For the general repair skill behind these fixes (multimeter testing,
-  soldering a wire or connector), see repair small electronics and solder.
-- Give a repaired machine a real job: see turn an old PC into a local
-  server.
-- Keep it powered without mains electricity: see set up a small low-tech
-  solar system.
+  soldering a wire or connector), see [[technology-electronics-repair|repair small electronics and solder]].
+- Give a repaired machine a real job: see [[technology-repurpose-old-pc|turn an old PC into a local server]].
+- Keep it powered without mains electricity: see [[energy-low-tech-solar|set up a small low-tech solar system]].

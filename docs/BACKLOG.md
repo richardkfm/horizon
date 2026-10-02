@@ -1,7 +1,7 @@
 # Backlog — design/UX polish & missing guides
 
 A prioritized working list for what comes after the last shipped release
-(v0.8): first the design/UX rough edges still standing, then the guide topics
+(v0.9): first the design/UX rough edges still standing, then the guide topics
 the library is missing.
 [ROADMAP.md](../ROADMAP.md) stays the high-level milestone story; this file
 holds the granular items to pick from.
@@ -57,7 +57,10 @@ restated so nobody re-derives them):
   was structural/automated plus a keyboard walkthrough; ROADMAP.md itself
   flags that NVDA/JAWS/VoiceOver testing hasn't happened. Walk the core
   flow (home → guide → plan → assistant) with a real screen reader and
-  file what it finds as new items here.
+  file what it finds as new items here. *(Still open. v0.9's frontend pass
+  fixed what automated checks and a keyboard walkthrough could find —
+  secondary-text contrast, labelled checklist boxes, `aria-current` in the
+  nav, 44px header/footer targets — but still no real screen-reader run.)*
 
 ### P2 — polish, once P0/P1 land
 
@@ -79,17 +82,22 @@ restated so nobody re-derives them):
 
 ## Part 2 — Missing guides
 
-Current shape of the library: 113 guides across 15 categories, all of them
-covered by a step-by-step plan. Thinnest now: water, energy, shelter, culture,
-crafts, and mobility (5 guides each). Eight categories still have no
-checklist (see *Checklists to add* below — the v0.8.1 outage checklist landed
-in emergencies, which already had two).
+Current shape of the library: well over a hundred guides across 15
+categories, every category with at least one step-by-step plan, and every
+guide cross-linked to related ones with `[[...]]` wiki links and a "Where to
+go next" section. v0.9 filled the biggest gaps in health, water, care, and
+the home; the thinnest categories are now crafts and mobility, with culture,
+language, and shelter close behind. Four categories still have no checklist
+(culture, language, cooking, calculations — see *Checklists to add* below).
 
 Editorial decisions already made (don't relitigate):
 
 - Keeping animals for **eggs, milk, and wool is in scope**, framed strictly
   around non-lethal use with an explicit "Note" callout that horizon
   doesn't cover slaughter. Working/draft animals for transport: same basis.
+  The cooking md skill is plant-forward and vegetarian-friendly as of v0.9
+  (eggs, dairy, and honey are fine), so the assistant's guidance now agrees
+  with these guides when they're written.
 - **Leatherworking is out**, even from reclaimed hide — too close to the
   animal-product line the project stays clear of.
 - As ever: nothing that requires killing an animal, no weapons/war prep,
@@ -152,19 +160,23 @@ Editorial decisions already made (don't relitigate):
   *(`cooking-ferments`: 2% brine method for any vegetable, scrap vinegar +
   mother, rescue-or-reject troubleshooting.)*
 
-### water
+### water (done in v0.9)
 
-- [ ] *Reuse greywater around the home* — distinct from survival's
+- [x] *Reuse greywater around the home* — distinct from survival's
   waste/hygiene guide; real-sustainability angle.
-- [ ] *Conserve and ration water day to day* — the ordinary-times version
+  *(`water-greywater-reuse`.)*
+- [x] *Conserve and ration water day to day* — the ordinary-times version
   of what only the drought emergency guide touches today.
+  *(`water-conserve-and-ration`, with a fair rationing plan that protects
+  drinking water first; a `use-and-reuse-water` plan threads both.)*
 
 ### energy (clean-energy angle throughout)
 
 - [ ] *Build a small biogas digester* — organic waste to cooking fuel;
-  renewable, directly displaces combustion generators.
-- [ ] *Use human and pedal power* — treadle tools, bike generators; the
-  cheap low-tech complement to solar/wind.
+  renewable, directly displaces combustion generators. *(Still open.)*
+- [x] *Use human and pedal power* — treadle tools, bike generators; the
+  cheap low-tech complement to solar/wind. *(`energy-pedal-power`, done in
+  v0.9 alongside `energy-everyday-batteries`.)*
 - [x] Solar-oven build detail can live here if the cooking guide above
   stays usage-focused — decide when writing, don't duplicate.
   *(Decided: the build is simple enough to live inside `cooking-solar-oven`;
@@ -175,15 +187,18 @@ Editorial decisions already made (don't relitigate):
 - [ ] *Keep poultry for eggs* — no-kill framing with explicit Note callout.
 - [ ] *Keep a dairy animal* — same framing.
 - [ ] *Keep bees and support pollinators.*
-- [ ] *Root-cellar and cold-store food* — distinct from seed-saving and
-  from cooking's preservation guide.
-- [ ] *Compost kitchen and garden waste* — deepens the soil-restoration
-  guide.
+  *(These three are unblocked now that the cooking md skill is
+  vegetarian-friendly — not yet written.)*
+- [x] *Root-cellar and cold-store food* — distinct from seed-saving and
+  from cooking's preservation guide. *(`food-root-cellar`, done in v0.9.)*
+- [x] *Compost kitchen and garden waste* — deepens the soil-restoration
+  guide. *(`food-composting`, done in v0.9.)*
 
 ### shelter
 
-- [ ] *Retrofit and weatherize an existing home* — every current shelter
+- [x] *Retrofit and weatherize an existing home* — every current shelter
   guide assumes new-build; most readers have an existing structure.
+  *(`shelter-weatherproof-home`, done in v0.9, with fire safety built in.)*
 - [ ] *Basic water and sanitation plumbing for a shelter.*
 - [ ] *Pest- and rodent-proof a home or store.*
 
@@ -225,22 +240,28 @@ guides rather than duplicating them.
 
 - [ ] *Onboard new members and plan succession* for a group or co-op.
 - [ ] *Share child-rearing and elder-care as a group commons* — extends
-  resource-sharing into care work.
+  resource-sharing into care work. *(Partly covered in v0.9 by
+  `cooperation-care-for-neighbours` and `culture-children-play-learning`;
+  the group-commons framing is still open.)*
 
 ### culture
 
 - [ ] *Make art with natural pigments* — the visual-craft/morale
   counterpart to the music/dance/games guides.
-- [ ] *Run a children's play and learning curriculum* — complements
+- [x] *Run a children's play and learning curriculum* — complements
   language's literacy guide and culture's storytelling.
+  *(`culture-children-play-learning`, done in v0.9.)*
 
 ### Checklists to add
 
-Eight categories have no checklist today. Most list-shaped first:
+v0.9 added nine checklists, so only four categories are left without one.
 
-- [ ] **shelter** — a build/retrofit checklist.
-- [ ] **survival** — a wilderness kit, distinct from the emergencies go-bag.
-- [ ] **technology** — mesh/radio setup checklist.
+- [x] **shelter** — a build/retrofit checklist. *(`shelter-weatherproofing`.)*
+- [x] **survival** — a wilderness kit, distinct from the emergencies go-bag.
+  *(`survival-day-pack`.)*
+- [x] **technology** — mesh/radio setup checklist.
+  *(`radio-and-mesh-setup`.)*
+- [x] **mobility** — *(`bike-repair-kit`, done in v0.9.)*
 - Lower priority (more guide-shaped than list-shaped): culture, language,
-  cooking, calculations, mobility — add only if a natural task list falls
-  out of a specific guide above.
+  cooking, calculations — add only if a natural task list falls out of a
+  specific guide above.

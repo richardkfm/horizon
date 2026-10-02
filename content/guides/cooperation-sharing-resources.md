@@ -13,9 +13,9 @@ A group that pools tools, land, food, or labour can do far more than any one
 household — but only if the system for sharing is seen as fair. Goodwill runs
 out fast the moment someone feels they give more than they get, or that
 someone else is taking without contributing. This guide covers the ongoing
-system; see the goods-to-share-and-barter checklist for what to stock.
+system; see [[checklist:share-and-barter|the goods-to-share-and-barter checklist]] for what to stock.
 
-> **Principle:** A commons survives on being visibly fair, not on trust alone.
+> **Note:** A commons survives on being visibly fair, not on trust alone.
 > Make contribution and access easy to see, so fairness doesn't depend on
 > everyone's memory or goodwill matching up.
 
@@ -73,14 +73,11 @@ week so no one job or person is fixed in place*
 - **Make the pattern visible, not personal:** "the water rota has missed
   three weeks" invites a group fix; "you never show up" invites defensiveness.
 - **Escalate through governance, not gossip,** if a pattern continues — see
-  the governance guide's recall process for roles, and the resolving-conflict
-  guide for one-to-one disputes.
+  [[cooperation-democratic-governance|the governance guide]]'s recall process for roles, and
+  [[cooperation-resolving-conflict|the resolving-conflict guide]] for one-to-one disputes.
 
 ## Where to go next
 
-- For the physical goods worth stocking to share, see the goods to share and
-  barter checklist.
-- For disputes about a specific resource decision, see resolve conflict
-  between people fairly.
-- For a rota or split that keeps breaking down structurally, see set up fair,
-  accountable governance for a group.
+- For the physical goods worth stocking to share, see [[checklist:share-and-barter|the goods to share and barter checklist]].
+- For disputes about a specific resource decision, see [[cooperation-resolving-conflict|resolve conflict between people fairly]].
+- For a rota or split that keeps breaking down structurally, see [[cooperation-democratic-governance|set up fair, accountable governance for a group]].

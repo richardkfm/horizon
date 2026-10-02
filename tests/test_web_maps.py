@@ -51,7 +51,7 @@ def test_maps_index_empty_state_when_nothing_installed():
     with TestClient(app) as client:
         resp = client.get("/maps")
         assert resp.status_code == 200
-        assert "No maps ready to view" in resp.text
+        assert "Nothing here yet" in resp.text
 
 
 def test_maps_index_lists_pack_with_rendered_mbtiles(fixture_mbtiles):
@@ -68,7 +68,7 @@ def test_maps_index_omits_pack_without_rendered_mbtiles(fixture_mbtiles):
         resp = client.get("/maps")
         assert resp.status_code == 200
         assert "Test Maps Pack" not in resp.text
-        assert "No maps ready to view" in resp.text
+        assert "Nothing here yet" in resp.text
 
 
 def test_map_viewer_page_renders(fixture_mbtiles):
