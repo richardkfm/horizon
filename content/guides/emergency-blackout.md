@@ -13,21 +13,25 @@ A short power cut is an inconvenience; a blackout lasting days or weeks tests
 everything — heating, water, cooking, food storage, and communication. The people
 who cope are the ones who prepared a little in advance and stay calm.
 
-> **The quiet dangers are heat, cold, and carbon monoxide.** Most blackout harm
-> comes not from the dark but from improvised heating and cooking. Never run a
-> generator, grill, or fuel burner indoors — the fumes can kill silently.
+> **Risk:** **The quiet dangers are heat, cold, and carbon monoxide.** Most
+> blackout harm comes not from the dark but from improvised heating and
+> cooking. Never run a generator, grill, or fuel burner indoors, in a garage,
+> or near windows — the fumes can kill silently. If you use any combustion at
+> all, fit a **battery-powered carbon monoxide alarm**.
 
 ## Prepare before it happens
 
-- **Water:** store drinking water (a rough guide is several litres per person per
-  day) and know how to treat more (see the water guides). Pumps and treatment
-  plants may stop in a blackout.
+- **Water:** store drinking water — at least about 4 litres (1 gallon) per
+  person per day, more in heat (see [[checklist:water-store]]) — and know how to
+  treat more (see [[water-choosing-treatment]]). Pumps and treatment plants may
+  stop in a blackout.
 - **Light:** keep torches, spare batteries, candles (used safely), and a
   solar/wind-up lamp. Avoid open flames near anything flammable.
 - **Power:** a power bank, solar charger, or small battery setup keeps a phone and
-  radio alive (see the low-tech solar guide).
+  radio alive (see [[energy-low-tech-solar|the low-tech solar guide]]).
 - **Warmth/cooking:** have a safe way to keep warm and to cook that doesn't need
-  mains power — and the ventilation to use it safely.
+  mains power — and the ventilation to use it safely, plus a battery carbon
+  monoxide alarm if it burns anything.
 - **Information:** a battery or wind-up radio gives news and instructions when the
   internet and mobile networks fail.
 - **Cash:** card machines and ATMs may be down; keep some small cash.
@@ -35,16 +39,19 @@ who cope are the ones who prepared a little in advance and stay calm.
 ## When the power goes out
 
 1. **Check it's not just you** — your fuse box/breaker, then neighbours.
-2. **Protect food:** keep fridge and freezer doors shut; a full freezer holds cold
-   for a day or more. Eat fresh and perishable food first.
+2. **Protect food:** keep fridge and freezer doors shut. A closed fridge keeps
+   food safe for about **4 hours**; a full freezer for about **48 hours** (24
+   hours if half full). Eat fresh and perishable food first, and when in
+   doubt, throw it out — don't taste-test it.
 3. **Turn off or unplug** sensitive appliances to protect them from the surge when
    power returns; leave one light on so you know when it's back.
 4. **Conserve phone battery:** low-power mode, screen dim, calls only if needed.
 
 ## Stay safe and well
 
-- **Heat or cool a single room** rather than the whole home (see the extreme heat
-  and cold guides).
+- **Heat or cool a single room** rather than the whole home (see
+  [[emergency-extreme-heat|extreme heat]] and
+  [[emergency-extreme-cold|extreme cold]]).
 - **Check on neighbours**, especially older people, the unwell, and those alone —
   community is the best safety net in a long outage.
 - **Keep medicines** that need cooling as cold as you can, and ask a pharmacist or
@@ -54,8 +61,7 @@ who cope are the ones who prepared a little in advance and stay calm.
 ## Where to go next
 
 - If anyone in the household depends on refrigerated medication or a powered
-  medical device, plan that in advance: see keep essential medical care going
-  without power.
-- If you have no car to fall back on, see **get through emergencies with no
-  car to fall back on** for evacuating on foot and storing supplies in a
-  small footprint.
+  medical device, plan that in advance: [[health-power-dependent-care]].
+- If you have no car to fall back on, [[emergency-no-car-household]] covers
+  evacuating on foot and storing supplies in a small footprint.
+- The whole sequence as a plan: [[plan:prepare-for-a-long-blackout]].

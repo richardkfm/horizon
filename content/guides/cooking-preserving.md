@@ -13,10 +13,22 @@ A good harvest is wasted if it rots before you eat it. Preserving lets a glut fe
 you through lean months with no refrigeration. The three most useful, low-tech
 methods are drying, fermenting, and pickling — all simple, all plant-based.
 
-> **Cleanliness and the right conditions keep you safe.** Spoilage and harmful
-> microbes are the risk. Work clean, follow the conditions each method needs
+> **Note:** Cleanliness and the right conditions keep you safe. Spoilage and
+> harmful microbes are the risk. Work clean, follow the conditions each method needs
 > (dryness, salt, acid), and when in doubt — off smell, mould, slime, fizzing
 > where there shouldn't be — throw it out.
+
+> **Risk:** A few preserving shortcuts can cause botulism, a rare but deadly
+> poisoning you can't see, smell or taste:
+>
+> - **Never store garlic, herbs or vegetables in oil at room temperature.**
+>   Keep flavoured oils in the fridge and use them within a few days, or
+>   freeze them.
+> - **Don't home-can low-acid foods** — beans, plain vegetables, soups,
+>   stews — without a pressure canner and a tested recipe. A boiling-water
+>   bath is not hot enough for them.
+> - **Bulging or leaking lids, liquid that spurts when you open the jar, or
+>   an off smell mean throw it away without tasting** — not even a little.
 
 ## Drying (simplest)
 
@@ -47,14 +59,21 @@ Submerging food in a strong acid (vinegar) stops spoilage and keeps it crisp:
 
 - Pack clean vegetables in clean jars and cover completely with vinegar (often
   with salt, and spices).
+- **For pickles meant to keep at room temperature, use shop vinegar labelled
+  at least 5% acidity**, and don't dilute it with more water than a tested
+  recipe says — the acid is what keeps them safe. Homemade vinegar's strength
+  is unknown, so use it only for fridge pickles.
 - Keep everything submerged and sealed; store cool and dark.
 
 ## Other keepers
 
 - **Cool, dark storage** (a cellar, clamp, or cool room) keeps roots, squash,
   onions, and apples for months as they are.
-- **Jams and fruit leathers** preserve fruit with the fruit's own sugars and
-  drying.
+- **Fruit leathers** keep because they're dried right through.
+- **Jams** keep on the shelf only with enough sugar (follow the recipe — sugar
+  is part of what preserves it) and when poured hot into sterilised jars and
+  sealed. Low-sugar or "fruit-only" jams don't keep that way: store them in
+  the fridge and eat them within a few weeks, or freeze them.
 
 ## Build a store
 

@@ -15,7 +15,7 @@ more life in the soil, more cover on its surface, and better-held water. None
 of this needs machinery — it needs time, patience, and a few repeatable
 techniques.
 
-> **Principle:** Never leave soil bare. Bare ground loses water to
+> **Note:** Never leave soil bare. Bare ground loses water to
 > evaporation, erodes in rain and wind, and starves the soil life that
 > everything else depends on. Cover it with a living plant, a mulch, or both.
 

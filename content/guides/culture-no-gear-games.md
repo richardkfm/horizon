@@ -13,7 +13,7 @@ Games do real work: they exercise bodies, sharpen minds, ease tension, and help 
 group of strangers become a community. The best ones for hard times need no
 equipment, no reading, and no shared language — just people.
 
-> **Play to include, not to eliminate.** Games where losers sit out leave the
+> **Tip:** **Play to include, not to eliminate.** Games where losers sit out leave the
 > people who most need connection on the sidelines. Prefer games where everyone
 > keeps playing.
 

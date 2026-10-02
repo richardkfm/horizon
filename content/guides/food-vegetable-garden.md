@@ -13,7 +13,7 @@ A mixed vegetable garden turns a small patch of ground into a steady supply of
 fresh food. The goal is variety and *succession* — always having something coming
 ready, rather than a single big glut.
 
-> **Start small and succeed.** A well-tended small bed feeds you better than a
+> **Tip:** **Start small and succeed.** A well-tended small bed feeds you better than a
 > large one you can't keep up with. Expand as your skill and compost grow.
 
 ## Plan the plot

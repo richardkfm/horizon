@@ -13,7 +13,7 @@ Saving your own seed makes a garden self-sustaining: free plants every year,
 varieties adapted to *your* soil and climate over time, and independence from
 buying seed. It is one of the oldest and most important food skills.
 
-> **Save from open-pollinated plants.** Seed from "F1 hybrid" plants won't grow
+> **Tip:** **Save from open-pollinated plants.** Seed from "F1 hybrid" plants won't grow
 > true to the parent. Choose open-pollinated or heirloom varieties for reliable
 > saved seed.
 

@@ -14,7 +14,7 @@ their families safe during aerial bombardment, shelling, or drone attacks. The
 core idea is simple and old — put distance and solid material between yourself and
 the blast — and acting fast on a warning saves lives.
 
-> **Follow official instructions first.** Local authorities and emergency services
+> **Do now:** **Follow official instructions first.** Local authorities and emergency services
 > know the specific threat and the designated shelters. Their alerts and guidance
 > override any general advice here.
 

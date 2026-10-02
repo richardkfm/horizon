@@ -15,7 +15,7 @@ out fast the moment someone feels they give more than they get, or that
 someone else is taking without contributing. This guide covers the ongoing
 system; see the goods-to-share-and-barter checklist for what to stock.
 
-> **Principle:** A commons survives on being visibly fair, not on trust alone.
+> **Note:** A commons survives on being visibly fair, not on trust alone.
 > Make contribution and access easy to see, so fairness doesn't depend on
 > everyone's memory or goodwill matching up.
 

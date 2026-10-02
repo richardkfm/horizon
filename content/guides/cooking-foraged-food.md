@@ -15,7 +15,7 @@ up where identification ends: you're holding a plant you are *certain* about,
 and the question is how to make it worth eating — because most wild food needs
 a cook's help to shine.
 
-> **Risk.** Identification comes first and is its own discipline — never
+> **Risk:** Identification comes first and is its own discipline — never
 > cook anything you can't name with total confidence, and learn the deadly
 > lookalikes before the recipes (links to identifying safe wild food and
 > avoiding poisoning). When in doubt, leave it out: no meal is worth the
@@ -78,7 +78,7 @@ bitter and tannic need leaching; then cook as you would any vegetable.*
   (halved, itchy seeds strained out) into a syrup that carries vitamin C
   through winter.
 
-> **Tip.** A new-to-you plant, even a safe one, earns a small first
+> **Tip:** A new-to-you plant, even a safe one, earns a small first
 > serving — any food can disagree with someone, and wild ones are strong.
 > Introduce one new species at a time so you know what caused what.
 

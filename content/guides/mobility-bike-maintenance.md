@@ -46,7 +46,23 @@ The single most common repair, and the one most worth mastering first:
    tacky, then press the patch on firmly and hold for a minute. Self-adhesive
    patches skip the glue step.
 5. **Check the tyre's inside** for the thorn, glass, or wire that caused the
-   puncture before it does it again.
+   puncture before it does it again. Lay the tube beside the tyre with the
+   valve at the valve hole: the hole in the tube shows you where to look.
+
+```ascii
+  tyre, inside              tube
+  +------------------+     +------------------+
+  |       thorn -> x |     |       hole -> o  |
+  +--------+---------+     +--------+---------+
+           |                        |
+         valve hole               valve
+
+  line them up valve-to-valve: the thorn is
+  still in the tyre, opposite the hole
+```
+
+*Fig. 1: find what caused the flat — the hole in the tube points to the spot in the tyre where the thorn or glass is still stuck*
+
 6. **Refit the tube**, seat the tyre back onto the rim by hand, then inflate.
    Check the tube isn't pinched under the bead as you go.
 

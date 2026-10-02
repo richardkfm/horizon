@@ -13,7 +13,7 @@ When new clothing is hard to get, mending is wealth: a few simple stitches keep
 garments, blankets, and bags in service for years. These skills need only a
 needle, thread, and patience.
 
-> **Mend early.** A small tear caught now takes one minute; left alone it becomes
+> **Tip:** **Mend early.** A small tear caught now takes one minute; left alone it becomes
 > a big hole and a ruined garment. Check clothes regularly.
 
 ## Your basic kit

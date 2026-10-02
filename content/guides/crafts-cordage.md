@@ -13,7 +13,7 @@ Cord and rope are among the most useful things you can make: they tie shelters,
 haul loads, repair tools, and bind almost anything. With the reverse-wrap
 method you can turn plant fibre into surprisingly strong cordage by hand.
 
-> **Strength comes from the twist.** Loose fibres are weak; twisted and
+> **Tip:** **Strength comes from the twist.** Loose fibres are weak; twisted and
 > counter-twisted, the same fibres grip each other and become rope.
 
 ## Gather and prepare fibre
@@ -38,19 +38,19 @@ This is the core technique:
 4. Keep alternating. The opposing twists lock together into cord.
 
 ```ascii
-   fibres folded at a loop:        twist A away, fold it over B:
+  fibres folded       twist A away,
+  at a loop:          fold it over B:
 
-        ,-----,                      A           B
-       (       )                      \         /
-      A |     | B                      \       /
-                                         \     /
-                                          \   /
-                                           \ /
-                                            X     <- strands cross and lock
-                                           / \
-                                          B   A
+     ,-----,           A       B
+    (       )           \     /
+   A |     | B           \   /
+                          \ /
+                           X   <- strands cross
+                          / \     and lock
+                         B   A
 
-   repeat, alternating which strand goes over — cord grows toward you
+  repeat, alternating which strand goes over —
+  the cord grows toward you
 ```
 
 *Fig. 1: reverse-wrap twisting — each strand is twisted away then folded over the other, and the opposing twists lock together*

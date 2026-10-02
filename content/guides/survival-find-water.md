@@ -13,7 +13,7 @@ You can last only a few days without water, so finding it is a first priority.
 Finding it is not the same as making it safe: collect first, then **always test
 and treat before drinking** (see the water guides).
 
-> **Important:** Clear-looking water can still carry germs or chemicals. Treat
+> **Risk:** Clear-looking water can still carry germs or chemicals. Treat
 > all field water unless you are certain it is safe.
 
 ## Where to look

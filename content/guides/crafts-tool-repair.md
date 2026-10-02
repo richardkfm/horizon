@@ -13,7 +13,7 @@ A sharp, sound tool does more work with less effort and is *safer* than a dull
 one — a blunt blade slips and forces you to push harder. Keeping hand tools in
 good order means they last for decades.
 
-> **Safety:** A sharp edge cuts you just as readily as wood. Always cut and file
+> **Risk:** A sharp edge cuts you just as readily as wood. Always cut and file
 > *away* from your body and hands, and secure the tool before working on it.
 
 ## Sharpening edges
@@ -23,13 +23,29 @@ the edge at a consistent angle until it's keen, then remove the burr.
 
 1. **Choose an abrasive:** a sharpening stone, or a smooth flat stone, even a
    concrete edge for rough work. Wet it if it's a water stone.
-2. **Hold a steady angle** — roughly 15-20° for knives, a little steeper for
-   axes and tools that chop.
+2. **Hold a steady angle** — roughly 15-20° for knives, a little steeper
+   (about 25°) for axes and tools that chop.
+
+```ascii
+          blade
+            \
+             \
+              \
+               \   15-20 deg for knives,
+                \  about 25 for axes and
+                 \) chopping tools
+  ================\=================  stone
+     push the edge forward, as if shaving
+     a thin slice off the stone
+```
+
+*Fig. 1: the bevel angle — what matters most is holding the same angle on every stroke*
+
 3. **Stroke the edge across the stone** as if shaving a thin slice off it,
    working both sides evenly, coarse grit first then finer.
 4. **Feel for the burr** — a tiny wire of metal on the opposite side tells you
    that side is sharp. Work the other side until the burr flips, then strop it
-   off on leather, wood, or your palm's back of a belt.
+   off by drawing the edge backwards over smooth wood, cardboard, or denim.
 5. **Test gently** — a sharp edge bites a fingernail or slices paper.
 
 ## Common repairs
@@ -43,7 +59,7 @@ the edge at a consistent angle until it's keen, then remove the burr.
 
 ## Keep tools healthy
 
-- **Clean and dry** tools after use; wipe metal with a little oil or fat to keep
+- **Clean and dry** tools after use; wipe metal with a little plant oil to keep
   rust off.
 - **Store dry and off the ground**, edges protected and pointing safely.
 - **Sharpen little and often** rather than waiting for a tool to go fully blunt.

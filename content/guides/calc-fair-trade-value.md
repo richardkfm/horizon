@@ -14,7 +14,7 @@ of apples, both sides want the same thing: to walk away feeling the swap was
 fair. Fairness isn't a vibe — it's arithmetic anyone can do, agreed out
 loud. A little costing keeps good trades from souring good relationships.
 
-> **Note.** Fair trade is a cooperation value as much as a calculation:
+> **Note:** Fair trade is a cooperation value as much as a calculation:
 > horizon's line is that scarcity and urgency are reasons to help, not
 > leverage to price against. The maths below tells you what something
 > *costs*; what your group *charges* a neighbour in trouble is a values

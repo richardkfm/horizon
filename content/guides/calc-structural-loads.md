@@ -14,7 +14,7 @@ numbers stop being optional — a floor or roof that fails can kill. This guide
 shows how to estimate loads and think about safe spans, and just as importantly,
 **when to stop and get expert help.**
 
-> **Safety is not the place to cut corners.** These are estimating methods for
+> **Risk:** **Safety is not the place to cut corners.** These are estimating methods for
 > small, simple structures, with generous margins. For anything large, public,
 > multi-storey, or carrying many people, get a qualified engineer. When unsure,
 > overbuild.

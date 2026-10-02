@@ -19,7 +19,7 @@ unchecked, it's the same risk as one person quietly holding a role forever
 accountable governance for a group) — just aimed at the group's direction
 instead of an office.
 
-> **Principle:** Pluralism and consensus are the actual defence against
+> **Note:** Pluralism and consensus are the actual defence against
 > capture. But "resisting radicalisation" must not itself become a way to
 > silence a legitimate minority view — the same protection for the weak,
 > silent, and minority voice that ordinary decisions get applies here too.

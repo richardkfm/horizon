@@ -19,7 +19,7 @@ someone, not settling a dispute — recall or a role change (see set up fair,
 accountable governance for a group) may follow, but safety always comes
 first.
 
-> **Principle:** The safety of the person at risk comes before any process.
+> **Note:** The safety of the person at risk comes before any process.
 > Boundary-setting is protective, not punitive — it isn't a verdict on who
 > is "right," it's what keeps someone safe while the group figures out what
 > comes next.
@@ -105,9 +105,18 @@ rather than mandate:
   specifically for this and know more than any group can improvise.
 - **Independent mediation or restorative-justice services**, for cases that
   don't need the criminal-justice system but do need a trained facilitator.
-- **Law enforcement**, if the person at risk chooses it. It is their choice
-  to make, not the group's to make for them — respecting that is part of
-  not recreating the same coercive dynamic in a different form.
+- **Law enforcement**, if the person at risk chooses it. For an adult who
+  can protect themselves, it is their choice to make, not the group's to
+  make for them — respecting that is part of not recreating the same
+  coercive dynamic in a different form.
+
+> **Risk:** There is one clear exception. When a **child**, or an adult who
+> **can't protect themselves** (because of illness, disability, age, or
+> being under someone's control), is being harmed or is at risk, the adults
+> around them **must act** — protect them now, and involve the appropriate
+> authorities or child-protection / safeguarding services, even if the
+> person harmed or their family asks you not to. Keeping it inside the group
+> is not an option here.
 
 ## Support afterward
 

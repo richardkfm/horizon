@@ -13,7 +13,7 @@ Sooner or later you will need to understand someone whose language you don't
 share, with no phone or translator. It is very doable: humans communicated across
 languages long before any technology, using patience, goodwill, and the body.
 
-> **Assume good faith and stay calm.** Most misunderstanding is just that — not
+> **Tip:** **Assume good faith and stay calm.** Most misunderstanding is just that — not
 > hostility. A warm, unhurried manner does half the work.
 
 ## Use what everyone shares

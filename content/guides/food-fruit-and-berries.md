@@ -14,7 +14,7 @@ plant once, then harvest for years or decades with modest care. They need
 patience — most take a few seasons to bear well — so the best time to plant was
 years ago, and the next best time is now.
 
-> **Plant for your place.** Choose types and varieties suited to your climate,
+> **Tip:** **Plant for your place.** Choose types and varieties suited to your climate,
 > soil, and space. Local knowledge and local plants beat exotic ones that
 > struggle.
 

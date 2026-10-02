@@ -4,6 +4,7 @@ title: Treat hypothermia and frostbite
 category: health
 summary: Spot and treat dangerous cooling of the body and freezing of the skin, and warm safely.
 difficulty: 2
+estimated_time: "20 minutes to read"
 ---
 
 # Treat hypothermia and frostbite

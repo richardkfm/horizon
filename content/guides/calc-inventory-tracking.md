@@ -14,7 +14,7 @@ quietly spoil while you buy more of the wrong thing. A stock book fixes both
 with nothing but paper, a pencil, and a few minutes a week, and it's the
 arithmetic backbone under any shared store a group runs together.
 
-> **Tip.** Track the few things that matter, not everything you own. Staple
+> **Tip:** Track the few things that matter, not everything you own. Staple
 > food, water, fuel, medicines, seed, and any shared materials cover most of
 > what can hurt you by running out.
 

@@ -4,6 +4,7 @@ title: Treat heat exhaustion and heat stroke
 category: health
 summary: Cool an overheated person fast and recognise when heat illness becomes life-threatening.
 difficulty: 2
+estimated_time: "15 minutes to read"
 ---
 
 # Treat heat exhaustion and heat stroke

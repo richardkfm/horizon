@@ -15,7 +15,7 @@ information — where the safe water is, what's dangerous — should be readable
 by anyone who walks past, whatever language they speak. Hands and pictures
 cover all three.
 
-> **Note.** Sign languages are real, full languages — and each region has its
+> **Note:** Sign languages are real, full languages — and each region has its
 > own, as different from each other as spoken languages are. The best teacher
 > is a deaf person in your own community; learning even basics from them says
 > "you belong here" better than anything else you can do.
@@ -76,7 +76,7 @@ simple shapes, thick strokes, one idea per board.*
 - **Draw big, thick, and high-contrast** so signs read at a glance, at
   distance, and at dusk.
 
-> **Do now.** If your group shares any water source, mark safe and unsafe
+> **Do now:** If your group shares any water source, mark safe and unsafe
 > water with unmistakable, agreed signs today — it's the pictogram that
 > prevents the most harm (links to testing whether water is safe to drink).
 

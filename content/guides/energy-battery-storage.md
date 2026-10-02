@@ -14,9 +14,10 @@ battery bank bridges that gap. Treated well, batteries last for years; treated
 badly, they fail fast or become dangerous — so management matters as much as
 size.
 
-> **Batteries are serious.** They store a lot of energy and can deliver huge
-> currents. A short circuit can melt metal and start fires; some types give off
-> explosive or toxic gas. Fuse everything, ventilate, and respect them.
+> **Risk:** **Batteries are serious.** They store a lot of energy and can
+> deliver huge currents. A short circuit can melt metal and start fires; some
+> types give off explosive or toxic gas. Fuse everything, ventilate, and
+> respect them.
 
 ## Choose a battery type
 
@@ -24,12 +25,18 @@ size.
   ventilation, and dislikes being deeply discharged. Good budget option.
 - **Lithium (LiFePO4):** lighter, longer-lived, tolerates deeper discharge, but
   costs more and needs a **battery management system (BMS)** and correct
-  charging.
+  charging. **Never use lithium without a BMS.**
+
+> **Risk:** **Don't charge lithium or LiFePO₄ batteries below 0 °C** (freezing).
+> Charging them cold damages the cells permanently and can make them unsafe
+> later. Many BMSs block cold charging — check yours does — and in a cold
+> climate keep the bank inside the insulated part of the building, or use a
+> battery with a built-in heater.
 - Whatever you use, **don't mix old and new, or different types**, in one bank.
 
 ## Size the bank
 
-Work from your daily energy use (see *Size an energy system*):
+Work from your daily energy use (see [[calc-energy-sizing]]):
 
 1. Decide how many days of backup you want with no sun or wind (**autonomy**).
 2. Multiply daily use by those days.
@@ -81,3 +88,9 @@ Work from your daily energy use (see *Size an energy system*):
 Run big loads while the sun shines or wind blows (using power directly is more
 efficient than storing it), keep the bank topped up, and replace failing cells
 before they drag down the rest.
+
+## Where to go next
+
+- [[energy-sizing-solar-battery]]
+- [[energy-low-tech-solar]]
+- [[checklist:off-grid-power-build]]

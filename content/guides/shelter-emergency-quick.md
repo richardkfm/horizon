@@ -14,7 +14,7 @@ water — exposure to cold or wet can become dangerous within hours. A good
 emergency shelter is small, dry, and insulated, and you can build one with no
 tools but your hands.
 
-> **Small is warm.** A shelter just big enough for your body traps your own heat.
+> **Tip:** **Small is warm.** A shelter just big enough for your body traps your own heat.
 > A large shelter is hard to warm and wastes effort. Build for survival, not
 > comfort.
 
@@ -33,6 +33,22 @@ tools but your hands.
 - **Debris hut:** lean a ridge pole from the ground to a low support, rib it with
   branches on both sides, and pile a thick layer of leaves, grass, or bracken all
   over. The best one-person cold-weather shelter without tools.
+
+```ascii
+         .  .  .  .  .  .
+      .     dry debris      .
+    .     piled an arm's      .
+   .      depth thick          .
+  .            /\               .
+ .            /  \  <- ribs on   .
+.            / you\    both sides .
+.           /______\              .
+~~~~~~~~~~~~ thick bed ~~~~~~~~~~~~~~
+             of leaves
+```
+
+*Fig. 1: a debris hut seen end-on — a narrow frame just big enough for your body, buried in a thick layer of dry debris, with a thick bed underneath*
+
 - **Tarp/salvage shelter:** if you have a sheet, tarp, or plastic, string it as a
   roof and weigh the edges; far faster than natural materials.
 
@@ -51,4 +67,11 @@ tools but your hands.
 
 Once you're out of immediate danger, add a fire reflector, deepen the bedding,
 and reinforce the roof. For anything longer-term, move to a sturdier build (see
-the earth-building and timber-cabin guides).
+[[shelter-earth-building|building with earth]] and
+[[shelter-timber-cabin|a simple timber-frame cabin]]).
+
+## Where to go next
+
+- [[shelter-choosing]]
+- [[survival-campsite-setup]]
+- [[survival-fire]]

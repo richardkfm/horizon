@@ -14,7 +14,7 @@ of battery or signal: **which way should I go**, and **where am I right now**.
 This assumes you already have both a paper map of your area and a compass —
 see find direction without a compass if you have neither.
 
-> **Before you move:** Tell someone your plan, or leave a marker. A map and
+> **Tip:** **Before you move.** Tell someone your plan, or leave a marker. A map and
 > compass reduce the *chance* you get lost; they don't replace telling someone
 > where you're headed.
 

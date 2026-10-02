@@ -39,12 +39,14 @@ off the roof — let that go to waste, not into your tank.
     |
     v
   gutter ---> downpipe
-                 |
-                 v
-         [ first-flush diverter ]  <- fills with the dirty first litres,
-                 |                     then closes off automatically
-                 v
-             storage tank  <---- clean water only, once the diverter is full
+             |
+             v
+      [ first-flush ]  <- fills with the dirty
+      [  diverter   ]     first litres, then
+             |            closes off
+             v
+       storage tank  <- clean water only, once
+                         the diverter is full
 ```
 
 *Fig. 1: a first-flush diverter — a capped length of pipe below the downpipe
@@ -67,11 +69,15 @@ Estimate how much you can realistically collect:
 > to overflow, evaporation, and the first flush). A 50 m² roof in 20 mm of
 > rain yields roughly **800 litres** per storm.
 
-- Compare this to your household's need (see the water store checklist for a
-  target — 3+ litres per person per day) to judge how many storms' worth of
-  tank capacity you actually need.
-- For sizing the tank itself against your space and budget, see estimate
-  material quantities and measure area and volume in the calculations guides.
+- Compare this to your household's need to judge how many storms' worth of
+  tank capacity you actually need: at least **4 litres (about 1 gallon) per
+  person per day** for drinking and minimal cooking and hygiene (more in heat,
+  and for the sick, pregnant or breastfeeding, and children — see
+  [[checklist:water-store]]), and far more for a comfortable everyday budget
+  with washing and garden — see [[calc-water-budget]].
+- For sizing the tank itself against your space and budget, see
+  [[calc-materials-quantities|estimate material quantities]] and
+  [[calc-area-volume|measure area and volume]].
 
 ## Store it safely
 

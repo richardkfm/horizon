@@ -13,7 +13,7 @@ When heating fails in deep cold, the danger builds slowly and can be deadly. The
 strategy is to trap your own body heat and shrink the space you need to keep warm,
 while avoiding the hidden risks of improvised heating.
 
-> **Beware carbon monoxide.** Never run a generator, barbecue, camping stove, or
+> **Risk:** **Beware carbon monoxide.** Never run a generator, barbecue, camping stove, or
 > fuel heater in a closed room — the invisible fumes kill. Use only heaters meant
 > for indoors, with ventilation, and keep flames away from bedding.
 

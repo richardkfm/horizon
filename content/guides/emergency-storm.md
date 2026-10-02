@@ -14,7 +14,7 @@ several dangers at once: high wind, flying debris, lightning, and often flooding
 Warnings usually give you some time, so use it: secure your surroundings and know
 where you'll shelter.
 
-> **Know the difference: watch vs warning.** A *watch* means conditions are
+> **Note:** **Know the difference: watch vs warning.** A *watch* means conditions are
 > possible — prepare. A *warning* means it's happening or imminent — **act now**
 > and take shelter. Don't wait to see the storm.
 

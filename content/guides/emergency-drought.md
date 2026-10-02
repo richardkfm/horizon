@@ -14,7 +14,7 @@ that cope are the ones that act *early* — cutting use and protecting supply be
 the taps run dry. The priorities are simple: drink first, stay clean enough to
 stay healthy, and keep food growing.
 
-> **Drinking and hygiene come first.** When water is scarce, ration in this order:
+> **Decision:** **Drinking and hygiene come first.** When water is scarce, ration in this order:
 > drinking and cooking, then basic hygiene, then animals and crops, then
 > everything else. Never stop drinking enough — dehydration is dangerous,
 > especially in heat (see *Survive extreme heat*).
@@ -38,13 +38,16 @@ stay healthy, and keep food growing.
 
 ## Keep crops and animals alive
 
-- **Prioritise:** save the most valuable, hardest-to-replace plants and animals;
-  let the rest go if you must.
+- **Prioritise:** keep water for the most valuable, hardest-to-replace plants
+  (perennials, fruit trees, seed crops); annual beds can be resown later.
 - **Mulch heavily and water at the roots** in the cool of the day to cut
   evaporation; shade vulnerable plants.
-- **Choose drought-hardy crops** and save their seed (see the food guides).
-- **Animals need shade and water first**; reduce numbers early rather than lose
-  all to thirst.
+- **Choose drought-hardy crops** and save their seed (see
+  [[food-choosing-crops|choosing crops]] and [[food-seed-saving|seed saving]]).
+- **Animals need shade and water first.** If you can't water and feed them all
+  through the dry season, act early — rehome, sell, or move some animals to
+  where there is water and feed, arranging it with neighbours, other farms, or
+  animal sanctuaries before the water runs short rather than after.
 
 ## Urban vs out of town
 
@@ -52,9 +55,9 @@ stay healthy, and keep food growing.
   legally and early, and rely on greywater reuse. Public taps or tankers may
   appear; keep clean containers ready.
 - **Out of town:** **manage your own source** — protect wells and springs from
-  running dry or fouling, deepen or shade storage, and plan crop and **livestock
-  triage**. Note that drought sharply **raises wildfire risk** (see *Stay safe in
-  a wildfire*).
+  running dry or fouling, deepen or shade storage, and plan early which crops to
+  keep watered and **where animals can go** if water and feed run short. Note
+  that drought sharply **raises wildfire risk** (see [[emergency-wildfire]]).
 
 ## Think ahead
 

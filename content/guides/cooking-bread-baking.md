@@ -14,7 +14,7 @@ flour, water, salt, heat, and time. From a quick flatbread on a hot stone to a
 risen sourdough loaf, baking turns stored grain into daily food. Everything here
 is **plant-based**.
 
-> **Heat is the variable to master.** Without a thermostat oven, you control the
+> **Tip:** **Heat is the variable to master.** Without a thermostat oven, you control the
 > bake by managing the fire and using stored heat (a hot stone, a covered pot, an
 > earth oven). Practice teaches the rest.
 

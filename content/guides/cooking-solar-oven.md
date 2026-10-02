@@ -63,7 +63,7 @@ Nothing here needs buying if you scavenge well.
   heats far better than shiny metal. Raise it on a few pebbles or a wire
   rack so hot air circulates underneath.
 
-> **Spec.** Aim for: insulated on all six sides, foil where light lands,
+> **Spec:** Aim for: insulated on all six sides, foil where light lands,
 > glazing that seals, pot dark and lidded. A well-made cardboard cooker
 > reaches ~120 °C; a wooden version with double glazing runs hotter and
 > lasts years. For the sums on sun hours and panel angles, the same logic
@@ -77,7 +77,9 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
   *will* be; food in by noon cooks by late afternoon. Re-aim every hour or
   so — the lazy version is to point it at the sun's midday position and
   accept a slower cook.
-- **What works well:** stews, beans, lentils, rice and grains, root
+- **What works well:** stews, beans (soaked dried beans need a 10-minute
+  hard boil on a stove first — a solar oven may not get them hot enough to
+  break down the toxin in red kidney beans), lentils, rice and grains, root
   vegetables, baked apples, and bread and flatbreads (links to baking bread
   from scratch). Cut food small, use less water than usual — nothing boils
   away.
@@ -87,7 +89,7 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
   plan differently. Check the sky in the morning and decide then — the
   oven costs nothing to not use.
 
-> **Risk.** Food safety rules don't relax because the fuel is free: get
+> **Risk:** Food safety rules don't relax because the fuel is free: get
 > food *through* the lukewarm zone and hold it hot (above ~60 °C) until
 > serving, and cook meat-free dishes you're confident about — a solar oven
 > is at its best with beans, grains, and vegetables anyway (links to

@@ -13,7 +13,7 @@ Almost every practical plan needs an area or a volume: how much floor to cover,
 soil to dig, paint to mix, water a tank holds, or grain a bin stores. The formulas
 are few and old, and a tape measure plus care gets you there.
 
-> **Keep your units consistent.** Mixing metres and centimetres is the classic
+> **Tip:** **Keep your units consistent.** Mixing metres and centimetres is the classic
 > mistake. Convert everything to one unit before you multiply, and write the unit
 > next to every number.
 

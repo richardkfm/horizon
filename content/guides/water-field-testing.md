@@ -50,23 +50,26 @@ observation plus a few cheap tests tell you most of what you need to decide
 4. **Unsure →** treat as unsafe, boil, and retest when you can.
 
 ```ascii
-   look, smell, and think about the source
-     |
-     +-- visibly dirty -----------------> settle + filter, then disinfect
-     |
-     +-- chemical/fuel smell, colour, --> find another source (treatment
-     |   or known industrial upstream      won't make this one safe)
-     |
-     +-- not sure ----------------------> treat as unsafe: boil
-     |
-     +-- clear, no warning signs -------> run simple field tests
-                                                 |
-                                                 v
-                                          positive for pathogens
-                                          (e.g. H2S test darkens)?
-                                                 |
-                                                 v
-                                          disinfect: boil / chlorine / SODIS
+  look, smell, think about the source
+    |
+    +-- visibly dirty ------> settle + filter,
+    |                         then disinfect
+    |
+    +-- fuel/chemical smell,-> find another source
+    |   colour, or industry    (treatment won't make
+    |   upstream               this one safe)
+    |
+    +-- not sure -----------> treat as unsafe: boil
+    |
+    +-- clear, no warning --> run simple field tests
+        signs                        |
+                                     v
+                          positive for pathogens
+                          (e.g. H2S test darkens)?
+                                     |
+                                     v
+                          disinfect: boil /
+                          chlorine / SODIS
 ```
 
 *Fig. 1: deciding how to treat a water source*

@@ -13,7 +13,7 @@ Where the wind blows steadily, a small turbine complements solar well — it oft
 produces most in winter and at night, when panels make least. It is more
 mechanically involved than solar, so plan for the moving parts and the safety.
 
-> **Wind is fickle and forceful.** Power rises with the *cube* of wind speed, so a
+> **Risk:** **Wind is fickle and forceful.** Power rises with the *cube* of wind speed, so a
 > good site matters enormously — and a storm can destroy an unprotected turbine.
 > Build in a way to slow or stop it in high wind.
 
@@ -59,6 +59,7 @@ tower and battery beat a turbine that never keeps up.
 ```
 
 *Fig. 1: a small wind turbine on a guyed mast — the tail vane keeps the rotor into the wind, guy wires hold the tower against storm loads*
+
 4. **Brake/disconnect:** fit a way to stop the rotor (short the generator, or a
    mechanical brake) for storms and servicing.
 

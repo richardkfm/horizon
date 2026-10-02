@@ -4,6 +4,7 @@ title: Stop severe bleeding
 category: health
 summary: Control heavy bleeding fast with direct pressure, packing, and a tourniquet when needed.
 difficulty: 2
+estimated_time: "20 minutes to read; a hands-on course to learn"
 ---
 
 # Stop severe bleeding
@@ -43,8 +44,12 @@ and keep pressing.**
 ```
 
 *Fig. 1: direct pressure — press firmly straight down on the wound through clean cloth, and keep pressing*
-4. **Lay the person down** and raise the wounded part above the heart if no bone
-   looks broken.
+
+4. **Lay the person down** and keep them warm while you keep pressing. (Raising
+   the wound is no longer taught — it doesn't help much and wastes time; put
+   your effort into firm pressure.)
+5. **Still pouring out?** Pack a deep wound (below), and for an arm or leg
+   bleeding that pressure can't stop, go straight to a tourniquet.
 
 ## Pack a deep wound
 
@@ -57,8 +62,12 @@ For a deep wound in the limb, neck, or groin where pressure alone is not enough:
 
 If an arm or leg is bleeding so badly it won't stop and the person could die:
 
-1. **Place a tourniquet** (a wide band, never wire or string) 5–7 cm above the
-   wound, not over a joint.
+1. **Place a tourniquet** 5–7 cm above the wound (between the wound and the
+   heart), not over a joint. A **commercial windlass tourniquet** is by far the
+   most reliable — keep one in your kit and learn to use it on a course. If you
+   have to improvise, use a wide band (at least 4 cm — a folded scarf or
+   triangular bandage, never wire or string) tied round the limb, with a stick
+   twisted in the knot as a windlass.
 2. **Tighten until the bleeding stops** — it will hurt; that is expected.
 3. **Note the time** it went on and tell the medics. Do not loosen it once
    applied; only a clinician should remove it.
@@ -66,5 +75,11 @@ If an arm or leg is bleeding so badly it won't stop and the person could die:
 ## After bleeding is controlled
 
 - **Keep the person warm** and still, and watch for shock (pale, cold, clammy,
-  fast breathing) — see the *fractures and sprains* and first-aid guides.
+  fast breathing) — see [[health-first-aid-basics]].
 - **Keep pressure or the dressing in place** until professional help takes over.
+
+## Where to go next
+
+- [[health-first-aid-basics]]
+- [[health-mass-casualty-triage]]
+- [[checklist:first-aid-kit]]

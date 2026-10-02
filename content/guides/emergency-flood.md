@@ -13,7 +13,7 @@ Floods are the most common natural disaster, and most flood deaths come from one
 avoidable thing: people entering moving water. The rule that saves lives is
 simple — **get to high ground, and never walk or drive into floodwater.**
 
-> **Turn around, don't drown.** Just 15 cm (6 in) of moving water can knock you
+> **Do now:** **Turn around, don't drown.** Just 15 cm (6 in) of moving water can knock you
 > off your feet, and 30 cm (1 ft) can float a car. You cannot tell depth, current,
 > or what's under the surface. Never enter it on foot or by vehicle.
 

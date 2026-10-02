@@ -13,7 +13,7 @@ When people from different places come together, a few shared phrases prevent
 misunderstanding, defuse fear, and let strangers cooperate and trade. You don't
 need fluency — a small, well-chosen core goes a long way.
 
-> **Respect opens doors.** Learning even a greeting and "thank you" in someone
+> **Tip:** **Respect opens doors.** Learning even a greeting and "thank you" in someone
 > else's language signals goodwill and is often returned in kind.
 
 ## Choose the core that matters most

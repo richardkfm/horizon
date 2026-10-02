@@ -13,7 +13,7 @@ A plan only becomes real when you know *how much* — how many bricks, how much
 seed, how many litres of water, how many days of food. Estimating quantities well
 prevents both running short and wasting scarce resources.
 
-> **Estimate, then add a margin.** Real life has offcuts, spills, breakages, and
+> **Tip:** **Estimate, then add a margin.** Real life has offcuts, spills, breakages, and
 > bad days. Work out the bare quantity, then add a sensible margin (often
 > 10-20%, more for fragile or critical things).
 

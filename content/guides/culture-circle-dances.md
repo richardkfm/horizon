@@ -13,7 +13,7 @@ Dancing together is one of the oldest ways people celebrate, mourn, and bond.
 Circle and line dances are ideal: there are no partners to leave anyone out, the
 steps repeat, and people learn just by following the person beside them.
 
-> **Inclusion first:** Offer a way for everyone to take part — seated clapping,
+> **Tip:** **Inclusion first.** Offer a way for everyone to take part — seated clapping,
 > simpler steps, or just holding the circle. No one should feel left out.
 
 ## Why circles and lines work

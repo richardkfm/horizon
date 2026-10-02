@@ -14,7 +14,7 @@ priority for ordinary people is staying out of harm's way and keeping the family
 together and supplied. This is non-combatant survival: avoiding danger, not
 seeking it.
 
-> **This is protective, not political.** The aim is to keep civilians alive and
+> **Note:** **This is protective, not political.** The aim is to keep civilians alive and
 > together. Stay away from fighting, avoid taking sides in ways that put your
 > household at risk, and follow credible official and humanitarian guidance.
 

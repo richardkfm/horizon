@@ -39,6 +39,23 @@ sand.
 | **X** | Need medical assistance |
 | A large **arrow** | Direction you have gone / are heading |
 
+```ascii
+  \       /     \     /          ^
+   \     /       \   /          / \
+    \   /         \ /          /   \
+     \ /           X             |
+      V           / \            |
+                 /   \           |
+   NEED          NEED         WE WENT
+   HELP        MEDICAL         THIS WAY
+                 HELP
+
+  each at least 3 m across, in the open, made of
+  anything that contrasts with the ground
+```
+
+*Fig. 1: ground-to-air signals — V for help, X for medical help, an arrow for the direction you went*
+
 > **Spec:** Build signals in the most open ground you have — a clearing,
 > a ridge, a sandbar, a field — never under tree cover where nothing can be
 > seen from above.
@@ -88,7 +105,8 @@ good sun:
 
 ## Where to go next
 
-- If you're not sure which way to go before deciding to stay put, see finding
-  direction without a compass.
-- Set up a visible, sheltered base to signal from: see choosing and setting
-  up a campsite and making and keeping a fire without matches.
+- If you're not sure which way to go before deciding to stay put:
+  [[survival-navigation]].
+- Set up a visible, sheltered base to signal from: [[survival-campsite-setup]]
+  and [[survival-fire]].
+- If you're stuck with a vehicle: [[emergency-vehicle-stranded]].

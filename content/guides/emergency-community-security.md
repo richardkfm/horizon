@@ -16,7 +16,7 @@ war. If fighting has reached where you live, see keep your household safe
 during armed conflict instead; this guide is for the more common, smaller,
 and often ongoing situation of a hostile actor rather than a conflict zone.
 
-> **This is protective, not vigilante.** No weapons, no armed patrols, no
+> **Note:** **This is protective, not vigilante.** No weapons, no armed patrols, no
 > confronting the threat yourself. The aim is to notice early, coordinate,
 > de-escalate, and disengage — not to fight anyone.
 

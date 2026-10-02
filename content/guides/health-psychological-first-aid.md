@@ -56,6 +56,28 @@ hours and days.
 > themselves or others) for several days, or talks about harming themselves.
 > These need more than first aid can offer.
 
+## If someone might be thinking about suicide
+
+> **Do now:** If you're worried someone may take their own life, act today:
+>
+> 1. **Ask them directly:** "Are you thinking about killing yourself?"
+>    Asking plainly does **not** put the idea in their head — it tells them
+>    it's safe to talk, and most people feel relieved to be asked.
+> 2. **Stay with them**, or make sure someone they trust does. Don't leave
+>    someone alone who says yes and has a plan.
+> 3. **Remove the means** if you safely can — medicines, ropes, sharp
+>    objects, anything they've mentioned — or keep them away from it.
+> 4. **Get help now:** call your local emergency number if they are in
+>    immediate danger, or a crisis line, or take them to a health worker.
+>    Look up and write down your own country's crisis line today, before
+>    anyone needs it, and keep it with your emergency numbers.
+> 5. **Don't promise to keep it secret.** Say kindly that you care too much
+>    to keep this to yourself, and that you'll get help together.
+
+Listen more than you talk, take what they say seriously, and don't argue,
+lecture, or tell them how much they have to live for. Follow up in the days
+after — a message or a visit matters.
+
 ## Helping children
 
 - **Keep routines as normal as you can** — familiar meals, bedtimes, and
@@ -74,10 +96,11 @@ less able to help the next person who needs it.
 
 ## Where to go next
 
-- For the physical side of responding to an injury, see handling common
-  first-aid situations.
+- For the physical side of responding to an injury:
+  [[health-first-aid-basics]].
 - After a shared crisis affecting a group, fair, calm group decisions matter
-  too — see making fair group decisions.
+  too: [[cooperation-group-decisions]].
+- When several people are hurt at once: [[health-mass-casualty-triage]].
 - Storytelling and shared culture help a group process a hard event
   together over time — see preserving knowledge through storytelling.
 - If the shock followed coercion or a threat from inside the group, see

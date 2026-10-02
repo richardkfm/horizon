@@ -14,7 +14,7 @@ that trust and help each other is resilient. The relationships that matter
 most in a hard moment are almost always the ones built beforehand, in
 ordinary times — not improvised under pressure.
 
-> **Principle:** Treat other groups as equals to cooperate with, never as
+> **Note:** Treat other groups as equals to cooperate with, never as
 > rivals to out-compete or dependents to control. The same non-authoritarian,
 > consent-based approach that governs your own group should govern relations
 > between groups.

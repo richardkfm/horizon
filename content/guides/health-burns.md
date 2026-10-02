@@ -4,6 +4,7 @@ title: Treat burns and scalds
 category: health
 summary: Cool a burn with water, cover it loosely, and know which burns need urgent care.
 difficulty: 1
+estimated_time: "15 minutes to read"
 ---
 
 # Treat burns and scalds

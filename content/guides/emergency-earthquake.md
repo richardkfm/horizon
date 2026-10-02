@@ -14,7 +14,7 @@ shaking, by reflex, matters most. Most injuries come from falling objects and
 broken glass, not collapsing buildings, so the goal is to protect yourself where
 you are.
 
-> **Drop, Cover, Hold On.** Drop to your hands and knees, take cover under a sturdy
+> **Do now:** **Drop, Cover, Hold On.** Drop to your hands and knees, take cover under a sturdy
 > table (or against an interior wall, protecting your head and neck), and hold on
 > until the shaking stops. **Do not run outside during the shaking** — that's when
 > falling debris hurts people.

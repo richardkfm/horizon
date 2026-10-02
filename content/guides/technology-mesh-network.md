@@ -22,14 +22,15 @@ reach any other node, and keeps working even when one node drops out.
 ## What makes a network actually a mesh
 
 ```ascii
-   hub-and-spoke (one failure breaks it):     true mesh (routes around failure):
+  hub-and-spoke              true mesh
+  (one failure breaks it)    (routes around failure)
 
-        [ hub ]                                  [ A ]---[ B ]
-       /   |   \                                   \  X  /
-    [A]  [B]  [C]                                   [ C ]---[ D ]
+        [ hub ]               [ A ]---[ B ]
+       /   |   \                \  X  /
+    [A]  [B]  [C]              [ C ]---[ D ]
 
-   if the hub fails, everyone loses contact       if any one link or node fails,
-                                                   traffic reroutes through another
+  hub fails: everyone        any one link or node fails:
+  loses contact              traffic takes another path
 ```
 
 *Fig. 1: hub-and-spoke networks (including most consumer "Wi-Fi mesh"

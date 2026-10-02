@@ -2,20 +2,20 @@
 id: cooperation-resolving-conflict
 title: Resolve conflict between people fairly
 category: cooperation
-summary: A restorative process for disputes between individuals — de-escalate, mediate, and repair trust without punishment or a forced vote.
+summary: A restorative process for disputes between individuals — de-escalate, mediate, and repair trust without punishment or a forced decision.
 difficulty: 2
 estimated_time: "2 hours to learn, then as needed"
 ---
 
 # Resolve conflict between people fairly
 
-Not every conflict is a decision to be voted on (see the group-decisions
-guide) — sometimes it's a dispute between two or three people that's
+Not every conflict is a decision the group needs to reach (see
+[[cooperation-group-decisions|make fair group decisions]]) — sometimes it's a dispute between two or three people that's
 souring the whole group's mood. Left alone, personal conflict quietly
 drains the trust cooperation depends on. Handled well, it can leave a
 group stronger than before.
 
-> **Principle:** The goal is repair, not punishment. Look for what each
+> **Note:** The goal is repair, not punishment. Look for what each
 > person needs to feel safe and respected going forward — not for who was
 > "right".
 
@@ -65,20 +65,20 @@ group stronger than before.
   single dispute — bring it to the group's governance process (recall,
   role change) rather than mediating the same conflict again and again.
 - **A safety concern** (threats, coercion, exploitation) is not a mediation
-  case — protect the person at risk first; see protect someone from coercion
-  or threats inside the group. Recall or a role change (see set up fair,
-  accountable governance for a group) may follow, but safety comes before
-  any process.
+  case — protect the person at risk first; see
+  [[cooperation-boundary-safety|protect someone from coercion or threats inside the group]].
+  Recall or a role change (see
+  [[cooperation-democratic-governance|set up fair, accountable governance for a group]])
+  may follow, but safety comes before any process.
 - **No obligation to reconcile.** Repair does not mean the people involved
   must keep working closely together — sometimes the fair outcome is
   separating their roles, not forcing continued closeness.
 
 ## Where to go next
 
-- For conflict that's really about how the group makes decisions, see make
-  fair group decisions.
-- For conflict that keeps recurring around one role or person, see set up
-  fair, accountable governance for a group.
+- For conflict that's really about how the group makes decisions:
+  [[cooperation-group-decisions]].
+- For conflict that keeps recurring around one role or person:
+  [[cooperation-democratic-governance]].
 - If what's happening is coercion, intimidation, or a threat rather than a
-  dispute between equals, see protect someone from coercion or threats
-  inside the group.
+  dispute between equals: [[cooperation-boundary-safety]].

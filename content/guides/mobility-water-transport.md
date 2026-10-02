@@ -15,7 +15,7 @@ load that stalls a handcart floats behind one person with a pole. Water
 transport is slow, quiet, fuel-free, and dangerous only when treated
 casually.
 
-> **Risk.** Water is the serious hazard in this guide, not the boat. Cold
+> **Risk:** Water is the serious hazard in this guide, not the boat. Cold
 > water kills fit adults in minutes; loads shift; rivers change with every
 > rain. Never load a craft so it can't be swum away from, keep every person
 > afloat-able (life jacket, or lashed buoyant material with body-securing

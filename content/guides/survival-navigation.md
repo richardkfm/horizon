@@ -12,7 +12,7 @@ estimated_time: "A few hours"
 Knowing which way is which lets you reach help, return to camp, and avoid walking
 in circles. None of this needs a compass — just the sky and some care.
 
-> **Before you move:** Tell someone your plan, or leave a marker. If you are
+> **Tip:** **Before you move.** Tell someone your plan, or leave a marker. If you are
 > lost and have shelter, water, and people may search for you, often the safest
 > choice is to **stay put** and signal.
 

@@ -13,7 +13,7 @@ Singing together costs nothing, needs no equipment, and does what little else
 can: it steadies a frightened group, makes hard work lighter, and turns strangers
 into a community. Anyone can lead it — you do not need a "good voice".
 
-> **Everyone belongs in the song.** Pitch it so the shy and the tone-deaf can
+> **Tip:** **Everyone belongs in the song.** Pitch it so the shy and the tone-deaf can
 > join. The point is togetherness, not performance.
 
 ## Choose songs that teach themselves

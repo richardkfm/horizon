@@ -14,10 +14,11 @@ disaster itself — contaminated water is usually the cause, and human waste is
 usually the source. Managing it properly, from the first day, is one of the
 highest-value things you can do for a group's health.
 
-> **Decide:** Site any latrine or waste pit at least 60 m (about 200 steps)
-> from any water source, and always downhill and downwind of both the water
-> and where people sleep and cook. Uphill or upstream of water is never
-> acceptable, even for one use.
+> **Decide:** Site any latrine or waste pit **at least 30 m (100 ft)** from
+> any water source — more in sandy or gravelly soil, where waste travels
+> further underground; **60 m is safer** wherever you have the room — and
+> always downhill and downwind of both the water and where people sleep and
+> cook. Uphill or upstream of water is never acceptable, even for one use.
 
 ## Dig a latrine
 
@@ -53,14 +54,36 @@ highest-value things you can do for a group's health.
 
 ## Wash hands without running water
 
-A simple "tippy-tap" keeps handwashing going with almost no water:
+A simple "tippy-tap" gives you a small stream of running water with almost no
+water used — and nobody touches the container with dirty hands:
 
-1. Hang a container with a small hole or spigot near head height, above a
+1. Hang a container (a jerry can or big bottle with a small hole near the
+   top of one side) from a crossbar on a cord, over a gravel-filled
    drainage spot.
-2. Tip or tap it to release a trickle over your hands — a little soap or ash
-   and a rub is enough; you don't need a running stream.
-3. Refill from any water, treated or not — handwashing water doesn't need to
-   be drinking-quality, only kept away from food and mouths.
+2. Tie a second cord from the container's neck down to a stick you step on —
+   a foot pedal. Step on it and the container tips, pouring a thin stream.
+3. Wet your hands, rub with **soap** for about 20 seconds (ash is a fallback
+   if there's no soap), then rinse in the running stream. Soap plus running
+   water is what does the work.
+4. Fill it with the cleanest water you have — **treated if possible.** Dirty
+   water can put germs back on clean hands.
+
+```ascii
+     ===========================  crossbar
+       |          |           |
+       |         cord         |
+       |      .---+---.       |
+       |      | water |       |
+       |      |  can  o       |   o = small hole: the
+       |      '---+---'\      |   can tips and pours
+       |          |     \     |   a thin stream
+       |        cord   hands  |
+       |          |           |
+   ~~~~|~~~~~~~~[===]~~~~~~~~~|~~~~  gravel soak pit
+                  ^ foot pedal
+```
+
+*Fig. 1: a tippy-tap — press the foot pedal, the hanging can tips and pours a thin stream, and your hands never touch it*
 
 > **Tip:** Wash hands after using the latrine and before handling food or
 > water, every time. This one habit prevents more illness than almost
@@ -72,14 +95,13 @@ A simple "tippy-tap" keeps handwashing going with almost no water:
   well away from the shared one.
 - **Wash your hands** after any contact with them or their waste, and clean
   any surfaces they've used.
-- See the disease-outbreak guide for wider precautions if illness is
-  spreading through the group.
+- See [[emergency-pandemic|the disease-outbreak guide]] for wider precautions
+  if illness is spreading through the group.
 
 ## Where to go next
 
-- Site the latrine as part of the wider camp layout — see choosing and
-  setting up a campsite.
-- Keep drinking water separate and safe: see finding water in the field and
-  testing whether water is safe to drink.
-- If illness is spreading through a group, see protecting your household
-  during a disease outbreak.
+- Site the latrine as part of the wider camp layout:
+  [[survival-campsite-setup]].
+- Keep drinking water separate and safe: [[survival-find-water]] and
+  [[water-field-testing]].
+- If illness is spreading through a group: [[emergency-pandemic]].

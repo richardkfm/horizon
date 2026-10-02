@@ -13,7 +13,7 @@ The most common reason an off-grid system disappoints is bad sizing — too smal
 and the lights go out, too big and you waste scarce resources. The maths is
 simple arithmetic, and getting it right once saves a lot of grief.
 
-> **Energy vs power.** *Power* (watts, W) is the rate of use right now; *energy*
+> **Note:** **Energy vs power.** *Power* (watts, W) is the rate of use right now; *energy*
 > (watt-hours, Wh) is power used over time. Bills and batteries are about energy:
 > **watts × hours = watt-hours**. Almost all sizing comes back to this.
 
@@ -31,13 +31,14 @@ Find watts on the device label, or estimate. Be honest and slightly generous.
 
 You need to *make* at least your daily use, allowing for losses and weak weather:
 
-1. Take your daily Wh and **add ~20-30%** for losses (wiring, charging,
-   inefficiency).
-2. Divide by the **usable sun-hours** (or wind-equivalent hours) for your worst
-   usable season — often only a few hours a day.
+1. Take your daily Wh and divide by the **usable sun-hours** (or
+   wind-equivalent hours) for your worst usable season — often only a few
+   hours a day.
+2. **Divide by 0.7** to allow for about 30% losses (wiring, charging,
+   inefficiency) — the same as multiplying by about 1.43.
 3. That gives the **watts of panel (or turbine)** you need. Round up.
 
-Example: 1000 Wh/day × 1.3 ÷ 4 sun-hours ≈ **325 W of panel**.
+Example: 1000 Wh/day ÷ 4 sun-hours ÷ 0.7 ≈ **357 W of panel** — fit 360–400 W.
 
 ## Step 3: Size the battery bank
 

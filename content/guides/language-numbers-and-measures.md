@@ -14,7 +14,7 @@ Counting, trading, agreeing a time, and measuring a length all run on the same
 small vocabulary — and unlike most words, numbers can always be checked by
 showing fingers, objects, or written digits.
 
-> **Tip.** Written digits (1, 2, 3…) are understood almost everywhere, even
+> **Tip:** Written digits (1, 2, 3…) are understood almost everywhere, even
 > where nothing else is shared. When in doubt, write the number down or scratch
 > it in the dirt.
 
@@ -30,7 +30,7 @@ showing fingers, objects, or written digits.
 4. **Check with fingers or objects** while you say a number, until you trust
    each other's words.
 
-> **Note.** Finger counting itself differs between cultures — some start
+> **Note:** Finger counting itself differs between cultures — some start
 > counting on the thumb, some on the index finger, and a raised hand can mean
 > five, ten, or "stop". Show the count *and* say it, and confirm the total by
 > laying out objects when a trade matters.
@@ -71,7 +71,7 @@ as the standard for a job.*
 - **Counting stock:** tally in groups of five — four strokes and a bar — a
   system readable across most cultures.
 
-> **Risk.** Mixed units cause real losses in trade and building. When exactness
+> **Risk:** Mixed units cause real losses in trade and building. When exactness
 > matters — medicine doses, water treatment, rationing — use one written system
 > (metric where known), write it down, and have both sides repeat the quantity
 > back.

@@ -14,7 +14,7 @@ source that yields less than the group draws, a tank that buys two days when
 the dry spell lasts ten. Three small calculations — yield, use, and storage
 — tell you where you stand before the barrel does.
 
-> **Note.** This guide does the *quantity* maths only. Whether the water is
+> **Note:** This guide does the *quantity* maths only. Whether the water is
 > safe is its own question — see testing whether water is safe to drink and
 > choosing a water treatment.
 
@@ -50,8 +50,10 @@ measurement under everything else in this guide.*
 
 Count people × a per-person daily rate, then add the non-people uses:
 
-- **Drinking and cooking:** 3-5 L per person per day — the non-negotiable
-  core.
+- **Drinking and cooking:** at least about 4 L (1 gallon) per person per day —
+  the non-negotiable core and the usual emergency storage figure (see
+  [[checklist:water-store]]). Allow more in heat, and for anyone sick,
+  pregnant or breastfeeding, and for children.
 - **Basic washing and hygiene:** another 10-15 L per person per day in a
   frugal setup.
 - **Animals:** a working donkey or a milking goat drinks 15-30 L a day in

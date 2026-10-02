@@ -38,6 +38,12 @@ times too, not just emergencies.
 
 ## Set up a usable antenna
 
+> **Note:** This section is for **CB and licensed amateur (ham) radio
+> only.** Licence-free FRS (US) and PMR446 (Europe) handhelds must be used
+> with their original, fixed antenna — fitting an external or roof antenna
+> to them is not allowed. With those, get range by standing somewhere high
+> and open instead.
+
 - **Height matters most.** An antenna a few metres higher clears obstacles
   and roughly doubles useful range — a roof or mast mount beats a handheld's
   built-in antenna every time.

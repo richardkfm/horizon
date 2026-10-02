@@ -13,7 +13,7 @@ Music binds people together, lifts spirits during hard work, and marks births,
 harvests, and farewells. You need no electricity and no bought instruments — just
 materials at hand and a willingness to begin.
 
-> **Welcoming over polished:** The aim is for everyone to join in, not to sound
+> **Tip:** **Welcoming over polished.** The aim is for everyone to join in, not to sound
 > perfect. A group keeping one happy beat beats a flawless solo no one shares.
 
 ## Make instruments from found things

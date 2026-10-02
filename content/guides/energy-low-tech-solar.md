@@ -30,10 +30,17 @@ phones and radios, and keep small devices alive off-grid. Keeping it low-voltage
 ## Sizing (rough method)
 
 1. **List your loads** and their watts × hours per day to get watt-hours/day.
-2. **Battery:** divide daily watt-hours by 12 V for amp-hours, then roughly
-   double it (so you use only ~50% of a lead-acid battery and have a reserve).
-3. **Panel:** size it to replace a day's use within your worst-case sun hours;
-   a panel watt rating near your daily amp-hours is a sane starting point.
+2. **Battery:** daily watt-hours × days of autonomy (2 is sensible) ÷ the
+   share of the battery you can use (about 0.5 for lead-acid, 0.8 for
+   LiFePO₄), then ÷ 12 V for amp-hours.
+3. **Panel:** it has to replace a day's use within your worst-case sun hours:
+   **panel watts ≈ daily Wh ÷ peak sun hours ÷ 0.7** (the ÷ 0.7 covers about
+   30% losses in the controller, wiring and charging).
+
+> **Spec:** Worked example — 222 Wh a day, 3 winter sun hours, lead-acid:
+> battery `222 × 2 ÷ 0.5 ÷ 12 ≈ 74 Ah` (fit 100 Ah); panel
+> `222 ÷ 3 ÷ 0.7 ≈ 106 W` (fit at least 120 W). The full method is in
+> [[energy-sizing-solar-battery]].
 
 ```ascii
    +-------------+        +------------------+        +------------+

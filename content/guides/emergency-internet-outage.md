@@ -28,14 +28,20 @@ Most of what you decide depends on whether this is your flat or your region.
 Work down the chain until something answers.
 
 ```ascii
-   you           your home        your street      your provider   everywhere
- [ phone ] -wifi-> [ router ] -line-> [ cabinet ] -> [ ISP ] -> [ wider net ]
-     |                 |                  |             |             |
- mobile data       lights red        neighbours     provider      radio says
- still works?      or all dark       also down?     at fault?     it's regional
-     |                 |                  |             |             |
-  -> your home      -> your kit        -> a local     -> nothing    -> settle in
-     line only         only               fault          to fix        calmly
+  [ phone ]    mobile data still works?
+      |        -> only your home line is down
+      v
+  [ router ]   lights red, or all dark?
+      |        -> your kit or your power
+      v
+  [ street ]   neighbours down too?
+      |        -> a local fault
+      v
+  [ provider ] provider says it's at fault?
+      |        -> nothing for you to fix
+      v
+  [ wider net] radio says it's regional?
+               -> settle in calmly
 ```
 
 *Fig. 1: work outward from your own kit — each step you rule out tells you how long to expect it to last and who can fix it*

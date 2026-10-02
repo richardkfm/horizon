@@ -13,7 +13,7 @@ Extreme heat kills more people than most disasters, quietly and indoors. Without
 air conditioning, staying safe is about lowering your body's heat load: shade,
 air, water, and rest. It is very manageable if you act early.
 
-> **Know the danger signs.** Heat exhaustion — heavy sweating, dizziness, nausea,
+> **Risk:** **Know the danger signs.** Heat exhaustion — heavy sweating, dizziness, nausea,
 > headache, cramps — can tip into **heatstroke**: hot dry skin, confusion,
 > collapse. Heatstroke is a life-threatening emergency: cool the person fast and
 > get medical help.

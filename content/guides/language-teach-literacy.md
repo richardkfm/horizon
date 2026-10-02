@@ -13,7 +13,7 @@ Reading and writing let people keep records, share knowledge across distance and
 time, and take part fully in decisions. You can teach the basics with nothing but
 a stick and smooth ground, patience, and a little structure.
 
-> **Dignity always.** Learners of any age may feel ashamed not to read. Be
+> **Note:** **Dignity always.** Learners of any age may feel ashamed not to read. Be
 > patient and private, celebrate small wins, and never mock a mistake.
 
 ## Start with sounds, then letters

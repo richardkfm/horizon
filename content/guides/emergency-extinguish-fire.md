@@ -4,6 +4,7 @@ title: Put out a fire safely
 category: emergencies
 summary: Tackle small fires the right way by type, and know the moment to stop and get out.
 difficulty: 2
+estimated_time: "30 minutes to read, then practise"
 ---
 
 # Put out a fire safely
@@ -18,6 +19,20 @@ when to flee** — your life is worth more than any building.
 
 > **Warning:** Smoke kills more people than flames. If you can't put a fire out in
 > the first moments, leave. Never let a fire get between you and your way out.
+
+## Before a fire: alarms and a way out
+
+The best fire is the one you hear about early and walk away from.
+
+- **Smoke alarms:** fit at least one on every floor and, ideally, in or
+  outside every bedroom. **Test them monthly** with the button, and change
+  batteries (or the whole alarm) when the maker says.
+- **A home escape plan:** for every room, know **two ways out** (a door and a
+  window, say). Agree a **meeting point** outside — a lamp post, a neighbour's
+  gate — so you can count everyone. **Practise it** with the whole household,
+  including at night, a couple of times a year.
+- Keep exits, stairs and keys clear, and make sure children and anyone with
+  limited mobility know — and can manage — their way out.
 
 ## General rules
 
@@ -56,7 +71,7 @@ when to flee** — your life is worth more than any building.
 ## Person on fire
 
 **Stop, drop, and roll** — or smother the flames with a blanket or coat. Then cool
-the burns with water and treat them (see the *burns* guide).
+the burns with water and treat them (see [[health-burns]]).
 
 ## Using an extinguisher — remember PASS
 
@@ -67,5 +82,10 @@ doesn't quickly shrink.
 ## After a fire
 
 Make sure it's fully out and won't reignite, ventilate smoke, and don't re-enter a
-fire-damaged building until it's declared safe. See also the *wildfire* and *make
-and keep a fire* guides.
+fire-damaged building until it's declared safe.
+
+## Where to go next
+
+- [[health-burns]]
+- [[emergency-wildfire]]
+- [[survival-fire]]

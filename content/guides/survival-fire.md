@@ -13,7 +13,7 @@ Fire lets you boil water safe to drink, cook food, stay warm, dry clothes, and
 signal for help. The skill is mostly preparation: a fire that "won't light" is
 almost always one that was rushed.
 
-> **Safety first:** Clear a circle of bare earth, keep water or soil within
+> **Risk:** Clear a circle of bare earth, keep water or soil within
 > reach, never leave a fire unattended, and don't light one in high wind or near
 > dry brush. Put it out cold — stir the ashes, douse, and feel for heat.
 

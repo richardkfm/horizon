@@ -15,7 +15,7 @@ community's language fades, that knowledge and part of the community's
 identity fade with it. Preserving a language is ordinary, patient work —
 lists, recordings, stories, and above all *use* — and any group can do it.
 
-> **Note.** A language belongs to its speakers. Document *with* them, at
+> **Note:** A language belongs to its speakers. Document *with* them, at
 > their pace, and let them decide what is shared, what is taught, and what
 > stays private — some songs, names, or stories may not be for outsiders.
 > Ask before recording, and the record belongs to them.
@@ -84,5 +84,5 @@ speakers.
   water filters is alive; borrowing and inventing words is how healthy
   languages have always grown.
 
-> **Tip.** Celebrate small wins publicly — a child greeting an elder in the
+> **Tip:** Celebrate small wins publicly — a child greeting an elder in the
 > old language is worth more to its future than a shelf of notebooks.

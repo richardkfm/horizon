@@ -2,7 +2,7 @@
 id: crafts-make-tools
 title: Make your own hand tools
 category: crafts
-summary: Make basic cutting, digging, and striking tools from wood, stone, bone, and salvage.
+summary: Make basic cutting, digging, and striking tools from wood, stone, and salvage.
 difficulty: 3
 estimated_time: "An afternoon"
 ---
@@ -10,9 +10,10 @@ estimated_time: "An afternoon"
 # Make your own hand tools
 
 When you can't buy tools, you can make surprisingly capable ones from what's around:
-wood, stone, bone, and salvaged metal. The principles are old and simple — shape an
-edge or a point, fix it to a handle, and lash it tight. This pairs with the
-*sharpen and repair hand tools* guide once you have something to maintain.
+wood, stone, and salvaged metal. The principles are old and simple — shape an
+edge or a point, fix it to a handle, and lash it tight. This pairs with
+[[crafts-tool-repair|sharpen and repair hand tools]] once you have something to
+maintain.
 
 > **Warning:** Home-made tools have sharp edges and can fail under load. Cut away
 > from your body, keep fingers clear of the striking line, and test a new tool
@@ -35,21 +36,21 @@ Most work needs only a few tool types:
 - **From stone:** strike a hard, fine-grained stone (flint, chert, obsidian) a
   glancing blow with another stone to flake off sharp-edged pieces. Wear eye
   protection — flakes are glass-sharp.
-- **From bone or hardwood:** grind to a bevel on an abrasive stone for a scraper or
-  a crude blade.
+- **From hardwood:** carve and grind a dense, seasoned hardwood to a bevel on an
+  abrasive stone for a scraper, wedge, or crude blade.
 
 ## Make a handle and haft the tool
 
 A blade or stone head becomes far more useful fixed to a handle ("hafting"):
 
 ```ascii
-                                    ,--,   stone blade, ground to an edge
-                                   /    \
-        ,======================><       the split end opens to seat the blade
-       /                          \  /
-  handle, straight seasoned        xx
-  hardwood, no cracks               xx    <- lashing, wrapped tight and
-                                           finished with a locking hitch
+                         ,--,  stone blade, ground to an edge
+                        /    \
+  ,===================><
+ /                      \  /   split end opens
+ handle: straight,       xx    to seat the blade
+ seasoned hardwood,       xx   <- lashing, wrapped
+ no cracks                        tight, locking hitch
 ```
 
 *Fig. 1: hafting a stone blade — seat it in the handle's split end, then lash it tight with cord*
@@ -59,9 +60,12 @@ A blade or stone head becomes far more useful fixed to a handle ("hafting"):
 2. **Shape it to fit your grip** and smooth it so it won't blister your hand.
 3. **Set the head:** split or notch the handle to seat the blade or stone, or bore a
    socket.
-4. **Lash it tight** with strong cordage (see *make rope and cordage*), wrapping
-   firmly and finishing with a locking hitch. Wet rawhide or sinew shrinks as it
-   dries for an even tighter grip.
+4. **Lash it tight** with strong plant-fibre cordage (see
+   [[crafts-cordage|make rope and cordage]]), wrapping firmly and finishing with
+   a locking hitch. For an even firmer, waterproof grip, seal the seat and
+   lashing with **pine-pitch glue** — pine resin melted gently and stirred
+   with a little powdered charcoal, smeared on warm and left to harden. Keep
+   it away from open flame while melting; hot resin burns and catches fire.
 5. **Wedge if needed:** drive a thin wooden wedge into an axe-eye handle to lock the
    head.
 
@@ -80,13 +84,13 @@ A blade or stone head becomes far more useful fixed to a handle ("hafting"):
   rubbing smooth; it stiffens the wood.
 
 ```ascii
-        ,======================>   shaft, straight hardwood
-                              \
-                               \___
-                                   \_    point, carved then charred
-        embers                       \   near (not in) the coals
-   ()  ()  ()  ()  ()  ()  ()  ()  ()
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ,=================>   shaft, straight hardwood
+                     \
+                      \___
+                          \_  point, carved, then
+   embers                   \ charred near (not in)
+  ()  ()  ()  ()  ()  ()  ()  the coals
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
 *Fig. 2: fire-hardening a point — hold it near the embers' heat, not in the flame, then rub the charred surface smooth*
@@ -94,5 +98,11 @@ A blade or stone head becomes far more useful fixed to a handle ("hafting"):
 ## Look after them
 
 Keep edges sharp and handles tight, oil metal against rust, and store tools dry. A
-maintained home-made tool outlasts a neglected bought one — see *sharpen and repair
-hand tools*.
+maintained home-made tool outlasts a neglected bought one — see
+[[crafts-tool-repair|sharpen and repair hand tools]].
+
+## Where to go next
+
+- [[crafts-tool-repair]]
+- [[crafts-cordage]]
+- [[survival-knots]]

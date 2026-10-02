@@ -15,17 +15,25 @@ protecting a source safely takes real care. Get this wrong and you risk both
 your safety and the water's safety.
 
 > **Risk:** Hand-digging a well is genuinely dangerous — collapsing walls and
-> oxygen-poor or toxic air at depth have killed diggers. Never dig alone,
-> never enter a hole deeper than about a metre without shoring the sides, and
-> test the air (a lowered candle that dims or goes out means don't go down)
-> before anyone enters. Where a mechanical auger or a local professional
-> driller is available, prefer that over hand-digging.
+> oxygen-poor or toxic air at depth have killed diggers, often several at
+> once. Never climb down into an existing well or shaft. If someone really
+> must go in (for example while digging), never dig alone, never enter a hole
+> deeper than about a metre without shoring the sides, **ventilate it** (blow
+> fresh air down with a fan or bellows and hose), **check the air with a gas
+> detector** before and during the work, and wear a **harness on a line held
+> by people standing above**. If someone collapses down there, **nobody climbs
+> down after them** — haul them up by the line and call for help; most
+> deaths in wells are would-be rescuers. Don't rely on a lowered candle: it
+> misses many toxic gases and can ignite methane. Where a mechanical auger or
+> a local professional driller is available, prefer that over hand-digging.
 
 ## Site it away from contamination
 
-- **Keep at least 30 metres** from latrines, livestock pens, graveyards, and
-  waste pits — and site the source *uphill* or *upslope* of these where the
-  land allows, so runoff drains away from it, not into it.
+- **Keep at least 30 metres (100 ft)** from latrines, livestock pens,
+  graveyards, and waste pits — more if the source is downhill of them or the
+  soil is sandy or gravelly; 60 m is safer — and site the source *uphill* or
+  *upslope* of these where the land allows, so runoff drains away from it,
+  not into it.
 - **Look for signs of accessible groundwater:** low-lying damp ground,
   certain water-loving plants, or a natural spring already emerging.
 - **Ask about the aquifer** locally where you can — existing wells nearby are
@@ -38,8 +46,10 @@ your safety and the water's safety.
 2. **Line as you go**, not after — concrete rings, brick, or stone laid in
    short sections just above the current depth stop the sides collapsing as
    you deepen it.
-3. **Work with at least one person above** at all times, with a rope and a
-   clear signal for "pull me up now".
+3. **Work with at least one person above** at all times, the digger in a
+   harness on a line they hold, with a clear signal for "pull me up now".
+   Ventilate and check the air with a gas detector each time before anyone
+   goes back down.
 4. **Stop and reassess** at any sign of unstable soil, water inflow you
    can't control, or bad air.
 5. **Cap it properly** once finished: a raised lip, a solid cover, and a
@@ -51,18 +61,19 @@ your safety and the water's safety.
 A spring needs protecting where it emerges, not just downstream of it:
 
 ```ascii
-        upslope ground, fenced off
+      upslope ground, fenced off
               |
               v
-   [ diversion drain ]  <- carries surface runoff around, not into, the spring
-              |
-    _____     v     _____
-   /     \-------- /     \
-  | spring box (sealed, capped) |   collects water at the point it emerges
-   \_____________________________/
+   [ diversion drain ]  <- carries runoff around,
+              |            not into, the spring
+              v
+   +-----------------------+
+   | spring box (sealed,   |  collects water where
+   | capped)               |  it emerges
+   +-----------------------+
               |
               v
-        pipe out to a tap or tank, below ground level
+   pipe to a tap or tank, below ground
 ```
 
 *Fig. 1: a spring box — a sealed chamber built over the point water emerges,

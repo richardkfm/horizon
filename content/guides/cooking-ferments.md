@@ -17,7 +17,7 @@ pickling); this one goes further — brining any vegetable, brewing vinegar
 from scraps, and learning to read a jar so you can rescue or reject with
 confidence.
 
-> **Note.** Everything here is plant-based and needs only salt, water, jars,
+> **Note:** Everything here is plant-based and needs only salt, water, jars,
 > and time. The one thing fermentation can't fix is spoiled produce — start
 > clean and fresh, and the microbes do the rest.
 
@@ -66,14 +66,17 @@ runs happily on scraps you'd compost.
    **vinegar mother**, a living starter: move it to your next batch and it
    will run faster.
 4. **Done when it tastes like vinegar.** Bottle it sealed. Homemade
-   strength varies, so for pickling that relies on acidity, taste for a
-   clearly sharp vinegar — and keep the pantry rule from the preserving
-   guide: when in doubt, refrigerate or eat fresh rather than store.
+   vinegar's strength is unknown — tasting can't tell you whether it is
+   acidic enough to preserve safely — so use it for **fridge pickles,
+   dressings, marinades and cleaning only**, never for shelf-stable pickles.
+   For pickles that keep at room temperature, use shop vinegar labelled at
+   least 5% acidity (see [[cooking-preserving]]).
 
-> **Tip.** One jar of scrap vinegar always going turns fruit waste into the
+> **Tip:** One jar of scrap vinegar always going turns fruit waste into the
 > household's supply of cleaner, hair rinse, marinade base, and pickling
-> liquid — a small loop that never needs the shop (links to composting and
-> soil restoration for everything the jar can't take).
+> liquid for the fridge — a small loop that never needs the shop (see
+> [[food-soil-and-land-restoration|composting and soil restoration]] for
+> everything the jar can't take).
 
 ## Read the jar: rescue or reject
 
@@ -89,7 +92,7 @@ Fermenting safely is mostly knowing what you're looking at.
 - **Most failures trace to one cause:** something poked above the brine.
   Weights and topped-up brine prevent nearly everything.
 
-> **Risk.** Trust your nose and eyes over any timetable — sour and clean
+> **Risk:** Trust your nose and eyes over any timetable — sour and clean
 > means fermenting; foul means finished. If a jar smells rotten or shows
 > coloured fuzz, discard it without tasting.
 

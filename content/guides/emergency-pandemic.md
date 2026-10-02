@@ -13,7 +13,7 @@ In an epidemic or pandemic, simple, consistent habits protect you and slow the
 spread far more than panic does. The basics — distance, hygiene, clean air, and
 careful care of the sick — work against most infectious diseases.
 
-> **Follow trusted health guidance.** Outbreaks differ in how they spread and what
+> **Note:** **Follow trusted health guidance.** Outbreaks differ in how they spread and what
 > stops them. Get instructions from credible health authorities and adapt these
 > general principles to the specific illness.
 
