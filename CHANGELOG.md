@@ -13,6 +13,18 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.3] — 2026-10-02
+
+### Changed
+
+- **Shorter README.** The README is now a short, phone-readable overview:
+  a two-paragraph pitch, six one-line features, a three-line Docker
+  quickstart, and links out. The detail moved, unchanged, into two new
+  docs: [`docs/install.md`](docs/install.md) (Docker, curl installer,
+  bare-metal, systemd, Makefile) and [`docs/features.md`](docs/features.md)
+  (the full feature tour). `docs/operating.md` now links to the install
+  guide instead of README anchors. No code or API changes.
+
 ## [0.9.2] — 2026-10-02
 
 ### Changed
@@ -1345,7 +1357,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
      release commits. Switch them to the tag form once the tags are pushed.
      v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
      pushed when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.2...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.3...HEAD
+[0.9.3]: https://github.com/richardkfm/horizon/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/richardkfm/horizon/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/richardkfm/horizon/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/richardkfm/horizon/compare/v0.8.1...v0.9.0
