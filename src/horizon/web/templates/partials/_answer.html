@@ -1,3 +1,6 @@
+{# Answer fragment. Guides the answer already lists are linked in place (see
+   routes._link_cited_guides); only citations it doesn't mention are repeated
+   under Sources, so the same guides never show up twice. #}
 <article class="answer-card">
   <div class="answer-body">{{ answer_html | safe }}</div>
   {% if citations %}
@@ -9,9 +12,10 @@
       {% endfor %}
     </ul>
   </footer>
-  {% else %}
+  {% elif asked and not any_citations %}
   <footer class="answer-citations">
-    <p class="empty">No local guides matched this question.</p>
+    <p class="empty">No local guide matched this question. Try other words, or
+      <a href="/guides">browse the how-to guides</a>.</p>
   </footer>
   {% endif %}
 </article>

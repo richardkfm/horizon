@@ -12,8 +12,15 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, Request
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
+from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.responses import FileResponse, Response
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from horizon import __version__
 from horizon.api import ai, guides, journeys, recommend
@@ -67,6 +74,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="horizon", version=__version__, lifespan=lifespan)
 
+# Compress HTML, CSS, and JS on the wire: a page plus its stylesheet shrinks
+# roughly 4-5x, which matters on a slow mesh/Wi-Fi link to a Pi. Level 5 keeps
+# the CPU cost low on weak hardware for most of the size win; responses that
+# are already encoded (gzipped map tiles) are passed through untouched.
+app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=5)
+
 # The server-rendered web UI is optional: a headless operator can run a node
 # with just the JSON API and the ``horizon-admin`` CLI by setting
 # ``web.enabled: false`` (or ``HORIZON_WEB_ENABLED=0``). The API and health
@@ -76,9 +89,10 @@ if web_enabled():
     from horizon.web import maps as maps_routes
     from horizon.web import reference as reference_routes
     from horizon.web import routes as web_routes
+    from horizon.web.assets import SHORT_CACHE, CachedStaticFiles
 
-    # Static assets (CSS + vendored JS).
-    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+    # Static assets (CSS + vendored JS). Versioned URLs are cached for a year.
+    app.mount("/static", CachedStaticFiles(directory=str(STATIC_DIR)), name="static")
     # Guide illustrations live alongside the Markdown under the content directory
     # so content packs can ship their own figures. ``check_dir=False`` because the
     # content directory is materialised during the seeding lifespan step, after
@@ -88,9 +102,19 @@ if web_enabled():
     guide_images = Path(settings.content_dir) / "guides" / "images"
     app.mount(
         "/guides/images",
-        StaticFiles(directory=str(guide_images), check_dir=False),
+        CachedStaticFiles(directory=str(guide_images), check_dir=False),
         name="guide-images",
     )
+
+    @app.get("/favicon.ico", include_in_schema=False)
+    def favicon() -> Response:
+        """Serve the SVG mark for browsers/tools that ask for /favicon.ico."""
+        return FileResponse(
+            STATIC_DIR / "favicon.svg",
+            media_type="image/svg+xml",
+            headers={"Cache-Control": SHORT_CACHE},
+        )
+
     # Server-rendered pages.
     app.include_router(web_routes.router)
     app.include_router(admin_routes.router)
@@ -119,6 +143,48 @@ app.include_router(journeys.router)
 app.include_router(guides.router)
 app.include_router(recommend.router)
 app.include_router(ai.router)
+
+
+def _wants_json_error(request: Request) -> bool:
+    """API callers, probes, and htmx fragment requests keep the JSON errors.
+
+    The JSON API is a stable contract (``{"detail": ...}`` bodies), so only
+    browser page requests get the friendly HTML error page.
+    """
+    path = request.url.path
+    return (
+        not web_enabled()
+        or path.startswith("/api/")
+        or path in ("/api", "/healthz", "/docs", "/redoc", "/openapi.json")
+        or "HX-Request" in request.headers
+    )
+
+
+def _error_page(request: Request, status_code: int, headers: dict | None = None) -> Response:
+    """Render the friendly, plain-language error page with the real status."""
+    from horizon.web.routes import templates
+
+    return templates.TemplateResponse(
+        request,
+        "error.html",
+        {"status_code": status_code, "path": request.url.path},
+        status_code=status_code,
+        headers=headers,
+    )
+
+
+@app.exception_handler(StarletteHTTPException)
+async def _http_error(request: Request, exc: StarletteHTTPException) -> Response:
+    if _wants_json_error(request) or exc.status_code < 400:
+        return await http_exception_handler(request, exc)
+    return _error_page(request, exc.status_code, getattr(exc, "headers", None))
+
+
+@app.exception_handler(RequestValidationError)
+async def _validation_error(request: Request, exc: RequestValidationError) -> Response:
+    if _wants_json_error(request):
+        return await request_validation_exception_handler(request, exc)
+    return _error_page(request, 422)
 
 
 @app.get("/healthz", tags=["meta"])

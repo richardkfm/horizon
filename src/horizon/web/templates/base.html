@@ -9,7 +9,7 @@
   {% if not low_power_enabled() %}
   <!-- Set the colour theme before the page paints to avoid a flash. Reads the
        on-device choice (a single display preference, not an account); falls back
-       to the OS setting. Plain JS so it works without Alpine. -->
+       to the OS setting. -->
   <script>
     (function () {
       try {
@@ -38,17 +38,17 @@
   </script>
   <link rel="stylesheet" href="{{ static_url('app.css') }}" />
   <link rel="stylesheet" href="{{ static_url('print.css') }}" media="print" />
-  <!-- Vendored locally so the UI works fully offline. htmx drives the assistant
-       form; Alpine is skipped in low-power mode to save a little work. -->
-  <script src="{{ static_url('htmx.min.js') }}" defer></script>
-  {% if not low_power_enabled() %}<script src="{{ static_url('alpine.min.js') }}" defer></script>{% endif %}
+  {# Page-specific scripts. htmx (vendored, offline) is only loaded by the
+     pages that use it — the assistant and the admin health/packs pages —
+     so ordinary reading pages ship no JavaScript library at all. #}
+  {% block scripts %}{% endblock %}
 </head>
 <body{% if low_power_enabled() %} class="low-power"{% endif %}>
   <a class="skip-link" href="#main-content">Skip to content</a>
   {% if low_power_enabled() %}
   <div class="low-power-banner no-print" role="status">
-    Low-power mode — the AI model and vector search are paused to save energy.
-    The assistant points you to local guides instead.
+    Low-power mode is on to save energy. Every guide works as normal; the
+    assistant lists matching guides instead of writing an answer.
   </div>
   {% endif %}
   <header class="site-header">
@@ -77,15 +77,22 @@
       </svg>
       <span class="brand-text">horizon</span>
     </a>
+    {# Mark the current section: aria-current="page" on its own index page,
+       "true" on a page inside it (a single guide under How-to guides). #}
+    {% set here = request.url.path if request is defined else "" %}
+    {% macro nav_link(href, label, cls="") -%}
+    {%- set current = "page" if here == href else ("true" if href != "/" and here.startswith(href ~ "/") else "") -%}
+    <a {% if cls %}class="{{ cls }}" {% endif %}href="{{ href }}"{% if current %} aria-current="{{ current }}"{% endif %}>{{ label }}</a>
+    {%- endmacro %}
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-      <a class="nav-home" href="/">Home</a>
-      <a href="/recommend">Where to start</a>
-      <a href="/journeys">Step-by-step plans</a>
-      <a href="/guides">How-to guides</a>
-      {% if reference_library_enabled() %}<a href="/reference">Reference library</a>{% endif %}
-      {% if map_viewer_enabled() %}<a href="/maps">Maps</a>{% endif %}
-      <a href="/checklists">Checklists</a>
-      {% if assistant_enabled() %}<a href="/assistant">Ask a question</a>{% endif %}
+      {{ nav_link("/", "Home", "nav-home") }}
+      {{ nav_link("/recommend", "Where to start") }}
+      {{ nav_link("/journeys", "Step-by-step plans") }}
+      {{ nav_link("/guides", "How-to guides") }}
+      {% if reference_library_enabled() %}{{ nav_link("/reference", "Reference library") }}{% endif %}
+      {% if map_viewer_enabled() %}{{ nav_link("/maps", "Maps") }}{% endif %}
+      {{ nav_link("/checklists", "Checklists") }}
+      {% if assistant_enabled() %}{{ nav_link("/assistant", "Ask a question") }}{% endif %}
     </nav>
     <div class="header-actions">
       <button type="button" class="nav-toggle no-print" id="nav-toggle"
@@ -106,9 +113,7 @@
                 aria-haspopup="true" aria-expanded="false" aria-controls="a11y-panel"
                 aria-label="Display settings: text size and contrast"
                 title="Display settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 19l4.5-12h1L16 19M7.5 14.5h5"/>
-          </svg>
+          <span class="a11y-glyph" aria-hidden="true">Aa</span>
         </button>
         <div id="a11y-panel" class="a11y-panel" hidden>
           <p class="a11y-panel-label" id="text-size-label">Text size</p>
@@ -137,13 +142,17 @@
     <span>horizon · everyday autonomy and relearning basic human skills · PolyForm-NC-1.0.0 · v{{ version }}</span>
     <div class="footer-links no-print">
       <a href="https://github.com/richardkfm/horizon" target="_blank" rel="noopener noreferrer">GitHub</a>
+      {# Cookie presence only picks the label; /admin itself checks the token. #}
+      {% if request is defined and request.cookies.get("horizon_admin") %}
+      <a class="footer-admin" href="/admin">Dashboard</a>
+      {% else %}
       <a class="footer-admin" href="/admin">Operator login</a>
+      {% endif %}
     </div>
    </div>
   </footer>
   <script>
-    // Collapsible navigation for small screens. Plain JS so it works in every
-    // mode (including low-power, where Alpine is skipped).
+    // Collapsible navigation for small screens. Plain JS, works in every mode.
     (function () {
       var toggle = document.getElementById("nav-toggle");
       var nav = document.getElementById("site-nav");

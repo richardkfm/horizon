@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/_icons.html" import category_icon %}
+{% from "partials/_ui.html" import difficulty %}
 {% block title %}Step-by-step plans — horizon{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
@@ -14,10 +15,10 @@
 
 {% if categories %}
 <nav class="filter-bar" aria-label="Filter plans by topic">
-  <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/journeys">All</a>
+  <a class="filter-chip {% if not selected_category %}is-active{% endif %}" href="/journeys"{% if not selected_category %} aria-current="page"{% endif %}>All</a>
   {% for category in categories %}
   <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
-     href="/journeys?category={{ category }}">{{ category }}</a>
+     href="/journeys?category={{ category | urlencode }}"{% if category == selected_category %} aria-current="page"{% endif %}>{{ category }}</a>
   {% endfor %}
 </nav>
 {% endif %}
@@ -25,17 +26,17 @@
 {% if tracks %}
 <ul class="track-list">
   {% for track in tracks %}
-  <li class="track-card">
+  <li class="track-card" data-cat="{{ track.category }}">
     <header class="track-card-head">
       <span class="track-icon" aria-hidden="true">{{ category_icon(track.category) }}</span>
       <div class="track-titles">
-        <span class="category-badge">{{ track.category }}</span>
+        <span class="category-badge" data-cat="{{ track.category }}">{{ track.category }}</span>
         <h2><a href="/journeys/{{ track.id }}">{{ track.title }}</a></h2>
       </div>
     </header>
-    {% if track.description %}<p class="track-desc">{{ track.description }}</p>{% endif %}
+    {% if track.description %}<p class="track-desc">{{ track.description_html | safe }}</p>{% endif %}
     <p class="journey-meta">
-      <span title="Difficulty 1–5">Difficulty {{ track.difficulty }}/5</span>
+      {{ difficulty(track.difficulty) }}
       {% if track.estimated_time %}<span>· {{ track.estimated_time }}</span>{% endif %}
       <span>· {{ track.guides|length }} guide{{ "" if track.guides|length == 1 else "s" }}</span>
     </p>
@@ -50,6 +51,9 @@
   {% endfor %}
 </ul>
 {% else %}
-<p class="empty">No plans in this topic yet.</p>
+<div class="empty-state">
+  <p class="empty">No plans in this topic yet. Try <a href="/journeys">all plans</a> or the
+    <a href="/guides">how-to guides</a>.</p>
+</div>
 {% endif %}
 {% endblock %}

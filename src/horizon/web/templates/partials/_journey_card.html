@@ -1,12 +1,15 @@
-<li class="journey-card">
+{% from "partials/_ui.html" import difficulty %}
+<li class="journey-card" data-cat="{{ journey.category }}">
   <a href="/journeys/{{ journey.id }}">
     <span class="badge-row">
-      <span class="category-badge">{{ journey.category }}</span>
+      <span class="category-badge" data-cat="{{ journey.category }}">{{ journey.category }}</span>
     </span>
     <h2>{{ journey.title }}</h2>
-    {% if journey.description %}<p>{{ journey.description }}</p>{% endif %}
+    {# The whole card is one link, so cross-reference links in the
+       description are flattened to their (resolved) text here. #}
+    {% if journey.description %}<p>{{ (journey.description_html or journey.description) | striptags }}</p>{% endif %}
     <p class="journey-meta">
-      <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
+      {{ difficulty(journey.difficulty) }}
       {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
     </p>
   </a>

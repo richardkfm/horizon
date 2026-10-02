@@ -152,7 +152,7 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
         no_guide_lead = (
             "horizon is in low-power mode to save energy, so the local AI model "
             "is paused. I couldn't find a local guide matching your question — "
-            "try browsing the journeys, or rephrase your question."
+            "try browsing the step-by-step plans, or ask in different words."
         )
         guide_lead = (
             "horizon is in low-power mode to save energy, so the local AI model "
@@ -162,8 +162,8 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
     else:
         no_guide_lead = (
             "The local AI model isn't running right now, and I couldn't find a "
-            "local guide matching your question. Try browsing the journeys, or "
-            "rephrase your question."
+            "local guide matching your question. Try browsing the step-by-step "
+            "plans, or ask in different words."
         )
         guide_lead = (
             "The local AI model isn't running right now, so I can't write a full "
@@ -179,7 +179,8 @@ def _fallback_answer(chunks: list[dict], *, low_power: bool = False) -> str:
         if guide["source_id"] in seen:
             continue
         seen.add(guide["source_id"])
-        lines.append(f"- {guide['title']} [{guide['source_id']}]")
+        # Titles only: the ids are machine data, returned in ``citations``.
+        lines.append(f"- {guide['title']}")
     listing = "\n".join(lines)
     return f"{guide_lead}\n\n{listing}\n\nOpen them for complete step-by-step instructions."
 

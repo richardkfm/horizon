@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{# Friendly error page for browser requests (main.py's exception handlers).
+   The JSON API keeps its own JSON errors; this is only for people. #}
+{% if status_code == 404 %}
+  {% if path.startswith("/guides/") %}
+    {% set heading = "We couldn't find that guide" %}
+    {% set lead = "It may have been renamed or moved, or the link has a small typo. Try searching for it below." %}
+  {% elif path.startswith("/journeys/") %}
+    {% set heading = "We couldn't find that plan" %}
+    {% set lead = "It may have been renamed or moved. All the step-by-step plans are one click away." %}
+  {% elif path.startswith("/checklists/") %}
+    {% set heading = "We couldn't find that checklist" %}
+    {% set lead = "It may have been renamed or moved. All the checklists are one click away." %}
+  {% else %}
+    {% set heading = "We couldn't find that page" %}
+    {% set lead = "The link may be old, or the address has a small typo. Nothing is broken — try one of these instead." %}
+  {% endif %}
+{% elif status_code in (400, 405, 422) %}
+  {% set heading = "That link didn't quite work" %}
+  {% set lead = "Part of the address isn't something horizon recognises — perhaps a topic name that doesn't exist. Try one of these instead." %}
+{% elif status_code >= 500 %}
+  {% set heading = "Something went wrong on this horizon box" %}
+  {% set lead = "It's not your fault. Try again in a moment — every guide is still stored here." %}
+{% else %}
+  {% set heading = "That page isn't available" %}
+  {% set lead = "Try one of these instead." %}
+{% endif %}
+{% block title %}{{ heading }} — horizon{% endblock %}
+{% block content %}
+<section class="error-page">
+  {# A seed sprouting under the sun: lost paths grow back. Decorative. #}
+  <pre class="error-art" aria-hidden="true">   \ | /
+ -- ( o ) --          ,
+   / | \            _\|/_
+                      |
+ ~~~~~~~~~~~~~~~~~~~~(@)~~~~~~~</pre>
+  <p class="error-code">Error {{ status_code }}</p>
+  <h1>{{ heading }}</h1>
+  <p class="tagline">{{ lead }}</p>
+
+  <form method="get" action="/guides" class="search-form" role="search">
+    <label class="visually-hidden" for="error-search">Search guides</label>
+    <input type="search" id="error-search" name="q" placeholder="Search guides by name…" />
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <ul class="error-links">
+    <li><a href="/guides">How-to guides</a></li>
+    <li><a href="/recommend">Where to start</a></li>
+    <li><a href="/">Home</a></li>
+  </ul>
+</section>
+{% endblock %}

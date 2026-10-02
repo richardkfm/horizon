@@ -10,6 +10,7 @@ fully offline.
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Annotated
 
@@ -27,7 +28,7 @@ from horizon.config import assistant_enabled, low_power_enabled, settings
 from horizon.db import get_session
 from horizon.models import Category, Checklist, Guide, Journey, JourneyGuideLink
 from horizon.services import packs as packs_service
-from horizon.services.markdown import render_markdown
+from horizon.services.markdown import LinkResolver, render_inline, render_markdown, split_title
 from horizon.services.recommend import recommend_journeys
 from horizon.web.assets import static_url
 
@@ -52,6 +53,47 @@ templates.env.globals["map_viewer_enabled"] = packs_service.has_installed_map_pa
 SessionDep = Annotated[Session, Depends(get_session)]
 
 CATEGORIES = [c.value for c in Category]
+# Browse lists group and sort by the enum's own order (water, food, energy, …)
+# — the order the home tiles use — rather than alphabetically.
+_CATEGORY_ORDER = {name: index for index, name in enumerate(CATEGORIES)}
+# How many guides each category shows on the grouped /guides overview before a
+# "Show all N" link to that category's full list.
+GROUP_PREVIEW = 4
+
+
+def _category_rank(category: str) -> int:
+    return _CATEGORY_ORDER.get(category, len(CATEGORIES))
+
+
+def _link_resolver(session: Session) -> LinkResolver:
+    """Resolve ``[[...]]`` cross-references against the database.
+
+    Primary-key lookups, memoised per render, so a guide with many links costs
+    one small query per distinct target.
+    """
+    kinds = {
+        "guide": (Guide, "/guides/{}"),
+        "plan": (Journey, "/journeys/{}"),
+        "checklist": (Checklist, "/checklists/{}"),
+    }
+    memo: dict[tuple[str, str], tuple[str, str] | None] = {}
+
+    def resolve(kind: str, target: str) -> tuple[str, str] | None:
+        key = (kind, target)
+        if key not in memo:
+            model, href = kinds[kind]
+            row = session.get(model, target)
+            memo[key] = (href.format(target), row.title) if row is not None else None
+        return memo[key]
+
+    return resolve
+
+
+def _with_description_html(data: dict, resolver: LinkResolver) -> dict:
+    """Add a rendered ``description_html`` (plans may cross-link guides)."""
+    data["description_html"] = render_inline(data.get("description") or "", resolver)
+    return data
+
 
 # One-line, plain-language example per category so a visitor scanning the home
 # page can recognise their problem without knowing horizon's taxonomy.
@@ -105,20 +147,20 @@ def journeys_page(
     statement = select(Journey)
     if category is not None:
         statement = statement.where(Journey.category == Category(category))
-    statement = statement.order_by(Journey.category, Journey.difficulty, Journey.id)
-
+    resolver = _link_resolver(session)
     tracks = []
     for journey in session.exec(statement).all():
         guides = [_guide_summary(g) for g in ordered_guides(session, journey.id)]
         if len(guides) < 2:
             continue
-        data = _journey_summary(journey)
+        data = _with_description_html(_journey_summary(journey), resolver)
         data["guides"] = guides
         tracks.append(data)
+    tracks.sort(key=lambda t: (_category_rank(t["category"]), t["difficulty"], t["id"]))
 
     # Only show category filters that actually have a track, so the chips never
     # lead to an empty page.
-    track_categories = sorted({t["category"] for t in tracks}, key=CATEGORIES.index)
+    track_categories = sorted({t["category"] for t in tracks}, key=_category_rank)
 
     return templates.TemplateResponse(
         request,
@@ -146,7 +188,7 @@ def journey_detail_page(
     if len(guides) < 2:
         raise HTTPException(status_code=404, detail=f"Journey not found: {journey_id}")
 
-    data = _journey_summary(journey)
+    data = _with_description_html(_journey_summary(journey), _link_resolver(session))
     data["guides"] = guides
 
     return templates.TemplateResponse(request, "journey_detail.html", {"journey": data})
@@ -166,8 +208,10 @@ def guides_page(
     statement = select(Guide)
     if category is not None:
         statement = statement.where(Guide.category == Category(category))
-    statement = statement.order_by(Guide.category, Guide.id)
     guides = [_guide_summary(g) for g in session.exec(statement).all()]
+    # Category in home-tile order, then easiest first so a newcomer's first
+    # pick in each topic is a gentle one.
+    guides.sort(key=lambda g: (_category_rank(g["category"]), g["difficulty"], g["title"]))
 
     # Plain substring search over title and summary so visitors can find a guide
     # by name without learning the categories. Kept in-process (no LLM/index) so
@@ -181,11 +225,30 @@ def guides_page(
             if needle in g["title"].lower() or needle in (g["summary"] or "").lower()
         ]
 
+    # With no filter or search, a flat list of every guide is a very long
+    # scroll on a phone; show each category as a short shelf instead, with a
+    # "Show all" link into that category's full list.
+    groups: list[dict] = []
+    if category is None and not query:
+        by_category: dict[str, list[dict]] = {}
+        for g in guides:
+            by_category.setdefault(g["category"], []).append(g)
+        groups = [
+            {
+                "category": name,
+                "example": CATEGORY_EXAMPLES.get(name, ""),
+                "guides": items[:GROUP_PREVIEW],
+                "total": len(items),
+            }
+            for name, items in by_category.items()
+        ]
+
     return templates.TemplateResponse(
         request,
         "guides.html",
         {
             "guides": guides,
+            "groups": groups,
             "categories": CATEGORIES,
             "selected_category": category,
             "query": query,
@@ -209,7 +272,7 @@ def guide_pdf(guide_id: str, session: SessionDep) -> Response:
 
     document = templates.env.get_template("guide_pdf.html").render(
         guide=_guide_summary(guide),
-        body_html=render_markdown(_read_body(guide)),
+        body_html=render_markdown(_read_body(guide), _link_resolver(session)),
     )
     pdf_bytes = render_pdf(document)
 
@@ -231,7 +294,10 @@ def guide_page(
     if guide is None:
         raise HTTPException(status_code=404, detail=f"Guide not found: {guide_id}")
 
-    body_html = render_markdown(_read_body(guide))
+    # The page header renders the guide's own "# Title" line itself (above the
+    # meta line), so it is split off the body to avoid a second <h1>.
+    heading, body = split_title(_read_body(guide))
+    body_html = render_markdown(body, _link_resolver(session))
 
     # Curated tracks this guide is part of, so a reader can pick up the wider
     # step-by-step plan it belongs to, plus whichever guide comes right after
@@ -275,6 +341,7 @@ def guide_page(
         "guide.html",
         {
             "guide": _guide_summary(guide),
+            "heading": heading or guide.title,
             "body_html": body_html,
             "in_tracks": in_tracks,
             "next_steps": next_steps,
@@ -326,7 +393,8 @@ def checklist_page(
     if checklist is None:
         raise HTTPException(status_code=404, detail=f"Checklist not found: {checklist_id}")
 
-    body_html = render_markdown(_read_checklist_body(checklist))
+    heading, body = split_title(_read_checklist_body(checklist))
+    body_html = render_markdown(body, _link_resolver(session))
 
     # Checklists stand alone (no plan links), so "read further" here means a
     # few guides on the same topic rather than a next step in an order.
@@ -347,6 +415,7 @@ def checklist_page(
         "checklist.html",
         {
             "checklist": _checklist_summary(checklist),
+            "heading": heading or checklist.title,
             "body_html": body_html,
             "related_guides": related_guides,
         },
@@ -356,6 +425,7 @@ def checklist_page(
 @router.get("/recommend", response_class=HTMLResponse)
 def recommend_page(
     request: Request,
+    session: SessionDep,
     goal: str | None = None,
     people: int | None = None,
     climate: str | None = None,
@@ -372,6 +442,9 @@ def recommend_page(
             climate=climate,
             resources=resource_list or None,
         )
+        resolver = _link_resolver(session)
+        for journey in results.get("journeys") or []:
+            _with_description_html(journey, resolver)
 
     return templates.TemplateResponse(
         request,
@@ -423,7 +496,9 @@ def assistant_answer(
     """Answer a question and render it as an HTMX fragment with cited guides.
 
     Reuses the AI API's answer logic directly (no HTTP self-call) and resolves
-    citation ids to guide titles for display.
+    citation ids to guide titles for display. Guides the answer already lists
+    (the local-guides fallback) become links in place, and only citations it
+    doesn't mention are repeated under "Sources".
     """
     if not assistant_enabled():
         return templates.TemplateResponse(
@@ -436,6 +511,21 @@ def assistant_answer(
                     "[how-to guides](/guides) instead."
                 ),
                 "citations": [],
+                "asked": False,
+            },
+        )
+
+    if not question.strip():
+        return templates.TemplateResponse(
+            request,
+            "partials/_answer.html",
+            {
+                "answer_html": render_markdown(
+                    "Type a question first — for example, *How do I make river "
+                    "water safe to drink?*"
+                ),
+                "citations": [],
+                "asked": False,
             },
         )
 
@@ -446,12 +536,35 @@ def assistant_answer(
         for cid in result.citations
         if (guide := session.get(Guide, cid)) is not None
     ]
+    answer_md, linked = _link_cited_guides(result.answer, citations)
 
     return templates.TemplateResponse(
         request,
         "partials/_answer.html",
         {
-            "answer_html": render_markdown(result.answer),
-            "citations": citations,
+            "answer_html": render_markdown(answer_md, _link_resolver(session)),
+            "citations": [c for c in citations if c["id"] not in linked],
+            "asked": True,
+            "any_citations": bool(citations),
         },
     )
+
+
+def _link_cited_guides(answer: str, citations: list[dict]) -> tuple[str, set[str]]:
+    """Turn cited guides the answer mentions into links; return the linked ids.
+
+    Handles both shapes an answer can take: a bullet that is just a guide's
+    title (the local-guides fallback) and a ``[guide-id]`` tag (the model is
+    asked to cite ids in square brackets). Only ids in ``citations`` are
+    touched, so ordinary bracketed text is left alone.
+    """
+    linked: set[str] = set()
+    for c in citations:
+        bullet = re.compile(rf"^([-*] ){re.escape(c['title'])}[ \t]*$", re.MULTILINE)
+        answer, n = bullet.subn(lambda m, c=c: f"{m.group(1)}[[{c['id']}]]", answer)
+        # A lone ``[id]`` — not the inside of a ``[[id]]`` or a ``[id](url)``.
+        tag = re.compile(rf"(?<!\[)\[{re.escape(c['id'])}\](?![\](])")
+        answer, k = tag.subn(f"([[{c['id']}]])", answer)
+        if n or k:
+            linked.add(c["id"])
+    return answer, linked

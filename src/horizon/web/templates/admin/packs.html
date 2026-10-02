@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Content packs — horizon{% endblock %}
+{% block scripts %}<script src="{{ static_url('htmx.min.js') }}" defer></script>{% endblock %}
 {% block content %}
 <div class="admin-header">
   <h1>Content packs</h1>
@@ -42,8 +43,8 @@
 </p>
 
 <script>
-  // Plain JS so filtering works in every mode, including low-power where
-  // Alpine is skipped (same approach as the checklist tick-state script).
+  // Plain JS so filtering works in every mode, including low-power (same
+  // approach as the checklist tick-state script).
   (function () {
     var input = document.getElementById("pack-filter");
     var table = document.getElementById("packs-table");

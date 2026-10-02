@@ -14,9 +14,9 @@
 {% if checklists %}
 <ul class="card-grid">
   {% for checklist in checklists %}
-  <li>
+  <li{% if checklist.category %} data-cat="{{ checklist.category }}"{% endif %}>
     <a href="/checklists/{{ checklist.id }}">
-      {% if checklist.category %}<span class="category-badge">{{ checklist.category }}</span>{% endif %}
+      {% if checklist.category %}<span class="category-badge" data-cat="{{ checklist.category }}">{{ checklist.category }}</span>{% endif %}
       <span class="card-title">{{ checklist.title }}</span>
       {% if checklist.summary %}<span class="guide-summary">{{ checklist.summary }}</span>{% endif %}
     </a>
@@ -24,6 +24,6 @@
   {% endfor %}
 </ul>
 {% else %}
-<p class="empty">No checklists yet.</p>
+<div class="empty-state"><p class="empty">No checklists yet.</p></div>
 {% endif %}
 {% endblock %}

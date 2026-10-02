@@ -22,9 +22,12 @@
   {% endfor %}
 </ul>
 {% else %}
-<p class="empty">
-  No reference packs installed yet. Ask your operator to install one from the
-  content packs admin page.
-</p>
+<div class="empty-state">
+  <p class="empty">
+    Nothing here yet — whoever runs this horizon box can add offline
+    encyclopedias and handbooks. Meanwhile, all the
+    <a href="/guides">how-to guides</a> work right now.
+  </p>
+</div>
 {% endif %}
 {% endblock %}

@@ -1,23 +1,34 @@
 {% extends "base.html" %}
+{% from "partials/_ui.html" import difficulty %}
 {% block title %}{{ journey.title }} — horizon{% endblock %}
 {% block content %}
-<p class="breadcrumb"><a href="/journeys">← All step-by-step plans</a></p>
+<div class="reading-column">
+<p class="breadcrumb no-print"><a href="/journeys">← All step-by-step plans</a></p>
 
-<article class="journey-detail">
-  <span class="badge-row">
-    <span class="category-badge">{{ journey.category }}</span>
-  </span>
-  <h1>{{ journey.title }}</h1>
-  <p class="journey-meta">
-    <span title="Difficulty 1–5">Difficulty {{ journey.difficulty }}/5</span>
-    {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
+<article class="journey-detail" data-cat="{{ journey.category }}">
+  <header class="guide-head">
+    <h1>{{ journey.title }}</h1>
+    <p class="journey-meta guide-meta">
+      <span class="category-badge" data-cat="{{ journey.category }}">{{ journey.category }}</span>
+      {{ difficulty(journey.difficulty) }}
+      {% if journey.estimated_time %}<span>· {{ journey.estimated_time }}</span>{% endif %}
+      <span>· {{ journey.guides|length }} steps</span>
+    </p>
+  </header>
+  {% if journey.description %}<p class="tagline">{{ journey.description_html | safe }}</p>{% endif %}
+
+  {% if journey.guides %}
+  <p class="plan-start no-print">
+    <a class="btn btn-primary" href="/guides/{{ journey.guides[0].id }}">Start with step 1 →</a>
   </p>
-  {% if journey.description %}<p class="tagline">{{ journey.description }}</p>{% endif %}
+  {% endif %}
 
-  <section class="journey-section">
-    <h2>The guides, in order</h2>
+  <section class="journey-section" aria-labelledby="plan-steps">
+    <h2 id="plan-steps">The guides, in order</h2>
     {% if journey.guides %}
-    <ol class="track-steps track-steps-detail">
+    {# The "sunrise trail": one numbered stop per guide along a line that
+       runs from leaf green into horizon blue. #}
+    <ol class="trail">
       {% for guide in journey.guides %}
       <li>
         <a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
@@ -30,4 +41,5 @@
     {% endif %}
   </section>
 </article>
+</div>
 {% endblock %}

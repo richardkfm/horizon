@@ -263,7 +263,7 @@ def test_guide_renders_ascii_figure_with_caption():
     with TestClient(app) as client:
         resp = client.get("/guides/crafts-make-tools")
     assert resp.status_code == 200
-    assert resp.text.count('<figure class="guide-figure guide-ascii">') == 2
+    assert resp.text.count('<figure class="guide-figure guide-ascii" ') == 2
     assert "<figcaption>" in resp.text
     assert "hafting a stone blade" in resp.text
     assert "fire-hardening a point" in resp.text

@@ -75,7 +75,7 @@ def test_reference_index_empty_state_when_nothing_installed():
     with TestClient(app) as client:
         resp = client.get("/reference")
         assert resp.status_code == 200
-        assert "No reference packs installed" in resp.text
+        assert "Nothing here yet" in resp.text
 
 
 def test_pack_landing_shows_title_and_article_count(fixture_zim):

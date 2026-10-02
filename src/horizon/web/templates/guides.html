@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Guides — horizon{% endblock %}
+{% from "partials/_icons.html" import category_icon %}
+{% from "partials/_ui.html" import guide_card %}
+{% block title %}{% if selected_category %}{{ selected_category | capitalize }} guides{% else %}How-to guides{% endif %} — horizon{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
 <section class="guides-intro">
-  <h1>Guides</h1>
+  <h1>How-to guides</h1>
   <p class="tagline">
     Visual, step-by-step instructions you can read on screen, print, or save as a
     PDF — all stored locally and usable offline.
@@ -16,36 +18,50 @@
   <input type="search" id="guide-search" name="q" value="{{ query }}"
          placeholder="Search guides by name…" />
   <button type="submit" class="btn">Search</button>
-  {% if query %}<a class="search-clear" href="/guides{% if selected_category %}?category={{ selected_category }}{% endif %}">Clear</a>{% endif %}
+  {% if query %}<a class="search-clear" href="/guides{% if selected_category %}?category={{ selected_category | urlencode }}{% endif %}">Clear</a>{% endif %}
 </form>
 
-<nav class="filter-bar" aria-label="Filter guides by category">
+{# One horizontally scrolling row on phones (its own scroll box, so the page
+   itself never overflows); wraps normally on wider screens. #}
+<nav class="filter-bar" aria-label="Filter guides by topic">
   <a class="filter-chip {% if not selected_category %}is-active{% endif %}"
-     href="/guides{% if query %}?q={{ query }}{% endif %}">All</a>
+     href="/guides{% if query %}?q={{ query | urlencode }}{% endif %}"{% if not selected_category %} aria-current="page"{% endif %}>All</a>
   {% for category in categories %}
-  <a class="filter-chip {% if category == selected_category %}is-active{% endif %}"
-     href="/guides?category={{ category }}{% if query %}&q={{ query }}{% endif %}">{{ category }}</a>
+  <a class="filter-chip {% if category == selected_category %}is-active{% endif %}" data-cat="{{ category }}"
+     href="/guides?category={{ category | urlencode }}{% if query %}&amp;q={{ query | urlencode }}{% endif %}"{% if category == selected_category %} aria-current="page"{% endif %}>{{ category }}</a>
   {% endfor %}
 </nav>
 
-{% if guides %}
+{% if groups %}
+{# No filter or search: one short shelf per topic, in home-tile order. #}
+{% for group in groups %}
+<section class="guide-shelf" data-cat="{{ group.category }}" aria-labelledby="shelf-{{ group.category }}">
+  <div class="shelf-head">
+    <h2 id="shelf-{{ group.category }}">
+      <span class="shelf-icon" aria-hidden="true">{{ category_icon(group.category) }}</span>
+      <span class="shelf-name">{{ group.category }}</span>
+    </h2>
+    {% if group.total > group.guides | length %}
+    <a class="shelf-all" href="/guides?category={{ group.category | urlencode }}">Show all {{ group.total }}<span class="visually-hidden"> {{ group.category }} guides</span>&nbsp;→</a>
+    {% endif %}
+  </div>
+  <ul class="card-grid">
+    {% for guide in group.guides %}{{ guide_card(guide, badge=false) }}{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% elif guides %}
 <ul class="card-grid">
-  {% for guide in guides %}
-  <li>
-    <a href="/guides/{{ guide.id }}">
-      <span class="category-badge">{{ guide.category }}</span>
-      <span class="card-title">{{ guide.title }}</span>
-      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
-    </a>
-  </li>
-  {% endfor %}
+  {% for guide in guides %}{{ guide_card(guide, badge=not selected_category) }}{% endfor %}
 </ul>
 {% else %}
+<div class="empty-state">
 {% if query %}
 <p class="empty">No guides match “{{ query }}”. Try a different word, or
   <a href="/guides">browse all guides</a>.</p>
 {% else %}
 <p class="empty">No guides in this category yet.</p>
 {% endif %}
+</div>
 {% endif %}
 {% endblock %}

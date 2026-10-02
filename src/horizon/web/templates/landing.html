@@ -5,7 +5,7 @@
 {% block content %}
 <section class="hero">
   <div class="intro">
-    <p class="hero-kicker">Offline-first · low-power · community-run</p>
+    <p class="hero-kicker">Works without internet · runs on tiny computers · shared by neighbours</p>
     <h1>Guides for everyday autonomy</h1>
     <p class="tagline">
       A local, offline-first library of step-by-step guides for water, food,
@@ -13,11 +13,11 @@
       help you find what you need.
     </p>
     <div class="cta">
-      <p class="cta-question">Not sure where to start?</p>
-      <a class="btn btn-primary" href="/recommend">Describe your goal →</a>
+      <p class="cta-question">Not sure what you need? Describe your goal.</p>
+      <a class="btn btn-primary" href="/recommend">Where to start →</a>
     </div>
     <p class="cta-secondary">
-      Getting ready for hard times? See the
+      Want to be more self-reliant? See the
       <a href="/checklists">checklists</a> of what to gather, pack, and keep ready.
     </p>
   </div>
@@ -58,11 +58,11 @@ ___________________________________________________/_\______</pre>
 </section>
 
 <section class="categories">
-  <h2 class="section-flourish">Where do you want to start?</h2>
+  <h2 class="section-flourish">Browse by topic</h2>
   <ul class="category-grid">
     {% for category in categories %}
-    <li class="category-card">
-      <a href="/guides?category={{ category.name }}">
+    <li class="category-card" data-cat="{{ category.name }}">
+      <a href="/guides?category={{ category.name | urlencode }}">
         <span class="category-icon" aria-hidden="true">{{ category_icon(category.name) }}</span>
         <span class="category-name">{{ category.name }}</span>
         {% if category.example %}<span class="category-example">{{ category.example }}</span>{% endif %}
