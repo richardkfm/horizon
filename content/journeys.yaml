@@ -356,3 +356,39 @@ journeys:
       - calc-fair-trade-value
       - cooperation-sharing-resources
       - cooperation-paying-without-networks
+
+  - id: use-and-reuse-water
+    title: Use and reuse water well
+    description: >
+      Get more from every litre a household uses: measure what you have and
+      what you use, cut waste and agree a fair share, catch rain from your
+      own roof, send shower and laundry water to the garden instead of the
+      drain, and stop flushing drinking water away with a dry toilet.
+    category: water
+    difficulty: 2
+    estimated_time: "A few weekends"
+    guides:
+      - calc-water-budget
+      - water-conserve-and-ration
+      - water-rainwater-harvesting
+      - water-greywater-reuse
+      - survival-dry-toilet
+
+  - id: care-for-health-at-home
+    title: Care for health at home
+    description: >
+      Build a household's everyday health care, step by step: get medicines
+      organised and refills planned, keep power-dependent care going, clean
+      and look after wounds over the days that follow, treat diarrhoea and
+      dehydration, look after teeth without a dentist, and care for your
+      mind and grief over the weeks after a hard time.
+    category: health
+    difficulty: 2
+    estimated_time: "A few afternoons to learn, then ongoing"
+    guides:
+      - health-household-medicines
+      - health-power-dependent-care
+      - health-wound-care
+      - health-diarrhoea-dehydration
+      - health-teeth-toothache
+      - health-mental-health-grief
