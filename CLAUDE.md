@@ -315,6 +315,19 @@ Hold these when touching templates, copy, or `web/static/`:
    in `print.css`). Keep `aria-*`/labels on interactive elements.
 7. **Personalisation stays local and private.** Prefer on-device state
    (localStorage) and config over accounts or servers; no telemetry.
+8. **Cards mark their topic with an index-card tab, not a coloured top bar.**
+   The 3px coloured `border-top` on cards was dropped on purpose: it's the
+   default look of every template site. Use the `topic_tab` macro
+   (`partials/_ui.html`, styled as `.card-tab`) on any new card type, and
+   give its container `--tab-h` of headroom (see the `.has-tab` /
+   `.journey-card` / `.track-card` / `.category-card` rules). Don't bring a
+   coloured bar, stripe or gradient edge back as a "quick" topic signal.
+9. **Guide pages end quietly.** A guide's footer is at most the single
+   "Next in {plan}" line; checklists have no footer nav. The old "More on
+   {topic}" grid of three related-guide cards was removed deliberately —
+   guide pages already stack several callouts and the extra cards crowded
+   them. Don't reintroduce related-content cards, "you might also like"
+   rows, or similar at the foot of a guide or checklist.
 
 ## Verifying UI changes
 

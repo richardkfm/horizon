@@ -1,9 +1,7 @@
-{% from "partials/_ui.html" import difficulty %}
+{% from "partials/_ui.html" import difficulty, topic_tab %}
 <li class="journey-card" data-cat="{{ journey.category }}">
   <a href="/journeys/{{ journey.id }}">
-    <span class="badge-row">
-      <span class="category-badge" data-cat="{{ journey.category }}">{{ journey.category }}</span>
-    </span>
+    {{ topic_tab(journey.category) }}
     <h2>{{ journey.title }}</h2>
     {# The whole card is one link, so cross-reference links in the
        description are flattened to their (resolved) text here. #}

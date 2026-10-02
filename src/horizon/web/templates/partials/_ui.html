@@ -8,12 +8,20 @@
 <span class="difficulty" title="Difficulty {{ n }} of 5"><span class="visually-hidden">Difficulty {{ n }} of 5</span><span aria-hidden="true">[{{ "■" * n }}{{ "□" * (5 - n) }}]</span></span>
 {%- endmacro %}
 
+{# The topic marker on a card: an index-card tab on the card's top edge,
+   named after and tinted in the topic's hue (`.card-tab` in app.css), like a
+   labelled tab on a file-card. ``label`` is off where the tab should only be
+   a coloured tab (the home tiles name the topic in the tile itself). #}
+{% macro topic_tab(category, label=true) -%}
+{%- if label %}<span class="card-tab" data-cat="{{ category }}">{{ category }}</span>{% else %}<span class="card-tab card-tab-blank" data-cat="{{ category }}" aria-hidden="true"></span>{% endif -%}
+{%- endmacro %}
+
 {# One guide card for the browse grids. ``badge`` is off inside a category
    shelf, where the heading already names the topic. #}
 {% macro guide_card(guide, badge=true) -%}
-<li data-cat="{{ guide.category }}">
+<li data-cat="{{ guide.category }}"{% if badge %} class="has-tab"{% endif %}>
   <a href="/guides/{{ guide.id }}">
-    {% if badge %}<span class="category-badge" data-cat="{{ guide.category }}">{{ guide.category }}</span>{% endif %}
+    {% if badge %}{{ topic_tab(guide.category) }}{% endif %}
     <span class="card-title">{{ guide.title }}</span>
     {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
   </a>

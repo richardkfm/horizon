@@ -148,9 +148,10 @@ is chosen.
   medical care, psychological first aid), food (plant-problem diagnosis,
   reforestation), and emergencies (car-free households, vehicle stranding) —
   threaded into two new step-by-step plans and cross-linked from existing
-  guides. Guides and checklists also gained a "Read further" footer (next
-  guide in a plan, plus a few more on the same topic) so a reader doesn't
-  have to detour back through the plan page.
+  guides. A guide inside a plan also ends with a "Next in {plan}" line so
+  a reader doesn't have to detour back through the plan page (the "more on
+  this topic" cards that shipped alongside it were dropped again in v0.9.1
+  to keep guide pages uncrowded).
 - **Smaller UX fixes**: guides/checklists indexes are now responsive card
   grids instead of a long link list, the home page's topic tiles go
   two-per-row on phones, and the header nav fits on one line at laptop width.

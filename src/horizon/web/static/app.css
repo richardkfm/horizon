@@ -570,7 +570,10 @@ a:hover { color: var(--accent-strong); }
   gap: var(--space-4);
 }
 
+.category-card { display: flex; flex-direction: column; }
 .category-card a {
+  position: relative;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -668,9 +671,10 @@ a:hover { color: var(--accent-strong); }
    visually-hidden span for screen readers (partials/_ui.html). */
 .difficulty { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.08em; white-space: nowrap; }
 
-/* A signature hue per topic, from the same sun/leaf/horizon family: a 3px
-   top rule on tiles and cards plus the badge tint. Low-power, high contrast,
-   and print collapse it to plain ink. */
+/* A signature hue per topic, from the same sun/leaf/horizon family: the
+   index-card tab on tiles and cards (`.card-tab`, below) plus the badge tint
+   on reading pages. Low-power, high contrast, and print collapse it to plain
+   ink. */
 [data-cat="water"] { --cat-l: #2c6384; --cat-d: #7fb0cb; }
 [data-cat="food"] { --cat-l: #3f6d33; --cat-d: #8fbf7f; }
 [data-cat="energy"] { --cat-l: #805510; --cat-d: #e0b25c; }
@@ -692,13 +696,56 @@ a:hover { color: var(--accent-strong); }
   :root:not([data-theme]) [data-cat] { --cat: var(--cat-d, var(--accent)); }
 }
 :root[data-contrast="high"] [data-cat] { --cat: var(--fg); }
-.category-card[data-cat] a,
-.card-grid li[data-cat] > a,
-.journey-card[data-cat] > a,
-.track-card[data-cat] { border-top: 3px solid var(--cat); }
 .category-card[data-cat] .category-icon { color: var(--cat); background: color-mix(in srgb, var(--cat) 11%, transparent); }
 
-.badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+/* Index-card tab: the topic marker on every card, instead of a coloured bar.
+   Cards are file-cards in a library drawer — each one carries a small tab on
+   its top edge, cut from the same card (it overlaps the card's top border by
+   a pixel so the two read as one piece), tinted in the topic hue and named
+   after the topic. Home tiles get a blank tab, since the tile already names
+   the topic in large type. The tab sticks *up* out of the card, so the card's
+   container (`.has-tab`, `.journey-card`, `.track-card`, `.category-card`)
+   reserves `--tab-h` of headroom above it. */
+:root { --tab-h: 1.45rem; }
+.card-tab {
+  position: absolute;
+  left: 0.85rem;
+  bottom: calc(100% - 1px);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: calc(100% - 1.7rem);
+  height: calc(var(--tab-h) + 1px);
+  padding: 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--cat, var(--accent));
+  background: color-mix(in srgb, var(--cat, var(--accent)) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--cat, var(--accent)) 45%, var(--border));
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.card-tab-blank {
+  width: 2.6rem;
+  padding: 0;
+  background: color-mix(in srgb, var(--cat, var(--accent)) 55%, var(--surface));
+}
+.card-grid li,
+.journey-card,
+.category-card { position: relative; }
+.card-grid li { display: flex; flex-direction: column; }
+.card-grid li > a { position: relative; flex: 1 1 auto; }
+.card-grid .has-tab,
+.journey-card,
+.category-card { padding-top: var(--tab-h); }
+
 
 .breadcrumb { font-size: 0.9rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
@@ -771,9 +818,11 @@ a:hover { color: var(--accent-strong); }
   grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   gap: var(--space-4);
 }
+.journey-card { display: flex; flex-direction: column; }
 .journey-card a {
+  position: relative;
   display: block;
-  height: 100%;
+  flex: 1 1 auto;
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -788,7 +837,7 @@ a:hover { color: var(--accent-strong); }
   box-shadow: var(--shadow-lift);
   transform: translateY(-2px);
 }
-.journey-card h2 { font-size: 1.2rem; margin: 0.5rem 0 0.3rem; }
+.journey-card h2 { font-size: 1.2rem; margin: 0 0 0.3rem; }
 .journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
 .journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
 
@@ -808,7 +857,6 @@ a:hover { color: var(--accent-strong); }
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  height: 100%;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -823,7 +871,6 @@ a:hover { color: var(--accent-strong); }
   box-shadow: var(--shadow-lift);
   transform: translateY(-2px);
 }
-.card-grid .category-badge { align-self: flex-start; }
 .card-title { font-weight: 600; line-height: 1.35; }
 .card-grid .guide-summary { margin-top: 0; }
 
@@ -840,6 +887,8 @@ a:hover { color: var(--accent-strong); }
 /* Tracks: curated, ordered "step-by-step plans" over the guides. ----------- */
 .track-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
 .track-card {
+  position: relative;
+  margin-top: var(--tab-h);
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1066,24 +1115,13 @@ a:hover { color: var(--accent-strong); }
   letter-spacing: 0.01em;
 }
 
-/* Read further — footer nav on a guide/checklist: the next step in an ordered
-   plan (if any) plus a few more guides on the same topic, so a reader always
-   has somewhere to go without forcing every guide into a plan. The next-step
-   callout takes the leaf accent (growth, continuation); "more on X" reuses
-   the existing card-grid look unchanged. Its heading deliberately does *not*
-   look like a `.guide` content h2 — it's an eyebrow label (like
-   `.next-step-label`), so a reader can tell at a glance that everything below
-   the top border is "more to read", not more of this guide. */
+/* Read further — footer nav on a guide: only the next step in an ordered
+   plan (if any), as one quiet eyebrow-labelled line in the leaf accent
+   (growth, continuation). Deliberately *no* "more on this topic" card grid
+   here: guide pages already carry several callouts, and a row of extra cards
+   at the bottom crowded them — it was removed on purpose, don't bring it
+   back. The topic listing is one click away in the breadcrumb. */
 .read-further { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--border); }
-.next-steps { margin-bottom: var(--space-5); }
-.read-further-more h2 {
-  margin: var(--space-5) 0 var(--space-3);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--muted);
-}
 .next-step {
   display: flex;
   flex-wrap: wrap;
@@ -1494,6 +1532,8 @@ body.low-power .hero { background: none; }
 body.low-power .category-card a:hover,
 body.low-power .journey-card a:hover,
 body.low-power .card-grid a:hover { background: none; transform: none; }
+body.low-power .card-tab { background: #fff; border-color: #000; }
+body.low-power .card-tab-blank { background: #000; }
 body.low-power .filter-chip.is-active { background: #000; }
 body.low-power .guide blockquote { background: none; }
 /* Callouts keep a high-contrast border + bold label in the e-ink palette so
