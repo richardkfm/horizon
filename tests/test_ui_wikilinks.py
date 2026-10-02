@@ -13,6 +13,7 @@ from pathlib import Path
 
 import yaml
 
+from horizon.services.frontmatter import split_front_matter
 from horizon.services.markdown import _WIKILINK
 
 CONTENT = Path(__file__).resolve().parent.parent / "content"
@@ -24,12 +25,8 @@ _CODE_SPAN = re.compile(r"(`+)(?!`).*?(?<!`)\1(?!`)", re.DOTALL)
 
 
 def _front_matter_id(path: Path) -> str:
-    text = path.read_text(encoding="utf-8")
-    if text.startswith("---"):
-        meta = yaml.safe_load(text.split("---", 2)[1]) or {}
-        if meta.get("id"):
-            return str(meta["id"])
-    return path.stem
+    meta, _ = split_front_matter(path.read_text(encoding="utf-8"))
+    return str(meta.get("id") or path.stem)
 
 
 def _known_ids() -> dict[str, set[str]]:

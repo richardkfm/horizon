@@ -19,7 +19,7 @@ from fastapi.exception_handlers import (
 )
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import FileResponse, Response
+from fastapi.responses import FileResponse, PlainTextResponse, Response
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from horizon import __version__
@@ -207,6 +207,22 @@ async def _validation_error(request: Request, exc: RequestValidationError) -> Re
     if _wants_json_error(request):
         return await request_validation_exception_handler(request, exc)
     return _error_page(request, 422)
+
+
+@app.exception_handler(Exception)
+async def _server_error(request: Request, exc: Exception) -> Response:
+    """Unexpected crashes: the friendly page for visitors, plain text for the API.
+
+    Starlette still logs the traceback and re-raises after this returns. The
+    API keeps the exact ``Internal Server Error`` text body it always had, and
+    if the error page itself can't render, fall back to that too.
+    """
+    if not _wants_json_error(request):
+        try:
+            return _error_page(request, 500)
+        except Exception:  # noqa: BLE001 - never fail while reporting a failure
+            pass
+    return PlainTextResponse("Internal Server Error", status_code=500)
 
 
 @app.get("/healthz", tags=["meta"])

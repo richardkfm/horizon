@@ -198,3 +198,21 @@ def test_fallback_answer_links_guides_once(monkeypatch):
     assert "[water-slow-sand-filter]" not in resp.text
     # ...and not repeated under Sources.
     assert "<h3>Sources</h3>" not in resp.text
+
+
+def test_unexpected_crash_is_friendly_html_500_but_api_stays_plain(monkeypatch):
+    from fastapi.routing import APIRoute
+
+    def boom() -> None:
+        raise RuntimeError("boom")
+
+    routes = [APIRoute("/__boom", boom), APIRoute("/api/__boom", boom)]
+    monkeypatch.setattr(app.router, "routes", routes + app.router.routes)
+    with TestClient(app, raise_server_exceptions=False) as client:
+        page = client.get("/__boom")
+        api = client.get("/api/__boom")
+    assert page.status_code == 500
+    assert page.headers["content-type"].startswith("text/html")
+    assert 'action="/guides"' in page.text
+    assert api.status_code == 500
+    assert api.text == "Internal Server Error"

@@ -86,9 +86,10 @@ energy) and the model is never called, not even for embeddings.
   The same goes for `/healthz`, `/docs`, `/redoc`, `/openapi.json`, and any
   request carrying an `HX-Request` header. Every *other* path — the
   browser-facing pages — returns a friendly HTML error page with the same
-  status code (404, 400, 405, 422, and any 5xx the app raises; an unexpected
-  crash is still a plain-text 500). With `web.enabled: false` every error is
-  JSON.
+  status code (404, 400, 405, 422, and 5xx, including an unexpected crash).
+  An unexpected crash on an API path still returns the plain-text
+  `Internal Server Error` 500 it always did. With `web.enabled: false` every
+  error is JSON (or that plain-text 500).
 - **gzip:** responses over 1 KB, JSON included, are gzip-compressed when the
   client sends `Accept-Encoding: gzip`. Standard HTTP clients decompress
   transparently; nothing changes for a client that doesn't ask for it.

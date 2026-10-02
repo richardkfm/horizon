@@ -71,8 +71,9 @@ gzip-compressed when the client accepts it.
 - **An `energy-safety` md skill** so the assistant carries battery, wiring,
   and carbon-monoxide cautions into energy answers.
 - **Friendly error pages.** A missing page or a bad link (404, 400, 422, and
-  the 5xx errors the app raises) now shows a plain-language page with a search box and links back into
-  the library, instead of a bare JSON `{"detail": ...}`. **API contract:**
+  any 5xx, including an unexpected crash) now shows a plain-language page
+  with a search box and links back into the library, instead of a bare JSON
+  `{"detail": ...}` or a plain-text `Internal Server Error`. **API contract:**
   `/api/*`, `/healthz`, `/docs`, and htmx fragment requests keep their JSON
   error bodies exactly as before; only browser page requests get HTML.
 - **A visual identity.** Each topic has its own signature colour (used on
