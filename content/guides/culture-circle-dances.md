@@ -43,3 +43,9 @@ steps repeat, and people learn just by following the person beside them.
 - Adapt steps to who is present — gentler for elders and small children.
 - Attach dances to occasions (a harvest dance, a welcome dance) so they gather
   meaning and get remembered and passed on.
+
+## Where to go next
+
+- [[culture-group-songs]]
+- [[culture-simple-instruments]]
+- [[culture-no-gear-games]]

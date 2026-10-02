@@ -58,8 +58,7 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
   (shingles, metal, thatch, or salvaged sheeting), overlapped top-down.
 - **Clad the walls** with overlapping boards (shed water downward), or infill the
   frame with earth/straw for insulation.
-- **Insulate** walls, floor, and roof against heat loss (see the insulation
-  guide), and seal gaps against draughts.
+- **Insulate** walls, floor, and roof against heat loss (see [[shelter-insulation-basics|the insulation guide]]), and seal gaps against draughts.
 - **Fit a door and windows**, framed square and weather-sealed.
 
 ## Make it livable and last
@@ -68,3 +67,9 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
   this; bad flues cause fires and poisoning.
 - **Ventilate** to prevent damp and condensation.
 - **Inspect yearly** for leaks, rot, and pests, and treat or replace wood early.
+
+## Where to go next
+
+- [[shelter-insulation-basics]]
+- [[calc-structural-loads]]
+- [[crafts-tool-repair]]

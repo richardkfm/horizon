@@ -17,7 +17,7 @@ stay healthy, and keep food growing.
 > **Decision:** **Drinking and hygiene come first.** When water is scarce, ration in this order:
 > drinking and cooking, then basic hygiene, then animals and crops, then
 > everything else. Never stop drinking enough — dehydration is dangerous,
-> especially in heat (see *Survive extreme heat*).
+> especially in heat (see [[emergency-extreme-heat|survive extreme heat]]).
 
 ## Stretch the water you have
 
@@ -26,7 +26,7 @@ stay healthy, and keep food growing.
 - **Reuse greywater:** water from washing (with mild, plant-safe soap) can flush
   toilets or water non-food plants.
 - **Catch every drop:** harvest rainwater from roofs and surfaces whenever it does
-  rain, and store it covered (see the water guides).
+  rain, and store it covered (see [[water-rainwater-harvesting]]).
 - **Store safely:** keep water in clean, covered, dark containers; treat before
   drinking if its source is uncertain.
 
@@ -64,3 +64,10 @@ stay healthy, and keep food growing.
 Drought often comes with heat — watch for **heatstroke and dehydration** in the
 vulnerable. Build resilience between droughts: bigger rain storage, water-saving
 habits, drought-tolerant planting, and a shared community plan for the dry season.
+
+## Where to go next
+
+- [[calc-water-budget]]
+- [[water-rainwater-harvesting]]
+- [[emergency-extreme-heat]]
+- [[emergency-wildfire]]

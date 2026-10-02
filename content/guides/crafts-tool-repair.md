@@ -63,3 +63,9 @@ the edge at a consistent angle until it's keen, then remove the burr.
   rust off.
 - **Store dry and off the ground**, edges protected and pointing safely.
 - **Sharpen little and often** rather than waiting for a tool to go fully blunt.
+
+## Where to go next
+
+- [[crafts-make-tools]]
+- [[mobility-bike-maintenance]]
+- [[checklist:tools-and-materials]]

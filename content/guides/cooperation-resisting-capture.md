@@ -9,14 +9,12 @@ estimated_time: "Ongoing vigilance, review each season"
 
 # Resist a faction trying to capture the group
 
-Groups disagree about direction all the time, and that's healthy (see make
-fair group decisions). Capture is different: a faction or individual trying
+Groups disagree about direction all the time, and that's healthy (see [[cooperation-group-decisions|make fair group decisions]]). Capture is different: a faction or individual trying
 to redirect the group's purpose, values, or membership by working around
 transparent process rather than through it — using urgency, secrecy, or
 pressure to get there faster than honest persuasion would allow. Left
 unchecked, it's the same risk as one person quietly holding a role forever
-(see the "guard against the return of hierarchy" section in set up fair,
-accountable governance for a group) — just aimed at the group's direction
+(see the "guard against the return of hierarchy" section in [[cooperation-democratic-governance|set up fair, accountable governance for a group]]) — just aimed at the group's direction
 instead of an office.
 
 > **Note:** Pluralism and consensus are the actual defence against
@@ -48,8 +46,7 @@ instead of an office.
 ## Protect fair process, don't short-circuit it
 
 - **Bring it to the group's existing tools** — the same decision process
-  (see make fair group decisions) and recall (see set up fair, accountable
-  governance for a group) that handle any other accountability question.
+  (see [[cooperation-group-decisions|make fair group decisions]]) and recall (see [[cooperation-democratic-governance|set up fair, accountable governance for a group]]) that handle any other accountability question.
   Capture doesn't need a special tribunal; it needs the ordinary process
   applied honestly.
 - **Deal in what happened, not rumour.** Name specific actions and their
@@ -78,8 +75,7 @@ instead of an office.
 
 If someone is using threats, intimidation, or force to enforce the
 capture attempt — rather than just arguing for a bad idea in good faith —
-that's a safety issue, not an ideas debate. See protect someone from
-coercion or threats inside the group, and keep the two threads separate: a
+that's a safety issue, not an ideas debate. See [[cooperation-boundary-safety|protect someone from coercion or threats inside the group]], and keep the two threads separate: a
 wrong idea gets argued down through process; a threat gets a safety
 response first.
 
@@ -90,8 +86,7 @@ response first.
   just the immediate situation.
 - **Revisit how new members join and are onboarded**, since recruiting
   outside process is a common vector.
-- **Invest in shared, ordinary activity** afterward (see the
-  share-culture-together guides) — a group recovers trust through lived
+- **Invest in shared, ordinary activity** afterward (see [[plan:share-culture-together|the share-culture-together guides]]) — a group recovers trust through lived
   experience together, not just a correct decision on paper.
 
 This is a correction a healthy group can make, not proof the group is
@@ -101,11 +96,8 @@ one ever shows up.
 
 ## Where to go next
 
-- For ordinary disagreement about the group's direction, see make fair
-  group decisions.
-- For the office-holding version of this same risk, see set up fair,
-  accountable governance for a group.
+- For ordinary disagreement about the group's direction, see [[cooperation-group-decisions|make fair group decisions]].
+- For the office-holding version of this same risk, see [[cooperation-democratic-governance|set up fair, accountable governance for a group]].
 - If a threat or coercion is involved, not just a bad-faith argument, see
-  protect someone from coercion or threats inside the group.
-- For a two-sided dispute rather than a capture attempt, see resolve
-  conflict between people fairly.
+  [[cooperation-boundary-safety|protect someone from coercion or threats inside the group]].
+- For a two-sided dispute rather than a capture attempt, see [[cooperation-resolving-conflict|resolve conflict between people fairly]].

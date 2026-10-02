@@ -66,5 +66,11 @@ Mix fast and slow, and crops that store:
 
 ## Keep it going
 
-Save seed from your best plants (see the seed-saving guide), keep a compost heap,
+Save seed from your best plants (see [[food-seed-saving|the seed-saving guide]]), keep a compost heap,
 and note what did well each season so next year is easier.
+
+## Where to go next
+
+- [[food-diagnose-plant-problems]]
+- [[food-seed-saving]]
+- [[cooking-preserving]]

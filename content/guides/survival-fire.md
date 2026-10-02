@@ -75,3 +75,9 @@ Leave gaps so air can flow — fire needs fuel, heat, *and* air.
 - Feed the new flame the smallest kindling first, then steadily larger pieces.
 - Keep a dry reserve of tinder and kindling under cover for the next light.
 - To carry fire, bank it: cover hot coals with ash so they smoulder for hours.
+
+## Where to go next
+
+- [[survival-campsite-setup]]
+- [[emergency-extinguish-fire]]
+- [[cooking-one-pot-meals]]

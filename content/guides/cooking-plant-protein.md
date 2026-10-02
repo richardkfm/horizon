@@ -61,3 +61,9 @@ legumes, seeds, wholegrains — eat with something sour/vitamin-C rich to absorb
 iron better), calcium (greens, sesame, fortified foods), and **vitamin B12**,
 which plants don't reliably provide — keep a source (fortified food or a
 supplement) where you can. Get fats from nuts, seeds, and a little oil.
+
+## Where to go next
+
+- [[cooking-one-pot-meals]]
+- [[food-staple-crops-500m2]]
+- [[cooking-ferments]]

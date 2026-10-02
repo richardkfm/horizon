@@ -41,8 +41,14 @@ languages long before any technology, using patience, goodwill, and the body.
 
 - Each time you agree on a word, **write both languages down** side by side, with
   a little drawing. This becomes a shared word list the whole group can use and
-  grow (links to learning core phrases).
+  grow (see [[language-core-phrases|learning core phrases]]).
 - Learn a few words of *their* language as they learn yours — sharing the effort
   builds trust and speeds things up.
 - Keep a running picture-dictionary for the most-needed words: water, food,
   danger, help, trade, sick.
+
+## Where to go next
+
+- [[language-core-phrases]]
+- [[language-signs-and-pictograms]]
+- [[language-numbers-and-measures]]

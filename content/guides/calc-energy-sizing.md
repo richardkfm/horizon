@@ -59,5 +59,12 @@ Example: 1000 Wh × 2 days ÷ 0.5 usable = 4000 Wh; at 12 V → ~333 Ah.
   energy is cheaper than generating it.
 - Re-check seasonally; winter is usually the limiting case.
 
-Carry these numbers into the solar, wind, and battery guides to choose real
+Carry these numbers into the [[energy-low-tech-solar|solar]], [[energy-wind-power|wind]], and
+[[energy-battery-storage|battery]] guides to choose real
 equipment.
+
+## Where to go next
+
+- [[energy-sizing-solar-battery]]
+- [[energy-low-tech-solar]]
+- [[energy-battery-storage]]

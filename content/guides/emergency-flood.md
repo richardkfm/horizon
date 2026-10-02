@@ -54,7 +54,7 @@ simple — **get to high ground, and never walk or drive into floodwater.**
 - **Wait for the all-clear** before returning; floodwater recedes but hazards
   stay.
 - **Assume water is contaminated** — don't drink from flooded sources until tested
-  and treated (boil if unsure; see the water guides).
+  and treated (boil if unsure; see [[water-choosing-treatment|choosing a water treatment]]).
 - **Watch for hazards:** weakened structures, hidden holes, snakes/animals,
   downed power lines, and gas leaks. Don't switch on power in a flooded building
   until checked.
@@ -63,5 +63,4 @@ simple — **get to high ground, and never walk or drive into floodwater.**
 
 ## Where to go next
 
-- If toilets and normal waste disposal are out of action, see manage waste
-  and hygiene without plumbing.
+- If toilets and normal waste disposal are out of action, see [[survival-sanitation-hygiene|manage waste and hygiene without plumbing]].

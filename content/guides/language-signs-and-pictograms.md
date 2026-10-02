@@ -78,11 +78,17 @@ simple shapes, thick strokes, one idea per board.*
 
 > **Do now:** If your group shares any water source, mark safe and unsafe
 > water with unmistakable, agreed signs today — it's the pictogram that
-> prevents the most harm (links to testing whether water is safe to drink).
+> prevents the most harm (see [[water-field-testing|testing whether water is safe to drink]]).
 
 ## Keep it growing
 
 Add signs and symbols as needs appear, retire ones that confuse, and record
 the agreed set on your group's word list so it survives beyond the people who
-invented it (links to communicating across a language barrier and to
-preserving knowledge through storytelling).
+invented it (see [[language-across-barriers|communicating across a language barrier]] and to
+[[culture-storytelling|preserving knowledge through storytelling]]).
+
+## Where to go next
+
+- [[language-across-barriers]]
+- [[cooperation-message-relay]]
+- [[water-field-testing]]

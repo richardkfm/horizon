@@ -57,3 +57,10 @@ the blast — and acting fast on a warning saves lives.
   them to authorities.
 - **Help neighbours**, especially anyone trapped, injured, or alone, and follow
   official channels for what to do next.
+
+## Where to go next
+
+- [[emergency-conflict-safety]]
+- [[health-bleeding-control]]
+- [[health-psychological-first-aid]]
+- [[checklist:go-bag]]

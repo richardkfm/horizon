@@ -97,3 +97,9 @@ it no longer keeps up with what you need, even with the valve fully open:
 - Store filtered water in clean, covered containers.
 - Use a tap or ladle to avoid recontamination by hands.
 - Test the output periodically.
+
+## Where to go next
+
+- [[water-field-testing]]
+- [[water-choosing-treatment]]
+- [[checklist:water-store]]

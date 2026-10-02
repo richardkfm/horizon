@@ -48,17 +48,16 @@ this while you still have signal, and both keep working after you lose it.
 
 A downloaded digital map depends on a charged phone. A printed paper map of
 your area and evacuation routes needs no battery at all and is worth keeping
-in a go-bag alongside a compass — see **navigate with a map and compass** for
+in a go-bag alongside a compass — see [[survival-map-and-compass|navigate with a map and compass]] for
 how to use it. Print it, or ask whoever runs this horizon node to, before you
 need it: mid-emergency is the wrong time to discover the printer needs power
 too.
 
 ## Where to go next
 
-- **Navigate with a map and compass** covers reading a printed map once your
+- [[survival-map-and-compass]] covers reading a printed map once your
   phone is out of the picture.
-- **Get through emergencies with no car to fall back on** already assumes you
+- [[emergency-no-car-household]] already assumes you
   know your evacuation routes on foot — downloading and printing them ahead
   of time, as above, is how you actually get there.
-- If you decide to stay put rather than move, see **signal for rescue if
-  lost or stranded**.
+- If you decide to stay put rather than move, see [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].

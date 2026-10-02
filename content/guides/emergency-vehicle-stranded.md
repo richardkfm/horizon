@@ -47,7 +47,7 @@ someone your planned route and expected arrival time before you set off.
      occasionally.
 4. **Signal for rescue** using the same tools you'd use if lost on foot —
    mirror flashes, a whistle, or ground signals visible from the air; see
-   signal for rescue if lost or stranded.
+   [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].
 
 > **Risk:** Never run the engine with the exhaust pipe blocked by snow or
 > mud. Carbon monoxide builds up in an enclosed vehicle and can kill without
@@ -56,9 +56,7 @@ someone your planned route and expected arrival time before you set off.
 
 ## Where to go next
 
-- For the full range of signaling techniques, see signal for rescue if lost
-  or stranded.
+- For the full range of signaling techniques, see [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].
 - For cold-weather survival if you do need to leave the vehicle, see
-  surviving extreme cold and treating hypothermia and frostbite.
-- The same carbon monoxide danger applies at home — see preparing for a long
-  blackout.
+  [[emergency-extreme-cold|surviving extreme cold]] and [[health-cold-injuries|treating hypothermia and frostbite]].
+- The same carbon monoxide danger applies at home — see [[emergency-blackout|preparing for a long blackout]].

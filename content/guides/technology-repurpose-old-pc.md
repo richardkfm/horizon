@@ -11,8 +11,7 @@ estimated_time: "A weekend"
 
 An old laptop too slow for modern software still has plenty of life left as
 a **local server** — a machine that quietly serves files, a shared library,
-or other services to devices on your local network (see build a local
-network without the internet). This keeps working hardware out of landfill
+or other services to devices on your local network (see [[technology-local-network|build a local network without the internet]]). This keeps working hardware out of landfill
 and gives your household or neighbourhood something genuinely useful to
 reach over that network.
 
@@ -68,8 +67,7 @@ Pick one or two services to start — it's easy to add more later:
   unused ports on a machine that only needs a wired network connection.
 - **Let it sleep between requests** where the software supports it, waking
   on network activity rather than idling at full power.
-- **Size solar/battery power** to match its real draw — see how big a
-  solar+battery system do you need, using the server's actual measured
+- **Size solar/battery power** to match its real draw — see [[energy-sizing-solar-battery|how big a solar+battery system do you need]], using the server's actual measured
   power use, not a guess.
 
 ## Maintain it simply
@@ -83,7 +81,6 @@ Pick one or two services to start — it's easy to add more later:
 
 ## Where to go next
 
-- Build the network this server lives on: see build a local network
-  without the internet.
-- Keep it powered reliably: see set up a small low-tech solar system.
-- Basic hardware troubleshooting: see maintain and repair computers.
+- Build the network this server lives on: see [[technology-local-network|build a local network without the internet]].
+- Keep it powered reliably: see [[energy-low-tech-solar|set up a small low-tech solar system]].
+- Basic hardware troubleshooting: see [[technology-computer-maintenance|maintain and repair computers]].

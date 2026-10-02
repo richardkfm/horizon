@@ -12,8 +12,7 @@ estimated_time: "1 hour, then days-weeks of waiting"
 Fermentation is the oldest food technology that still beats its modern
 replacements: no electricity, no canning gear, and the food comes out *more*
 nourishing than it went in. The basics of salt-fermenting cabbage are covered
-in the preserving guide (links to preserving food by drying, fermenting, and
-pickling); this one goes further — brining any vegetable, brewing vinegar
+in the preserving guide (see [[cooking-preserving|preserving food by drying, fermenting, and pickling]]); this one goes further — brining any vegetable, brewing vinegar
 from scraps, and learning to read a jar so you can rescue or reject with
 confidence.
 
@@ -105,3 +104,9 @@ Fermenting safely is mostly knowing what you're looking at.
 - **Sour is a pantry ingredient:** brine livens soups and dressings
   (unheated, it keeps its live cultures), vinegar preserves the next glut,
   and a spoon of active brine kick-starts a sluggish new jar.
+
+## Where to go next
+
+- [[cooking-preserving]]
+- [[cooking-plant-protein]]
+- [[checklist:food-store]]

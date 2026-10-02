@@ -19,8 +19,7 @@ prevents both running short and wasting scarce resources.
 
 ## The general method
 
-1. **Work out the size** of the job — area or volume (see *Calculate area and
-   volume*).
+1. **Work out the size** of the job — area or volume (see [[calc-area-volume|calculate area and volume]]).
 2. **Find the "per unit" rate** — how much material per m², per m³, per person,
    per day.
 3. **Multiply**, then **add a margin**.
@@ -44,7 +43,7 @@ Multiply a per-person, per-day rate by people and days:
   days; favour storable staples.
 - **Firewood:** estimate by how much you burn per day in your setup × cold days;
   a stacked volume (m³) helps you picture the woodpile.
-- **Seed:** sowing rate per m² × your bed area (see the food guides), plus extra
+- **Seed:** sowing rate per m² × your bed area (see [[food-vegetable-garden|the vegetable-garden guide]]), plus extra
   to save.
 
 ## Worked example
@@ -61,3 +60,9 @@ A cob wall 5 m long, 2.5 m high, 0.3 m thick:
 - **Buy or gather in stages** for big jobs, refining the estimate as you go.
 - **Write the numbers down** — quantities, rates, and margins — so you can reuse
   and correct them next time.
+
+## Where to go next
+
+- [[calc-area-volume]]
+- [[calc-structural-loads]]
+- [[checklist:tools-and-materials]]

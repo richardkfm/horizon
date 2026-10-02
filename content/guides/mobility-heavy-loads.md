@@ -36,7 +36,7 @@ needs to, sustainably, without fuel.
 | Wheelbarrow | Small, awkward, or very heavy single loads over short distances | Needs constant steering and balance; tiring over distance |
 | Handcart / sack truck | Stacked boxes, sacks, crates | Needs reasonably flat, solid ground |
 | Two-wheeled garden cart | Firewood, harvests, general bulk loads | Slower over long distances than a bike trailer |
-| Bike trailer | Heaviest loads over the longest distances, least effort | Needs a sound bike and a rider fit to tow — see *build a cargo bike trailer* |
+| Bike trailer | Heaviest loads over the longest distances, least effort | Needs a sound bike and a rider fit to tow — see [[mobility-cargo-trailer]] |
 
 ## Load it right
 
@@ -45,8 +45,7 @@ needs to, sustainably, without fuel.
   cart and wheelbarrow tip-overs, not the total weight.
 - **Keep the load low.** A high stack is unstable and catches wind; the same
   weight packed low rides steadier.
-- **Lash it down** so it can't shift in transit — see *tie essential knots
-  and lashings* for lashings that hold under a moving load, not just a static
+- **Lash it down** so it can't shift in transit — see [[survival-knots|tie essential knots and lashings]] for lashings that hold under a moving load, not just a static
   one.
 - **Balance side to side** as carefully as front to back; an unevenly loaded
   cart pulls to one side on every push.
@@ -73,19 +72,17 @@ A neighbourhood's carts and trailers get more use, and more wear, than any
 one household's — treat them accordingly:
 
 - **Keep a simple maintenance routine** — check wheels, axles, and hitches
-  before each use, the same way you'd check a bike (see *keep a bicycle
-  running with basic maintenance and repairs*).
+  before each use, the same way you'd check a bike (see [[mobility-bike-maintenance|keep a bicycle running with basic maintenance and repairs]]).
 - **Store dry and under cover** so wood doesn't rot and metal doesn't rust.
 - **Agree who's responsible for upkeep** and how borrowing works, the same as
-  any other shared resource — see *share resources and manage a group's
-  commons* for setting that up fairly rather than letting it default to
+  any other shared resource — see [[cooperation-sharing-resources|share resources and manage a group's commons]] for setting that up fairly rather than letting it default to
   whoever shouts loudest.
 
 ## Where to go next
 
-- See **build a cargo bike trailer** for the highest-capacity, least-effort
+- See [[mobility-cargo-trailer|build a cargo bike trailer]] for the highest-capacity, least-effort
   option once you have a sound bike.
 - If you're planning for emergencies specifically and have no car to fall
-  back on, see **get through emergencies with no car to fall back on**.
+  back on, see [[emergency-no-car-household|get through emergencies with no car to fall back on]].
 - For estimating how much weight a cart, axle, or trailer frame can actually
-  carry, see **estimate weights and loads in building**.
+  carry, see [[calc-structural-loads|estimate weights and loads in building]].

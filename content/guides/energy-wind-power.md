@@ -29,8 +29,7 @@ mechanically involved than solar, so plan for the moving parts and the safety.
 
 ## Size it to your needs
 
-Work out your daily energy use and expected wind first (see *Size an energy
-system*). Match the turbine and battery bank to that, with margin — an oversized
+Work out your daily energy use and expected wind first (see [[calc-energy-sizing|size an energy system]]). Match the turbine and battery bank to that, with margin — an oversized
 tower and battery beat a turbine that never keeps up.
 
 ## Build and raise it
@@ -69,7 +68,7 @@ tower and battery beat a turbine that never keeps up.
   turbine even with the battery full — a "dump load" sheds extra power so the
   turbine never free-spins to destruction).
 - Wire into the **battery bank** with correctly rated cable, fusing, and a
-  disconnect (see *Store and manage your power*).
+  disconnect (see [[energy-battery-storage|store and manage your power]]).
 - **Earth/ground the tower** against lightning.
 
 ## Maintain it
@@ -77,3 +76,9 @@ tower and battery beat a turbine that never keeps up.
 Inspect blades, bolts, bearings, and guy wires regularly; vibration and noise
 mean trouble. Keep people clear of a spinning rotor, and always brake and secure
 it before climbing or working on the tower.
+
+## Where to go next
+
+- [[energy-battery-storage]]
+- [[calc-energy-sizing]]
+- [[energy-low-tech-solar]]

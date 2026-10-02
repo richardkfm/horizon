@@ -64,7 +64,5 @@ keep them hydrated, and seek medical help if you can.
 
 ## Where to go next
 
-- For bites and stings from the animals you'll meet while foraging, see treat
-  bites, stings, and wildlife encounters.
-- To avoid attracting animals to camp with food scent, see choosing and
-  setting up a campsite.
+- For bites and stings from the animals you'll meet while foraging, see [[health-bites-stings-wildlife|treat bites, stings, and wildlife encounters]].
+- To avoid attracting animals to camp with food scent, see [[survival-campsite-setup|choosing and setting up a campsite]].

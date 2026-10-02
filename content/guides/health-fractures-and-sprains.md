@@ -29,7 +29,7 @@ Ice, Compression, Elevation).
 1. **Keep the person still** and calm; don't move them more than necessary.
 2. **Support the injured part** in the position you find it — don't force it
    straight or "pop" a joint back.
-3. **Stop any bleeding** first with direct pressure (see the bleeding guide), and
+3. **Stop any bleeding** first with direct pressure (see [[health-bleeding-control|the bleeding guide]]), and
    cover open wounds.
 
 ## Improvise a splint
@@ -71,3 +71,9 @@ A splint stops a broken bone moving while you get help.
 
 A painful injury can cause shock (pale, cold, clammy, faint). Keep the person warm,
 lying down, and reassured while you arrange care.
+
+## Where to go next
+
+- [[health-first-aid-basics]]
+- [[health-bleeding-control]]
+- [[checklist:first-aid-kit]]

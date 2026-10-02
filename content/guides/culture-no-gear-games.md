@@ -26,8 +26,8 @@ equipment, no reading, and no shared language — just people.
 - **Pass the rhythm:** a clap or movement is passed around the circle; add layers
   as the group gets confident.
 - **Hide and seek / sardines:** simple, loved by children, and needs only space.
-- **Storytelling chain:** each person adds one sentence to a shared story (links
-  to the storytelling guide).
+- **Storytelling chain:** each person adds one sentence to a shared story (see
+  [[culture-storytelling|the storytelling guide]]).
 - **Guessing and memory games:** "I packed my bag and brought…", each adding an
   item and repeating the list.
 
@@ -45,3 +45,9 @@ equipment, no reading, and no shared language — just people.
 
 Shared play builds trust and cooperation that carry over into work and
 decision-making. A community that plays together handles hardship better.
+
+## Where to go next
+
+- [[culture-storytelling]]
+- [[culture-group-songs]]
+- [[language-across-barriers]]

@@ -18,7 +18,7 @@ retired to a shed after the first flat tyre.
 
 > **Pick this if** you already have (or can get) a bike and want it to keep
 > working without a shop. **Avoid if** you have no bike and no way to get
-> one — see *move heavy loads without a car* for load-carrying options that
+> one — see [[mobility-heavy-loads|move heavy loads without a car]] for load-carrying options that
 > don't depend on one.
 
 ## A basic toolkit
@@ -114,9 +114,8 @@ The single most common repair, and the one most worth mastering first:
 
 ## Where to go next
 
-- Once your bike is reliable, see **build a cargo bike trailer** to turn it
+- Once your bike is reliable, see [[mobility-cargo-trailer|build a cargo bike trailer]] to turn it
   into a load-hauling tool.
 - For general lashing and load-tying skills that carry over to bike trailers
-  and racks, see **tie essential knots and lashings**.
-- For fixing other tools the same way you fix a bike, see **sharpen and
-  repair hand tools**.
+  and racks, see [[survival-knots|tie essential knots and lashings]].
+- For fixing other tools the same way you fix a bike, see [[crafts-tool-repair|sharpen and repair hand tools]].

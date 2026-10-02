@@ -83,3 +83,9 @@ strength):
   repairable, lime is tougher against rain.
 - **Maintain yearly:** patch cracks and re-coat plaster — easy with earth, and
   part of how these buildings last so long.
+
+## Where to go next
+
+- [[shelter-choosing]]
+- [[shelter-insulation-basics]]
+- [[calc-materials-quantities]]

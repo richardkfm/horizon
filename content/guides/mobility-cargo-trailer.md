@@ -72,8 +72,7 @@ ground without transmitting every bump straight to the frame:
 - **Use a locking pin or a safety strap** as backup in case the primary hitch
   ever works loose — a trailer coming loose in traffic is dangerous, not just
   inconvenient.
-- **Lash the tow arm to the frame** with a secure lashing (see *tie essential
-  knots and lashings*) if you're building from timber and don't yet have a
+- **Lash the tow arm to the frame** with a secure lashing (see [[survival-knots|tie essential knots and lashings]]) if you're building from timber and don't yet have a
   welded or bolted joint — check and retighten it before each heavy trip
   until you're confident in it.
 
@@ -85,8 +84,7 @@ ground without transmitting every bump straight to the frame:
 - **A drop-down or removable tailgate** makes loading heavy items far easier
   than lifting them over a high side.
 - **Tie-down points** (eye bolts or loops of cord) at the corners so loads can
-  be lashed down rather than shifting loose — see *tie essential knots and
-  lashings* for lashings that hold under a moving load.
+  be lashed down rather than shifting loose — see [[survival-knots|tie essential knots and lashings]] for lashings that hold under a moving load.
 
 ## Make it safe to ride
 
@@ -100,10 +98,9 @@ ground without transmitting every bump straight to the frame:
 
 ## Where to go next
 
-- See **move heavy loads without a car** for how to load, balance, and haul
+- See [[mobility-heavy-loads|move heavy loads without a car]] for how to load, balance, and haul
   once the trailer is built.
-- For the tow bike itself, see **keep a bicycle running with basic
-  maintenance and repairs** — a trailer adds real load to brakes and drivetrain,
+- For the tow bike itself, see [[mobility-bike-maintenance|keep a bicycle running with basic maintenance and repairs]] — a trailer adds real load to brakes and drivetrain,
   so start from a bike that's already sound.
 - For sizing the frame and axle to the loads you actually intend to carry, see
-  **estimate weights and loads in building**.
+  [[calc-structural-loads|estimate weights and loads in building]].

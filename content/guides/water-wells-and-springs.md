@@ -101,12 +101,10 @@ away*
 ## Test and treat before drinking
 
 Groundwater is often cleaner than surface water but is not automatically
-safe — test it and treat it the same as any other source (see test whether
-water is safe to drink and which water treatment should you use).
+safe — test it and treat it the same as any other source (see [[water-field-testing|test whether water is safe to drink]] and [[water-choosing-treatment|which water treatment should you use]]).
 
 ## Where to go next
 
 - Combine a steady well or spring with rainwater catchment for resilience —
-  see harvest and store rainwater.
-- Always confirm safety before drinking: see test whether water is safe to
-  drink.
+  see [[water-rainwater-harvesting|harvest and store rainwater]].
+- Always confirm safety before drinking: see [[water-field-testing|test whether water is safe to drink]].

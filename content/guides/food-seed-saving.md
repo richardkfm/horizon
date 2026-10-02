@@ -56,3 +56,9 @@ variety of each, so seed stays true.
 Test old seed by sprouting a few on a damp cloth before planting season. Share
 and swap seed with neighbours — a community seed store is resilience against any
 single bad year.
+
+## Where to go next
+
+- [[food-choosing-crops]]
+- [[food-vegetable-garden]]
+- [[checklist:food-store]]

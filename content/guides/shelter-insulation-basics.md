@@ -62,3 +62,9 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
    — wet insulation barely works and rots.
 5. **Shrink the heated space:** curtain off one room to warm rather than the whole
    shelter.
+
+## Where to go next
+
+- [[emergency-extreme-cold]]
+- [[shelter-timber-cabin]]
+- [[energy-solar-water-heating]]

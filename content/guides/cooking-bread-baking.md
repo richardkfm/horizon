@@ -62,3 +62,9 @@ Without bought yeast, wild yeast does the work:
 Store flour sealed against damp and pests, keep a little starter back to raise the
 next batch, and save some grain to mill. With a living starter and a fire, you
 never run out of bread.
+
+## Where to go next
+
+- [[cooking-solar-oven]]
+- [[cooking-one-pot-meals]]
+- [[cooking-ferments]]

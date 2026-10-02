@@ -42,3 +42,9 @@ materials at hand and a willingness to begin.
 - Give people without instruments a part — clapping, stamping, or singing.
 - Watch the group and match their energy; the leader serves the circle, not the
   other way around.
+
+## Where to go next
+
+- [[culture-group-songs]]
+- [[culture-circle-dances]]
+- [[crafts-cordage]]

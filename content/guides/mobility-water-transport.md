@@ -50,7 +50,7 @@ volume in litres of lift — keep total load under half the theoretical lift.*
   logs. Rule of thumb — a litre of trapped air lifts a kilogram; load to
   **half** that, so the raft floats high even when things go wrong.
 - **Lash, don't nail:** square lashings hold flexing timber that would work
-  nails loose (links to tying essential knots and lashings).
+  nails loose (see [[survival-knots|tying essential knots and lashings]]).
 - **Test empty, then loaded, at the shore** before the first real trip, and
   re-check lashings after every outing.
 - Move it with a pole in shallow water, paddles or oars in deeper — and stay
@@ -72,7 +72,7 @@ goes further, faster, and against gentle current.
   glassy above a drop deserves a look from the bank first.
 - **Maintain the hull** — dry it out, re-seal seams each season, and fix
   small leaks before they're big ones (the tools-and-repair habit, applied
-  to a boat; links to sharpening and repairing hand tools).
+  to a boat; see [[crafts-tool-repair|sharpening and repairing hand tools]]).
 
 ## A rope ferry for a regular crossing
 
@@ -88,10 +88,15 @@ weekly.
 
 - **Map your water:** where it's deep enough, where the shallows, weirs, and
   fast reaches are, seasonal changes, and the portage paths around obstacles
-  (links to navigating with a map and compass).
+  (see [[survival-map-and-compass|navigating with a map and compass]]).
 - **Build simple landings** — a firm bank, a post to tie to — at the places
   you actually load and unload; most cargo damage happens at the water's
   edge.
 - **Share craft like carts:** a raft or punt serves a whole bank of
-  neighbours with a rota and a maintenance habit (links to sharing resources
-  and managing a group's commons).
+  neighbours with a rota and a maintenance habit (see [[cooperation-sharing-resources|sharing resources and managing a group's commons]]).
+
+## Where to go next
+
+- [[survival-knots]]
+- [[mobility-heavy-loads]]
+- [[survival-map-and-compass]]

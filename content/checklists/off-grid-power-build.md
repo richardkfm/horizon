@@ -11,8 +11,7 @@ What you need on hand before you start the *set up off-grid power* plan:
 sizing your load, wiring solar, and storing it safely in a battery bank.
 Gather this before you buy panels so you don't pay for capacity you don't need.
 
-> **Spec:** Confirm your numbers with the *how big a solar + battery system do
-> you need?* guide before buying anything — sizing mistakes are the most
+> **Spec:** Confirm your numbers with the [[energy-sizing-solar-battery|how big a solar + battery system do you need?]] guide before buying anything — sizing mistakes are the most
 > expensive ones.
 
 ## Sizing and planning
@@ -30,7 +29,7 @@ Gather this before you buy panels so you don't pay for capacity you don't need.
 
 ## Battery storage
 
-- [ ] Battery bank sized to your load (see *store and manage your power*)
+- [ ] Battery bank sized to your load (see [[energy-battery-storage|store and manage your power]])
 - [ ] Battery box or enclosure, ventilated and out of direct sun
 - [ ] Inverter if you need standard AC sockets
 - [ ] Fuses or circuit breakers sized to your wiring

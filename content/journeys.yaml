@@ -68,15 +68,15 @@ journeys:
     title: Plan and build a shelter
     description: >
       Decide what to build, then build it to last: choose the right shelter for
-      your climate and needs, keep it warm and dry with good insulation, and
-      frame a simple timber cabin for longer-term living.
+      your climate and needs, frame a simple timber cabin for longer-term
+      living, then keep it warm and dry with good insulation.
     category: shelter
     difficulty: 4
     estimated_time: "Weeks"
     guides:
       - shelter-choosing
-      - shelter-insulation-basics
       - shelter-timber-cabin
+      - shelter-insulation-basics
 
   - id: cook-from-scratch
     title: Cook good food from scratch
@@ -133,17 +133,19 @@ journeys:
   - id: share-culture-together
     title: Bring people together with culture
     description: >
-      Easy, no-gear ways to lift morale and build trust in a group: lead group
-      songs and simple dances, run games anyone can join, make basic
-      instruments, and keep knowledge alive through storytelling.
+      Easy, no-gear ways to lift morale and build trust in a group, from the
+      first evening to a lasting habit: break the ice with games anyone can
+      join, get everyone singing, make simple instruments to keep the beat,
+      put song and rhythm together in a circle dance, and finally keep the
+      group's knowledge alive through storytelling.
     category: culture
     difficulty: 1
     estimated_time: "An afternoon to start"
     guides:
-      - culture-group-songs
-      - culture-circle-dances
       - culture-no-gear-games
+      - culture-group-songs
       - culture-simple-instruments
+      - culture-circle-dances
       - culture-storytelling
 
   - id: craft-and-maintain-tools
@@ -151,8 +153,8 @@ journeys:
     description: >
       Build basic self-sufficiency in craft: twist plant fibre into strong
       cordage, spin and weave fibre into simple cloth, make simple cutting
-      and digging tools from wood, stone, and salvage, keep those tools
-      sharp and safe, and mend clothes and textiles to make them last.
+      and digging tools from wood, stone, and salvage, then keep those tools
+      sharp and safe.
     category: crafts
     difficulty: 2
     estimated_time: "A few afternoons"
@@ -161,7 +163,6 @@ journeys:
       - crafts-fiber-and-textiles
       - crafts-make-tools
       - crafts-tool-repair
-      - crafts-mending-textiles
 
   - id: practical-building-maths
     title: Practical maths for planning and building
@@ -198,20 +199,22 @@ journeys:
   - id: prepare-for-a-long-blackout
     title: Prepare for and get through a long blackout
     description: >
-      Losing power is the common thread behind many emergencies: prepare for and
-      live through a long blackout, keep safe from extreme heat and extreme cold
-      once the grid is down, avoid the fire risk that comes with makeshift
-      heating and lighting, and get by without a car if you don't have one to
-      fall back on.
+      Losing power is the common thread behind many emergencies. Prepare the
+      household first — the blackout basics, a plan for anyone who depends on
+      medicine or a powered medical device, and getting by without a car —
+      then learn to stay warm when the heating is off, avoid the fire risk
+      that comes with makeshift heating and lighting, and keep cool if the
+      outage comes in a heatwave.
     category: emergencies
     difficulty: 3
     estimated_time: "A few hours to prepare, then ongoing"
     guides:
       - emergency-blackout
-      - emergency-extreme-heat
+      - health-power-dependent-care
+      - emergency-no-car-household
       - emergency-extreme-cold
       - emergency-extinguish-fire
-      - emergency-no-car-household
+      - emergency-extreme-heat
 
   - id: set-up-local-tech-infrastructure
     title: Set up local tech infrastructure
@@ -269,18 +272,21 @@ journeys:
   - id: community-safety-from-coercion-and-hostility
     title: Guard your group against coercion and outside hostility
     description: >
-      Build a group's ability to protect its own people and its own purpose,
-      then extend that same protective posture outward: recognise and
-      respond to coercion or threats from someone inside the group,
-      recognise and resist a faction trying to capture the group's
-      direction, and coordinate non-violent community security against a
-      hostile outside individual or group.
+      Work from the inside out. First put accountable roles and a real
+      recall process in place, because everything after leans on them; then
+      learn to protect one person from coercion or threats inside the group,
+      and to resist a faction trying to capture the group's direction. With
+      the group itself sound, build trust with neighbouring groups, and only
+      then coordinate non-violent community security against a hostile
+      outside individual or group — which depends on those ties.
     category: cooperation
     difficulty: 3
     estimated_time: "A few afternoons to set up, then ongoing"
     guides:
+      - cooperation-democratic-governance
       - cooperation-boundary-safety
       - cooperation-resisting-capture
+      - cooperation-external-relations
       - emergency-community-security
 
   - id: get-through-a-connection-outage
@@ -302,3 +308,51 @@ journeys:
       - cooperation-message-relay
       - cooperation-paying-without-networks
       - technology-two-way-radio
+
+  - id: cook-well-off-the-grid
+    title: Cook well off the grid
+    description: >
+      Cook good, filling food with little or no fuel: start with a solar oven
+      on sunny days, finish one-pot meals in a hay box to save fuel, add
+      wild greens and fruit you can identify with certainty, and turn
+      gluts into ferments that keep.
+    category: cooking
+    difficulty: 2
+    estimated_time: "A few sunny weekends, then ongoing"
+    guides:
+      - cooking-solar-oven
+      - cooking-one-pot-meals
+      - cooking-foraged-food
+      - cooking-ferments
+
+  - id: find-your-way-and-get-found
+    title: Find your way and get found
+    description: >
+      Get from "I think it's this way" to knowing where you are: load maps
+      onto your phone before you need them, learn to read a paper map with a
+      compass, find direction with no compass at all, and if you're still
+      lost, stay put and signal so others can find you.
+    category: survival
+    difficulty: 3
+    estimated_time: "A few afternoons, then practice outdoors"
+    guides:
+      - survival-offline-maps-and-gps
+      - survival-map-and-compass
+      - survival-navigation
+      - survival-signaling-for-rescue
+
+  - id: run-a-fair-shared-store
+    title: Run a fair shared store
+    description: >
+      Set up a store a group can trust: keep a simple stock book so everyone
+      can see what's there, agree fair values for swaps and contributions,
+      put the sharing rules on a fair footing, and keep trading when card
+      payments stop working.
+    category: cooperation
+    difficulty: 2
+    estimated_time: "An afternoon to set up, then ongoing"
+    guides:
+      - calc-inventory-tracking
+      - calc-fair-trade-value
+      - cooperation-sharing-resources
+      - cooperation-paying-without-networks

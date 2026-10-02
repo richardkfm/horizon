@@ -80,3 +80,9 @@ Submerging food in a strong acid (vinegar) stops spoilage and keeps it crisp:
 Label everything with what and when, use oldest first, and keep checking your
 store for spoilage. A full, well-managed larder is real food security through
 winter or hard times.
+
+## Where to go next
+
+- [[cooking-ferments]]
+- [[calc-inventory-tracking]]
+- [[checklist:food-store]]

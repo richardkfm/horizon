@@ -73,3 +73,9 @@ Sheltering is often safest at first. **Evacuate only on official instruction or 
 staying is clearly more dangerous** — then go quickly, by the route given, keeping
 the household together (see [[checklist:go-bag]] for what to pack, and
 [[emergency-no-car-household]] if you'd be leaving on foot).
+
+## Where to go next
+
+- [[checklist:go-bag]]
+- [[emergency-news-without-internet]]
+- [[checklist:home-emergency-prep]]

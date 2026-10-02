@@ -78,6 +78,5 @@ hands-on training — take a first-aid course when you can.
 ## Where to go next
 
 - If more than one person is hurt at the same time, this priority order
-  isn't enough on its own — see triage multiple casualties at once.
-- Shock and fear afterward are as real as the injury: see support someone
-  through shock, trauma, or grief.
+  isn't enough on its own — see [[health-mass-casualty-triage|triage multiple casualties at once]].
+- Shock and fear afterward are as real as the injury: see [[health-psychological-first-aid|support someone through shock, trauma, or grief]].

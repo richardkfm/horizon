@@ -15,8 +15,8 @@ the dry spell lasts ten. Three small calculations — yield, use, and storage
 — tell you where you stand before the barrel does.
 
 > **Note:** This guide does the *quantity* maths only. Whether the water is
-> safe is its own question — see testing whether water is safe to drink and
-> choosing a water treatment.
+> safe is its own question — see [[water-field-testing|testing whether water is safe to drink]] and
+> [[water-choosing-treatment|choosing a water treatment]].
 
 ## Measure what the source yields
 
@@ -40,8 +40,8 @@ measurement under everything else in this guide.*
   1,440 L/hour.
 - **Wells and cisterns recharge, not flow:** draw the level down a set
   amount, time the refill, and that's the yield per hour. Never plan on
-  more than the recharge rate — that's mining the source dry (links to
-  finding, digging, or protecting a well or spring).
+  more than the recharge rate — that's mining the source dry (see
+  [[water-wells-and-springs|finding, digging, or protecting a well or spring]]).
 - **Measure in the dry season if you can** — a source is only as good as
   its worst month. A spring at 1,440 L/hour in April may be a trickle in
   August.
@@ -76,8 +76,7 @@ Storage bridges the gap between when water comes and when it's used.
   repair time, not against a good week.
 - **Rain catchment yield:** roof area × rainfall × 0.8 (the losses). A
   40 m² roof in a 30 mm storm: 40 × 30 × 0.8 ≈ **960 L** — so a 1,000 L
-  tank fills in one decent storm (links to harvesting and storing
-  rainwater for the build itself).
+  tank fills in one decent storm (see [[water-rainwater-harvesting|harvesting and storing rainwater]] for the build itself).
 - **Size for the longest gap between refills**, plus a margin: days of gap
   × daily use × 1.2. Ten dry days at 135 L needs ~1,600 L, not 1,000.
 
@@ -85,10 +84,15 @@ Storage bridges the gap between when water comes and when it's used.
 
 - **Re-run the three numbers when anything changes** — more people, new
   animals, a bigger garden, a new dry season record.
-- **Track the tank level weekly** in your stock book (links to tracking a
-  household or group's stores): a falling trend with steady use means the
+- **Track the tank level weekly** in your stock book (see [[calc-inventory-tracking|tracking a household or group's stores]]): a falling trend with steady use means the
   source is weakening or a leak is drinking your margin.
 - **If use exceeds yield, cut use first** — garden mulch, greywater on the
   beds, washing schedules — before chasing a bigger source; conserving is
   cheaper than developing, and leaves the source renewing for the next
-  season (links to managing waste and hygiene without plumbing).
+  season (see [[survival-sanitation-hygiene|managing waste and hygiene without plumbing]]).
+
+## Where to go next
+
+- [[water-rainwater-harvesting]]
+- [[water-wells-and-springs]]
+- [[checklist:water-store]]

@@ -37,7 +37,7 @@ light enough to carry and check it twice a year.
 
 ## Health and hygiene
 
-- [ ] First-aid kit (see the first-aid-kit checklist)
+- [ ] First-aid kit (see [[checklist:first-aid-kit|the first-aid-kit checklist]])
 - [ ] Any regular medicines (a few days' supply)
 - [ ] Soap, hand sanitiser, toothbrush
 - [ ] Toilet paper and a few rubbish bags

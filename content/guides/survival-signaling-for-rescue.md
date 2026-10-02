@@ -74,7 +74,7 @@ sand.
 
 > **Risk:** Clear the ground around a signal fire and keep it under control —
 > in dry conditions an unattended signal fire can start a wildfire that
-> makes your situation far worse. See making and keeping a fire safely.
+> makes your situation far worse. See [[survival-fire|making and keeping a fire safely]].
 
 ## Mirror or flash signals
 

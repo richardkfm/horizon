@@ -56,5 +56,4 @@ warmest.
 
 ## Where to go next
 
-- If the cold strikes while you're on the road, see survive being stranded in
-  a vehicle.
+- If the cold strikes while you're on the road, see [[emergency-vehicle-stranded|survive being stranded in a vehicle]].

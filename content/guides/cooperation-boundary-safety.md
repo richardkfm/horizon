@@ -10,13 +10,12 @@ estimated_time: "An hour to plan, then ongoing"
 # Protect someone from coercion or threats inside the group
 
 Most friction between people is a dispute — two sides with different needs
-(see resolve conflict between people fairly). This is different: one person
+(see [[cooperation-resolving-conflict|resolve conflict between people fairly]]). This is different: one person
 using intimidation, manipulation, coercion, or force to control or harm
 another. Treating it as a two-sided disagreement to mediate can make it
 worse, by putting the person at risk in a room with the person harming them
 and asking them to "meet in the middle." This guide is about protecting
-someone, not settling a dispute — recall or a role change (see set up fair,
-accountable governance for a group) may follow, but safety always comes
+someone, not settling a dispute — recall or a role change (see [[cooperation-democratic-governance|set up fair, accountable governance for a group]]) may follow, but safety always comes
 first.
 
 > **Note:** The safety of the person at risk comes before any process.
@@ -56,8 +55,7 @@ Watch for:
   taking a concern seriously, and don't push for details before they're
   ready to share them.
 - **Don't force a joint conversation.** Mediation assumes both sides are
-  safe and willing (see the "avoid if" note in resolve conflict between
-  people fairly) — that assumption doesn't hold here.
+  safe and willing (see the "avoid if" note in [[cooperation-resolving-conflict|resolve conflict between people fairly]]) — that assumption doesn't hold here.
 - **Ask what they need**, rather than deciding for them. Their agency is
   part of what coercion takes away; don't take it away again by acting
   without their consent, except where someone is in immediate danger.
@@ -67,8 +65,7 @@ Watch for:
 - **Name the specific behaviour**, plainly and without exaggeration — what
   happened, and what it did.
 - **Use the group's existing accountability tools.** A role someone holds
-  can be paused or ended through recall (see set up fair, accountable
-  governance for a group) regardless of whether a full removal from the
+  can be paused or ended through recall (see [[cooperation-democratic-governance|set up fair, accountable governance for a group]]) regardless of whether a full removal from the
   group is also needed.
 - **Limit contact** where full removal isn't (yet) warranted — separating
   shared spaces, roles, or shifts so the person at risk isn't required to
@@ -120,17 +117,14 @@ rather than mandate:
 
 ## Support afterward
 
-Fear and shock don't end when the immediate danger does. See support
-someone through shock, trauma, or grief for how to help someone, or
+Fear and shock don't end when the immediate danger does. See [[health-psychological-first-aid|support someone through shock, trauma, or grief]] for how to help someone, or
 yourself, through the aftermath.
 
 ## Where to go next
 
 - For an ordinary two-sided dispute rather than coercion or a threat, see
-  resolve conflict between people fairly.
-- For pausing or ending a role through recall, see set up fair, accountable
-  governance for a group.
+  [[cooperation-resolving-conflict|resolve conflict between people fairly]].
+- For pausing or ending a role through recall, see [[cooperation-democratic-governance|set up fair, accountable governance for a group]].
 - If the coercion is being used to push the group's direction or values, not
-  just to control one person, see resist a faction trying to capture the
-  group.
-- For aftercare, see support someone through shock, trauma, or grief.
+  just to control one person, see [[cooperation-resisting-capture|resist a faction trying to capture the group]].
+- For aftercare, see [[health-psychological-first-aid|support someone through shock, trauma, or grief]].

@@ -41,7 +41,12 @@ The easiest group songs need no sheets and no rehearsal:
 ## Build a shared repertoire
 
 - Collect songs the group already knows — work songs, lullabies, local tunes.
-- Write down or memorise the words so they aren't lost (see the storytelling
-  guide).
+- Write down or memorise the words so they aren't lost (see [[culture-storytelling|the storytelling guide]]).
 - Make new songs for new moments: a planting song, a song that names the people
   who keep the water clean. Songs carry memory.
+
+## Where to go next
+
+- [[culture-simple-instruments]]
+- [[culture-circle-dances]]
+- [[culture-storytelling]]

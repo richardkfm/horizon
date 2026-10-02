@@ -81,5 +81,10 @@ as the standard for a job.*
 - Count real things together: baskets, tools, people at a meal.
 - Practise a pretend trade with stones before a real one with goods.
 - Put numbers on your shared word list with the digits beside each word
-  (links to learning core phrases and to communicating across a language
-  barrier).
+  (see [[language-core-phrases|learning core phrases]] and [[language-across-barriers|communicating across a language barrier]]).
+
+## Where to go next
+
+- [[calc-fair-trade-value]]
+- [[language-core-phrases]]
+- [[calc-area-volume]]

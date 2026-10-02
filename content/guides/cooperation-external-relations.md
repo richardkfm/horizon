@@ -22,7 +22,7 @@ ordinary times — not improvised under pressure.
 ## Build the relationship before you need it
 
 - **Meet in calm times.** Shared meals, skill-swaps, and cultural events (see
-  the share-culture-together guides) build the trust that a crisis has no
+  [[plan:share-culture-together|the share-culture-together guides]]) build the trust that a crisis has no
   time to create from scratch.
 - **Start small and low-stakes.** Lending a tool, sharing a harvest surplus,
   or teaching each other a skill tests reliability without either side
@@ -39,7 +39,7 @@ ordinary times — not improvised under pressure.
   time, without keeping a rigid ledger that turns generosity into a debt.
 - **Plan for the obvious asks:** water or food surplus, tools and skills,
   emergency shelter, care for someone who's unwell — the same needs your own
-  group already tracks (see the goods to share and barter checklist).
+  group already tracks (see [[checklist:share-and-barter|the goods to share and barter checklist]]).
 
 > **Pick this if:** you're formalising a relationship with a group you
 > already trust from repeated small exchanges — put the shared understanding
@@ -53,7 +53,7 @@ ordinary times — not improvised under pressure.
 
 - **Watch for one group quietly dominating another** — a larger or
   better-resourced group setting terms rather than negotiating them is the
-  same hierarchy risk as inside a single group (see the governance guide),
+  same hierarchy risk as inside a single group (see [[cooperation-democratic-governance|the governance guide]]),
   just at a bigger scale.
 - **No group should become dependent** on another for basics it could
   reasonably build itself — aid should build capacity, not replace it.
@@ -67,17 +67,14 @@ ordinary times — not improvised under pressure.
   trust to represent them honestly.
 - **Use the same fair process you'd use inside a group** — hear both sides,
   find the need behind each position, agree a concrete next step (see
-  resolve conflict between people fairly; the same principles scale up).
+  [[cooperation-resolving-conflict|resolve conflict between people fairly]]; the same principles scale up).
 - **Keep disputes contained.** A disagreement between two groups' delegates
   shouldn't automatically become a grudge between every member of both.
 
 ## Where to go next
 
 - For the internal structure that supports one group scaling into several
-  (federation, delegates), see set up fair, accountable governance for a
-  group.
-- For the ongoing system a shared resource needs day to day, see share
-  resources and manage a group's commons.
+  (federation, delegates), see [[cooperation-democratic-governance|set up fair, accountable governance for a group]].
+- For the ongoing system a shared resource needs day to day, see [[cooperation-sharing-resources|share resources and manage a group's commons]].
 - If the threat comes from a hostile outside individual or group rather
-  than a neighbour you're building trust with, see coordinate community
-  security against outside threats.
+  than a neighbour you're building trust with, see [[emergency-community-security|coordinate community security against outside threats]].

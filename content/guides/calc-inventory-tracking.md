@@ -63,8 +63,8 @@ you do.
 
 Date what you store, shelve new stock **behind** old, and take from the
 front. Most "we had plenty" losses are old stock spoiling unseen at the back
-(links to preserving food and to keeping a food store — the food-store
-checklist pairs with this book).
+(see [[cooking-preserving|preserving food]] and [[checklist:food-store|keeping a food store]] — the
+food-store checklist pairs with this book).
 
 ## For a shared store
 
@@ -73,6 +73,12 @@ checklist pairs with this book).
 - **Record who took what** for shared tools and materials (a "borrowed"
   column with a name does it), so things come back.
 - **Review together** at a regular meeting: what's below minimum, what's
-  not moving, what the group should grow or trade for next (links to
-  sharing resources and managing a group's commons, and to working out a
-  fair trade).
+  not moving, what the group should grow or trade for next (see
+  [[cooperation-sharing-resources|sharing resources and managing a group's commons]], and
+  [[calc-fair-trade-value|working out a fair trade]]).
+
+## Where to go next
+
+- [[calc-fair-trade-value]]
+- [[cooperation-sharing-resources]]
+- [[checklist:food-store]]

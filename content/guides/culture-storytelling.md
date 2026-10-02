@@ -47,3 +47,9 @@ The mind remembers stories far better than lists. Use these old tools:
    embellished, especially for survival facts.
 4. **Write it down too** where you can — but don't rely on a single fragile copy.
    Spoken and written together is safest.
+
+## Where to go next
+
+- [[language-preserve-a-language]]
+- [[culture-group-songs]]
+- [[language-teach-literacy]]

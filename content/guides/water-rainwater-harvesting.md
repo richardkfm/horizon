@@ -17,7 +17,7 @@ supply.
 > **Risk:** Roof-caught rainwater collects whatever sits on the roof — dust,
 > bird droppings, leaves, and residue from the roofing material itself. Treat
 > it like any untested source: settle, filter, and disinfect before drinking
-> (see which water treatment should you use).
+> (see [[water-choosing-treatment|which water treatment should you use]]).
 
 ## Choose a clean catchment surface
 
@@ -90,8 +90,8 @@ Estimate how much you can realistically collect:
 
 ## Where to go next
 
-- Always treat before drinking — see which water treatment should you use.
-- For a standing supply that treats water as it's used, see build a slow
-  sand filter.
+- Always treat before drinking — see [[water-choosing-treatment|which water treatment should you use]].
+- For a standing supply that treats water as it's used, see
+  [[water-slow-sand-filter]].
 - Don't let one household's catchment starve a shared spring or well
-  downstream — see find, dig, or protect a well or spring.
+  downstream — see [[water-wells-and-springs|find, dig, or protect a well or spring]].

@@ -69,3 +69,9 @@ phones and radios, and keep small devices alive off-grid. Keeping it low-voltage
 - Don't discharge lead-acid below ~50%; deep discharges shorten its life.
 - Keep terminals clean and tight; check water levels on flooded batteries.
 - Keep the panel clean and unshaded — even partial shade cuts output sharply.
+
+## Where to go next
+
+- [[energy-sizing-solar-battery]]
+- [[energy-battery-storage]]
+- [[checklist:off-grid-power-build]]

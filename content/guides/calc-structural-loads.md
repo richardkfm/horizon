@@ -30,7 +30,7 @@ The structure must safely hold **dead + live load together**, on its worst day.
 
 ## Estimate the weight
 
-1. **Work out volumes** of each material (see *Calculate area and volume*).
+1. **Work out volumes** of each material (see [[calc-area-volume|calculate area and volume]]).
 2. **Multiply by the material's density** (weight per m³ — e.g. water 1000 kg/m³;
    most timber far less; earth, stone, and concrete much more) to get dead load.
 3. **Add live load** by area: estimate people and goods, or use a generous
@@ -64,3 +64,9 @@ Estimating gets you a safe small shed, floor, or shelter. For a home people live
 in, a heavy store, or anything others rely on, treat these numbers as a first
 check only and confirm with span tables, local building knowledge, or an engineer
 before you trust it with lives.
+
+## Where to go next
+
+- [[calc-materials-quantities]]
+- [[shelter-timber-cabin]]
+- [[mobility-cargo-trailer]]

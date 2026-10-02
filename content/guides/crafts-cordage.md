@@ -67,3 +67,9 @@ This is the core technique:
 - Tie off or tuck the ends so they can't unravel.
 - Let cordage dry fully, then store it dry and coiled.
 - Test any cord before trusting it with weight or with people.
+
+## Where to go next
+
+- [[survival-knots]]
+- [[crafts-fiber-and-textiles]]
+- [[crafts-make-tools]]

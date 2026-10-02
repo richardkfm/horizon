@@ -33,8 +33,7 @@ Most good one-pot meals follow the same pattern:
 
 ## Plant staples to keep
 
-- **Proteins:** dried beans, lentils, split peas, chickpeas (see *Cook and
-  balance plant proteins*).
+- **Proteins:** dried beans, lentils, split peas, chickpeas (see [[cooking-plant-protein|cook and balance plant proteins]]).
 - **Energy:** grains, potatoes, root vegetables, a little oil.
 - **Flavour:** onion, garlic, salt, dried herbs and spices, something sour.
 
@@ -61,3 +60,9 @@ savings, and nothing burns.
 
 Stretch a pot with more grain or potato; enrich it with nuts, seeds, or a spoon
 of nut paste; and vary spices to keep simple staples interesting day to day.
+
+## Where to go next
+
+- [[cooking-plant-protein]]
+- [[cooking-solar-oven]]
+- [[cooking-bread-baking]]

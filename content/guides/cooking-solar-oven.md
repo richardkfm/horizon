@@ -67,7 +67,7 @@ Nothing here needs buying if you scavenge well.
 > glazing that seals, pot dark and lidded. A well-made cardboard cooker
 > reaches ~120 °C; a wooden version with double glazing runs hotter and
 > lasts years. For the sums on sun hours and panel angles, the same logic
-> as solar panels applies (links to low-tech solar and solar water heating).
+> as solar panels applies (see [[energy-low-tech-solar|low-tech solar]] and [[energy-solar-water-heating|solar water heating]]).
 
 ## Cooking with it
 
@@ -80,8 +80,7 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
 - **What works well:** stews, beans (soaked dried beans need a 10-minute
   hard boil on a stove first — a solar oven may not get them hot enough to
   break down the toxin in red kidney beans), lentils, rice and grains, root
-  vegetables, baked apples, and bread and flatbreads (links to baking bread
-  from scratch). Cut food small, use less water than usual — nothing boils
+  vegetables, baked apples, and bread and flatbreads (see [[cooking-bread-baking|baking bread from scratch]]). Cut food small, use less water than usual — nothing boils
   away.
 - **Don't open the lid.** Every peek costs 10–20 minutes of recovery. A
   jar-lid thermometer inside is worth more than curiosity.
@@ -92,8 +91,8 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
 > **Risk:** Food safety rules don't relax because the fuel is free: get
 > food *through* the lukewarm zone and hold it hot (above ~60 °C) until
 > serving, and cook meat-free dishes you're confident about — a solar oven
-> is at its best with beans, grains, and vegetables anyway (links to
-> cooking hearty meals with plant protein).
+> is at its best with beans, grains, and vegetables anyway (see
+> [[cooking-plant-protein|cooking hearty meals with plant protein]]).
 
 ## Make it a habit, not a novelty
 
@@ -105,4 +104,10 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
   season.
 - **Share the design.** A cooker built from scrap in an afternoon is a
   perfect group workshop — everyone leaves with free cooking for every
-  sunny day after (links to sharing resources, tools, and skills).
+  sunny day after (see [[cooperation-sharing-resources|sharing resources, tools, and skills]]).
+
+## Where to go next
+
+- [[cooking-one-pot-meals]]
+- [[cooking-bread-baking]]
+- [[energy-solar-water-heating]]

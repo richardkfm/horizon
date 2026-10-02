@@ -102,8 +102,7 @@ less able to help the next person who needs it.
   too: [[cooperation-group-decisions]].
 - When several people are hurt at once: [[health-mass-casualty-triage]].
 - Storytelling and shared culture help a group process a hard event
-  together over time — see preserving knowledge through storytelling.
+  together over time — see [[culture-storytelling|preserving knowledge through storytelling]].
 - If the shock followed coercion or a threat from inside the group, see
-  protect someone from coercion or threats inside the group; if it followed
-  a hostile outside incident, see coordinate community security against
-  outside threats.
+  [[cooperation-boundary-safety|protect someone from coercion or threats inside the group]]; if it followed
+  a hostile outside incident, see [[emergency-community-security|coordinate community security against outside threats]].

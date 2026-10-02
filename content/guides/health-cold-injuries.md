@@ -51,4 +51,10 @@ ears, nose, or cheeks. As it thaws it becomes red, painful, and may blister.
 
 Confusion or drowsiness sets in, shivering stops in a cold person, the skin stays
 hard/white after re-warming, or large areas are affected. Keep the person warm,
-dry, and still while you arrange care. See also the *survive extreme cold* guide.
+dry, and still while you arrange care. See also the [[emergency-extreme-cold|survive extreme cold]] guide.
+
+## Where to go next
+
+- [[emergency-extreme-cold]]
+- [[health-first-aid-basics]]
+- [[emergency-vehicle-stranded]]

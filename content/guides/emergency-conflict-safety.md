@@ -43,7 +43,7 @@ seeking it.
 ## Shelter in place or evacuate
 
 - **Stay put if moving is more dangerous** than staying: shelter in a protected
-  interior room away from windows (see the air-raid guide), ration supplies, and
+  interior room away from windows (see [[emergency-air-raid|the air-raid guide]]), ration supplies, and
   wait for reliable instructions.
 - **Evacuate if told to, or if staying is clearly unsafe** — and do it early,
   before routes are crowded or cut. Travel light, in daylight where possible, on
@@ -66,6 +66,5 @@ seeking it.
 
 - For everyday interpersonal or small-scale security threats (a hostile
   individual, harassment, hate-motivated targeting) rather than armed
-  conflict, see coordinate community security against outside threats.
-- For support after a frightening or violent event, see support someone
-  through shock, trauma, or grief.
+  conflict, see [[emergency-community-security|coordinate community security against outside threats]].
+- For support after a frightening or violent event, see [[health-psychological-first-aid|support someone through shock, trauma, or grief]].

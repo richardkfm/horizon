@@ -51,3 +51,9 @@ years ago, and the next best time is now.
 
 Pick when ripe, and preserve gluts by drying, fermenting, or storing in a cool
 place. Take cuttings or grow from suckers to spread your favourites for free.
+
+## Where to go next
+
+- [[food-reforestation]]
+- [[cooking-preserving]]
+- [[food-seed-saving]]

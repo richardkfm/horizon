@@ -60,6 +60,5 @@ workers are most at risk:
 
 ## Where to go next
 
-- If you have no car to drive to a cooler place, see **get through
-  emergencies with no car to fall back on** for scouting a walkable cool
+- If you have no car to drive to a cooler place, see [[emergency-no-car-household|get through emergencies with no car to fall back on]] for scouting a walkable cool
   space and checking on isolated neighbours before the heat hits.

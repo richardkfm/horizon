@@ -76,3 +76,9 @@ you are.
 Secure tall furniture and heavy items to walls, keep shoes and a torch by the bed
 (broken glass), know how to shut off gas/water/power, and keep a go-bag and a few
 days of water and food.
+
+## Where to go next
+
+- [[checklist:home-emergency-prep]]
+- [[health-first-aid-basics]]
+- [[shelter-earth-building]]

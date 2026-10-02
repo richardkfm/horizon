@@ -105,7 +105,7 @@ has a local pest or predator keeping it in check.
   with your own compost.
 - **Check before you plant an unfamiliar fast grower**, especially one
   offered as a quick windbreak, cover crop, or reforestation pioneer — see
-  the reforestation guide for choosing species that won't escape.
+  [[food-reforestation|the reforestation guide]] for choosing species that won't escape.
 
 > **Tip:** Walk your growing area's margins every few weeks specifically
 > looking for anything spreading past where you put it. Catching a spreader
@@ -125,7 +125,9 @@ has a local pest or predator keeping it in check.
 ## Where to go next
 
 - If the cause turns out to be the soil itself rather than one plant, see
-  soil and land restoration.
-- Mixing crops and rotating is easier to plan with the crop-choosing guide.
-- For wild plants you're considering eating rather than growing, use the
-  separate foraging guide — it covers edibility, not crop health.
+  [[food-soil-and-land-restoration|soil and land restoration]].
+- Mixing crops and rotating is easier to plan with
+  [[food-choosing-crops|the crop-choosing guide]].
+- For wild plants you're considering eating rather than growing, use
+  [[survival-foraging|the separate foraging guide]] — it covers edibility,
+  not crop health.

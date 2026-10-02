@@ -30,7 +30,7 @@ it is patience and protection rather than labour.
 - **No trees within seed-dispersal distance and no stumps to resprout** — you
   will need to plant nursery stock or direct-sow seed.
 - **Exposed, wind-scoured, or eroding ground** — start with the earthworks and
-  cover techniques in the soil and land restoration guide; young trees do not
+  cover techniques in [[food-soil-and-land-restoration|the soil and land restoration guide]]; young trees do not
   survive on ground that cannot hold water yet.
 
 ## Natural regeneration first
@@ -67,7 +67,7 @@ species:
 > **Spec:** Always use species **native to your region**, or already
 > naturalised and non-invasive there. A tree that thrives *too* well outside
 > its native range can escape and out-compete everything else nearby — see
-> the invasive-species section of the plant-diagnosis guide before choosing
+> [[food-diagnose-plant-problems|the invasive-species section of the plant-diagnosis guide]] before choosing
 > an unfamiliar fast grower.
 
 ```ascii
@@ -112,7 +112,7 @@ canopy closes over.*
 1. **Survey for existing regrowth** — stumps, suckers, seedlings — and fence
    or protect it first.
 2. **Fix water and erosion** on any bare or exposed ground before planting
-   (see soil and land restoration).
+   (see [[food-soil-and-land-restoration|soil and land restoration]]).
 3. **Plant a mixed, native stand** only where nothing is regrowing on its
    own, following the pioneer/canopy/understory mix above.
 4. **Guard and mulch** every planted tree through its first two seasons.
@@ -121,9 +121,9 @@ canopy closes over.*
 
 ## Where to go next
 
-- If the ground is bare, compacted, or eroding, start with soil and land
-  restoration — reforestation depends on it.
+- If the ground is bare, compacted, or eroding, start with
+  [[food-soil-and-land-restoration|soil and land restoration]] — reforestation depends on it.
 - Choosing a fast-growing but wrong species risks becoming invasive; check
-  the plant-diagnosis guide's invasive-species section first.
+  [[food-diagnose-plant-problems|the plant-diagnosis guide]]'s invasive-species section first.
 - Fruit and nut trees can double as both canopy/food-layer species and a
-  dedicated orchard — see planting fruit trees and berry bushes.
+  dedicated orchard — see [[food-fruit-and-berries|planting fruit trees and berry bushes]].

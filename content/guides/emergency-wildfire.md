@@ -69,3 +69,9 @@ people with heart or lung conditions:
 
 Return only when cleared. Watch for **hotspots, smouldering ground, and falling
 trees**, weakened structures, and ongoing **poor air quality**.
+
+## Where to go next
+
+- [[checklist:go-bag]]
+- [[emergency-extinguish-fire]]
+- [[health-burns]]

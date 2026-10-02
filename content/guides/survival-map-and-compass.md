@@ -12,7 +12,7 @@ estimated_time: "An hour to learn; minutes to use"
 A map and compass together answer two questions a phone can't once it's out
 of battery or signal: **which way should I go**, and **where am I right now**.
 This assumes you already have both a paper map of your area and a compass —
-see find direction without a compass if you have neither.
+see [[survival-navigation|find direction without a compass]] if you have neither.
 
 > **Tip:** **Before you move.** Tell someone your plan, or leave a marker. A map and
 > compass reduce the *chance* you get lost; they don't replace telling someone
@@ -82,9 +82,6 @@ lines should meet at (roughly) the same point.
 
 ## Where to go next
 
-- If you don't have a compass at all, see **find direction without a
-  compass** for sun-, star-, and landmark-based methods instead.
-- To keep this working when the map itself is a phone screen, see **use
-  offline maps and GPS with no signal**.
-- If you decide to stay put rather than move, see **signal for rescue if lost
-  or stranded**.
+- If you don't have a compass at all, see [[survival-navigation|find direction without a compass]] for sun-, star-, and landmark-based methods instead.
+- To keep this working when the map itself is a phone screen, see [[survival-offline-maps-and-gps|use offline maps and GPS with no signal]].
+- If you decide to stay put rather than move, see [[survival-signaling-for-rescue|signal for rescue if lost or stranded]].

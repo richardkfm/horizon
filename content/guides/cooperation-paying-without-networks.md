@@ -76,9 +76,8 @@ Traders have done this for centuries; the paperwork is genuinely simple.
   neighbourhood will remember it long after the network is back.
 - **Say plainly when the tab is due** — "when the terminals are back", "end
   of the month" — and don't attach interest or a penalty to it.
-- **Total it by hand.** *Work out a fair trade or barter value* covers
-  costing goods when there's no price to fall back on, and *track a household
-  or group's stores and supplies* covers keeping the stock book that goes
+- **Total it by hand.** [[calc-fair-trade-value]] covers
+  costing goods when there's no price to fall back on, and [[calc-inventory-tracking|track a household or group's stores and supplies]] covers keeping the stock book that goes
   with it.
 
 ## Don't let anyone go without
@@ -110,9 +109,9 @@ it until the machines return.
 
 ## Where to go next
 
-- **Cope when the internet and phone networks go down** is the wider
+- [[emergency-internet-outage]] is the wider
   first-response guide.
-- **Share resources and manage a group's commons** is where informal tabs go
+- [[cooperation-sharing-resources]] is where informal tabs go
   if a group starts doing this regularly.
 - The **share and barter** checklist is a printable prompt for setting the
   ground rules before you need them.

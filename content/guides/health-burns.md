@@ -52,3 +52,9 @@ keep it there.
 The burn is larger than the person's palm, is deep or white/charred, is on the
 face, hands, feet, joints, or genitals, or the person is very young, elderly, or
 unwell. Watch for signs of shock and keep them warm and still meanwhile.
+
+## Where to go next
+
+- [[health-first-aid-basics]]
+- [[emergency-extinguish-fire]]
+- [[checklist:first-aid-kit]]

@@ -23,7 +23,7 @@ a person can, day after day.
 > **Pick this if** your group regularly moves loads beyond human-powered
 > range and can genuinely commit to daily animal care. **Avoid if** loads are
 > occasional and cart-sized — a shared handcart or cargo trailer is far less
-> responsibility (links to moving heavy loads and building a cargo trailer).
+> responsibility (see [[mobility-heavy-loads|moving heavy loads]] and [[mobility-cargo-trailer|building a cargo trailer]]).
 
 ## Choose the right animal for the work
 
@@ -93,5 +93,10 @@ the backbone — the spine itself carries nothing.*
 
 > **Tip:** One working animal can serve several households. Sharing one —
 > with a clear rota for its work, feed, and care — spreads the commitment
-> and keeps the animal busy enough to stay fit (links to sharing resources
-> and managing a group's commons).
+> and keeps the animal busy enough to stay fit (see [[cooperation-sharing-resources|sharing resources and managing a group's commons]]).
+
+## Where to go next
+
+- [[mobility-heavy-loads]]
+- [[mobility-cargo-trailer]]
+- [[cooperation-sharing-resources]]

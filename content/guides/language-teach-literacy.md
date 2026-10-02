@@ -48,3 +48,9 @@ Most writing systems map sounds to symbols. Build from there:
 - **Pair learners** so they practise together between sessions.
 - **Train new teachers** as learners advance — each one teach one — so literacy
   spreads through the community on its own.
+
+## Where to go next
+
+- [[language-core-phrases]]
+- [[language-preserve-a-language]]
+- [[culture-storytelling]]
