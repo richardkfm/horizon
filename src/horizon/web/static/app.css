@@ -1,4 +1,6 @@
-/* horizon UI — a calm "paper & ink" design system.
+/* horizon UI — a calm "paper & ink" design system, laid out like an almanac:
+ * running text on warm paper, the topics as a contents page, plain entries
+ * instead of boxed cards, and each topic marked by a small ASCII emblem.
  *
  * Goals: timeless and easy on the eyes, not flashy. Everything is driven by a
  * small set of design tokens (colour, type, space, radius, shadow) so the same
@@ -69,8 +71,15 @@
      Sans on most Linux desktops — plain and sturdy rather than geometric or
      trendy. */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-heading: Optima, "Lucida Grande", "Franklin Gothic Medium",
-    "Trebuchet MS", "Noto Sans", sans-serif;
+  /* The almanac's reading face: whichever book serif the device already has
+     (Charter on Apple, Sitka/Cambria on Windows, Bitstream Charter or the
+     DejaVu/Liberation serifs on Linux) — no font file is downloaded. Used for
+     headings, guide text, and the titles in browse lists; the interface
+     itself (nav, meta, forms) stays in --font-sans. */
+  --font-serif: Charter, "Bitstream Charter", "Iowan Old Style", "Sitka Text",
+    Cambria, Georgia, serif;
+  --font-heading: var(--font-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   /* Soft, rounded stack for the wordmark, echoing the horizon logo. Resolves to
      fonts already on the device, so the brand stays fully offline. */
   --font-rounded: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN",
@@ -90,7 +99,9 @@
   --radius-lg: 1rem;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(31, 28, 24, 0.06);
+  /* Cards sit flat on the page (a hairline border, no drop shadow); only
+     floating panels (the display-settings menu) lift. */
+  --shadow-sm: none;
   --shadow: 0 2px 10px rgba(31, 28, 24, 0.07), 0 1px 2px rgba(31, 28, 24, 0.05);
   --shadow-lift: 0 6px 20px rgba(31, 28, 24, 0.1), 0 2px 5px rgba(31, 28, 24, 0.06);
 
@@ -137,7 +148,7 @@
   --diagram-glow: 0 0 8px rgba(234, 197, 126, 0.32);
   --diagram-depth: inset 0 0 3rem rgba(0, 0, 0, 0.5);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: none;
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
 }
@@ -173,7 +184,7 @@
       repeating-linear-gradient(0deg, rgba(234, 197, 126, 0.055) 0 1px, transparent 1px 3px);
     --diagram-glow: 0 0 8px rgba(234, 197, 126, 0.32);
     --diagram-depth: inset 0 0 3rem rgba(0, 0, 0, 0.5);
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-sm: none;
     --shadow: 0 2px 12px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.35);
     --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
   }
@@ -229,13 +240,14 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--fg);
 }
-h1 { font-size: 2.1rem; margin: 0 0 0.5rem; }
-h2 { font-size: 1.5rem; margin: var(--space-6) 0 0.4rem; }
+h3 { font-weight: 600; }
+h1 { font-size: 2.3rem; line-height: 1.12; margin: 0 0 0.5rem; }
+h2 { font-size: 1.6rem; margin: var(--space-6) 0 0.4rem; }
 h3 { font-size: 1.15rem; }
 
 a { color: var(--accent); }
@@ -267,20 +279,12 @@ a:hover { color: var(--accent-strong); }
 
 /* Header & footer --------------------------------------------------------- */
 
+/* The header and footer sit on the page's own paper, divided from it by a
+   hairline — no bar of colour, no raised strip. */
 .site-header,
 .site-footer {
   border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
-/* A sunrise hairline across the top of every page: sun amber melting through
-   leaf green into the horizon blue. The one site-wide solarpunk signature —
-   3px of colour, no layout cost. */
-.site-header::before {
-  content: "";
-  display: block;
-  height: 3px;
-  background: linear-gradient(90deg, var(--sun), var(--leaf) 45%, var(--accent));
+  background: var(--bg);
 }
 
 .site-header-inner,
@@ -302,7 +306,6 @@ a:hover { color: var(--accent-strong); }
   border-bottom: none;
   font-size: 0.85rem;
   color: var(--muted);
-  background: var(--surface-sunken);
 }
 .site-footer-inner { flex-wrap: wrap; row-gap: var(--space-2); padding-top: var(--space-4); padding-bottom: var(--space-4); }
 .footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); }
@@ -339,13 +342,13 @@ a:hover { color: var(--accent-strong); }
   width: 2.25rem;
   height: 2.25rem;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  color: var(--fg);
+  background: transparent;
+  color: var(--muted);
   cursor: pointer;
 }
-.nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-toggle:hover { border-color: var(--border); color: var(--fg); }
 .nav-toggle svg { width: 1.3rem; height: 1.3rem; }
 .nav-toggle .icon-close { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
@@ -371,14 +374,16 @@ a:hover { color: var(--accent-strong); }
 @media (min-width: 641px) {
   .site-header nav .nav-home { display: none; }
 }
-.site-header nav a:hover { background: var(--accent-soft); color: var(--accent-strong); }
-/* The section you're in: tinted pill plus an underline, so it still reads
-   where tints are flattened (low-power, high contrast). */
+.site-header nav a { color: var(--muted); }
+.site-header nav a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 0.35em; }
+/* The section you're in: full ink plus an accent underline — no tinted
+   pill, so it reads the same where colour is flattened (low-power, high
+   contrast). */
 .site-header nav a[aria-current] {
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  color: var(--fg);
   font-weight: 600;
   text-decoration: underline;
+  text-decoration-color: var(--accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.35em;
 }
@@ -391,13 +396,13 @@ a:hover { color: var(--accent-strong); }
   width: 2.25rem;
   height: 2.25rem;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  color: var(--fg);
+  background: transparent;
+  color: var(--muted);
   cursor: pointer;
 }
-.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle:hover { border-color: var(--border); color: var(--fg); }
 .theme-toggle svg { width: 1.15rem; height: 1.15rem; }
 /* Show the icon for the action the click performs: moon while light, sun while
    dark. The script sets data-theme, so we key off it. */
@@ -420,13 +425,13 @@ a:hover { color: var(--accent-strong); }
   width: 2.25rem;
   height: 2.25rem;
   padding: 0;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  color: var(--fg);
+  background: transparent;
+  color: var(--muted);
   cursor: pointer;
 }
-.a11y-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.a11y-toggle:hover { border-color: var(--border); color: var(--fg); }
 .a11y-glyph { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; line-height: 1; letter-spacing: -0.02em; }
 .a11y-panel {
   position: absolute;
@@ -471,66 +476,97 @@ a:hover { color: var(--accent-strong); }
    independently-centered box. */
 .reading-column { max-width: 61rem; }
 
-/* Intro / hero ------------------------------------------------------------ */
+/* Intro ------------------------------------------------------------------- */
 
 .intro { margin-bottom: var(--space-6); }
-.intro h1 { font-size: 2.6rem; }
-.tagline { font-size: 1.15rem; color: var(--muted); max-width: 42rem; }
+.tagline { font-size: 1.1rem; color: var(--muted); max-width: 42rem; }
 
-/* Landing hero — a solarpunk morning. Text beside a small two-layer ASCII
-   scene (landscape in leaf ink, sun/rotor/birds in amber on top). The
-   asymmetric "leaf" corners and the sun-glow gradient are what keep it from
-   looking like every other card on the page; everything is theme tokens, so
-   dark mode reads as dusk and low-power/e-ink flattens to plain ink. */
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: var(--space-5) var(--space-6);
-  align-items: center;
-  margin-bottom: var(--space-7);
-  padding: var(--space-6);
-  border: 1px solid var(--border);
-  border-radius: 1rem 2.6rem 1rem 2.6rem;
-  background:
-    radial-gradient(115% 95% at 82% 0%, var(--sun-soft), transparent 60%),
-    linear-gradient(180deg, var(--surface) 30%, var(--leaf-soft));
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-}
-.hero .intro { margin-bottom: 0; min-width: 0; }
-.hero-kicker {
-  margin: 0 0 var(--space-2);
-  font-size: 0.8rem;
+/* Small uppercase label over a section ("Topics", "Step-by-step plans"). */
+.eyebrow {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--leaf);
+  color: var(--muted);
 }
-.hero-art { display: flex; justify-content: center; min-width: 0; }
-.hero-art-frame {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  /* A soft dawn glow rising behind the sun's corner of the scene. */
-  background: radial-gradient(48% 44% at 15% 16%, var(--sun-soft), transparent 72%);
+.more-link { margin: var(--space-3) 0 0; font-size: 0.9rem; }
+.more-link a { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.more-link a:hover { text-decoration: underline; }
+
+/* Home: welcome ------------------------------------------------------------
+   One opening sentence, one search field, two quiet lines — and the ASCII
+   morning scene beside them, unframed, as the page's one illustration. */
+.welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-5) var(--space-7);
+  align-items: end;
+  margin: var(--space-4) 0 var(--space-7);
 }
+.welcome-text { display: grid; gap: var(--space-4); min-width: 0; }
+.welcome h1 { font-size: 2.35rem; line-height: 1.18; max-width: 21ch; margin: 0; }
+.welcome-note { margin: 0; font-size: 0.9rem; color: var(--muted); max-width: 38rem; }
+
+/* The search field as a ruled line rather than a box: the field is the
+   page's main way in, so it gets a heavy rule in ink. Shared by the home
+   page and the guide list. */
+.ask-form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 40rem;
+  border-bottom: 2px solid var(--fg);
+}
+.ask-form input[type="search"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.55rem 0;
+  font: inherit;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--fg);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+.ask-form input[type="search"]::placeholder { color: var(--muted-2); opacity: 1; }
+.ask-form input[type="search"]:focus { outline: none; }
+.ask-form .search-clear { flex: none; font-size: 0.85rem; }
+.ask-form:focus-within { border-bottom-color: var(--accent); }
+.ask-form:focus-within:has(:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+.ask-button {
+  flex: none;
+  min-height: 44px;
+  padding: 0 0.25rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.ask-button:hover { color: var(--accent-strong); text-decoration: underline; }
+
+/* The landing scene: two stacked <pre> layers (landscape in leaf ink, sun,
+   rotor and birds in amber on top), no frame around it. Everything is theme
+   tokens, so dark mode reads as dusk and low-power/e-ink flattens it to
+   plain ink. */
+.hero-art { display: flex; justify-content: flex-end; min-width: 0; }
+.hero-art-frame { position: relative; max-width: 100%; overflow: hidden; }
 .hero-art-frame pre {
   margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  /* 60 columns must fit a phone: scale with the viewport, cap for desktop. */
-  font-size: clamp(0.44rem, 2.2vw, 0.82rem);
+  font-family: var(--font-mono);
+  font-size: clamp(0.44rem, 1.1vw, 0.72rem);
   line-height: 1.25;
   white-space: pre;
 }
 .hero-art-ground { color: var(--leaf); }
-/* Absolute offsets are relative to the frame's padding box, so the sky layer
-   needs the same inset as the ground's padding to stay on the same grid. */
-.hero-art-sky { position: absolute; top: var(--space-3); left: var(--space-3); color: var(--sun); }
+.hero-art-sky { position: absolute; top: 0; left: 0; color: var(--sun); }
 /* At dusk (dark theme) the scene glows softly — amber sun and rotor, moonlit
-   leaf ink — like a village at nightfall. Decorative only, so it stays out of
-   high-contrast mode (which zeroes --sun-soft and flattens the palette). */
+   leaf ink. Decorative only, so it stays out of high-contrast mode. */
 :root[data-theme="dark"]:not([data-contrast="high"]) .hero-art-ground {
   text-shadow: 0 0 7px rgba(143, 191, 127, 0.3);
 }
@@ -546,80 +582,55 @@ a:hover { color: var(--accent-strong); }
   }
 }
 
-/* Section-heading flourish: a short sun-to-leaf underline swash. */
-.section-flourish::after {
-  content: "";
-  display: block;
-  width: 4.5rem;
-  height: 3px;
-  margin-top: 0.45rem;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, var(--sun), var(--leaf));
-}
-
-/* Category grid (home) ---------------------------------------------------- */
-
-.categories { margin-top: var(--space-6); }
-
-.category-grid {
+/* Home: topics as a contents page -----------------------------------------
+   Three columns of entries — emblem, the topic's name, a dotted leader to its
+   guide count, and the plain-language example beneath. */
+.topics { margin-bottom: var(--space-7); }
+.toc {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin-top: var(--space-4);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-6);
 }
-
-.category-card { display: flex; flex-direction: column; }
-.category-card a {
-  position: relative;
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--space-5) var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
+.toc a {
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  column-gap: var(--space-3);
+  align-content: start;
+  min-height: 44px;
   color: var(--fg);
-  text-transform: capitalize;
-  font-weight: 600;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
 }
-.category-card a:hover {
-  border-color: var(--leaf);
-  box-shadow: var(--shadow-lift);
-  transform: translateY(-2px);
-}
-.category-card a:hover .category-icon {
-  background: var(--leaf-soft);
-  color: var(--leaf);
-}
+.toc .emblem { grid-row: span 2; padding-top: 0.3rem; }
+.toc-line { display: flex; align-items: baseline; gap: 0.4rem; font-family: var(--font-serif); font-size: 1.15rem; }
+.toc-name { text-transform: capitalize; }
+.toc-leader { flex: 1 1 auto; min-width: 1rem; border-bottom: 1px dotted var(--border-strong); transform: translateY(-0.3em); }
+.toc-count { font-family: var(--font-sans); font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc-example { font-size: 0.85rem; line-height: 1.45; color: var(--muted); }
+.toc a:hover .toc-name { color: var(--cat, var(--accent)); text-decoration: underline; text-underline-offset: 0.2em; }
 
-.category-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: var(--space-3);
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
-  color: var(--accent);
+/* Home: a few plans as plain lines. */
+.home-plans { margin-bottom: var(--space-6); }
+.plan-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); max-width: 46rem; }
+.plan-lines a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.1rem var(--space-4);
+  color: var(--fg);
+  text-decoration: none;
 }
-.category-icon svg { width: 1.6rem; height: 1.6rem; }
-.category-name { display: block; font-size: 1.05rem; }
-.category-example {
-  display: block;
-  margin-top: var(--space-1);
-  font-weight: 400;
-  font-size: 0.85rem;
-  text-transform: none;
-  color: var(--muted);
+.plan-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.25em;
 }
+.plan-lines a:hover .plan-title { text-decoration-color: var(--accent); color: var(--accent); }
+.plan-steps { grid-row: span 2; align-self: center; font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+.plan-desc { font-size: 0.88rem; line-height: 1.45; color: var(--muted); max-width: 44rem; }
 
 /* Shared UI primitives ---------------------------------------------------- */
 
@@ -671,85 +682,66 @@ a:hover { color: var(--accent-strong); }
    visually-hidden span for screen readers (partials/_ui.html). */
 .difficulty { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.08em; white-space: nowrap; }
 
-/* A signature hue per topic, from the same sun/leaf/horizon family: the
-   index-card tab on tiles and cards (`.card-tab`, below) plus the badge tint
-   on reading pages. Low-power, high contrast, and print collapse it to plain
-   ink. */
-[data-cat="water"] { --cat-l: #2c6384; --cat-d: #7fb0cb; }
-[data-cat="food"] { --cat-l: #3f6d33; --cat-d: #8fbf7f; }
-[data-cat="energy"] { --cat-l: #805510; --cat-d: #e0b25c; }
-[data-cat="shelter"] { --cat-l: #7a5636; --cat-d: #cfa57e; }
-[data-cat="health"] { --cat-l: #286858; --cat-d: #6fc0ad; }
-[data-cat="cooperation"] { --cat-l: #6b4f8c; --cat-d: #b59ad8; }
-[data-cat="survival"] { --cat-l: #5c672b; --cat-d: #b9c47c; }
-[data-cat="culture"] { --cat-l: #994568; --cat-d: #e491b4; }
-[data-cat="language"] { --cat-l: #3e5f92; --cat-d: #95b3e2; }
-[data-cat="crafts"] { --cat-l: #87571f; --cat-d: #d9a66a; }
-[data-cat="emergencies"] { --cat-l: #a8382f; --cat-d: #e9877d; }
-[data-cat="cooking"] { --cat-l: #934818; --cat-d: #e89c6a; }
-[data-cat="calculations"] { --cat-l: #56606c; --cat-d: #aab3be; }
-[data-cat="technology"] { --cat-l: #2d6a76; --cat-d: #76bbc6; }
-[data-cat="mobility"] { --cat-l: #336a45; --cat-d: #88c99c; }
+/* A signature ink per topic, from the same sun/leaf/horizon family: it
+   draws the topic's ASCII emblem (below) and tints the topic's name where a
+   list mixes topics. Every light ink holds >= 4.5:1 on the paper, every dark
+   one on the dusk surface. Low-power, high contrast, and print collapse it
+   to plain ink. */
+[data-cat="water"] { --cat-l: #2b6480; --cat-d: #8cc0da; }
+[data-cat="food"] { --cat-l: #4b6e3c; --cat-d: #9cc48c; }
+[data-cat="energy"] { --cat-l: #8a6410; --cat-d: #e0b860; }
+[data-cat="shelter"] { --cat-l: #7d5238; --cat-d: #d6a888; }
+[data-cat="health"] { --cat-l: #9a3f3a; --cat-d: #e89a94; }
+[data-cat="cooperation"] { --cat-l: #5a4a8c; --cat-d: #b9a9e6; }
+[data-cat="survival"] { --cat-l: #55683f; --cat-d: #b0c492; }
+[data-cat="culture"] { --cat-l: #86486f; --cat-d: #dba3c6; }
+[data-cat="language"] { --cat-l: #3f6b78; --cat-d: #94c6d2; }
+[data-cat="crafts"] { --cat-l: #7a5a2a; --cat-d: #d4b07a; }
+[data-cat="emergencies"] { --cat-l: #a8452a; --cat-d: #e79c7f; }
+[data-cat="cooking"] { --cat-l: #66741c; --cat-d: #c2cf78; }
+[data-cat="calculations"] { --cat-l: #4a5f6b; --cat-d: #a4bac6; }
+[data-cat="technology"] { --cat-l: #2f6f72; --cat-d: #88c8ca; }
+[data-cat="mobility"] { --cat-l: #5e6338; --cat-d: #bcc292; }
 [data-cat] { --cat: var(--cat-l, var(--accent)); }
 :root[data-theme="dark"] [data-cat] { --cat: var(--cat-d, var(--accent)); }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) [data-cat] { --cat: var(--cat-d, var(--accent)); }
 }
 :root[data-contrast="high"] [data-cat] { --cat: var(--fg); }
-.category-card[data-cat] .category-icon { color: var(--cat); background: color-mix(in srgb, var(--cat) 11%, transparent); }
 
-/* Index-card tab: the topic marker on every card, instead of a coloured bar.
-   Cards are file-cards in a library drawer — each one carries a small tab on
-   its top edge, cut from the same card (it overlaps the card's top border by
-   a pixel so the two read as one piece), tinted in the topic hue and named
-   after the topic. Home tiles get a blank tab, since the tile already names
-   the topic in large type. The tab sticks *up* out of the card, so the card's
-   container (`.has-tab`, `.journey-card`, `.track-card`, `.category-card`)
-   reserves `--tab-h` of headroom above it. */
-/* Small on purpose: a real index tab is a sliver, not a banner. The blank
-   tile tab is lower still (it carries no text), so the tile reserves only
-   its own, shorter `--tab-h`. */
-:root { --tab-h: 1.25rem; }
-.card-tab {
-  position: absolute;
-  left: 0.8rem;
-  bottom: calc(100% - 1px);
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  box-sizing: border-box;
-  max-width: calc(100% - 1.6rem);
-  height: calc(var(--tab-h) + 1px);
-  padding: 0 0.55rem;
+/* Topic emblems — a small three-line ASCII drawing per topic (web/emblems.py,
+   the `emblem` macro). They mark a topic wherever it appears: the home
+   contents list, a topic's heading in the guide list, the head of each guide,
+   and the corner of a plan or checklist card. They replace the old SVG
+   icons and index-card tabs — no tab, stripe, or coloured bar marks a topic.
+   Decorative (aria-hidden); the topic's name is always beside it as text. */
+.emblem {
+  margin: 0;
+  font-family: var(--font-mono);
   font-size: 0.66rem;
+  line-height: 1.15;
+  white-space: pre;
+  color: var(--cat, var(--accent));
+  background: none;
+  overflow: visible;
+}
+/* In a card's top-right corner (plans, checklists). */
+.card-emblem { position: absolute; top: var(--space-3); right: var(--space-4); }
+.card-topic {
+  margin: 0 0 0.15rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  line-height: 1;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--cat, var(--accent));
-  background: color-mix(in srgb, var(--cat, var(--accent)) 12%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--cat, var(--accent)) 45%, var(--border));
-  border-bottom: 0;
-  border-radius: 0.35rem 0.35rem 0 0;
-}
-.category-card { --tab-h: 0.5rem; }
-.card-tab-blank {
-  width: 1.6rem;
-  padding: 0;
-  border-radius: 0.25rem 0.25rem 0 0;
-  background: color-mix(in srgb, var(--cat, var(--accent)) 55%, var(--surface));
+  color: var(--cat, var(--muted));
 }
 .card-grid li,
 .journey-card,
-.category-card { position: relative; }
+.track-card { position: relative; }
 .card-grid li { display: flex; flex-direction: column; }
 .card-grid li > a { position: relative; flex: 1 1 auto; }
-.card-grid .has-tab,
-.journey-card,
-.category-card { padding-top: var(--tab-h); }
+.card-grid .has-emblem > a,
+.journey-card a { padding-right: 4.75rem; }
 
 
 .breadcrumb { font-size: 0.9rem; }
@@ -800,20 +792,30 @@ a:hover { color: var(--accent-strong); }
 
 /* Journeys list ----------------------------------------------------------- */
 
-.filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0 var(--space-5); }
+/* Topic filter: a line of plain text links (with guide counts on the guide
+   list), the current one in full ink with an accent underline — not a row of
+   fifteen pill buttons. Wraps on wide screens; one sideways-scrolling row on
+   phones (see the narrow-screen rules). */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 0.1rem 1.1rem; margin: var(--space-4) 0 var(--space-5); font-size: 0.92rem; }
 .filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2rem;
   text-transform: capitalize;
   text-decoration: none;
-  color: var(--fg);
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-pill);
-  padding: 0.3rem 0.9rem;
-  font-size: 0.9rem;
-  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  color: var(--muted);
 }
-.filter-chip:hover { border-color: var(--accent); color: var(--accent); }
-.filter-chip.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.filter-chip:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 0.35em; }
+.filter-chip.is-active {
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+.filter-count { font-size: 0.8em; font-weight: 400; color: var(--muted-2); font-variant-numeric: tabular-nums; }
 
 .journey-grid {
   list-style: none;
@@ -844,6 +846,8 @@ a:hover { color: var(--accent-strong); }
 }
 .journey-card h2 { font-size: 1.2rem; margin: 0 0 0.3rem; }
 .journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
+.journey-card .card-topic { margin: 0 0 0.15rem; font-size: 0.75rem; color: var(--cat, var(--muted)); }
+.track-card-head .card-emblem { position: static; }
 .journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
 
 /* Card grid — guides & checklists indexes. The same card idiom as journey
@@ -879,21 +883,52 @@ a:hover { color: var(--accent-strong); }
 .card-title { font-weight: 600; line-height: 1.35; }
 .card-grid .guide-summary { margin-top: 0; }
 
-/* /guides overview: one short shelf per topic, "Show all N" to the rest. */
-.guide-shelf { margin-top: var(--space-6); }
-.guide-shelf:first-of-type { margin-top: var(--space-4); }
-.shelf-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-1) var(--space-4); margin-bottom: var(--space-3); }
-.shelf-head h2 { display: flex; align-items: center; gap: var(--space-2); margin: 0; font-size: 1.3rem; text-transform: capitalize; }
-.shelf-icon { display: inline-flex; color: var(--cat, var(--accent)); }
-.shelf-icon svg { width: 1.4rem; height: 1.4rem; }
-.shelf-all { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
-.shelf-all:hover { text-decoration: underline; }
+/* Guide lists: entries in a contents page, not boxed cards. Title in the
+   reading serif, the summary beneath, difficulty and time in the right-hand
+   margin (stacked under the summary on phones). */
+.list-page { max-width: 58rem; }
+.entries { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.entry a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 9.5rem;
+  gap: 0.15rem var(--space-5);
+  min-height: 44px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.entry-title { font-family: var(--font-serif); font-size: 1.18rem; line-height: 1.35; }
+.entry a:hover .entry-title { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.entry-summary { grid-column: 1; font-size: 0.9rem; line-height: 1.5; color: var(--muted); max-width: 40rem; }
+.entry-meta {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  padding-top: 0.2rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: right;
+}
+.entry-topic { font-weight: 600; text-transform: capitalize; color: var(--cat, var(--muted)); }
+
+/* /guides overview: one short group per topic, "Show all N" to the rest.
+   The topic heading carries its emblem. */
+.guide-shelf { margin-top: var(--space-7); }
+.filter-bar + .guide-shelf { margin-top: var(--space-5); }
+.shelf-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+.shelf-head h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); margin: 0; font-size: 1.65rem; }
+.shelf-name { text-transform: capitalize; }
+.shelf-head h2 small { font-family: var(--font-sans); font-size: 0.8rem; color: var(--muted); }
+.topic-head { margin-top: var(--space-5); }
+.shelf-all { font-weight: 600; text-decoration: none; }
 
 /* Tracks: curated, ordered "step-by-step plans" over the guides. ----------- */
 .track-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
 .track-card {
   position: relative;
-  margin-top: var(--tab-h);
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -902,24 +937,13 @@ a:hover { color: var(--accent-strong); }
 }
 .track-card-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
   margin-bottom: var(--space-2);
 }
-.track-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-.track-icon svg { width: 1.4rem; height: 1.4rem; }
 .track-titles { flex: 1 1 auto; min-width: 0; }
-.track-titles h2 { margin: 0.2rem 0 0; font-size: 1.2rem; }
+.track-titles h2 { margin: 0; font-size: 1.35rem; }
+.track-card-head .emblem { flex: none; }
 .track-titles h2 a { color: var(--fg); text-decoration: none; }
 .track-titles h2 a:hover { color: var(--accent); }
 .track-desc { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
@@ -977,87 +1001,125 @@ a:hover { color: var(--accent-strong); }
 
 /* Guide viewer ------------------------------------------------------------ */
 
-/* Compact guide header, title first: breadcrumb, the title on a faint
-   field-notebook band (the ASCII diagram's graph paper), one meta line, the
-   plan(s) as one quiet line, then Print/PDF as small buttons. */
-.guide-head {
-  margin: 0 0 var(--space-5);
-  padding: var(--space-3) var(--space-4) var(--space-3);
-  border: 1px solid var(--diagram-border);
-  border-radius: var(--radius);
-  background-color: var(--diagram-bg);
-  background-image: var(--diagram-pattern);
-}
-.guide-head .breadcrumb { margin: 0 0 var(--space-1); }
-.guide-head h1 { margin: 0 0 var(--space-2); }
+/* Guide header, almanac-style: breadcrumb, title, the summary as an italic
+   standfirst, then the facts as one ruled row (Difficulty · Time · Plan ·
+   Keep a copy), with the topic's emblem in the top-right corner. No band,
+   no box. Shared by checklist pages (without emblem and facts). */
+.guide-head { position: relative; margin: 0 0 var(--space-6); }
+.guide-head .breadcrumb { margin: 0 0 var(--space-3); font-size: 0.85rem; color: var(--muted); }
+.guide-head h1 { margin: 0 0 var(--space-3); font-size: 2.5rem; max-width: 28ch; }
+.guide-emblem { position: absolute; top: 0; right: 0; font-size: 0.78rem; }
+.guide-page .guide-head .breadcrumb,
+.guide-page .guide-head h1 { padding-right: 6rem; }
 .breadcrumb-cat { text-transform: capitalize; }
+.standfirst {
+  margin: 0 0 var(--space-5);
+  max-width: 36em;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.guide-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-7);
+  margin: 0;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.guide-facts dt { font-weight: 600; color: var(--fg); }
+.guide-facts dd { margin: 0; }
+.guide-facts a { color: var(--accent); }
 .guide-meta { margin: 0; align-items: center; color: var(--muted); }
-.guide-plans { margin: var(--space-2) 0 0; font-size: 0.9rem; color: var(--muted); }
-.guide-plans a { font-weight: 600; }
-.guide-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0 0; }
-.guide { line-height: 1.7; }
+.guide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: var(--space-3) 0 0; }
+.guide-facts .guide-actions { display: block; margin: 0; }
+/* A button that reads as a text link (Print, next to the PDF link). */
+.link-button {
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link-button:hover { color: var(--accent-strong); }
+
+/* Guide text: the reading serif at a book measure (~34em), on the page —
+   no card around it. */
+.guide { font-family: var(--font-serif); font-size: 1.075rem; line-height: 1.65; }
+.guide > * { max-width: 34em; }
+.guide > figure, .guide > table, .guide > .table-scroll { max-width: none; }
+.guide h2 { font-size: 1.6rem; line-height: 1.25; margin: var(--space-6) 0 var(--space-3); }
+.guide h3 { font-family: var(--font-serif); font-size: 1.2rem; }
 .guide img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
 .guide h1 { font-size: 2.2rem; }
 .guide blockquote {
   margin: var(--space-4) 0;
-  padding: var(--space-2) var(--space-4);
-  border-left: 3px solid var(--accent);
-  background: var(--accent-soft);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0 0 0 var(--space-4);
+  border-left: 2px solid var(--border-strong);
   color: var(--fg);
 }
 .guide code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.9em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
   background: var(--surface-sunken);
   padding: 0.1rem 0.35rem;
   border-radius: 0.3rem;
 }
 
-/* Callouts — labelled blockquotes used in "which should I pick?" guides
-   (rendered by services.markdown). The opening bold label is the cue, so
-   these stay meaningful even where colour is stripped (print, e-ink) — and
-   that print/e-ink treatment (a rule + label, no fill) is deliberately the
-   *default* here too for every kind except the safety-critical three below.
-   A guide can stack several callouts in a row; giving every kind the same
-   tinted-box weight made a "Tip" read as loud as a "Risk", so only
-   avoid/risk/now keep a filled background — everything else is a quiet
-   ruled note. */
-.guide .callout { border-left-width: 4px; }
-.guide .callout strong:first-child { display: inline; }
-.guide .callout-pick { border-left-color: var(--accent); background: none; }
-.guide .callout-avoid {
-  border-left-color: var(--danger);
-  background: var(--danger-soft);
-}
-.guide .callout-spec { border-left-color: var(--muted-2); background: none; }
-.guide .callout-decision { border-left-color: var(--accent-strong); background: none; }
-.guide .callout-risk {
-  border-left-color: var(--danger);
-  background: var(--danger-soft);
-}
-.guide .callout-tip { border-left-color: var(--accent); background: none; }
-.guide .callout-note { border-left-color: var(--border-strong); background: none; }
-/* "Do now" — immediate, life-safety action. The most urgent callout: a heavier
-   rule and a stronger fill so it reads as "act on this first" at a glance. */
-.guide .callout-now {
-  border-left-color: var(--danger);
-  background: var(--danger-soft);
-  border-left-width: 8px;
-}
-/* ...and its label is a solid "DO NOW" stamp, so it can't be mistaken for
-   the tinted "Avoid if" box next to it, even in greyscale. */
-.guide .callout-now strong:first-child {
-  display: inline-block;
-  padding: 0 0.45rem;
-  margin-right: 0.2rem;
-  border-radius: 0.25rem;
-  background: var(--danger);
-  color: var(--on-danger);
+/* Callouts — labelled blockquotes (services.markdown). Every kind is the
+   same quiet note: italic text with its label as a small uppercase word,
+   no fill and no rule — a guide can stack several, and boxes of different
+   weights crowded the page. The label carries the meaning on its own, so it
+   still reads in print, on e-ink, and with colour stripped; the cautionary
+   kinds (Avoid if, Risk, Do now) only tint that label. On wide screens the
+   label hangs in the left margin beside the text (see `.guide-page`). */
+.guide .callout { margin: var(--space-2) 0 var(--space-5); padding: 0; border: 0; font-style: italic; }
+.guide .callout p { margin: 0 0 var(--space-2); }
+.guide .callout p:last-child { margin-bottom: 0; }
+.guide .callout-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--accent);
 }
-.guide .callout-now strong:first-child::before { content: "⚠ "; }
+.guide .callout-punct { display: none; }
+.guide .callout-avoid .callout-label,
+.guide .callout-risk .callout-label,
+.guide .callout-now .callout-label { color: var(--danger); }
+.guide .callout-spec .callout-label,
+.guide .callout-note .callout-label { color: var(--muted); }
+
+/* The almanac margin (wide screens): the guide text sits in from the left,
+   callout labels hang right-aligned in that margin, and ASCII diagrams may
+   run back out into it so a wide drawing has room. */
+@media (min-width: 900px) {
+  .guide-page { --margin: 10rem; --margin-gap: 2.25rem; }
+  .guide-page .guide { padding-left: calc(var(--margin) + var(--margin-gap)); }
+  .guide-page .read-further { margin-left: calc(var(--margin) + var(--margin-gap)); }
+  .guide-page .guide .callout { position: relative; }
+  .guide-page .guide .callout-label {
+    position: absolute;
+    left: calc(-1 * (var(--margin) + var(--margin-gap)));
+    width: var(--margin);
+    margin: 0;
+    padding-top: 0.3rem;
+    text-align: right;
+  }
+  .guide-page .guide > figure.guide-ascii { margin-left: calc(-1 * (var(--margin) + var(--margin-gap))); }
+}
 
 /* Figures — a lone-image paragraph wrapped by services.markdown. Line drawings
    sit on a light card so the dark strokes stay legible in any theme and in
@@ -1531,19 +1593,9 @@ body.low-power {
   --shadow-lift: none;
 }
 :root body.low-power [data-cat] { --cat: #000000; }
-/* No decorative colour bar on e-ink; the hero flattens to a plain ink scene. */
-body.low-power .site-header::before { display: none; }
-body.low-power .hero { background: none; }
-body.low-power .category-card a:hover,
 body.low-power .journey-card a:hover,
 body.low-power .card-grid a:hover { background: none; transform: none; }
-body.low-power .card-tab { background: #fff; border-color: #000; }
-body.low-power .card-tab-blank { background: #000; }
-body.low-power .filter-chip.is-active { background: #000; }
 body.low-power .guide blockquote { background: none; }
-/* Callouts keep a high-contrast border + bold label in the e-ink palette so
-   "pick / avoid / spec" stays distinguishable without colour fills. */
-body.low-power .guide .callout { background: none; border-left-color: #000; }
 
 /* Banner shown site-wide while low-power mode is active. */
 .low-power-banner {
@@ -1557,7 +1609,6 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
 /* Respect a user's reduced-motion preference: keep hovers, drop the movement. */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
-  .category-card a:hover,
   .journey-card a:hover,
   .card-grid a:hover { transform: none; }
 }
@@ -1588,12 +1639,28 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
   .site-header nav.open { display: flex; }
   .site-header nav a { width: 100%; }
   .content { padding: var(--space-5) var(--space-4); }
-  /* Hero stacks: text first, the ASCII scene beneath as a small vignette. */
-  .hero { grid-template-columns: 1fr; padding: var(--space-5) var(--space-4); border-radius: 1rem 1.8rem 1rem 1.8rem; }
-  .intro h1 { font-size: 2rem; }
-  h1, .journey-detail h1, .guide h1 { font-size: 1.7rem; }
+  /* Welcome stacks: the sentence and search first, the ASCII scene beneath. */
+  .welcome { grid-template-columns: 1fr; gap: var(--space-5); margin-top: 0; margin-bottom: var(--space-6); }
+  .welcome h1 { font-size: 1.75rem; }
+  h1, .journey-detail h1, .guide h1 { font-size: 1.75rem; }
+  .guide-head h1 { font-size: 1.85rem; }
   .tagline { font-size: 1.05rem; }
-  /* Fifteen topic chips: one sideways-scrolling row in its own box, full
+  /* Contents list, entries, and plan lines go single-column; an entry's
+     difficulty and time move under its summary. */
+  .toc { grid-template-columns: 1fr; gap: var(--space-4); }
+  .entry a { grid-template-columns: 1fr; }
+  .entry-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); padding-top: 0; text-align: left; }
+  .plan-lines a { grid-template-columns: 1fr; }
+  .plan-steps { grid-row: auto; }
+  .shelf-head h2 { font-size: 1.4rem; }
+  .guide-emblem { font-size: 0.66rem; }
+  .guide-page .guide-head .breadcrumb,
+  .guide-page .guide-head h1 { padding-right: 4.5rem; }
+  /* Facts: a 2×2 grid instead of one long wrapped row. */
+  .guide-facts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .guide { font-size: 1.05rem; }
+  .ask-form input[type="search"] { font-size: 1.05rem; }
+  /* Fifteen topic links: one sideways-scrolling row in its own box, full
      bleed to the screen edges, instead of five wrapped rows. */
   .filter-bar {
     flex-wrap: nowrap;
@@ -1604,14 +1671,13 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
     margin-right: calc(-1 * var(--space-4));
     padding: 0 var(--space-4) var(--space-1);
   }
-  .filter-chip { flex: none; display: inline-flex; align-items: center; min-height: 44px; }
+  .filter-chip { flex: none; display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; }
   /* Header icon buttons and footer links: full 44px touch targets. */
   .nav-toggle,
   .theme-toggle,
   .a11y-toggle { width: 2.75rem; height: 2.75rem; }
   .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
-  .guide-head { padding: var(--space-3); margin-bottom: var(--space-4); }
-  .guide-head h1 { font-size: 1.55rem; }
+  .guide-head { margin-bottom: var(--space-5); }
   .btn.btn-small { padding: 0.5rem 0.9rem; min-height: 44px; display: inline-flex; align-items: center; }
   /* Wide ASCII diagrams: scale the type down to fit (never below 10px), and
      where it still doesn't fit, a shadow on the scrolling edge plus a small
@@ -1644,7 +1710,7 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
   /* The landing scene: legible type, cropped at the right edge rather than
      shrunk to an unreadable 8px. */
   .hero-art { justify-content: flex-start; }
-  .hero-art-frame pre { font-size: clamp(10px, 2.9vw, 0.82rem); }
+  .hero-art-frame pre { font-size: clamp(9px, 2.6vw, 0.72rem); }
   /* Admin packs: stacked cards instead of a 4-column table, so the
      Download/Remove button is visible without sideways scrolling. */
   .packs-table thead { display: none; }
@@ -1654,22 +1720,12 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
   .packs-table td:first-child { padding-top: 0.6rem; }
   .packs-table td:last-child { padding-bottom: 0.7rem; }
   .pack-actions { white-space: normal; }
-  /* Home topic tiles go two-up and compact: thirteen full-width tiles made
-     the front page a very long scroll on a phone. Two per row halves it and
-     each tile still stays a comfortably large tap target. */
-  .category-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
-  .category-card a { padding: var(--space-4) var(--space-2); }
-  .category-icon { width: 2.6rem; height: 2.6rem; margin-bottom: var(--space-2); }
-  .category-icon svg { width: 1.4rem; height: 1.4rem; }
-  .category-name { font-size: 0.95rem; }
-  .category-example { font-size: 0.8rem; }
   .recommend-form, .assistant-form { padding: var(--space-4); }
 
   /* Comfortable thumb-sized tap targets on touch screens. ~44px tall. */
   .site-header nav a,
   .footer-admin,
   .next-step a { display: inline-flex; align-items: center; min-height: 44px; }
-  .filter-chip { padding: 0.3rem 1rem; }
   .link-list a { display: inline-block; padding: 0.25rem 0; min-height: 44px; }
   .btn { padding: 0.65rem 1.1rem; min-height: 44px; }
   .recommend-form input,
@@ -1684,7 +1740,7 @@ body.low-power .guide .callout { background: none; border-left-color: #000; }
 @media (min-width: 641px) and (max-width: 1024px) {
   .site-header nav a,
   .footer-admin { display: inline-flex; align-items: center; min-height: 44px; }
-  .filter-chip { padding: 0.5rem 1rem; }
+  .filter-chip { min-height: 44px; }
   .link-list a { display: inline-block; padding: 0.3rem 0; min-height: 44px; }
   .search-clear { min-height: 44px; display: inline-flex; align-items: center; }
 }

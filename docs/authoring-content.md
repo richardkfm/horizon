@@ -81,6 +81,11 @@ regard to case and may end in a colon or a full stop (`**Note:**` and
 `**Note.**` both work); write the colon form, which is the house style. Keep
 `Do now` for immediate life-safety actions.
 
+On screen every callout looks the same: an italic note with its label as a
+small uppercase word, which hangs in the left margin on wide screens. Only
+the cautionary kinds (`Avoid if`, `Risk`, `Do now`) tint that label. So
+the words carry the meaning: start a `Do now` with the action itself.
+
 ### Figures
 
 Prefer an **ASCII diagram**: a fenced ` ```ascii ` code block followed by an

@@ -163,6 +163,23 @@ def _tag_callouts(state) -> None:  # noqa: ANN001 - markdown-it core rule state
         existing = token.attrGet("class")
         classes = f"{existing} callout callout-{kind}" if existing else f"callout callout-{kind}"
         token.attrSet("class", classes)
+        # Mark the label itself, and split its trailing colon/full stop into
+        # its own span, so the web UI can hang a bare "Risk" in the page
+        # margin while every other view (print, PDF, unstyled) still reads
+        # "Risk:" inline.
+        children[0].attrSet("class", "callout-label")
+        text = children[1]
+        label = text.content.rstrip()
+        stripped = label.rstrip(":.")
+        if stripped != label:
+            text.content = stripped
+            punct_open = Token("callout_punct_open", "span", 1)
+            punct_open.attrSet("class", "callout-punct")
+            punct = Token("text", "", 0)
+            punct.content = label[len(stripped) :]
+            punct_close = Token("callout_punct_close", "span", -1)
+            at = inline.children.index(text) + 1
+            inline.children[at:at] = [punct_open, punct, punct_close]
 
 
 def _wrap_figures(state) -> None:  # noqa: ANN001 - markdown-it core rule state

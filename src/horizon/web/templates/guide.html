@@ -1,28 +1,24 @@
 {% extends "base.html" %}
-{% from "partials/_ui.html" import difficulty %}
+{% from "partials/_ui.html" import difficulty, emblem %}
 {% block title %}{{ guide.title }} — horizon{% endblock %}
 {% block content %}
-<div class="reading-column">
-{# Compact header, title first: breadcrumb, the title on its field-notebook
-   band, one meta line, the plan(s) it belongs to as one quiet line, then
-   Print/PDF as small buttons. #}
-<header class="guide-head" data-cat="{{ guide.category }}">
-  <p class="breadcrumb no-print"><a href="/guides">← How-to guides</a>
+<div class="reading-column guide-page" data-cat="{{ guide.category }}">
+{# Almanac header: the topic's emblem in the corner, breadcrumb, title, the
+   summary as a standfirst, then the facts as one quiet ruled row (2×2 on a
+   phone). Callout labels hang in the left margin of the body below (wide
+   screens only). #}
+<header class="guide-head">
+  {{ emblem(guide.category, "guide-emblem") }}
+  <p class="breadcrumb no-print"><a href="/guides">How-to guides</a>
     <span aria-hidden="true">/</span> <a href="/guides?category={{ guide.category | urlencode }}" class="breadcrumb-cat">{{ guide.category }}</a></p>
   <h1>{{ heading }}</h1>
-  <p class="journey-meta guide-meta">
-    <span class="category-badge" data-cat="{{ guide.category }}">{{ guide.category }}</span>
-    {{ difficulty(guide.difficulty) }}
-    {% if guide.estimated_time %}<span class="meta-time">{{ guide.estimated_time }}</span>{% endif %}
-  </p>
-  {% if in_tracks %}
-  <p class="guide-plans no-print">Part of the plan{{ "s" if in_tracks|length > 1 }}
-    {% for track in in_tracks %}<a href="/journeys/{{ track.id }}">{{ track.title }}</a>{{ ", " if not loop.last }}{% endfor %}</p>
-  {% endif %}
-  <p class="guide-actions no-print">
-    <button type="button" class="btn btn-small" onclick="window.print()">Print</button>
-    <a class="btn btn-small" href="/guides/{{ guide.id }}.pdf">Download PDF</a>
-  </p>
+  {% if guide.summary %}<p class="standfirst">{{ guide.summary }}</p>{% endif %}
+  <dl class="guide-facts">
+    <div><dt>Difficulty</dt><dd>{{ difficulty(guide.difficulty) }}</dd></div>
+    {% if guide.estimated_time %}<div><dt>Time</dt><dd>{{ guide.estimated_time }}</dd></div>{% endif %}
+    {% if in_tracks %}<div class="no-print"><dt>Plan{{ "s" if in_tracks|length > 1 }}</dt><dd>{% for track in in_tracks %}<a href="/journeys/{{ track.id }}">{{ track.title }}</a>{{ ", " if not loop.last }}{% endfor %}</dd></div>{% endif %}
+    <div class="no-print"><dt>Keep a copy</dt><dd class="guide-actions"><button type="button" class="link-button" onclick="window.print()">Print</button> <span aria-hidden="true">·</span> <a href="/guides/{{ guide.id }}.pdf">PDF</a></dd></div>
+  </dl>
 </header>
 
 <article class="guide">

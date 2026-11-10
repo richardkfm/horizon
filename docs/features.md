@@ -61,12 +61,15 @@ Setting up a model runtime is covered in
 
 - **Made for non-technical neighbours.** Plain-language navigation, guide search,
   a phone-friendly responsive layout, and plain-language answers by default.
-- **Comfortable to look at, day or night.** A calm "paper & ink" design with a
-  solarpunk streak in light and dark themes, applied consistently across every
-  page (admin included): each topic has its own colour, difficulty reads as a
-  small `[■■■□□]` stamp, and a plan's guides sit along a "sunrise trail". All
-  styling is vendored — no external fonts or CDNs — and print/low-power/e-ink
-  modes keep their high-contrast palettes.
+- **Comfortable to look at, day or night.** A calm "paper & ink" design laid
+  out like an almanac, in light and dark themes. The home page offers one
+  search field and the topics as a contents list. Guides are listed as plain
+  entries, not boxes, and each guide reads at a book measure in the device's
+  own serif, with callout labels in the margin. Each topic has its own small
+  ASCII emblem and ink. Difficulty reads as a small `[■■■□□]` stamp, and a
+  plan's guides sit along a "sunrise trail". All styling is vendored, with
+  no external fonts or CDNs, and print/low-power/e-ink modes keep their
+  high-contrast palettes.
 - **Light and fast, even on a Pi over weak Wi-Fi.** Pages are gzip-compressed,
   static files are cached by the browser, there is no front-end framework, and
   the vendored script libraries (htmx for the assistant and admin, MapLibre for

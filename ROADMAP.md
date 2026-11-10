@@ -68,6 +68,10 @@ missing guide topics) lives in [docs/BACKLOG.md](docs/BACKLOG.md).
   grouped by topic, a "Start with step 1" button on plans, a signature colour
   per topic, a tighter guide header on phones, and accessibility fixes
   (contrast, labelled checklist boxes, touch targets, `aria-current`).
+  Since v0.9.4 the public pages use a calmer almanac layout. The home page
+  has one search field and the topics as a contents list. Guide lists are
+  plain entries, and callout labels sit in the margin of the guide page.
+  Each topic has a small ASCII emblem in place of icons and card tabs.
 - **Hardened.** A shared line-anchored front-matter parser, transactional
   re-seeding, bad content files skipped and logged rather than blocking boot,
   a search index that builds in the background only when content changed,

@@ -11,7 +11,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-261230.svg)](https://github.com/astral-sh/ruff)
 [![Offline-first](https://img.shields.io/badge/offline--first-%E2%9C%93-success.svg)](#)
-[![Status: v0.9.3](https://img.shields.io/badge/status-v0.9.3-blue.svg)](CHANGELOG.md)
+[![Status: v0.9.3](https://img.shields.io/badge/status-v0.9.4-blue.svg)](CHANGELOG.md)
 
 </div>
 
@@ -77,7 +77,7 @@ Admin token, CLI, local AI, content packs →
 
 ## Status
 
-**Status:** v0.9.3 — see [CHANGELOG](CHANGELOG.md) and [ROADMAP](ROADMAP.md).
+**Status:** v0.9.4 — see [CHANGELOG](CHANGELOG.md) and [ROADMAP](ROADMAP.md).
 
 ## License
 
