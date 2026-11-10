@@ -50,6 +50,17 @@ Updating this changelog and the README is part of every user-facing change
   in the margin. Unstyled and PDF output still read "Risk:". This changes
   only HTML rendering, not the API contract.
 
+### Fixed
+
+- **Reference library search works with libzim 4.** libzim 4 renamed
+  `getResults` to `get_results` and returns result objects instead of
+  paths, which made every search in a downloaded ZIM pack crash.
+  `services/zim_reader.search` now handles both libzim 3.x and 4.x.
+- **The admin-cookie expiry test replaces the cookie instead of adding a
+  second one.** Newer test clients kept the fresh login cookie beside the
+  expired one and sent both, so the test passed the wrong cookie. The
+  server-side expiry check itself was already correct.
+
 ## [0.9.3] — 2026-10-02
 
 ### Changed

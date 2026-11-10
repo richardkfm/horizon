@@ -125,8 +125,13 @@ def search(zim_path: Path, query: str, *, limit: int = 20) -> list[ZimSearchHit]
         return []
     archive = _open(zim_path)
     results = Searcher(archive).search(Query().set_query(query))
+    # libzim 4 renamed ``getResults`` to ``get_results`` and yields result
+    # objects (with ``path``) instead of bare path strings; accept both so an
+    # older install (pyproject allows >=3.10) keeps working.
+    get_results = getattr(results, "get_results", None) or results.getResults
     hits = []
-    for path in results.getResults(0, limit):
+    for result in get_results(0, limit):
+        path = result if isinstance(result, str) else result.path
         entry = archive.get_entry_by_path(path)
         hits.append(ZimSearchHit(path=path, title=entry.title))
     return hits
