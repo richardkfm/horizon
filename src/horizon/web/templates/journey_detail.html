@@ -1,33 +1,28 @@
 {% extends "base.html" %}
-{% from "partials/_ui.html" import difficulty %}
+{% from "partials/_ui.html" import difficulty, emblem %}
 {% block title %}{{ journey.title }} — horizon{% endblock %}
 {% block content %}
-<div class="reading-column">
-<p class="breadcrumb no-print"><a href="/journeys">← All step-by-step plans</a></p>
-
-<article class="journey-detail" data-cat="{{ journey.category }}">
+{# A plan page reads like a guide's head: emblem, breadcrumb, title, what the
+   plan is for, one ruled row of facts — then its guides as a numbered trail. #}
+<div class="reading-column guide-page" data-cat="{{ journey.category }}">
+<article class="journey-detail">
   <header class="guide-head">
+    {{ emblem(journey.category, "guide-emblem") }}
+    <p class="breadcrumb no-print"><a href="/journeys">Step-by-step plans</a>
+      <span aria-hidden="true">/</span> <a href="/journeys?category={{ journey.category | urlencode }}" class="breadcrumb-cat">{{ journey.category }}</a></p>
     <h1>{{ journey.title }}</h1>
-    <p class="journey-meta guide-meta">
-      <span class="category-badge" data-cat="{{ journey.category }}">{{ journey.category }}</span>
-      {{ difficulty(journey.difficulty) }}
-      {% if journey.estimated_time %}<span>{{ journey.estimated_time }}</span>{% endif %}
-      <span>{{ journey.guides|length }} steps</span>
-    </p>
+    {% if journey.description %}<p class="standfirst">{{ journey.description_html | safe }}</p>{% endif %}
+    <dl class="guide-facts">
+      <div><dt>Difficulty</dt><dd>{{ difficulty(journey.difficulty) }}</dd></div>
+      {% if journey.estimated_time %}<div><dt>Time</dt><dd>{{ journey.estimated_time }}</dd></div>{% endif %}
+      <div><dt>Steps</dt><dd>{{ journey.guides|length }} guides, in order</dd></div>
+      {% if journey.guides %}<div class="no-print"><dt>Begin</dt><dd><a class="plan-start" href="/guides/{{ journey.guides[0].id }}">Start with step 1 →</a></dd></div>{% endif %}
+    </dl>
   </header>
-  {% if journey.description %}<p class="tagline">{{ journey.description_html | safe }}</p>{% endif %}
-
-  {% if journey.guides %}
-  <p class="plan-start no-print">
-    <a class="btn btn-primary" href="/guides/{{ journey.guides[0].id }}">Start with step 1 →</a>
-  </p>
-  {% endif %}
 
   <section class="journey-section" aria-labelledby="plan-steps">
-    <h2 id="plan-steps">The guides, in order</h2>
+    <h2 id="plan-steps" class="eyebrow">The guides, in order</h2>
     {% if journey.guides %}
-    {# The "sunrise trail": one numbered stop per guide along a line that
-       runs from leaf green into horizon blue. #}
     <ol class="trail">
       {% for guide in journey.guides %}
       <li>

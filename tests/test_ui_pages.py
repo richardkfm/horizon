@@ -273,3 +273,25 @@ def test_unexpected_crash_is_friendly_html_500_but_api_stays_plain(monkeypatch):
     assert 'action="/guides"' in page.text
     assert api.status_code == 500
     assert api.text == "Internal Server Error"
+
+
+def test_other_pages_use_the_almanac_layout():
+    """Plans, checklists, Where to start and the assistant follow the almanac
+    layout too (CLAUDE.md, UX standard 9): a guide-style head with emblem
+    and facts, entries instead of boxed cards, ruled-line forms."""
+    with TestClient(app) as client:
+        plan = client.get("/journeys/safe-drinking-water")
+        checklist = client.get("/checklists/first-aid-kit")
+        recommend = client.get("/recommend", params={"goal": "drink water"})
+        assistant = client.get("/assistant")
+    for page in (plan, checklist):
+        assert 'class="emblem guide-emblem"' in page.text
+        assert 'class="guide-facts' in page.text
+        assert 'class="standfirst"' in page.text
+    assert 'class="trail"' in plan.text
+    assert '<ul class="entries">' in recommend.text
+    assert 'class="ask-form"' in recommend.text
+    assert "journey-card" not in recommend.text
+    assert 'class="note-label"' in assistant.text
+    for page in (plan, checklist, recommend, assistant):
+        assert "card-grid" not in page.text

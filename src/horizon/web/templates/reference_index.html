@@ -2,6 +2,7 @@
 {% block title %}Reference library — horizon{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
+<div class="list-page">
 <section class="guides-intro">
   <h1>Reference library</h1>
   <p class="tagline">
@@ -11,12 +12,12 @@
 </section>
 
 {% if packs %}
-<ul class="card-grid">
+<ul class="entries entries-plain">
   {% for pack in packs %}
-  <li>
+  <li class="entry">
     <a href="/reference/{{ pack.id }}">
-      <span class="card-title">{{ pack.title }}</span>
-      {% if pack.description %}<span class="guide-summary">{{ pack.description }}</span>{% endif %}
+      <span class="entry-title">{{ pack.title }}</span>
+      {% if pack.description %}<span class="entry-summary">{{ pack.description }}</span>{% endif %}
     </a>
   </li>
   {% endfor %}
@@ -30,4 +31,5 @@
   </p>
 </div>
 {% endif %}
+</div>
 {% endblock %}

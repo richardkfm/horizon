@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "partials/_ui.html" import guide_entry %}
 {% block title %}Where to start — horizon{% endblock %}
 {% block content %}
+<div class="list-page">
 <section class="recommend-intro">
   <h1>Where to start</h1>
   <p class="tagline">
@@ -10,10 +12,15 @@
   </p>
 </section>
 
+{# The goal is the one field that matters, so it is the ruled line of the
+   home search; climate and resources sit beneath as two quiet extras. #}
 <form method="get" action="/recommend" class="recommend-form">
-  <label for="goal">What do you want to do?</label>
-  <input type="text" id="goal" name="goal" value="{{ form.goal }}"
-         placeholder="e.g. provide safe drinking water for our group" />
+  <label for="goal" class="field-label">What do you want to do?</label>
+  <div class="ask-form">
+    <input type="search" id="goal" name="goal" value="{{ form.goal }}"
+           placeholder="e.g. provide safe drinking water for our group" />
+    <button type="submit" class="ask-button">Suggest a path</button>
+  </div>
   <p class="field-hint">
     For example:
     <a href="/recommend?goal=make+river+water+safe+to+drink">make river water safe to drink</a>,
@@ -23,30 +30,25 @@
 
   <div class="form-row">
     <div>
-      <label for="climate">Climate <span class="optional">(optional)</span></label>
+      <label for="climate" class="field-label">Climate <span class="optional">(optional)</span></label>
       <input type="text" id="climate" name="climate" value="{{ form.climate }}"
-             placeholder="e.g. cold, dry" />
+             class="line-input" placeholder="e.g. cold, dry" />
     </div>
     <div>
-      <label for="resources">What you already have <span class="optional">(optional)</span></label>
+      <label for="resources" class="field-label">What you already have <span class="optional">(optional)</span></label>
       <input type="text" id="resources" name="resources" value="{{ form.resources }}"
-             placeholder="e.g. solar panel, barrel, sand" />
+             class="line-input" placeholder="e.g. solar panel, barrel, sand" />
       <span class="field-hint">Separate several with commas.</span>
     </div>
   </div>
-
-  <button type="submit" class="btn btn-primary">Suggest a path</button>
 </form>
 
 {% if results is not none %}
 <section class="recommend-results">
-  <h2>Guides to read</h2>
+  <h2 class="eyebrow">Guides to read</h2>
   {% if results.guides %}
-  <ul class="link-list">
-    {% for guide in results.guides %}
-    <li><a href="/guides/{{ guide.id }}">{{ guide.title }}</a>
-      {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}</li>
-    {% endfor %}
+  <ul class="entries">
+    {% for guide in results.guides %}{{ guide_entry(guide, topic=true) }}{% endfor %}
   </ul>
   {% else %}
   <div class="empty-suggestions">
@@ -59,13 +61,20 @@
   {% endif %}
 
   {% if results.journeys %}
-  <h2>Step-by-step plans that fit</h2>
-  <ul class="journey-grid">
-    {% for journey in results.journeys %}
-    {% include "partials/_journey_card.html" %}
+  <h2 class="eyebrow">Step-by-step plans that fit</h2>
+  <ul class="plan-lines">
+    {% for plan in results.journeys %}
+    <li data-cat="{{ plan.category }}">
+      <a href="/journeys/{{ plan.id }}">
+        <span class="plan-title">{{ plan.title }}</span>
+        <span class="plan-steps"><span class="entry-topic">{{ plan.category }}</span></span>
+        {% if plan.description %}<span class="plan-desc">{{ plan.description_html | striptags | truncate(140) }}</span>{% endif %}
+      </a>
+    </li>
     {% endfor %}
   </ul>
   {% endif %}
 </section>
 {% endif %}
+</div>
 {% endblock %}

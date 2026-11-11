@@ -13,6 +13,46 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.5] — 2026-11-11
+
+### Changed
+
+- **The almanac layout now covers every page.** v0.9.4 redesigned the home
+  page, the guide list and the guide page. The rest now follow:
+  - **Step-by-step plans:** each plan is an entry with its emblem in the
+    margin, not a boxed card. Its guides are a numbered list, in two
+    columns on wide screens.
+  - **Plan page:** the header now matches a guide's: emblem, standfirst,
+    and one row of facts (Difficulty · Time · Steps · Start with step 1).
+    The guides follow as a numbered trail joined by a dotted line, in place
+    of the coloured "sunrise trail".
+  - **Checklists:** the list reads like the home topics, as a contents list
+    with emblems. A checklist page gets a guide-style header, with Print
+    and Clear ticks as text links.
+  - **Where to start and Ask a question:** the forms are ruled lines on the
+    page, with the goal field matching the home search. Results are entries,
+    and the assistant's answer reads like guide text. The availability
+    notice (ready, model off, low power, turned off) is a quiet labelled
+    note instead of a tinted box.
+  - **Reference library, maps and error pages:** entries and ruled search
+    lines instead of card grids and boxes. A reference article reads in the
+    serif without a frame.
+  - **Admin:** tables are ruled like a ledger, and the integration and
+    health checks are ruled rows, not cards.
+  - The unused card-grid, journey-card and `partials/_journey_card.html`
+    styles and markup were removed.
+- **A shorter README.**
+  - New logo: an SVG with light and dark versions.
+  - The home page's ASCII morning scene appears as a small animated SVG,
+    alongside a sheet of the 15 topic emblems.
+  - Three fresh screenshots: the home page, a guide in dark mode, and
+    three phone screens.
+  - Only the status and license badges remain, and the doc links, status
+    and license share one footer.
+  - The second pitch paragraph moved to `docs/features.md`.
+  - `scripts/make_readme_images.py` regenerates the SVGs whenever the
+    emblems, topic inks or the scene change.
+
 ## [0.9.4] — 2026-11-10
 
 ### Changed
@@ -1405,7 +1445,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
      release commits. Switch them to the tag form once the tags are pushed.
      v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
      pushed when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.4...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.5...HEAD
+[0.9.5]: https://github.com/richardkfm/horizon/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/richardkfm/horizon/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/richardkfm/horizon/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/richardkfm/horizon/compare/v0.9.1...v0.9.2
