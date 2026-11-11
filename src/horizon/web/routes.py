@@ -17,7 +17,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session, select
+from sqlmodel import Session, func, select
 
 from horizon import __version__
 from horizon.api.ai import AnswerRequest
@@ -31,6 +31,7 @@ from horizon.services import packs as packs_service
 from horizon.services.markdown import LinkResolver, render_inline, render_markdown, split_title
 from horizon.services.recommend import recommend_journeys
 from horizon.web.assets import static_url
+from horizon.web.emblems import topic_emblem
 
 router = APIRouter(tags=["web"])
 
@@ -42,6 +43,8 @@ templates.env.globals["low_power_enabled"] = low_power_enabled
 templates.env.globals["assistant_enabled"] = assistant_enabled
 templates.env.globals["static_url"] = static_url
 templates.env.globals["version"] = __version__
+# The ASCII topic emblems (web/emblems.py), drawn by the `emblem` macro.
+templates.env.globals["topic_emblem"] = topic_emblem
 # Only show the "Reference library" nav item once an operator has actually
 # downloaded a ZIM pack -- a per-request on-disk check, cheap enough given
 # horizon's low request volume; no caching layer added for this.
@@ -116,15 +119,49 @@ CATEGORY_EXAMPLES = {
 }
 
 
-def _category_cards() -> list[dict]:
-    """Category name plus its plain-language example, for the home page tiles."""
-    return [{"name": c, "example": CATEGORY_EXAMPLES.get(c, "")} for c in CATEGORIES]
+# How many plans the home page lists before "All N step-by-step plans".
+HOME_PLANS = 4
+
+
+def _guide_counts(session: Session) -> dict[str, int]:
+    """Number of guides per category (one GROUP BY, no rows loaded)."""
+    rows = session.exec(select(Guide.category, func.count()).group_by(Guide.category)).all()
+    return {Category(category).value: count for category, count in rows}
+
+
+def _category_cards(counts: dict[str, int]) -> list[dict]:
+    """Each topic for the home contents list: name, example, guide count."""
+    return [
+        {"name": c, "example": CATEGORY_EXAMPLES.get(c, ""), "count": counts.get(c, 0)}
+        for c in CATEGORIES
+    ]
 
 
 @router.get("/", response_class=HTMLResponse)
-def landing(request: Request) -> HTMLResponse:
-    """Landing view: the skill categories and what horizon is for."""
-    return templates.TemplateResponse(request, "landing.html", {"categories": _category_cards()})
+def landing(request: Request, session: SessionDep) -> HTMLResponse:
+    """Landing view: search, the topics as a contents list, and a few plans."""
+    counts = _guide_counts(session)
+    resolver = _link_resolver(session)
+    plans = []
+    for journey in session.exec(select(Journey)).all():
+        steps = len(ordered_guides(session, journey.id))
+        if steps < 2:
+            continue
+        data = _with_description_html(_journey_summary(journey), resolver)
+        data["steps"] = steps
+        plans.append(data)
+    # Gentlest first, so the home page offers easy ways in.
+    plans.sort(key=lambda t: (t["difficulty"], _category_rank(t["category"]), t["id"]))
+    return templates.TemplateResponse(
+        request,
+        "landing.html",
+        {
+            "categories": _category_cards(counts),
+            "guide_total": sum(counts.values()),
+            "plans": plans[:HOME_PLANS],
+            "plan_total": len(plans),
+        },
+    )
 
 
 @router.get("/journeys", response_class=HTMLResponse)
@@ -250,6 +287,7 @@ def guides_page(
             "guides": guides,
             "groups": groups,
             "categories": CATEGORIES,
+            "counts": _guide_counts(session),
             "selected_category": category,
             "query": query,
         },

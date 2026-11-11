@@ -13,6 +13,54 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.4] — 2026-11-10
+
+### Changed
+
+- **An almanac layout for the public pages.** The home page, the guide list
+  and the guide page were redesigned to feel less crowded:
+  - **Home:** one opening sentence and a single search field, with the ASCII
+    morning scene beside them. The topics follow as a contents list (name,
+    guide count, plain-language example) and a few gentle plans after that.
+    The boxed hero and the fifteen topic tiles are gone.
+  - **Guide list:** entries instead of boxed cards: the title, a one-line
+    summary, and difficulty and time in the margin. The topic filter is a
+    line of text links with guide counts, not a row of pill buttons.
+  - **Guide page:** the summary is now an italic standfirst. The facts sit
+    in one ruled row: Difficulty, Time, Plan, and Print/PDF. The text is set
+    at a book measure in the device's own serif, with no font download.
+  - **Header and footer:** they sit on the page's paper, with plain text
+    navigation and borderless icon buttons. The sunrise hairline and the
+    card shadows were dropped.
+- **Topic emblems replace the icons and index-card tabs.** Each topic now has
+  a small three-line ASCII emblem in its own ink (`web/emblems.py`). It
+  appears in the home contents list, beside a topic's heading in the guide
+  list, at the head of every guide, and in the corner of plan and checklist
+  cards. The inline-SVG category icons (`partials/_icons.html`) and the
+  `topic_tab` card tabs were removed. Every topic ink was rechecked for
+  contrast: at least 4.5:1 on the paper in both themes.
+- **Callouts are one quiet style.** Every kind is now an italic note with
+  a small uppercase label. On wide screens the label hangs in the left
+  margin beside the text. The cautionary kinds (Avoid if, Risk, Do now)
+  only tint that label, with no box, fill, or heavier rule. ASCII diagrams
+  can run out into that margin. In print the label stays inline.
+- **Callout labels are marked up.** The rendered label is now
+  `<strong class="callout-label">Risk<span class="callout-punct">:</span></strong>`
+  (was `<strong>Risk:</strong>`), so the web UI can show a bare label
+  in the margin. Unstyled and PDF output still read "Risk:". This changes
+  only HTML rendering, not the API contract.
+
+### Fixed
+
+- **Reference library search works with libzim 4.** libzim 4 renamed
+  `getResults` to `get_results` and returns result objects instead of
+  paths, which made every search in a downloaded ZIM pack crash.
+  `services/zim_reader.search` now handles both libzim 3.x and 4.x.
+- **The admin-cookie expiry test replaces the cookie instead of adding a
+  second one.** Newer test clients kept the fresh login cookie beside the
+  expired one and sent both, so the test passed the wrong cookie. The
+  server-side expiry check itself was already correct.
+
 ## [0.9.3] — 2026-10-02
 
 ### Changed
@@ -1357,7 +1405,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
      release commits. Switch them to the tag form once the tags are pushed.
      v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
      pushed when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.3...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.4...HEAD
+[0.9.4]: https://github.com/richardkfm/horizon/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/richardkfm/horizon/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/richardkfm/horizon/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/richardkfm/horizon/compare/v0.9.0...v0.9.1

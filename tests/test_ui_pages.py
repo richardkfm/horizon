@@ -129,20 +129,47 @@ def test_guide_and_checklist_pages_have_no_related_cards_footer():
     assert "More on " not in checklist.text
 
 
-def test_cards_carry_an_index_tab_not_a_coloured_bar():
+def test_topics_are_marked_by_ascii_emblems_not_tabs_or_bars():
+    """CLAUDE.md, UX standard 8: a topic is marked by its ASCII emblem — on
+    the home contents list, topic headings, guide heads, and card corners —
+    never by an index-card tab, a coloured bar, or an SVG icon."""
     with TestClient(app) as client:
         home = client.get("/")
         plans = client.get("/journeys")
         checklists = client.get("/checklists")
         shelf = client.get("/guides")
+        guide = client.get("/guides/survival-knots")
         css = client.get("/static/app.css")
-    assert home.text.count('class="card-tab card-tab-blank"') == len(CATEGORY_ORDER)
-    assert '<span class="card-tab" data-cat="water">water</span>' in plans.text
-    assert '<li class="has-tab" data-cat=' in checklists.text
-    # Inside a topic shelf the heading names the topic, so no tab (and no
-    # headroom class) on those cards.
-    assert "card-tab" not in shelf.text
+    water = '<pre class="emblem" data-cat="water" aria-hidden="true">'
+    assert home.text.count('<pre class="emblem" data-cat=') == len(CATEGORY_ORDER)
+    assert water in home.text and water in shelf.text
+    assert '<pre class="emblem card-emblem" data-cat="water"' in plans.text
+    assert '<li class="has-emblem" data-cat=' in checklists.text
+    assert '<pre class="emblem guide-emblem" data-cat="survival"' in guide.text
+    for page in (home, plans, checklists, shelf, guide):
+        assert "card-tab" not in page.text
+        assert "<svg" not in page.text.split("</header>", 1)[1]
     assert "border-top: 3px solid var(--cat)" not in css.text
+
+
+def test_every_category_has_an_emblem():
+    from horizon.web.emblems import TOPIC_EMBLEMS
+
+    assert set(TOPIC_EMBLEMS) == set(CATEGORY_ORDER)
+    for art in TOPIC_EMBLEMS.values():
+        lines = art.split("\n")
+        assert len(lines) == 3
+        assert max(len(line) for line in lines) <= 8
+
+
+def test_home_lists_topics_with_counts_and_a_few_plans():
+    with TestClient(app) as client:
+        resp = client.get("/")
+    assert 'action="/guides"' in resp.text
+    count = r'class="toc-count">[1-9][0-9]*<span class="visually-hidden"> guides'
+    assert re.search(count, resp.text)
+    assert resp.text.count('<a href="/journeys/') >= 1
+    assert "step-by-step plans →" in resp.text
 
 
 def test_guides_overview_groups_by_category_in_enum_order():

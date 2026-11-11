@@ -39,8 +39,13 @@ def test_render_markdown_tables_enabled():
 def test_callout_blockquote_gets_class():
     html = render_markdown("> **Pick this if:** the water is cloudy.")
     assert 'class="callout callout-pick"' in html
-    # The bold label survives so the callout reads correctly even unstyled.
-    assert "<strong>Pick this if:</strong>" in html
+    # The bold label survives so the callout reads correctly even unstyled;
+    # its colon sits in its own span so the web UI can hang a bare label in
+    # the page margin.
+    assert (
+        '<strong class="callout-label">Pick this if<span class="callout-punct">:</span></strong>'
+        in html
+    )
 
 
 def test_callout_label_synonyms_map_to_kind():
@@ -67,7 +72,7 @@ def test_unknown_label_stays_plain_blockquote():
 def test_do_now_callout_gets_now_kind():
     html = render_markdown("> **Do now:** get out and stay out.")
     assert 'class="callout callout-now"' in html
-    assert "<strong>Do now:</strong>" in html
+    assert 'Do now<span class="callout-punct">:</span></strong>' in html
     # "Act now" / "Right now" are synonyms for the same urgent kind.
     assert 'callout-now"' in render_markdown("> **Act now:** move to cover.")
 

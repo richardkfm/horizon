@@ -8,22 +8,26 @@
 <span class="difficulty" title="Difficulty {{ n }} of 5"><span class="visually-hidden">Difficulty {{ n }} of 5</span><span aria-hidden="true">[{{ "■" * n }}{{ "□" * (5 - n) }}]</span></span>
 {%- endmacro %}
 
-{# The topic marker on a card: an index-card tab on the card's top edge,
-   named after and tinted in the topic's hue (`.card-tab` in app.css), like a
-   labelled tab on a file-card. ``label`` is off where the tab should only be
-   a coloured tab (the home tiles name the topic in the tile itself). #}
-{% macro topic_tab(category, label=true) -%}
-{%- if label %}<span class="card-tab" data-cat="{{ category }}">{{ category }}</span>{% else %}<span class="card-tab card-tab-blank" data-cat="{{ category }}" aria-hidden="true"></span>{% endif -%}
+{# A topic's ASCII emblem (web/emblems.py), inked in the topic's own colour
+   (`--cat`, from `data-cat`). It replaces both the old SVG category icons and
+   the index-card tabs: wherever a topic needs a mark — the home contents
+   list, a topic heading, the head of a guide, the corner of a card — it is
+   this small drawing. Always decorative: the topic's name sits beside it as
+   text. #}
+{% macro emblem(category, cls="") -%}
+<pre class="emblem{% if cls %} {{ cls }}{% endif %}" data-cat="{{ category }}" aria-hidden="true">{{ topic_emblem(category) }}</pre>
 {%- endmacro %}
 
-{# One guide card for the browse grids. ``badge`` is off inside a category
-   shelf, where the heading already names the topic. #}
-{% macro guide_card(guide, badge=true) -%}
-<li data-cat="{{ guide.category }}"{% if badge %} class="has-tab"{% endif %}>
+{# One guide in a browse list: title, one-line summary, and difficulty and
+   time in the margin — an entry in a contents page, not a boxed card.
+   ``topic`` names the guide's topic (in its ink) where the list mixes topics,
+   e.g. search results. #}
+{% macro guide_entry(guide, topic=false) -%}
+<li class="entry" data-cat="{{ guide.category }}">
   <a href="/guides/{{ guide.id }}">
-    {% if badge %}{{ topic_tab(guide.category) }}{% endif %}
-    <span class="card-title">{{ guide.title }}</span>
-    {% if guide.summary %}<span class="guide-summary">{{ guide.summary }}</span>{% endif %}
+    <span class="entry-title">{{ guide.title }}</span>
+    {% if guide.summary %}<span class="entry-summary">{{ guide.summary }}</span>{% endif %}
+    <span class="entry-meta">{% if topic %}<span class="entry-topic">{{ guide.category }}</span>{% endif %}{{ difficulty(guide.difficulty) }}{% if guide.estimated_time %}<span>{{ guide.estimated_time }}</span>{% endif %}</span>
   </a>
 </li>
 {%- endmacro %}

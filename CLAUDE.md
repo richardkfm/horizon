@@ -250,8 +250,9 @@ These are horizon's integration surface; preserve backward compatibility:
 Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooperation`, `survival`, `culture`, `language`, `crafts`, `emergencies`,
 `cooking`, `calculations`, `technology`, `mobility` (see `models.Category`). Adding a category is a small code change (the `Category`
-enum, plus a `CATEGORY_EXAMPLES` line in `web/routes.py` and an SVG icon in
-`web/templates/partials/_icons.html`); routes, API, seeding, and the admin
+enum, plus a `CATEGORY_EXAMPLES` line in `web/routes.py`, a three-line ASCII
+emblem in `web/emblems.py`, and an ink pair (`--cat-l`/`--cat-d`) in
+`app.css`); routes, API, seeding, and the admin
 dashboard auto-discover it. A category needs guides seeded in the same
 change — `tests/test_web_ui.py::test_every_category_has_a_seeded_guide`
 fails on an empty category. Restart to re-seed and re-index.
@@ -316,14 +317,31 @@ Hold these when touching templates, copy, or `web/static/`:
    in `print.css`). Keep `aria-*`/labels on interactive elements.
 7. **Personalisation stays local and private.** Prefer on-device state
    (localStorage) and config over accounts or servers; no telemetry.
-8. **Cards mark their topic with an index-card tab, not a coloured top bar.**
-   The 3px coloured `border-top` on cards was dropped on purpose: it's the
-   default look of every template site. Use the `topic_tab` macro
-   (`partials/_ui.html`, styled as `.card-tab`) on any new card type, and
-   give its container `--tab-h` of headroom (see the `.has-tab` /
-   `.journey-card` / `.track-card` / `.category-card` rules). Don't bring a
-   coloured bar, stripe or gradient edge back as a "quick" topic signal.
-9. **Guide pages end quietly.** A guide's footer is at most the single
+8. **A topic is marked by its ASCII emblem — not a tab, bar, or icon.**
+   Each topic has a small three-line ASCII drawing (`web/emblems.py`),
+   drawn with the `emblem` macro (`partials/_ui.html`) in the topic's ink
+   (`--cat`, from `data-cat`). It marks the topic everywhere: the home
+   contents list, a topic heading in the guide list, the top-right of a
+   guide's header, and the corner of a card (`emblem(cat, "card-emblem")`,
+   with room kept clear by the card's right padding). This replaced the
+   SVG category icons and the index-card tabs. Before that, the 3px
+   coloured `border-top` had been dropped because it was the default look
+   of every template site. Don't bring back a coloured bar, stripe, tab,
+   gradient edge or icon font as a "quick" topic signal. Keep emblems to
+   three lines of at most eight columns, and keep every ink at ≥ 4.5:1 on
+   the paper in both themes.
+9. **Almanac layout, not a wall of boxes.** Browse pages list guides as
+   entries (`guide_entry`: serif title, summary, difficulty/time in the
+   margin), not boxed cards, and the topic filter is a line of text links.
+   The guide page sets its text at a ~34em measure in the device's own
+   serif (`--font-serif`, nothing downloaded). Callouts are one quiet style,
+   whatever their kind: italic text with a small uppercase label that hangs
+   in the left margin on wide screens (`.guide-page`, ≥ 900px). The
+   cautionary kinds only tint that label. This was a deliberate choice, so
+   don't bring back filled boxes or a heavier "Do now" stamp without asking.
+   The renderer marks the label as `.callout-label` and splits off its
+   colon as `.callout-punct`.
+10. **Guide pages end quietly.** A guide's footer is at most the single
    "Next in {plan}" line; checklists have no footer nav. The old "More on
    {topic}" grid of three related-guide cards was removed deliberately —
    guide pages already stack several callouts and the extra cards crowded

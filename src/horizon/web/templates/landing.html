@@ -1,26 +1,23 @@
 {% extends "base.html" %}
-{% from "partials/_icons.html" import category_icon %}
-{% from "partials/_ui.html" import topic_tab %}
+{% from "partials/_ui.html" import emblem %}
 {% block title %}horizon · guides for water, food, energy, shelter, and health{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
-<section class="hero">
-  <div class="intro">
-    <p class="hero-kicker">Works without internet · runs on tiny computers · shared by neighbours</p>
-    <h1>Guides for everyday autonomy</h1>
-    <p class="tagline">
-      A local, offline-first library of step-by-step guides for water, food,
-      energy, shelter, health, and cooperation, plus a local AI assistant to
-      help you find what you need.
-    </p>
-    <div class="cta">
-      <p class="cta-question">Not sure what you need? Describe your goal.</p>
-      <a class="btn btn-primary" href="/recommend">Where to start →</a>
-    </div>
-    <p class="cta-secondary">
-      Want to be more self-reliant? See the
-      <a href="/checklists">checklists</a> of what to gather, pack, and keep ready.
-    </p>
+{# Almanac home: one opening sentence, one search field, then the topics as
+   a contents page and a few plans. No boxed hero, no tiles. #}
+<section class="welcome">
+  <div class="welcome-text">
+    <h1>Practical skills for water, food, energy, shelter, health, and living well together.</h1>
+    <form method="get" action="/guides" class="ask-form no-print" role="search">
+      <label class="visually-hidden" for="home-search">Search the guides</label>
+      <input type="search" id="home-search" name="q"
+             placeholder="What do you want to do? e.g. store rainwater" />
+      <button type="submit" class="ask-button">Search</button>
+    </form>
+    <p class="welcome-note">{{ guide_total }} guides, all stored on this device. Works without internet.</p>
+    <p class="welcome-note">Not sure where to begin? <a href="/recommend">Describe your goal</a>
+      and get a short list that fits. Or see the <a href="/checklists">checklists</a> of what
+      to gather, pack, and keep ready.</p>
   </div>
   {# A little solarpunk morning in ASCII: two stacked <pre> layers on the same
      monospace grid. The "ground" layer is the still landscape (leaf ink); the
@@ -58,21 +55,40 @@ ___________________________________________________/_\______</pre>
   </div>
 </section>
 
-<section class="categories">
-  <h2 class="section-flourish">Browse by topic</h2>
-  <ul class="category-grid">
+<section class="topics" aria-labelledby="topics-heading">
+  <h2 class="eyebrow" id="topics-heading">Topics</h2>
+  <ul class="toc">
     {% for category in categories %}
-    <li class="category-card" data-cat="{{ category.name }}">
+    <li data-cat="{{ category.name }}">
       <a href="/guides?category={{ category.name | urlencode }}">
-        {{ topic_tab(category.name, label=false) }}
-        <span class="category-icon" aria-hidden="true">{{ category_icon(category.name) }}</span>
-        <span class="category-name">{{ category.name }}</span>
-        {% if category.example %}<span class="category-example">{{ category.example }}</span>{% endif %}
+        {{ emblem(category.name) }}
+        <span class="toc-line"><span class="toc-name">{{ category.name }}</span><span class="toc-leader" aria-hidden="true"></span><span class="toc-count">{{ category.count }}<span class="visually-hidden"> guides</span></span></span>
+        {% if category.example %}<span class="toc-example">{{ category.example }}</span>{% endif %}
       </a>
     </li>
     {% endfor %}
   </ul>
 </section>
+
+{% if plans %}
+<section class="home-plans" aria-labelledby="plans-heading">
+  <h2 class="eyebrow" id="plans-heading">Step-by-step plans</h2>
+  <ul class="plan-lines">
+    {% for plan in plans %}
+    <li data-cat="{{ plan.category }}">
+      <a href="/journeys/{{ plan.id }}">
+        <span class="plan-title">{{ plan.title }}</span>
+        <span class="plan-steps">{{ plan.steps }} guides</span>
+        {% if plan.description %}<span class="plan-desc">{{ plan.description_html | striptags | truncate(120) }}</span>{% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if plan_total > plans | length %}
+  <p class="more-link"><a href="/journeys">All {{ plan_total }} step-by-step plans →</a></p>
+  {% endif %}
+</section>
+{% endif %}
 
 {% if not low_power_enabled() %}
 {# Animation frames for the sky layer, kept as plain text in a <template> so

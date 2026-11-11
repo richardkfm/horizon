@@ -187,6 +187,10 @@ def test_admin_cookie_expires_server_side(monkeypatch):
     with TestClient(app) as client:
         client.post("/admin/login", data={"token": TOKEN})
         assert client.get("/admin", follow_redirects=False).status_code == 200
+        # Replace the login cookie rather than add a second one: newer test
+        # clients keep the domain-scoped login cookie beside a bare `set`,
+        # send both, and the server would read the fresh one.
+        client.cookies.clear()
         client.cookies.set(admin_module.COOKIE_NAME, old)
         assert client.get("/admin", follow_redirects=False).status_code == 303
 
