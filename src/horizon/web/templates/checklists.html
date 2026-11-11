@@ -3,6 +3,7 @@
 {% from "partials/_ui.html" import emblem %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
+<div class="list-page">
 <section class="guides-intro">
   <h1>Checklists</h1>
   <p class="tagline">
@@ -13,13 +14,15 @@
 </section>
 
 {% if checklists %}
-<ul class="card-grid">
+{# A contents list, like the home topics: emblem in the margin, title, and
+   what the list covers beneath. #}
+<ul class="toc toc-wide">
   {% for checklist in checklists %}
   <li{% if checklist.category %} class="has-emblem" data-cat="{{ checklist.category }}"{% endif %}>
     <a href="/checklists/{{ checklist.id }}">
-      {% if checklist.category %}{{ emblem(checklist.category, "card-emblem") }}{% endif %}
-      <span class="card-title">{{ checklist.title }}</span>
-      {% if checklist.summary %}<span class="guide-summary">{{ checklist.summary }}</span>{% endif %}
+      {% if checklist.category %}{{ emblem(checklist.category) }}{% else %}<span class="emblem-blank" aria-hidden="true"></span>{% endif %}
+      <span class="toc-line"><span class="toc-title">{{ checklist.title }}</span></span>
+      {% if checklist.summary %}<span class="toc-example">{{ checklist.summary }}</span>{% endif %}
     </a>
   </li>
   {% endfor %}
@@ -27,4 +30,5 @@
 {% else %}
 <div class="empty-state"><p class="empty">No checklists yet.</p></div>
 {% endif %}
+</div>
 {% endblock %}

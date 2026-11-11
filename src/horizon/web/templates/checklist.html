@@ -1,19 +1,18 @@
 {% extends "base.html" %}
+{% from "partials/_ui.html" import emblem %}
 {% block title %}{{ checklist.title }} — horizon{% endblock %}
 {% block content %}
-<div class="reading-column">
-<header class="guide-head"{% if checklist.category %} data-cat="{{ checklist.category }}"{% endif %}>
-  <p class="breadcrumb no-print"><a href="/checklists">← Checklists</a></p>
+<div class="reading-column guide-page"{% if checklist.category %} data-cat="{{ checklist.category }}"{% endif %}>
+<header class="guide-head">
+  {% if checklist.category %}{{ emblem(checklist.category, "guide-emblem") }}{% endif %}
+  <p class="breadcrumb no-print"><a href="/checklists">Checklists</a>{% if checklist.category %}
+    <span aria-hidden="true">/</span> <span class="breadcrumb-cat">{{ checklist.category }}</span>{% endif %}</p>
   <h1>{{ heading }}</h1>
-  {% if checklist.category %}
-  <p class="journey-meta guide-meta">
-    <span class="category-badge" data-cat="{{ checklist.category }}">{{ checklist.category }}</span>
-  </p>
-  {% endif %}
-  <p class="guide-actions no-print">
-    <button type="button" class="btn btn-small" onclick="window.print()">Print</button>
-    <button type="button" class="btn btn-small" id="checklist-clear">Clear ticks</button>
-  </p>
+  {% if checklist.summary %}<p class="standfirst">{{ checklist.summary }}</p>{% endif %}
+  <dl class="guide-facts no-print">
+    <div><dt>Your ticks</dt><dd>Saved on this device only</dd></div>
+    <div><dt>Keep a copy</dt><dd class="guide-actions"><button type="button" class="link-button" onclick="window.print()">Print</button> <span aria-hidden="true">·</span> <button type="button" class="link-button" id="checklist-clear">Clear ticks</button></dd></div>
+  </dl>
 </header>
 
 <article class="guide checklist" data-checklist="{{ checklist.id }}">

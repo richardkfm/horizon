@@ -725,23 +725,15 @@ a:hover { color: var(--accent-strong); }
   background: none;
   overflow: visible;
 }
-/* In a card's top-right corner (plans, checklists). */
-.card-emblem { position: absolute; top: var(--space-3); right: var(--space-4); }
 .card-topic {
   margin: 0 0 0.15rem;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: capitalize;
   color: var(--cat, var(--muted));
 }
-.card-grid li,
-.journey-card,
-.track-card { position: relative; }
-.card-grid li { display: flex; flex-direction: column; }
-.card-grid li > a { position: relative; flex: 1 1 auto; }
-.card-grid .has-emblem > a,
-.journey-card a { padding-right: 4.75rem; }
 
 
 .breadcrumb { font-size: 0.9rem; }
@@ -749,29 +741,23 @@ a:hover { color: var(--accent-strong); }
 .breadcrumb a:hover { text-decoration: underline; }
 
 .empty { color: var(--muted); }
-/* Empty states and the error page sit on the diagram surface's graph paper,
-   like a page of an engineer's field notebook. */
-.empty-state,
-.error-page {
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--diagram-border);
-  border-radius: var(--radius);
-  background-color: var(--diagram-bg);
-  background-image: var(--diagram-pattern);
-}
-.empty-state .empty { margin: 0; color: var(--fg); }
-.error-page { max-width: 44rem; padding: var(--space-5) var(--space-5) var(--space-4); }
-.error-page h1 { margin-top: var(--space-2); }
+/* Empty states and the error page sit on the page itself: a quiet italic
+   line, no box. The error page keeps its small ASCII seedling. */
+.empty-state { padding: var(--space-2) 0; }
+.empty-state .empty { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; }
+.error-page { max-width: 44rem; display: grid; gap: var(--space-3); padding: var(--space-4) 0; }
+.error-page h1 { margin: 0; }
+.error-page .tagline { margin: 0 0 var(--space-3); }
 .error-art {
   margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   line-height: 1.3;
   color: var(--leaf);
   overflow: hidden;
 }
-.error-code { margin: var(--space-3) 0 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.error-links { list-style: none; padding: 0; margin: var(--space-3) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.error-code { margin: var(--space-3) 0 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.error-links { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
 .error-links a { font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
 .form-error { color: var(--danger); font-weight: 600; }
 
@@ -817,72 +803,6 @@ a:hover { color: var(--accent-strong); }
 }
 .filter-count { font-size: 0.8em; font-weight: 400; color: var(--muted-2); font-variant-numeric: tabular-nums; }
 
-.journey-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: var(--space-4);
-}
-.journey-card { display: flex; flex-direction: column; }
-.journey-card a {
-  position: relative;
-  display: block;
-  flex: 1 1 auto;
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  color: var(--fg);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.journey-card a:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-lift);
-  transform: translateY(-2px);
-}
-.journey-card h2 { font-size: 1.2rem; margin: 0 0 0.3rem; }
-.journey-card p { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
-.journey-card .card-topic { margin: 0 0 0.15rem; font-size: 0.75rem; color: var(--cat, var(--muted)); }
-.track-card-head .card-emblem { position: static; }
-.journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
-
-/* Card grid — guides & checklists indexes. The same card idiom as journey
-   cards, but denser: a responsive multi-column grid replaces the old one
-   long single-column list, so a big library scans in a screen or two on a
-   laptop while still stacking cleanly on a phone. */
-.card-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: var(--space-3);
-}
-.card-grid a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  color: var(--fg);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.card-grid a:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-lift);
-  transform: translateY(-2px);
-}
-.card-title { font-weight: 600; line-height: 1.35; }
-.card-grid .guide-summary { margin-top: 0; }
-
 /* Guide lists: entries in a contents page, not boxed cards. Title in the
    reading serif, the summary beneath, difficulty and time in the right-hand
    margin (stacked under the summary on phones). */
@@ -914,6 +834,16 @@ a:hover { color: var(--accent-strong); }
 }
 .entry-topic { font-weight: 600; text-transform: capitalize; color: var(--cat, var(--muted)); }
 
+/* An entry list with no margin column (reference packs, maps). */
+.entries-plain .entry a { grid-template-columns: 1fr; }
+
+/* Checklists: the home contents list in two wider columns, titles in the
+   reading serif. A checklist with no topic keeps the emblem column blank. */
+.toc-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-7); }
+.toc-title { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.35; }
+.toc a:hover .toc-title { color: var(--cat, var(--accent)); text-decoration: underline; text-underline-offset: 0.2em; }
+.emblem-blank { grid-row: span 2; }
+
 /* /guides overview: one short group per topic, "Show all N" to the rest.
    The topic heading carries its emblem. */
 .guide-shelf { margin-top: var(--space-7); }
@@ -925,74 +855,64 @@ a:hover { color: var(--accent-strong); }
 .topic-head { margin-top: var(--space-5); }
 .shelf-all { font-weight: 600; text-decoration: none; }
 
-/* Tracks: curated, ordered "step-by-step plans" over the guides. ----------- */
-.track-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
+/* Plans list: each plan an entry, not a box — emblem in the left margin,
+   then topic, title, what it is for, its facts, and its guides as a
+   numbered list (two columns on wide screens). Plans are divided by a
+   hairline. */
+.track-list { list-style: none; padding: 0; margin: 0; display: grid; }
 .track-card {
-  position: relative;
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  column-gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--border);
 }
-.track-card-head {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  margin-bottom: var(--space-2);
-}
-.track-titles { flex: 1 1 auto; min-width: 0; }
-.track-titles h2 { margin: 0; font-size: 1.35rem; }
-.track-card-head .emblem { flex: none; }
-.track-titles h2 a { color: var(--fg); text-decoration: none; }
-.track-titles h2 a:hover { color: var(--accent); }
-.track-desc { margin: 0.3rem 0; font-size: 0.95rem; color: var(--muted); }
-.track-steps { margin: var(--space-2) 0 0; padding-left: 1.4rem; }
-.track-steps li { padding: 0.2rem 0; }
-.track-steps a { color: var(--accent); text-decoration: none; font-weight: 600; }
-.track-steps a:hover { text-decoration: underline; }
+.track-card:first-child { border-top: 0; padding-top: var(--space-2); }
+.track-card .card-emblem { padding-top: 0.35rem; }
+.track-body { min-width: 0; }
+.track-body h2 { margin: 0 0 var(--space-2); font-size: 1.5rem; }
+.track-body h2 a { color: var(--fg); text-decoration: none; }
+.track-body h2 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.track-desc { margin: 0 0 var(--space-2); max-width: 44rem; font-size: 0.95rem; color: var(--muted); }
+.track-steps { margin: var(--space-3) 0 0; padding-left: 1.4rem; columns: 2 18rem; column-gap: var(--space-6); }
+.track-steps li { padding: 0.15rem 0; break-inside: avoid; font-family: var(--font-serif); color: var(--muted); }
+.track-steps a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 0.2em; }
+.track-steps a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.journey-meta { color: var(--muted-2); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; margin: 0; }
 
-/* Journey detail ---------------------------------------------------------- */
+/* Plan page ---------------------------------------------------------------- */
 
 .journey-section { margin-top: var(--space-6); }
-.plan-start { margin: var(--space-4) 0 0; }
-/* The "sunrise trail": a line from leaf green into horizon blue (the header
-   hairline's palette) with a numbered stop per guide. */
-.trail { list-style: none; counter-reset: step; position: relative; margin: var(--space-4) 0 0; padding: 0; }
-.trail::before {
-  content: "";
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: calc(1rem - 1.5px);
-  width: 3px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, var(--sun), var(--leaf) 35%, var(--accent));
-}
-.trail li { counter-increment: step; position: relative; padding: 0.3rem 0 var(--space-4) 3rem; min-height: 2.75rem; }
+.plan-start { font-weight: 600; text-decoration: none; }
+.plan-start:hover { text-decoration: underline; }
+/* The trail: one stop per guide, numbered in the margin and joined by a
+   thin dotted rule — a contents page you walk down, not a coloured path. */
+.trail { list-style: none; counter-reset: step; position: relative; margin: var(--space-3) 0 0; padding: 0; max-width: 40rem; }
+.trail li { counter-increment: step; position: relative; padding: 0 0 var(--space-5) 3rem; }
 .trail li::before {
   content: counter(step);
   position: absolute;
   left: 0;
-  top: 0;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--leaf);
-  z-index: 1;
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--fg);
-  font-weight: 700;
-  font-size: 0.9rem;
+  top: 0.05rem;
+  width: 1.9rem;
+  text-align: right;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--cat, var(--accent));
+  font-variant-numeric: tabular-nums;
 }
-.trail li:last-child::before { border-color: var(--accent); }
-/* Stop the line at the last stop: mask it below the final circle. */
-.trail li:last-child::after { content: ""; position: absolute; left: 0; top: 2rem; bottom: 0; width: 2rem; background: var(--bg); }
-.trail a { font-weight: 600; font-size: 1.05rem; text-decoration: none; }
-.trail a:hover { text-decoration: underline; }
+.trail li::after {
+  content: "";
+  position: absolute;
+  left: 2.35rem;
+  top: 0.55rem;
+  bottom: 0;
+  border-left: 1px dotted var(--border-strong);
+}
+.trail li:last-child::after { display: none; }
+.trail a { font-family: var(--font-serif); font-size: 1.2rem; text-decoration: none; color: var(--fg); }
+.trail a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.trail .guide-summary { font-size: 0.9rem; }
 .link-list { list-style: none; padding: 0; margin: 0; }
 .link-list li { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
 .link-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
@@ -1220,13 +1140,12 @@ a:hover { color: var(--accent-strong); }
      background for their own elements — accepted, they only touch the
      article's own classes. */
 .zim-article {
-  background: var(--surface);
+  margin-top: var(--space-5);
   color: var(--fg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: var(--space-5);
-  line-height: 1.7;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 44rem;
   overflow-wrap: break-word;
 }
 .zim-article h1 { font-size: 1.9rem; margin-top: 0; }
@@ -1311,12 +1230,23 @@ a:hover { color: var(--accent-strong); }
 .token-form label input[type="checkbox"] { width: auto; margin-right: 0.4em; }
 .stat-row { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-5); padding: 0; }
 .admin-table { border-collapse: collapse; width: 100%; max-width: 36rem; }
+/* Admin tables are ruled like a ledger: hairlines between rows, a heavier
+   rule under the header, no cell boxes or shaded header. */
 .admin-table th, .admin-table td {
-  border: 1px solid var(--border);
-  padding: 0.45rem 0.7rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0.9rem 0.5rem 0;
   text-align: left;
+  vertical-align: top;
 }
-.admin-table th { background: var(--surface-sunken); }
+.admin-table th {
+  border-bottom: 1px solid var(--fg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .admin-table .category-cell { text-transform: capitalize; }
 .admin-table code { overflow-wrap: anywhere; }
 
@@ -1355,13 +1285,11 @@ a:hover { color: var(--accent-strong); }
 .pack-error { color: var(--danger); }
 
 /* Integrations */
-.integration-list { list-style: none; padding: 0; display: grid; gap: var(--space-4); max-width: 44rem; }
+/* Integrations and health checks: ruled rows, not cards. */
+.integration-list { list-style: none; padding: 0; margin: 0; display: grid; max-width: 44rem; }
 .integration {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  padding: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
 }
 .integration-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .integration-dot {
@@ -1379,16 +1307,13 @@ a:hover { color: var(--accent-strong); }
    integrations page never needed. (off keeps the default muted dot.) */
 .integration.is-warn .integration-dot { background: var(--warn); }
 .integration.is-fail .integration-dot { background: var(--danger); }
-.integration.is-warn { border-color: var(--warn); background: var(--warn-soft); }
-.integration.is-fail { border-color: var(--danger); background: var(--danger-soft); }
+.integration.is-warn .integration-state { color: var(--warn); font-weight: 600; }
+.integration.is-fail .integration-state { color: var(--danger); font-weight: 600; }
 
 .health-summary {
   margin: var(--space-4) 0;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-left-width: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
+  padding: var(--space-1) 0 var(--space-1) var(--space-4);
+  border-left: 3px solid var(--border-strong);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-4);
@@ -1396,20 +1321,17 @@ a:hover { color: var(--accent-strong); }
   justify-content: space-between;
 }
 .health-summary.is-ok { border-left-color: var(--accent); }
-.health-summary.is-warn { border-left-color: var(--warn); background: var(--warn-soft); }
-.health-summary.is-fail { border-left-color: var(--danger); background: var(--danger-soft); }
+.health-summary.is-warn { border-left-color: var(--warn); }
+.health-summary.is-fail { border-left-color: var(--danger); }
 .health-counts { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
 
 .repair-result {
   margin: var(--space-4) 0;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
-  border-left-width: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
+  padding: var(--space-1) 0 var(--space-1) var(--space-4);
+  border-left: 3px solid var(--border-strong);
 }
 .repair-result.is-ok { border-left-color: var(--accent); }
-.repair-result.is-warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.repair-result.is-warn { border-left-color: var(--warn); }
 .repair-result p { margin: 0.3rem 0 0; }
 
 .repair-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
@@ -1445,54 +1367,73 @@ a:hover { color: var(--accent-strong); }
 .cta-question { margin: 0 0 var(--space-2); }
 .cta a:not(.btn) { color: var(--accent); font-weight: 600; }
 
+/* Forms on public pages are ruled lines on the paper, not boxed panels:
+   the main field reuses the home search's heavy rule (`.ask-form`), extra
+   fields are a hairline underline (`.line-input`, the assistant textarea). */
 .recommend-form,
 .assistant-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   margin: var(--space-5) 0;
-  max-width: 45rem;
-  padding: var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  max-width: 42rem;
 }
-.recommend-form label,
-.assistant-form label { font-weight: 600; font-size: 0.9rem; }
-.recommend-form input,
+.field-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.field-label .optional { text-transform: none; letter-spacing: 0; }
+.line-input,
 .assistant-form textarea {
-  font: inherit;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  background: var(--bg);
-  color: var(--fg);
   width: 100%;
+  font: inherit;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  padding: 0.5rem 0;
+  color: var(--fg);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-strong);
+  border-radius: 0;
 }
-.recommend-form input:focus,
-.assistant-form textarea:focus,
+.assistant-form textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+  line-height: 1.6;
+  /* Ruled like a notebook page, so the field reads as somewhere to write. */
+  background-image: repeating-linear-gradient(180deg, transparent 0 calc(1.6em - 1px), var(--border) calc(1.6em - 1px) 1.6em);
+  background-attachment: local;
+  background-position: 0 0.5rem;
+}
+.line-input:focus,
+.assistant-form textarea:focus { outline: none; border-bottom-color: var(--accent); }
+.line-input:focus-visible,
+.assistant-form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+.line-input::placeholder,
+.assistant-form textarea::placeholder { color: var(--muted-2); opacity: 1; }
 .token-form input:focus,
 .search-form input:focus { border-color: var(--accent); }
-.assistant-form textarea { resize: vertical; }
 .recommend-form .form-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-3);
 }
-.recommend-form .btn { align-self: start; }
-.recommend-results { margin-top: var(--space-6); }
+.recommend-form .ask-form { max-width: none; }
+.recommend-results { margin-top: var(--space-7); display: grid; gap: var(--space-3); }
+.recommend-results .eyebrow { margin: var(--space-5) 0 var(--space-2); }
+.recommend-results .eyebrow:first-child { margin-top: 0; }
+.ask-aside { margin: var(--space-2) 0 var(--space-5); font-size: 0.9rem; }
+.ask-aside a { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.ask-aside a:hover { text-decoration: underline; }
 
 .field-hint { font-size: 0.85rem; color: var(--muted); margin: 0.1rem 0 0; }
 .field-hint a { color: var(--accent); }
 .optional { font-weight: 400; color: var(--muted-2); }
-.empty-suggestions { margin-top: var(--space-4); }
-.empty-suggestions .filter-bar { margin: var(--space-3) 0; }
+.empty-suggestions { margin-top: var(--space-2); }
 
 /* AI assistant */
 .assistant-controls {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-4);
   flex-wrap: wrap;
 }
@@ -1502,41 +1443,56 @@ a:hover { color: var(--accent-strong); }
   gap: 0.5rem;
   min-height: 44px;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
 }
 .plain-toggle input { width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--accent-strong); }
-.assistant-thinking { margin: 0; font-size: 0.95rem; }
+.assistant-controls .ask-button { font-size: 1rem; }
+.assistant-thinking { margin: 0; font-size: 0.95rem; font-style: italic; }
 /* htmx hides indicators by default; show only while a request is in flight. */
 .htmx-indicator { display: none; color: var(--muted); }
 .htmx-request .htmx-indicator,
 .htmx-request.htmx-indicator { display: inline; }
 .htmx-request.assistant-thinking { display: block; }
 .assistant-answer:empty { display: none; }
+/* The answer reads like a guide's text: reading serif under a hairline,
+   its sources as a short list beneath. */
 .answer-card {
   margin-top: var(--space-5);
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
-.answer-citations { margin-top: var(--space-4); border-top: 1px solid var(--border); padding-top: var(--space-3); }
-.answer-citations h3 { margin: 0 0 var(--space-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.answer-card > * { max-width: 36em; }
+.answer-citations { margin-top: var(--space-4); padding-top: var(--space-3); font-family: var(--font-sans); font-size: 1rem; }
+.answer-citations h3 { margin: 0 0 var(--space-2); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 
+/* Status notes (assistant availability): the callout style — a small
+   uppercase label, then a plain italic line. Model off and low power are
+   heads-ups, so their label is amber, never red. */
 .assistant-note {
-  margin-top: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  font-size: 0.95rem;
-  border: 1px solid var(--border);
-  border-left-width: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
+  margin: var(--space-3) 0 0;
+  max-width: 42rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.55;
 }
-.assistant-note.is-ok { border-left-color: var(--accent); background: var(--accent-soft); }
-.assistant-note.is-info { border-left-color: var(--warn); background: var(--warn-soft); }
-/* Model off is a heads-up, not an alarm: amber, not red. */
-.assistant-note.is-warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.note-label {
+  display: block;
+  margin-bottom: 0.1rem;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.assistant-note.is-info .note-label,
+.assistant-note.is-warn .note-label { color: var(--warn); }
 
 /* Guide search ------------------------------------------------------------ */
 
@@ -1593,8 +1549,6 @@ body.low-power {
   --shadow-lift: none;
 }
 :root body.low-power [data-cat] { --cat: #000000; }
-body.low-power .journey-card a:hover,
-body.low-power .card-grid a:hover { background: none; transform: none; }
 body.low-power .guide blockquote { background: none; }
 
 /* Banner shown site-wide while low-power mode is active. */
@@ -1609,8 +1563,6 @@ body.low-power .guide blockquote { background: none; }
 /* Respect a user's reduced-motion preference: keep hovers, drop the movement. */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
-  .journey-card a:hover,
-  .card-grid a:hover { transform: none; }
 }
 
 /* Narrow screens ---------------------------------------------------------- */
@@ -1651,6 +1603,13 @@ body.low-power .guide blockquote { background: none; }
   .entry a { grid-template-columns: 1fr; }
   .entry-meta { grid-column: 1; grid-row: auto; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); padding-top: 0; text-align: left; }
   .plan-lines a { grid-template-columns: 1fr; }
+  .toc-wide { grid-template-columns: 1fr; gap: var(--space-4); }
+  .track-card { grid-template-columns: 1fr; }
+  .track-card .card-emblem { padding: 0 0 var(--space-2); }
+  .track-body h2 { font-size: 1.3rem; }
+  .trail li { padding-left: 2.6rem; }
+  .trail li::before { width: 1.6rem; }
+  .trail li::after { left: 2rem; }
   .plan-steps { grid-row: auto; }
   .shelf-head h2 { font-size: 1.4rem; }
   .guide-emblem { font-size: 0.66rem; }
@@ -1715,12 +1674,11 @@ body.low-power .guide blockquote { background: none; }
      Download/Remove button is visible without sideways scrolling. */
   .packs-table thead { display: none; }
   .packs-table, .packs-table tbody, .packs-table tr, .packs-table td { display: block; width: 100%; }
-  .packs-table tr { margin-bottom: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
-  .packs-table td { border: none; padding: 0.3rem 0.7rem; }
+  .packs-table tr { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
+  .packs-table td { border: none; padding: 0.3rem 0; }
   .packs-table td:first-child { padding-top: 0.6rem; }
   .packs-table td:last-child { padding-bottom: 0.7rem; }
   .pack-actions { white-space: normal; }
-  .recommend-form, .assistant-form { padding: var(--space-4); }
 
   /* Comfortable thumb-sized tap targets on touch screens. ~44px tall. */
   .site-header nav a,
@@ -1728,8 +1686,8 @@ body.low-power .guide blockquote { background: none; }
   .next-step a { display: inline-flex; align-items: center; min-height: 44px; }
   .link-list a { display: inline-block; padding: 0.25rem 0; min-height: 44px; }
   .btn { padding: 0.65rem 1.1rem; min-height: 44px; }
-  .recommend-form input,
   .search-form input[type="search"] { padding: 0.65rem 0.7rem; }
+  .line-input { min-height: 44px; }
   .search-clear { min-height: 44px; display: inline-flex; align-items: center; }
 }
 

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 276" width="560" height="276" role="img"
+     aria-label="An ASCII morning: the sun shines over a cottage with solar panels, a sunflower, a sapling and a small wind turbine, while birds cross the sky.">
+  <title>horizon — an ASCII morning</title>
+  <defs></defs>
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace; font-size: 14px; }
+    .f { opacity: 0; } .f0 { opacity: 1; }
+    @keyframes k0 { 0%, 0.00% { opacity: 0 } 0.01%, 25.00% { opacity: 1 } 25.01%, 100% { opacity: 0 } } @keyframes k1 { 0%, 25.00% { opacity: 0 } 25.01%, 50.00% { opacity: 1 } 50.01%, 100% { opacity: 0 } } @keyframes k2 { 0%, 50.00% { opacity: 0 } 50.01%, 75.00% { opacity: 1 } 75.01%, 100% { opacity: 0 } } @keyframes k3 { 0%, 75.00% { opacity: 0 } 75.01%, 100.00% { opacity: 1 } 100.01%, 100% { opacity: 0 } }
+    .f0 { animation: k0 3.6s step-end infinite; } .f1 { animation: k1 3.6s step-end infinite; } .f2 { animation: k2 3.6s step-end infinite; } .f3 { animation: k3 3.6s step-end infinite; }
+    @media (prefers-reduced-motion: reduce) { .f { animation: none; } }
+  </style>
+  <rect width="100%" height="100%" rx="14" fill="#f6f4ef"/>
+  <g>
+    <text x="28" y="104.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">                                                    |</text>
+    <text x="28" y="121.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">            _/=/__/=/__/=/_                         |</text>
+    <text x="28" y="139.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">           /               \                        |</text>
+    <text x="28" y="156.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">          /_________________\                       |</text>
+    <text x="28" y="174.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">          |    __     ___    |        |             |</text>
+    <text x="28" y="191.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">          |   |__|   |   |   |       \|/            |</text>
+    <text x="28" y="209.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">  \|/     |   |__|   | . |   |        |             |</text>
+    <text x="28" y="226.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">   |      |__________|   |___|  ,,,   |   ,,, ,,    |</text>
+    <text x="28" y="244.0" textLength="504.0" lengthAdjust="spacing" xml:space="preserve" fill="#456f3a">___________________________________________________/_\______</text>
+  </g>
+    <g class="f f0">
+    <text x="28" y="51.5" textLength="302.4" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     \ | /                         v</text>
+    <text x="28" y="69.0" textLength="453.6" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">   --( o )--               v                       \ /</text>
+    <text x="28" y="86.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     / | \                                          o</text>
+    <text x="28" y="139.0" textLength="378.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                           }{</text>
+    <text x="28" y="156.5" textLength="336.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                     (@)</text>
+  </g>
+  <g class="f f1">
+    <text x="28" y="51.5" textLength="319.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     &#x27; | &#x27;                           ~</text>
+    <text x="28" y="69.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">    -( o )-                  ~                      |</text>
+    <text x="28" y="86.5" textLength="453.6" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     , | ,                                         -o-</text>
+    <text x="28" y="121.5" textLength="378.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                           )(</text>
+    <text x="28" y="156.5" textLength="336.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                     (@)</text>
+  </g>
+  <g class="f f2">
+    <text x="28" y="51.5" textLength="336.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     \ | /                             v</text>
+    <text x="28" y="69.0" textLength="453.6" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">   --( o )--                   v                   \ /</text>
+    <text x="28" y="86.5" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     / | \                                          o</text>
+    <text x="28" y="139.0" textLength="386.4" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                            }{</text>
+    <text x="28" y="156.5" textLength="336.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                     (@)</text>
+  </g>
+  <g class="f f3">
+    <text x="28" y="51.5" textLength="319.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     &#x27; | &#x27;                           ~</text>
+    <text x="28" y="69.0" textLength="445.2" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">    -( o )-                  ~                      |</text>
+    <text x="28" y="86.5" textLength="453.6" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">     , | ,                                         -o-</text>
+    <text x="28" y="121.5" textLength="386.4" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                            )(</text>
+    <text x="28" y="156.5" textLength="336.0" lengthAdjust="spacing" xml:space="preserve" fill="#a8741f">                                     (@)</text>
+  </g>
+</svg>

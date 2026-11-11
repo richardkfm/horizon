@@ -2,7 +2,8 @@
 {% block title %}{{ info.title }} — horizon{% endblock %}
 {% block content_class %} content-wide{% endblock %}
 {% block content %}
-<p class="breadcrumb no-print"><a href="/reference">← Reference library</a></p>
+<div class="list-page">
+<p class="breadcrumb no-print"><a href="/reference">Reference library</a></p>
 
 <section class="guides-intro">
   <h1>{{ info.title }}</h1>
@@ -10,25 +11,25 @@
   <p class="journey-meta">{{ "{:,}".format(info.article_count) }} articles</p>
 </section>
 
-<form method="get" action="/reference/{{ pack_id }}" class="search-form no-print" role="search">
+<form method="get" action="/reference/{{ pack_id }}" class="ask-form no-print" role="search">
   <label class="visually-hidden" for="reference-search">Search {{ info.title }}</label>
   <input type="search" id="reference-search" name="q" value="{{ query }}"
          placeholder="Search {{ info.title }}…" />
-  <button type="submit" class="btn">Search</button>
+  <button type="submit" class="ask-button">Search</button>
   {% if query %}<a class="search-clear" href="/reference/{{ pack_id }}">Clear</a>{% endif %}
-  <a class="btn" href="/reference/{{ pack_id }}/random">Random article</a>
 </form>
+<p class="ask-aside no-print"><a href="/reference/{{ pack_id }}/random">Open a random article →</a></p>
 
 {% if query %}
   {% if hits %}
-  <h2 class="results-heading">
+  <h2 class="eyebrow results-heading">
     {{ hits | length }} matching article{{ "s" if hits | length != 1 }}
   </h2>
-  <ul class="card-grid" aria-label="Search results">
+  <ul class="entries entries-plain" aria-label="Search results">
     {% for hit in hits %}
-    <li>
+    <li class="entry">
       <a href="/reference/{{ pack_id }}/{{ hit.path }}">
-        <span class="card-title">{{ hit.title }}</span>
+        <span class="entry-title">{{ hit.title }}</span>
       </a>
     </li>
     {% endfor %}
@@ -39,4 +40,5 @@
 {% else %}
 <p class="empty">Search above, or try a <a href="/reference/{{ pack_id }}/random">random article</a>.</p>
 {% endif %}
+</div>
 {% endblock %}

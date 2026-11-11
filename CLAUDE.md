@@ -114,7 +114,8 @@ content/            seed content shipped in the repo
 docs/               public docs: install, features, api, authoring-content,
                     operating, BACKLOG
 packaging/          install.sh + horizon.service (systemd install)
-scripts/            get-horizon.sh (curl source installer, no git/Docker)
+scripts/            get-horizon.sh (curl source installer, no git/Docker),
+                    make_readme_images.py (regenerates docs/images/ SVGs)
 src/horizon/
   main.py           FastAPI app: routers, static, lifespan
   config.py         typed settings loaded from config.yaml
@@ -252,7 +253,8 @@ Categories are fixed: `water`, `food`, `energy`, `shelter`, `health`,
 `cooking`, `calculations`, `technology`, `mobility` (see `models.Category`). Adding a category is a small code change (the `Category`
 enum, plus a `CATEGORY_EXAMPLES` line in `web/routes.py`, a three-line ASCII
 emblem in `web/emblems.py`, and an ink pair (`--cat-l`/`--cat-d`) in
-`app.css`); routes, API, seeding, and the admin
+`app.css`, then re-run `scripts/make_readme_images.py` so the README's topic
+sheet picks it up); routes, API, seeding, and the admin
 dashboard auto-discover it. A category needs guides seeded in the same
 change — `tests/test_web_ui.py::test_every_category_has_a_seeded_guide`
 fails on an empty category. Restart to re-seed and re-index.
@@ -330,9 +332,15 @@ Hold these when touching templates, copy, or `web/static/`:
    gradient edge or icon font as a "quick" topic signal. Keep emblems to
    three lines of at most eight columns, and keep every ink at ≥ 4.5:1 on
    the paper in both themes.
-9. **Almanac layout, not a wall of boxes.** Browse pages list guides as
-   entries (`guide_entry`: serif title, summary, difficulty/time in the
-   margin), not boxed cards, and the topic filter is a line of text links.
+9. **Almanac layout, not a wall of boxes — on every page.** Browse pages
+   list guides, plans, checklists and search results as entries
+   (`guide_entry`, `.entries`, `.toc`, `.track-card`), not boxed cards, and
+   the topic filter is a line of text links. Pages with a single subject
+   (guide, plan, checklist) share the guide header: emblem, breadcrumb,
+   title, italic standfirst, and a ruled `.guide-facts` row. Forms are
+   ruled lines (`.ask-form` for the main field, `.line-input` for extras),
+   not boxed panels. Status notes use the callout look (`.note-label` +
+   italic text), and admin tables are ruled like a ledger.
    The guide page sets its text at a ~34em measure in the device's own
    serif (`--font-serif`, nothing downloaded). Callouts are one quiet style,
    whatever their kind: italic text with a small uppercase label that hangs
@@ -382,8 +390,14 @@ Update docs **as part of every user-facing change**, in the same change set:
   sections (Added / Changed / Fixed). Call out anything that affects the
   documented HTTP API contract (e.g. a changed default), even when the response
   shape is unchanged.
-- **`README.md`** — a short, phone-readable front page: pitch, six one-line
-  features, a three-line quickstart, and links out. Keep it that way — put
+- **`README.md`** — a short, phone-readable front page: logo, pitch, the
+  animated ASCII scene, six one-line features, the topic sheet, three
+  screenshots, a three-line quickstart, and one footer of links. Its images
+  live in the repo: the SVGs in `docs/images/` come from
+  `scripts/make_readme_images.py` (re-run it when the emblems, topic inks
+  or the home scene change), and the screenshots in `docs/screenshots/` are
+  taken with Playwright from a running app. Re-take them when a page they
+  show changes noticeably. Keep it that way — put
   detail in `docs/` (full feature list in [`features.md`](docs/features.md),
   every install path in [`install.md`](docs/install.md)) and link to it, never
   grow the README back into a manual or a version-history recap. Keep its

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 404" width="896" height="404" role="img"
+     aria-label="horizon's fifteen topics, each with its ASCII emblem: water, food, energy, shelter, health, cooperation, survival, culture, language, crafts, emergencies, cooking, calculations, technology, mobility.">
+  <title>horizon topics</title>
+  <style>
+    .m { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace; font-size: 14px; }
+    .n { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #e9e5dc; }
+    .e { opacity: 0; animation: in 0.5s ease-out forwards; }
+    @keyframes in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .e { animation: none; opacity: 1; } }
+  </style>
+  <rect width="100%" height="100%" rx="14" fill="#16181c"/>
+    <g class="e" style="animation-delay:0.00s" fill="#8cc0da">
+    <text x="95.2" y="50.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  .</text><text x="95.2" y="67.5" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> / \</text><text x="95.2" y="85.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> \_/</text>
+    <text x="112.0" y="116.5" text-anchor="middle" class="n">Water</text>
+  </g>
+  <g class="e" style="animation-delay:0.12s" fill="#9cc48c">
+    <text x="267.4" y="50.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">\|/</text><text x="267.4" y="67.5" textLength="16.8" lengthAdjust="spacing" xml:space="preserve" class="m"> |</text><text x="267.4" y="85.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">_|_</text>
+    <text x="280.0" y="116.5" text-anchor="middle" class="n">Food</text>
+  </g>
+  <g class="e" style="animation-delay:0.24s" fill="#e0b860">
+    <text x="427.0" y="50.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">\ | /</text><text x="427.0" y="67.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">- o -</text><text x="427.0" y="85.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">/ | \</text>
+    <text x="448.0" y="116.5" text-anchor="middle" class="n">Energy</text>
+  </g>
+  <g class="e" style="animation-delay:0.36s" fill="#d6a888">
+    <text x="599.2" y="50.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m"> /\</text><text x="599.2" y="67.5" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m">/  \</text><text x="599.2" y="85.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m">|[]|</text>
+    <text x="616.0" y="116.5" text-anchor="middle" class="n">Shelter</text>
+  </g>
+  <g class="e" style="animation-delay:0.48s" fill="#e89a94">
+    <text x="763.0" y="50.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  |</text><text x="763.0" y="67.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">--+--</text><text x="763.0" y="85.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  |</text>
+    <text x="784.0" y="116.5" text-anchor="middle" class="n">Health</text>
+  </g>
+  <g class="e" style="animation-delay:0.60s" fill="#b9a9e6">
+    <text x="91.0" y="166.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> o o</text><text x="91.0" y="183.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">o   o</text><text x="91.0" y="201.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> o o</text>
+    <text x="112.0" y="232.5" text-anchor="middle" class="n">Cooperation</text>
+  </g>
+  <g class="e" style="animation-delay:0.72s" fill="#b0c492">
+    <text x="259.0" y="166.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  N</text><text x="259.0" y="183.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">W-+-E</text><text x="259.0" y="201.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  S</text>
+    <text x="280.0" y="232.5" text-anchor="middle" class="n">Survival</text>
+  </g>
+  <g class="e" style="animation-delay:0.84s" fill="#dba3c6">
+    <text x="431.2" y="166.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m"> __</text><text x="431.2" y="183.5" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m">|  |</text><text x="431.2" y="201.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m">o  o</text>
+    <text x="448.0" y="232.5" text-anchor="middle" class="n">Culture</text>
+  </g>
+  <g class="e" style="animation-delay:0.96s" fill="#94c6d2">
+    <text x="595.0" y="166.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">.---.</text><text x="595.0" y="183.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">| ab|</text><text x="595.0" y="201.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">&#x27;-v-&#x27;</text>
+    <text x="616.0" y="232.5" text-anchor="middle" class="n">Language</text>
+  </g>
+  <g class="e" style="animation-delay:1.08s" fill="#d4b07a">
+    <text x="771.4" y="166.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">\ /</text><text x="771.4" y="183.5" textLength="16.8" lengthAdjust="spacing" xml:space="preserve" class="m"> X</text><text x="771.4" y="201.0" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">/ \</text>
+    <text x="784.0" y="232.5" text-anchor="middle" class="n">Crafts</text>
+  </g>
+  <g class="e" style="animation-delay:1.20s" fill="#e79c7f">
+    <text x="86.8" y="282.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m">  /\</text><text x="86.8" y="299.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m"> /! \</text><text x="86.8" y="317.0" textLength="50.4" lengthAdjust="spacing" xml:space="preserve" class="m">/____\</text>
+    <text x="112.0" y="348.5" text-anchor="middle" class="n">Emergencies</text>
+  </g>
+  <g class="e" style="animation-delay:1.32s" fill="#c2cf78">
+    <text x="259.0" y="282.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> ) )</text><text x="259.0" y="299.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">.---.</text><text x="259.0" y="317.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">&#x27;---&#x27;</text>
+    <text x="280.0" y="348.5" text-anchor="middle" class="n">Cooking</text>
+  </g>
+  <g class="e" style="animation-delay:1.44s" fill="#a4bac6">
+    <text x="427.0" y="282.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">1 2 3</text><text x="427.0" y="299.5" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">-----</text><text x="427.0" y="317.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">  = 6</text>
+    <text x="448.0" y="348.5" text-anchor="middle" class="n">Calculations</text>
+  </g>
+  <g class="e" style="animation-delay:1.56s" fill="#88c8ca">
+    <text x="595.0" y="282.0" textLength="42.0" lengthAdjust="spacing" xml:space="preserve" class="m">((o))</text><text x="595.0" y="299.5" textLength="25.2" lengthAdjust="spacing" xml:space="preserve" class="m">  |</text><text x="595.0" y="317.0" textLength="33.6" lengthAdjust="spacing" xml:space="preserve" class="m"> /_\</text>
+    <text x="616.0" y="348.5" text-anchor="middle" class="n">Technology</text>
+  </g>
+  <g class="e" style="animation-delay:1.68s" fill="#bcc292">
+    <text x="750.4" y="282.0" textLength="50.4" lengthAdjust="spacing" xml:space="preserve" class="m">   __o</text><text x="750.4" y="299.5" textLength="58.8" lengthAdjust="spacing" xml:space="preserve" class="m"> _`\&lt;,_</text><text x="750.4" y="317.0" textLength="67.2" lengthAdjust="spacing" xml:space="preserve" class="m">(_)/ (_)</text>
+    <text x="784.0" y="348.5" text-anchor="middle" class="n">Mobility</text>
+  </g>
+</svg>
