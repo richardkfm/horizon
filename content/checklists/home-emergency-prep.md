@@ -41,7 +41,7 @@ Check it twice a year alongside the go-bag.
 ## First aid and medicine
 
 - [ ] First-aid kit, fully stocked (see [[checklist:first-aid-kit|the first-aid-kit checklist]])
-- [ ] A few days' supply of regular medicines for everyone in the household
+- [ ] At least a week's supply of regular medicines for everyone in the household (see [[checklist:household-medicines|the household-medicines checklist]])
 - [ ] A printed copy of basic first-aid steps (bleeding, burns, choking,
       fractures) in case phones are down
 

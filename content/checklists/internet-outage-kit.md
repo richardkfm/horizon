@@ -10,7 +10,7 @@ summary: The paper, power, cash, and saved copies that make a lost connection a 
 Everything here is prepared *before* an outage, because each item is
 something you would otherwise have to fetch over the connection you've just
 lost. An hour with a pen and a charger covers most of it. Check it twice a
-year, alongside the smoke alarms.
+year, when you check the go-bag.
 
 > **Tip:** Do the whole list on paper first. Paper needs no charge, no signal,
 > and no login, and it is the layer people skip.

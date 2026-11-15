@@ -23,7 +23,10 @@ reach over that network.
 
 - **Any working laptop or small desktop** with a working hard drive/SSD and
   power supply is enough — a dead battery doesn't matter if it stays
-  plugged in.
+  plugged in. If the dead battery clips out, take it out and recycle it; if
+  it is built in, check the case every month or so — a bulging base or a
+  lifting trackpad means the battery is swelling: switch off, unplug, and
+  see [[energy-everyday-batteries]].
 - **Prefer lower power draw:** a laptop (built to run on a small battery)
   usually draws much less continuous power than an old desktop tower —
   worth choosing if you have a choice and expect to run it on solar.
@@ -40,8 +43,13 @@ reach over that network.
    command line — this saves both power and disk space.
 3. **Set a fixed local address** for the machine on your network, so other
    devices can find it at the same address every time.
-4. **Enable automatic start on power-up** so the server comes back after a
-   power cut without anyone needing to press a button.
+4. **Enable automatic start on power-up:** look in the BIOS/firmware
+   settings for "power on after AC loss" (or "AC recovery") and turn it on,
+   so the server comes back after a power cut without anyone pressing a
+   button. Most desktops have this setting; many home laptops don't. A
+   laptop with a healthy battery rides through short cuts instead; one
+   without needs someone to press the button — put that on the note you
+   keep with the machine.
 
 ## Choose what to host
 
@@ -65,8 +73,11 @@ Pick one or two services to start — it's easy to add more later:
 
 - **Turn off what you don't use:** disable the screen, Wi-Fi radio, or
   unused ports on a machine that only needs a wired network connection.
-- **Let it sleep between requests** where the software supports it, waking
-  on network activity rather than idling at full power.
+- **Be careful with sleep:** a sleeping server looks switched off to
+  everyone else unless it has been set up, and tested, to wake when a
+  request arrives over its network cable — not every machine can. The
+  simpler savings are letting the disks spin down and the screen switch off
+  when idle, or running it only for agreed hours.
 - **Size solar/battery power** to match its real draw — see [[energy-sizing-solar-battery|how big a solar+battery system do you need]], using the server's actual measured
   power use, not a guess.
 

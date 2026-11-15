@@ -104,7 +104,12 @@ that children can turn into anything*
 - **Make instruments together:** see [[culture-simple-instruments]].
 
 > **Avoid if:** a child is under three — keep small parts (beads, buttons,
-> small stones, button batteries) out of reach; they're a choking hazard.
+> small stones) out of reach; they're a choking hazard.
+
+> **Risk:** Keep button batteries well out of children's reach. A swallowed
+> one can burn through the throat within hours, even if the child seems fine.
+> If you think a child has swallowed one, go to emergency care at once and
+> don't make them vomit. See [[energy-everyday-batteries]].
 
 ## Mixed-age groups
 

@@ -31,14 +31,20 @@ its own, not just when something breaks.
   onto a joint.
 - **Wire strippers, small pliers, and tweezers** for handling fine wires and
   components.
-- **Good ventilation or a fan** while soldering — the fumes are unpleasant
-  and best not breathed in directly.
+- **Good ventilation or a small fan** blowing the smoke away from your face
+  while soldering — flux fumes can trigger asthma, so keep your head out of
+  the plume.
+- **An iron stand, a damp sponge, and safety glasses** — the tip is hot
+  enough to burn skin and scorch the bench, and molten solder can spit. Wash
+  your hands after handling solder; many types contain lead.
 
 ## Diagnose before you open anything
 
-1. **Test with the multimeter first.** Continuity mode tells you if a wire
-   or fuse is actually broken; voltage mode tells you if power is reaching
-   where it should.
+1. **Test with the multimeter first.** With the device switched on, voltage
+   mode tells you if power is reaching where it should. Then switch off and
+   take the batteries out before using continuity mode, which tells you if
+   a wire or fuse is actually broken — never test continuity on a live
+   circuit.
 2. **Look for the obvious:** a visibly snapped wire, a corroded or loose
    connector, a scorched component, a swollen battery.
 3. **Isolate the fault** by testing at each connection point along the
@@ -69,13 +75,16 @@ then touch solder to the joint itself, never to the iron's tip directly*
    heat of the joint and flow smoothly around it.
 4. **Hold still while it cools** — movement during cooling creates a dull,
    weak "cold joint" that fails again quickly.
-5. **Inspect the result:** a good joint is shiny and smoothly shaped, not
-   dull, grainy, or blobbed.
+5. **Inspect the result:** a good joint is smooth and has flowed onto both
+   the wire and the pad — bright and shiny with leaded solder, a little
+   duller with lead-free — not grainy, cracked, or a blob sitting on top.
 
 ## Common fixes
 
-- **A broken wire:** strip both ends back a little, twist the strands
-  together, solder the joint, then insulate it with heat-shrink tubing or
+- **A broken wire:** strip both ends back a little, slide a piece of
+  heat-shrink tubing onto one wire and push it well away from the joint,
+  twist the strands together, and solder. Then slide the tubing over the
+  cooled joint and shrink it with gentle heat — or wrap the joint in
   electrical tape.
 - **A worn or corroded connector:** clean contacts gently with a
   pencil-eraser or fine abrasive, or replace the connector if it's cheap and

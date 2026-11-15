@@ -54,7 +54,8 @@ who cope are the ones who prepared a little in advance and stay calm.
   [[emergency-extreme-cold|extreme cold]]).
 - **Check on neighbours**, especially older people, the unwell, and those alone —
   community is the best safety net in a long outage.
-- **Keep medicines** that need cooling as cold as you can, and ask a pharmacist or
+- **Keep medicines** that need cooling cool but never frozen — wrap them so they
+  don't touch ice directly — and ask a pharmacist or
   clinic about alternatives if it drags on.
 - **Follow official instructions** from local authorities on the radio.
 

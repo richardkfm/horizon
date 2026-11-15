@@ -19,7 +19,7 @@ farm's) food long after the season, and to buy in bulk when it's cheap.
 > make bruised or damaged food last — eat those first. For cooked food and
 > leftovers, see [[cooking-food-safety-no-fridge]].
 
-## Four zones, not one
+## Five zones, not one
 
 Different crops want different conditions. Most homes have more than one
 kind of cool space; match each crop to the right one.
@@ -52,7 +52,10 @@ squash mild and dry; apples go in their own corner*
   shrivel. A floor of damp sand or gravel, or damp sacking, helps.
 - **Dry** means about 60–70% — onions and squash rot in damp air.
 - **Potatoes** turn sweet below about 4 °C and go green and bitter in light.
-  Keep them cool, but not freezing, and in the dark.
+  Keep them cool, but not freezing, and in the dark. Green skin and sprouts
+  hold a natural poison (solanine) that cooking does not remove: cut small
+  green patches and sprouts away generously, and throw out any potato that is
+  green all over or tastes bitter.
 - **Nothing should freeze.** Frozen roots and apples turn to mush when they
   thaw.
 

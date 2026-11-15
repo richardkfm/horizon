@@ -53,9 +53,11 @@ you are.
 1. **Expect aftershocks** — they can be strong and bring down already-weakened
    structures. Drop, Cover, Hold On again each time.
 2. **Check yourself and others** for injuries and give first aid.
-3. **Check for hazards:** if you **smell gas**, shut it off, open windows, and get
-   out — **no flames, no light switches, no electrics**. Watch for fire, water
-   leaks, and damaged wiring.
+3. **Check for hazards:** if you **smell or hear gas**, open windows and get
+   everyone out — **no flames, no light switches, no electrics** — and shut it
+   off at the main valve by the meter if you can reach it safely (some need a
+   spanner). Once it's off, leave it off until the gas supplier has checked.
+   Watch for fire, water leaks, and damaged wiring.
 4. **Leave a damaged building carefully** once shaking stops, watching for falling
    debris, and don't re-enter until it's confirmed safe.
 

@@ -20,7 +20,8 @@ drink. Water trickles slowly through fine sand where a living biological layer
 
 ## Materials
 
-- A clean food-grade barrel or tank (≈ 60–200 L)
+- A clean food-grade barrel or tank of about 200 L, at least 85 cm deep
+  inside — a shorter one cannot hold the 60 cm of sand
 - Fine, washed sand (the main filter bed)
 - Coarse gravel (support layer)
 - A perforated collector pipe for the bottom, plus solid pipe that rises up

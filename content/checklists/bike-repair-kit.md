@@ -22,6 +22,8 @@ each season. How to use them is in [[mobility-bike-maintenance]].
 - [ ] Two or three tyre levers
 - [ ] Mini pump that fits your valve type
 - [ ] Multi-tool with the Allen keys and screwdriver your bike needs
+- [ ] Spanner to fit your wheel nuts (often 15 mm), if your wheels have
+      nuts rather than quick-release levers
 - [ ] Chain tool or a multi-tool that includes one, plus a quick link
 - [ ] A few zip ties and a strip of tape wrapped round the pump
 - [ ] A rag or gloves for oily hands

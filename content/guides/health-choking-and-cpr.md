@@ -51,9 +51,10 @@ worker afterwards, even if they feel fine.
    with the head lower than the body, supporting the head by the jaw (keep your
    fingers off the throat). Give up to 5 firm blows between the shoulder blades
    with the heel of your other hand.
-2. **5 chest thrusts:** turn the baby face up along your other arm, head still
-   low. Put **two fingers** on the lower half of the breastbone, just below the
-   nipple line, and push down sharply up to 5 times.
+2. **5 chest thrusts:** turn the baby face up and lay them along your thighs,
+   head still low. Wrap both hands round the chest with **both thumbs** side by
+   side on the lower half of the breastbone, just below the nipple line, and
+   push in sharply up to 5 times.
 3. **Repeat** 5 back blows and 5 chest thrusts until the object comes out or the
    baby becomes unresponsive — then start baby CPR (below) and call for help.
 
@@ -115,7 +116,7 @@ The steps are the same; what changes is how you push and how hard.
 
 | | Baby (under 1 year) | Child (1 year to puberty) |
 | --- | --- | --- |
-| **Push with** | Two fingertips on the lower half of the breastbone | The heel of one hand (two hands if needed) |
+| **Push with** | Both thumbs side by side on the lower half of the breastbone, hands wrapped round the chest (the heel of one hand if you can't get your hands round) | The heel of one hand (two hands if needed) |
 | **How deep** | About one-third of the chest depth (about 4 cm) | About one-third of the chest depth (about 5 cm) |
 | **Rate** | 100–120 a minute | 100–120 a minute |
 | **Head** | Level ("neutral"), not tilted far back | Tilted back, chin lifted |

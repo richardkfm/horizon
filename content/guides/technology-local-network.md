@@ -39,7 +39,9 @@ was never connected in the first place.
 
 A router doesn't need an internet uplink to create a working local network:
 
-1. **Take any Wi-Fi router** (new or repurposed) and set it up as normal,
+1. **Take a Wi-Fi router** (new or repurposed) that you can set up from its
+   own settings page in a web browser — most ordinary and older routers can;
+   some app-only systems refuse to set up without the internet. Set it up as normal,
    but leave its internet ("WAN") port unconnected.
 2. **Give the network a clear name** your neighbours will recognise, and a
    shared password everyone in the group knows.
@@ -47,7 +49,12 @@ A router doesn't need an internet uplink to create a working local network:
    the router by cable for the most reliable link, so anyone on the Wi-Fi
    can reach it by typing its address.
 4. **Extend coverage** by adding more access points in mesh mode, or by
-   running a cable to a second router in another building.
+   running a cable to a second router in another building. Set that second
+   router to "access point" mode (or switch off its DHCP and plug the cable
+   into one of its LAN ports) so both routers form one network. Keep each
+   cable run under 100 m and use outdoor-rated cable outdoors. A cable
+   between buildings can carry a lightning surge into the equipment at both
+   ends — unplug it in thunderstorms, or link the buildings by Wi-Fi instead.
 
 ```ascii
    [ house A ]         [ house B ]          [ house C ]

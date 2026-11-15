@@ -58,6 +58,11 @@ The lowest-effort mesh needs no new hardware at all:
   already cover this for a group that's using it anyway. horizon works
   fully on its own either way; this is just worth knowing if you already
   run both.
+- **Install it on everyone's phone now** — you can't download an app once
+  the internet is down. Each hop only covers some tens of metres (less
+  indoors) and a message travels only a handful of hops, so it works where
+  phones running the app are close together: a building, a street
+  gathering, a crowd — not a spread-out neighbourhood.
 - **Good for:** short text messages and coordination across a crowd or
   neighbourhood where everyone already carries a phone — not for files or
   a shared local server, which still want the network in the guide above.

@@ -18,12 +18,25 @@ and a stationary target is far easier to locate than a moving one.
 > and can travel there safely. Otherwise, stop, get comfortable and visible,
 > and put your energy into signaling rather than walking further.
 
+## Try the phone first
+
+Call the emergency number (112 across Europe and in many other countries, 911
+in North America)
+even if the phone shows no service — an emergency call can use any network in
+range, not just your own. If a call won't connect, text someone you trust with
+who you are, what's wrong, and where you are; a text can get through on a
+signal too weak for a call. Try again from higher, open ground, and switch to
+airplane mode or off between attempts to save the battery.
+
 ## The universal rule: groups of three
 
-Three of anything, evenly spaced, is recognised worldwide as a distress
+Three of anything, evenly spaced, is widely recognised as a distress
 signal — three fires in a triangle, three blasts on a whistle, three flashes
 of light, three piles of rocks. One or two of something reads as normal
-background noise; three reads as deliberate.
+background noise; three reads as deliberate. In the UK and the Alps the
+mountain signal is six blasts or flashes within a minute, then a minute's
+pause, repeated — and three is the reply. Either way, what gets noticed is a
+deliberate pattern kept up.
 
 ## Ground-to-air signals
 
@@ -64,9 +77,10 @@ sand.
 
 - **Three fires** in a triangle or line, each visible from the air and from
   a distance, is a recognised distress pattern.
-- **By day**, add green leaves, damp grass, or a little rubber or oil to a
-  hot fire to make thick, dark smoke that stands out against sky or
-  greenery.
+- **By day**, make smoke that contrasts with the background: green leaves or
+  damp grass on a hot fire give thick white smoke (best against dark forest);
+  a little rubber or oil gives black smoke (best against snow, sand, or pale
+  sky).
 - **By night**, keep fires bright and clear-burning with dry wood — light
   travels further than smoke in the dark.
 - Keep a signal fire ready to light at a moment's notice (dry tinder,

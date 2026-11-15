@@ -59,7 +59,9 @@ cleaner water that follows on into the tank*
 - **Empty and clean the diverter** after each significant rain so it's ready
   to work again.
 - Fit a **coarse screen or leaf guard** at the tank inlet too, to keep out
-  debris and to discourage mosquitoes from breeding in the tank.
+  debris, and **fine insect mesh (holes about 1 mm)** over the inlet and the
+  overflow outlet — a coarse screen won't stop mosquitoes breeding in the
+  tank.
 
 ## Size your storage
 

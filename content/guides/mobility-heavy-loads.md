@@ -36,7 +36,7 @@ needs to, sustainably, without fuel.
 | Wheelbarrow | Small, awkward, or very heavy single loads over short distances | Needs constant steering and balance; tiring over distance |
 | Handcart / sack truck | Stacked boxes, sacks, crates | Needs reasonably flat, solid ground |
 | Two-wheeled garden cart | Firewood, harvests, general bulk loads | Slower over long distances than a bike trailer |
-| Bike trailer | Heaviest loads over the longest distances, least effort | Needs a sound bike and a rider fit to tow — see [[mobility-cargo-trailer]] |
+| Bike trailer | Moderate loads (about 40-60 kg a trip) over the longest distances, least effort | Needs a sound bike and a rider fit to tow — see [[mobility-cargo-trailer]] |
 
 ## Load it right
 

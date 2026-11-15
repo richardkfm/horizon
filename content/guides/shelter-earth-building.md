@@ -2,7 +2,7 @@
 id: shelter-earth-building
 title: Build with earth (cob, adobe, earthbag)
 category: shelter
-summary: Use soil-based methods to build durable, well-insulated walls from local materials.
+summary: Use soil-based methods to build durable, heat-storing walls from local materials.
 difficulty: 4
 estimated_time: "Weeks to months"
 ---
@@ -80,7 +80,10 @@ strength):
 
 - **Roof with a generous overhang** to keep rain off the walls.
 - **Plaster** with an earth or lime render to shed weather; earth plaster is
-  repairable, lime is tougher against rain.
+  repairable, lime is tougher against rain. Wet lime burns skin and eyes —
+  wear goggles and waterproof gloves, and rinse any splash straight away
+  with plenty of clean water. Don't use cement render on earth walls: it
+  cracks, traps damp behind it, and the earth decays.
 - **Maintain yearly:** patch cracks and re-coat plaster — easy with earth, and
   part of how these buildings last so long.
 

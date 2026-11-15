@@ -54,7 +54,11 @@ your safety and the water's safety.
    can't control, or bad air.
 5. **Cap it properly** once finished: a raised lip, a solid cover, and a
    drainage apron sloped away from the opening so surface water can't run
-   straight in.
+   straight in. Make the top 3 m of the lining watertight (mortared joints)
+   so shallow seepage can't get in through the wall.
+6. **Disinfect it before first use** — a new well has been stood in and
+   handled. Dose the water with a chlorine solution, leave it overnight,
+   then draw water off until the chlorine smell fades.
 
 ## Protect a spring
 

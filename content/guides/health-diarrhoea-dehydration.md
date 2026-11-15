@@ -25,8 +25,8 @@ Ready-made ORS sachets from a pharmacy are best — they have exactly the
 right balance, and they keep for years. Mix them with exactly the amount of
 clean water the packet says.
 
-If you have no sachets, make the home version recommended by the World
-Health Organization:
+If you have no sachets, make the widely taught home sugar-salt solution — a
+stand-in until you can get sachets:
 
 > **Spec:** **1 litre of clean water** (boiled and cooled, or treated) +
 > **6 level teaspoons of sugar** + **½ level teaspoon of salt**. Stir until

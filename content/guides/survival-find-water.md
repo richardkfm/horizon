@@ -35,10 +35,14 @@ and treat before drinking** (see [[water-choosing-treatment|choosing a water tre
 
 ## Make a simple solar still
 
-In damp ground or near greenery, dig a pit, set a container in the centre, cover
-the pit with a sheet weighted with a stone over the container, and seal the
-edges with soil. Water evaporates, condenses on the sheet, and drips in. Yield
-is small but steady.
+In damp ground or near greenery, dig a pit about 1 m across and half a metre
+deep, set a container in the centre, cover the pit with a sheet of **clear
+plastic** (a cut-open bag works; cloth or a tarp won't) weighted with a small
+stone directly over the container, and seal the edges with soil. In strong
+sun, water evaporates, condenses under the plastic, and drips in. Expect
+little — often only a cup or two a day, which can be less than you sweat
+digging — so treat it as a last resort, and add green, non-poisonous leaves
+to the pit to raise the yield.
 
 ## Carry and store
 

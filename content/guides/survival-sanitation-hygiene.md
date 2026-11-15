@@ -20,7 +20,18 @@ highest-value things you can do for a group's health.
 > always downhill and downwind of both the water and where people sleep and
 > cook. Uphill or upstream of water is never acceptable, even for one use.
 
+## If you're at home with nowhere to dig
+
+Line a bucket — or the emptied toilet bowl — with two strong bags, one inside
+the other. Cover each use with a scoop of sawdust, soil, ash, or shredded
+paper, tie the bags off when half full, and keep them in a lidded bin outdoors
+until collection resumes. For running a bucket toilet over weeks, see
+[[survival-dry-toilet]].
+
 ## Dig a latrine
+
+You need something to dig with — a spade or trowel, or failing that a sturdy
+stick or a flat stone.
 
 **For a short stay or one person:** a cathole works —
 
@@ -30,14 +41,15 @@ highest-value things you can do for a group's health.
 
 **For a group or a longer stay:** dig a trench latrine —
 
-1. Dig a trench roughly 30 cm wide, 30–45 cm deep, and as long as the group's
-   stay will need.
+1. Dig a trench roughly 30 cm wide, 60–90 cm deep (deeper for a bigger group
+   or a longer stay), and as long as the group's stay will need. Stop if you
+   reach wet ground — the bottom must stay well above groundwater.
 2. Keep a scoop of soil or ash next to it; add a scoop after each use to cut
    smell and keep flies away.
 3. Add a simple screen for privacy and a lid or cover (board, tarp) to keep
    rain and flies out between uses.
-4. When it's nearly full, backfill it completely with soil, mound and mark
-   it, and dig a new trench nearby.
+4. When the contents come within 30 cm of the surface, backfill it completely
+   with soil, mound and mark it, and dig a new trench nearby.
 
 > **Risk:** Never site a latrine where rain can wash it into a stream, well,
 > or storage tank. Waste that reaches drinking water is exactly how outbreaks

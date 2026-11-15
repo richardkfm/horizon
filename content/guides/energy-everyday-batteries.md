@@ -41,7 +41,9 @@ keeps you safe: damaged lithium batteries can catch fire.
 - **Take batteries out** of anything you won't use for months — leaking
   alkalines ruin the device.
 - **Clean corroded contacts** with a cotton bud dipped in vinegar or lemon
-  juice, then dry them.
+  juice, then dry them. The crust from a leaked battery can burn skin and
+  eyes — wear gloves or use a cloth, keep your hands away from your face,
+  and wash them afterwards.
 - **Store loose cells** in a box or with tape over the ends, so they can't
   short against keys or coins.
 - **Charge NiMH in a proper charger,** never in a device meant for alkalines.

@@ -28,7 +28,7 @@ word of your route with someone at home.
 - [ ] Paper map of the area in a waterproof bag
 - [ ] Compass
 - [ ] Phone, and a small charged power bank with cable
-- [ ] Whistle (three blasts means help)
+- [ ] Whistle (three blasts means help in most places; in the UK and the Alps, six blasts a minute)
 - [ ] Head torch with spare batteries
 
 ## Water and food

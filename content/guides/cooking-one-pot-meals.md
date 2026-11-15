@@ -43,7 +43,10 @@ After a pot reaches a hard boil, you can finish many dishes **off the fire**
 (dried beans need at least 10 minutes of hard boiling first — see below):
 nestle the closed pot into a well-insulated box (hay, wool, blankets) and the
 retained heat slowly cooks beans, grains, and stews over a few hours. Huge fuel
-savings, and nothing burns.
+savings, and nothing burns. Use a full pot with a tight lid and don't open it
+while it cooks. Eat within a few hours and bring the pot back to a boil before
+serving — once the food has cooled to lukewarm, the 2-hour rule in
+[[cooking-food-safety-no-fridge]] applies.
 
 ## Eat safely
 

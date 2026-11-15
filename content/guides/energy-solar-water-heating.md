@@ -41,6 +41,17 @@ approaches:
 > heated by the sun can burst. Fitting one is a job for a plumber if you're
 > unsure. An open, unpressurised tank fed by gravity avoids this.
 
+## What you need
+
+- A clean steel tank or drum that has never held fuel, oil, or chemicals
+- Heat-resistant matt black paint
+- Timber or sheet material for the box, and insulation to line it
+- A sheet of glass or clear rigid plastic for the sunny side
+- Tank connectors, pipe, a tap, and an overflow, with sealant or PTFE tape
+- A drill and hole saw, spanners, and a saw and screws for the box
+
+This water is for washing and cleaning, not for drinking.
+
 ## Build a basic batch heater
 
 1. **Paint a metal tank or barrel matt black** so it soaks up heat.
@@ -53,9 +64,20 @@ approaches:
 
 ## Build a thermosiphon collector
 
-- Run **dark pipe** (or a salvaged radiator) in an insulated, glazed box facing
-  the sun — the **collector**.
-- Place the **storage tank above** the collector.
+- Run **copper or steel pipe painted matt black** (or a salvaged steel
+  radiator, flushed clean) in an insulated, glazed box facing the sun — the
+  **collector**. Don't use garden hose or ordinary plastic pipe inside the
+  box: with the glass on and no water flowing it gets hotter than boiling,
+  and they soften and split.
+- Place the **storage tank above** the collector, with the bottom of the
+  tank at least 30 cm higher than the top of the collector — otherwise the
+  flow reverses at night and cools the tank.
+- Feed the cold pipe into the collector's lowest corner and take the hot
+  pipe from its highest. Keep both pipes short, at least 20 mm bore, and
+  rising all the way from collector to tank with no dips or humps — a
+  trapped air bubble stops the flow.
+- Unless it is a pressure tank with a relief valve (see the warning above),
+  give the tank an open vent or overflow pipe.
 - Connect so cold water leaves the tank bottom to the collector, and hot water
   rises back to the tank top. Heat drives the flow; no pump needed.
 

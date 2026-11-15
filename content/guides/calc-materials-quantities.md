@@ -37,8 +37,9 @@ prevents both running short and wasting scarce resources.
 
 Multiply a per-person, per-day rate by people and days:
 
-- **Water:** a rough planning figure is several litres per person per day for
-  drinking and cooking, more with washing — × people × days.
+- **Water:** plan on at least 4 L per person per day for drinking and
+  cooking, plus 10-15 L for basic washing — × people × days (see
+  [[calc-water-budget]]).
 - **Food:** plan by calories or by staple weight per person per day × people ×
   days; favour storable staples.
 - **Firewood:** estimate by how much you burn per day in your setup × cold days;

@@ -30,9 +30,14 @@ Most work needs only a few tool types:
 
 ## Make a cutting edge
 
-- **From salvage metal:** an old file, leaf spring, or steel strip can be ground to
-  an edge on a stone. Salvaged metal is the strongest, longest-lasting blade you can
-  make.
+- **From salvage metal:** thin steel — an old saw blade or steel strip — can be
+  ground to an edge on a coarse stone; it is slow work, hours rather than
+  minutes. An old file makes a fine blade but is brittle as found: bake it at
+  about 200–230 °C for an hour first (a kitchen oven, or beside the coals
+  until the cleaned steel turns straw-yellow), and never pry or strike with
+  it. Thick leaf spring needs a hacksaw, files, or a grinder to shape. Wear
+  eye protection when grinding or striking steel. Salvaged metal is the
+  strongest, longest-lasting blade you can make.
 - **From stone:** strike a hard, fine-grained stone (flint, chert, obsidian) a
   glancing blow with another stone to flake off sharp-edged pieces. Wear eye
   protection — flakes are glass-sharp.

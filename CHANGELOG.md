@@ -13,6 +13,82 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.6] — 2026-11-15
+
+A content review of every guide, checklist and plan: each one was read for
+factual accuracy, for whether the reader would really have the tools it
+assumes, and for whether a careful beginner could follow it. Every finding
+was checked a second time against authoritative sources before anything
+changed. This release holds the unambiguous corrections; the larger
+questions (guides that need a parts list, dimensions or a rewrite) are
+tracked separately.
+
+### Fixed
+
+- **First aid and health.** Baby CPR and choking now use the two-thumb
+  technique of the 2025 resuscitation guidelines, not two fingers. Bleeding
+  control says to leave an object stuck in a wound in place. The first-aid
+  priority order covers a person who is unresponsive but breathing, and
+  spells out the signs of a stroke. Also corrected: hypothermia (start CPR,
+  keep going), frostbite rewarming, anaphylaxis positioning, rabies wound
+  washing (at least 15 minutes), snake-bite immobilisation, boiling time for
+  a cord blade (20 minutes), the home rehydration recipe's attribution, and
+  backup for oxygen concentrators and home dialysis in a power cut.
+- **Emergencies.** A burning oil pan is covered with a lid or baking tray,
+  never a damp cloth. Generators, barbecues and camping stoves are never
+  used indoors, even with windows open. In a wildfire a solid building now
+  ranks above open ground as shelter. Also: fans above 35–40 °C, heatstroke
+  with sweaty skin, smoke masks, when to leave a stranded vehicle, calling
+  for help first, what to do in an air raid when caught outside, escaping
+  through smoke, gas shut-off, floodwater and chemicals, landlines that are
+  no longer analogue, and medicines that must stay cool but never freeze.
+- **Water and food.** Chlorine no longer listed as removing parasites.
+  Boiling does not remove nitrate, and high-nitrate water is not for babies.
+  A hydrogen-sulphide test vial needs 24–48 hours. New warnings for bitter,
+  poisonous squash from saved seed, for cassava and taro preparation, for
+  green potatoes, and for swales on steep ground. Also: sand-filter barrel
+  size, sealing and disinfecting a new well, mosquito mesh on rainwater
+  tanks, greywater distance from wells, and when to prune stone fruit.
+- **Energy, technology and calculations.** Midwinter sun hours for northern
+  and central Europe (about 1, not 2–3). Power-line and fall-zone warnings
+  for wind masts and radio antennas; a wind turbine is braked, never just
+  disconnected. Solar water heaters use metal pipe and a properly placed
+  tank. Charge-controller sizing, tool lists, soldering safety, never
+  opening a power supply, second-router setup, and a costing example that
+  now matches its own trade board.
+- **Shelter, crafts and mobility.** No fire beside a debris shelter. Earth
+  walls store heat rather than insulate; lime burns skin and eyes. After a
+  puncture the wheel is refitted and the brakes checked; wheel truing says
+  which spokes to tighten. Bike-trailer wheels are held on both sides and
+  the hitch must twist. New warnings for weirs and rope ferries in a
+  current. Working animals get water on offer all day and a cart with
+  breeching and a brake. Tool and material lists added to the cabin and
+  trailer guides.
+- **Survival and cooking.** Brine strength for ferments (3–5 %, with a salt
+  weight for sauerkraut). Kidney beans are not sprouted to eat raw. A hay
+  box or solar oven that goes lukewarm is brought back to the boil. Map
+  bearings are corrected for magnetic declination. What to do first in a
+  suspected plant or mushroom poisoning. A dry toilet rests 18 months to 2
+  years outside warm climates; a trench latrine is deeper and closed 30 cm
+  from the top; a bucket-and-bag toilet for homes with nowhere to dig. Fire
+  lighting with what a household has, a solar still that needs clear
+  plastic, and smoke colours for signalling.
+- **Cooperation, culture and language.** An ordinary lift is never part of
+  an evacuation plan. A swallowed button battery is an emergency, not a
+  choking hazard. Decimal marks differ between countries, so doses are
+  written as whole numbers. Drums and strings no longer use hide or gut,
+  and a mending needle no longer uses bone (content principle 3).
+- **Checklists and plans.** Insulated spanner, battery isolator and cable
+  parts on the off-grid power checklist; a wheel-nut spanner in the bike
+  kit; a week of medicines at home; honest time estimates for the
+  drinking-water, building-maths and connection-outage plans.
+- **Assistant keyword search spreads across guides.** Without a vector
+  index, a guide whose title matched the question could fill every result
+  slot, so the answer cited that one guide. Keyword results now take at
+  most two sections from any one guide or md skill. This changes which ids
+  can appear in `citations` from `POST /api/ai/answer` in keyword-fallback
+  mode; the response shape is unchanged.
+
 ## [0.9.5] — 2026-11-11
 
 ### Changed
@@ -1445,7 +1521,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
      release commits. Switch them to the tag form once the tags are pushed.
      v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
      pushed when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.5...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.6...HEAD
+[0.9.6]: https://github.com/richardkfm/horizon/compare/v0.9.5...v0.9.6
 [0.9.5]: https://github.com/richardkfm/horizon/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/richardkfm/horizon/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/richardkfm/horizon/compare/v0.9.2...v0.9.3

@@ -100,7 +100,7 @@ quieter side, gives every person one uninterrupted turn*
 | Response | Means | What happens |
 | --- | --- | --- |
 | **Consent** | "I can live with this and will help carry it out." | Counts towards agreement |
-| **Stand aside** | "I disagree, but I won't stop the group." | Recorded by name in the minutes; the decision goes ahead |
+| **Stand aside** | "I disagree and won't help carry it out, but I won't stop the group." | Recorded by name, with the reason, in the minutes; the decision goes ahead |
 | **Block** | "This would seriously harm the group or break our core values." | The proposal doesn't pass as it stands; the group works on it further |
 
 > **Decision:** A block is rare and serious — it's for a principled objection

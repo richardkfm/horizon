@@ -26,7 +26,10 @@ Flatbreads need no rising and no oven:
    rest it.
 2. Divide and **roll or press thin**.
 3. Cook on a **hot dry stone, griddle, or pan** over the fire, a minute or two
-   each side until blistered.
+   each side until blistered. If you use a stone, pick a dense, dry one from
+   well away from water — stones from rivers, streams, or beaches, and layered
+   or crumbly ones, can crack or burst as they heat. Warm it slowly at the edge
+   of the fire first.
 
 This alone gives you daily bread anywhere you have flour and fire.
 

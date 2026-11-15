@@ -123,7 +123,8 @@ If you must cut it:
    first about 10 cm from the baby's tummy, the second about 5 cm further
    towards the mother.
 3. **Cut between the two ties only with a sterile blade** — a new, sealed
-   blade, or one boiled for 10 minutes. Never use an unclean knife or
+   blade, or one boiled for 20 minutes (boil the string or cloth ties in the
+   same pot before you tie the cord). Never use an unclean knife or
    scissors.
 4. **Keep the stump clean and dry,** folded outside the nappy. Put nothing on
    it unless a health worker advises otherwise.

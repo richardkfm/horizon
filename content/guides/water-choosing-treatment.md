@@ -24,7 +24,7 @@ This guide helps you *choose*; the step-by-step builds live in the linked guides
 | Threat | You might see / suspect | What actually removes it |
 | --- | --- | --- |
 | Sediment, mud, cloudiness | Murky, coloured, gritty water | Settling, cloth/sand pre-filter |
-| Bacteria & parasites | Animal/human activity upstream | Slow sand filter, boiling, chlorine, solar (SODIS) |
+| Bacteria & parasites | Animal/human activity upstream | Slow sand filter, boiling, solar (SODIS). Chlorine kills bacteria but not all parasites — Cryptosporidium survives it, and it is weak against Giardia |
 | Viruses | Sewage, dense settlement nearby | Boiling, chlorine (not most simple filters) |
 | Salt, heavy metals, most non-volatile chemicals | Mining, seawater, runoff | **Distillation** — filtering won't help |
 | Fuels, solvents (volatile chemicals) | Fuel smell or sheen, spills, industry | **Nothing simple** — they boil over with the steam, so change source |

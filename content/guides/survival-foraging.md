@@ -59,8 +59,17 @@ What to do instead:
 
 ## After eating
 
-If anyone shows nausea, vomiting, dizziness, or a racing heart, stop eating it,
-keep them hydrated, and seek medical help if you can.
+> **Do now:** If someone may have eaten a poisonous plant or mushroom, treat it
+> as an emergency even if they feel fine. Call a poison centre or the emergency
+> number if you can reach one. Don't make them vomit. Keep a sample or photo of
+> what was eaten, and note when and how much. If they turn drowsy or confused,
+> have a fit, or struggle to breathe, get them to medical care by any means.
+
+The deadliest mushrooms give no symptoms for 6–24 hours, and the vomiting can
+then ease for a day before the liver fails — feeling better is not the
+all-clear. For a milder upset (nausea, vomiting, dizziness, a racing heart),
+stop eating the food and give sips of water as long as the person is fully
+awake.
 
 ## Where to go next
 

@@ -16,7 +16,9 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
 > **Risk:** Sealing a shelter tightly without ventilation is dangerous. Any fuel
 > burner (wood, gas, paraffin) needs fresh air and a way for fumes to escape —
 > carbon monoxide is invisible and deadly. Keep a vent and, ideally, a CO alarm.
-> Keep insulation clear of stove pipes and flues to avoid fire.
+> Keep insulation clear of stove pipes and flues to avoid fire. Straw and
+> foam board burn fiercely — never leave them bare inside the room; cover
+> them with board, plaster, or clay.
 
 ```ascii
         /\
@@ -46,7 +48,9 @@ surfaces that lose the most heat. The cheapest watt is the one you never spend.
 - Draught-excluder strip, offcuts of cloth, or rolled rags for gaps
 - Bulky dry insulation: sheep's wool, straw, hemp or wood fibre, rockwool, or
   rigid foam
-- A vapour-side covering (sheeting/board) to keep insulation dry
+- A covering for the warm, room-facing side of the insulation (plastic
+  sheet or board) to keep indoor damp out of it; leave the cold outer side
+  able to breathe, with rain kept off
 - Heavy curtains, blankets, or bubble-wrap film for windows
 - A rug or layered cardboard/foam for a cold floor
 

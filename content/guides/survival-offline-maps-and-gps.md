@@ -37,7 +37,10 @@ this while you still have signal, and both keep working after you lose it.
 ## After signal is gone
 
 - Open the maps app as normal — the blue dot showing your live position keeps
-  working from GPS satellites alone, with no bars and no wifi.
+  working from GPS satellites alone, with no bars and no wifi. Without a
+  network the first fix is slower: stand outdoors with a clear view of the sky
+  and give it a few minutes. It may not come at all deep indoors or under
+  thick cover.
 - Only the **downloaded** area will render; panning outside it usually shows
   a blank grid, since there's nothing left to fetch.
 - Turning on airplane mode (while leaving GPS/location on, if your phone

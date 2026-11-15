@@ -82,7 +82,8 @@ already used once, so the cleanest water is saved for drinking*
   up — it's perfectly clean; use it for cooking, kettles, or plants.
 - **Save vegetable-rinsing water** in a bowl for houseplants or the garden.
 - **Wash in a bowl, not under a running tap**, then use the bowl water to
-  flush the toilet (pour it straight into the pan) or for trees.
+  flush the toilet (pour it straight into the pan) or for trees (keep greasy
+  dishwater for flushing only).
 - **Never store used water** for more than a day; see
   [[water-greywater-reuse]] for the rules on what can go on the garden.
 

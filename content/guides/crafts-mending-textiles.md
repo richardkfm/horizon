@@ -18,7 +18,7 @@ needle, thread, and patience.
 
 ## Your basic kit
 
-- A **needle** (steel, or improvised from bone, thorn, or wire with an eye).
+- A **needle** (steel, or improvised from a thorn or from wire with an eye).
 - **Thread** — salvaged thread, unravelled yarn, or thin plant cordage.
 - **Scissors or a sharp blade**, and pins or thorns to hold cloth in place.
 

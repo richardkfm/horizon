@@ -41,6 +41,12 @@ the blast — and acting fast on a warning saves lives.
 4. **Stay inside and under cover** until an official all-clear — secondary strikes
    can follow the first.
 
+**If you're caught outside:** get into the nearest solid building, stairwell,
+or underground passage. If nothing is in reach, lie flat on the ground — in a
+ditch or against a kerb if there is one — away from glass and vehicles, and
+cover your head with your arms. **In a vehicle:** stop, get out, and do the
+same.
+
 ## During drone or loitering-munition threats
 
 - **Get indoors and under solid cover;** do not stand in the open to look or film.

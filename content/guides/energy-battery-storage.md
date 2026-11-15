@@ -19,6 +19,11 @@ size.
 > types give off explosive or toxic gas. Fuse everything, ventilate, and
 > respect them.
 
+> **Tip:** Gather the tools and safety gear in
+> [[checklist:off-grid-power-build]] before you start — a multimeter, a
+> spanner, insulated gloves, and safety glasses — plus distilled water for
+> topping up if you choose flooded lead-acid.
+
 ## Choose a battery type
 
 - **Lead-acid (flooded or sealed):** cheap and robust, but heavy, needs

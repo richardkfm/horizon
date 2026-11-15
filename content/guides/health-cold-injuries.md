@@ -32,6 +32,9 @@ slurred speech, confusion or drowsiness, then shivering *stopping* (a bad sign).
    straight on skin, a fire too close) and don't rub the limbs.
 6. **Handle a very cold person gently** and keep them still — rough movement can
    trigger dangerous heart rhythms. Get urgent help.
+7. **If they don't respond and aren't breathing normally, start CPR** (see
+   [[health-choking-and-cpr]]) and keep them wrapped while you do. Very cold
+   people can look lifeless and still recover, so keep going until help arrives.
 
 ## Frostbite — frozen skin
 
@@ -43,7 +46,10 @@ ears, nose, or cheeks. As it thaws it becomes red, painful, and may blister.
 2. **Don't rub** the area or warm it with direct high heat.
 3. **Re-warm gently** by soaking in warm (not hot) water, around body temperature,
    or with skin-to-skin contact — only once you're sure it won't re-freeze.
-   Re-freezing thawed tissue causes far worse damage.
+   Re-freezing thawed tissue causes far worse damage. Test the water with an
+   uninjured hand first — the frostbitten part is numb and can't feel a scald.
+   Top it up to keep it warm, and soak for about 30 minutes, until the skin is
+   soft and its colour returns. Thawing hurts; that is expected.
 4. **Protect the area:** separate frostbitten fingers/toes with dry dressings,
    don't burst blisters, and avoid walking on frostbitten feet if you can help it.
 

@@ -23,6 +23,18 @@ already have.
 > and rider are set up for it — several smaller loads on repeat trips beat one
 > trailer overloaded past control.
 
+## What you need
+
+- **Wheels:** two matching bike wheels with their axles (front wheels are
+  simplest), with sound tyres and tubes.
+- **Frame and tow arm:** sound, straight timber — about 45 × 70 mm is
+  plenty — plus plywood or slats for the box.
+- **Fixings:** bolts with washers and nuts, wood screws, steel plate or
+  angle for the axle slots (dropouts), the hitch parts described below, eye
+  bolts for tie-downs, a safety strap, and a rear reflector or light.
+- **Tools:** saw, drill and bits, spanners, screwdriver, tape measure,
+  square, and a hacksaw and file for the metal plates.
+
 ## Plan before you build
 
 - **Match the axle track to your riding routes** — narrow enough for gates,
@@ -40,9 +52,12 @@ already have.
 
 1. **Build a rectangular base frame** from timber (or welded box-steel, if
    you have the tools) sized to your salvaged wheels and intended box.
-2. **Mount the axle** across the frame, either reusing the bike wheel's own
-   axle in simple frame-mounted dropouts (easiest — no bearings to source) or
-   running both wheels on one continuous axle through pillow-block bearings.
+2. **Mount the wheels.** Easiest is to reuse each bike wheel's own axle (no
+   bearings to source): give each wheel a frame rail on **both** sides and
+   clamp both ends of its axle into slotted plates (dropouts), just as it
+   sits in a bike's fork — a bike axle held at one end only will bend. Only
+   run both wheels on one continuous axle if they are cart or wheelbarrow
+   wheels made to spin on one.
 3. **Brace the corners** diagonally so the frame can't rack sideways under a
    swaying load — the same principle as bracing a timber-frame wall.
 
@@ -67,8 +82,12 @@ one direction so the trailer follows the bike through turns and over uneven
 ground without transmitting every bump straight to the frame:
 
 - **A simple ball-and-socket or U-bolt hitch** at the bike's rear axle or
-  seatpost, with a pin or bolt that lets the tow arm swing both
-  side-to-side and up-and-down, works for most loads.
+  seatpost, with a joint that lets the tow arm swing side-to-side and
+  up-and-down **and twist** — the bike leans in corners and the trailer
+  doesn't — works for most loads. Two interlocked eye bolts, or a short
+  length of thick reinforced rubber hose bolted between arm and bike, also
+  do all three. Test it: lay the bike flat on its side with the trailer
+  hitched — the trailer should stay on both wheels.
 - **Use a locking pin or a safety strap** as backup in case the primary hitch
   ever works loose — a trailer coming loose in traffic is dangerous, not just
   inconvenient.
@@ -102,5 +121,6 @@ ground without transmitting every bump straight to the frame:
   once the trailer is built.
 - For the tow bike itself, see [[mobility-bike-maintenance|keep a bicycle running with basic maintenance and repairs]] — a trailer adds real load to brakes and drivetrain,
   so start from a bike that's already sound.
-- For sizing the frame and axle to the loads you actually intend to carry, see
+- For the general principles behind sizing a frame — estimating loads,
+  keeping spans short, and leaving a safety margin — see
   [[calc-structural-loads|estimate weights and loads in building]].

@@ -47,8 +47,10 @@ unsinkable, and buildable from what's around.
 volume in litres of lift — keep total load under half the theoretical lift.*
 
 - **Buoyancy first:** sealed barrels or drums (bungs up), or dry, light
-  logs. Rule of thumb — a litre of trapped air lifts a kilogram; load to
-  **half** that, so the raft floats high even when things go wrong.
+  logs. Rule of thumb — a litre of sealed air lifts a kilogram; dry softwood
+  logs lift only about half a kilogram per litre of wood, and less as they
+  soak. Add up the lift, then keep everything on board — deck, crew, and
+  cargo — to **half** that, so the raft floats high even when things go wrong.
 - **Lash, don't nail:** square lashings hold flexing timber that would work
   nails loose (see [[survival-knots|tying essential knots and lashings]]).
 - **Test empty, then loaded, at the shore** before the first real trip, and
@@ -74,15 +76,30 @@ goes further, faster, and against gentle current.
   small leaks before they're big ones (the tools-and-repair habit, applied
   to a boat; see [[crafts-tool-repair|sharpening and repairing hand tools]]).
 
+> **Risk:** Never go over a weir or low dam, however small the drop, and
+> keep well clear of the water just below one. The water there rolls back on
+> itself and holds boats and people under. From upstream a weir shows only as
+> a level line across the river — land well above it and carry round. Keep
+> clear of fallen trees and branches in the current too: water flows through
+> them, boats and people do not.
+
 ## A rope ferry for a regular crossing
 
 Where the same crossing happens daily — fields on the far bank, a neighbour
 group across the river — a **fixed rope or cable ferry** beats boating every
 trip: stretch a well-anchored line above the water, and pull a raft or punt
-across along it. No skill needed per crossing, works loaded, and the line
-keeps the craft from being swept downstream. Keep the line high or flagged
-so it can't catch other river users, and inspect anchors and rope wear
-weekly.
+across along it. Little effort per crossing once it is rigged, it works loaded, and on
+gentle water the line keeps the craft from drifting off downstream. Inspect
+anchors and rope wear weekly.
+
+> **Risk:** Rig a rope ferry only on still or gently flowing water. In a
+> real current a craft held on a fixed line can be dragged under in seconds,
+> and the pull on rope and anchors is huge. Never tie a person to the line or
+> the craft, have everyone wear a life jacket, and keep a knife to hand to
+> cut free. A rope across water that others use can catch and drown a boater
+> or swimmer: hang it well above the head of anyone afloat or take it down
+> between uses, mark it brightly, and get permission from whoever looks
+> after the river.
 
 ## Plan the water network, not just the craft
 

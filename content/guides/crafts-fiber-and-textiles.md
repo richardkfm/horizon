@@ -39,17 +39,19 @@ coarser technique from the spinning covered here.
 ## Spin thread with a drop spindle
 
 A drop spindle — a simple weighted stick — turns prepared fibre into
-continuous thread.
+continuous thread. To make one, push a disc of wood or fired clay (roughly
+30–50 g) tightly onto a straight, smooth stick about 25–30 cm long, and fit
+a small wire hook, or cut a notch, at the top.
 
 ```ascii
-       twisted thread
+          [ hook ]     thread to your hand catches here
              |
-             v
-        ,---------,
-        | spindle |   <- weighted disc (whorl) partway down the shaft
+        ,----+----,
+        |  whorl  |   <- weighted disc near the top of the shaft
         '----+----'
              |
-          [ hook ]     thread wraps here as it winds on
+             |         spun thread is wound on the shaft
+             |         here, below the whorl
 ```
 
 *Fig. 1: a drop spindle — the weight keeps it spinning while gravity pulls it

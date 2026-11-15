@@ -17,6 +17,16 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
 > roof a good overhang, and let air move around the timber. Most cabin failures
 > are water failures.
 
+## What you need
+
+- **Tools:** saw, hammer or mallet, chisel, drill or brace and bits, tape
+  measure, square, spirit level or plumb line, string line, spanner, and a
+  ladder — all hand tools (see [[checklist:tools-and-materials]]).
+- **Materials:** timber for posts, beams, joists, studs, and rafters; boards
+  for the floor and cladding; nails, screws, or bolts (or wooden pegs);
+  roofing (sheet, shingles, or thatch); and flat stones or concrete pads for
+  the foundation.
+
 ## Plan and prepare
 
 - **Keep it small and square** — a simple rectangle is far easier to frame and

@@ -56,7 +56,12 @@ A splint stops a broken bone moving while you get help.
 *Fig. 1: a splint ties above and below the injury, never over the break itself, to hold it still without adding pressure*
 
 4. For an arm, a **sling** (and binding it to the body) works well; for a leg, you
-   can tie the injured leg to the good one as a last resort.
+   can tie the injured leg to the good one as a last resort. To make a sling,
+   fold a large square of cloth (a scarf, pillowcase, or cut-open T-shirt) into
+   a triangle, slide it under the forearm with the point at the elbow, and tie
+   the two ends at the side of the neck so the hand sits a little higher than
+   the elbow. No cloth? Pin the sleeve cuff, or the turned-up hem of their top,
+   to the chest.
 5. **Check fingers/toes** beyond the splint stay warm and pink. If they go pale,
    cold, or numb, loosen the ties.
 

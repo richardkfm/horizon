@@ -67,7 +67,10 @@ Ordinary evacuation plans assume everyone can walk quickly down stairs.
 Make a personal plan with each person who can't.
 
 - **Two ways out** of the home, and which one works for them (a ground-floor
-  door, a ramp, a lift that may stop in a power cut).
+  door, a ramp). Never plan on an ordinary lift: it must not be used in a fire,
+  and it stops in a power cut. For anyone above the ground floor who can't
+  manage stairs, agree now how they get down or where they wait safely, and
+  tell the emergency services which floor they are on when you call.
 - **Who helps, and how.** Name two people. Agree how to move them safely —
   never lift or carry someone without knowing how; you can injure both of
   you. Practise with their wheelchair or walking aid.

@@ -20,12 +20,16 @@ materials at hand and a willingness to begin.
 
 - **Shakers:** seal dried seeds, beans, or small stones in a tin, gourd, or
   tightly tied cloth pouch.
-- **Drums:** stretch a damp hide, thick cloth, or a salvaged sheet over an open
-  pot, bucket, or hollow log and lash it tight; it tightens as it dries.
+- **Drums:** an upturned bucket, pot, or plastic tub played with hands or
+  sticks is a drum already. For a skin, stretch criss-crossed layers of strong
+  parcel tape, or rubber cut from an old inner tube, tightly over the open rim
+  of a bucket or tin.
 - **Clappers and sticks:** two hardwood sticks, or two stones, struck together.
-- **Flutes and whistles:** cut notches or holes in a hollow reed or bamboo; move
-  fingers over the holes to change pitch.
-- **Plucked string:** stretch cord or gut over a springy bow or a box; tighter
+- **Pipes and whistles:** with a knife or small saw, cut a length of bamboo or
+  hollow reed just below a joint so one end stays closed, then blow across the
+  open end as you would across a bottle top. Shorter tubes sound higher; bind
+  several lengths side by side for a set of pipes.
+- **Plucked string:** stretch cord, fishing line, or thin wire over a springy bow or a box; tighter
   strings sound higher.
 
 ## Keep a steady beat

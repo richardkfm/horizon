@@ -53,7 +53,11 @@ Worked example (222 Wh/day, 2 days, lead-acid at 50%):
 ## Step 3 — Size the panel
 
 The panel has to replace a full day's use during your **worst-case sun hours**
-(short winter days, cloud). Temperate winters can be as low as 2–3 useful hours.
+(short winter days, cloud). Temperate winters are often only 2–3 useful hours, and further from the
+equator (northern and central Europe, for example) December and January
+average about 1 hour — that needs roughly three times the panel worked out
+below, or cutting your loads in midwinter. Look up the figure for your own
+area before you buy.
 
 > **Spec:** Panel watts ≈ daily Wh ÷ **peak sun hours** ÷ **0.7** (losses in the
 > controller, wiring, and charging). For 222 Wh and 3 sun hours:

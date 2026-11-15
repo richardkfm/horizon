@@ -25,7 +25,10 @@ and keep pressing.**
 1. **Protect yourself** if you can — use gloves or a plastic bag over your hand to
    avoid contact with blood.
 2. **Press directly on the wound** with a clean cloth, gauze, or your hand. Use
-   your whole body weight if needed.
+   your whole body weight if needed. **If something is stuck in the wound**
+   (glass, a knife, a branch), leave it in — it may be plugging the bleed.
+   Don't press on it: press firmly on both sides of it and build padding up
+   around it so it can't move.
 3. **Do not keep peeking.** Lifting the cloth to look restarts the bleeding. If
    blood soaks through, add more cloth on top and keep pressing — don't remove the
    first layer.

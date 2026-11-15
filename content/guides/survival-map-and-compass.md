@@ -33,15 +33,25 @@ Before reading anything off a map, turn it so it matches the ground:
 
 A bearing is a direction given in degrees (0-360°), read clockwise from north.
 
-- **From the map:** lay the compass edge between where you are and where you
-  want to go, then rotate the compass's dial until its lines match the map's
-  north-south grid lines. The number at the direction-of-travel arrow is your
-  bearing.
-- **Follow it on the ground:** hold the compass flat, turn your whole body
-  until the needle sits inside the dial's marked outline, and walk in the
+- **From the map:** lay the compass edge from where you are to where you
+  want to go, with the direction-of-travel arrow pointing *towards* the
+  destination, then rotate the compass's dial until its lines match the map's
+  north-south grid lines and the dial's N points to the top (north) of the
+  map. The number at the direction-of-travel arrow is your bearing.
+- **Follow it on the ground:** hold the compass flat, away from phones,
+  knives, belt buckles, and cars (metal pulls the needle off), turn your whole
+  body until the red (north) end of the needle sits inside the dial's marked
+  outline, and walk in the
   direction the arrow points. Pick a landmark on that line, walk to it, then
   recheck the bearing — this is far more accurate than trying to walk a
   straight line by eye over a long distance.
+
+> **Risk:** Map north and compass north are not quite the same. The difference
+> (magnetic declination, or variation) is printed in the map's margin. If it is
+> more than a couple of degrees, correct every bearing: going from map to
+> compass, add a westerly declination and subtract an easterly one; going from
+> compass to map (as in resection below), do the opposite. Ten degrees left
+> uncorrected puts you about 175 m off for every kilometre walked.
 
 ```ascii
               N (0/360)

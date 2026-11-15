@@ -25,9 +25,12 @@ confidence.
 Shredded-and-squeezed works for cabbage; for everything else — whole beans,
 carrot sticks, garlic cloves, radishes, chillies — use a poured **brine**.
 
-- **The ratio to memorise: ~1 part salt to 50 parts water by weight** (a 2%
-  brine — about one level tablespoon per litre). Saltier (up to 4-5%) ferments
-  slower and keeps crunch; use plain salt without additives.
+- **The ratio to memorise: 30 g of salt per litre of water** (a 3% brine —
+  about 2 level tablespoons of fine salt) for sliced or small pieces, and
+  **50 g per litre** (5%, about 3 tablespoons) for whole or chunky vegetables.
+  Weigh the salt if you can — spoons and salt grains vary. Don't go weaker:
+  the salt is what holds spoilage back. Saltier ferments slower and keeps
+  crunch; use plain salt without additives.
 - Pack vegetables into a clean jar, pour brine to cover completely, and
   **weigh them down** — a smaller jar, a boiled stone, a folded cabbage
   leaf. *Submerged = safe* is the whole game.

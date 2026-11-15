@@ -20,7 +20,7 @@ languages long before any technology, using patience, goodwill, and the body.
 
 - **Gestures and mime:** point, act out the action (drinking, sleeping, walking),
   show quantities on fingers.
-- **Facial expression and tone:** smiles, nods, and an open posture cross every
+- **Facial expression and tone:** smiles, a calm voice, and an open posture cross every
   language and lower fear.
 - **Drawing:** sketch in the dirt or on any surface — a map, a sun for "day", a
   simple picture of what you mean. Pictures beat words for places and objects.
