@@ -36,6 +36,14 @@ buying seed. It is one of the oldest and most important food skills.
 Avoid crossing: keep different varieties of the same crop apart, or grow only one
 variety of each, so seed stays true.
 
+> **Risk:** Squash, courgettes, and pumpkins cross freely with each other and
+> with ornamental gourds — bees carry the pollen hundreds of metres. Seed from
+> a crossed plant can grow fruit that is very bitter and poisonous, and
+> cooking does not make it safe. Taste a tiny piece of any squash, courgette,
+> or cucumber grown from saved seed before you cook it: if it is bitter, spit
+> it out and throw the whole fruit away. To keep seed safe, grow only one
+> variety (and no ornamental gourds), or hand-pollinate and bag the flowers.
+
 ## Clean and dry
 
 1. **Remove** seeds from pods, husks, or fruit.

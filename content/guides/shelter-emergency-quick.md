@@ -52,6 +52,11 @@ tools but your hands.
 - **Tarp/salvage shelter:** if you have a sheet, tarp, or plastic, string it as a
   roof and weigh the edges; far faster than natural materials.
 
+> **Risk:** Dry debris is tinder. Never light a fire inside or right beside a
+> debris hut — it is warmed by your body alone. With a lean-to, scrape the
+> ground to bare earth, keep the fire at least two long paces from the roof
+> and bedding, and keep water or soil within reach (see [[survival-fire]]).
+
 ## Make it warm and dry
 
 1. **Insulate the roof thickly** — an arm's depth of dry debris sheds rain and

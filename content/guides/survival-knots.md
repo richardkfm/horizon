@@ -23,8 +23,11 @@ practise until you can tie them in the dark.
   loads or for joining different sizes.
 - **Sheet bend** — joins two ropes, including *different* thicknesses. More
   reliable than a square knot for towing or extending a line.
-- **Bowline** — makes a fixed loop that won't slip or jam, even after heavy
-  load. The rescue knot: a loop you can put around a person or a post.
+- **Bowline** — makes a fixed loop that doesn't jam and unties easily, even
+  after heavy load. The rescue knot: a loop you can put around a person or a
+  post. It can shake loose when the rope goes slack, so leave a long tail and
+  lock it with an overhand knot around the loop whenever a person depends on
+  it.
 - **Two half hitches** — ties a rope to a post, ring, or tree; quick and secure.
 - **Clove hitch** — starts and ends lashings and ties off to a pole; fast to
   adjust.

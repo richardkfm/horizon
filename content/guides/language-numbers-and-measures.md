@@ -74,7 +74,10 @@ as the standard for a job.*
 > **Risk:** Mixed units cause real losses in trade and building. When exactness
 > matters — medicine doses, water treatment, rationing — use one written system
 > (metric where known), write it down, and have both sides repeat the quantity
-> back.
+> back. Decimal marks differ between countries: 1,5 in one is 1.5 in another,
+> and 1.000 can mean one or a thousand. Write small amounts as whole numbers
+> in a smaller unit (500 ml, not 0,5 l or 0.5 l), and show the amount in a
+> real container.
 
 ## Practise where it counts
 

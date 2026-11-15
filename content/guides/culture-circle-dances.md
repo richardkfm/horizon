@@ -26,7 +26,7 @@ steps repeat, and people learn just by following the person beside them.
 
 1. Form a circle, everyone holding hands or resting hands on shoulders.
 2. Teach the footwork **without music first**, slowly, calling each step:
-   e.g. "step left, close, step left, touch" — repeated all the way round.
+   e.g. "step left, close, step left, close" — repeated all the way round.
 3. Practise the pattern a few times until the circle moves as one.
 4. **Add the beat** — a drum, claps, or a song — and start slow.
 5. Speed up only when the group is ready; let the energy build naturally.

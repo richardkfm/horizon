@@ -33,6 +33,10 @@ The best fire is the one you hear about early and walk away from.
   including at night, a couple of times a year.
 - Keep exits, stairs and keys clear, and make sure children and anyone with
   limited mobility know — and can manage — their way out.
+- **Getting out through smoke:** keep low — the air is clearer near the floor.
+  Touch a closed door with the back of your hand before opening it; if it's
+  hot, use your other way out. If you can't get out, shut the door, block the
+  gap under it with bedding or clothes, and call and signal from a window.
 
 ## General rules
 
@@ -47,8 +51,10 @@ The best fire is the one you hear about early and walk away from.
 
 1. **Never use water** — it turns the oil to an explosive fireball.
 2. **Turn off the heat** if you can reach it safely.
-3. **Smother it:** slide a metal lid or a damp (wrung-out) cloth over the pan and
-   leave it covered to cool. A fire blanket is ideal.
+3. **Smother it:** slide a metal lid or a flat baking tray over the pan and
+   leave it covered to cool. A fire blanket is ideal. Don't use a damp or wet
+   cloth — any water that drips into the oil makes it erupt. With nothing
+   solid and dry to cover it, get out, close the door, and call for help.
 4. **Leave it covered** — don't move the hot pan or peek too soon.
 
 ## Electrical fire

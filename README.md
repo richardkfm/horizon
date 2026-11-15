@@ -7,7 +7,7 @@
 
 **An offline-first autonomy node for basic human skills.**
 
-[![Status: v0.9.5](https://img.shields.io/badge/status-v0.9.5-blue.svg)](CHANGELOG.md)
+[![Status: v0.9.6](https://img.shields.io/badge/status-v0.9.6-blue.svg)](CHANGELOG.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-blue.svg)](LICENSE)
 
 </div>
@@ -70,5 +70,5 @@ Admin token, CLI, local AI, content packs → [Operating guide](docs/operating.m
 [Operating](docs/operating.md) · [Authoring content](docs/authoring-content.md) ·
 [API](docs/api.md) · [Changelog](CHANGELOG.md) · [Roadmap](ROADMAP.md)
 
-**Status:** v0.9.5 · [PolyForm Noncommercial 1.0.0](LICENSE): free for
+**Status:** v0.9.6 · [PolyForm Noncommercial 1.0.0](LICENSE): free for
 noncommercial use; commercial use needs a separate agreement.

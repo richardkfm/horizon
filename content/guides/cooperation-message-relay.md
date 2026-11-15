@@ -111,7 +111,7 @@ that works, and the one that has always worked.
   waits. See [[language-signs-and-pictograms|communicate with signs, gestures, and pictograms]].
 - **Neighbours whose first language isn't yours**: a second copy of the key
   notices in the languages of your street — see [[language-across-barriers|communicate across a language barrier]].
-- **Children and teenagers** make excellent runners and are usually delighted
+- **Children and teenagers** make excellent messengers on their own street and are usually delighted
   to be asked, within sight of home and in daylight.
 
 ## Stand it down properly

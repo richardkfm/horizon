@@ -23,7 +23,7 @@ journeys:
       filter.
     category: water
     difficulty: 3
-    estimated_time: "A few days"
+    estimated_time: "A week or more to build, then 2-3 weeks for the filter to ripen"
     guides:
       - water-rainwater-harvesting
       - water-wells-and-springs
@@ -169,10 +169,10 @@ journeys:
     description: >
       The everyday numbers self-reliance needs: measure area and volume, turn a
       plan into material quantities, judge safe weights and loads, and size an
-      energy system — in that order of difficulty.
+      energy system.
     category: calculations
     difficulty: 3
-    estimated_time: "A few hours"
+    estimated_time: "A few afternoons"
     guides:
       - calc-area-volume
       - calc-materials-quantities
@@ -297,10 +297,11 @@ journeys:
       have to fetch, work out how far an outage reaches and what still
       works, pick up reliable news on a radio, keep a street informed with
       a notice board and a door-to-door relay, and keep paying for things
-      once card terminals stop.
+      once card terminals stop. If outages are common where you live,
+      finish by adding two-way radio to reach beyond your street.
     category: emergencies
     difficulty: 2
-    estimated_time: "An afternoon to prepare"
+    estimated_time: "A weekend to prepare"
     guides:
       - technology-offline-knowledge-archive
       - emergency-internet-outage

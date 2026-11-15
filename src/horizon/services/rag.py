@@ -487,6 +487,10 @@ def _tokenize(text: str) -> set[str]:
     return {tok for tok in _TOKEN_RE.findall(text.lower()) if len(tok) > 1}
 
 
+#: Most chunks one guide or md skill may contribute to a keyword-fallback result.
+_KEYWORD_MAX_PER_SOURCE = 2
+
+
 def _retrieve_keyword(query: str, top_k: int) -> list[dict]:
     """Pure keyword-overlap retrieval over on-disk chunks (no external service)."""
     query_tokens = _tokenize(query)
@@ -501,4 +505,17 @@ def _retrieve_keyword(query: str, top_k: int) -> list[dict]:
         if score > 0:
             scored.append((score, chunk))
     scored.sort(key=lambda pair: (-pair[0], pair[1]["id"]))
-    return [chunk for _, chunk in scored[:top_k]]
+    # Cap chunks per source: a guide whose *title* matches the question scores
+    # high on every one of its chunks, and would otherwise fill all top_k slots
+    # and leave the answer citing a single guide.
+    picked: list[dict] = []
+    per_source: dict[str, int] = {}
+    for _, chunk in scored:
+        key = f"{chunk['kind']}:{chunk['source_id']}"
+        if per_source.get(key, 0) >= _KEYWORD_MAX_PER_SOURCE:
+            continue
+        per_source[key] = per_source.get(key, 0) + 1
+        picked.append(chunk)
+        if len(picked) == top_k:
+            break
+    return picked

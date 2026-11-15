@@ -32,9 +32,10 @@ nothing either. Work through the pattern methodically before you act.
 ## Nutrient deficiencies
 
 Deficiencies tend to be even across a bed and symmetric on the plant. The key
-question is **which leaves** — nitrogen, phosphorus, and potassium move
-within the plant, so the plant robs its own older leaves first; the
-micronutrients below do not move, so they show up in new growth first.
+question is **which leaves** — nitrogen, phosphorus, potassium, and magnesium
+move within the plant, so the plant robs its own older leaves first; iron,
+manganese, and calcium do not move, so they show up in new growth, tips, and
+fruit first.
 
 | Nutrient | Where it shows | What you see | Fix |
 | --- | --- | --- | --- |
@@ -72,8 +73,9 @@ still, or crowded conditions.
 ## Pest damage signs
 
 - **Ragged holes or chewed leaf edges** — chewing insects or slugs; hand-pick
-  in the early morning or evening, or use a barrier (crushed shell, copper
-  tape) for slugs.
+  after dark or in the early morning. For slugs, lay a board or upturned pot
+  for them to shelter under and move them away each morning (shell and copper
+  barriers rarely work).
 - **Curled, sticky, or distorted new growth** — sap-sucking insects (aphids,
   etc.); a strong water spray, encouraging predator insects, or a soap
   spray usually controls them.

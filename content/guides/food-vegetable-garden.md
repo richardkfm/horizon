@@ -20,7 +20,8 @@ ready, rather than a single big glut.
 
 - **Pick the spot:** most vegetables need 6+ hours of sun and shelter from strong
   wind. Near the kitchen and a water source is easier to tend.
-- **Make beds you never step on** (about an arm's reach wide) so the soil stays
+- **Make beds you never step on** (narrow enough to reach the middle from either side — about 1.2 m, or half
+  that against a fence) so the soil stays
   loose and roots breathe.
 - **Build the soil:** dig in compost, rotted manure, or leaf mould. Healthy soil
   is the whole game; feed it every season.

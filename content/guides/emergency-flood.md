@@ -54,7 +54,9 @@ simple — **get to high ground, and never walk or drive into floodwater.**
 - **Wait for the all-clear** before returning; floodwater recedes but hazards
   stay.
 - **Assume water is contaminated** — don't drink from flooded sources until tested
-  and treated (boil if unsure; see [[water-choosing-treatment|choosing a water treatment]]).
+  and treated. Boiling kills germs but doesn't remove fuel or chemicals — if the
+  water smells of fuel or has a sheen, use stored or bottled water instead (see
+  [[water-choosing-treatment|choosing a water treatment]]).
 - **Watch for hazards:** weakened structures, hidden holes, snakes/animals,
   downed power lines, and gas leaks. Don't switch on power in a flooded building
   until checked.

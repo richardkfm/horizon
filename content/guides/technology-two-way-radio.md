@@ -44,11 +44,21 @@ times too, not just emergencies.
 > to them is not allowed. With those, get range by standing somewhere high
 > and open instead.
 
+> **Risk:** Keep any antenna and mast at least twice their combined height
+> away from overhead power lines — if it could touch a line while going up
+> or falling over, it is too close, and touching one can kill. Don't put an
+> antenna up alone, or in wind or rain, and secure the ladder. Earth the
+> mast, and unplug the coax from the radio when a thunderstorm is coming.
+
 - **Height matters most.** An antenna a few metres higher clears obstacles
   and roughly doubles useful range — a roof or mast mount beats a handheld's
   built-in antenna every time.
 - **Keep it simple.** A basic vertical antenna (a ground-plane or dipole) is
-  easy to build and tune, and outperforms a stock antenna significantly.
+  simple to build from published dimensions, or cheap to buy, and
+  outperforms a stock antenna significantly. Tuning it needs an **SWR
+  meter** (a radio club can lend one): trim the length until the reading is
+  below about 2:1 before you transmit much — a badly matched antenna wastes
+  power and can damage the radio.
 - **Route feedline carefully:** keep coax away from sharp bends and metal
   that can block the signal, and weatherproof every outdoor connection.
 

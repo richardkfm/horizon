@@ -25,7 +25,7 @@ Most writing systems map sounds to symbols. Build from there:
 2. **Teach letter shapes with their sounds**, a few at a time. Trace them big in
    sand, ash, or dust before using precious paper.
 3. **Blend sounds into words:** sound out short, useful words slowly, then faster
-   — c-a-t, w-a-t-e-r.
+   — c-a-t, s-u-n, c-u-p.
 4. **Read real, useful words first:** names, numbers, labels for stores and
    medicines, the core survival phrases.
 

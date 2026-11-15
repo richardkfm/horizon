@@ -51,8 +51,11 @@ Classic pairings that work everywhere:
 > them only at a low temperature without that hard boil makes them *more*
 > toxic, not less.
 3. **Salt and acid at the end** — adding them early can keep beans tough.
-4. **Sprouting** beans, lentils, and seeds boosts nutrition and lets you grow
-   fresh food indoors with no soil.
+4. **Sprouting** lentils, mung beans, chickpeas, and seeds boosts nutrition
+   and lets you grow fresh food indoors with no soil. Don't sprout kidney
+   beans or other large beans to eat raw — sprouting doesn't remove the toxin.
+   Rinse sprouts twice a day with safe water, and cook them briefly for anyone
+   very young, old, pregnant, or unwell.
 
 ## Round out the diet
 

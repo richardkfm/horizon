@@ -18,6 +18,13 @@ mistake is leaving it to go looking for help on foot.
 > and can travel there safely. A car is bigger, easier to find, and gives
 > you shelter and signal options that walking away throws away.
 
+> **Risk:** Leave the vehicle if staying is the bigger danger: water rising
+> around it (get to higher ground while you safely can — never wade into
+> moving water; climb onto the roof if you're trapped), fire approaching, or
+> a spot where traffic could hit it (get out on the side away from traffic
+> and wait well clear of the road). In hot weather stay with the vehicle but
+> rest in its shade, not inside it with the windows shut.
+
 ## Prepare before a long trip
 
 Keep a simple kit in the vehicle year-round: a blanket or sleeping bag, warm
@@ -27,6 +34,11 @@ someone your planned route and expected arrival time before you set off.
 
 ## If you're stranded
 
+**Call for help first.** Try the emergency number even if the phone shows no
+signal — emergency calls can use any network in range. Say where you are (the
+road, your direction, the last place you passed) and how many people are with
+you, then save the battery and work through the steps below.
+
 1. **Make yourself visible.**
    - Use hazard lights briefly, not continuously, to save the battery.
    - Raise the bonnet/hood as a widely recognised distress signal.
@@ -34,15 +46,18 @@ someone your planned route and expected arrival time before you set off.
    - At night, use the interior light sparingly — enough to be seen, not
      enough to drain the battery.
 2. **Stay warm, safely.**
-   - Run the engine only in short bursts to warm the cabin, and only once
+   - Run the engine for only about 10 minutes in each hour to warm the cabin,
+     and only once
      you've checked the exhaust pipe is completely clear of snow, mud, or
      debris.
    - Crack a window slightly whenever the engine is running.
    - Huddle together for warmth, and insulate yourself from the cold seat or
      floor with anything soft you have — blankets, clothing, seat covers.
 3. **Conserve what you have.**
-   - Sip water rather than rationing it to nothing; melt clean snow if you
-     have fuel to run the engine and no other water.
+   - Sip water rather than rationing it to nothing. If it runs out, melt
+     clean snow before you drink it — pack it into a bottle and stand it by a
+     heater vent while the engine runs, or carry it inside your coat. Don't
+     eat snow as it is; it chills you.
    - Keep the phone off or in low-power mode, checking for signal only
      occasionally.
 4. **Signal for rescue** using the same tools you'd use if lost on foot —

@@ -35,6 +35,12 @@ planned for this specific risk before it happened, not during it.
   a charged spare battery or power bank sized to run the most critical one —
   ideally kept topped up by a small solar panel, so it keeps going for days
   (see [[energy-sizing-solar-battery|sizing a solar and battery system]]).
+  That suits low-power devices such as a CPAP or feeding pump. A home oxygen
+  concentrator draws far more (often 300 W or more, round the clock) — ask
+  your oxygen supplier now for backup cylinders, how many hours each lasts at
+  your prescribed flow, and practise switching over. If you dialyse at home,
+  ask your kidney unit for its power-cut plan and keep it with your medicine
+  list.
   A fuel generator is a last resort only, and only with the carbon monoxide
   precautions below.
 - **Mobility and access needs**: keep a manual backup where one exists (a

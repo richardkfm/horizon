@@ -43,8 +43,8 @@ Two things make a dry toilet work: **keep urine and faeces apart**, and
    +--|------|--+------------+
    | chamber A  | chamber B  |
    | IN USE     | RESTING    |  swap when A is full;
-   | faeces +   | sealed,    |  B must have rested
-   | cover      | >= 1 year  |  a year or more first
+   | faeces +   | sealed,    |  B must have had its
+   | cover      | 1-2 years  |  full rest first
    +------------+------------+
       access hatches at the back (kept closed)
 ```
@@ -56,7 +56,13 @@ sealed; a vent pipe draws air (and smell) up and out*
 
 - **Simplest — a bucket toilet:** a sturdy bucket with a seat and lid, a
   sack of sawdust beside it, and a lidded bin or outdoor compost bay to empty
-  it into. Fine for a household starting out.
+  it into. Fine for a household starting out. Empty the bucket when it's
+  about two-thirds full, before it gets too heavy to carry safely, cover each
+  load in the bin with a thick layer of straw, leaves, or sawdust, and tip the
+  bucket's rinse water into the same bin. The bin or bay must be lidded or
+  roofed, rain-proof, closed to flies and animals, and must not drain towards
+  water. Run two, like chambers A and B below: when one is full, close and
+  date it, and rest it for the full period before any of it goes near soil.
 - **Two-chamber (vault) toilet:** two sealed, watertight chambers under one
   seat, built above ground or with a sealed floor, so nothing leaks into the
   soil. The seat sits over one chamber at a time.
@@ -111,11 +117,17 @@ nitrogen, a plant food.
 2. **Top it with a thick layer of cover material, seal it,** and label it
    with the date.
 3. **Switch the seat to chamber B** and carry on.
-4. **Leave chamber A resting** for **at least a year** — longer in a cool
-   climate. Time, dryness, and soil life kill most germs.
-5. **Empty A only when B is nearly full,** then switch back.
+4. **Leave chamber A resting** for **at least a year** where it stays warm all
+   year (averaging above 20 °C), and **18 months to 2 years** anywhere cooler.
+   Time, dryness, and soil life kill most germs.
+5. **Empty A only when B is nearly full *and* A has had its full rest,** then
+   switch back. If B fills first, don't spread A's contents early — move them,
+   wearing gloves, into a lidded, rain-proof bin to finish their rest. Better,
+   build big enough to avoid this: each chamber should take your household at
+   least the full rest period to fill (allow roughly 100 litres per person per
+   year, cover material included).
 
-> **Spec:** After at least a year's rest, the material should look and smell
+> **Spec:** After its full rest, the material should look and smell
 > like dark, crumbly earth with nothing recognisable. Even then, use it **only
 > around trees, shrubs, and non-food plants** — dig it in, don't leave it on
 > the surface, and never put it on vegetable beds. Follow any stricter local

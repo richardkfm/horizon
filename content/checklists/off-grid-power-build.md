@@ -9,7 +9,8 @@ summary: Tools, parts, and safety gear for sizing and building a small solar and
 
 What you need on hand before you start the *set up off-grid power* plan:
 sizing your load, wiring solar, and storing it safely in a battery bank.
-Gather this before you buy panels so you don't pay for capacity you don't need.
+Do the sizing section first, before you buy panels or a battery, so you
+don't pay for capacity you don't need.
 
 > **Spec:** Confirm your numbers with the [[energy-sizing-solar-battery|how big a solar + battery system do you need?]] guide before buying anything — sizing mistakes are the most
 > expensive ones.
@@ -33,12 +34,15 @@ Gather this before you buy panels so you don't pay for capacity you don't need.
 - [ ] Battery box or enclosure, ventilated and out of direct sun
 - [ ] Inverter if you need standard AC sockets
 - [ ] Fuses or circuit breakers sized to your wiring
+- [ ] Battery isolator (disconnect switch) you can reach fast
+- [ ] Correctly sized battery cable, ring terminals, and a 12 V fuse/distribution block
+- [ ] A battery management system (BMS) if you choose a lithium battery — many have one built in
 
 ## Tools
 
 - [ ] Wire strippers and crimping tool
 - [ ] Multimeter to check voltage and continuity
-- [ ] Screwdrivers and an adjustable spanner
+- [ ] Screwdrivers and a spanner with insulated handles (or wrap a bare spanner in electrical tape, all but the jaws) for work on the battery terminals
 - [ ] Cable ties and conduit to keep runs tidy and protected
 
 ## Safety

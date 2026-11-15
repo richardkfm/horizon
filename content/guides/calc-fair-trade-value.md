@@ -32,9 +32,10 @@ loud. A little costing keeps good trades from souring good relationships.
    groups add a margin for skills that took years to learn. Decide this
    openly, once, not trade by trade.
 
-A jar of pickles: vegetables you grew (say the trade value of 1 kg
-produce), a spoon of salt, an hour of work → 1 kg produce-equivalent + 1
-hour. A repaired chair: scrap wood + 2 hours. Now they're comparable.
+A batch of four jars of pickles: vegetables you grew (say the trade value
+of 2 kg produce), a little salt, two hours of work → per jar, half a kilo
+of produce-equivalent + half an hour. A repaired chair: scrap wood + 2
+hours. Now they're comparable.
 
 ## Pick a yardstick everyone knows
 

@@ -42,8 +42,10 @@ years ago, and the next best time is now.
 ## Care through the years
 
 - **Water** regularly for the first two years while roots establish.
-- **Prune** in the right season to shape the plant, let in light and air, and
-  remove dead or crossing wood.
+- **Prune** to shape the plant, let in light and air, and remove dead or
+  crossing wood. Timing matters: apples and pears in winter while dormant;
+  plums, cherries, and other stone fruit in spring or summer, in dry weather
+  (winter cuts let disease in).
 - **Feed** with compost or manure each year and keep the base weed-free.
 - **Thin heavy fruit** so branches don't break and fruit grows larger.
 

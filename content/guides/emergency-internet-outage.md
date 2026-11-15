@@ -66,17 +66,19 @@ Work down the chain until something answers.
 | --- | --- | --- |
 | GPS on your phone | Satellites, no network needed | Navigation, *if* maps were downloaded first |
 | FM/AM radio | Broadcast, one-way | News, official instructions |
-| Emergency alerts | Cell broadcast, needs no data | Official warnings, often even with no data |
+| Emergency alerts | Cell broadcast — needs a working mast, but no data | Official warnings while a mast is up; otherwise the radio |
 | SMS | Tiny messages squeeze through congestion | Short check-ins when calls fail |
 | Analogue landline | Powered down the phone line itself | Calls, if you still have a corded phone |
 | Two-way radio | Independent of all infrastructure | Coordinating with neighbours |
 | Anything downloaded | Already on the device | Maps, documents, music, this horizon node |
 | Cash | No terminal, no network | Shops, market stalls, fuel |
 
-> **Note:** A cordless handset and a "phone" socket on a fibre or cable
-> router both need mains power and a working provider — they are not the
-> line-powered landline above. A cheap corded phone kept in a drawer is what
-> actually keeps ringing.
+> **Note:** A cordless handset and a "phone" socket on any broadband router
+> (fibre, cable, or DSL) both need mains power and a working provider — they
+> are not the line-powered landline above. Many countries have switched the
+> old copper phone network off, or are doing so — ask your provider whether
+> your line is still analogue. Only then does a cheap corded phone kept in a
+> drawer keep ringing in a power cut.
 
 ## The first hour
 

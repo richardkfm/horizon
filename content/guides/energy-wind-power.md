@@ -22,7 +22,10 @@ mechanically involved than solar, so plan for the moving parts and the safety.
 - **Steady wind beats gusty wind.** Open coast, ridgelines, and exposed plains
   are good; sheltered valleys and built-up areas are usually poor.
 - **Get above turbulence:** wind near the ground and near obstacles is broken and
-  weak. A turbine wants clear air, typically well above nearby trees and
+  weak. A turbine wants clear air: as a rule of thumb, the
+  bottom of the rotor should be at least 10 m (30 ft) above anything within
+  about 150 m (500 ft). If you can't get that high, wind is probably not
+  worth it on this site. Count full-grown trees and
   buildings.
 - **Observe first:** watch how trees, smoke, and flags behave over weeks, or
   measure with a simple anemometer, before investing.
@@ -33,6 +36,14 @@ Work out your daily energy use and expected wind first (see [[calc-energy-sizing
 tower and battery beat a turbine that never keeps up.
 
 ## Build and raise it
+
+> **Risk:** Keep the tower at least twice its full height (mast plus rotor)
+> away from any overhead power line, and far enough from buildings and paths
+> that it can't land on them if it falls. A mast that touches a power line
+> while it is being raised can kill everyone holding it — treat every
+> overhead line as live. Raise and lower the mast only in calm weather, with
+> enough helpers, and keep everyone who isn't on a rope further away than
+> the tower is tall.
 
 1. **Rotor + generator:** a small DIY turbine uses carved or cut blades driving a
    permanent-magnet generator (a salvaged motor can work). Balance the blades
@@ -59,8 +70,11 @@ tower and battery beat a turbine that never keeps up.
 
 *Fig. 1: a small wind turbine on a guyed mast — the tail vane keeps the rotor into the wind, guy wires hold the tower against storm loads*
 
-4. **Brake/disconnect:** fit a way to stop the rotor (short the generator, or a
-   mechanical brake) for storms and servicing.
+4. **Brake:** fit a stop switch that shorts the generator's output (or a
+   mechanical brake) for storms and servicing. Apply it before strong wind
+   arrives, not at the height of a gale. Never just disconnect a spinning
+   turbine from the battery or controller — with no load it races and can
+   produce dangerous voltage. Brake it first, then isolate.
 
 ## Connect it safely
 

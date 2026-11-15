@@ -21,11 +21,18 @@ phones and radios, and keep small devices alive off-grid. Keeping it low-voltage
 ## Materials
 
 - One solar panel (e.g. 50–150 W) suited to your needs
-- A **charge controller** (PWM is fine for small systems; MPPT for more yield)
+- A **charge controller** rated for the panel's current with some margin —
+  panel watts ÷ 12, plus a quarter (a 120 W panel is about 10 A, so fit a
+  15 A controller). PWM is fine with a small "12 V" panel (36 cells, about
+  18 V on its label); a larger house-roof panel (60 or 72 cells) needs an
+  MPPT controller, which also gives more yield
 - A deep-cycle battery (lead-acid/AGM or LiFePO₄ with a BMS)
 - An inline **fuse** and holder sized to your wiring, plus a battery isolator
 - Correctly-sized cable, ring terminals, and a 12 V fuse/distribution block
 - 12 V loads: LED lights, a USB charging socket, etc.
+- Tools: wire strippers and a crimping tool, screwdrivers and an insulated
+  spanner, a multimeter, insulated gloves, and safety glasses — the full
+  list is in [[checklist:off-grid-power-build]]
 
 ## Sizing (rough method)
 

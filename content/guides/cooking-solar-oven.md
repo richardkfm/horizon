@@ -48,7 +48,11 @@ dark pot; insulation keeps the heat in the box.*
 
 ## Build a box cooker from scrap
 
-Nothing here needs buying if you scavenge well.
+Nothing here needs buying if you scavenge well. Besides the parts below you
+need a knife or scissors, tape, glue (flour-and-water paste works and is safe
+next to food), and a thick cloth or oven gloves — the pot and glass get hot
+enough to burn. An oven thermometer you can read through the glass is a useful
+extra.
 
 - **Two cardboard boxes**, one fitting inside the other with a 3–5 cm gap
   all round. Fill the gap and the floor with crumpled paper, straw, or wool —
@@ -86,7 +90,10 @@ Solar cooking is slow cooking — treat it like a haybox with its own heat.
   jar-lid thermometer inside is worth more than curiosity.
 - **Cloudy spells:** a passing cloud just slows things; a grey day means
   plan differently. Check the sky in the morning and decide then — the
-  oven costs nothing to not use.
+  oven costs nothing to not use. If the sun goes in and stays in while food
+  is still cooking, don't leave the pot waiting: finish it at a boil on a
+  stove or fire. Food that has sat lukewarm for more than 2 hours should be
+  thrown out, not reheated.
 
 > **Risk:** Food safety rules don't relax because the fuel is free: get
 > food *through* the lukewarm zone and hold it hot (above ~60 °C) until

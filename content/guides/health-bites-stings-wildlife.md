@@ -16,7 +16,10 @@ remedy.
 > **Do now:** Swelling of the face, lips, or throat, difficulty breathing, or
 > widespread hives after a sting or bite is a severe allergic reaction
 > (anaphylaxis). Use an epinephrine auto-injector if the person has one, and
-> treat this as life-threatening — get emergency help immediately.
+> treat this as life-threatening — get emergency help immediately. Lay them
+> flat with their legs raised (propped up a little if breathing is hard) and
+> don't let them stand or walk, even if they feel better. If there's no
+> improvement after 5 minutes and a second injector is available, use it.
 
 ## Insect stings
 
@@ -47,7 +50,9 @@ remedy.
 > bite itself and can cost a limb.
 
 1. **Keep the person calm and still** — movement speeds venom through the
-   body faster than staying still does.
+   body faster than staying still does. Splint or sling the bitten
+   limb as you would a fracture (see [[health-fractures-and-sprains]]), and
+   carry the person if you can rather than letting them walk.
 2. **Remove rings, watches, and tight clothing** near the bite before
    swelling starts.
 3. **Keep the bitten limb at or slightly below heart level** and get to
@@ -57,11 +62,12 @@ remedy.
 
 ## Animal bites
 
-- **Wash the wound thoroughly** with soap and running water for several
-  minutes — this alone cuts infection and disease risk substantially.
+- **Wash the wound thoroughly** with soap and running water for at least
+  15 minutes — this alone cuts infection and disease risk substantially.
 - **Control any bleeding** with direct pressure (see [[health-bleeding-control|stopping severe bleeding]]).
-- **Treat any bite from a wild or unknown animal as a possible rabies risk**
-  and seek medical care — rabies is close to always fatal once symptoms
+- **Treat any bite or scratch from a wild, stray, or unknown animal — or from
+  any dog, cat, or bat where rabies occurs — as a possible rabies risk**
+  and seek medical care the same day — rabies is close to always fatal once symptoms
   start, but is preventable with prompt treatment.
 
 ## Avoid the encounter in the first place

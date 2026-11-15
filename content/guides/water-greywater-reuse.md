@@ -125,8 +125,9 @@ basin, so the water soaks in under mulch and is never exposed*
   where the fruit hangs far above the ground. Don't use it on leafy greens,
   herbs, or root crops (carrots, potatoes) that you eat raw or that touch the
   soil.
-- **Keep it away from water sources** — well clear of any well, spring,
-  stream, or rainwater tank; check local rules for exact distances.
+- **Keep it away from water sources** — at least 30 m (100 ft) from any well,
+  spring, or stream, and well clear of a rainwater tank; local rules may ask
+  for more.
 - **Keep children and pets off** the basins; the covered outlets help.
 
 ## Watch for warning signs

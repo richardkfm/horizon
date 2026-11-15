@@ -57,6 +57,12 @@ Plant with the weather, not the calendar. The rule that travels everywhere:
 | Hot and wet / tropical | Cassava, sweet potato, taro, beans | Crops needing a cold spell |
 | Temperate, four seasons | Almost anything in its season | Out-of-season planting |
 
+> **Risk:** Cassava and taro are not eaten like potatoes. Raw cassava holds a
+> natural poison (cyanide), most of all in bitter kinds: peel it, then soak,
+> grate, or ferment it and cook it right through, the way local growers do.
+> Taro must be cooked right through too. Learn the preparation from someone
+> who grows them before you rely on either.
+
 ## A rule of thumb for a first plot
 
 1. **Half to staples** that store (potatoes, beans, squash) — your insurance.

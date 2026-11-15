@@ -36,7 +36,11 @@ Removing water stops most spoilage. Great for fruit, beans, herbs, and many
 vegetables.
 
 - **Sun/air dry:** slice thin and spread on racks in warm, dry, airy shade or
-  gentle sun; protect from insects with cloth or netting.
+  gentle sun; protect from insects with cloth or netting. This needs a run of
+  hot, dry days (about 30 °C or more, with dry air) and suits fruit and herbs
+  best — bring trays under cover at night. In cool or humid weather food
+  moulds before it dries: use a solar dryer instead, and throw out anything
+  that shows mould.
 - **Solar dryer:** a simple glazed box that heats and vents air dries faster and
   cleaner.
 - **Done when** pieces are leathery to brittle with no moisture left. **Store
@@ -47,7 +51,11 @@ vegetables.
 Salt plus the vegetables' own good bacteria creates acid that preserves and adds
 nutrition (think sauerkraut, kimchi-style ferments, pickles):
 
-1. **Salt the vegetables** (shredded cabbage, etc.) and pack them tight.
+1. **Salt the vegetables:** weigh the shredded cabbage and mix in 2–2.5% of
+   its weight in plain salt (20–25 g, a slightly heaped tablespoon, per kilo).
+   Squeeze and pound it for 5–10 minutes until it gives up enough juice to
+   cover itself, then pack it tight. If the juice doesn't cover it, top up
+   with a brine of 30 g salt per litre of water.
 2. **Keep them under the brine** — submerged, away from air — using a weight. Air
    is where mould grows.
 3. **Leave at room temperature** to bubble and sour over days to weeks; taste

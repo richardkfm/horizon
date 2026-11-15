@@ -14,7 +14,8 @@ air conditioning, staying safe is about lowering your body's heat load: shade,
 air, water, and rest. It is very manageable if you act early.
 
 > **Risk:** **Know the danger signs.** Heat exhaustion — heavy sweating, dizziness, nausea,
-> headache, cramps — can tip into **heatstroke**: hot dry skin, confusion,
+> headache, cramps — can tip into **heatstroke**: very hot skin (dry or
+> still sweaty), confusion,
 > collapse. Heatstroke is a life-threatening emergency: cool the person fast and
 > get medical help.
 
@@ -26,7 +27,10 @@ air, water, and rest. It is very manageable if you act early.
   and create a through-draught to flush heat out, then close up before the day
   heats again.
 - **Make a breeze:** a battery or solar fan helps; a damp cloth hung in a draught
-  cools the air passing through it.
+  cools the air passing through it. Above about 35 °C a fan alone may not
+  keep you safe, and above about 40 °C it can heat you instead of cooling you —
+  keep your skin or clothes wet so the moving air can still cool you, and don't
+  rely on a fan alone for older or unwell people.
 - **Stay low and shaded:** heat rises; the coolest part of a building is usually
   downstairs or a basement.
 

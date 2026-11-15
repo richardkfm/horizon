@@ -101,9 +101,9 @@ seconds and saves lives even mid-sort.
 
 ## Where to go next
 
-- Learn the single-patient priority order first if you haven't: handling
-  common first-aid situations.
-- The two most urgent hands-on skills after sorting: stopping severe
-  bleeding and splinting fractures and sprains.
+- Learn the single-patient priority order first if you haven't:
+  [[health-first-aid-basics]].
+- The two most urgent hands-on skills after sorting:
+  [[health-bleeding-control]] and [[health-fractures-and-sprains]].
 - Once physical care is underway, don't forget the people who helped or
-  witnessed it: support someone through shock, trauma, or grief.
+  witnessed it: [[health-psychological-first-aid]].

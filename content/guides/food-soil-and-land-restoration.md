@@ -62,7 +62,11 @@ instead of carrying topsoil away*
 
 > **Risk:** Never dig a ditch that isn't level — an off-contour ditch
 > concentrates water into a fast channel and can cause worse erosion than
-> doing nothing.
+> doing nothing. Don't dig swales on steep ground (roughly steeper than 1 in
+> 6), on a slope that already slips, or just above a building — soaking a
+> steep slope can make it slide; use stone or log lines and planting there
+> instead. Give every swale a low, stone-lined overflow at one end so storm
+> water leaves where you choose.
 
 ## Cover and feed the soil
 

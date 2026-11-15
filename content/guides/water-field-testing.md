@@ -35,10 +35,16 @@ observation plus a few cheap tests tell you most of what you need to decide
 - **pH and hardness strips:** cheap aquarium or pool strips give a rough read;
   extreme pH suggests industrial influence.
 - **Nitrate strips:** important where there is heavy fertiliser or sewage use —
-  unsafe for infants even when the water looks clean.
+  high nitrate is unsafe for infants even when the water looks clean. Boiling,
+  bleach, and sand filters do not remove nitrate (boiling makes it stronger),
+  so don't give that water to babies or mix formula with it — use another
+  source.
 - **Faecal indicator tests:** low-cost hydrogen-sulphide (H₂S) test vials darken
   in the presence of bacteria associated with sewage. A positive result means
-  disinfect, no exceptions.
+  disinfect, no exceptions. The vial needs time: keep it at room temperature or
+  warmer and read it after 24–48 hours (follow the maker's instructions). No
+  change in the first few hours tells you nothing — treat the water in the
+  meantime.
 
 ## Deciding what to do
 
@@ -68,8 +74,9 @@ observation plus a few cheap tests tell you most of what you need to decide
                           (e.g. H2S test darkens)?
                                      |
                                      v
-                          disinfect: boil /
-                          chlorine / SODIS
+                          disinfect either way: boil /
+                          chlorine / SODIS (a clean
+                          test only lowers the odds)
 ```
 
 *Fig. 1: deciding how to treat a water source*

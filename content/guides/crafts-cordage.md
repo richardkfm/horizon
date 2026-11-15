@@ -18,7 +18,10 @@ method you can turn plant fibre into surprisingly strong cordage by hand.
 
 ## Gather and prepare fibre
 
-Good fibre sources include the inner bark of some trees, nettle stems, dogbane,
+Good fibre sources include the inner bark of lime (basswood), willow, or elm —
+cut it from pruned, coppiced, or fallen branches, never from right round a
+living trunk, which kills the tree — nettle stems (wear gloves until they
+are dried), dogbane (the sap irritates skin; wash your hands),
 yucca and agave leaves, and many long, tough grasses and plant stalks.
 
 1. **Collect** long, fibrous material.
@@ -66,7 +69,9 @@ This is the core technique:
 
 - Tie off or tuck the ends so they can't unravel.
 - Let cordage dry fully, then store it dry and coiled.
-- Test any cord before trusting it with weight or with people.
+- Test any cord before trusting it with a load, and never rely on hand-made
+  cord to hold a person's weight — its strength varies along its length and
+  drops as it wears or rots.
 
 ## Where to go next
 

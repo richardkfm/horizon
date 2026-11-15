@@ -27,7 +27,8 @@ retired to a shed after the first flat tyre.
   patches, and something to rough up the tube) or a spare inner tube.
 - A **pump** that matches your valve type.
 - **Allen keys** and a **spanner set** sized to your bike's bolts.
-- **Chain lube** and a rag; a **cone/hub spanner** if you'll true wheels.
+- **Chain lube** and a rag; a **spoke key** that fits your spoke nipples if
+  you'll true wheels.
 - A **repair stand** is nice but not necessary — an upturned bike (saddle and
   handlebars on the ground) or a wall hook works fine.
 
@@ -42,8 +43,9 @@ The single most common repair, and the one most worth mastering first:
 3. **Pull out the tube** and find the puncture — inflate it slightly and
    listen, or pass it near your lips to feel for escaping air, or submerge it
    in water and watch for bubbles.
-4. **Rough up the area** around the hole, apply glue (if using), let it go
-   tacky, then press the patch on firmly and hold for a minute. Self-adhesive
+4. **Rough up the area** around the hole, spread a thin layer of glue (if
+   using) over an area bigger than the patch, wait a few minutes until it is
+   dry to the touch, then press the patch on firmly and hold for a minute. Self-adhesive
    patches skip the glue step.
 5. **Check the tyre's inside** for the thorn, glass, or wire that caused the
    puncture before it does it again. Lay the tube beside the tyre with the
@@ -63,8 +65,14 @@ The single most common repair, and the one most worth mastering first:
 
 *Fig. 1: find what caused the flat — the hole in the tube points to the spot in the tyre where the thorn or glass is still stuck*
 
-6. **Refit the tube**, seat the tyre back onto the rim by hand, then inflate.
-   Check the tube isn't pinched under the bead as you go.
+6. **Refit the tube** with just enough air in it to hold its shape, seat the
+   tyre back onto the rim by hand, then inflate. Check the tube isn't pinched
+   under the bead as you go.
+7. **Refit the wheel:** seat the axle fully in the frame or fork, then close
+   the quick-release firmly (the lever should press a mark into your palm) or
+   tighten both axle nuts. Reconnect a rim brake if you unhooked it to get the
+   wheel out, spin the wheel to check it runs clear, and squeeze both brakes
+   hard before you ride.
 
 > **Tip:** carry a spare tube on longer trips — swapping a tube by the
 > roadside is faster than patching, and you can patch the old one later at
@@ -76,9 +84,11 @@ The single most common repair, and the one most worth mastering first:
   gritty conditions: wipe off old grime with a rag, drip lube onto each link
   while turning the pedals backward, then wipe off the excess — too much lube
   just collects dirt.
-- **Listen for a stretched chain** (a persistent clicking or skipping under
-  load); a bike shop or a chain-wear tool can tell you when it's due for
-  replacement, before it wears out the gears too.
+- **Check for a stretched chain** a few times a year with a ruler: pick any
+  pin and count along 24 more — on a new chain that pin sits exactly 12 inches
+  (30.5 cm) away. If yours has grown by 1.5 mm (1/16 inch) or more, replace
+  the chain before it wears out the gears too; a chain that already clicks
+  or skips under load has usually started to.
 - **Adjust gear cables** if shifting hunts or skips: most derailleurs have a
   barrel adjuster — turn it a quarter turn at a time until shifts land
   cleanly.
@@ -97,8 +107,11 @@ The single most common repair, and the one most worth mastering first:
 ## Wheels, spokes, and a wobble
 
 - A wheel that **wobbles side to side** usually has one or two loose spokes.
-  Spin it, find the worst wobble, and tighten (rarely loosen) the spoke(s) at
-  that point a quarter-turn at a time with a spoke key, re-checking as you go.
+  Spin it and find where the rim swings towards one brake pad. At that spot,
+  tighten (rarely loosen) the spoke(s) that run to the **opposite** side of
+  the hub — they pull the rim back — a quarter-turn at a time with a spoke
+  key, re-checking as you go. Looking down on the nipple from the tyre side,
+  clockwise tightens.
 - A **broken spoke** should be replaced or, as a stop-gap, the wheel detensioned
   slightly and ridden gently until it can be fixed properly — riding hard on a
   wheel missing a spoke stresses the rest and can wreck the rim.

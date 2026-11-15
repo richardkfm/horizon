@@ -35,7 +35,8 @@ a person can, day after day.
 - **Horse:** fast and strong in front of a cart, but costlier to feed and
   more delicate than a donkey.
 - **Ox (trained steer):** slow, immensely strong, and steady — the classic
-  draught animal for ploughs and heavy wagons; runs entirely on grazing.
+  draught animal for ploughs and heavy wagons; runs mainly on grazing and
+  hay, with extra feed when the work is hard.
 - Whatever the species, **buy or borrow with an experienced person present**,
   and prefer a trained, middle-aged animal over a young untrained one.
 
@@ -65,6 +66,9 @@ the backbone — the spine itself carries nothing.*
 - **Keep total pack weight to about a quarter of body weight**, less on
   steep ground, in heat, or for old or unfit animals. Carts multiply what an
   animal can move — pulling on wheels beats carrying.
+- **A cart must never push the animal.** Fit breeching — a broad strap round
+  the hindquarters that lets the animal hold the cart back — and a brake for
+  any hills, and cut the load sharply for slopes, soft ground, and heat.
 - **Padding everywhere harness meets the body**, with no rubbing seams;
   check for warm spots and sores at every unloading, and rest any animal
   that shows them.
@@ -73,8 +77,11 @@ the backbone — the spine itself carries nothing.*
 
 ## Daily care is the real cost
 
-- **Water twice daily and feed matched to work** — grazing plus hay covers
-  light work; hard daily hauling needs supplementary feed.
+- **Clean water always on offer at rest, and frequent chances to drink
+  through the working day** — a working donkey can drink 20–35 litres a day,
+  a horse or ox more, and more again in heat. **Match feed to work** —
+  grazing plus hay covers light work; hard daily hauling needs
+  supplementary feed.
 - **Feet first:** most lameness is in the hooves. Pick them out daily, learn
   basic trimming or find who can, and rest the animal on soft ground.
 - **Shelter from rain, wind, and sun**, dry standing, and company — equines

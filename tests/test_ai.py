@@ -95,3 +95,14 @@ def test_assistant_answer_fragment_links_cited_guide():
         )
     assert resp.status_code == 200
     assert "/guides/water-slow-sand-filter" in resp.text
+
+
+def test_retrieve_keyword_fallback_spreads_across_sources():
+    """One guide with a matching title must not fill every result slot."""
+    with TestClient(app):
+        chunks = rag.retrieve("how do I make river water safe to drink")
+    per_source: dict[str, int] = {}
+    for c in chunks:
+        per_source[c["source_id"]] = per_source.get(c["source_id"], 0) + 1
+    assert len(per_source) >= 3
+    assert max(per_source.values()) <= 2

@@ -32,7 +32,7 @@ outage.
 
 > **Tip:** Rechargeable batteries that have sat in a drawer for a year are
 > usually flat. Keep a sealed pack of ordinary alkaline cells with the radio
-> and test the set twice a year — the same time you check the smoke alarms.
+> and test the set twice a year — mark both dates on the calendar.
 
 ## Write the frequencies down before you need them
 

@@ -15,9 +15,13 @@ these keeps a machine useful for years past when most people would replace
 it, and it's the same skill that makes turning an old PC into a local
 server possible in the first place.
 
-> **Risk:** Always unplug and remove the battery (or let a built-in battery
-> fully discharge) before opening a case. A swollen or leaking battery is
+> **Risk:** Always shut down, unplug, and remove the battery before opening a
+> case. If the battery is built in, run it down below about 25% first, then
+> unplug its connector from the board as the first thing you do inside. A swollen or leaking battery is
 > a fire and chemical hazard — handle it carefully and don't puncture it.
+> Never open a desktop's power supply box or a charger brick — they can hold
+> a dangerous charge even when unplugged; replace them whole. Before touching
+> memory or a drive, touch bare metal on the case to shed static.
 
 ## Diagnose the common problems
 
@@ -30,6 +34,16 @@ server possible in the first place.
 | Battery drains fast or swells | Worn-out battery cell | Replace the battery — never keep using a swollen one |
 
 ## Swap the parts that actually fail
+
+**Before you start**, gather:
+
+- Small Phillips and Torx screwdrivers, a plastic pry tool, and a soft brush
+  for dust.
+- A replacement of the same type as the part coming out — read the label on
+  the old drive or memory module (or the model's manual) before you buy.
+  Laptop and desktop parts differ, and so do older and newer generations.
+- For a drive swap: an installer or recovery USB stick for the operating
+  system, made on a working computer *before* you take the old drive out.
 
 **Storage (hard drive or SSD):**
 

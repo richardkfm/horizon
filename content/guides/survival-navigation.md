@@ -21,8 +21,9 @@ in circles. None of this needs a compass — just the sky and some care.
 - The sun rises roughly in the **east** and sets roughly in the **west**.
 - **Shadow-stick method:** push a stick upright into level ground and mark the
   tip of its shadow. Wait 15-20 minutes and mark the new tip. The first mark is
-  **west**, the second **east**; the line between them runs roughly east-west,
-  and north is at right angles to it.
+  **west**, the second **east**; the line between them runs roughly east-west.
+  Stand with the first mark at your left foot and the second at your right:
+  you are facing roughly north. It works best near the middle of the day.
 - An analogue watch can help, but the shadow-stick works anywhere.
 
 ```ascii

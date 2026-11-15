@@ -14,7 +14,8 @@ simple order of priorities. This guide is a starting point, not a substitute for
 hands-on training — take a first-aid course when you can.
 
 > **Risk:** First aid buys time; it does not replace professional care. For
-> serious bleeding, breathing trouble, chest pain, stroke signs, or a
+> serious bleeding, breathing trouble, chest pain, stroke signs (one side of the face
+> drooping, an arm that can't be lifted, slurred or muddled speech), or a
 > non-responsive person, get emergency help as your first action where it is
 > available. When unsure, treat it as serious.
 
@@ -32,7 +33,11 @@ hands-on training — take a first-aid course when you can.
      |
      v
   2 RESPONSIVE & BREATHING normally?
-     | yes          no --> call for help, start CPR
+     | yes     not breathing --> call for
+     |           help, start CPR
+     |         breathing but won't wake -->
+     |           on their side, call for
+     |           help, keep checking
      v
   3 SERIOUS BLEEDING?
      | no           yes --> firm, direct pressure;
@@ -51,8 +56,10 @@ hands-on training — take a first-aid course when you can.
 ## A calm order of priorities
 
 1. **Make the scene safe** for you first — you are no help as a second casualty.
-2. **Check responsiveness and breathing.** Not breathing normally → start CPR and
-   call for help.
+2. **Check responsiveness and breathing.** Not breathing normally → call for help
+   and start CPR. Breathing normally but won't wake → roll them onto their side
+   (recovery position), call for help, and keep checking their breathing. Both
+   are shown in [[health-choking-and-cpr]].
 3. **Stop serious bleeding:** firm, direct pressure with a clean pad; keep it
    pressed and add layers rather than peeking.
 4. **Treat for shock:** lay them down, keep them warm and reassured.
