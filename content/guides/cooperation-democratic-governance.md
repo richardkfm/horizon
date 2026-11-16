@@ -55,6 +55,27 @@ change.
 *Fig. 1: splitting a decision into stages held by different, rotating people
 — no one seat controls the whole chain from proposal to record*
 
+## A recall process, agreed in advance
+
+Write this down while everyone is calm, and keep it with the group's other
+agreements:
+
+1. **Trigger.** Any two members can ask for a recall review. One also
+   happens automatically after a failure you name in advance — missed
+   reports, say, or spending nobody can explain.
+2. **Notice.** The request goes on the next meeting's agenda in writing,
+   with the specific concerns, so it is never an ambush.
+3. **Hearing.** The person in the role hears the concerns and answers them
+   before anything is decided.
+4. **Decision.** The group tests for consent on ending the term early. The
+   person in the role steps out of that one test and cannot block it;
+   anyone else can.
+5. **Handover.** The role passes to the successor already lined up, and the
+   outcome goes in the record.
+
+Being recalled from a role is not being removed from the group. Say so out
+loud, and mean it — it is what makes recall safe to use.
+
 ## Choose a decision model that fits your group's size
 
 | Group size | A workable model | Why |

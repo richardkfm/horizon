@@ -2,7 +2,7 @@
 id: technology-repurpose-old-pc
 title: Turn an old PC into a local server
 category: technology
-summary: Give an old laptop or desktop a second life as a low-power local server for files, printing, or a shared library — no internet required.
+summary: Give an old laptop or desktop a second life as a low-power local server for files, printing, or a shared library — no internet needed once it is set up.
 difficulty: 3
 estimated_time: "A weekend"
 ---
@@ -35,15 +35,34 @@ reach over that network.
 
 ## Install a lightweight operating system
 
+Setting up needs the internet once; running the server afterwards does not.
+For the setup day you need:
+
+- The old PC and its charger or power lead
+- A second, working computer with internet
+- A USB stick of 8 GB or more (it will be wiped)
+- A network cable to plug the old PC into your router
+
 1. **Choose a lightweight Linux distribution** built for older hardware —
    these run comfortably on machines modern operating systems have left
-   behind.
-2. **Install it from a USB drive**, choosing a minimal/server install
+   behind. **Debian** is a sound, long-lived choice.
+2. **Make the installer stick:** on the working computer, download the
+   installer and write it to the USB stick with an image-writing tool (the
+   distribution's website explains how).
+3. **Start the old PC from the stick** — usually by pressing F12, F2, or Esc
+   just after switching on — and install. Choose a minimal/server install
    without a heavy graphical desktop if you're comfortable working from a
-   command line — this saves both power and disk space.
-3. **Set a fixed local address** for the machine on your network, so other
-   devices can find it at the same address every time.
-4. **Enable automatic start on power-up:** look in the BIOS/firmware
+   command line; this saves both power and disk space.
+4. **Install the software you want to host** (see below) while the machine
+   is still connected to the internet.
+5. **Set a fixed local address** for the machine, so other devices can find
+   it at the same address every time. The simplest way is in your router's
+   settings: reserve an address for the server (often called a "DHCP
+   reservation" or "static lease").
+6. **Stop a laptop sleeping when the lid is shut**, or the server vanishes
+   every time someone closes it. On Debian, set `HandleLidSwitch=ignore` in
+   `/etc/systemd/logind.conf` and restart.
+7. **Enable automatic start on power-up:** look in the BIOS/firmware
    settings for "power on after AC loss" (or "AC recovery") and turn it on,
    so the server comes back after a power cut without anyone pressing a
    button. Most desktops have this setting; many home laptops don't. A
@@ -56,9 +75,10 @@ reach over that network.
 Pick one or two services to start — it's easy to add more later:
 
 - **A file share:** a shared folder anyone on the local network can read
-  from and write to, for documents, photos, or backups.
+  from and write to, for documents, photos, or backups (Samba is the usual
+  software).
 - **A print server:** share one printer with every device on the network
-  instead of needing a printer per household.
+  instead of needing a printer per household (CUPS does this).
 - **A local library or wiki:** serve guides, reference material, or a
   community wiki page over the local network — reachable with just a web
   browser, no internet needed.

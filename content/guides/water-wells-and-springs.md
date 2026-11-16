@@ -39,17 +39,35 @@ your safety and the water's safety.
 - **Ask about the aquifer** locally where you can — existing wells nearby are
   the best evidence of depth and reliability.
 
-## Dig a well by hand, carefully
+## How a hand-dug well is made
 
-1. **Dig a shaft** slightly wider than your finished lining, keeping the
-   sides as vertical as you can.
-2. **Line as you go**, not after — concrete rings, brick, or stone laid in
-   short sections just above the current depth stop the sides collapsing as
-   you deepen it.
-3. **Work with at least one person above** at all times, the digger in a
+> **Note:** This section explains the work so you can plan it, help safely,
+> and judge whether it is being done well. It is not enough to dig a well
+> from on your own — do it alongside someone who has dug wells before.
+
+What the team needs before the first spadeful:
+
+- Concrete well rings about 1–1.3 m across inside (room for one person to
+  dig), or the formwork, cement, and steel to cast them
+- A tripod or frame over the hole with a pulley or windlass, strong rope,
+  and buckets, to lift out soil — and the digger
+- Short-handled digging tools and a hard hat
+- A harness and line, a fan or bellows with a hose, and a gas detector
+- Clean gravel for the bottom, and cement and sand for the top
+
+1. **Dig inside the lining.** The first ring is set on the ground and the
+   digger works inside it. As soil is taken out evenly from under its edge,
+   the ring sinks, and more rings are stacked on top. The lining is the
+   shoring: the digger is never standing beside bare earth.
+2. **Work with at least one person above** at all times, the digger in a
    harness on a line they hold, with a clear signal for "pull me up now".
    Ventilate and check the air with a gas detector each time before anyone
    goes back down.
+3. **Keep going below the water.** Once water seeps in, the team bales it
+   out and digs on as far as it safely can — the depth below the water level
+   is the well's reserve. This is best done at the end of the dry season,
+   when the water is at its lowest. A layer of clean gravel on the bottom
+   keeps the water from stirring up silt.
 4. **Stop and reassess** at any sign of unstable soil, water inflow you
    can't control, or bad air.
 5. **Cap it properly** once finished: a raised lip, a solid cover, and a

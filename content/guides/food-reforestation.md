@@ -83,11 +83,15 @@ canopy closes over.*
 
 1. **Plant in the dormant season** (bare-root stock establishes far more
    cheaply than potted stock, and survives better if planted while dormant).
-2. **Mulch each tree** generously to hold moisture and suppress competing
+   Space trees about 2–3 m apart — roughly 1,100–2,500 trees per hectare.
+2. **Plant each one carefully.** Keep bare roots damp and covered until the
+   moment of planting. Set the tree so the soil comes to the same mark on
+   the stem as before, spread the roots, and firm the soil in with your heel.
+3. **Mulch each tree** generously to hold moisture and suppress competing
    grass — grass competition kills more young trees than drought does.
-3. **Guard every sapling** against browsing animals (a simple stake-and-mesh
+4. **Guard every sapling** against browsing animals (a simple stake-and-mesh
    guard) until it is above browsing height.
-4. **Water through the first dry season** if you can; after that, a
+5. **Water through the first dry season** if you can; after that, a
    well-mulched, well-chosen native tree should not need irrigation.
 
 > **Risk:** Planting a single fast species across the whole area is the same

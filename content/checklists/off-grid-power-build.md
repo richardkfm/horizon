@@ -33,7 +33,7 @@ don't pay for capacity you don't need.
 - [ ] Battery bank sized to your load (see [[energy-battery-storage|store and manage your power]])
 - [ ] Battery box or enclosure, ventilated and out of direct sun
 - [ ] Inverter if you need standard AC sockets
-- [ ] Fuses or circuit breakers sized to your wiring
+- [ ] Fuses or circuit breakers sized to your wiring (the rule and table are in [[energy-low-tech-solar]])
 - [ ] Battery isolator (disconnect switch) you can reach fast
 - [ ] Correctly sized battery cable, ring terminals, and a 12 V fuse/distribution block
 - [ ] A battery management system (BMS) if you choose a lithium battery — many have one built in

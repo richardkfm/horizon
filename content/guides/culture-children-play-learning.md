@@ -108,8 +108,8 @@ that children can turn into anything*
 
 > **Risk:** Keep button batteries well out of children's reach. A swallowed
 > one can burn through the throat within hours, even if the child seems fine.
-> If you think a child has swallowed one, go to emergency care at once and
-> don't make them vomit. See [[energy-everyday-batteries]].
+> If you think a child has swallowed one, go to emergency care at once;
+> don't make them vomit or give them anything to eat or drink. See [[energy-everyday-batteries]].
 
 ## Mixed-age groups
 

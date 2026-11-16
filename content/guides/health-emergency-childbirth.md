@@ -106,8 +106,12 @@ breathing as they're dried and rubbed*
 3. **Seal your mouth over the baby's mouth and nose** and give **5 gentle
    puffs** — just enough to see the chest rise.
 4. **Keep giving breaths** (about one every 2 seconds) and keep the baby
-   warm. Follow the dispatcher's instructions, including for chest
-   compressions — see [[health-choking-and-cpr]].
+   warm. For a baby just born, breaths matter most. Follow the dispatcher's
+   instructions, including for chest compressions.
+5. If you are told to do compressions, or the baby stays limp and silent
+   despite breaths that move the chest, give **3 compressions to 1 breath**,
+   pressing with both thumbs on the breastbone. (This is different from the
+   30 to 2 used for older babies in [[health-choking-and-cpr]].)
 
 ## The cord: wait, and you may not need to cut it
 

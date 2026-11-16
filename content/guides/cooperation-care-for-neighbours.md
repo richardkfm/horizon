@@ -43,7 +43,7 @@ A roster means nobody is forgotten when one helper is busy or away.
    C & D, no.20  Jo, no.15     Sam, no.6   weekly, + heat
                                            and cold alerts
    ------------------------------------------------------
-   window card:  GREEN = all fine today   RED = please knock
+   morning sign: up by 10 am = all fine     no sign = knock
 ```
 
 *Fig. 1: a simple check-in roster — every person has a main buddy and a
@@ -54,8 +54,12 @@ backup, an agreed rhythm, and an extra check during heat, cold, or outages*
    wave at the window.
 3. **Add extra checks** during heatwaves, cold snaps, storms, power cuts,
    and illness going around.
-4. **A window card** (green side "all fine", red side "please knock") lets
-   people signal without a phone.
+4. **A morning sign** lets people signal without a phone: a card marked with
+   a big tick or "OK", or a particular curtain opened, put up by an agreed
+   time each morning and taken down at night. **No sign by that time means
+   the buddy knocks** — so it still works when someone has fallen and can't
+   reach it. Don't rely on colour alone, and put it where the buddy looks
+   rather than facing the street.
 5. **Agree what happens if there's no answer:** who has a spare key, who to
    call, and when to call emergency services.
 6. **Review the roster** every few months, or when anyone moves or their

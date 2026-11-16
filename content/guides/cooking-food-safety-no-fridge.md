@@ -147,8 +147,8 @@ sealed jar or tin. It can't be seen, smelled, or tasted.
 | --- | --- |
 | Drying fruit, vegetables, herbs, beans | Garlic or herbs in oil at room temperature |
 | Lacto-fermenting with the right amount of salt | Water-bath or oven canning of vegetables, beans, or soup |
-| Vinegar pickles from a tested recipe | "Open kettle" canning (hot food in jars, no processing) |
-| Jams with plenty of sugar, water-bath processed | Sealing cooked food in jars and leaving it out |
+| Vinegar pickles from a tested recipe | "Open kettle" canning (hot food in jars, no processing) of anything but full-sugar jam |
+| Full-sugar jam, poured boiling hot into sterilised jars and sealed | Sealing cooked food in jars and leaving it out |
 | Water-bath canning of high-acid fruit and pickles, tested recipe | Untested recipes or halving the acid or salt |
 | Pressure canning of low-acid foods, tested recipe | Reusing one-trip lids or chipped jars |
 

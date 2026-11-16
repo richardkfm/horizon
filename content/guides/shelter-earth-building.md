@@ -2,7 +2,7 @@
 id: shelter-earth-building
 title: Build with earth (cob, adobe, earthbag)
 category: shelter
-summary: Use soil-based methods to build durable, heat-storing walls from local materials.
+summary: How durable, heat-storing earth walls are built from local soil, and what to get right before you build one.
 difficulty: 4
 estimated_time: "Weeks to months"
 ---
@@ -17,6 +17,12 @@ soil and good detailing, earth walls last generations.
 > rule is "a good hat and good boots": a wide roof overhang above and a solid,
 > raised stone or rubble foundation below.
 
+> **Note:** This guide is an overview. It explains how the methods work and
+> what matters most, but the right mix, wall thickness, and lintel sizes
+> depend on your soil and climate. Before you build anything people will
+> sleep in, make test bricks, build a small test wall (a garden wall or a
+> bench), and work alongside someone who has built with earth where you live.
+
 ## Test your soil
 
 Earth building needs the right mix of clay (the glue) and sand/aggregate (the
@@ -27,6 +33,9 @@ strength):
 - **Ball test:** a damp handful should hold together but not be sticky like pure
   clay. Add sand if too sticky, clay if too crumbly.
 - Avoid topsoil with lots of organic matter — dig down to subsoil.
+- **Test bricks:** make a few small bricks with different amounts of sand
+  and straw, mark them, and dry them in the shade for two weeks. Build with
+  the mix that dries without cracking and is hard to break in your hands.
 
 ## Choose a method
 
@@ -39,6 +48,10 @@ strength):
   and good for curved walls.
 - **Rammed earth:** damp soil compacted in hard layers inside temporary
   formwork. Very durable but needs more equipment.
+
+The tools are simple: shovels, buckets, a tarp for mixing, a tamper, a
+level, and a plumb line. Earthbag also needs the bags and barbed wire;
+rammed earth needs formwork and rammers.
 
 > **Risk:** Unreinforced adobe and cob walls are heavy and brittle, and they
 > have killed many people in earthquakes. If you live anywhere earthquakes
@@ -73,8 +86,8 @@ strength):
 2. **Build up in layers**, letting cob/rammed work firm before adding much more
    height so walls don't slump.
 3. **Set door and window frames** as you build, tying them into the wall.
-4. **Keep walls plumb and thick** — thick walls are stronger and better
-   insulated.
+4. **Keep walls plumb and thick** — thick walls are stronger and hold more
+   heat. Put a timber lintel over every door and window opening.
 
 ## Protect and finish
 

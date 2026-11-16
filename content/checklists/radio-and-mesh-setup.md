@@ -41,7 +41,8 @@ working" section every month. The background is in
 - [ ] Rechargeable batteries for every handheld, plus a spare set
 - [ ] Chargers that work from solar, a 12 V battery, or pedal power
 - [ ] Mesh nodes on small solar panels or batteries
-- [ ] Power banks kept at about half charge in storage (see
+- [ ] Standby power banks kept charged and topped up every three months;
+      spares in long storage at about half charge (see
       [[energy-everyday-batteries]])
 
 ## Paper backup

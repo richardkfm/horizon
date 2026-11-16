@@ -84,16 +84,25 @@ from pedalling and protects your devices*
 
 1. **A bicycle on a stand:** a turbo-trainer or a simple wooden frame that
    lifts the back wheel.
-2. **A generator:** a permanent-magnet DC motor (from a scooter, treadmill,
-   or similar), pressed against the tyre by a roller or driven by a belt.
+2. **A generator:** a permanent-magnet DC motor, pressed against the tyre by
+   a roller or driven by a belt. A 24 V, 250–350 W electric-scooter motor is
+   a good match for a 12 V battery; a treadmill motor also works.
 3. **A blocking diode** so the battery can't push power back and spin the
-   motor.
+   motor — rated for at least 15 A and 50 V, bolted to a piece of metal to
+   keep it cool.
 4. **A charge controller** suited to your battery, to prevent overcharging,
-   plus a **fuse** close to the battery.
+   plus a **fuse** close to the battery. Check the controller's maximum
+   input voltage first: pedal flat out with nothing connected, read the
+   motor's voltage on a meter, and use a controller rated above that. An
+   ordinary small solar controller can be destroyed by less.
 5. **A 12 V battery** (see [[energy-battery-storage]]), with a 12 V–USB
    adapter and 12 V LED lights.
 6. **A simple meter** showing volts and watts makes pedalling more
    rewarding and shows when to ease off.
+
+For the build you also need timber and bolts for the stand (unless you use a
+turbo-trainer), cable and connectors, wire strippers, a crimping tool,
+spanners, and a multimeter.
 
 > **Tip:** If you already have a small solar system, connect the pedal
 > generator to the same battery through its own controller. Then muscle

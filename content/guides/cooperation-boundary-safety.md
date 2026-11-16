@@ -100,8 +100,9 @@ rather than mandate:
 
 - **Domestic-violence or abuse helplines and services**, which exist
   specifically for this and know more than any group can improvise.
-- **Independent mediation or restorative-justice services**, for cases that
-  don't need the criminal-justice system but do need a trained facilitator.
+- **Specialist restorative-justice or mediation services** — only if the
+  person harmed asks for it, with a facilitator trained in abuse who checks
+  first that it is safe, and never in place of the safety measures above.
 - **Law enforcement**, if the person at risk chooses it. For an adult who
   can protect themselves, it is their choice to make, not the group's to
   make for them — respecting that is part of not recreating the same

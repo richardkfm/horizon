@@ -2,7 +2,7 @@
 id: shelter-timber-cabin
 title: Build a simple timber-frame cabin
 category: shelter
-summary: Frame, clad, and roof a small wooden cabin or hut for longer-term living.
+summary: How a small wooden cabin is framed, clad, and roofed — the order of work, and what keeps it dry and standing.
 difficulty: 4
 estimated_time: "Weeks"
 ---
@@ -16,6 +16,12 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
 > **Tip:** **Dry wood lasts; wet wood rots.** Keep the structure off the ground, give the
 > roof a good overhang, and let air move around the timber. Most cabin failures
 > are water failures.
+
+> **Note:** This guide gives the order of work, not the sizes. How thick the
+> joists and rafters must be, how far apart, and how steep the roof depends
+> on your timber, your span, and your snow and wind. Copy those from a sound
+> building of the same size nearby, or take them from a span table for your
+> country — don't guess (see [[calc-structural-loads]]).
 
 ## What you need
 
@@ -39,13 +45,16 @@ clad and roofed to keep weather out, raised off the ground to stay dry.
 
 1. **Foundation:** set posts on flat stones, concrete pads, or short piers so no
    wood touches the soil. Level them carefully — everything builds on this.
+   Strap or bolt the frame down to its piers so a storm can't lift or shift
+   it.
 2. **Floor frame:** lay beams across the foundations, add joists, and deck over
    with boards. A level, solid floor makes the rest straightforward.
 3. **Walls:** raise corner posts, connect them with top and bottom plates, and
    add upright studs between. Brace corners diagonally so the frame can't rack
    (lean) sideways.
 4. **Roof:** set a ridge beam and rafters, or use simple triangular trusses.
-   Pitch it enough to shed rain and snow, with an **overhang** past the walls.
+   Pitch it enough to shed rain and snow — steeper where snow is heavy —
+   with an **overhang** past the walls.
 
 ```ascii
       ___________________

@@ -46,9 +46,16 @@ who can still be saved are treated first.
 4. **Everyone else** — breathing under 30 a minute, a wrist pulse, and
    following commands, but unable to walk — is **delayed (second
    priority).**
+   For a young child the numbers differ — see the note below.
 5. **Mark or note each person's priority** as you go — tape, cards, or
    simply calling the priority out loud to any helpers — so nobody is
    treated twice or missed.
+
+> **Note:** The breathing numbers above are for adults and teenagers. Young
+> children breathe faster: for them, worry at under about 15 or over about
+> 45 breaths a minute. If a child isn't breathing after you open the airway,
+> give 5 rescue breaths before moving on — if they start breathing, they are
+> **immediate**.
 
 ```ascii
  Can they walk? --yes--> MINOR (sort last)

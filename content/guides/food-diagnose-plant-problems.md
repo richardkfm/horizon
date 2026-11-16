@@ -40,7 +40,7 @@ fruit first.
 | Nutrient | Where it shows | What you see | Fix |
 | --- | --- | --- | --- |
 | Nitrogen (N) | Older, lower leaves | Even pale yellowing, weak spindly growth | Compost, manure, plant a nitrogen-fixer nearby |
-| Phosphorus (P) | Older leaves, stems | Dark green or purple tinge, stunted, poor roots | Bone meal, compost, avoid cold wet soil |
+| Phosphorus (P) | Older leaves, stems | Dark green or purple tinge, stunted, poor roots | Compost, well-rotted manure, rock phosphate if you can get it; avoid cold wet soil |
 | Potassium (K) | Leaf edges | Scorched brown edges, weak stems, poor fruit/flower | Wood ash (sparingly), compost |
 | Iron / manganese | New growth | Yellowing *between* veins, veins stay green | Improve drainage, correct overly alkaline soil |
 | Magnesium | Older leaves | Yellowing between veins, sometimes reddish tinge | Compost, occasional Epsom-salt drench |

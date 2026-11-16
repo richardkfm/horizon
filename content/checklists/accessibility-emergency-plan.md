@@ -20,7 +20,7 @@ roster, see [[cooperation-care-for-neighbours]].
 - [ ] Two named helpers who live close, with phone numbers
 - [ ] A check-in rhythm agreed (daily call, weekly visit) and extra checks in
       heat, cold, storms, and power cuts
-- [ ] A sign for "please knock" (a window card or agreed signal)
+- [ ] An agreed "I'm up" sign each morning (a card or an opened curtain) — no sign by the agreed time means your buddy knocks
 - [ ] Who has a spare key, and when they may use it
 - [ ] What happens if there's no answer, and who to call
 - [ ] An emergency contact and their wishes if they can't speak for

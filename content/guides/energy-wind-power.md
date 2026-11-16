@@ -2,9 +2,9 @@
 id: energy-wind-power
 title: Generate power from a small wind turbine
 category: energy
-summary: Site, build or set up, and safely connect a small wind turbine to your battery system.
+summary: Site, choose, raise, and safely connect a small wind turbine to your battery system.
 difficulty: 4
-estimated_time: "Several days"
+estimated_time: "Several days to install, after weeks of watching the wind"
 ---
 
 # Generate power from a small wind turbine
@@ -35,7 +35,17 @@ mechanically involved than solar, so plan for the moving parts and the safety.
 Work out your daily energy use and expected wind first (see [[calc-energy-sizing|size an energy system]]). Match the turbine and battery bank to that, with margin — an oversized
 tower and battery beat a turbine that never keeps up.
 
-## Build and raise it
+## What you need
+
+- A small turbine with its matched wind charge controller and dump load
+- A tilt-up guyed mast (a kit, or steel tube with a hinged base), guy wire,
+  ground anchors, and turnbuckles to tension the guys
+- Cable sized for the run from mast to battery, a fuse, and a disconnect
+  switch
+- An earth rod and clamp
+- Spanners, a spirit level, a rope or hand winch for raising, and helpers
+
+## Choose and raise it
 
 > **Risk:** Keep the tower at least twice its full height (mast plus rotor)
 > away from any overhead power line, and far enough from buildings and paths
@@ -45,13 +55,17 @@ tower and battery beat a turbine that never keeps up.
 > enough helpers, and keep everyone who isn't on a rope further away than
 > the tower is tall.
 
-1. **Rotor + generator:** a small DIY turbine uses carved or cut blades driving a
-   permanent-magnet generator (a salvaged motor can work). Balance the blades
-   carefully — imbalance destroys bearings.
-2. **Tail vane** keeps it facing the wind; design in **furling** (the rotor turns
-   aside in high wind) or another way to shed excess power.
-3. **Tower:** the biggest, most dangerous part. Use a guyed mast on a solid
-   anchor; plan how to raise and lower it safely for maintenance.
+1. **Buy a small turbine or a proven kit** rather than designing your own.
+   Judge it by what it makes at your site's *usual* wind speed, not the peak
+   figure on the box, and check it comes with a controller made for it. A
+   home-built turbine is possible, but it needs a full set of tested plans —
+   blade shape, generator, and tower — and this guide is not one.
+2. **Check the storm protection.** A tail vane keeps the rotor facing the
+   wind; **furling** (the rotor turns aside in high wind) or another
+   automatic way to shed excess power should be built in.
+3. **Tower:** the biggest, most dangerous part. Use a guyed mast that tilts
+   up and down on a hinged base, so all work on the turbine happens on the
+   ground. Follow the maker's guy spacing and anchor instructions.
 
 ```ascii
                  \   |   /       rotor faces the wind

@@ -19,6 +19,16 @@ supply.
 > it like any untested source: settle, filter, and disinfect before drinking
 > (see [[water-choosing-treatment|which water treatment should you use]]).
 
+## What you need
+
+- Gutter and a downpipe (most roofs already have them)
+- A tee fitting and a capped length of pipe, for the first-flush diverter
+- A leaf guard or coarse screen, and fine insect mesh
+- A food-grade tank or barrel with a lid, a tap, and an overflow pipe
+- A firm, level base for the tank — paving slabs or a bed of compacted
+  gravel
+- A saw, a drill, a screwdriver, and pipe brackets
+
 ## Choose a clean catchment surface
 
 - **Best:** metal, tile, or untreated, food-safe roofing.
@@ -89,6 +99,10 @@ Estimate how much you can realistically collect:
   an overflow outlet.
 - **Draw from a tap near the bottom** but slightly raised, so sediment
   settles below the draw point rather than being stirred into what you use.
+- **Stand the tank on a firm, level base.** Water is heavy: a full 1,000 L
+  tank weighs a tonne, and one on loose bricks or soft ground can tip.
+- **Lead the overflow away** from walls and foundations, to a drain or a
+  patch of ground that soaks it up.
 
 ## Where to go next
 

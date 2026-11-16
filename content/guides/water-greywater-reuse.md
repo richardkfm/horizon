@@ -99,19 +99,33 @@ several mulch basins around trees and shrubs.
 around trees; each outlet sits in a covered chamber inside a wood-chip-filled
 basin, so the water soaks in under mulch and is never exposed*
 
-1. **Pick the plants:** fruit and nut trees, berry bushes, ornamentals, or
+What you need:
+
+- A three-way diverter valve to fit your drain pipe
+- Drain pipe of about 40–50 mm, flow-splitter fittings, and pipe cement
+- Wood chips or coarse mulch, and a cover for each outlet (an upturned
+  bucket, pot, or box)
+- A saw for the pipe, a spade, and a spirit level
+
+> **Note:** The easy places to start are the washing machine's own drain
+> hose, which only needs redirecting, and carrying water by bucket. Cutting
+> into a shower or bath drain is a plumbing job: the pipe is usually under
+> the floor, so get help unless you can reach it and have done pipework
+> before.
+
+1. **Fit the diverter valve first**, where the system joins the house drain,
+   so you can send water to the sewer or septic tank in wet weather, when
+   someone is ill, or when you've used a product that isn't garden-safe.
+2. **Pick the plants:** fruit and nut trees, berry bushes, ornamentals, or
    large shrubs — plants with deep roots that use a lot of water.
-2. **Dig a basin** around each plant at the drip line (under the edge of the
+3. **Dig a basin** around each plant at the drip line (under the edge of the
    canopy), 20–30 cm deep, not right against the trunk.
-3. **Fill it with wood chips or coarse mulch** — the mulch filters lint, keeps
+4. **Fill it with wood chips or coarse mulch** — the mulch filters lint, keeps
    the water underground, and feeds soil life that breaks down soap.
-4. **Lay the pipe** with a steady downhill fall the whole way (no low spots
+5. **Lay the pipe** with a steady downhill fall the whole way (no low spots
    where water sits). Use splitters to divide the flow between basins.
-5. **Cover each outlet** with a small upturned bucket, a pot, or a box, so
+6. **Cover each outlet** with a small upturned bucket, a pot, or a box, so
    the water drops into mulch and can't be touched or splashed.
-6. **Fit a simple diverter valve** near the house so you can send water to the
-   sewer or septic tank in wet weather, when someone is ill, or when you've
-   used a product that isn't garden-safe.
 
 > **Pick this if:** you have a garden lower than the house and want something
 > that runs itself. **A laundry-to-landscape line** — the machine's own pump
