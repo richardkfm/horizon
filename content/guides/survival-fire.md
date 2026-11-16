@@ -2,7 +2,7 @@
 id: survival-fire
 title: Make and keep a fire without matches
 category: survival
-summary: Lay, light, and tend a safe fire using a spark or friction, then keep it going.
+summary: Lay, light, and tend a safe fire from a spark, a battery, or the sun, then keep it going.
 difficulty: 2
 estimated_time: "Half a day to practise"
 ---
@@ -76,9 +76,9 @@ it glows hot enough to light tinder.
 
 - **Spark (ferro rod or flint and steel):** scrape sparks straight into a tight
   tinder bundle, then blow gently until it flames.
-- **Friction (bow drill):** spin a hardwood spindle against a softwood board to
-  grind a small dark dust pile; keep going until it smokes and forms a glowing
-  ember, then tip it into your tinder bundle and blow.
+- **Friction (bow drill):** it works, but it needs a knife, strong cord, the
+  right dry wood, and a lot of practice. Learn it from someone in good times;
+  don't count on it in an emergency.
 - **Sun:** in strong, high sun, focus the light to the smallest, brightest dot
   you can with a magnifying glass or reading glasses (glasses for short sight
   spread light out and won't work), held on dark, very fine tinder until it

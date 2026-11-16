@@ -4,7 +4,7 @@ title: Bake bread without modern equipment
 category: cooking
 summary: Make flatbreads and sourdough loaves by hand, with no commercial yeast or oven required.
 difficulty: 2
-estimated_time: "Half a day (plus rising)"
+estimated_time: "Half a day (plus rising); about a week to grow a starter"
 ---
 
 # Bake bread without modern equipment
@@ -40,16 +40,22 @@ Without bought yeast, wild yeast does the work:
 1. Mix equal parts **flour and water** in a jar; leave loosely covered somewhere
    warm.
 2. **Feed it** with fresh flour and water once a day, discarding some each time.
-3. In several days it bubbles and smells pleasantly sour — it's alive and ready.
-   Keep feeding it to keep it going.
+3. In about a week (longer somewhere cool) it bubbles and smells pleasantly
+   sour. It's ready when it doubles within 4–8 hours of a feed. Keep feeding it
+   to keep it going.
 
 ## Bake a risen loaf
 
-1. **Mix** flour, water, salt, and a good spoon of active starter into a dough.
+> **Spec:** One loaf — 500 g flour (about 4 mugs), 325 ml water, 10 g salt
+> (2 level teaspoons), and 100 g of bubbly starter (about half a mug).
+
+1. **Mix** the flour, water, salt, and starter into a dough.
 2. **Knead** until smooth and stretchy to build structure.
-3. **Rise** slowly (hours) in a warm place until well puffed — sourdough is
-   patient.
-4. **Shape**, let it rise again, then **bake** with strong, steady heat.
+3. **Rise** in a warm place until roughly doubled: 4–8 hours, or overnight
+   somewhere cool — sourdough is patient.
+4. **Shape**, let it rise again until puffy (an hour or two), then **bake**
+   with strong, steady heat for 40–45 minutes. It's done when the crust is
+   deep brown and the base sounds hollow when you tap it.
 
 ## Bake without an oven
 

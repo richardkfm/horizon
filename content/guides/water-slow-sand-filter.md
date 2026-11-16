@@ -22,12 +22,16 @@ drink. Water trickles slowly through fine sand where a living biological layer
 
 - A clean food-grade barrel or tank of about 200 L, at least 85 cm deep
   inside — a shorter one cannot hold the 60 cm of sand
-- Fine, washed sand (the main filter bed)
-- Coarse gravel (support layer)
+- Fine, washed sand (the main filter bed) — grains under about 1 mm; sieve
+  it through insect mesh or a kitchen sieve
+- Coarse gravel (support layer), and a few centimetres of fine gravel
+  (about 6 mm) to go between it and the sand
 - A perforated collector pipe for the bottom, plus solid pipe that rises up
   the outside of the barrel to the outlet (see below)
 - A small valve or tap on the outlet to set the flow
 - A diffuser plate (to avoid disturbing the sand surface)
+- A drill or hole saw, a tank connector (bulkhead fitting) or sealant, and a
+  pipe elbow, to take the pipe out through the barrel wall without leaks
 
 ## The outlet must rise above the sand
 
@@ -59,16 +63,21 @@ dry overnight and kills that layer.
 ## Procedure
 
 1. **Wash the sand and gravel** thoroughly until rinse water runs clear.
-2. **Layer the bed:** gravel at the bottom around the perforated collector
-   pipe, then a thick layer (≥ 60 cm) of fine sand on top.
-3. **Fit the riser:** run solid pipe from the collector up the outside of the
-   barrel so its outlet sits about 5 cm above the sand surface, with a small
-   valve or tap on the end.
+2. **Fit the outlet first**, while the barrel is empty: cut a hole near the
+   bottom of the wall, fit and seal the tank connector, and join the
+   perforated collector to it on the inside. Outside, an elbow turns solid
+   pipe up the barrel so its outlet sits about 5 cm above where the sand
+   surface will be, with a small valve or tap on the end. Fill the bottom
+   with water and check for leaks.
+3. **Layer the bed:** about 10 cm of coarse gravel around the collector
+   pipe, then about 5 cm of fine gravel to stop sand washing down into it,
+   then a thick layer (≥ 60 cm) of fine sand on top.
 4. **Add a diffuser** above the sand so incoming water does not dig a hole.
 5. **Charge the filter:** fill it from the top and keep water standing above
    the sand at all times.
-6. **Ripen the filter:** run it continuously for **about 2–3 weeks** so the
-   schmutzdecke develops. Until then, don't trust the output — and even
+6. **Ripen the filter:** use it every day — pour raw water in at least once
+   or twice a day — for **about 2–3 weeks** so the schmutzdecke develops.
+   Between fills the raised outlet keeps the sand under water. Until then, don't trust the output — and even
    afterwards, disinfect it before drinking (see the Risk note above).
 7. **Run slowly:** aim for a filtration rate of roughly **0.1–0.4 m/h** —
    that is, the water above the sand would drop 10–40 cm an hour if you

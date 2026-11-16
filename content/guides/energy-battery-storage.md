@@ -52,6 +52,7 @@ Work from your daily energy use (see [[calc-energy-sizing]]):
 ## Wire it safely
 
 - Use **correctly rated cable** for the current; undersized cable overheats.
+  The sizing rule and fuse table are in [[energy-low-tech-solar]].
 - Put a **fuse or breaker** close to the battery on the main line, and a
   **disconnect switch** you can reach fast.
 - Keep connections **tight and clean** — loose joints heat up and fail.

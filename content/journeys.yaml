@@ -36,8 +36,8 @@ journeys:
     description: >
       Plan a first growing season and make it last: rebuild worn-out ground,
       pick crops that suit your site, establish a vegetable garden, grow
-      calorie-dense staples, troubleshoot problems as they come up, and save
-      seed so you can grow again next year.
+      calorie-dense staples, troubleshoot problems as they come up, store the
+      harvest through winter, and save seed so you can grow again next year.
     category: food
     difficulty: 3
     estimated_time: "A growing season"
@@ -47,6 +47,7 @@ journeys:
       - food-vegetable-garden
       - food-diagnose-plant-problems
       - food-staple-crops-500m2
+      - food-root-cellar
       - food-seed-saving
 
   - id: off-grid-power
@@ -97,14 +98,15 @@ journeys:
     title: Core wilderness survival skills
     description: >
       The hands-on basics for being out in the field: choose and set up a safe
-      camp, make fire, find and carry water, manage waste and hygiene, find
-      your way without a compass, tie essential knots, find food by foraging,
-      and signal for rescue if it comes to that.
+      camp, put up a quick shelter, make fire, find and carry water, manage
+      waste and hygiene, find your way without a compass, tie essential knots,
+      find food by foraging, and signal for rescue if it comes to that.
     category: survival
     difficulty: 3
     estimated_time: "Ongoing practice"
     guides:
       - survival-campsite-setup
+      - shelter-emergency-quick
       - survival-fire
       - survival-find-water
       - survival-sanitation-hygiene
@@ -152,15 +154,13 @@ journeys:
     title: Make and maintain your own tools
     description: >
       Build basic self-sufficiency in craft: twist plant fibre into strong
-      cordage, spin and weave fibre into simple cloth, make simple cutting
-      and digging tools from wood, stone, and salvage, then keep those tools
-      sharp and safe.
+      cordage, make simple cutting and digging tools from wood, stone, and
+      salvage, then keep those tools sharp and safe.
     category: crafts
     difficulty: 2
     estimated_time: "A few afternoons"
     guides:
       - crafts-cordage
-      - crafts-fiber-and-textiles
       - crafts-make-tools
       - crafts-tool-repair
 
@@ -314,15 +314,16 @@ journeys:
     title: Cook well off the grid
     description: >
       Cook good, filling food with little or no fuel: start with a solar oven
-      on sunny days, finish one-pot meals in a hay box to save fuel, add
-      wild greens and fruit you can identify with certainty, and turn
-      gluts into ferments that keep.
+      on sunny days, finish one-pot meals in a hay box to save fuel, learn
+      to identify wild greens and fruit with certainty before you cook
+      them, and turn gluts into ferments that keep.
     category: cooking
     difficulty: 2
     estimated_time: "A few sunny weekends, then ongoing"
     guides:
       - cooking-solar-oven
       - cooking-one-pot-meals
+      - survival-foraging
       - cooking-foraged-food
       - cooking-ferments
 

@@ -74,6 +74,15 @@ For distance beyond what Bluetooth or Wi-Fi can cover:
 - **Use open mesh firmware on LoRa nodes**, not a simple point-to-point
   link — this is what makes distant nodes able to relay for each other
   automatically rather than needing a direct line to every other node.
+  **Meshtastic** is the most widely used; it runs on cheap ready-made
+  boards and is set up from a phone app.
+- **Buy boards for your region's radio band** — 868 MHz in Europe, 915 MHz
+  in North America; check the rule where you live — and set the region in
+  the app before first use.
+- **Set up every node while you still have internet.** Installing the
+  firmware needs a computer or phone, a USB cable, and a download.
+- **Always screw the antenna on before powering a node.** Transmitting
+  without one can destroy the radio.
 - **Place nodes for redundant paths, not just coverage.** Two nodes that can
   each reach a third by a different route survive one going down; a single
   chain of nodes doesn't. Think in terms of a mesh diagram, not a line on a
@@ -90,7 +99,14 @@ A step up from the simple access-point mesh in [[technology-local-network|the lo
 
 - **Use open mesh routing firmware** on repurposed routers instead of a
   single vendor's proprietary mesh system — this lets any router relay for
-  any other, rather than all routing through one designated hub.
+  any other, rather than all routing through one designated hub. **OpenWrt**
+  has mesh support built in, and **LibreMesh** is a version of it made for
+  community networks.
+- **This part needs someone comfortable with a command line.** Before you
+  start, check that each router's exact model and version is on the
+  firmware's supported list, and download the files while you have
+  internet. Never cut the power while a router is being flashed — it can
+  leave it dead.
 - **Add at least one redundant link** between buildings where you can (a
   second router in range of two others, not just one) so a single router
   failure doesn't split the network in two.

@@ -74,7 +74,9 @@ is gentlest; store spare devices and power banks at about half charge*
   stopping before 100%. Many phones have a setting that limits charging to
   80% — use it.
 - **Storage:** charge power banks and spare devices to **about 40–60%**
-  before putting them away. Check and top up every 3–6 months.
+  before putting them away. Check and top up every 3–6 months. The one
+  exception is the power bank in your emergency kit: keep that one charged,
+  and top it up every three months.
 - **Heat is the enemy:** don't leave phones or power banks in a hot car, in
   direct sun, or charging under a pillow. Charge on a hard surface with air
   around it.
@@ -94,7 +96,8 @@ is gentlest; store spare devices and power banks at about half charge*
 
 > **Do now:** If a child may have **swallowed a button or coin battery**, go
 > to emergency care immediately, even if they seem fine. It can burn through
-> the throat or gut within hours. Don't make them vomit.
+> the throat or gut within hours. Don't make them vomit, and don't give
+> them anything to eat or drink on the way.
 
 Keep button batteries, and devices with loose battery covers, well out of
 children's reach. Tape over the terminals of used ones before disposal.

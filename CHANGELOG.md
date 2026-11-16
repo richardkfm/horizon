@@ -13,6 +13,75 @@ Updating this changelog and the README is part of every user-facing change
 
 ## [Unreleased]
 
+## [0.9.7] — 2026-11-16
+
+The second half of the content review. v0.9.6 held the clear corrections;
+this release settles the 35 findings that needed a decision — mostly guides
+that read as a build but could not be built from the text.
+
+### Changed
+
+- **Guides that are now honest overviews.** The hand-dug well section, the
+  wind-turbine guide, earth building and the timber cabin no longer read as
+  complete build instructions. Each says what it covers, what it does not,
+  and where the missing sizes must come from (an experienced builder, a
+  bought turbine or proven kit, a sound local building, a span table). The
+  well section now describes the safer method of digging inside sinking
+  concrete rings.
+- **Guides that gained the numbers they were missing.**
+  - *Staple crops on 500 m²:* planting time, depth, spacing, seed needed and
+    rough yield for each crop, and a plain statement of how much of one
+    adult's food the plot gives.
+  - *Low-tech solar:* a cable and fuse sizing rule with a table and a worked
+    example. The battery guide and the off-grid checklist point to it.
+  - *Structural loads:* material densities, live loads for rooms, stores and
+    snow, and a worked example. It now says plainly that horizon holds no
+    span tables.
+  - *Knots:* tying steps and a "check it" line for all six knots, and steps
+    for the diagonal lashing.
+  - *Bread:* a baseline sourdough recipe with times and a doneness test.
+  - *Reforestation:* tree spacing and how to plant a bare-root tree.
+- **Parts lists and concrete options.** The slow sand filter (outlet
+  fittings, a fine-gravel layer, fed once or twice a day while it ripens),
+  rainwater harvesting (a firm base for a tank that weighs a tonne),
+  greywater (diverter valve first; a bath or shower drain is a plumbing
+  job), pedal power (a named motor, diode rating and controller check), the
+  mesh guide (Meshtastic, OpenWrt and LibreMesh, and setup that needs the
+  internet beforehand) and the old-PC server (Debian, a setup-day list,
+  stopping a laptop sleeping when shut).
+- **A recall procedure in the governance guide** — trigger, written notice,
+  a hearing, a consent test the role-holder steps out of, and handover.
+  Other cooperation guides already pointed to it.
+- **Fire by friction is one honest line**, not a procedure nobody could
+  follow: learn the bow drill in good times, don't count on it in an
+  emergency.
+- **Plans.** *Core wilderness survival skills* gains a shelter step. *Grow
+  and store your own food* gains the root-cellar guide. *Cook well off the
+  grid* teaches plant identification before cooking wild plants. *Make and
+  maintain your own tools* drops spinning and weaving, which fit neither
+  its title nor its time estimate.
+
+### Fixed
+
+- **Jam.** Two guides contradicted each other. Full-sugar jam poured boiling
+  hot into sterilised jars and sealed is now "safe" in both; open-kettle
+  filling stays unsafe for everything else.
+- **Triage** has a note for young children, whose normal breathing is
+  faster than the adult thresholds. **Emergency childbirth** gives the
+  3-to-1 ratio for a baby just born.
+- **A swallowed button battery:** nothing to eat or drink on the way.
+- **The neighbour check-in sign** now works by its absence: a sign put up
+  each morning, and no sign by the agreed time means the buddy knocks. It
+  no longer relies on red and green alone.
+- **Coercion guide:** mediation or restorative justice only if the person
+  harmed asks for it, with a facilitator trained in abuse.
+- **Bike trailer:** the tow arm is bolted with two through-bolts; a lashing
+  is only a get-you-home repair.
+- **Bone meal** is no longer suggested as a soil amendment (content
+  principle 3); compost, manure and rock phosphate take its place.
+- **Standby power banks** are kept charged; only spares in long storage sit
+  at half charge. The batteries guide and the radio checklist now agree.
+
 ## [0.9.6] — 2026-11-15
 
 A content review of every guide, checklist and plan: each one was read for
@@ -1521,7 +1590,8 @@ Initial scaffold built in vertical slices, useful before any LLM is involved.
      release commits. Switch them to the tag form once the tags are pushed.
      v0.8.1's, v0.9.0's, v0.9.1's and v0.9.2's links assume their tags are
      pushed when each release lands on main. -->
-[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.6...HEAD
+[Unreleased]: https://github.com/richardkfm/horizon/compare/v0.9.7...HEAD
+[0.9.7]: https://github.com/richardkfm/horizon/compare/v0.9.6...v0.9.7
 [0.9.6]: https://github.com/richardkfm/horizon/compare/v0.9.5...v0.9.6
 [0.9.5]: https://github.com/richardkfm/horizon/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/richardkfm/horizon/compare/v0.9.3...v0.9.4

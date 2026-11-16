@@ -91,9 +91,10 @@ ground without transmitting every bump straight to the frame:
 - **Use a locking pin or a safety strap** as backup in case the primary hitch
   ever works loose — a trailer coming loose in traffic is dangerous, not just
   inconvenient.
-- **Lash the tow arm to the frame** with a secure lashing (see [[survival-knots|tie essential knots and lashings]]) if you're building from timber and don't yet have a
-  welded or bolted joint — check and retighten it before each heavy trip
-  until you're confident in it.
+- **Bolt the tow arm to the frame** with at least two through-bolts and
+  large washers — two bolts stop it pivoting. A lashing (see
+  [[survival-knots|tie essential knots and lashings]]) is only a
+  get-you-home repair for a light load off the road.
 
 ## Build the box
 
